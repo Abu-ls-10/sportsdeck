@@ -1,6 +1,6 @@
 import {prisma} from '@/lib/prisma';
 import {Prisma} from '@/generated/prisma';
-import { hashpassword, generate_token } from '@/lib/auth';
+import { hashpassword, generate_access_token, generate_refresh_token} from '@/lib/auth';
 import { NextResponse } from 'next/server';
 
 export async function POST(req: Request){
@@ -19,9 +19,17 @@ export async function POST(req: Request){
         });  
 
         // Return a JWT token. They are logged in
-        const token = generate_token({username: user.username, user_id: user.username, role: user.role});
+        const payload = {username: user.username, user_id: user.id, role: user.role};
+        const access_token = generate_access_token(payload);
+        const refresh_token = generate_refresh_token(payload)
+
+        // Store refresh token in database
+        await prisma.user.update({
+            where: { id: user.id},
+            data: {refresh_token: refresh_token}
+        })
     
-        return NextResponse.json({token: token}, {status: 201});
+        return NextResponse.json({access_token: access_token, refresh_token: refresh_token}, {status: 201});
 
     }
 
@@ -30,9 +38,7 @@ export async function POST(req: Request){
         if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2002' ){
             return NextResponse.json({message: `${error.meta?.target} already exists`}, {status: 409 })
         }
-        console.log(error);
         return NextResponse.json({message: "Something went wrong"}, {status: 500})
     }
-
     
 }

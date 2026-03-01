@@ -26,4 +26,5 @@ model User {
   following User[]   @relation("UserFollows")
   followers User[]   @relation("UserFollows" )
   favorite_team String?
+  refresh_token String?
 }
