@@ -1,2 +1,7 @@
 .DS_Store
 .env*
+
+# Local database. Every member should have a separate development database.
+*.db
+*.db-journal
+/prisma/*.db
