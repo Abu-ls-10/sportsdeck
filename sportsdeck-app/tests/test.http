@@ -1,0 +1,8 @@
+POST http://localhost:3000/api/users/signup
+Content-Type: application/json 
+
+{
+    "username": "John Cena",
+    "password": "YOU CANT SEE ME",
+    "email": "hi@bruh.com"
+}
