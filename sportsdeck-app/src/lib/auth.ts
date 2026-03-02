@@ -27,7 +27,12 @@ export function generate_access_token(payload: string | object){
 }
 
 export function verify_access_token(token: string){
-    return jwt.verify(token, JWT_ACCESS_SECRET);
+    try{
+        return jwt.verify(token, JWT_ACCESS_SECRET);
+    }
+    catch (error){
+        return null; 
+    }
 }
 
 // For creating refresh tokens.
@@ -37,5 +42,10 @@ export function generate_refresh_token(payload: string | object){
 }
 
 export function verify_refresh_token(token: string){
-    return jwt.verify(token, JWT_REFRESH_SECRET);
+    try{
+        return jwt.verify(token, JWT_REFRESH_SECRET);
+    }
+    catch (error){
+        return null;
+    }
 }
