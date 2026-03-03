@@ -1,5 +1,7 @@
-// Follow a user
-export async function POST() {}
+// POST /api/follow/:userId
+// Authenticated user follows another user.
+export async function POST(request: Request, { params }: { params: { userId: string } }) {}
 
-// Unfollow a user
-export async function DELETE() {}
+// DELETE /api/follow/:userId
+// Unfollows a user.
+export async function DELETE(request: Request, { params }: { params: { userId: string } }) {}
