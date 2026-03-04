@@ -1,51 +1,51 @@
 import bcrypt from 'bcryptjs'
-import jwt from 'jsonwebtoken'
+import jwt, { SignOptions } from 'jsonwebtoken'
 
+const SALT_ROUNDS = parseInt(process.env.SALT_ROUNDS || '10')
+const JWT_ACCESS_SECRET = process.env.JWT_ACCESS_SECRET!
+const JWT_REFRESH_SECRET = process.env.JWT_REFRESH_SECRET!
+const JWT_ACCESS_EXPIRATION = (process.env.JWT_ACCESS_EXPIRATION || '1h') as SignOptions['expiresIn']
+const JWT_REFRESH_EXPIRATION = (process.env.JWT_REFRESH_EXPIRATION || '30d') as SignOptions['expiresIn']
 
-// @ts-check
-
-const SALT_ROUNDS = parseInt(process.env.SALT_ROUNDS || '10');
-const JWT_ACCESS_SECRET=process.env.JWT_ACCESS_SECRET || '';
-const JWT_ACCESS_EXPIRATION=process.env.JWT_ACCESS_EXPIRATION || '1h';
-const JWT_REFRESH_SECRET=process.env.JWT_REFRESH_SECRET || '';
-const JWT_REFRESH_EXPIRATION=process.env.JWT_REFRESH_EXPIRATION || '30d';
-
-
-
-export async function hashpassword(open_password: string){
-    return await bcrypt.hash(open_password, SALT_ROUNDS);
+// Fail fast if JWT secrets are not set in the environment
+if (!JWT_ACCESS_SECRET || !JWT_REFRESH_SECRET) {
+  throw new Error('JWT secrets are not defined in environment variables')
 }
 
-
-export async function compare_password(potential_password: string, real_password: string){
-    return await bcrypt.compare(potential_password, real_password);
+// Hashes a plain-text password using bcrypt before storing it in the database
+export async function hashPassword(password: string): Promise<string> {
+  return bcrypt.hash(password, SALT_ROUNDS)
 }
 
-// For creating JSON web tokens
-export function generate_access_token(payload: string | object){
-    return jwt.sign(payload, JWT_ACCESS_SECRET, {expiresIn: JWT_ACCESS_EXPIRATION as any})
+// Compares a plain-text candidate password against a stored bcrypt hash
+export async function comparePassword(candidate: string, hashed: string): Promise<boolean> {
+  return bcrypt.compare(candidate, hashed)
 }
 
-export function verify_access_token(token: string){
-    try{
-        return jwt.verify(token, JWT_ACCESS_SECRET);
-    }
-    catch (error){
-        return null; 
-    }
+// Signs a short-lived access token used to authenticate API requests
+export function generateAccessToken(payload: string | object): string {
+  return jwt.sign(payload, JWT_ACCESS_SECRET, { expiresIn: JWT_ACCESS_EXPIRATION })
 }
 
-// For creating refresh tokens.
-
-export function generate_refresh_token(payload: string | object){
-    return jwt.sign(payload, JWT_REFRESH_SECRET, {expiresIn: JWT_REFRESH_EXPIRATION as any})
+// Verifies an access token and returns its payload, or null if invalid or expired
+export function verifyAccessToken(token: string): jwt.JwtPayload | string | null {
+  try {
+    return jwt.verify(token, JWT_ACCESS_SECRET)
+  } catch {
+    return null
+  }
 }
 
-export function verify_refresh_token(token: string){
-    try{
-        return jwt.verify(token, JWT_REFRESH_SECRET);
-    }
-    catch (error){
-        return null;
-    }
+// Signs a long-lived refresh token used to issue new access tokens
+export function generateRefreshToken(payload: string | object): string {
+  return jwt.sign(payload, JWT_REFRESH_SECRET, { expiresIn: JWT_REFRESH_EXPIRATION })
+}
+
+// Verifies a refresh token and returns its payload, or null if invalid or expired
+export function verifyRefreshToken(token: string): jwt.JwtPayload | string | null {
+  try {
+    return jwt.verify(token, JWT_REFRESH_SECRET)
+  } catch {
+    return null
+  }
 }
