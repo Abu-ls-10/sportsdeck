@@ -1,3 +1,54 @@
-// GET /api/users/:id/following
-// Returns list of users this user follows.
-export async function GET(request: Request, { params }: { params: { id: string } }) {}
+import { NextRequest, NextResponse } from "next/server"
+import { prisma } from "@/lib/prisma"
+
+/**
+ * GET /api/users/:id/following
+ *
+ * User Story:
+ * As a visitor, I want to see the list of users that a given user follows.
+ *
+ * Access:
+ * Public endpoint — authentication not required.
+ *
+ * Data source:
+ * Uses the Follow table where:
+ * - followerId = the user performing the follow
+ * - followingId = the user being followed
+ *
+ * This endpoint retrieves all rows where followerId = :id.
+ *
+ * Prisma relation used:
+ * Follow.following -> User
+ *
+ * Results are sorted by the time the follow action occurred.
+ */
+
+export async function GET(
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  try {
+    const userId = params.id
+
+    const following = await prisma.follow.findMany({
+      where: { followerId: userId },
+      orderBy: { createdAt: "desc" },
+      select: {
+        following: {
+          select: {
+            id: true,
+            username: true,
+            avatarUrl: true,
+          },
+        },
+      },
+    })
+
+    const result = following.map((f) => f.following)
+
+    return NextResponse.json(result)
+  } catch (error) {
+    console.error(error)
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 })
+  }
+}

@@ -3,18 +3,22 @@ import { prisma } from "@/lib/prisma"
 import { getUserFromToken } from "@/lib/auth"
 
 /**
- * PATCH /api/feed/:id/read
+ * DELETE /api/users/me/followers/:followerId
  *
  * User Story:
- * Allows a user to mark a feed notification or entry as read.
+ * As a user, I want to remove a follower that I do not like.
  *
  * Access:
  * Authenticated users only.
+ *
+ * Behavior:
+ * - Deletes the follow relationship where the target user
+ *   follows the current user.
  */
 
-export async function PATCH(
+export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: { followerId: string } }
 ) {
   try {
     const currentUser = await getUserFromToken(req)
@@ -23,12 +27,10 @@ export async function PATCH(
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
-    const feedId = params.id
-
-    await prisma.feedEntry.update({
-      where: { id: feedId },
-      data: {
-        isRead: true
+    await prisma.follow.deleteMany({
+      where: {
+        followerId: params.followerId,
+        followingId: currentUser.id
       }
     })
 
