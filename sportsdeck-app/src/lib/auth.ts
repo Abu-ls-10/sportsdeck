@@ -1,5 +1,5 @@
 import bcrypt from 'bcryptjs'
-import jwt, { SignOptions } from 'jsonwebtoken'
+import jwt, { SignOptions, JwtPayload } from 'jsonwebtoken'
 
 const SALT_ROUNDS = parseInt(process.env.SALT_ROUNDS || '10')
 const JWT_ACCESS_SECRET = process.env.JWT_ACCESS_SECRET!
@@ -48,4 +48,16 @@ export function verifyRefreshToken(token: string): jwt.JwtPayload | string | nul
   } catch {
     return null
   }
+}
+
+// Extracts and verifies the user payload from the Authorization header of a request
+export function getUserFromToken(req: Request): JwtPayload | null {
+  const authHeader = req.headers.get('authorization')
+  if (!authHeader || !authHeader.startsWith('Bearer ')) return null
+
+  const token = authHeader.split(' ')[1]
+  const payload = verifyAccessToken(token)
+
+  if (!payload || typeof payload === 'string') return null
+  return payload
 }
