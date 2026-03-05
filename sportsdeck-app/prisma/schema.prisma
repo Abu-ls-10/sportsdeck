@@ -21,7 +21,7 @@ datasource db {
 model Team {
   id         String   @id @default(cuid())
   externalId String   @unique
-  name       String
+  name       String   @unique
   shortName  String
   logoUrl    String
   venue      String
@@ -91,7 +91,7 @@ model User {
   passwordHash   String?
   role           String   @default("user")
   avatarUrl      String?
-  favoriteTeamId String?
+  favoriteTeamId String?  @unique
   isBanned       Boolean  @default(false)
   authProvider   String?
   providerUserId String?
