@@ -1,4 +1,4 @@
-POST http://localhost:3000/api/users/signup
+POST http://localhost:3000/api/auth/signup
 Content-Type: application/json 
 
 {
@@ -9,16 +9,16 @@ Content-Type: application/json
 
 ###
 
-POST http://localhost:3000/api/users/login
+POST http://localhost:3000/api/auth/login
 Content-Type: application/json 
 
 {
-    "email": "hi@bruh.com",
+    "email": "him@bruh.com",
     "potential_password": "YOU CANT SEE ME"
 }
 
 ###
-POST http://localhost:3000/api/users/signup
+POST http://localhost:3000/api/auth/signup
 Content-Type: application/json 
 
 {
@@ -28,7 +28,7 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:3000/api/users/login
+POST http://localhost:3000/api/auth/login
 Content-Type: application/json 
 
 {

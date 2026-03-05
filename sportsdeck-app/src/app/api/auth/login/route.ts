@@ -31,6 +31,7 @@ export async function POST(req: Request){
         return NextResponse.json({access_token: access_token, refresh_token: refresh_token}, {status: 200});
     }
     catch(error){
+        console.log(error)
         return NextResponse.json({message: "Something went wrong"}, {status: 500});
     }
     
