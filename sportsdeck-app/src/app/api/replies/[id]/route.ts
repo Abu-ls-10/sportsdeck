@@ -1,7 +1,77 @@
+import { NextResponse } from "next/dist/server/web/spec-extension/response"
+import { prisma } from "@/lib/prisma"
+import { getUserFromToken } from "@/lib/auth"
+
 // PATCH /api/replies/:id
 // Allows reply owner to edit.
 // Creates ReplyVersion record.
-export async function PATCH(request: Request, { params }: { params: { id: string } }) {}
+export async function PATCH(
+  request: Request,
+  { params }: { params: { id: string } }
+) {
+
+  try {
+
+    const user = await getUserFromToken(request)
+
+    if (!user)
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+
+    const reply = await prisma.reply.findUnique({
+      where: { id: params.id }
+    })
+
+    if (!reply)
+      return NextResponse.json({ error: "Reply not found" }, { status: 404 })
+
+    if (reply.authorId !== user.id)
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 })
+
+    const body = await request.json()
+    const { content } = body
+
+    if (!content)
+      return NextResponse.json({ error: "Content required" }, { status: 400 })
+
+
+    /**
+     * Save old version
+     */
+    await prisma.replyVersion.create({
+      data: {
+        replyId: reply.id,
+        oldContent: reply.content
+      }
+    })
+
+
+    /**
+     * Update reply
+     */
+    const updated = await prisma.reply.update({
+      where: { id: reply.id },
+      data: {
+        content,
+        isEdited: true,
+        updatedAt: new Date()
+      }
+    })
+
+
+    return NextResponse.json(updated)
+
+  } catch (err) {
+
+    console.error(err)
+
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 }
+    )
+
+  }
+
+}
 
 // DELETE /api/replies/:id
 // Soft-hides reply.
