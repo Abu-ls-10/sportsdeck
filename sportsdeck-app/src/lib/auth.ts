@@ -61,3 +61,4 @@ export function getUserFromToken(req: Request): JwtPayload | null {
   if (!payload || typeof payload === 'string') return null
   return payload
 }
+

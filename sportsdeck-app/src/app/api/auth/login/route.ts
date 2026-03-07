@@ -3,7 +3,8 @@ import {prisma} from '@/lib/prisma';
 import { NextResponse } from 'next/server';
 
 export async function POST(req: Request){
-    const {email, potential_password} = await req.json();
+    const {email, password} = await req.json();
+    
 
     try{
         // Try to find the user. 
@@ -12,7 +13,7 @@ export async function POST(req: Request){
         });
 
         // If they do not exist or password is wrong, return invalid username or password error.
-        if (!user || !(await comparePassword(potential_password, user.passwordHash ?? ""))){
+        if (!user || !(await comparePassword(password, user.passwordHash ?? ""))){
             return NextResponse.json({message: "Invalid username or password"}, {status: 401});
         }
         
