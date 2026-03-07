@@ -59,6 +59,7 @@ model Match {
 model Standing {
   id           String   @id @default(cuid())
   teamId       String
+  externalTeamId   String
   season       String
   position     Int
   played       Int
@@ -69,8 +70,10 @@ model Standing {
   goalsAgainst Int
   points       Int
   cachedAt     DateTime
+  type         String
 
   team Team @relation(fields: [teamId], references: [id])
+  @@unique([externalTeamId, season, type])
 }
 
 // =====================================================
