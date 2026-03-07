@@ -2,9 +2,6 @@ import { Match } from "@/generated/prisma";
 import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
-
-
-
 interface API_Match{
     id: number,
     utcDate: string, 
@@ -13,7 +10,7 @@ interface API_Match{
     awayTeam: {id: number, name: string, tla: string, crest: string, venue: string},
     matchday: number,
     venue: string,
-    score: {winner: string, fulltime: {home: number | null, away: number | null}}
+    score: {winner: string, fullTime: {home: number | null, away: number | null}}
     season: {startDate: string, endDate: string},
     stage: string
 }
@@ -24,8 +21,8 @@ async function upsert_match(match: API_Match){
         update: {
             status: match.status,
             venue: match.venue ?? "",
-            homeScore: match.score.fulltime.home,
-            awayScore: match.score.fulltime.away,
+            homeScore: match.score.fullTime.home,
+            awayScore: match.score.fullTime.away,
             matchDate: new Date(match.utcDate),
             cachedAt: new Date()
         },
@@ -33,8 +30,8 @@ async function upsert_match(match: API_Match){
             externalId: String(match.id),
             venue: match.venue ?? "",
             status: match.status,
-            homeScore: match.score.fulltime.home,
-            awayScore: match.score.fulltime.away,
+            homeScore: match.score.fullTime.home,
+            awayScore: match.score.fullTime.away,
             cachedAt: new Date(),
             matchDate: new Date(match.utcDate),
             homeTeam: {connect: {externalId: String(match.homeTeam.id)}}, 
@@ -60,22 +57,37 @@ export async function GET(req: Request){
     const { searchParams } = new URL(req.url);
     const dateFrom = searchParams.get("dateFrom");
     const dateTo = searchParams.get("dateTo");
-    if (!dateFrom || !dateTo){
-        return NextResponse.json({message: "Must provide a range"}, {status: 401});
+    const matchday = searchParams.get("matchday");
+    let  api_route = "https://api.football-data.org/v4/competitions/PL/matches";
+
+
+    if ((matchday && dateFrom && dateTo) || (!matchday && !dateFrom && !dateTo)){
+        return NextResponse.json({message: "Please provide either (1) matchday or (2) a date range."}, {status: 400});
     }
 
-    if (isNaN(new Date(dateFrom).getTime()) || isNaN(new Date(dateTo).getTime())) {
-        return NextResponse.json({ message: "Invalid date format" }, { status: 400 });
+    let where;
+
+    if (matchday){
+        api_route += "?matchday=" + matchday;
+        where = {matchday: parseInt(matchday)};
+    }
+    else {
+        if (isNaN(new Date(dateFrom || "").getTime()) || isNaN(new Date(dateTo || "").getTime())) {
+            return NextResponse.json({ message: "Invalid date format" }, { status: 400 });
+        }
+        api_route += "?dateFrom=" + dateFrom + "&dateTo=" + dateTo;
+
+        where = {
+            matchDate: {
+                gte: new Date(dateFrom!),
+                lte: new Date(dateTo!)
+            }
+        }
     }
 
     // Make a call to the database
     let matches = await prisma.match.findMany({
-        where: {
-            matchDate: {
-                gte: new Date(dateFrom),
-                lte: new Date(dateTo)
-            }
-        },
+        where: where,
         orderBy: {matchDate: "asc"},
         include: {
             homeTeam: true,
@@ -110,7 +122,6 @@ export async function GET(req: Request){
     }
 
 
-    const api_route = "https://api.football-data.org/v4/competitions/PL/matches?dateFrom=" + dateFrom + "&dateTo=" + dateTo;
     // At this point, assume the uer put the right info. Just fetch data. If the same url is hit, cache the result
     const response = await fetch(
         api_route, 
@@ -122,26 +133,27 @@ export async function GET(req: Request){
     );
 
     if (!response.ok){
+        console.error(`API Fetch failed for matches`);
         // Dont break the server, just return stale data
         return NextResponse.json({matches: matches}, {status: 200});
     }
 
+    try{
+        // Update all database tables in that date range and return that
+        const matches_api = (await response.json())["matches"];
+        await Promise.all(matches_api.map((match: API_Match) => upsert_match(match)));
 
-    // Update all database tables in that date range and return that
-    const matches_api = (await response.json())["matches"];
-    await Promise.all(matches_api.map((match: API_Match) => upsert_match(match)));
+        // Make another call to database
+        matches = await prisma.match.findMany({
+        where: where,
+        orderBy: { matchDate: "asc" },
+        include: { homeTeam: true, awayTeam: true }
+        })
 
-    matches = await prisma.match.findMany({
-    where: {
-        matchDate: {
-            gte: new Date(dateFrom),
-            lte: new Date(dateTo)
-        }
-    },
-    orderBy: { matchDate: "asc" },
-    include: { homeTeam: true, awayTeam: true }
-    })
-
-    return NextResponse.json({matches: matches}, {status: 200});
-
+        return NextResponse.json({matches: matches}, {status: 200});
+    }
+    catch(e){
+        console.error("Failed to parse or upsert matches:", e)
+        return NextResponse.json({ matches: matches }, { status: 200 });
+    }
 }
