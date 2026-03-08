@@ -40,7 +40,7 @@ export async function GET(
           }
         },
 
-        poll: {
+        polls: {
           include: {
             options: true
           }
