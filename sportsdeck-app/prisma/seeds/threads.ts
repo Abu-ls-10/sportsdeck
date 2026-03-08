@@ -1,5 +1,6 @@
+import { PrismaClient } from "@prisma/client"
 
-export default async function seedThreads(prisma, users, teams, matches) {
+export default async function seedThreads(prisma: PrismaClient, users: any[], teams: any[], matches: any[]) {
 
   const thread1 = await prisma.thread.create({
     data: {

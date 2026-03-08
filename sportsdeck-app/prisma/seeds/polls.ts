@@ -1,5 +1,6 @@
+import { PrismaClient } from "@prisma/client"
 
-export default async function seedPolls(prisma, threads) {
+export default async function seedPolls(prisma: PrismaClient, threads: any[]) {
 
   const poll = await prisma.poll.create({
     data: {

@@ -1,6 +1,7 @@
+import { PrismaClient } from "@prisma/client"
 
-export default async function seedTeams(prisma) {
-
+export default async function seedTeams(prisma: PrismaClient) {
+  
   const teams = await Promise.all([
     prisma.team.create({
       data: {
