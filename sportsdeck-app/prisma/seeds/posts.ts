@@ -1,5 +1,6 @@
+import { PrismaClient } from "@prisma/client"
 
-export default async function seedPosts(prisma, users, threads) {
+export default async function seedPosts(prisma: PrismaClient, users: any[], threads: any[]) {
 
   const post1 = await prisma.post.create({
     data: {

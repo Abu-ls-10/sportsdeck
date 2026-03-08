@@ -1,5 +1,6 @@
+import { PrismaClient } from "@prisma/client"
 
-export default async function seedMatches(prisma, teams) {
+export default async function seedMatches(prisma: PrismaClient, teams: any[]) {
 
   const match = await prisma.match.create({
     data: {

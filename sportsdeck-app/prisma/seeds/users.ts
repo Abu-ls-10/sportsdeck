@@ -1,5 +1,6 @@
+import { PrismaClient } from "@prisma/client"
 
-export default async function seedUsers(prisma) {
+export default async function seedUsers(prisma: PrismaClient) {
 
   const users = await Promise.all([
     prisma.user.create({

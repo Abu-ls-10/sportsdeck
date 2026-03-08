@@ -1,5 +1,6 @@
+import { PrismaClient } from "@prisma/client"
 
-export default async function seedFollows(prisma, users) {
+export default async function seedFollows(prisma: PrismaClient, users: any[]) {
 
   await prisma.follow.create({
     data: {
