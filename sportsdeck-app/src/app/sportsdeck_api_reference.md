@@ -30,12 +30,12 @@
 | DELETE | `/api/threads/:id`             | Soft-delete a thread                                     |
 | GET    | `/api/threads/:id/full`        | Get full thread page data in one request                 |
 | GET    | `/api/threads/:id/posts`       | Get posts in a thread                                    |
-| POST   | `/api/threads/:idd/posts`      | Create a post in a thread                                |
+| POST   | `/api/threads/:id/posts`      | Create a post in a thread                                |
 | PATCH  | `/api/posts/:id`               | Edit a post                                              |
 | DELETE | `/api/posts/:id`               | Delete a post                                            |
 | GET    | `/api/posts/:id/versions`      | Get post edit history                                    |
 | GET    | `/api/posts/:id/replies`       | Get replies for a post                                   |
-| POST   | `/api/posts/:idd/replies`      | Create a reply to a post                                 |
+| POST   | `/api/posts/:id/replies`      | Create a reply to a post                                 |
 | PATCH  | `/api/replies/:id`             | Edit a reply                                             |
 | DELETE | `/api/replies/:id`             | Delete a reply                                           |
 | GET    | `/api/replies/:id/versions`    | Get reply edit history                                   |
