@@ -1,12 +1,18 @@
 import { comparePassword, generateAccessToken, generateRefreshToken, hashPassword, verifyRefreshToken} from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
+export const dynamic = 'force-dynamic';
 
 export async function POST(req: Request){
     const {refresh_token} = await req.json();
 
+    if (!refresh_token) {
+        return NextResponse.json({ message: "Bad Request" }, { status: 400 });
+    }
+
     // Ensure the refresh token is not expired. If it is, hint for a redirection
     const payload = verifyRefreshToken(refresh_token);
+
 
     if (!payload || typeof payload === "string"){
         return NextResponse.json({message: "Unauthorized", redirect: "/api/auth/login"}, {status: 401});
@@ -25,6 +31,7 @@ export async function POST(req: Request){
             }
         });
 
+
         if (!user){
             return NextResponse.json({message: "Unauthorized", redirect: "/api/auth/login"}, {status: 401});
         }
@@ -36,18 +43,19 @@ export async function POST(req: Request){
 
         // Generate new access token
         const access_token = generateAccessToken(access_payload);
-        const refresh = generateRefreshToken(access_payload);
+        const new_refresh_token = generateRefreshToken(access_payload);
 
         await prisma.user.update({
             where: {id: user.id},
             data: {
-                refresh_token: await hashPassword(refresh)
+                refresh_token: await hashPassword(new_refresh_token)
             }
         })
 
-        return NextResponse.json({access_token: access_token, new_refresh_token: refresh}, {status: 200});
+        return NextResponse.json({access_token: access_token, new_refresh_token: new_refresh_token}, {status: 200});
 
     }catch(error){
+        console.log("CATCH ERROR:", error)
         return NextResponse.json({message: "Unauthorized"}, {status: 401});
     }
 }

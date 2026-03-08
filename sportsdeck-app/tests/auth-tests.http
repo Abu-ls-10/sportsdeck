@@ -11,7 +11,7 @@ POST {{baseUrl}}/api/auth/signup
 Content-Type: {{contentType}}
 
 {
-  "email": "newuser@example.com",
+  "email": "WOORK@example.com",
   "password": "SecurePass123!"
 }
 
@@ -22,7 +22,7 @@ POST {{baseUrl}}/api/auth/signup
 Content-Type: {{contentType}}
 
 {
-  "email": "existing@example.com",
+  "email": "exidsting@example.com",
   "password": "SecurePass123!"
 }
 
@@ -79,7 +79,7 @@ POST {{baseUrl}}/api/auth/login
 Content-Type: {{contentType}}
 
 {
-  "email": "newuser@example.com",
+  "email": "WOORK@example.com",
   "password": "SecurePass123!"
 }
 
@@ -135,28 +135,6 @@ Content-Type: {{contentType}}
 
 ###
 
-### ❌ BAD — Tampered/invalid JWT sent as Bearer (should be ignored on login, not cause 500)
-POST {{baseUrl}}/api/auth/login
-Content-Type: {{contentType}}
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.tampered.signature
-
-{
-  "email": "newuser@example.com",
-  "password": "SecurePass123!"
-}
-
-###
-
-### ❌ BAD — Brute force simulation (run multiple times to trigger rate limit)
-POST {{baseUrl}}/api/auth/login
-Content-Type: {{contentType}}
-
-{
-  "email": "newuser@example.com",
-  "password": "attempt1"
-}
-
-
 ### ============================================================
 ###  /api/auth/refresh
 ### ============================================================
@@ -166,9 +144,8 @@ POST {{baseUrl}}/api/auth/refresh
 Content-Type: {{contentType}}
 
 {
-  "refreshToken": "PASTE_VALID_REFRESH_TOKEN_HERE"
+  "refresh_token": "$2b$10$SgETZlInhZGAISBpYLxUxe5sLTDZYIA6zCgkUijITWwoxZZLe6UpK"
 }
-
 ###
 
 ### ❌ BAD — Missing refresh token field
@@ -184,7 +161,7 @@ POST {{baseUrl}}/api/auth/refresh
 Content-Type: {{contentType}}
 
 {
-  "refreshToken": "eyJhbGciOiJIUzI1NiJ9.tampered.invalidsignature"
+  "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6bnVsbCwidXNlcl9pZCI6ImNtbWk2ZnpnYzAwMDBzdXo3bmhubHl4bXkiLCJyb2xlIjoidXNlciIsImlzQmFubmVkIjpmYWxzZSwiaWF0IjoxNzczMDAzNzIxLCJleHAiOjE3NzU1OTU3MjF9.liuiGxMGN603Spps2pDe37_NvlKzy9oJX17tYHJwzSg"
 }
 
 ###

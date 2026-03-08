@@ -1,5 +1,6 @@
 import bcrypt from 'bcryptjs'
 import jwt, { SignOptions, JwtPayload } from 'jsonwebtoken'
+import { v4 as uuidv4 } from 'uuid';
 
 const SALT_ROUNDS = parseInt(process.env.SALT_ROUNDS || '10')
 if (isNaN(SALT_ROUNDS)) throw new Error('SALT_ROUNDS must be a number');
@@ -29,9 +30,11 @@ export function generateAccessToken(payload: string | object): string {
 }
 
 // Verifies an access token and returns its payload, or null if invalid or expired
-export function verifyAccessToken(token: string): jwt.JwtPayload | string | null {
+export function verifyAccessToken(token: string): jwt.JwtPayload | null {
   try {
-    return jwt.verify(token, JWT_ACCESS_SECRET)
+    const payload = jwt.verify(token, JWT_ACCESS_SECRET);
+    if (typeof payload === 'string') return null;
+    return payload;
   } catch {
     return null
   }
@@ -39,13 +42,20 @@ export function verifyAccessToken(token: string): jwt.JwtPayload | string | null
 
 // Signs a long-lived refresh token used to issue new access tokens
 export function generateRefreshToken(payload: string | object): string {
-  return jwt.sign(payload, JWT_REFRESH_SECRET, { expiresIn: JWT_REFRESH_EXPIRATION })
+  return jwt.sign(
+    { ...(payload as object), jti: uuidv4() },
+    JWT_REFRESH_SECRET,
+    { expiresIn: JWT_REFRESH_EXPIRATION }
+  );
 }
 
 // Verifies a refresh token and returns its payload, or null if invalid or expired
 export function verifyRefreshToken(token: string): jwt.JwtPayload | string | null {
   try {
-    return jwt.verify(token, JWT_REFRESH_SECRET)
+    const payload = jwt.verify(token, JWT_REFRESH_SECRET);
+    if (typeof payload === 'string') return null;
+    return payload;
+
   } catch {
     return null
   }
