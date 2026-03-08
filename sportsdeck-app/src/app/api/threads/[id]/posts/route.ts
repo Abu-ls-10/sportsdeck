@@ -10,15 +10,24 @@ import { getUserFromToken } from "@/lib/auth"
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { threadId: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id: threadId } = await params
 
     const thread = await prisma.thread.findUnique({
-      where: { id: params.threadId }
+      where: { id: threadId }
     })
 
     if (!thread) {
+      return NextResponse.json(
+        { error: "Thread not found" },
+        { status: 404 }
+      )
+    }
+
+    // Hide posts from hidden threads
+    if (thread.isHidden) {
       return NextResponse.json(
         { error: "Thread not found" },
         { status: 404 }
@@ -72,9 +81,10 @@ export async function GET(
 
 export async function POST(
   req: NextRequest,
-  { params }: { params: { threadId: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id: threadId } = await params
 
     const user = await getUserFromToken(req)
 
@@ -83,6 +93,12 @@ export async function POST(
         { error: "Unauthorized" },
         { status: 401 }
       )
+    }
+
+    // Live ban check from DB
+    const dbUser = await prisma.user.findUnique({ where: { id: user.user_id }, select: { isBanned: true } })
+    if (dbUser?.isBanned) {
+      return NextResponse.json({ error: "Your account has been banned" }, { status: 403 })
     }
 
     const body = await req.json()
@@ -97,13 +113,21 @@ export async function POST(
     }
 
     const thread = await prisma.thread.findUnique({
-      where: { id: params.threadId }
+      where: { id: threadId }
     })
 
     if (!thread) {
       return NextResponse.json(
         { error: "Thread not found" },
         { status: 404 }
+      )
+    }
+
+    // Block posting in hidden threads
+    if (thread.isHidden) {
+      return NextResponse.json(
+        { error: "This thread has been hidden by a moderator and no further activity is allowed" },
+        { status: 403 }
       )
     }
 
@@ -134,7 +158,7 @@ export async function POST(
     const post = await prisma.post.create({
       data: {
         threadId: thread.id,
-        authorId: user.id,
+        authorId: user.user_id,
         content: content.trim()
       }
     })
