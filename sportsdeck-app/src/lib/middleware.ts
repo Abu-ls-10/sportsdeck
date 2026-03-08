@@ -9,7 +9,7 @@ export interface AuthenticatedRequest extends NextRequest {
 
 // Wraps a route handler with JWT authentication and optional role-based access control
 export function withAuth(
-  handler: (req: AuthenticatedRequest) => Promise<NextResponse>,
+  handler: (req: AuthenticatedRequest, context?: any) => Promise<NextResponse>,
   role?: string
 ) {
   return (req: NextRequest) => {

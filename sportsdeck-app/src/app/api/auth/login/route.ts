@@ -3,10 +3,8 @@ import {prisma} from '@/lib/prisma';
 import { NextResponse } from 'next/server';
 
 export async function POST(req: Request){
-    const body = await req.json();
-    console.log('Login request body:', body);
-    const {email, potential_password} = body;
-    console.log('Extracted email:', email, 'password:', potential_password);
+    const {email, password} = await req.json();
+    
 
     try{
         // Try to find the user. 
@@ -15,7 +13,7 @@ export async function POST(req: Request){
         });
 
         // If they do not exist or password is wrong, return invalid username or password error.
-        if (!user || !user.passwordHash || !(await comparePassword(potential_password, user.passwordHash))){
+        if (!user || !(await comparePassword(password, user.passwordHash ?? ""))){
             return NextResponse.json({message: "Invalid username or password"}, {status: 401});
         }
         
@@ -25,6 +23,11 @@ export async function POST(req: Request){
 
         // Give them a new refresh token since they are putting in their credentials for the first time
         const refresh_token = generateRefreshToken(payload);
+        await prisma.user.update({
+            where: {email: user.email}, 
+            data: {refresh_token: refresh_token}
+        })
+
 
         return NextResponse.json({access_token: access_token, refresh_token: refresh_token}, {status: 200});
     }

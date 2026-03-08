@@ -35,38 +35,32 @@ model Team {
   fans        User[]
 }
 
-model Matchday {
-  id             String   @id @default(cuid())
-  matchdayNumber Int
-  stage          String
-  season         String
-  cachedAt       DateTime
-
-  matches Match[]
-}
-
 model Match {
   id         String   @id @default(cuid())
   externalId String   @unique
   homeTeamId String
   awayTeamId String
-  matchdayId String
   venue      String
   status     String
   homeScore  Int?
   awayScore  Int?
   matchDate  DateTime
   cachedAt   DateTime
+  matchday   Int
+  season     String
+  stage      String
 
+  @@index([matchDate])
+  @@index([matchday, season])
   homeTeam  Team     @relation("HomeTeam", fields: [homeTeamId], references: [id])
   awayTeam  Team     @relation("AwayTeam", fields: [awayTeamId], references: [id])
-  matchday  Matchday @relation(fields: [matchdayId], references: [id])
   thread    Thread?
 }
 
 model Standing {
   id           String   @id @default(cuid())
   teamId       String
+  externalTeamId   String
   season       String
   position     Int
   played       Int
@@ -77,8 +71,10 @@ model Standing {
   goalsAgainst Int
   points       Int
   cachedAt     DateTime
+  type         String
 
   team Team @relation(fields: [teamId], references: [id])
+  @@unique([externalTeamId, season, type])
 }
 
 // =====================================================
@@ -88,15 +84,16 @@ model Standing {
 model User {
   id             String   @id @default(cuid())
   email          String   @unique
-  username       String   @unique
+  username       String?   @unique
   passwordHash   String?
   role           String   @default("user")
   avatarUrl      String?
-  favoriteTeamId String?  @unique
+  favoriteTeamId String?  
   isBanned       Boolean  @default(false)
   authProvider   String?
   providerUserId String?
   createdAt      DateTime @default(now())
+  refresh_token  String?
 
   favoriteTeam Team? @relation(fields: [favoriteTeamId], references: [id])
 

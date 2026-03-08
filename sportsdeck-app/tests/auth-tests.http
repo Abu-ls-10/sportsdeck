@@ -1,0 +1,272 @@
+@baseUrl = http://localhost:3000
+@contentType = application/json
+
+
+### ============================================================
+###  /api/auth/signup
+### ============================================================
+
+### ✅ GOOD — Valid signup with email + password
+POST {{baseUrl}}/api/auth/signup
+Content-Type: {{contentType}}
+
+{
+  "email": "newuser@example.com",
+  "password": "SecurePass123!"
+}
+
+###
+
+### ❌ BAD — Duplicate email
+POST {{baseUrl}}/api/auth/signup
+Content-Type: {{contentType}}
+
+{
+  "email": "existing@example.com",
+  "password": "SecurePass123!"
+}
+
+###
+
+### ❌ BAD — Invalid email format
+POST {{baseUrl}}/api/auth/signup
+Content-Type: {{contentType}}
+
+{
+  "email": "not-an-email",
+  "password": "SecurePass123!"
+}
+
+###
+
+### ❌ BAD — Weak password (too short)
+POST {{baseUrl}}/api/auth/signup
+Content-Type: {{contentType}}
+
+{
+  "email": "newuser2@example.com",
+  "password": "123"
+}
+
+###
+
+### ❌ BAD — Missing password field
+POST {{baseUrl}}/api/auth/signup
+Content-Type: {{contentType}}
+
+{
+  "email": "newuser3@example.com"
+}
+
+###
+
+### ❌ BAD — Missing email field
+POST {{baseUrl}}/api/auth/signup
+Content-Type: {{contentType}}
+
+{
+  "password": "SecurePass123!"
+}
+
+###
+
+### ❌ BAD — Empty request body
+POST {{baseUrl}}/api/auth/signup
+Content-Type: {{contentType}}
+
+{}
+
+###
+
+### ❌ BAD — SQL injection in email
+POST {{baseUrl}}/api/auth/signup
+Content-Type: {{contentType}}
+
+{
+  "email": "' OR '1'='1'; --",
+  "password": "SecurePass123!"
+}
+
+###
+
+### ❌ BAD — XSS payload in password
+POST {{baseUrl}}/api/auth/signup
+Content-Type: {{contentType}}
+
+{
+  "email": "xss@example.com",
+  "password": "<script>alert('xss')</script>"
+}
+
+###
+
+### ❌ BAD — Extra unexpected fields (mass assignment attempt)
+POST {{baseUrl}}/api/auth/signup
+Content-Type: {{contentType}}
+
+{
+  "email": "hacker@example.com",
+  "password": "SecurePass123!",
+  "role": "admin",
+  "isVerified": true
+}
+
+
+### ============================================================
+###  /api/auth/login
+### ============================================================
+
+### ✅ GOOD — Valid login
+POST {{baseUrl}}/api/auth/login
+Content-Type: {{contentType}}
+
+{
+  "email": "newuser@example.com",
+  "password": "SecurePass123!"
+}
+
+###
+
+### ❌ BAD — Wrong password
+POST {{baseUrl}}/api/auth/login
+Content-Type: {{contentType}}
+
+{
+  "email": "newuser@example.com",
+  "password": "WrongPassword!"
+}
+
+###
+
+### ❌ BAD — Non-existent user
+POST {{baseUrl}}/api/auth/login
+Content-Type: {{contentType}}
+
+{
+  "email": "ghost@example.com",
+  "password": "SecurePass123!"
+}
+
+###
+
+### ❌ BAD — Missing email
+POST {{baseUrl}}/api/auth/login
+Content-Type: {{contentType}}
+
+{
+  "password": "SecurePass123!"
+}
+
+###
+
+### ❌ BAD — Missing password
+POST {{baseUrl}}/api/auth/login
+Content-Type: {{contentType}}
+
+{
+  "email": "newuser@example.com"
+}
+
+###
+
+### ❌ BAD — Empty body
+POST {{baseUrl}}/api/auth/login
+Content-Type: {{contentType}}
+
+{}
+
+###
+
+### ❌ BAD — Tampered/invalid JWT sent as Bearer (should be ignored on login, not cause 500)
+POST {{baseUrl}}/api/auth/login
+Content-Type: {{contentType}}
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.tampered.signature
+
+{
+  "email": "newuser@example.com",
+  "password": "SecurePass123!"
+}
+
+###
+
+### ❌ BAD — Brute force simulation (run multiple times to trigger rate limit)
+POST {{baseUrl}}/api/auth/login
+Content-Type: {{contentType}}
+
+{
+  "email": "newuser@example.com",
+  "password": "attempt1"
+}
+
+
+### ============================================================
+###  /api/auth/refresh
+### ============================================================
+
+### ✅ GOOD — Valid refresh token
+POST {{baseUrl}}/api/auth/refresh
+Content-Type: {{contentType}}
+
+{
+  "refreshToken": "PASTE_VALID_REFRESH_TOKEN_HERE"
+}
+
+###
+
+### ❌ BAD — Missing refresh token field
+POST {{baseUrl}}/api/auth/refresh
+Content-Type: {{contentType}}
+
+{}
+
+###
+
+### ❌ BAD — Malformed / tampered refresh token
+POST {{baseUrl}}/api/auth/refresh
+Content-Type: {{contentType}}
+
+{
+  "refreshToken": "eyJhbGciOiJIUzI1NiJ9.tampered.invalidsignature"
+}
+
+###
+
+### ❌ BAD — Expired refresh token
+POST {{baseUrl}}/api/auth/refresh
+Content-Type: {{contentType}}
+
+{
+  "refreshToken": "PASTE_EXPIRED_REFRESH_TOKEN_HERE"
+}
+
+###
+
+### ❌ BAD — Reuse of already-rotated refresh token (replay attack)
+# Use a refresh token that has already been consumed in a previous /refresh call
+POST {{baseUrl}}/api/auth/refresh
+Content-Type: {{contentType}}
+
+{
+  "refreshToken": "PASTE_ALREADY_USED_REFRESH_TOKEN_HERE"
+}
+
+###
+
+### ❌ BAD — Random string instead of JWT
+POST {{baseUrl}}/api/auth/refresh
+Content-Type: {{contentType}}
+
+{
+  "refreshToken": "not-a-real-token-at-all"
+}
+
+###
+
+### ❌ BAD — Access token passed instead of refresh token
+# Should be rejected — wrong token type
+POST {{baseUrl}}/api/auth/refresh
+Content-Type: {{contentType}}
+
+{
+  "refreshToken": "PASTE_ACCESS_TOKEN_HERE"
+}
