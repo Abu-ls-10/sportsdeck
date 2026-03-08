@@ -37,6 +37,12 @@ export async function POST(
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
+    // Live ban check from DB
+    const dbUser = await prisma.user.findUnique({ where: { id: currentUser.user_id }, select: { isBanned: true } })
+    if (dbUser?.isBanned) {
+      return NextResponse.json({ error: "Your account has been banned" }, { status: 403 })
+    }
+
     const targetUserId = params.userId
 
     if (currentUser.id === targetUserId) {
@@ -102,6 +108,12 @@ export async function DELETE(
 
     if (!currentUser) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+    }
+
+    // Live ban check from DB
+    const dbUser2 = await prisma.user.findUnique({ where: { id: currentUser.user_id }, select: { isBanned: true } })
+    if (dbUser2?.isBanned) {
+      return NextResponse.json({ error: "Your account has been banned" }, { status: 403 })
     }
 
     const targetUserId = params.userId

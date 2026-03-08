@@ -18,6 +18,11 @@ export async function PATCH(
     if (!user)
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
 
+    // Live ban check from DB
+    const dbUser = await prisma.user.findUnique({ where: { id: user.user_id }, select: { isBanned: true } })
+    if (dbUser?.isBanned)
+      return NextResponse.json({ error: "Your account has been banned" }, { status: 403 })
+
     const post = await prisma.post.findUnique({
       where: { id: params.id }
     })
@@ -27,6 +32,10 @@ export async function PATCH(
 
     if (post.authorId !== user.id)
       return NextResponse.json({ error: "Forbidden" }, { status: 403 })
+
+    // Block edits on hidden content
+    if (post.isHidden)
+      return NextResponse.json({ error: "This content has been hidden by a moderator and cannot be edited" }, { status: 403 })
 
     const body = await request.json()
     const { content } = body
@@ -57,7 +66,6 @@ export async function PATCH(
         updatedAt: new Date()
       }
     })
-
 
     return NextResponse.json(updated)
 

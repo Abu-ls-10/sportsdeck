@@ -18,7 +18,7 @@ export async function POST(req: Request){
         }
         
         // Otherwise, they are authenticated. Return a JWT token to them
-        const payload = {username: user.username, user_id: user.id, role: user.role};
+        const payload = {username: user.username, user_id: user.id, role: user.role, isBanned: user.isBanned};
         const access_token = generateAccessToken(payload);
 
         // Give them a new refresh token since they are putting in their credentials for the first time

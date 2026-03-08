@@ -29,6 +29,11 @@ export async function POST(
     if (!user)
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
 
+    // Live ban check from DB
+    const dbUser = await prisma.user.findUnique({ where: { id: user.user_id }, select: { isBanned: true } })
+    if (dbUser?.isBanned)
+      return NextResponse.json({ error: "Your account has been banned" }, { status: 403 })
+
     const poll = await prisma.poll.findUnique({
       where: { id: params.id },
       include: { options: true }
@@ -39,6 +44,11 @@ export async function POST(
 
     if (poll.isClosed || new Date() > poll.deadline)
       return NextResponse.json({ error: "Poll closed" }, { status: 400 })
+
+    // Block voting on polls in hidden threads
+    const thread = await prisma.thread.findUnique({ where: { id: poll.threadId } })
+    if (thread?.isHidden)
+      return NextResponse.json({ error: "This thread has been hidden by a moderator and no further activity is allowed" }, { status: 403 })
 
     const body = await request.json()
     const { optionId } = body

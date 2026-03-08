@@ -55,12 +55,12 @@ export async function POST(req: Request){
     }
 
     catch (error){
-        console.error(error);
+        console.error("SIGNUP ERROR:", error);
         // Get the specific field error
         if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2002' ){
             return NextResponse.json({message: `${error.meta?.target} already exists`}, {status: 409 })
         }
-        return NextResponse.json({message: "Something went wrong"}, {status: 500})
+        return NextResponse.json({message: "Something went wrong", error: String(error)}, {status: 500})
     }
     
 }
