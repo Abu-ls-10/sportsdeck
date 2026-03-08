@@ -347,6 +347,17 @@ model Appeal {
 }
 
 // =====================================================
+// AI DOMAIN
+// =====================================================
+
+model DailyDigest {
+  id          String   @id @default(cuid())
+  date        String   @unique          // "YYYY-MM-DD" — one digest per day
+  content     String                     // AI-generated markdown summary
+  generatedAt DateTime @default(now())
+}
+
+// =====================================================
 // FEED DOMAIN
 // =====================================================
 
