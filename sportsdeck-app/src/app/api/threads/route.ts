@@ -33,6 +33,12 @@ export async function POST(request: Request) {
       )
     }
 
+    // Live ban check from DB
+    const dbUser = await prisma.user.findUnique({ where: { id: user.user_id }, select: { isBanned: true } })
+    if (dbUser?.isBanned) {
+      return NextResponse.json({ error: "Your account has been banned" }, { status: 403 })
+    }
+
     const body = await request.json()
 
     const {
@@ -54,7 +60,7 @@ export async function POST(request: Request) {
     const thread = await prisma.thread.create({
       data: {
         title,
-        authorId: user.id,
+        authorId: user.user_id,
         teamId: teamId ?? null,
         isMatchThread: false,
         isLocked: false,
@@ -67,7 +73,7 @@ export async function POST(request: Request) {
     await prisma.post.create({
       data: {
         threadId: thread.id,
-        authorId: user.id,
+        authorId: user.user_id,
         content
       }
     })
