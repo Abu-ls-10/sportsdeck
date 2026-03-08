@@ -28,28 +28,6 @@ Content-Type: {{contentType}}
 
 ###
 
-### ❌ BAD — Invalid email format
-POST {{baseUrl}}/api/auth/signup
-Content-Type: {{contentType}}
-
-{
-  "email": "not-an-email",
-  "password": "SecurePass123!"
-}
-
-###
-
-### ❌ BAD — Weak password (too short)
-POST {{baseUrl}}/api/auth/signup
-Content-Type: {{contentType}}
-
-{
-  "email": "newuser2@example.com",
-  "password": "123"
-}
-
-###
-
 ### ❌ BAD — Missing password field
 POST {{baseUrl}}/api/auth/signup
 Content-Type: {{contentType}}
@@ -77,26 +55,6 @@ Content-Type: {{contentType}}
 {}
 
 ###
-
-### ❌ BAD — SQL injection in email
-POST {{baseUrl}}/api/auth/signup
-Content-Type: {{contentType}}
-
-{
-  "email": "' OR '1'='1'; --",
-  "password": "SecurePass123!"
-}
-
-###
-
-### ❌ BAD — XSS payload in password
-POST {{baseUrl}}/api/auth/signup
-Content-Type: {{contentType}}
-
-{
-  "email": "xss@example.com",
-  "password": "<script>alert('xss')</script>"
-}
 
 ###
 

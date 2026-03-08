@@ -6,11 +6,15 @@ import { NextResponse } from 'next/server';
 export async function POST(req: Request){
 
     // Get usernames, emails, password. 
-    const {username, email, password} = await req.json();
+    const body = await req.json();
 
-    if (!username){
-        return NextResponse.json({message: "Please provide a username"}, {status: 400});
+    const extraFields = Object.keys(body).filter(key => !['email', 'password'].includes(key));
+    if (extraFields.length > 0) {
+        return NextResponse.json({ message: "Invalid request" }, { status: 400 });
     }
+
+    const {email, password} = body;
+
     if (!email){
         return NextResponse.json({message: "Please provide an email"}, {status: 400});
     }
@@ -20,20 +24,14 @@ export async function POST(req: Request){
     
     // Try to create a new user instance. If created, just return user without password
     try {
-        const username_exists = await prisma.user.findUnique({where: {username: username}})
         const email_exists = await prisma.user.findUnique({where: {email:email}})
 
-        if (username_exists){
-            return NextResponse.json({message: `${username} already exists`}, {status: 409 })    
-        }
-        
         if (email_exists){
-            return NextResponse.json({message: `${email} already exists`}, {status: 409 })    
+            return NextResponse.json({message: `Email already in use`}, {status: 409 })    
         }
 
         const user = await prisma.user.create({
             data: {
-                username: username,
                 passwordHash: await hashPassword(password),
                 email: email
             }
@@ -47,7 +45,7 @@ export async function POST(req: Request){
         // Store refresh token in database
         await prisma.user.update({
             where: { id: user.id},
-            data: {refresh_token: refresh_token}
+            data: {refresh_token: await hashPassword(refresh_token)}
         })
     
         return NextResponse.json({access_token: access_token, refresh_token: refresh_token}, {status: 201});
@@ -56,10 +54,6 @@ export async function POST(req: Request){
 
     catch (error){
         console.error(error);
-        // Get the specific field error
-        if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2002' ){
-            return NextResponse.json({message: `${error.meta?.target} already exists`}, {status: 409 })
-        }
         return NextResponse.json({message: "Something went wrong"}, {status: 500})
     }
     

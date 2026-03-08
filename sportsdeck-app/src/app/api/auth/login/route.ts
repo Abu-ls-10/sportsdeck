@@ -1,10 +1,19 @@
-import { comparePassword, generateAccessToken, generateRefreshToken } from '@/lib/auth';
+import { comparePassword, generateAccessToken, generateRefreshToken, hashPassword } from '@/lib/auth';
 import {prisma} from '@/lib/prisma';
 import { NextResponse } from 'next/server';
 
 export async function POST(req: Request){
-    const {email, password} = await req.json();
-    
+    const body = await req.json();
+    const extraFields = Object.keys(body).filter(key => !['email', 'password'].includes(key));
+
+    if (extraFields.length > 0) {
+        return NextResponse.json({ message: "Invalid request" }, { status: 400 });
+    }    
+
+    const {email, password} = body;
+    if (!email || !password) {
+        return NextResponse.json({ message: "Please provide an email and password" }, { status: 400 });
+    }
 
     try{
         // Try to find the user. 
@@ -25,7 +34,7 @@ export async function POST(req: Request){
         const refresh_token = generateRefreshToken(payload);
         await prisma.user.update({
             where: {email: user.email}, 
-            data: {refresh_token: refresh_token}
+            data: {refresh_token: await hashPassword(refresh_token)}
         })
 
 

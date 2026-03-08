@@ -2,6 +2,7 @@ import bcrypt from 'bcryptjs'
 import jwt, { SignOptions, JwtPayload } from 'jsonwebtoken'
 
 const SALT_ROUNDS = parseInt(process.env.SALT_ROUNDS || '10')
+if (isNaN(SALT_ROUNDS)) throw new Error('SALT_ROUNDS must be a number');
 const JWT_ACCESS_SECRET = process.env.JWT_ACCESS_SECRET!
 const JWT_REFRESH_SECRET = process.env.JWT_REFRESH_SECRET!
 const JWT_ACCESS_EXPIRATION = (process.env.JWT_ACCESS_EXPIRATION || '1h') as SignOptions['expiresIn']
