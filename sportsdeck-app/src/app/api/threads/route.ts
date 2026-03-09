@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
-import { getUserFromToken } from "@/lib/auth"
-import { Prisma } from "@/generated/prisma"
+import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
 
 /**
  * POST /api/threads
@@ -20,34 +19,12 @@ import { Prisma } from "@/generated/prisma"
  * - TAG relations
  */
 
-export async function POST(request: Request) {
-
+async function postHandler(req: AuthenticatedRequest) {
   try {
+    const user = req.user
+    const body = await req.json()
 
-    const user = await getUserFromToken(request)
-
-    if (!user) {
-      return NextResponse.json(
-        { error: "Unauthorized" },
-        { status: 401 }
-      )
-    }
-
-    // Live ban check from DB
-    const dbUser = await prisma.user.findUnique({ where: { id: user.user_id }, select: { isBanned: true } })
-    if (dbUser?.isBanned) {
-      return NextResponse.json({ error: "Your account has been banned" }, { status: 403 })
-    }
-
-    const body = await request.json()
-
-    const {
-      title,
-      content,
-      teamId,
-      tags
-    } = body
-
+    const { title, content, teamId, tags } = body
 
     if (!title || !content) {
       return NextResponse.json(
@@ -56,11 +33,10 @@ export async function POST(request: Request) {
       )
     }
 
-
     const thread = await prisma.thread.create({
       data: {
         title,
-        authorId: user.user_id,
+        authorId: user.id,
         teamId: teamId ?? null,
         isMatchThread: false,
         isLocked: false,
@@ -68,31 +44,25 @@ export async function POST(request: Request) {
       }
     })
 
-
     // create first post
     await prisma.post.create({
       data: {
         threadId: thread.id,
-        authorId: user.user_id,
+        authorId: user.id,
         content
       }
     })
 
-
     // handle tags
     if (tags && Array.isArray(tags)) {
-
       for (const tagName of tags) {
-
         let tag = await prisma.tag.findUnique({
           where: { name: tagName }
         })
 
         if (!tag) {
           tag = await prisma.tag.create({
-            data: {
-              name: tagName
-            }
+            data: { name: tagName }
           })
         }
 
@@ -103,25 +73,17 @@ export async function POST(request: Request) {
           }
         })
       }
-
     }
-
 
     return NextResponse.json(thread, { status: 201 })
 
   } catch (error) {
-
     console.error(error)
-
-    return NextResponse.json(
-      { error: "Internal server error" },
-      { status: 500 }
-    )
-
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 })
   }
-
 }
 
+export const POST = withAuth(postHandler)
 
 
 /**

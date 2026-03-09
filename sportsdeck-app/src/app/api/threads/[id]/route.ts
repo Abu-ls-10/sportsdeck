@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
-import { getUserFromToken } from "@/lib/auth"
+import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
 
 
 /**
@@ -80,7 +80,6 @@ export async function GET(
 }
 
 
-
 /**
  * PATCH /api/threads/:id
  *
@@ -89,45 +88,24 @@ export async function GET(
  * - tags
  */
 
-export async function PATCH(
-  request: Request,
+async function patchHandler(
+  req: AuthenticatedRequest,
   { params }: { params: { id: string } }
 ) {
-
   try {
-
-    const user = await getUserFromToken(request)
-
-    if (!user) {
-      return NextResponse.json(
-        { error: "Unauthorized" },
-        { status: 401 }
-      )
-    }
-
-    // Live ban check from DB
-    const dbUser = await prisma.user.findUnique({ where: { id: user.user_id }, select: { isBanned: true } })
-    if (dbUser?.isBanned) {
-      return NextResponse.json({ error: "Your account has been banned" }, { status: 403 })
-    }
+    const user = req.user
 
     const thread = await prisma.thread.findUnique({
       where: { id: params.id }
     })
 
     if (!thread) {
-      return NextResponse.json(
-        { error: "Thread not found" },
-        { status: 404 }
-      )
+      return NextResponse.json({ error: "Thread not found" }, { status: 404 })
     }
 
     // permission check
     if (thread.authorId !== user.id && user.role !== "ADMIN") {
-      return NextResponse.json(
-        { error: "Forbidden" },
-        { status: 403 }
-      )
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 })
     }
 
     // Block edits on hidden threads
@@ -138,13 +116,8 @@ export async function PATCH(
       )
     }
 
-    const body = await request.json()
-
-    const {
-      title,
-      tags
-    } = body
-
+    const body = await req.json()
+    const { title, tags } = body
 
     const updatedThread = await prisma.thread.update({
       where: { id: thread.id },
@@ -153,11 +126,7 @@ export async function PATCH(
       }
     })
 
-
-    /**
-     * Handle tag updates
-     */
-
+    // Handle tag updates
     if (tags && Array.isArray(tags)) {
 
       // remove existing tags
@@ -166,7 +135,6 @@ export async function PATCH(
       })
 
       for (const tagName of tags) {
-
         let tag = await prisma.tag.findUnique({
           where: { name: tagName }
         })
@@ -184,26 +152,15 @@ export async function PATCH(
           }
         })
       }
-
     }
-
 
     return NextResponse.json(updatedThread)
 
   } catch (error) {
-
     console.error(error)
-
-    return NextResponse.json(
-      { error: "Internal server error" },
-      { status: 500 }
-    )
-
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 })
   }
-
 }
-
-
 
 /**
  * DELETE /api/threads/:id
@@ -214,68 +171,37 @@ export async function PATCH(
  * Only thread owner or admin can perform this action.
  */
 
-export async function DELETE(
-  request: Request,
+async function deleteHandler(
+  req: AuthenticatedRequest,
   { params }: { params: { id: string } }
 ) {
-
   try {
-
-    const user = await getUserFromToken(request)
-
-    if (!user) {
-      return NextResponse.json(
-        { error: "Unauthorized" },
-        { status: 401 }
-      )
-    }
-
-    // Live ban check from DB
-    const dbUser2 = await prisma.user.findUnique({ where: { id: user.user_id }, select: { isBanned: true } })
-    if (dbUser2?.isBanned) {
-      return NextResponse.json({ error: "Your account has been banned" }, { status: 403 })
-    }
+    const user = req.user
 
     const thread = await prisma.thread.findUnique({
       where: { id: params.id }
     })
 
     if (!thread) {
-      return NextResponse.json(
-        { error: "Thread not found" },
-        { status: 404 }
-      )
+      return NextResponse.json({ error: "Thread not found" }, { status: 404 })
     }
 
     if (thread.authorId !== user.id && user.role !== "ADMIN") {
-      return NextResponse.json(
-        { error: "Forbidden" },
-        { status: 403 }
-      )
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 })
     }
-
 
     await prisma.thread.update({
       where: { id: thread.id },
-      data: {
-        isHidden: true
-      }
+      data: { isHidden: true }
     })
 
-
-    return NextResponse.json({
-      success: true
-    })
+    return NextResponse.json({ success: true })
 
   } catch (error) {
-
     console.error(error)
-
-    return NextResponse.json(
-      { error: "Internal server error" },
-      { status: 500 }
-    )
-
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 })
   }
-
 }
+
+export const PATCH = withAuth(patchHandler)
+export const DELETE = withAuth(deleteHandler)

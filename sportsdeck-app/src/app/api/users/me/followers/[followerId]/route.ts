@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from "next/server"
+import { NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
-import { getUserFromToken } from "@/lib/auth"
+import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
 
 /**
  * DELETE /api/users/me/followers/:followerId
@@ -16,16 +16,12 @@ import { getUserFromToken } from "@/lib/auth"
  *   follows the current user.
  */
 
-export async function DELETE(
-  req: NextRequest,
+async function deleteHandler(
+  req: AuthenticatedRequest,
   { params }: { params: { followerId: string } }
 ) {
   try {
-    const currentUser = await getUserFromToken(req)
-
-    if (!currentUser) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
-    }
+    const currentUser = req.user
 
     await prisma.follow.deleteMany({
       where: {
@@ -38,10 +34,8 @@ export async function DELETE(
 
   } catch (error) {
     console.error(error)
-
-    return NextResponse.json(
-      { error: "Internal server error" },
-      { status: 500 }
-    )
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 })
   }
 }
+
+export const DELETE = withAuth(deleteHandler)

@@ -1,27 +1,18 @@
-import { NextResponse } from "next/dist/server/web/spec-extension/response"
+import { NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
-import { getUserFromToken } from "@/lib/auth"
+import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
+
 
 // PATCH /api/posts/:id
 // Allows post owner to edit content.
 // Creates PostVersion record.
 // Sets isEdited = true.
-export async function PATCH(
-  request: Request,
+async function patchHandler(
+  req: AuthenticatedRequest,
   { params }: { params: { id: string } }
 ) {
-
   try {
-
-    const user = await getUserFromToken(request)
-
-    if (!user)
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
-
-    // Live ban check from DB
-    const dbUser = await prisma.user.findUnique({ where: { id: user.user_id }, select: { isBanned: true } })
-    if (dbUser?.isBanned)
-      return NextResponse.json({ error: "Your account has been banned" }, { status: 403 })
+    const user = req.user
 
     const post = await prisma.post.findUnique({
       where: { id: params.id }
@@ -35,18 +26,18 @@ export async function PATCH(
 
     // Block edits on hidden content
     if (post.isHidden)
-      return NextResponse.json({ error: "This content has been hidden by a moderator and cannot be edited" }, { status: 403 })
+      return NextResponse.json(
+        { error: "This content has been hidden by a moderator and cannot be edited" },
+        { status: 403 }
+      )
 
-    const body = await request.json()
+    const body = await req.json()
     const { content } = body
 
     if (!content)
       return NextResponse.json({ error: "Content required" }, { status: 400 })
 
-
-    /**
-     * Save previous version
-     */
+    // Save previous version
     await prisma.postVersion.create({
       data: {
         postId: post.id,
@@ -54,10 +45,7 @@ export async function PATCH(
       }
     })
 
-
-    /**
-     * Update post
-     */
+    // Update post
     const updated = await prisma.post.update({
       where: { id: post.id },
       data: {
@@ -70,19 +58,43 @@ export async function PATCH(
     return NextResponse.json(updated)
 
   } catch (err) {
-
     console.error(err)
-
-    return NextResponse.json(
-      { error: "Internal server error" },
-      { status: 500 }
-    )
-
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 })
   }
-
 }
 
 // DELETE /api/posts/:id
 // Soft-hides post.
 // Only owner or admin allowed.
-export async function DELETE(request: Request, { params }: { params: { id: string } }) {}
+async function deleteHandler(
+  req: AuthenticatedRequest,
+  { params }: { params: { id: string } }
+) {
+  try {
+    const user = req.user
+
+    const post = await prisma.post.findUnique({
+      where: { id: params.id }
+    })
+
+    if (!post)
+      return NextResponse.json({ error: "Post not found" }, { status: 404 })
+
+    if (post.authorId !== user.id && user.role !== "ADMIN")
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 })
+
+    await prisma.post.update({
+      where: { id: post.id },
+      data: { isHidden: true }
+    })
+
+    return NextResponse.json({ success: true })
+
+  } catch (err) {
+    console.error(err)
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 })
+  }
+}
+
+export const PATCH = withAuth(patchHandler)
+export const DELETE = withAuth(deleteHandler)

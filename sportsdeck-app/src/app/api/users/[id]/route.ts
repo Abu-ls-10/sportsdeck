@@ -129,7 +129,7 @@ export async function GET(
   }
 }
 
-
+// TODO: REMOVE!!
 // Endpoint for users to change their fields: username, avatar, favorite team
 async function updateUser(req: NextRequest, { params }: { params: { id: string }}): Promise<NextResponse>{
   const {id} = params;

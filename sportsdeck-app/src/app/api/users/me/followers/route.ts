@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from "next/server"
+import { NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
-import { getUserFromToken } from "@/lib/auth"
+import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
 
 /**
  * GET /api/users/me/followers
@@ -15,13 +15,9 @@ import { getUserFromToken } from "@/lib/auth"
  * - Returns followers sorted by follow time.
  */
 
-export async function GET(req: NextRequest) {
+async function getHandler(req: AuthenticatedRequest) {
   try {
-    const currentUser = await getUserFromToken(req)
-
-    if (!currentUser) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
-    }
+    const currentUser = req.user
 
     const followers = await prisma.follow.findMany({
       where: {
@@ -45,10 +41,8 @@ export async function GET(req: NextRequest) {
 
   } catch (error) {
     console.error(error)
-
-    return NextResponse.json(
-      { error: "Internal server error" },
-      { status: 500 }
-    )
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 })
   }
 }
+
+export const GET = withAuth(getHandler)

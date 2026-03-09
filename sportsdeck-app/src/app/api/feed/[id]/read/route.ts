@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from "next/server"
+import { NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
-import { getUserFromToken } from "@/lib/auth"
+import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
 
 /**
  * PATCH /api/feed/:id/read
@@ -12,17 +12,11 @@ import { getUserFromToken } from "@/lib/auth"
  * Authenticated users only.
  */
 
-export async function PATCH(
-  req: NextRequest,
+async function patchHandler(
+  req: AuthenticatedRequest,
   { params }: { params: { id: string } }
 ) {
   try {
-    const currentUser = await getUserFromToken(req)
-
-    if (!currentUser) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
-    }
-
     const feedId = params.id
 
     await prisma.feedEntry.update({
@@ -36,10 +30,8 @@ export async function PATCH(
 
   } catch (error) {
     console.error(error)
-
-    return NextResponse.json(
-      { error: "Internal server error" },
-      { status: 500 }
-    )
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 })
   }
 }
+
+export const PATCH = withAuth(patchHandler)

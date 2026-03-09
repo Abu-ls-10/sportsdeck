@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from "next/server"
+import { NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
-import { getUserFromToken } from "@/lib/auth"
+import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
 
 /**
  * POST /api/follow/:userId
@@ -26,23 +26,12 @@ import { getUserFromToken } from "@/lib/auth"
  * - followingId -> target user
  */
 
-export async function POST(
-  req: NextRequest,
+async function postHandler(
+  req: AuthenticatedRequest,
   { params }: { params: { userId: string } }
 ) {
   try {
-    const currentUser = await getUserFromToken(req)
-
-    if (!currentUser) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
-    }
-
-    // Live ban check from DB
-    const dbUser = await prisma.user.findUnique({ where: { id: currentUser.user_id }, select: { isBanned: true } })
-    if (dbUser?.isBanned) {
-      return NextResponse.json({ error: "Your account has been banned" }, { status: 403 })
-    }
-
+    const currentUser = req.user
     const targetUserId = params.userId
 
     if (currentUser.id === targetUserId) {
@@ -76,11 +65,7 @@ export async function POST(
     return NextResponse.json({ success: true })
   } catch (error) {
     console.error(error)
-
-    return NextResponse.json(
-      { error: "Internal server error" },
-      { status: 500 }
-    )
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 })
   }
 }
 
@@ -99,23 +84,12 @@ export async function POST(
  *   and the target user.
  */
 
-export async function DELETE(
-  req: NextRequest,
+async function deleteHandler(
+  req: AuthenticatedRequest,
   { params }: { params: { userId: string } }
 ) {
   try {
-    const currentUser = await getUserFromToken(req)
-
-    if (!currentUser) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
-    }
-
-    // Live ban check from DB
-    const dbUser2 = await prisma.user.findUnique({ where: { id: currentUser.user_id }, select: { isBanned: true } })
-    if (dbUser2?.isBanned) {
-      return NextResponse.json({ error: "Your account has been banned" }, { status: 403 })
-    }
-
+    const currentUser = req.user
     const targetUserId = params.userId
 
     await prisma.follow.deleteMany({
@@ -128,10 +102,9 @@ export async function DELETE(
     return NextResponse.json({ success: true })
   } catch (error) {
     console.error(error)
-
-    return NextResponse.json(
-      { error: "Internal server error" },
-      { status: 500 }
-    )
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 })
   }
 }
+
+export const POST = withAuth(postHandler)
+export const DELETE = withAuth(deleteHandler)
