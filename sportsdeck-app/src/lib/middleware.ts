@@ -12,7 +12,7 @@ export function withAuth(
   handler: (req: AuthenticatedRequest, context?: any) => Promise<NextResponse>,
   role?: string
 ) {
-  return (req: NextRequest) => {
+  return (req: NextRequest, context?: any) => {
     // Reject if Authorization header is missing
     const authHeader = req.headers.get('authorization')
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
@@ -41,6 +41,6 @@ export function withAuth(
     // Attach the verified payload to the request and proceed
     const authedReq = req as AuthenticatedRequest
     authedReq.user = payload
-    return handler(authedReq)
+    return handler(authedReq, context)
   }
 }

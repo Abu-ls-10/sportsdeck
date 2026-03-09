@@ -46,10 +46,10 @@ import { analyzeSentimentBatch } from "@/lib/ai"
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const threadId = (await params).id
+    const { id: threadId } = await params
 
     // Fetch the thread with match + team info
     const thread = await prisma.thread.findUnique({

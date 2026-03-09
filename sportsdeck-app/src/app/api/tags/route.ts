@@ -1,43 +1,46 @@
-/**
- * @openapi
- * /api/tags:
- *   post:
- *     summary: Create a new tag
- *     tags: [Tags]
- *     security:
- *       - bearerAuth: []
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             required: [name]
- *             properties:
- *               name:
- *                 type: string
- *                 example: "Arsenal"
- *     responses:
- *       201:
- *         description: Tag created
- *       409:
- *         description: Tag already exists
- *       401:
- *         description: Unauthorized
- *   get:
- *     summary: Get list of all tags
- *     tags: [Tags]
- *     responses:
- *       200:
- *         description: List of tags
- *       500:
- *         description: Internal server error
- */
-// POST /api/tags
-// Creates new tag (if not exists).
-// Optional if auto-created during thread creation.
-export async function POST(request: Request) {}
+import { NextRequest, NextResponse } from "next/server"
+import { prisma } from "@/lib/prisma"
+
 
 // GET /api/tags
 // Returns list of all tags.
-export async function GET(request: Request) {}
+export async function GET(_req: NextRequest) {
+  try {
+
+    const tags = await prisma.tag.findMany({
+      orderBy: {
+        name: "asc"
+      },
+      select: {
+        id: true,
+        name: true,
+        _count: {
+          select: {
+            threads: true
+          }
+        }
+      }
+    })
+
+    return NextResponse.json(
+      {
+        message: "Tags retrieved successfully.",
+        data: {
+          count: tags.length,
+          tags
+        }
+      },
+      { status: 200 }
+    )
+
+  } catch (error) {
+    console.error("GET /api/tags error:", error)
+
+    return NextResponse.json(
+      {
+        error: "An unexpected error occurred while retrieving tags."
+      },
+      { status: 500 }
+    )
+  }
+}

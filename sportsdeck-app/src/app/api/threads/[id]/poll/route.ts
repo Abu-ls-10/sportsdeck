@@ -67,10 +67,12 @@ import { getUserFromToken } from "@/lib/auth"
 
 export async function POST(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
 
   try {
+
+    const { id: threadId } = await params
 
     const user = await getUserFromToken(request)
 
@@ -82,7 +84,7 @@ export async function POST(
     }
 
     const thread = await prisma.thread.findUnique({
-      where: { id: params.id },
+      where: { id: threadId },
       include: { polls: true }
     })
 
@@ -100,7 +102,7 @@ export async function POST(
       )
     }
 
-    if (thread.authorId !== user.id && user.role !== "ADMIN") {
+    if (thread.authorId !== user.user_id && user.role !== "ADMIN") {
       return NextResponse.json(
         { error: "Forbidden" },
         { status: 403 }
