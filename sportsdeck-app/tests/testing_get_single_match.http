@@ -1,0 +1,5 @@
+GET http://localhost:3000/api/matches?matchday=28
+
+
+###
+GET http://localhost:3000/api/matches/cmmgnkrnf0002suxly1hidhpq
