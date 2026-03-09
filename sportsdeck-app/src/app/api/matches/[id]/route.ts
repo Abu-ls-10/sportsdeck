@@ -3,6 +3,27 @@ import { Match } from '@/generated/prisma';
 import { prisma } from '@/lib/prisma';
 import { NextResponse } from 'next/server';
 
+/**
+ * @openapi
+ * /api/matches/{id}:
+ *   get:
+ *     summary: Get a single match by database ID, refreshing stale data from the external API
+ *     tags: [Matches]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         example: "clxmatch001"
+ *     responses:
+ *       200:
+ *         description: Match details with home and away team info
+ *       404:
+ *         description: Match not found
+ *       500:
+ *         description: Internal server error
+ */
 //Check for that match [id] in the database
 // if stale fetch from API
 // Store again in database

@@ -3,6 +3,63 @@ import { prisma } from "@/lib/prisma"
 import { getUserFromToken } from "@/lib/auth"
 import { moderateContent } from "@/lib/moderation"
 
+/**
+ * @openapi
+ * /api/posts/{id}/replies:
+ *   post:
+ *     summary: Create a reply under a post
+ *     tags: [Posts]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         example: "clx1abc123"
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [content]
+ *             properties:
+ *               content:
+ *                 type: string
+ *                 example: "This is my reply to the post."
+ *     responses:
+ *       201:
+ *         description: Reply created successfully
+ *       400:
+ *         description: Content is required
+ *       401:
+ *         description: Unauthorized
+ *       403:
+ *         description: Account banned or thread locked/closed
+ *       404:
+ *         description: Post or thread not found
+ *       500:
+ *         description: Internal server error
+ *   get:
+ *     summary: Get all visible replies under a post
+ *     tags: [Posts]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         example: "clx1abc123"
+ *     responses:
+ *       200:
+ *         description: List of replies
+ *       404:
+ *         description: Post not found
+ *       500:
+ *         description: Internal server error
+ */
 // POST /api/posts/:id/replies
 // Creates a comment (reply) under a post.
 // Auto-flags the reply content through AI moderation on creation.
@@ -42,7 +99,12 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
     if (thread.lockedAt && now > thread.lockedAt)
       return NextResponse.json({ error: "Thread is closed" }, { status: 403 })
 
-    const body = await request.json()
+    let body: { content?: string }
+    try {
+      body = await request.json()
+    } catch {
+      return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 })
+    }
     const { content } = body
 
     if (!content || content.trim() === "")

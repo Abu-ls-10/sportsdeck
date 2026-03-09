@@ -6,6 +6,28 @@ import { withAuth } from "@/lib/middleware"
 import { availableMemory } from "node:process"
 
 /**
+ * @openapi
+ * /api/users/{id}:
+ *   get:
+ *     summary: Get a user's public profile including follower counts and recent activity
+ *     tags: [Users]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         example: "clxuser789"
+ *     responses:
+ *       200:
+ *         description: User profile with follower/following counts, threads, posts, and replies
+ *       404:
+ *         description: User not found
+ *       500:
+ *         description: Internal server error
+ */
+
+/**
  * GET /api/users/:id
  *
  * User Story:

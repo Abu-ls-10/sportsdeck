@@ -3,6 +3,32 @@ import { prisma } from "@/lib/prisma"
 import { getUserFromToken } from "@/lib/auth"
 
 /**
+ * @openapi
+ * /api/feed/{id}/read:
+ *   patch:
+ *     summary: Mark a feed entry as read
+ *     tags: [Feed]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         example: "clxfeed001"
+ *     responses:
+ *       200:
+ *         description: Feed entry marked as read
+ *       401:
+ *         description: Unauthorized
+ *       404:
+ *         description: Feed entry not found
+ *       500:
+ *         description: Internal server error
+ */
+
+/**
  * PATCH /api/feed/:id/read
  *
  * User Story:

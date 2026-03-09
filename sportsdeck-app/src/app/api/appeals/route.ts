@@ -3,6 +3,67 @@ import { prisma } from "@/lib/prisma"
 import { getUserFromToken } from "@/lib/auth"
 
 /**
+ * @openapi
+ * /api/appeals:
+ *   post:
+ *     summary: Submit a ban appeal
+ *     tags: [Appeals]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [message]
+ *             properties:
+ *               message:
+ *                 type: string
+ *                 example: "I believe my ban was issued in error. I did not violate any rules."
+ *     responses:
+ *       201:
+ *         description: Appeal submitted
+ *       400:
+ *         description: Missing message, invalid JSON, or user is not banned
+ *       401:
+ *         description: Unauthorized
+ *       404:
+ *         description: No active ban found
+ *       409:
+ *         description: Pending appeal already exists for this ban
+ *   get:
+ *     summary: Get the authenticated user's own appeals
+ *     tags: [Appeals]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: query
+ *         name: status
+ *         schema:
+ *           type: string
+ *           enum: [pending, approved, rejected]
+ *         example: "pending"
+ *       - in: query
+ *         name: page
+ *         schema:
+ *           type: integer
+ *         example: 1
+ *       - in: query
+ *         name: limit
+ *         schema:
+ *           type: integer
+ *         example: 20
+ *     responses:
+ *       200:
+ *         description: Paginated list of user's appeals
+ *       400:
+ *         description: Invalid status value
+ *       401:
+ *         description: Unauthorized
+ */
+
+/**
  * POST /api/appeals
  *
  * Allows a banned user to submit an appeal request.
@@ -44,6 +105,7 @@ export async function POST(request: Request) {
     )
   }
 
+  try {
   // Find the user's active ban
   const activeBan = await prisma.ban.findFirst({
     where: { userId: user.user_id, status: "active" },
@@ -85,6 +147,10 @@ export async function POST(request: Request) {
   })
 
   return NextResponse.json(appeal, { status: 201 })
+  } catch (error) {
+    console.error("POST /api/appeals error:", error)
+    return NextResponse.json({ message: "Something went wrong" }, { status: 500 })
+  }
 }
 
 /**
@@ -104,6 +170,7 @@ export async function GET(request: Request) {
     return NextResponse.json({ message: "Unauthorized" }, { status: 401 })
   }
 
+  try {
   const { searchParams } = new URL(request.url)
   const status = searchParams.get("status")
   const page = Math.max(1, Number(searchParams.get("page") ?? 1))
@@ -148,4 +215,8 @@ export async function GET(request: Request) {
       totalPages: Math.ceil(totalCount / limit),
     },
   })
+  } catch (error) {
+    console.error("GET /api/appeals error:", error)
+    return NextResponse.json({ message: "Something went wrong" }, { status: 500 })
+  }
 }

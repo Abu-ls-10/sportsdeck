@@ -3,6 +3,51 @@ import { prisma } from "@/lib/prisma"
 import { getUserFromToken } from "@/lib/auth"
 
 /**
+ * @openapi
+ * /api/threads/{id}/poll:
+ *   post:
+ *     summary: Create a poll attached to a thread
+ *     tags: [Threads]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         example: "clxthread001"
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [question, deadline]
+ *             properties:
+ *               question:
+ *                 type: string
+ *                 example: "Who will win the match?"
+ *               deadline:
+ *                 type: string
+ *                 format: date-time
+ *                 example: "2026-04-01T20:00:00.000Z"
+ *     responses:
+ *       201:
+ *         description: Poll created
+ *       400:
+ *         description: Question and deadline required or thread already has a poll
+ *       401:
+ *         description: Unauthorized
+ *       403:
+ *         description: Forbidden
+ *       404:
+ *         description: Thread not found
+ *       500:
+ *         description: Internal server error
+ */
+
+/**
  * POST /api/threads/:id/poll
  *
  * Creates a poll attached to a thread.

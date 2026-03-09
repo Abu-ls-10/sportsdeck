@@ -2,6 +2,28 @@ import { NextRequest, NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
 
 /**
+ * @openapi
+ * /api/matches/{id}/thread:
+ *   get:
+ *     summary: Get (or auto-create) the discussion thread for a match
+ *     tags: [Matches]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         example: "clxmatch001"
+ *     responses:
+ *       200:
+ *         description: Match discussion thread
+ *       404:
+ *         description: Match not found
+ *       500:
+ *         description: Internal server error
+ */
+
+/**
  * GET /api/matches/:matchId/thread
  *
  * User Story:

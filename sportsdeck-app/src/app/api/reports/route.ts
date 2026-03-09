@@ -3,6 +3,46 @@ import { withAuth, AuthenticatedRequest } from '@/lib/middleware';
 import { NextResponse } from 'next/server';
 import { moderateContent } from '@/lib/moderation';
 
+/**
+ * @openapi
+ * /api/reports:
+ *   post:
+ *     summary: Report a thread, post, or reply as inappropriate
+ *     tags: [Reports]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [contentType, contentId, reason]
+ *             properties:
+ *               contentType:
+ *                 type: string
+ *                 enum: [THREAD, POST, REPLY]
+ *                 example: "POST"
+ *               contentId:
+ *                 type: string
+ *                 example: "clxpost001"
+ *               reason:
+ *                 type: string
+ *                 example: "This post contains hate speech."
+ *     responses:
+ *       201:
+ *         description: Report submitted
+ *       400:
+ *         description: Missing fields, invalid contentType, or reporting own content
+ *       401:
+ *         description: Unauthorized
+ *       404:
+ *         description: Reported content not found
+ *       409:
+ *         description: Duplicate report from same user
+ *       500:
+ *         description: Internal server error
+ */
 // POST /api/reports
 // Allows an authenticated user to report a thread, post, or reply as inappropriate.
 // Creates a ReportedItem (or reuses an existing one) and attaches a Report from this user.
@@ -10,7 +50,15 @@ export const POST = withAuth(async (req: AuthenticatedRequest) => {
     const userId = req.user.user_id;
 
     // Parse and validate the request body
-    const body = await req.json();
+    let body: { contentType?: string; contentId?: string; reason?: string }
+    try {
+        body = await req.json()
+    } catch {
+        return NextResponse.json(
+            { message: 'Invalid JSON body' },
+            { status: 400 }
+        )
+    }
     const { contentType, contentId, reason } = body;
 
     // Validate required fields

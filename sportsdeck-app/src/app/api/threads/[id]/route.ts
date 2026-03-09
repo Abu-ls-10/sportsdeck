@@ -2,6 +2,86 @@ import { NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
 import { getUserFromToken } from "@/lib/auth"
 
+/**
+ * @openapi
+ * /api/threads/{id}:
+ *   get:
+ *     summary: Get detailed thread information
+ *     tags: [Threads]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         example: "clxthread001"
+ *     responses:
+ *       200:
+ *         description: Thread details including author, tags, poll, and post count
+ *       404:
+ *         description: Thread not found or hidden
+ *       500:
+ *         description: Internal server error
+ *   patch:
+ *     summary: Edit thread title or tags (owner or admin)
+ *     tags: [Threads]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         example: "clxthread001"
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               title:
+ *                 type: string
+ *                 example: "Updated Thread Title"
+ *               tags:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *                 example: ["Arsenal", "Chelsea"]
+ *     responses:
+ *       200:
+ *         description: Thread updated
+ *       401:
+ *         description: Unauthorized
+ *       403:
+ *         description: Forbidden or account banned or thread hidden
+ *       404:
+ *         description: Thread not found
+ *       500:
+ *         description: Internal server error
+ *   delete:
+ *     summary: Delete a thread (owner or admin)
+ *     tags: [Threads]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         example: "clxthread001"
+ *     responses:
+ *       200:
+ *         description: Thread deleted
+ *       401:
+ *         description: Unauthorized
+ *       403:
+ *         description: Forbidden
+ *       404:
+ *         description: Thread not found
+ */
 
 /**
  * GET /api/threads/:id

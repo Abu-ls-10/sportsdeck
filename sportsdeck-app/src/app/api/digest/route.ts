@@ -3,6 +3,33 @@ import { prisma } from "@/lib/prisma"
 import { generateText } from "@/lib/ai"
 
 /**
+ * @openapi
+ * /api/digest:
+ *   get:
+ *     summary: Get the AI-generated daily digest summarizing top discussions, matches, and standings
+ *     tags: [Digest]
+ *     parameters:
+ *       - in: query
+ *         name: date
+ *         schema:
+ *           type: string
+ *           format: date
+ *         example: "2026-03-08"
+ *       - in: query
+ *         name: force
+ *         schema:
+ *           type: boolean
+ *         example: false
+ *     responses:
+ *       200:
+ *         description: Daily digest content
+ *       404:
+ *         description: No digest found for the requested date
+ *       500:
+ *         description: Internal server error
+ */
+
+/**
  * GET /api/digest
  *
  * User Story:

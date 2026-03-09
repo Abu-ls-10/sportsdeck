@@ -3,6 +3,23 @@ import { prisma } from "@/lib/prisma"
 import { getUserFromToken } from "@/lib/auth"
 
 /**
+ * @openapi
+ * /api/users/me/followers:
+ *   get:
+ *     summary: Get the list of users who follow the authenticated user
+ *     tags: [Users]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: List of followers with profile info
+ *       401:
+ *         description: Unauthorized
+ *       500:
+ *         description: Internal server error
+ */
+
+/**
  * GET /api/users/me/followers
  *
  * User Story:

@@ -3,6 +3,32 @@ import { prisma } from "@/lib/prisma"
 import { getUserFromToken } from "@/lib/auth"
 
 /**
+ * @openapi
+ * /api/admin/bans/{id}:
+ *   get:
+ *     summary: Get details of a specific ban record (admin only)
+ *     tags: [Admin]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         example: "clxban001"
+ *     responses:
+ *       200:
+ *         description: Ban details with user, admin, report, and appeal info
+ *       401:
+ *         description: Unauthorized
+ *       403:
+ *         description: Forbidden
+ *       404:
+ *         description: Ban not found
+ */
+
+/**
  * GET /api/admin/bans/:id
  *
  * Admin-only. Returns details of a specific ban record including
@@ -20,6 +46,7 @@ export async function GET(
     return NextResponse.json({ message: "Forbidden" }, { status: 403 })
   }
 
+  try {
   const { id } = await params
 
   const ban = await prisma.ban.findUnique({
@@ -47,4 +74,8 @@ export async function GET(
   }
 
   return NextResponse.json(ban)
+  } catch (error) {
+    console.error("GET /api/admin/bans/[id] error:", error)
+    return NextResponse.json({ message: "Something went wrong" }, { status: 500 })
+  }
 }

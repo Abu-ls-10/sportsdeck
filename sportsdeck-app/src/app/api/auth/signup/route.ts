@@ -3,6 +3,36 @@ import {Prisma} from '@/generated/prisma';
 import { hashPassword, generateAccessToken, generateRefreshToken} from '@/lib/auth';
 import { NextResponse } from 'next/server';
 
+/**
+ * @openapi
+ * /api/auth/signup:
+ *   post:
+ *     summary: Register a new user account
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [email, password]
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 example: "newuser@example.com"
+ *               password:
+ *                 type: string
+ *                 example: "securePassword123"
+ *     responses:
+ *       201:
+ *         description: Account created, returns access and refresh tokens
+ *       400:
+ *         description: Missing fields or invalid request body
+ *       409:
+ *         description: Email already in use
+ *       500:
+ *         description: Internal server error
+ */
 export async function POST(req: Request){
 
     // Get usernames, emails, password. 

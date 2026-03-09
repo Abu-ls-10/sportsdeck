@@ -2,6 +2,39 @@ import { Match } from "@/generated/prisma";
 import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
+/**
+ * @openapi
+ * /api/matches:
+ *   get:
+ *     summary: Get Premier League matches by matchday or date range
+ *     tags: [Matches]
+ *     parameters:
+ *       - in: query
+ *         name: matchday
+ *         schema:
+ *           type: integer
+ *         example: 20
+ *       - in: query
+ *         name: dateFrom
+ *         schema:
+ *           type: string
+ *           format: date
+ *         example: "2026-03-01"
+ *       - in: query
+ *         name: dateTo
+ *         schema:
+ *           type: string
+ *           format: date
+ *         example: "2026-03-07"
+ *     responses:
+ *       200:
+ *         description: List of matches with team info
+ *       400:
+ *         description: Invalid or missing matchday/date range parameters
+ *       500:
+ *         description: Internal server error
+ */
+
 interface API_Match{
     id: number,
     utcDate: string, 

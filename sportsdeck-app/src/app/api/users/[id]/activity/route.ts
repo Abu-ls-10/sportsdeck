@@ -2,6 +2,34 @@ import { NextRequest, NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
 
 /**
+ * @openapi
+ * /api/users/{id}/activity:
+ *   get:
+ *     summary: Get a user's daily activity counts over a specified time range
+ *     tags: [Users]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         example: "clxuser789"
+ *       - in: query
+ *         name: range
+ *         schema:
+ *           type: string
+ *           enum: [7d, 30d, 90d, 1y]
+ *         example: "30d"
+ *     responses:
+ *       200:
+ *         description: Daily activity data including posts, replies, and totals
+ *       404:
+ *         description: User not found
+ *       500:
+ *         description: Internal server error
+ */
+
+/**
  * GET /api/users/:id/activity
  *
  * User Story:

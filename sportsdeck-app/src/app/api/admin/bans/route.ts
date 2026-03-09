@@ -3,6 +3,80 @@ import { prisma } from "@/lib/prisma"
 import { getUserFromToken } from "@/lib/auth"
 
 /**
+ * @openapi
+ * /api/admin/bans:
+ *   post:
+ *     summary: Ban a user (admin only)
+ *     tags: [Admin]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [userId, reason]
+ *             properties:
+ *               userId:
+ *                 type: string
+ *                 example: "clxuser789"
+ *               reason:
+ *                 type: string
+ *                 example: "Repeated violations of community guidelines."
+ *               reportedItemId:
+ *                 type: string
+ *                 example: "clxreporteditem001"
+ *               reportId:
+ *                 type: string
+ *                 example: "clxreport001"
+ *     responses:
+ *       201:
+ *         description: Ban created
+ *       400:
+ *         description: Missing fields, user is an admin, or invalid reported item/report ID
+ *       401:
+ *         description: Unauthorized
+ *       403:
+ *         description: Forbidden (not an admin)
+ *       404:
+ *         description: User, reported item, or report not found
+ *       409:
+ *         description: User is already banned
+ *   get:
+ *     summary: List bans with optional status filter and pagination (admin only)
+ *     tags: [Admin]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: query
+ *         name: status
+ *         schema:
+ *           type: string
+ *           enum: [active, lifted]
+ *         example: "active"
+ *       - in: query
+ *         name: page
+ *         schema:
+ *           type: integer
+ *         example: 1
+ *       - in: query
+ *         name: limit
+ *         schema:
+ *           type: integer
+ *         example: 20
+ *     responses:
+ *       200:
+ *         description: Paginated list of bans
+ *       400:
+ *         description: Invalid status value
+ *       401:
+ *         description: Unauthorized
+ *       403:
+ *         description: Forbidden
+ */
+
+/**
  * POST /api/admin/bans
  *
  * Admin creates a ban on a user.
@@ -40,6 +114,7 @@ export async function POST(request: Request) {
     )
   }
 
+  try {
   // Verify the target user exists
   const targetUser = await prisma.user.findUnique({ where: { id: userId } })
   if (!targetUser) {
@@ -106,6 +181,10 @@ export async function POST(request: Request) {
   })
 
   return NextResponse.json(ban, { status: 201 })
+  } catch (error) {
+    console.error("POST /api/admin/bans error:", error)
+    return NextResponse.json({ message: "Something went wrong" }, { status: 500 })
+  }
 }
 
 /**
@@ -122,6 +201,7 @@ export async function GET(request: Request) {
     return NextResponse.json({ message: "Forbidden" }, { status: 403 })
   }
 
+  try {
   const { searchParams } = new URL(request.url)
   const status = searchParams.get("status") // "active", "lifted", or null for all
   const page = Math.max(1, Number(searchParams.get("page") ?? 1))
@@ -164,4 +244,8 @@ export async function GET(request: Request) {
       totalPages: Math.ceil(totalCount / limit),
     },
   })
+  } catch (error) {
+    console.error("GET /api/admin/bans error:", error)
+    return NextResponse.json({ message: "Something went wrong" }, { status: 500 })
+  }
 }

@@ -3,6 +3,31 @@ import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
 export const dynamic = 'force-dynamic';
 
+/**
+ * @openapi
+ * /api/auth/refresh:
+ *   post:
+ *     summary: Refresh access token using a refresh token
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [refresh_token]
+ *             properties:
+ *               refresh_token:
+ *                 type: string
+ *                 example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+ *     responses:
+ *       200:
+ *         description: New access and refresh tokens returned
+ *       400:
+ *         description: Missing refresh token
+ *       401:
+ *         description: Invalid or expired refresh token
+ */
 export async function POST(req: Request){
     const {refresh_token} = await req.json();
 

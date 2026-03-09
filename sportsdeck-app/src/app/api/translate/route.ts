@@ -4,6 +4,44 @@ import { getUserFromToken } from "@/lib/auth"
 import { translateToEnglish } from "@/lib/ai"
 
 /**
+ * @openapi
+ * /api/translate:
+ *   post:
+ *     summary: Translate a post, reply, or raw text to English
+ *     tags: [Translate]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               text:
+ *                 type: string
+ *                 example: "Hola, ¿cómo estás?"
+ *               contentType:
+ *                 type: string
+ *                 enum: [POST, REPLY]
+ *                 example: "POST"
+ *               contentId:
+ *                 type: string
+ *                 example: "clxpost001"
+ *     responses:
+ *       200:
+ *         description: Translation result with original and translated text
+ *       400:
+ *         description: Invalid contentType or no text provided
+ *       401:
+ *         description: Unauthorized
+ *       404:
+ *         description: Post or reply not found
+ *       500:
+ *         description: Internal server error
+ */
+
+/**
  * POST /api/translate
  *
  * User Story:
@@ -31,7 +69,12 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
-    const body = await req.json()
+    let body: { contentType?: string; contentId?: string; text?: string }
+    try {
+      body = await req.json()
+    } catch {
+      return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 })
+    }
     let textToTranslate: string | null = null
 
     // Option 1 — translate by content reference
@@ -66,7 +109,7 @@ export async function POST(req: NextRequest) {
 
     // Option 2 — translate raw text
     if (!textToTranslate) {
-      textToTranslate = body.text
+      textToTranslate = body.text ?? null
     }
 
     if (!textToTranslate || typeof textToTranslate !== "string" || textToTranslate.trim().length === 0) {

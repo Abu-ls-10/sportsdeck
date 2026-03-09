@@ -2,6 +2,67 @@ import { NextResponse } from "next/dist/server/web/spec-extension/response"
 import { prisma } from "@/lib/prisma"
 import { getUserFromToken } from "@/lib/auth"
 
+/**
+ * @openapi
+ * /api/posts/{id}:
+ *   patch:
+ *     summary: Edit a post's content (owner only)
+ *     tags: [Posts]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         example: "clx1abc123"
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [content]
+ *             properties:
+ *               content:
+ *                 type: string
+ *                 example: "Updated post content here."
+ *     responses:
+ *       200:
+ *         description: Post updated successfully
+ *       400:
+ *         description: Content is required
+ *       401:
+ *         description: Unauthorized
+ *       403:
+ *         description: Forbidden or account banned or content hidden
+ *       404:
+ *         description: Post not found
+ *       500:
+ *         description: Internal server error
+ *   delete:
+ *     summary: Soft-delete a post (owner or admin)
+ *     tags: [Posts]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         example: "clx1abc123"
+ *     responses:
+ *       200:
+ *         description: Post deleted successfully
+ *       401:
+ *         description: Unauthorized
+ *       403:
+ *         description: Forbidden
+ *       404:
+ *         description: Post not found
+ */
 // PATCH /api/posts/:id
 // Allows post owner to edit content.
 // Creates PostVersion record.

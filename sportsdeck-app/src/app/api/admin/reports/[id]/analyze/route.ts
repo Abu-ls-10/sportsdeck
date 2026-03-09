@@ -4,6 +4,32 @@ import { getUserFromToken } from "@/lib/auth"
 import { analyzeContent } from "@/lib/moderation"
 
 /**
+ * @openapi
+ * /api/admin/reports/{id}/analyze:
+ *   post:
+ *     summary: Trigger a fresh AI analysis on reported content (admin only)
+ *     tags: [Admin]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         example: "clxreporteditem001"
+ *     responses:
+ *       200:
+ *         description: AI verdict updated with fresh toxicity score, labels, and explanation
+ *       401:
+ *         description: Unauthorized
+ *       403:
+ *         description: Forbidden
+ *       404:
+ *         description: Reported item or its content not found
+ */
+
+/**
  * POST /api/admin/reports/:id/analyze
  *
  * Admin-only. Triggers a fresh AI analysis on the reported content.
@@ -27,6 +53,7 @@ export async function POST(
     return NextResponse.json({ message: "Forbidden" }, { status: 403 })
   }
 
+  try {
   const { id } = await params
 
   // Find the reported item
@@ -83,6 +110,10 @@ export async function POST(
             : "LIKELY_SAFE",
     },
   })
+  } catch (error) {
+    console.error("POST /api/admin/reports/[id]/analyze error:", error)
+    return NextResponse.json({ message: "Something went wrong" }, { status: 500 })
+  }
 }
 
 /**

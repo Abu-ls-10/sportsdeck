@@ -3,6 +3,67 @@ import { prisma } from "@/lib/prisma"
 import { getUserFromToken } from "@/lib/auth"
 import { moderateContent } from "@/lib/moderation"
 
+/**
+ * @openapi
+ * /api/replies/{id}:
+ *   patch:
+ *     summary: Edit a reply's content (owner only)
+ *     tags: [Replies]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         example: "clx2reply456"
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [content]
+ *             properties:
+ *               content:
+ *                 type: string
+ *                 example: "Updated reply content."
+ *     responses:
+ *       200:
+ *         description: Reply updated successfully
+ *       400:
+ *         description: Content is required
+ *       401:
+ *         description: Unauthorized
+ *       403:
+ *         description: Forbidden or account banned or content hidden
+ *       404:
+ *         description: Reply not found
+ *       500:
+ *         description: Internal server error
+ *   delete:
+ *     summary: Soft-delete a reply (owner or admin)
+ *     tags: [Replies]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         example: "clx2reply456"
+ *     responses:
+ *       200:
+ *         description: Reply deleted
+ *       401:
+ *         description: Unauthorized
+ *       403:
+ *         description: Forbidden
+ *       404:
+ *         description: Reply not found
+ */
 // PATCH /api/replies/:id
 // Allows reply owner to edit.
 // Creates ReplyVersion record.

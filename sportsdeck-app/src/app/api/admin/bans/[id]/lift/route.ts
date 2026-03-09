@@ -3,6 +3,34 @@ import { prisma } from "@/lib/prisma"
 import { getUserFromToken } from "@/lib/auth"
 
 /**
+ * @openapi
+ * /api/admin/bans/{id}/lift:
+ *   patch:
+ *     summary: Lift (unban) an active ban (admin only)
+ *     tags: [Admin]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         example: "clxban001"
+ *     responses:
+ *       200:
+ *         description: Ban lifted and user unbanned
+ *       400:
+ *         description: Ban is not active
+ *       401:
+ *         description: Unauthorized
+ *       403:
+ *         description: Forbidden
+ *       404:
+ *         description: Ban not found
+ */
+
+/**
  * PATCH /api/admin/bans/:id/lift
  *
  * Admin-only. Lifts (unbans) a user by:
@@ -23,6 +51,7 @@ export async function PATCH(
     return NextResponse.json({ message: "Forbidden" }, { status: 403 })
   }
 
+  try {
   const { id } = await params
 
   // Find the ban
@@ -67,4 +96,8 @@ export async function PATCH(
     message: "Ban lifted successfully",
     ban: updatedBan,
   })
+  } catch (error) {
+    console.error("PATCH /api/admin/bans/[id]/lift error:", error)
+    return NextResponse.json({ message: "Something went wrong" }, { status: 500 })
+  }
 }

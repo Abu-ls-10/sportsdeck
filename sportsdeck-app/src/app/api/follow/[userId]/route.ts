@@ -3,6 +3,55 @@ import { prisma } from "@/lib/prisma"
 import { getUserFromToken } from "@/lib/auth"
 
 /**
+ * @openapi
+ * /api/follow/{userId}:
+ *   post:
+ *     summary: Follow a user
+ *     tags: [Follow]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         required: true
+ *         schema:
+ *           type: string
+ *         example: "clxuser789"
+ *     responses:
+ *       200:
+ *         description: Now following the user
+ *       400:
+ *         description: Cannot follow yourself or already following
+ *       401:
+ *         description: Unauthorized
+ *       403:
+ *         description: Account banned
+ *       500:
+ *         description: Internal server error
+ *   delete:
+ *     summary: Unfollow a user
+ *     tags: [Follow]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         required: true
+ *         schema:
+ *           type: string
+ *         example: "clxuser789"
+ *     responses:
+ *       200:
+ *         description: Successfully unfollowed
+ *       401:
+ *         description: Unauthorized
+ *       403:
+ *         description: Account banned
+ *       500:
+ *         description: Internal server error
+ */
+
+/**
  * POST /api/follow/:userId
  *
  * User Story:

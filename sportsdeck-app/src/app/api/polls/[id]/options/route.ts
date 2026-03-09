@@ -3,6 +3,49 @@ import { prisma } from "@/lib/prisma"
 import { getUserFromToken } from "@/lib/auth"
 
 /**
+ * @openapi
+ * /api/polls/{id}/options:
+ *   post:
+ *     summary: Add options to an existing poll
+ *     tags: [Polls]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         example: "clxpoll001"
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [options]
+ *             properties:
+ *               options:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *                 example: ["Arsenal", "Chelsea"]
+ *     responses:
+ *       201:
+ *         description: Options added to poll
+ *       400:
+ *         description: Options array required
+ *       401:
+ *         description: Unauthorized
+ *       403:
+ *         description: Forbidden or account banned
+ *       404:
+ *         description: Poll not found
+ *       500:
+ *         description: Internal server error
+ */
+
+/**
  * POST /api/polls/:id/options
  *
  * Adds options to an existing poll.

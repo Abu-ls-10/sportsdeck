@@ -3,6 +3,30 @@ import { prisma } from "@/lib/prisma"
 import { getUserFromToken } from "@/lib/auth"
 
 /**
+ * @openapi
+ * /api/users/me/followers/{followerId}:
+ *   delete:
+ *     summary: Remove a follower from the authenticated user's follower list
+ *     tags: [Users]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: followerId
+ *         required: true
+ *         schema:
+ *           type: string
+ *         example: "clxuser456"
+ *     responses:
+ *       200:
+ *         description: Follower removed
+ *       401:
+ *         description: Unauthorized
+ *       500:
+ *         description: Internal server error
+ */
+
+/**
  * DELETE /api/users/me/followers/:followerId
  *
  * User Story:

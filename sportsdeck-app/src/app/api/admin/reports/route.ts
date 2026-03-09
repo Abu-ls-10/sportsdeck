@@ -3,6 +3,49 @@ import { prisma } from "@/lib/prisma"
 import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
 
 /**
+ * @openapi
+ * /api/admin/reports:
+ *   get:
+ *     summary: Admin moderation queue of reported items (admin only)
+ *     tags: [Admin]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: query
+ *         name: status
+ *         schema:
+ *           type: string
+ *           enum: [pending, dismissed, approved]
+ *         example: "pending"
+ *       - in: query
+ *         name: sort
+ *         description: "ai = highest toxicity first; reports = most reported first; recent = most recently reported first"
+ *         schema:
+ *           type: string
+ *           enum: [ai, reports, recent]
+ *         example: "ai"
+ *       - in: query
+ *         name: page
+ *         schema:
+ *           type: integer
+ *         example: 1
+ *       - in: query
+ *         name: limit
+ *         schema:
+ *           type: integer
+ *         example: 20
+ *     responses:
+ *       200:
+ *         description: Paginated moderation queue
+ *       400:
+ *         description: Invalid status value
+ *       401:
+ *         description: Unauthorized
+ *       403:
+ *         description: Forbidden
+ */
+
+/**
  * GET /api/admin/reports?status=pending&page=1&limit=20&sort=ai|reports|recent
  *
  * Admin-only. Returns the moderation queue of reported items.

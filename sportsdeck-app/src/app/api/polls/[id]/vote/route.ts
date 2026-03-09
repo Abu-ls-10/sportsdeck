@@ -3,6 +3,47 @@ import { prisma } from "@/lib/prisma"
 import { getUserFromToken } from "@/lib/auth"
 
 /**
+ * @openapi
+ * /api/polls/{id}/vote:
+ *   post:
+ *     summary: Cast a vote on a poll option
+ *     tags: [Polls]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         example: "clxpoll001"
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [optionId]
+ *             properties:
+ *               optionId:
+ *                 type: string
+ *                 example: "clxopt001"
+ *     responses:
+ *       201:
+ *         description: Vote recorded
+ *       400:
+ *         description: Poll closed, invalid option, or user already voted
+ *       401:
+ *         description: Unauthorized
+ *       403:
+ *         description: Account banned or thread hidden
+ *       404:
+ *         description: Poll not found
+ *       500:
+ *         description: Internal server error
+ */
+
+/**
  * POST /api/polls/:id/vote
  *
  * Cast vote for an option.

@@ -2,6 +2,26 @@ import { NextRequest, NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
 
 /**
+ * @openapi
+ * /api/users/{id}/following:
+ *   get:
+ *     summary: Get the list of users that a given user follows
+ *     tags: [Users]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         example: "clxuser789"
+ *     responses:
+ *       200:
+ *         description: List of followed users with profile info
+ *       500:
+ *         description: Internal server error
+ */
+
+/**
  * GET /api/users/:id/following
  *
  * User Story:

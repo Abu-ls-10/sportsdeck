@@ -3,6 +3,64 @@ import { prisma } from "@/lib/prisma"
 import { getUserFromToken } from "@/lib/auth"
 
 /**
+ * @openapi
+ * /api/threads/{id}/posts:
+ *   get:
+ *     summary: Get all visible posts in a thread
+ *     tags: [Threads]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         example: "clxthread001"
+ *     responses:
+ *       200:
+ *         description: List of posts
+ *       404:
+ *         description: Thread not found or hidden
+ *       500:
+ *         description: Internal server error
+ *   post:
+ *     summary: Post a comment inside a thread
+ *     tags: [Threads]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         example: "clxthread001"
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [content]
+ *             properties:
+ *               content:
+ *                 type: string
+ *                 example: "I think Arsenal will win this one!"
+ *     responses:
+ *       201:
+ *         description: Post created
+ *       400:
+ *         description: Content is required
+ *       401:
+ *         description: Unauthorized
+ *       403:
+ *         description: Account banned or thread locked
+ *       404:
+ *         description: Thread not found
+ *       500:
+ *         description: Internal server error
+ */
+
+/**
  * GET /api/threads/:threadId/posts
  *
  * Visitors can view posts inside the thread.
@@ -101,7 +159,12 @@ export async function POST(
       return NextResponse.json({ error: "Your account has been banned" }, { status: 403 })
     }
 
-    const body = await req.json()
+    let body: { content?: string }
+    try {
+      body = await req.json()
+    } catch {
+      return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 })
+    }
 
     const { content } = body
 

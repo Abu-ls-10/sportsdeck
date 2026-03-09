@@ -3,6 +3,70 @@ import { prisma } from "@/lib/prisma"
 import { getUserFromToken } from "@/lib/auth"
 
 /**
+ * @openapi
+ * /api/admin/appeals/{id}:
+ *   get:
+ *     summary: Get details of a specific appeal (admin only)
+ *     tags: [Admin]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         example: "clxappeal001"
+ *     responses:
+ *       200:
+ *         description: Appeal details with user, ban, and admin info
+ *       401:
+ *         description: Unauthorized
+ *       403:
+ *         description: Forbidden
+ *       404:
+ *         description: Appeal not found
+ *   patch:
+ *     summary: Approve or reject a ban appeal (admin only)
+ *     tags: [Admin]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         example: "clxappeal001"
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [status]
+ *             properties:
+ *               status:
+ *                 type: string
+ *                 enum: [approved, rejected]
+ *                 example: "approved"
+ *               decisionNote:
+ *                 type: string
+ *                 example: "After review, the ban was found to be unwarranted."
+ *     responses:
+ *       200:
+ *         description: Appeal reviewed; if approved, ban is lifted
+ *       400:
+ *         description: Missing or invalid status, or appeal already reviewed
+ *       401:
+ *         description: Unauthorized
+ *       403:
+ *         description: Forbidden
+ *       404:
+ *         description: Appeal not found
+ */
+
+/**
  * GET /api/admin/appeals/:id
  *
  * Admin-only. Returns details of a specific appeal.
@@ -19,6 +83,7 @@ export async function GET(
     return NextResponse.json({ message: "Forbidden" }, { status: 403 })
   }
 
+  try {
   const { id } = await params
 
   const appeal = await prisma.appeal.findUnique({
@@ -42,6 +107,10 @@ export async function GET(
   }
 
   return NextResponse.json(appeal)
+  } catch (error) {
+    console.error("GET /api/admin/appeals/[id] error:", error)
+    return NextResponse.json({ message: "Something went wrong" }, { status: 500 })
+  }
 }
 
 /**
@@ -99,6 +168,7 @@ export async function PATCH(
     )
   }
 
+  try {
   // Find the appeal
   const appeal = await prisma.appeal.findUnique({
     where: { id },
@@ -162,4 +232,8 @@ export async function PATCH(
     message: `Appeal ${action} successfully`,
     appeal: updatedAppeal,
   })
+  } catch (error) {
+    console.error("PATCH /api/admin/appeals/[id] error:", error)
+    return NextResponse.json({ message: "Something went wrong" }, { status: 500 })
+  }
 }
