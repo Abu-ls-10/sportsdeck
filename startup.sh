@@ -1,4 +1,5 @@
 #!/bin/bash
+cd sportsdeck-app
 
 npm install
 
