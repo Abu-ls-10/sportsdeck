@@ -10,13 +10,13 @@ import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
 
 async function deleteHandler(
   req: AuthenticatedRequest,
-  { params }: { params: { followerId: string } }
+  { params }: { params: Promise<{ followerId: string }> }
 ) {
 
   try {
 
     const currentUser = req.user
-    const followerId = params.followerId
+    const { followerId } = await params
 
     if (!currentUser)
       return NextResponse.json(

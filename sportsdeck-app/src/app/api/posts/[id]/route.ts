@@ -9,12 +9,12 @@ import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
 // Sets isEdited = true.
 async function patchHandler(
   req: AuthenticatedRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
 
     const user = req.user
-    const postId = params.id
+    const { id: postId } = await params
 
     if (!user)
       return NextResponse.json(
@@ -110,12 +110,12 @@ async function patchHandler(
 // Only owner or admin allowed.
 async function deleteHandler(
   req: AuthenticatedRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
 
     const user = req.user
-    const postId = params.id
+    const { id: postId } = await params
 
     if (!user)
       return NextResponse.json(

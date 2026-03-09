@@ -4,9 +4,9 @@ import { prisma } from "@/lib/prisma"
 // GET /api/posts/:id/versions
 // Returns version history of a post.
 // Used to view edit history.
-export async function GET(_req: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(_req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
-    const postId = params.id
+    const { id: postId } = await params
 
     // Validate param
     if (!postId) {

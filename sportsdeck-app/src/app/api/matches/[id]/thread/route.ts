@@ -15,11 +15,12 @@ import { prisma } from "@/lib/prisma"
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { matchId: string } }
+  { params }: { params: Promise<{ matchId: string }> }
 ) {
   try {
+    const { matchId } = await params
     const match = await prisma.match.findUnique({
-      where: { id: params.matchId }
+      where: { id: matchId }
     })
 
     if (!match) {

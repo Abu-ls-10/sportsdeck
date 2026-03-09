@@ -114,12 +114,12 @@ async function patchHandler(
 // Owner or admin only.
 async function deleteHandler(
   req: AuthenticatedRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
 
     const user = req.user
-    const replyId = params.id
+    const { id: replyId } = await params
 
     if (!user)
       return NextResponse.json(

@@ -1,0 +1,281 @@
+@baseUrl = http://localhost:3000
+
+@abuUserId = cmmj550lf0000uh94gahbh4f5
+@chelseaUserId = cmmj550n40001uh94u1cq9cby
+@arsenalUserId = cmmj550ne0002uh94ura6i5fd
+@lfcUserId = cmmj550nf0003uh944splm5h5
+
+@matchId = cmmj550sh0008uh945m9tl4js
+
+@matchThreadId = cmmj550tc000auh94cj2tl645
+@arsenalThreadId = cmmj550u3000cuh940tbvety7
+
+@postId = cmmj550us000euh94d426w9td
+@replyId = cmmj550vg000guh948b08v1zz
+
+@pollId = cmmj550w4000iuh942c44hcg9
+@arsenalOptionId = cmmj550wx000juh94q2l4uij6
+@liverpoolOptionId = cmmj550wx000kuh94kcnkmt76
+@drawOptionId = cmmj550wx000luh94wppb0p9t
+
+
+############################################
+# SOCIAL AND COMMUNITY
+############################################
+
+### Get public profile: abu
+GET {{baseUrl}}/api/users/{{abuUserId}}
+
+### Get public profile: arsenalFan
+GET {{baseUrl}}/api/users/{{arsenalUserId}}
+
+### Get followers of abu
+# Seeded expectation: arsenalFan follows abu
+GET {{baseUrl}}/api/users/{{abuUserId}}/followers
+
+### Get following of arsenalFan
+# Seeded expectation: arsenalFan follows abu
+GET {{baseUrl}}/api/users/{{arsenalUserId}}/following
+
+### Get followers of arsenalFan
+# Seeded expectation: lfcFan follows arsenalFan
+GET {{baseUrl}}/api/users/{{arsenalUserId}}/followers
+
+### Get following of lfcFan
+# Seeded expectation: lfcFan follows arsenalFan
+GET {{baseUrl}}/api/users/{{lfcUserId}}/following
+
+### Get activity chart for arsenalFan
+# Seeded data shows no activities, likely empty array or empty stats object
+GET {{baseUrl}}/api/users/{{arsenalUserId}}/activity
+
+### Follow chelseaFan from current authenticated user
+# Requires auth
+POST {{baseUrl}}/api/follow/{{chelseaUserId}}
+
+### Unfollow chelseaFan from current authenticated user
+# Requires auth
+DELETE {{baseUrl}}/api/follow/{{chelseaUserId}}
+
+### Get current authenticated user profile
+# Requires auth
+GET {{baseUrl}}/api/users/me
+
+### Update current authenticated user profile
+# Requires auth
+PATCH {{baseUrl}}/api/users/me
+Content-Type: application/json
+
+{
+  "username": "abuUpdated"
+}
+
+### Get current user's following
+# Requires auth
+GET {{baseUrl}}/api/users/me/following
+
+### Get current user's followers
+# Requires auth
+GET {{baseUrl}}/api/users/me/followers
+
+### Remove a follower from current user's follower list
+# Requires auth
+# Real follower relation exists: arsenalFan follows abu
+DELETE {{baseUrl}}/api/users/me/followers/{{arsenalUserId}}
+
+### Get personalized feed
+# Requires auth
+# Seed data shows no feedEntries, likely empty
+GET {{baseUrl}}/api/feed
+
+### Mark feed item as read
+# Requires auth
+# No seeded feed item exists, so this likely 404 unless your app auto-generates feed entries
+PATCH {{baseUrl}}/api/feed/replace-with-real-feed-entry-id/read
+
+
+############################################
+# FORUMS AND DISCUSSIONS
+############################################
+
+### Get or auto-create dedicated match discussion thread
+# Seeded expectation: should return thread cmmj550tc000auh94cj2tl645
+GET {{baseUrl}}/api/matches/{{matchId}}/thread
+
+### Browse all threads
+GET {{baseUrl}}/api/threads
+
+### Get match thread details
+GET {{baseUrl}}/api/threads/{{matchThreadId}}
+
+### Get Arsenal team thread details
+GET {{baseUrl}}/api/threads/{{arsenalThreadId}}
+
+### Get full match thread page
+GET {{baseUrl}}/api/threads/{{matchThreadId}}/full
+
+### Get posts in match thread
+# Seeded expectation: contains post cmmj550us000euh94d426w9td
+GET {{baseUrl}}/api/threads/{{matchThreadId}}/posts
+
+### Create a new thread
+# Requires auth in most implementations
+POST {{baseUrl}}/api/threads
+Content-Type: application/json
+
+{
+  "title": "Chelsea Season Predictions",
+  "content": "Chelsea top 4 this season",
+  "teamId": "cmmj550qw0006uh94z09sdogy"
+}
+
+### Edit Arsenal team thread
+# Requires auth, probably only thread owner or admin
+PATCH {{baseUrl}}/api/threads/{{arsenalThreadId}}
+Content-Type: application/json
+
+{
+  "title": "Arsenal Season Predictions 2025"
+}
+
+### Soft-delete Arsenal team thread
+# Requires auth, probably only thread owner or admin
+DELETE {{baseUrl}}/api/threads/{{arsenalThreadId}}
+
+### Create a post in the match thread
+# Requires auth
+POST {{baseUrl}}/api/threads/{{matchThreadId}}/posts
+Content-Type: application/json
+
+{
+  "content": "Liverpool will edge it 2-1"
+}
+
+### Edit existing post
+# Requires auth, likely only post owner or admin
+PATCH {{baseUrl}}/api/posts/{{postId}}
+Content-Type: application/json
+
+{
+  "content": "Arsenal will win 3-1."
+}
+
+### Delete existing post
+# Requires auth, likely only post owner or admin
+DELETE {{baseUrl}}/api/posts/{{postId}}
+
+### Get post edit history
+# Seeded expectation: empty versions array
+GET {{baseUrl}}/api/posts/{{postId}}/versions
+
+### Get replies for seeded post
+# Seeded expectation: contains reply cmmj550vg000guh948b08v1zz
+GET {{baseUrl}}/api/posts/{{postId}}/replies
+
+### Create reply to seeded post
+# Requires auth
+POST {{baseUrl}}/api/posts/{{postId}}/replies
+Content-Type: application/json
+
+{
+  "content": "This one will be close."
+}
+
+### Edit existing reply
+# Requires auth, likely only reply owner or admin
+PATCH {{baseUrl}}/api/replies/{{replyId}}
+Content-Type: application/json
+
+{
+  "content": "No chance, Liverpool wins 2-0."
+}
+
+### Delete existing reply
+# Requires auth, likely only reply owner or admin
+DELETE {{baseUrl}}/api/replies/{{replyId}}
+
+### Get reply edit history
+# Seeded expectation: empty versions array
+GET {{baseUrl}}/api/replies/{{replyId}}/versions
+
+
+############################################
+# POLLS
+############################################
+
+### Get seeded poll details
+GET {{baseUrl}}/api/polls/{{pollId}}
+
+### Get poll results
+# Seeded expectation: no votes yet
+GET {{baseUrl}}/api/polls/{{pollId}}/results
+
+### Create a poll in Arsenal thread
+# Requires auth
+POST {{baseUrl}}/api/threads/{{arsenalThreadId}}/poll
+Content-Type: application/json
+
+{
+  "question": "Will Arsenal finish top 2?"
+}
+
+### Edit seeded poll
+# Requires auth, likely thread owner/admin
+PATCH {{baseUrl}}/api/polls/{{pollId}}
+Content-Type: application/json
+
+{
+  "question": "Who wins this match?"
+}
+
+### Delete seeded poll
+# Requires auth, likely thread owner/admin
+DELETE {{baseUrl}}/api/polls/{{pollId}}
+
+### Add a new option to seeded poll
+# Requires auth
+POST {{baseUrl}}/api/polls/{{pollId}}/options
+Content-Type: application/json
+
+{
+  "optionText": "Penalty shootout"
+}
+
+### Vote for Arsenal option in seeded poll
+# Requires auth
+POST {{baseUrl}}/api/polls/{{pollId}}/vote
+Content-Type: application/json
+
+{
+  "optionId": "{{arsenalOptionId}}"
+}
+
+### Vote for Liverpool option in seeded poll
+# Requires auth
+POST {{baseUrl}}/api/polls/{{pollId}}/vote
+Content-Type: application/json
+
+{
+  "optionId": "{{liverpoolOptionId}}"
+}
+
+
+############################################
+# TAGS
+############################################
+
+### Get all tags
+# Seeded expectation: probably empty array
+GET {{baseUrl}}/api/tags
+
+### Get a specific tag
+# No seeded tags exist, this likely 404
+GET {{baseUrl}}/api/tags/replace-with-real-tag-id
+
+### Get threads for a specific tag
+# No seeded tags exist, this likely 404 or empty array
+GET {{baseUrl}}/api/tags/replace-with-real-tag-id/threads
+
+### Remove tag from match thread
+# No seeded tags exist, this likely 404
+DELETE {{baseUrl}}/api/threads/{{matchThreadId}}/tags/replace-with-real-tag-id

@@ -16,12 +16,12 @@ import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
 
 async function postHandler(
   req: AuthenticatedRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
 
     const user = req.user
-    const pollId = params.id
+    const { id: pollId } = await params
 
     if (!user)
       return NextResponse.json(

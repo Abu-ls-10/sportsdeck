@@ -14,11 +14,11 @@ import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
 
 async function patchHandler(
   req: AuthenticatedRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const currentUser = req.user
-    const feedId = params.id
+    const { id: feedId } = await params
 
     // Safety check (middleware should enforce this)
     if (!currentUser) {

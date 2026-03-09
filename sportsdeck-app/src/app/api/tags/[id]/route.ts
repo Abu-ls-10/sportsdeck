@@ -3,9 +3,9 @@ import { prisma } from "@/lib/prisma"
 
 // GET /api/tags/:id
 // Returns tag details.
-export async function GET(_req: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(_req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
-    const tagId = params.id
+    const { id: tagId } = await params
 
     // Validate param
     if (!tagId) {

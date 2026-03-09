@@ -11,12 +11,12 @@ import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
 
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
 
   try {
 
-    const threadId = params.id
+    const { id: threadId } = await params
 
     if (!threadId)
       return NextResponse.json(
@@ -90,13 +90,13 @@ export async function GET(
 
 async function patchHandler(
   req: AuthenticatedRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
 
   try {
 
     const user = req.user
-    const threadId = params.id
+    const { id: threadId } = await params
 
     if (!user)
       return NextResponse.json(
@@ -226,13 +226,13 @@ async function patchHandler(
 
 async function deleteHandler(
   req: AuthenticatedRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
 
   try {
 
     const user = req.user
-    const threadId = params.id
+    const { id: threadId } = await params
 
     if (!user)
       return NextResponse.json(

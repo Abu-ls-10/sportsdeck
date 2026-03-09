@@ -6,9 +6,9 @@ import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
 // Removes tag from thread.
 
 async function deleteHandler(
-  req: AuthenticatedRequest, { params }: { params: { id: string; tagId: string } }) {
+  req: AuthenticatedRequest, { params }: { params: Promise<{ id: string; tagId: string }> }) {
   try {
-    const { id: threadId, tagId } = params
+    const { id: threadId, tagId } = await params
     const currentUser = req.user
 
     if (!threadId) {

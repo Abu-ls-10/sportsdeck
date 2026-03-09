@@ -5,12 +5,12 @@ import { withAuth } from "@/lib/middleware"
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
 
   try {
 
-    const userId = params.id
+    const { id: userId } = await params
 
     if (!userId)
       return NextResponse.json(
@@ -138,12 +138,12 @@ export async function GET(
 // TODO: REMOVE!
 async function updateUser(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ): Promise<NextResponse> {
 
   try {
 
-    const userId = params.id
+    const { id: userId } = await params
 
     if (!userId)
       return NextResponse.json(

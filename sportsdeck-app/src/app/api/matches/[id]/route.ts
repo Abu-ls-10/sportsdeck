@@ -8,7 +8,7 @@ import { NextResponse } from 'next/server';
 // Store again in database
 // fetch from database
 
-export async function GET(req: Request, { params }: { params: { id: string } }){
+export async function GET(req: Request, { params }: { params: Promise<{ id: string }> }){
 
     // Assert api key exists otherwise a type error will occur
     const apiKey = process.env.X_AUTH_TOKEN;

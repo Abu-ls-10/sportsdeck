@@ -15,11 +15,11 @@ import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
 
 async function postHandler(
   req: AuthenticatedRequest,
-  { params }: { params: { userId: string } }
+  { params }: { params: Promise<{ userId: string }> }
 ) {
   try {
     const currentUser = req.user
-    const targetUserId = params.userId
+    const { userId: targetUserId } = await params
 
     if (!currentUser) {
       return NextResponse.json(
@@ -99,12 +99,12 @@ async function postHandler(
 
 async function deleteHandler(
   req: AuthenticatedRequest,
-  { params }: { params: { userId: string } }
+  { params }: { params: Promise<{ userId: string }> }
 ) {
   try {
 
     const currentUser = req.user
-    const targetUserId = params.userId
+    const { userId: targetUserId } = await params
 
     if (!currentUser) {
       return NextResponse.json(

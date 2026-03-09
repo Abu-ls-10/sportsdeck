@@ -9,12 +9,12 @@ import { prisma } from "@/lib/prisma"
 
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
 
   try {
 
-    const pollId = params.id
+    const { id: pollId } = await params
 
     if (!pollId)
       return NextResponse.json(

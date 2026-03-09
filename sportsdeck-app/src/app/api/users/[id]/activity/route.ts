@@ -33,10 +33,10 @@ import { prisma } from "@/lib/prisma"
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const userId = params.id
+    const { id: userId } = await params
 
     const { searchParams } = new URL(req.url)
     const range = searchParams.get("range") ?? "30d"
