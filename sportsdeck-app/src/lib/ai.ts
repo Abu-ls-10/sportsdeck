@@ -112,59 +112,42 @@ export async function analyzeSentimentBatch(
     return { overall: "neutral", positiveCount: 0, negativeCount: 0, totalAnalyzed: 0 }
   }
 
-  // HF inference supports batch inputs for text-classification
-  try {
-    const res = await hfPost(SENTIMENT_URL, { inputs: texts })
-    if (!res) {
-      return { overall: "neutral", positiveCount: 0, negativeCount: 0, totalAnalyzed: 0 }
-    }
+  // Analyze each text individually to avoid batch parsing issues
+  let positiveCount = 0
+  let negativeCount = 0
 
-    const data = await res.json()
+  for (const text of texts) {
+    try {
+      const res = await hfPost(SENTIMENT_URL, { inputs: text })
+      if (!res) continue
 
-    // HF text-classification response shapes:
-    //   Single input:  [[{label:"POSITIVE",score:0.99}, {label:"NEGATIVE",score:0.01}]]
-    //   Batch inputs:  [[label1-inp1, label2-inp1, label1-inp2, label2-inp2, ...]]
-    //   The outer array always has exactly one element containing all labels.
-    //   Each input contributes 2 labels (POSITIVE & NEGATIVE), so we group in pairs.
+      const data = await res.json()
+      // Single input response: [[{label:"POSITIVE",score:0.99}, {label:"NEGATIVE",score:0.01}]]
+      const labels = data?.[0]
+      if (!Array.isArray(labels) || labels.length === 0) continue
 
-    let positiveCount = 0
-    let negativeCount = 0
-
-    if (!Array.isArray(data) || !Array.isArray(data[0])) {
-      console.error("Unexpected sentiment batch response:", data)
-      return { overall: "neutral", positiveCount: 0, negativeCount: 0, totalAnalyzed: 0 }
-    }
-
-    const allLabels: { label: string; score: number }[] = data[0]
-    const labelsPerInput = 2 // POSITIVE + NEGATIVE
-
-    for (let i = 0; i < allLabels.length; i += labelsPerInput) {
-      const pair = allLabels.slice(i, i + labelsPerInput)
-      if (pair.length === 0) continue
-
-      const best = pair.reduce((a, b) => (b.score > a.score ? b : a))
+      const best = labels.reduce((a: { label: string; score: number }, b: { label: string; score: number }) => (b.score > a.score ? b : a))
       if (best.label === "POSITIVE") positiveCount++
       else negativeCount++
+    } catch (err) {
+      console.error("Sentiment analysis error for text:", err)
     }
-
-    const total = positiveCount + negativeCount
-    let overall: "positive" | "negative" | "mixed" | "neutral" = "neutral"
-
-    if (total === 0) {
-      overall = "neutral"
-    } else if (positiveCount / total >= 0.65) {
-      overall = "positive"
-    } else if (negativeCount / total >= 0.65) {
-      overall = "negative"
-    } else {
-      overall = "mixed"
-    }
-
-    return { overall, positiveCount, negativeCount, totalAnalyzed: total }
-  } catch (err) {
-    console.error("Batch sentiment error:", err)
-    return { overall: "neutral", positiveCount: 0, negativeCount: 0, totalAnalyzed: 0 }
   }
+
+  const total = positiveCount + negativeCount
+  let overall: "positive" | "negative" | "mixed" | "neutral" = "neutral"
+
+  if (total === 0) {
+    overall = "neutral"
+  } else if (positiveCount / total >= 0.65) {
+    overall = "positive"
+  } else if (negativeCount / total >= 0.65) {
+    overall = "negative"
+  } else {
+    overall = "mixed"
+  }
+
+  return { overall, positiveCount, negativeCount, totalAnalyzed: total }
 }
 
 // ─── Translation ─────────────────────────────────────────────────

@@ -68,10 +68,13 @@ export async function GET(
       return NextResponse.json({ error: "Thread not found" }, { status: 404 })
     }
 
-    // Gather all comment texts in this thread (posts + replies)
+    // Gather all non-hidden replies in this thread (posts are excluded from sentiment)
     // Also fetch the author's favoriteTeamId so we can split by team
-    const posts = await prisma.post.findMany({
-      where: { threadId, isHidden: false },
+    const replies = await prisma.reply.findMany({
+      where: {
+        post: { threadId },
+        isHidden: false,
+      },
       select: {
         id: true,
         content: true,
@@ -79,39 +82,20 @@ export async function GET(
         author: {
           select: { favoriteTeamId: true },
         },
-        replies: {
-          where: { isHidden: false },
-          select: {
-            content: true,
-            authorId: true,
-            author: {
-              select: { favoriteTeamId: true },
-            },
-          },
-        },
       },
     })
 
-    // Flatten all comments (posts + replies) with their author's team
     interface CommentEntry {
+      id: string
       text: string
       authorFavoriteTeamId: string | null
     }
 
-    const allComments: CommentEntry[] = []
-
-    for (const post of posts) {
-      allComments.push({
-        text: post.content,
-        authorFavoriteTeamId: post.author.favoriteTeamId,
-      })
-      for (const reply of post.replies) {
-        allComments.push({
-          text: reply.content,
-          authorFavoriteTeamId: reply.author.favoriteTeamId,
-        })
-      }
-    }
+    const allComments: CommentEntry[] = replies.map((reply) => ({
+      id: reply.id,
+      text: reply.content,
+      authorFavoriteTeamId: reply.author.favoriteTeamId,
+    }))
 
     if (allComments.length === 0) {
       return NextResponse.json({
