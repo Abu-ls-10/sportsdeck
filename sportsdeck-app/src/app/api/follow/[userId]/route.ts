@@ -35,7 +35,7 @@ async function postHandler(
       )
     }
 
-    if (currentUser.id === targetUserId) {
+    if (currentUser.user_id === targetUserId) {
       return NextResponse.json(
         { error: "You cannot follow yourself" },
         { status: 400 }
@@ -57,7 +57,7 @@ async function postHandler(
 
     const existing = await prisma.follow.findFirst({
       where: {
-        followerId: currentUser.id,
+        followerId: currentUser.user_id,
         followingId: targetUserId
       }
     })
@@ -71,7 +71,7 @@ async function postHandler(
 
     await prisma.follow.create({
       data: {
-        followerId: currentUser.id,
+        followerId: currentUser.user_id,
         followingId: targetUserId
       }
     })
@@ -122,7 +122,7 @@ async function deleteHandler(
 
     const result = await prisma.follow.deleteMany({
       where: {
-        followerId: currentUser.id,
+        followerId: currentUser.user_id,
         followingId: targetUserId
       }
     })

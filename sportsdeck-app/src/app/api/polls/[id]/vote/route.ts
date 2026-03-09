@@ -97,7 +97,7 @@ async function postHandler(
 
     const existingVote = await prisma.vote.findFirst({
       where: {
-        userId: user.id,
+        userId: user.user_id,
         pollOption: {
           pollId: poll.id
         }
@@ -112,7 +112,7 @@ async function postHandler(
 
     const vote = await prisma.vote.create({
       data: {
-        userId: user.id,
+        userId: user.user_id,
         pollOptionId: optionId
       }
     })

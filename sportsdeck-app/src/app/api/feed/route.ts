@@ -54,7 +54,7 @@ async function getHandler(req: AuthenticatedRequest) {
 
     const entries = await prisma.feedEntry.findMany({
       where: {
-        userId: currentUser.id
+        userId: currentUser.user_id
       },
       orderBy: {
         createdAt: "desc"

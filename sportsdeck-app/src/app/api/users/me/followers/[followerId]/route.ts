@@ -34,7 +34,7 @@ async function deleteHandler(
 
       where: {
         followerId: followerId,
-        followingId: currentUser.id
+        followingId: currentUser.user_id
       }
 
     })

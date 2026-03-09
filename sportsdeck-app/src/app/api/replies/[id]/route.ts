@@ -37,7 +37,7 @@ async function patchHandler(
         { status: 404 }
       )
 
-    if (reply.authorId !== user.id)
+    if (reply.authorId !== user.user_id)
       return NextResponse.json(
         { error: "You are not allowed to edit this reply" },
         { status: 403 }
@@ -143,7 +143,7 @@ async function deleteHandler(
         { status: 404 }
       )
 
-    if (reply.authorId !== user.id && user.role !== "ADMIN")
+    if (reply.authorId !== user.user_id && user.role !== "ADMIN")
       return NextResponse.json(
         { error: "You are not allowed to delete this reply" },
         { status: 403 }

@@ -57,7 +57,7 @@ export async function POST(
       )
     }
 
-    if (thread.authorId !== user.id && user.role !== "ADMIN") {
+    if (thread.authorId !== user.user_id && user.role !== "ADMIN") {
       return NextResponse.json(
         { error: "Forbidden" },
         { status: 403 }

@@ -1,126 +1,122 @@
 @baseUrl = http://localhost:3000
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFidSIsInVzZXJfaWQiOiJjbW1qcGJ6cHEwMDAwdWh5eG43a3F6ZXgxIiwicm9sZSI6IkFETUlOIiwiaXNCYW5uZWQiOmZhbHNlLCJpYXQiOjE3NzMwOTIzNTMsImV4cCI6MTc3MzExMDM1M30.DCTNfSkn2SZLogoFpU2TofjyX4QgWTSc4yS8HfO64Ns
 
-@abuUserId = cmmj550lf0000uh94gahbh4f5
-@chelseaUserId = cmmj550n40001uh94u1cq9cby
-@arsenalUserId = cmmj550ne0002uh94ura6i5fd
-@lfcUserId = cmmj550nf0003uh944splm5h5
+@abuUserId = cmmjpbzpq0000uhyxn7kqzex1
+@chelseaUserId = cmmjpbzrn0001uhyxlanb9cxe
+@arsenalUserId = cmmjpbzs10002uhyxu5k97in5
+@lfcUserId = cmmjpbzs20003uhyxf3vf7gn7
 
-@matchId = cmmj550sh0008uh945m9tl4js
+@matchId = cmmjpbzzh0008uhyxo4obzjoe
 
-@matchThreadId = cmmj550tc000auh94cj2tl645
-@arsenalThreadId = cmmj550u3000cuh940tbvety7
+@matchThreadId = cmmjpc00i000auhyxkigcy6rp
+@arsenalThreadId = cmmjpc01h000cuhyxqo3b6fx6
 
-@postId = cmmj550us000euh94d426w9td
-@replyId = cmmj550vg000guh948b08v1zz
+@postId = cmmjpc02e000euhyx84y6mpiu
+@replyId = cmmjpc03d000guhyxtv8or1o5
 
-@pollId = cmmj550w4000iuh942c44hcg9
-@arsenalOptionId = cmmj550wx000juh94q2l4uij6
-@liverpoolOptionId = cmmj550wx000kuh94kcnkmt76
-@drawOptionId = cmmj550wx000luh94wppb0p9t
+@pollId = cmmjpc047000iuhyxoxjejlnj
+@arsenalOptionId = cmmjpc055000juhyxofnleb4m
+@liverpoolOptionId = cmmjpc055000kuhyxfhvr4xs9
+@drawOptionId = cmmjpc055000luhyx6ig21vml
 
 
 ############################################
-# SOCIAL AND COMMUNITY
+# PUBLIC USER DATA
 ############################################
 
-### Get public profile: abu
+### Get public profile (abu)
 GET {{baseUrl}}/api/users/{{abuUserId}}
 
-### Get public profile: arsenalFan
+### Get public profile (arsenalFan)
 GET {{baseUrl}}/api/users/{{arsenalUserId}}
 
 ### Get followers of abu
-# Seeded expectation: arsenalFan follows abu
 GET {{baseUrl}}/api/users/{{abuUserId}}/followers
 
 ### Get following of arsenalFan
-# Seeded expectation: arsenalFan follows abu
 GET {{baseUrl}}/api/users/{{arsenalUserId}}/following
 
-### Get followers of arsenalFan
-# Seeded expectation: lfcFan follows arsenalFan
-GET {{baseUrl}}/api/users/{{arsenalUserId}}/followers
-
-### Get following of lfcFan
-# Seeded expectation: lfcFan follows arsenalFan
-GET {{baseUrl}}/api/users/{{lfcUserId}}/following
-
 ### Get activity chart for arsenalFan
-# Seeded data shows no activities, likely empty array or empty stats object
 GET {{baseUrl}}/api/users/{{arsenalUserId}}/activity
 
-### Follow chelseaFan from current authenticated user
-# Requires auth
-POST {{baseUrl}}/api/follow/{{chelseaUserId}}
+############################################
+# PROTECTED ENDPOINTS (NO TOKEN)
+############################################
 
-### Unfollow chelseaFan from current authenticated user
-# Requires auth
-DELETE {{baseUrl}}/api/follow/{{chelseaUserId}}
-
-### Get current authenticated user profile
-# Requires auth
+### Should fail: get current user
 GET {{baseUrl}}/api/users/me
 
-### Update current authenticated user profile
-# Requires auth
+### Should fail: follow user
+POST {{baseUrl}}/api/follow/{{chelseaUserId}}
+
+### Should fail: update profile
 PATCH {{baseUrl}}/api/users/me
 Content-Type: application/json
 
 {
-  "username": "abuUpdated"
+  "username": "testUser"
 }
 
-### Get current user's following
-# Requires auth
-GET {{baseUrl}}/api/users/me/following
+### Should fail: create thread
+POST {{baseUrl}}/api/threads
+Content-Type: application/json
 
-### Get current user's followers
-# Requires auth
+{
+  "title": "Unauthorized thread",
+  "content": "Should fail"
+}
+
+############################################
+# AUTHENTICATED USER TESTS
+############################################
+
+### Get current user profile
+GET {{baseUrl}}/api/users/me
+Authorization: Bearer {{token}}
+
+### Get my followers
 GET {{baseUrl}}/api/users/me/followers
+Authorization: Bearer {{token}}
 
-### Remove a follower from current user's follower list
-# Requires auth
-# Real follower relation exists: arsenalFan follows abu
-DELETE {{baseUrl}}/api/users/me/followers/{{arsenalUserId}}
+### Get my following
+GET {{baseUrl}}/api/users/me/following
+Authorization: Bearer {{token}}
 
-### Get personalized feed
-# Requires auth
-# Seed data shows no feedEntries, likely empty
+### Follow chelseaFan
+POST {{baseUrl}}/api/follow/{{chelseaUserId}}
+Authorization: Bearer {{token}}
+
+### Unfollow chelseaFan
+DELETE {{baseUrl}}/api/follow/{{chelseaUserId}}
+Authorization: Bearer {{token}}
+
+############################################
+# FEED
+############################################
+
+### Get feed (auth required)
 GET {{baseUrl}}/api/feed
-
-### Mark feed item as read
-# Requires auth
-# No seeded feed item exists, so this likely 404 unless your app auto-generates feed entries
-PATCH {{baseUrl}}/api/feed/replace-with-real-feed-entry-id/read
-
+Authorization: Bearer {{token}}
 
 ############################################
-# FORUMS AND DISCUSSIONS
+# THREADS
 ############################################
 
-### Get or auto-create dedicated match discussion thread
-# Seeded expectation: should return thread cmmj550tc000auh94cj2tl645
-GET {{baseUrl}}/api/matches/{{matchId}}/thread
-
-### Browse all threads
+### Browse threads
 GET {{baseUrl}}/api/threads
 
-### Get match thread details
+### Get match thread
 GET {{baseUrl}}/api/threads/{{matchThreadId}}
 
-### Get Arsenal team thread details
-GET {{baseUrl}}/api/threads/{{arsenalThreadId}}
-
-### Get full match thread page
+### Get thread full page
 GET {{baseUrl}}/api/threads/{{matchThreadId}}/full
 
 ### Get posts in match thread
-# Seeded expectation: contains post cmmj550us000euh94d426w9td
 GET {{baseUrl}}/api/threads/{{matchThreadId}}/posts
 
-### Create a new thread
-# Requires auth in most implementations
+### Create new thread
 POST {{baseUrl}}/api/threads
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
@@ -129,153 +125,67 @@ Content-Type: application/json
   "teamId": "cmmj550qw0006uh94z09sdogy"
 }
 
-### Edit Arsenal team thread
-# Requires auth, probably only thread owner or admin
-PATCH {{baseUrl}}/api/threads/{{arsenalThreadId}}
-Content-Type: application/json
+############################################
+# POSTS
+############################################
 
-{
-  "title": "Arsenal Season Predictions 2025"
-}
-
-### Soft-delete Arsenal team thread
-# Requires auth, probably only thread owner or admin
-DELETE {{baseUrl}}/api/threads/{{arsenalThreadId}}
-
-### Create a post in the match thread
-# Requires auth
+### Create post
 POST {{baseUrl}}/api/threads/{{matchThreadId}}/posts
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
   "content": "Liverpool will edge it 2-1"
 }
 
-### Edit existing post
-# Requires auth, likely only post owner or admin
+### Edit post
 PATCH {{baseUrl}}/api/posts/{{postId}}
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
   "content": "Arsenal will win 3-1."
 }
 
-### Delete existing post
-# Requires auth, likely only post owner or admin
+### Delete post
 DELETE {{baseUrl}}/api/posts/{{postId}}
+Authorization: Bearer {{token}}
 
-### Get post edit history
-# Seeded expectation: empty versions array
+### Get post history
 GET {{baseUrl}}/api/posts/{{postId}}/versions
 
-### Get replies for seeded post
-# Seeded expectation: contains reply cmmj550vg000guh948b08v1zz
+############################################
+# REPLIES
+############################################
+
+### Get replies
 GET {{baseUrl}}/api/posts/{{postId}}/replies
 
-### Create reply to seeded post
-# Requires auth
+### Create reply
 POST {{baseUrl}}/api/posts/{{postId}}/replies
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
   "content": "This one will be close."
 }
 
-### Edit existing reply
-# Requires auth, likely only reply owner or admin
+### Edit reply
 PATCH {{baseUrl}}/api/replies/{{replyId}}
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
   "content": "No chance, Liverpool wins 2-0."
 }
 
-### Delete existing reply
-# Requires auth, likely only reply owner or admin
+### Delete reply
 DELETE {{baseUrl}}/api/replies/{{replyId}}
-
-### Get reply edit history
-# Seeded expectation: empty versions array
-GET {{baseUrl}}/api/replies/{{replyId}}/versions
-
-
-############################################
-# POLLS
-############################################
-
-### Get seeded poll details
-GET {{baseUrl}}/api/polls/{{pollId}}
-
-### Get poll results
-# Seeded expectation: no votes yet
-GET {{baseUrl}}/api/polls/{{pollId}}/results
-
-### Create a poll in Arsenal thread
-# Requires auth
-POST {{baseUrl}}/api/threads/{{arsenalThreadId}}/poll
-Content-Type: application/json
-
-{
-  "question": "Will Arsenal finish top 2?"
-}
-
-### Edit seeded poll
-# Requires auth, likely thread owner/admin
-PATCH {{baseUrl}}/api/polls/{{pollId}}
-Content-Type: application/json
-
-{
-  "question": "Who wins this match?"
-}
-
-### Delete seeded poll
-# Requires auth, likely thread owner/admin
-DELETE {{baseUrl}}/api/polls/{{pollId}}
-
-### Add a new option to seeded poll
-# Requires auth
-POST {{baseUrl}}/api/polls/{{pollId}}/options
-Content-Type: application/json
-
-{
-  "optionText": "Penalty shootout"
-}
-
-### Vote for Arsenal option in seeded poll
-# Requires auth
-POST {{baseUrl}}/api/polls/{{pollId}}/vote
-Content-Type: application/json
-
-{
-  "optionId": "{{arsenalOptionId}}"
-}
-
-### Vote for Liverpool option in seeded poll
-# Requires auth
-POST {{baseUrl}}/api/polls/{{pollId}}/vote
-Content-Type: application/json
-
-{
-  "optionId": "{{liverpoolOptionId}}"
-}
-
+Authorization: Bearer {{token}}
 
 ############################################
 # TAGS
 ############################################
 
 ### Get all tags
-# Seeded expectation: probably empty array
 GET {{baseUrl}}/api/tags
-
-### Get a specific tag
-# No seeded tags exist, this likely 404
-GET {{baseUrl}}/api/tags/replace-with-real-tag-id
-
-### Get threads for a specific tag
-# No seeded tags exist, this likely 404 or empty array
-GET {{baseUrl}}/api/tags/replace-with-real-tag-id/threads
-
-### Remove tag from match thread
-# No seeded tags exist, this likely 404
-DELETE {{baseUrl}}/api/threads/{{matchThreadId}}/tags/replace-with-real-tag-id

@@ -43,7 +43,7 @@ async function postHandler(
     const reply = await prisma.reply.create({
       data: {
         postId: post.id,
-        authorId: user.id,
+        authorId: user.user_id,
         content: content.trim(),
       },
     })

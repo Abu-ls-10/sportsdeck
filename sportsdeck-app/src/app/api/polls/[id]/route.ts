@@ -94,7 +94,7 @@ async function patchHandler(
         { status: 404 }
       )
 
-    if (poll.thread.authorId !== user.id && user.role !== "ADMIN")
+    if (poll.thread.authorId !== user.user_id && user.role !== "ADMIN")
       return NextResponse.json(
         { error: "You are not allowed to modify this poll" },
         { status: 403 }
@@ -178,7 +178,7 @@ async function deleteHandler(
         { status: 404 }
       )
 
-    if (poll.thread.authorId !== user.id && user.role !== "ADMIN")
+    if (poll.thread.authorId !== user.user_id && user.role !== "ADMIN")
       return NextResponse.json(
         { error: "You are not allowed to delete this poll" },
         { status: 403 }

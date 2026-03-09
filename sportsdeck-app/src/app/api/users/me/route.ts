@@ -15,10 +15,9 @@ import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
 async function getHandler(req: AuthenticatedRequest) {
   try {
     const currentUser = req.user
-
     const user = await prisma.user.findUnique({
       where: {
-        id: currentUser.id
+        id: currentUser.user_id
       },
       select: {
         id: true,
@@ -102,7 +101,7 @@ async function patchHandler(req: AuthenticatedRequest) {
         where: { username }
       })
 
-      if (existingUser && existingUser.id !== currentUser.id) {
+      if (existingUser && existingUser.id !== currentUser.user_id) {
         return NextResponse.json(
           { error: "Username is already taken." },
           { status: 409 }
@@ -112,7 +111,7 @@ async function patchHandler(req: AuthenticatedRequest) {
 
     const updatedUser = await prisma.user.update({
       where: {
-        id: currentUser.id
+        id: currentUser.user_id
       },
       data: {
         ...(username && { username: username.trim() }),

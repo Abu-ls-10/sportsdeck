@@ -1,0 +1,13 @@
+@baseUrl = http://localhost:3000
+
+@abuEmail = abu@sportsdeck.com
+@password = password123
+
+### LOGIN
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "{{abuEmail}}",
+  "password": "{{password}}"
+}

@@ -13,13 +13,15 @@ async function postHandler(req: AuthenticatedRequest) {
 
     const user = req.user
 
-    if (!user)
+    if (!user) {
       return NextResponse.json(
         { error: "Authentication required" },
         { status: 401 }
       )
+    }
 
     let body
+
     try {
       body = await req.json()
     } catch {
@@ -32,27 +34,46 @@ async function postHandler(req: AuthenticatedRequest) {
     let { title, content } = body
     const { teamId, tags } = body
 
-    if (!title || !content)
+    if (!title || !content) {
       return NextResponse.json(
         { error: "Title and content are required" },
         { status: 400 }
       )
+    }
 
     title = title.trim()
     content = content.trim()
 
-    if (title.length === 0 || content.length === 0)
+    if (title.length === 0 || content.length === 0) {
       return NextResponse.json(
         { error: "Title and content cannot be empty" },
         { status: 400 }
       )
+    }
+
+    // Validate team if provided
+    if (teamId) {
+
+      const team = await prisma.team.findUnique({
+        where: { id: teamId }
+      })
+
+      if (!team) {
+        return NextResponse.json(
+          { error: "Team not found" },
+          { status: 404 }
+        )
+      }
+
+    }
 
     const result = await prisma.$transaction(async (tx) => {
 
+      // Create thread
       const thread = await tx.thread.create({
         data: {
           title,
-          authorId: user.id,
+          authorId: user.user_id,
           teamId: teamId ?? null,
           isMatchThread: false,
           isLocked: false,
@@ -60,14 +81,16 @@ async function postHandler(req: AuthenticatedRequest) {
         }
       })
 
+      // Create first post
       await tx.post.create({
         data: {
           threadId: thread.id,
-          authorId: user.id,
+          authorId: user.user_id,
           content
         }
       })
 
+      // Handle tags
       if (tags && Array.isArray(tags)) {
 
         for (const tagNameRaw of tags) {
@@ -94,6 +117,7 @@ async function postHandler(req: AuthenticatedRequest) {
           })
 
         }
+
       }
 
       return thread

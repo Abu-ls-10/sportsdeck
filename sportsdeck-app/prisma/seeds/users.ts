@@ -7,7 +7,9 @@ export default async function seedUsers(prisma: PrismaClient) {
       data: {
         email: "abu@sportsdeck.com",
         username: "abu",
-        role: "ADMIN"
+        role: "ADMIN",
+        passwordHash: "$2b$10$j8drJk6ih851hQHSmR8jM.YToeiJEg6lfm8vwFlD9wbpkrYPgs0MG",
+        isBanned: false
       }
     }),
     prisma.user.create({

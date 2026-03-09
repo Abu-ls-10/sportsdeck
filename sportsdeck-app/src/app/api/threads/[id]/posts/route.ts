@@ -128,7 +128,7 @@ async function postHandler(
     const post = await prisma.post.create({
       data: {
         threadId: thread.id,
-        authorId: user.id,
+        authorId: user.user_id,
         content: content.trim()
       }
     })

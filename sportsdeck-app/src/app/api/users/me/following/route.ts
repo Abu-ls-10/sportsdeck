@@ -23,7 +23,7 @@ async function getHandler(req: AuthenticatedRequest) {
     const following = await prisma.follow.findMany({
 
       where: {
-        followerId: currentUser.id
+        followerId: currentUser.user_id
       },
 
       orderBy: {
