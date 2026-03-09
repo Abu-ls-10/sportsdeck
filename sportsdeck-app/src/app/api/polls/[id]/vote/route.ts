@@ -22,36 +22,78 @@ async function postHandler(
   { params }: { params: { id: string } }
 ) {
   try {
+
     const user = req.user
+    const pollId = params.id
+
+    if (!user)
+      return NextResponse.json(
+        { error: "Authentication required" },
+        { status: 401 }
+      )
+
+    if (!pollId)
+      return NextResponse.json(
+        { error: "Poll id is required" },
+        { status: 400 }
+      )
 
     const poll = await prisma.poll.findUnique({
-      where: { id: params.id },
+      where: { id: pollId },
       include: { options: true }
     })
 
     if (!poll)
-      return NextResponse.json({ error: "Poll not found" }, { status: 404 })
+      return NextResponse.json(
+        { error: "Poll not found" },
+        { status: 404 }
+      )
 
-    if (poll.isClosed || new Date() > poll.deadline)
-      return NextResponse.json({ error: "Poll closed" }, { status: 400 })
+    if (poll.isClosed || (poll.deadline && new Date() > poll.deadline))
+      return NextResponse.json(
+        { error: "Poll is closed" },
+        { status: 403 }
+      )
 
     // Block voting on polls in hidden threads
-    const thread = await prisma.thread.findUnique({ where: { id: poll.threadId } })
+    const thread = await prisma.thread.findUnique({
+      where: { id: poll.threadId },
+      select: { isHidden: true }
+    })
+
     if (thread?.isHidden)
       return NextResponse.json(
         { error: "This thread has been hidden by a moderator and no further activity is allowed" },
         { status: 403 }
       )
 
-    const body = await req.json()
+    let body
+    try {
+      body = await req.json()
+    } catch {
+      return NextResponse.json(
+        { error: "Invalid JSON body" },
+        { status: 400 }
+      )
+    }
+
     const { optionId } = body
+
+    if (!optionId)
+      return NextResponse.json(
+        { error: "optionId is required" },
+        { status: 400 }
+      )
 
     const option = await prisma.pollOption.findUnique({
       where: { id: optionId }
     })
 
     if (!option || option.pollId !== poll.id)
-      return NextResponse.json({ error: "Invalid option" }, { status: 400 })
+      return NextResponse.json(
+        { error: "Invalid poll option" },
+        { status: 400 }
+      )
 
     const existingVote = await prisma.vote.findFirst({
       where: {
@@ -63,7 +105,10 @@ async function postHandler(
     })
 
     if (existingVote)
-      return NextResponse.json({ error: "User already voted in this poll" }, { status: 400 })
+      return NextResponse.json(
+        { error: "User has already voted in this poll" },
+        { status: 409 }
+      )
 
     const vote = await prisma.vote.create({
       data: {
@@ -75,8 +120,13 @@ async function postHandler(
     return NextResponse.json(vote, { status: 201 })
 
   } catch (err) {
-    console.error(err)
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 })
+
+    console.error("POST /api/polls/:id/vote error:", err)
+
+    return NextResponse.json(
+      { error: "Failed to cast vote" },
+      { status: 500 }
+    )
   }
 }
 

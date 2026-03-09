@@ -5,37 +5,62 @@ import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
 /**
  * DELETE /api/users/me/followers/:followerId
  *
- * User Story:
- * As a user, I want to remove a follower that I do not like.
- *
- * Access:
- * Authenticated users only.
- *
- * Behavior:
- * - Deletes the follow relationship where the target user
- *   follows the current user.
+ * Removes a follower from the current user's followers list.
  */
 
 async function deleteHandler(
   req: AuthenticatedRequest,
   { params }: { params: { followerId: string } }
 ) {
-  try {
-    const currentUser = req.user
 
-    await prisma.follow.deleteMany({
+  try {
+
+    const currentUser = req.user
+    const followerId = params.followerId
+
+    if (!currentUser)
+      return NextResponse.json(
+        { error: "Authentication required" },
+        { status: 401 }
+      )
+
+    if (!followerId)
+      return NextResponse.json(
+        { error: "Follower id is required" },
+        { status: 400 }
+      )
+
+    const result = await prisma.follow.deleteMany({
+
       where: {
-        followerId: params.followerId,
+        followerId: followerId,
         followingId: currentUser.id
       }
+
     })
 
-    return NextResponse.json({ success: true })
+    if (result.count === 0)
+      return NextResponse.json(
+        { error: "Follow relationship not found" },
+        { status: 404 }
+      )
+
+    return NextResponse.json(
+      { success: true },
+      { status: 200 }
+    )
 
   } catch (error) {
-    console.error(error)
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 })
+
+    console.error("DELETE /api/users/me/followers/:followerId error:", error)
+
+    return NextResponse.json(
+      { error: "Failed to remove follower" },
+      { status: 500 }
+    )
+
   }
+
 }
 
 export const DELETE = withAuth(deleteHandler)

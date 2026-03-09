@@ -21,9 +21,17 @@ export async function GET(
 
   try {
 
+    const threadId = params.id
+
+    if (!threadId)
+      return NextResponse.json(
+        { error: "Thread id is required" },
+        { status: 400 }
+      )
+
     const thread = await prisma.thread.findUnique({
 
-      where: { id: params.id },
+      where: { id: threadId },
 
       include: {
 
@@ -116,23 +124,22 @@ export async function GET(
     })
 
 
-    if (!thread || thread.isHidden) {
+    if (!thread || thread.isHidden)
       return NextResponse.json(
         { error: "Thread not found" },
         { status: 404 }
       )
-    }
 
 
-    return NextResponse.json(thread)
+    return NextResponse.json(thread, { status: 200 })
 
 
   } catch (error) {
 
-    console.error(error)
+    console.error("GET /api/threads/:id/full error:", error)
 
     return NextResponse.json(
-      { error: "Internal server error" },
+      { error: "Failed to retrieve thread data" },
       { status: 500 }
     )
 

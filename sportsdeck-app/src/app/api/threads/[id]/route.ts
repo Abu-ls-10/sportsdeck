@@ -6,12 +6,7 @@ import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
 /**
  * GET /api/threads/:id
  *
- * Returns detailed thread information including:
- * - metadata
- * - author
- * - post count
- * - poll (if exists)
- * - tags
+ * Returns detailed thread information
  */
 
 export async function GET(
@@ -21,8 +16,16 @@ export async function GET(
 
   try {
 
+    const threadId = params.id
+
+    if (!threadId)
+      return NextResponse.json(
+        { error: "Thread id is required" },
+        { status: 400 }
+      )
+
     const thread = await prisma.thread.findUnique({
-      where: { id: params.id },
+      where: { id: threadId },
 
       include: {
 
@@ -55,23 +58,20 @@ export async function GET(
       }
     })
 
-
-    if (!thread || thread.isHidden) {
+    if (!thread || thread.isHidden)
       return NextResponse.json(
         { error: "Thread not found" },
         { status: 404 }
       )
-    }
 
-
-    return NextResponse.json(thread)
+    return NextResponse.json(thread, { status: 200 })
 
   } catch (error) {
 
-    console.error(error)
+    console.error("GET /api/threads/:id error:", error)
 
     return NextResponse.json(
-      { error: "Internal server error" },
+      { error: "Failed to retrieve thread" },
       { status: 500 }
     )
 
@@ -92,115 +92,203 @@ async function patchHandler(
   req: AuthenticatedRequest,
   { params }: { params: { id: string } }
 ) {
+
   try {
+
     const user = req.user
+    const threadId = params.id
+
+    if (!user)
+      return NextResponse.json(
+        { error: "Authentication required" },
+        { status: 401 }
+      )
+
+    if (!threadId)
+      return NextResponse.json(
+        { error: "Thread id is required" },
+        { status: 400 }
+      )
 
     const thread = await prisma.thread.findUnique({
-      where: { id: params.id }
+      where: { id: threadId }
     })
 
-    if (!thread) {
-      return NextResponse.json({ error: "Thread not found" }, { status: 404 })
-    }
+    if (!thread)
+      return NextResponse.json(
+        { error: "Thread not found" },
+        { status: 404 }
+      )
 
-    // permission check
-    if (thread.authorId !== user.id && user.role !== "ADMIN") {
-      return NextResponse.json({ error: "Forbidden" }, { status: 403 })
-    }
+    if (thread.authorId !== user.id && user.role !== "ADMIN")
+      return NextResponse.json(
+        { error: "You are not allowed to edit this thread" },
+        { status: 403 }
+      )
 
-    // Block edits on hidden threads
-    if (thread.isHidden) {
+    if (thread.isHidden)
       return NextResponse.json(
         { error: "This thread has been hidden by a moderator and cannot be edited" },
         { status: 403 }
       )
+
+    let body
+    try {
+      body = await req.json()
+    } catch {
+      return NextResponse.json(
+        { error: "Invalid JSON body" },
+        { status: 400 }
+      )
     }
 
-    const body = await req.json()
-    const { title, tags } = body
+    let { title } = body
+    const { tags } = body
 
-    const updatedThread = await prisma.thread.update({
-      where: { id: thread.id },
-      data: {
-        title: title ?? thread.title
-      }
-    })
+    if (title !== undefined) {
 
-    // Handle tag updates
-    if (tags && Array.isArray(tags)) {
+      title = String(title).trim()
 
-      // remove existing tags
-      await prisma.threadTag.deleteMany({
-        where: { threadId: thread.id }
+      if (title.length === 0)
+        return NextResponse.json(
+          { error: "Title cannot be empty" },
+          { status: 400 }
+        )
+
+    }
+
+    const updatedThread = await prisma.$transaction(async (tx) => {
+
+      const updated = await tx.thread.update({
+        where: { id: thread.id },
+        data: {
+          title: title ?? thread.title
+        }
       })
 
-      for (const tagName of tags) {
-        let tag = await prisma.tag.findUnique({
-          where: { name: tagName }
+      if (tags && Array.isArray(tags)) {
+
+        await tx.threadTag.deleteMany({
+          where: { threadId: thread.id }
         })
 
-        if (!tag) {
-          tag = await prisma.tag.create({
-            data: { name: tagName }
+        for (const tagNameRaw of tags) {
+
+          const tagName = String(tagNameRaw).trim().toLowerCase()
+          if (!tagName) continue
+
+          let tag = await tx.tag.findUnique({
+            where: { name: tagName }
           })
+
+          if (!tag) {
+            tag = await tx.tag.create({
+              data: { name: tagName }
+            })
+          }
+
+          await tx.threadTag.create({
+            data: {
+              threadId: thread.id,
+              tagId: tag.id
+            }
+          })
+
         }
 
-        await prisma.threadTag.create({
-          data: {
-            threadId: thread.id,
-            tagId: tag.id
-          }
-        })
       }
-    }
 
-    return NextResponse.json(updatedThread)
+      return updated
+
+    })
+
+    return NextResponse.json(updatedThread, { status: 200 })
 
   } catch (error) {
-    console.error(error)
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 })
+
+    console.error("PATCH /api/threads/:id error:", error)
+
+    return NextResponse.json(
+      { error: "Failed to update thread" },
+      { status: 500 }
+    )
+
   }
+
 }
+
 
 /**
  * DELETE /api/threads/:id
  *
- * Soft-hides thread by setting:
- * isHidden = true
- *
- * Only thread owner or admin can perform this action.
+ * Soft-hides thread
  */
 
 async function deleteHandler(
   req: AuthenticatedRequest,
   { params }: { params: { id: string } }
 ) {
+
   try {
+
     const user = req.user
+    const threadId = params.id
+
+    if (!user)
+      return NextResponse.json(
+        { error: "Authentication required" },
+        { status: 401 }
+      )
+
+    if (!threadId)
+      return NextResponse.json(
+        { error: "Thread id is required" },
+        { status: 400 }
+      )
 
     const thread = await prisma.thread.findUnique({
-      where: { id: params.id }
+      where: { id: threadId }
     })
 
-    if (!thread) {
-      return NextResponse.json({ error: "Thread not found" }, { status: 404 })
-    }
+    if (!thread)
+      return NextResponse.json(
+        { error: "Thread not found" },
+        { status: 404 }
+      )
 
-    if (thread.authorId !== user.id && user.role !== "ADMIN") {
-      return NextResponse.json({ error: "Forbidden" }, { status: 403 })
-    }
+    if (thread.authorId !== user.id && user.role !== "ADMIN")
+      return NextResponse.json(
+        { error: "You are not allowed to delete this thread" },
+        { status: 403 }
+      )
+
+    if (thread.isHidden)
+      return NextResponse.json(
+        { error: "Thread already hidden" },
+        { status: 400 }
+      )
 
     await prisma.thread.update({
       where: { id: thread.id },
       data: { isHidden: true }
     })
 
-    return NextResponse.json({ success: true })
+    return NextResponse.json(
+      { success: true },
+      { status: 200 }
+    )
 
   } catch (error) {
-    console.error(error)
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 })
+
+    console.error("DELETE /api/threads/:id error:", error)
+
+    return NextResponse.json(
+      { error: "Failed to delete thread" },
+      { status: 500 }
+    )
+
   }
+
 }
 
 export const PATCH = withAuth(patchHandler)

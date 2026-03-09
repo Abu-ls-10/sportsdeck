@@ -11,19 +11,6 @@ import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
  *
  * Access:
  * Authenticated users only.
- *
- * Behavior:
- * - Creates a new Follow relationship between the current user
- *   (follower) and the target user (following).
- * - Prevents users from following themselves.
- * - Prevents duplicate follow relationships.
- *
- * Prisma table used:
- * Follow
- *
- * Fields:
- * - followerId  -> current authenticated user
- * - followingId -> target user
  */
 
 async function postHandler(
@@ -34,6 +21,20 @@ async function postHandler(
     const currentUser = req.user
     const targetUserId = params.userId
 
+    if (!currentUser) {
+      return NextResponse.json(
+        { error: "Authentication required" },
+        { status: 401 }
+      )
+    }
+
+    if (!targetUserId) {
+      return NextResponse.json(
+        { error: "Target user id is required" },
+        { status: 400 }
+      )
+    }
+
     if (currentUser.id === targetUserId) {
       return NextResponse.json(
         { error: "You cannot follow yourself" },
@@ -41,31 +42,50 @@ async function postHandler(
       )
     }
 
+    // Ensure the target user exists
+    const targetUser = await prisma.user.findUnique({
+      where: { id: targetUserId },
+      select: { id: true }
+    })
+
+    if (!targetUser) {
+      return NextResponse.json(
+        { error: "User not found" },
+        { status: 404 }
+      )
+    }
+
     const existing = await prisma.follow.findFirst({
       where: {
         followerId: currentUser.id,
-        followingId: targetUserId,
-      },
+        followingId: targetUserId
+      }
     })
 
     if (existing) {
       return NextResponse.json(
         { error: "Already following this user" },
-        { status: 400 }
+        { status: 409 }
       )
     }
 
     await prisma.follow.create({
       data: {
         followerId: currentUser.id,
-        followingId: targetUserId,
-      },
+        followingId: targetUserId
+      }
     })
 
-    return NextResponse.json({ success: true })
+    return NextResponse.json({ success: true }, { status: 201 })
+
   } catch (error) {
-    console.error(error)
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 })
+
+    console.error("POST /api/follow/:userId error:", error)
+
+    return NextResponse.json(
+      { error: "Failed to follow user" },
+      { status: 500 }
+    )
   }
 }
 
@@ -75,13 +95,6 @@ async function postHandler(
  * User Story:
  * As a user, I want to unfollow someone so that their activity
  * no longer appears in my feed.
- *
- * Access:
- * Authenticated users only.
- *
- * Behavior:
- * - Deletes the follow relationship between the current user
- *   and the target user.
  */
 
 async function deleteHandler(
@@ -89,20 +102,48 @@ async function deleteHandler(
   { params }: { params: { userId: string } }
 ) {
   try {
+
     const currentUser = req.user
     const targetUserId = params.userId
 
-    await prisma.follow.deleteMany({
+    if (!currentUser) {
+      return NextResponse.json(
+        { error: "Authentication required" },
+        { status: 401 }
+      )
+    }
+
+    if (!targetUserId) {
+      return NextResponse.json(
+        { error: "Target user id is required" },
+        { status: 400 }
+      )
+    }
+
+    const result = await prisma.follow.deleteMany({
       where: {
         followerId: currentUser.id,
-        followingId: targetUserId,
-      },
+        followingId: targetUserId
+      }
     })
 
-    return NextResponse.json({ success: true })
+    if (result.count === 0) {
+      return NextResponse.json(
+        { error: "Follow relationship not found" },
+        { status: 404 }
+      )
+    }
+
+    return NextResponse.json({ success: true }, { status: 200 })
+
   } catch (error) {
-    console.error(error)
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 })
+
+    console.error("DELETE /api/follow/:userId error:", error)
+
+    return NextResponse.json(
+      { error: "Failed to unfollow user" },
+      { status: 500 }
+    )
   }
 }
 

@@ -17,7 +17,47 @@ async function patchHandler(
   { params }: { params: { id: string } }
 ) {
   try {
+    const currentUser = req.user
     const feedId = params.id
+
+    // Safety check (middleware should enforce this)
+    if (!currentUser) {
+      return NextResponse.json(
+        { error: "Authentication required" },
+        { status: 401 }
+      )
+    }
+
+    // Validate feed ID
+    if (!feedId) {
+      return NextResponse.json(
+        { error: "Feed entry id is required" },
+        { status: 400 }
+      )
+    }
+
+    // Ensure the feed entry exists AND belongs to the current user
+    const entry = await prisma.feedEntry.findUnique({
+      where: { id: feedId },
+      select: {
+        id: true,
+        userId: true
+      }
+    })
+
+    if (!entry) {
+      return NextResponse.json(
+        { error: "Feed entry not found" },
+        { status: 404 }
+      )
+    }
+
+    if (entry.userId !== currentUser.id) {
+      return NextResponse.json(
+        { error: "You are not allowed to modify this feed entry" },
+        { status: 403 }
+      )
+    }
 
     await prisma.feedEntry.update({
       where: { id: feedId },
@@ -26,11 +66,16 @@ async function patchHandler(
       }
     })
 
-    return NextResponse.json({ success: true })
+    return NextResponse.json({ success: true }, { status: 200 })
 
   } catch (error) {
-    console.error(error)
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 })
+
+    console.error("PATCH /api/feed/:id/read error:", error)
+
+    return NextResponse.json(
+      { error: "Failed to mark feed entry as read" },
+      { status: 500 }
+    )
   }
 }
 

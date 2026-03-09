@@ -5,28 +5,32 @@ import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
 /**
  * GET /api/users/me/followers
  *
- * User Story:
- * As a user, I want to see the list of users who follow me.
- *
- * Access:
- * Authenticated users only.
- *
- * Behavior:
- * - Returns followers sorted by follow time.
+ * Returns the list of users who follow the authenticated user.
  */
 
 async function getHandler(req: AuthenticatedRequest) {
+
   try {
+
     const currentUser = req.user
 
+    if (!currentUser)
+      return NextResponse.json(
+        { error: "Authentication required" },
+        { status: 401 }
+      )
+
     const followers = await prisma.follow.findMany({
+
       where: {
         followingId: currentUser.id
       },
+
       orderBy: {
         createdAt: "desc"
       },
-      include: {
+
+      select: {
         follower: {
           select: {
             id: true,
@@ -35,14 +39,24 @@ async function getHandler(req: AuthenticatedRequest) {
           }
         }
       }
+
     })
 
-    return NextResponse.json(followers)
+    const result = followers.map((f) => f.follower)
+
+    return NextResponse.json(result, { status: 200 })
 
   } catch (error) {
-    console.error(error)
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 })
+
+    console.error("GET /api/users/me/followers error:", error)
+
+    return NextResponse.json(
+      { error: "Failed to retrieve followers list" },
+      { status: 500 }
+    )
+
   }
+
 }
 
 export const GET = withAuth(getHandler)
