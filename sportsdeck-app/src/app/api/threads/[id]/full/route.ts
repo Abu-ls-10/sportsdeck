@@ -2,6 +2,28 @@ import { NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
 
 /**
+ * @openapi
+ * /api/threads/{id}/full:
+ *   get:
+ *     summary: Get complete thread page data in a single request
+ *     tags: [Threads]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         example: "clxthread001"
+ *     responses:
+ *       200:
+ *         description: Full thread data including metadata, posts, replies, poll, and tags
+ *       404:
+ *         description: Thread not found or hidden
+ *       500:
+ *         description: Internal server error
+ */
+
+/**
  * GET /api/threads/:id/full
  *
  * Returns the full thread page data in one request:

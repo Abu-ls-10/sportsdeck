@@ -3,6 +3,30 @@ import { prisma } from "@/lib/prisma"
 import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
 
 /**
+ * @openapi
+ * /api/users/me/followers/{followerId}:
+ *   delete:
+ *     summary: Remove a follower from the authenticated user's follower list
+ *     tags: [Users]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: followerId
+ *         required: true
+ *         schema:
+ *           type: string
+ *         example: "clxuser456"
+ *     responses:
+ *       200:
+ *         description: Follower removed
+ *       401:
+ *         description: Unauthorized
+ *       500:
+ *         description: Internal server error
+ */
+
+/**
  * DELETE /api/users/me/followers/:followerId
  *
  * Removes a follower from the current user's followers list.

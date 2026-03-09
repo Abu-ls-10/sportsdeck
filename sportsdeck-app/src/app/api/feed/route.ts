@@ -3,6 +3,29 @@ import { prisma } from "@/lib/prisma"
 import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
 
 /**
+ * @openapi
+ * /api/feed:
+ *   get:
+ *     summary: Get the authenticated user's personalized activity feed
+ *     tags: [Feed]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: query
+ *         name: limit
+ *         schema:
+ *           type: integer
+ *         example: 20
+ *     responses:
+ *       200:
+ *         description: List of grouped feed entries
+ *       401:
+ *         description: Unauthorized
+ *       500:
+ *         description: Internal server error
+ */
+
+/**
  * GET /api/feed
  *
  * User Story:

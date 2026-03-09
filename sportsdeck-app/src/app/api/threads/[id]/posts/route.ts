@@ -87,7 +87,17 @@ async function postHandler(
     const { id: threadId } = await params
     const user = req.user
 
+<<<<<<< HEAD
     const body = await req.json()
+=======
+    let body: { content?: string }
+    try {
+      body = await req.json()
+    } catch {
+      return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 })
+    }
+
+>>>>>>> origin/main
     const { content } = body
 
     if (!content || content.trim() === "") {

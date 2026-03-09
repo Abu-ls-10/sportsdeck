@@ -3,6 +3,104 @@ import { prisma } from "@/lib/prisma"
 import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
 
 /**
+ * @openapi
+ * /api/threads:
+ *   post:
+ *     summary: Create a new discussion thread
+ *     tags: [Threads]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [title, content]
+ *             properties:
+ *               title:
+ *                 type: string
+ *                 example: "Premier League Match Day Discussion"
+ *               content:
+ *                 type: string
+ *                 example: "What are your thoughts on today's match?"
+ *               teamId:
+ *                 type: string
+ *                 example: "clxteam123"
+ *               tags:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *                 example: ["Premier League", "Arsenal"]
+ *     responses:
+ *       201:
+ *         description: Thread created successfully
+ *       400:
+ *         description: Title and content required
+ *       401:
+ *         description: Unauthorized
+ *       403:
+ *         description: Account banned
+ *       500:
+ *         description: Internal server error
+ *   get:
+ *     summary: Get paginated list of threads with optional filters
+ *     tags: [Threads]
+ *     parameters:
+ *       - in: query
+ *         name: teamId
+ *         schema:
+ *           type: string
+ *         example: "clxteam123"
+ *       - in: query
+ *         name: matchId
+ *         schema:
+ *           type: string
+ *         example: "clxmatch456"
+ *       - in: query
+ *         name: tag
+ *         schema:
+ *           type: string
+ *         example: "Arsenal"
+ *       - in: query
+ *         name: authorId
+ *         schema:
+ *           type: string
+ *         example: "clxuser789"
+ *       - in: query
+ *         name: author
+ *         schema:
+ *           type: string
+ *         example: "john_doe"
+ *       - in: query
+ *         name: q
+ *         schema:
+ *           type: string
+ *         example: "match day"
+ *       - in: query
+ *         name: sort
+ *         schema:
+ *           type: string
+ *           enum: [recent, top]
+ *         example: "recent"
+ *       - in: query
+ *         name: page
+ *         schema:
+ *           type: integer
+ *         example: 1
+ *       - in: query
+ *         name: limit
+ *         schema:
+ *           type: integer
+ *         example: 20
+ *     responses:
+ *       200:
+ *         description: Paginated list of threads
+ *       500:
+ *         description: Internal server error
+ */
+
+/**
  * POST /api/threads
  *
  * Creates a new discussion thread.

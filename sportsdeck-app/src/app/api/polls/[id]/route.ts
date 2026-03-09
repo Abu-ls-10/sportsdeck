@@ -2,6 +2,87 @@ import { NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
 import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
 
+/**
+ * @openapi
+ * /api/polls/{id}:
+ *   get:
+ *     summary: Get poll details including question, options, and deadline
+ *     tags: [Polls]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         example: "clxpoll001"
+ *     responses:
+ *       200:
+ *         description: Poll details
+ *       404:
+ *         description: Poll not found
+ *       500:
+ *         description: Internal server error
+ *   patch:
+ *     summary: Edit poll question or deadline (thread owner or admin)
+ *     tags: [Polls]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         example: "clxpoll001"
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               question:
+ *                 type: string
+ *                 example: "Who will score first?"
+ *               deadline:
+ *                 type: string
+ *                 format: date-time
+ *                 example: "2026-04-15T18:00:00.000Z"
+ *     responses:
+ *       200:
+ *         description: Poll updated
+ *       401:
+ *         description: Unauthorized
+ *       403:
+ *         description: Forbidden or account banned
+ *       404:
+ *         description: Poll not found
+ *       500:
+ *         description: Internal server error
+ *   delete:
+ *     summary: Delete a poll (thread owner or admin)
+ *     tags: [Polls]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         example: "clxpoll001"
+ *     responses:
+ *       200:
+ *         description: Poll deleted
+ *       401:
+ *         description: Unauthorized
+ *       403:
+ *         description: Forbidden or account banned
+ *       404:
+ *         description: Poll not found
+ *       500:
+ *         description: Internal server error
+ */
 
 /**
  * GET /api/polls/:id

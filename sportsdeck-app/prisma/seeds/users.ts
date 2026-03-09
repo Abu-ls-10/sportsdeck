@@ -1,6 +1,7 @@
-import { PrismaClient } from "@prisma/client"
+import { PrismaClient } from "@prisma/client";
 
 export default async function seedUsers(prisma: PrismaClient) {
+  await prisma.user.deleteMany();
 
   const users = await Promise.all([
     prisma.user.create({

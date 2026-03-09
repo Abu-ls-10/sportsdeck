@@ -3,6 +3,44 @@ import { prisma } from "@/lib/prisma"
 import { getUserFromToken } from "@/lib/auth"
 
 /**
+ * @openapi
+ * /api/admin/appeals:
+ *   get:
+ *     summary: List all appeals with optional filters (admin only)
+ *     tags: [Admin]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: query
+ *         name: status
+ *         schema:
+ *           type: string
+ *           enum: [pending, approved, rejected]
+ *         example: "pending"
+ *       - in: query
+ *         name: page
+ *         schema:
+ *           type: integer
+ *         example: 1
+ *       - in: query
+ *         name: limit
+ *         schema:
+ *           type: integer
+ *         example: 20
+ *     responses:
+ *       200:
+ *         description: Paginated list of appeals
+ *       400:
+ *         description: Invalid status value
+ *       401:
+ *         description: Unauthorized
+ *       403:
+ *         description: Forbidden
+ *       500:
+ *         description: Internal server error
+ */
+
+/**
  * GET /api/admin/appeals
  *
  * Admin-only. Lists all appeals with optional status filter and pagination.
@@ -21,6 +59,7 @@ export async function GET(request: Request) {
     return NextResponse.json({ message: "Forbidden" }, { status: 403 })
   }
 
+  try {
   const { searchParams } = new URL(request.url)
   const status = searchParams.get("status")
   const page = Math.max(1, Number(searchParams.get("page") ?? 1))
@@ -72,4 +111,8 @@ export async function GET(request: Request) {
       totalPages: Math.ceil(totalCount / limit),
     },
   })
+  } catch (error) {
+    console.error("GET /api/admin/appeals error:", error)
+    return NextResponse.json({ message: "Something went wrong" }, { status: 500 })
+  }
 }

@@ -4,6 +4,73 @@ import { getUserFromToken } from "@/lib/auth"
 import { analyzeContent } from "@/lib/moderation"
 
 /**
+ * @openapi
+ * /api/admin/reports/{id}:
+ *   get:
+ *     summary: Get full detail of a reported item including AI verdict (admin only)
+ *     tags: [Admin]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         example: "clxreporteditem001"
+ *     responses:
+ *       200:
+ *         description: Reported item with all reports, admin actions, content preview, and AI verdict
+ *       400:
+ *         description: Bad request
+ *       401:
+ *         description: Unauthorized
+ *       403:
+ *         description: Forbidden
+ *       404:
+ *         description: Reported item not found
+ *       500:
+ *         description: Internal server error
+ *   patch:
+ *     summary: Dismiss or approve a reported item (admin only)
+ *     tags: [Admin]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         example: "clxreporteditem001"
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [action]
+ *             properties:
+ *               action:
+ *                 type: string
+ *                 enum: [dismiss, approve]
+ *                 example: "approve"
+ *     responses:
+ *       200:
+ *         description: Report dismissed or approved; content hidden if approved
+ *       400:
+ *         description: Invalid action, invalid JSON, or report already resolved
+ *       401:
+ *         description: Unauthorized
+ *       403:
+ *         description: Forbidden
+ *       404:
+ *         description: Reported item not found
+ *       500:
+ *         description: Internal server error
+ */
+
+/**
  * GET /api/admin/reports/:id
  *
  * Admin-only. Returns the full detail of a reported item including
@@ -25,6 +92,7 @@ export async function GET(
     return NextResponse.json({ message: "Your account has been banned" }, { status: 403 })
   }
 
+  try {
   const { id } = await params
 
   if (!id) {
@@ -88,6 +156,10 @@ export async function GET(
     contentPreview,
     aiVerdict,
   })
+  } catch (error) {
+    console.error("GET /api/admin/reports/[id] error:", error)
+    return NextResponse.json({ message: "Something went wrong" }, { status: 500 })
+  }
 }
 
 /**
@@ -120,6 +192,7 @@ export async function PATCH(
     return NextResponse.json({ message: "Your account has been banned" }, { status: 403 })
   }
 
+  try {
   const { id } = await params
 
   if (!id) {
@@ -221,6 +294,10 @@ export async function PATCH(
     contentId: reportedItem.contentId,
     status: "approved",
   })
+  } catch (error) {
+    console.error("PATCH /api/admin/reports/[id] error:", error)
+    return NextResponse.json({ message: "Something went wrong" }, { status: 500 })
+  }
 }
 
 // ─── Helpers ────────────────────────────────────────────────────

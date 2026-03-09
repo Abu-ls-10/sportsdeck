@@ -2,6 +2,28 @@ import { NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
 
 /**
+ * @openapi
+ * /api/polls/{id}/results:
+ *   get:
+ *     summary: Get vote counts per poll option
+ *     tags: [Polls]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         example: "clxpoll001"
+ *     responses:
+ *       200:
+ *         description: Poll results with per-option vote counts
+ *       404:
+ *         description: Poll not found
+ *       500:
+ *         description: Internal server error
+ */
+
+/**
  * GET /api/polls/:id/results
  *
  * Returns vote counts per option.

@@ -8,6 +8,32 @@ import { Standing } from "@/generated/prisma";
 import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
+/**
+ * @openapi
+ * /api/standings:
+ *   get:
+ *     summary: Get Premier League standings for a season
+ *     tags: [Standings]
+ *     parameters:
+ *       - in: query
+ *         name: season
+ *         schema:
+ *           type: string
+ *         example: "2024"
+ *       - in: query
+ *         name: type
+ *         schema:
+ *           type: string
+ *           enum: [TOTAL, HOME, AWAY]
+ *         example: "TOTAL"
+ *     responses:
+ *       200:
+ *         description: Ordered list of standings with team info
+ *       400:
+ *         description: Invalid type parameter or invalid season year
+ *       500:
+ *         description: Internal server error (API key missing)
+ */
 export async function GET(req: Request){
     const apiKey = process.env.X_AUTH_TOKEN;
 

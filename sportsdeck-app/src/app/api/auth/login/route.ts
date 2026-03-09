@@ -2,8 +2,43 @@ import { comparePassword, generateAccessToken, generateRefreshToken, hashPasswor
 import {prisma} from '@/lib/prisma';
 import { NextResponse } from 'next/server';
 
+/**
+ * @openapi
+ * /api/auth/login:
+ *   post:
+ *     summary: Log in with email and password
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [email, password]
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 example: "user@example.com"
+ *               password:
+ *                 type: string
+ *                 example: "securePassword123"
+ *     responses:
+ *       200:
+ *         description: Login successful, returns access and refresh tokens
+ *       400:
+ *         description: Missing fields or invalid request body
+ *       401:
+ *         description: Invalid username or password
+ *       500:
+ *         description: Internal server error
+ */
 export async function POST(req: Request){
-    const body = await req.json();
+    let body: { email?: string; password?: string; [key: string]: unknown }
+    try {
+        body = await req.json()
+    } catch {
+        return NextResponse.json({ message: "Invalid request" }, { status: 400 })
+    }
     const extraFields = Object.keys(body).filter(key => !['email', 'password'].includes(key));
 
     if (extraFields.length > 0) {

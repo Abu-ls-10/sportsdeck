@@ -3,6 +3,28 @@ import { prisma } from "@/lib/prisma"
 import { analyzeSentimentBatch } from "@/lib/ai"
 
 /**
+ * @openapi
+ * /api/threads/{id}/sentiment:
+ *   get:
+ *     summary: Get AI-powered sentiment analysis of thread comments
+ *     tags: [Threads]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         example: "clxthread001"
+ *     responses:
+ *       200:
+ *         description: Sentiment breakdown including overall and per-team sentiment
+ *       404:
+ *         description: Thread not found or hidden
+ *       500:
+ *         description: Internal server error
+ */
+
+/**
  * GET /api/threads/:id/sentiment
  *
  * User Story:
