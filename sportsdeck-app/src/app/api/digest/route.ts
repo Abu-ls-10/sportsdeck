@@ -96,7 +96,8 @@ export async function GET(req: NextRequest) {
     })
 
     // 2. Current standings (top 6)
-    const currentSeason = `${new Date().getFullYear() - 1}`
+    const year = new Date().getFullYear();
+    const currentSeason = `${year - 1}-${year}`; // e.g. "2024-2025"
     const standings = await prisma.standing.findMany({
       where: { season: currentSeason, type: "TOTAL" },
       include: { team: { select: { name: true } } },
