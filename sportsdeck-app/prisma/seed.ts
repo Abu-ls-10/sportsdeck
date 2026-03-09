@@ -1,6 +1,5 @@
 
-import { PrismaClient } from "@prisma/client"
-
+import { PrismaClient } from "../src/generated/prisma"
 import seedUsers from "./seeds/users"
 import seedTeams from "./seeds/teams"
 import seedMatches from "./seeds/matches"
