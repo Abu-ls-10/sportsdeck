@@ -37,6 +37,8 @@ import { translateToEnglish } from "@/lib/ai"
  *         description: Unauthorized
  *       404:
  *         description: Post or reply not found
+ *       503:
+ *         description: Translation service unavailable
  *       500:
  *         description: Internal server error
  */

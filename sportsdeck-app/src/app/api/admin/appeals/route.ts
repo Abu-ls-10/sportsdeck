@@ -36,6 +36,8 @@ import { getUserFromToken } from "@/lib/auth"
  *         description: Unauthorized
  *       403:
  *         description: Forbidden
+ *       500:
+ *         description: Internal server error
  */
 
 /**

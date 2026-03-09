@@ -27,6 +27,8 @@ import { analyzeContent } from "@/lib/moderation"
  *         description: Forbidden
  *       404:
  *         description: Reported item or its content not found
+ *       500:
+ *         description: Internal server error
  */
 
 /**

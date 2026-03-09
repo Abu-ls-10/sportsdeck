@@ -43,6 +43,8 @@ import { getUserFromToken } from "@/lib/auth"
  *         description: User, reported item, or report not found
  *       409:
  *         description: User is already banned
+ *       500:
+ *         description: Internal server error
  *   get:
  *     summary: List bans with optional status filter and pagination (admin only)
  *     tags: [Admin]
@@ -74,6 +76,8 @@ import { getUserFromToken } from "@/lib/auth"
  *         description: Unauthorized
  *       403:
  *         description: Forbidden
+ *       500:
+ *         description: Internal server error
  */
 
 /**

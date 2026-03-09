@@ -29,6 +29,45 @@ import { analyzeContent } from "@/lib/moderation"
  *         description: Forbidden
  *       404:
  *         description: Reported item not found
+ *       500:
+ *         description: Internal server error
+ *   patch:
+ *     summary: Dismiss or approve a reported item (admin only)
+ *     tags: [Admin]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         example: "clxreporteditem001"
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [action]
+ *             properties:
+ *               action:
+ *                 type: string
+ *                 enum: [dismiss, approve]
+ *                 example: "approve"
+ *     responses:
+ *       200:
+ *         description: Report dismissed or approved; content hidden if approved
+ *       400:
+ *         description: Invalid action, invalid JSON, or report already resolved
+ *       401:
+ *         description: Unauthorized
+ *       403:
+ *         description: Forbidden
+ *       404:
+ *         description: Reported item not found
+ *       500:
+ *         description: Internal server error
  */
 
 /**

@@ -32,6 +32,8 @@ import { getUserFromToken } from "@/lib/auth"
  *         description: No active ban found
  *       409:
  *         description: Pending appeal already exists for this ban
+ *       500:
+ *         description: Internal server error
  *   get:
  *     summary: Get the authenticated user's own appeals
  *     tags: [Appeals]
@@ -61,6 +63,8 @@ import { getUserFromToken } from "@/lib/auth"
  *         description: Invalid status value
  *       401:
  *         description: Unauthorized
+ *       500:
+ *         description: Internal server error
  */
 
 /**

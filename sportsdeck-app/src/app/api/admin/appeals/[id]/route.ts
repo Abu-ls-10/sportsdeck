@@ -26,6 +26,8 @@ import { getUserFromToken } from "@/lib/auth"
  *         description: Forbidden
  *       404:
  *         description: Appeal not found
+ *       500:
+ *         description: Internal server error
  *   patch:
  *     summary: Approve or reject a ban appeal (admin only)
  *     tags: [Admin]
@@ -64,6 +66,8 @@ import { getUserFromToken } from "@/lib/auth"
  *         description: Forbidden
  *       404:
  *         description: Appeal not found
+ *       500:
+ *         description: Internal server error
  */
 
 /**

@@ -26,6 +26,8 @@ import { getUserFromToken } from "@/lib/auth"
  *         description: Forbidden
  *       404:
  *         description: Ban not found
+ *       500:
+ *         description: Internal server error
  */
 
 /**
