@@ -1,6 +1,7 @@
 @baseUrl = http://localhost:3000
-@token = YOUR_JWT_TOKEN
-@targetUserId = TARGET_USER_ID
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFidSIsImlkIjoiY21ta2o4YW9sMDAwMHVoYnNldXp3NjdleCIsInJvbGUiOiJBRE1JTiIsImlzQmFubmVkIjpmYWxzZSwiaWF0IjoxNzczMTczNzk4LCJleHAiOjE3NzMxOTE3OTh9.6UuBJkrpm_IVqoajji1_Hccgljb4WfKjTlR6cbIiBUo
+
+@targetUserId = cmmkj8apt0001uhbs7krpbwqh
 
 ############################################################
 # FOLLOW USER
