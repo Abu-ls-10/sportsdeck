@@ -22,9 +22,7 @@ import { generateText } from "@/lib/ai"
  *         example: false
  *     responses:
  *       200:
- *         description: Daily digest content
- *       404:
- *         description: No digest found for the requested date
+ *         description: Daily digest content, or empty result if no digest exists for the requested date
  *       500:
  *         description: Internal server error
  */
@@ -66,14 +64,17 @@ export async function GET(req: NextRequest) {
       }
     }
 
-    // ── Past dates with no cache → 404 ───────────────
+    // ── Past dates with no cache → 200 with empty result ─
     // Only generate fresh digests for today. Historical dates without a
-    // cached entry simply don't exist yet.
+    // cached entry return an empty response — the resource is valid but
+    // had no content for that day.
     if (today !== todayStr) {
-      return NextResponse.json(
-        { error: `No digest found for ${today}` },
-        { status: 404 }
-      )
+      return NextResponse.json({
+        date: today,
+        content: null,
+        generatedAt: null,
+        message: `No digest found for ${today}`,
+      })
     }
 
     // ── Gather data for the digest ────────────────────
@@ -95,15 +96,18 @@ export async function GET(req: NextRequest) {
       take: 10,
     })
 
-    // 2. Current standings (top 6)
-    const year = new Date().getFullYear();
-    const currentSeason = `${year - 1}-${year}`; // e.g. "2024-2025"
-    const standings = await prisma.standing.findMany({
+    // 2. Current standings (top 4 + bottom 3 relegation)
+    // Season is stored as the start year, e.g. "2025" for the 2025-2026 season
+    const currentSeason = String(new Date().getFullYear() - 1);
+    const allStandings = await prisma.standing.findMany({
       where: { season: currentSeason, type: "TOTAL" },
       include: { team: { select: { name: true } } },
       orderBy: { position: "asc" },
-      take: 6,
     })
+
+    // Top 4 and bottom 3 (relegation zone)
+    const topStandings = allStandings.slice(0, 4)
+    const bottomStandings = allStandings.length > 3 ? allStandings.slice(-3) : []
 
     // 3. Trending discussion threads (most posts overall)
     const trendingThreads = await prisma.thread.findMany({
@@ -136,15 +140,26 @@ export async function GET(req: NextRequest) {
     }
 
     // Standings section
-    if (standings.length > 0) {
-      dataBlock += "Current Premier League top standings: "
-      dataBlock += standings
+    if (topStandings.length > 0) {
+      dataBlock += "Current Premier League top 4 standings: "
+      dataBlock += topStandings
         .map(
           (s) =>
             `${s.position}. ${s.team.name} - ${s.points}pts (P${s.played} W${s.won} D${s.drawn} L${s.lost})`
         )
         .join(". ")
       dataBlock += ". "
+
+      if (bottomStandings.length > 0) {
+        dataBlock += "Relegation zone (bottom 3): "
+        dataBlock += bottomStandings
+          .map(
+            (s) =>
+              `${s.position}. ${s.team.name} - ${s.points}pts (P${s.played} W${s.won} D${s.drawn} L${s.lost})`
+          )
+          .join(". ")
+        dataBlock += ". "
+      }
     }
 
     // Discussions section
@@ -176,7 +191,7 @@ export async function GET(req: NextRequest) {
       content = `# SportsDeck Daily Digest — ${dateDisplay}\n\n${aiResult.generatedText}`
     } else {
       // Fallback: build a structured digest without AI
-      content = buildFallbackDigest(today, recentMatches, standings, trendingThreads)
+      content = buildFallbackDigest(today, recentMatches, topStandings, bottomStandings, trendingThreads)
     }
 
     // ── Cache and return ─────────────────────────────
@@ -207,7 +222,16 @@ function buildFallbackDigest(
     awayScore: number | null
     matchDate: Date
   }>,
-  standings: Array<{
+  topStandings: Array<{
+    position: number
+    team: { name: string }
+    points: number
+    played: number
+    won: number
+    drawn: number
+    lost: number
+  }>,
+  bottomStandings: Array<{
     position: number
     team: { name: string }
     points: number
@@ -243,18 +267,29 @@ function buildFallbackDigest(
   }
   md += "\n"
 
-  // Standings
-  md += "## Standings Snapshot\n"
-  if (standings.length > 0) {
+  // Top 4 Standings
+  md += "## Standings — Top 4\n"
+  if (topStandings.length > 0) {
     md += "| # | Team | Pts | P | W | D | L |\n"
     md += "|---|------|-----|---|---|---|---|\n"
-    for (const s of standings) {
+    for (const s of topStandings) {
       md += `| ${s.position} | ${s.team.name} | ${s.points} | ${s.played} | ${s.won} | ${s.drawn} | ${s.lost} |\n`
     }
   } else {
     md += "Standings data unavailable.\n"
   }
   md += "\n"
+
+  // Bottom 3 (Relegation)
+  if (bottomStandings.length > 0) {
+    md += "## Relegation Zone (Bottom 3)\n"
+    md += "| # | Team | Pts | P | W | D | L |\n"
+    md += "|---|------|-----|---|---|---|---|\n"
+    for (const s of bottomStandings) {
+      md += `| ${s.position} | ${s.team.name} | ${s.points} | ${s.played} | ${s.won} | ${s.drawn} | ${s.lost} |\n`
+    }
+    md += "\n"
+  }
 
   // Discussions
   md += "## Trending Discussions\n"
