@@ -68,13 +68,13 @@ export async function POST(req: Request){
         });  
 
         // Return a JWT token. They are logged in
-        const payload = {username: user.username, user_id: user.user_id, role: user.role};
+        const payload = {username: user.username, user_id: user.id, role: user.role};
         const access_token = generateAccessToken(payload);
         const refresh_token = generateRefreshToken(payload)
 
         // Store refresh token in database
         await prisma.user.update({
-            where: { id: user.user_id},
+            where: { id: user.id},
             data: {refresh_token: await hashPassword(refresh_token)}
         })
     

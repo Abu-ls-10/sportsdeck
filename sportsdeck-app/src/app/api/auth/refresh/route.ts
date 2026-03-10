@@ -71,7 +71,7 @@ export async function POST(req: Request){
         const new_refresh_token = generateRefreshToken(access_payload);
 
         await prisma.user.update({
-            where: {id: user.user_id},
+            where: {id: user.id},
             data: {
                 refresh_token: await hashPassword(new_refresh_token)
             }
