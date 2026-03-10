@@ -47,7 +47,7 @@ import { moderateContent } from '@/lib/moderation';
 // Allows an authenticated user to report a thread, post, or reply as inappropriate.
 // Creates a ReportedItem (or reuses an existing one) and attaches a Report from this user.
 export const POST = withAuth(async (req: AuthenticatedRequest) => {
-    const userId = req.user.user_id;
+    const userId = req.user.id;
 
     // Parse and validate the request body
     let body: { contentType?: string; contentId?: string; reason?: string }

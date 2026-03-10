@@ -78,7 +78,7 @@ async function patchHandler(
       )
     }
 
-    if (entry.userId !== currentUser.user_id) {
+    if (entry.userId !== currentUser.id) {
       return NextResponse.json(
         { error: "You are not allowed to modify this feed entry" },
         { status: 403 }

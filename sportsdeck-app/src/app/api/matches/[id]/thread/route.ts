@@ -24,7 +24,7 @@ import { prisma } from "@/lib/prisma"
  */
 
 /**
- * GET /api/matches/:matchId/thread
+ * GET /api/matches/:id/thread
  *
  * User Story:
  * Visitors can access a dedicated discussion thread for each match.
@@ -37,10 +37,10 @@ import { prisma } from "@/lib/prisma"
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: Promise<{ matchId: string }> }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { matchId } = await params
+    const { id: matchId } = await params
     const match = await prisma.match.findUnique({
       where: { id: matchId }
     })
@@ -51,7 +51,7 @@ export async function GET(
 
     let thread = await prisma.thread.findFirst({
       where: {
-        matchId: match.id,
+        matchId,
         isMatchThread: true
       }
     })
@@ -66,7 +66,7 @@ export async function GET(
       thread = await prisma.thread.create({
         data: {
           title: `Match Discussion`,
-          matchId: match.id,
+          matchId,
           teamId: match.homeTeamId,
           isMatchThread: true,
           opensAt: openDate,

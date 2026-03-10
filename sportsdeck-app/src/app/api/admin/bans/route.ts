@@ -169,7 +169,7 @@ export async function POST(request: Request) {
     const newBan = await tx.ban.create({
       data: {
         userId,
-        bannedByAdminId: admin.user_id,
+        bannedByAdminId: admin.id,
         reason,
         status: "active",
         reportedItemId: reportedItemId ?? null,

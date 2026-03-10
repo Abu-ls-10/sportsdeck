@@ -34,7 +34,7 @@ async function getHandler(req: AuthenticatedRequest) {
     const currentUser = req.user
     const user = await prisma.user.findUnique({
       where: {
-        id: currentUser.user_id
+        id: currentUser.id
       },
       select: {
         id: true,
@@ -118,7 +118,7 @@ async function patchHandler(req: AuthenticatedRequest) {
         where: { username }
       })
 
-      if (existingUser && existingUser.id !== currentUser.user_id) {
+      if (existingUser && existingUser.id !== currentUser.id) {
         return NextResponse.json(
           { error: "Username is already taken." },
           { status: 409 }
@@ -128,7 +128,7 @@ async function patchHandler(req: AuthenticatedRequest) {
 
     const updatedUser = await prisma.user.update({
       where: {
-        id: currentUser.user_id
+        id: currentUser.id
       },
       data: {
         ...(username && { username: username.trim() }),

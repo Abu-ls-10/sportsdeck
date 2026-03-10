@@ -68,7 +68,7 @@ export async function POST(req: Request){
         });  
 
         // Return a JWT token. They are logged in
-        const payload = {username: user.username, user_id: user.id, role: user.role};
+        const payload = {username: user.username, id: user.id, role: user.role};
         const access_token = generateAccessToken(payload);
         const refresh_token = generateRefreshToken(payload)
 

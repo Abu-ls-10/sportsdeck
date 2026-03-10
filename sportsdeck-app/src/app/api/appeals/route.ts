@@ -112,7 +112,7 @@ export async function POST(request: Request) {
   try {
   // Find the user's active ban
   const activeBan = await prisma.ban.findFirst({
-    where: { userId: user.user_id, status: "active" },
+    where: { userId: user.id, status: "active" },
     orderBy: { createdAt: "desc" },
   })
 
@@ -125,7 +125,7 @@ export async function POST(request: Request) {
 
   // Prevent duplicate pending appeals on the same ban
   const existingPendingAppeal = await prisma.appeal.findFirst({
-    where: { banId: activeBan.id, appealerId: user.user_id, status: "pending" },
+    where: { banId: activeBan.id, appealerId: user.id, status: "pending" },
   })
 
   if (existingPendingAppeal) {
@@ -138,7 +138,7 @@ export async function POST(request: Request) {
   // Create the appeal
   const appeal = await prisma.appeal.create({
     data: {
-      appealerId: user.user_id,
+      appealerId: user.id,
       banId: activeBan.id,
       message: message.trim(),
       status: "pending",
@@ -181,7 +181,7 @@ export async function GET(request: Request) {
   const limit = Math.min(100, Math.max(1, Number(searchParams.get("limit") ?? 20)))
   const skip = (page - 1) * limit
 
-  const where: Record<string, unknown> = { appealerId: user.user_id }
+  const where: Record<string, unknown> = { appealerId: user.id }
 
   if (status) {
     const allowedStatuses = ["pending", "approved", "rejected"]
