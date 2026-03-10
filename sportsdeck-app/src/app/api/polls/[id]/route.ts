@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
-import { getUserFromToken } from "@/lib/auth"
+import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
 
 /**
  * @openapi
@@ -97,80 +97,106 @@ import { getUserFromToken } from "@/lib/auth"
  */
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
 
   try {
 
+    const { id: pollId } = await params
+
+    if (!pollId)
+      return NextResponse.json(
+        { error: "Poll id is required" },
+        { status: 400 }
+      )
+
     const poll = await prisma.poll.findUnique({
-      where: { id: params.id },
+      where: { id: pollId },
       include: {
         options: true
       }
     })
 
     if (!poll)
-      return NextResponse.json({ error: "Poll not found" }, { status: 404 })
+      return NextResponse.json(
+        { error: "Poll not found" },
+        { status: 404 }
+      )
 
-    return NextResponse.json(poll)
+    return NextResponse.json(poll, { status: 200 })
 
   } catch (err) {
 
-    console.error(err)
+    console.error("GET /api/polls/:id error:", err)
 
     return NextResponse.json(
-      { error: "Internal server error" },
+      { error: "Failed to retrieve poll" },
       { status: 500 }
     )
   }
 
 }
 
+
 /**
  * PATCH /api/polls/:id
  *
  * Allows the thread author or an admin to edit poll properties.
- *
- * Editable fields:
- * - question
- * - deadline
- *
- * The endpoint verifies that the requesting user is either
- * the thread author or an admin before allowing the update.
  */
-export async function PATCH(
-  request: Request,
-  { params }: { params: { id: string } }
+async function patchHandler(
+  req: AuthenticatedRequest,
+  { params }: { params: Promise<{ id: string }> }
 ) {
-
   try {
 
-    const user = await getUserFromToken(request)
+    const user = req.user
+    const { id: pollId } = await params
 
     if (!user)
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+      return NextResponse.json(
+        { error: "Authentication required" },
+        { status: 401 }
+      )
 
-    // Live ban check from DB
-    const dbUser = await prisma.user.findUnique({ where: { id: user.user_id }, select: { isBanned: true } })
-    if (dbUser?.isBanned)
-      return NextResponse.json({ error: "Your account has been banned" }, { status: 403 })
+    if (!pollId)
+      return NextResponse.json(
+        { error: "Poll id is required" },
+        { status: 400 }
+      )
 
     const poll = await prisma.poll.findUnique({
-      where: { id: params.id },
+      where: { id: pollId },
       include: { thread: true }
     })
 
     if (!poll)
-      return NextResponse.json({ error: "Poll not found" }, { status: 404 })
+      return NextResponse.json(
+        { error: "Poll not found" },
+        { status: 404 }
+      )
 
-    if (poll.thread.authorId !== user.id && user.role !== "ADMIN")
-      return NextResponse.json({ error: "Forbidden" }, { status: 403 })
+    if (poll.thread.authorId !== user.user_id && user.role !== "ADMIN")
+      return NextResponse.json(
+        { error: "You are not allowed to modify this poll" },
+        { status: 403 }
+      )
 
-    // Block edits on polls in hidden threads
     if (poll.thread.isHidden)
-      return NextResponse.json({ error: "This thread has been hidden by a moderator and cannot be edited" }, { status: 403 })
+      return NextResponse.json(
+        { error: "This thread has been hidden by a moderator and cannot be edited" },
+        { status: 403 }
+      )
 
-    const body = await request.json()
+    const body = await req.json()
+
+    if (body.deadline) {
+      const parsed = new Date(body.deadline)
+      if (isNaN(parsed.getTime()))
+        return NextResponse.json(
+          { error: "Invalid deadline format" },
+          { status: 400 }
+        )
+    }
 
     const updated = await prisma.poll.update({
       where: { id: poll.id },
@@ -180,20 +206,19 @@ export async function PATCH(
       }
     })
 
-    return NextResponse.json(updated)
+    return NextResponse.json(updated, { status: 200 })
 
   } catch (err) {
 
-    console.error(err)
+    console.error("PATCH /api/polls/:id error:", err)
 
     return NextResponse.json(
-      { error: "Internal server error" },
+      { error: "Failed to update poll" },
       { status: 500 }
     )
-
   }
-
 }
+
 
 /**
  * DELETE /api/polls/:id
@@ -201,58 +226,64 @@ export async function PATCH(
  * Deletes a poll.
  *
  * Only the thread author or an admin can delete the poll.
- *
- * The poll is removed from the database. Any associated
- * options and votes will also be removed if cascading
- * deletes are configured in the Prisma schema.
  */
-export async function DELETE(
-  request: Request,
-  { params }: { params: { id: string } }
+async function deleteHandler(
+  req: AuthenticatedRequest,
+  { params }: { params: Promise<{ id: string }> }
 ) {
-
   try {
 
-    const user = await getUserFromToken(request)
+    const user = req.user
+    const { id: pollId } = await params
 
     if (!user)
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+      return NextResponse.json(
+        { error: "Authentication required" },
+        { status: 401 }
+      )
 
-    // Live ban check from DB
-    const dbUser2 = await prisma.user.findUnique({ where: { id: user.user_id }, select: { isBanned: true } })
-    if (dbUser2?.isBanned)
-      return NextResponse.json({ error: "Your account has been banned" }, { status: 403 })
+    if (!pollId)
+      return NextResponse.json(
+        { error: "Poll id is required" },
+        { status: 400 }
+      )
 
     const poll = await prisma.poll.findUnique({
-      where: { id: params.id },
+      where: { id: pollId },
       include: { thread: true }
     })
 
     if (!poll)
-      return NextResponse.json({ error: "Poll not found" }, { status: 404 })
+      return NextResponse.json(
+        { error: "Poll not found" },
+        { status: 404 }
+      )
 
-    if (poll.thread.authorId !== user.id && user.role !== "ADMIN")
-      return NextResponse.json({ error: "Forbidden" }, { status: 403 })
-
+    if (poll.thread.authorId !== user.user_id && user.role !== "ADMIN")
+      return NextResponse.json(
+        { error: "You are not allowed to delete this poll" },
+        { status: 403 }
+      )
 
     await prisma.poll.delete({
       where: { id: poll.id }
     })
 
-
-    return NextResponse.json({
-      success: true
-    })
+    return NextResponse.json(
+      { success: true },
+      { status: 200 }
+    )
 
   } catch (err) {
 
-    console.error(err)
+    console.error("DELETE /api/polls/:id error:", err)
 
     return NextResponse.json(
-      { error: "Internal server error" },
+      { error: "Failed to delete poll" },
       { status: 500 }
     )
-
   }
-
 }
+
+export const PATCH = withAuth(patchHandler)
+export const DELETE = withAuth(deleteHandler)

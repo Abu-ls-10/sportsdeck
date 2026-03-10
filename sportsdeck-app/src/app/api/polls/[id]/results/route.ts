@@ -31,13 +31,21 @@ import { prisma } from "@/lib/prisma"
 
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
 
   try {
 
+    const { id: pollId } = await params
+
+    if (!pollId)
+      return NextResponse.json(
+        { error: "Poll id is required" },
+        { status: 400 }
+      )
+
     const poll = await prisma.poll.findUnique({
-      where: { id: params.id },
+      where: { id: pollId },
       include: {
         options: {
           include: {
@@ -50,26 +58,32 @@ export async function GET(
     })
 
     if (!poll)
-      return NextResponse.json({ error: "Poll not found" }, { status: 404 })
+      return NextResponse.json(
+        { error: "Poll not found" },
+        { status: 404 }
+      )
 
     const results = poll.options.map(option => ({
       id: option.id,
       optionText: option.optionText,
-      votes: option._count.votes
+      votes: option._count?.votes ?? 0
     }))
 
-    return NextResponse.json({
-      pollId: poll.id,
-      question: poll.question,
-      results
-    })
+    return NextResponse.json(
+      {
+        pollId: poll.id,
+        question: poll.question,
+        results
+      },
+      { status: 200 }
+    )
 
   } catch (err) {
 
-    console.error(err)
+    console.error("GET /api/polls/:id/results error:", err)
 
     return NextResponse.json(
-      { error: "Internal server error" },
+      { error: "Failed to retrieve poll results" },
       { status: 500 }
     )
   }

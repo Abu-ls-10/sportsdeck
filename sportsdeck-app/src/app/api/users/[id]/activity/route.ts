@@ -8,14 +8,14 @@ import { prisma } from "@/lib/prisma"
  *     summary: Get a user's daily activity counts over a specified time range
  *     tags: [Users]
  *     parameters:
- *       - in: path
- *         name: id
+ *       - name: id
+ *         in: path
  *         required: true
  *         schema:
  *           type: string
  *         example: "clxuser789"
- *       - in: query
- *         name: range
+ *       - name: range
+ *         in: query
  *         schema:
  *           type: string
  *           enum: [7d, 30d, 90d, 1y]
@@ -23,6 +23,8 @@ import { prisma } from "@/lib/prisma"
  *     responses:
  *       200:
  *         description: Daily activity data including posts, replies, and totals
+ *       400:
+ *         description: User ID is required
  *       404:
  *         description: User not found
  *       500:
@@ -61,10 +63,10 @@ import { prisma } from "@/lib/prisma"
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const userId = params.id
+    const { id: userId } = await params
 
     const { searchParams } = new URL(req.url)
     const range = searchParams.get("range") ?? "30d"

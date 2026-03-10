@@ -24,4 +24,4 @@
  *         description: Reply not found
  */
 // Operations on a specific reply record (lookup, etc.).
-export async function GET(request: Request, { params }: { params: { id: string } }) {}
+export async function GET(request: Request, { params }: { params: Promise<{ id: string }> }) {}

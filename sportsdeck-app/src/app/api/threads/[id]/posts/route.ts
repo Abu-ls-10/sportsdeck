@@ -1,39 +1,35 @@
 import { NextRequest, NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
-import { getUserFromToken } from "@/lib/auth"
+import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
 
 /**
  * @openapi
  * /api/threads/{id}/posts:
  *   get:
- *     summary: Get all visible posts in a thread
+ *     summary: Get posts in a thread
  *     tags: [Threads]
  *     parameters:
- *       - in: path
- *         name: id
+ *       - name: id
+ *         in: path
  *         required: true
  *         schema:
  *           type: string
- *         example: "clxthread001"
  *     responses:
  *       200:
- *         description: List of posts
+ *         description: Posts retrieved successfully
  *       404:
- *         description: Thread not found or hidden
- *       500:
- *         description: Internal server error
+ *         description: Thread not found
  *   post:
- *     summary: Post a comment inside a thread
+ *     summary: Create a post in a thread
  *     tags: [Threads]
  *     security:
  *       - bearerAuth: []
  *     parameters:
- *       - in: path
- *         name: id
+ *       - name: id
+ *         in: path
  *         required: true
  *         schema:
  *           type: string
- *         example: "clxthread001"
  *     requestBody:
  *       required: true
  *       content:
@@ -44,16 +40,12 @@ import { getUserFromToken } from "@/lib/auth"
  *             properties:
  *               content:
  *                 type: string
- *                 example: "I think Arsenal will win this one!"
+ *                 example: "This is my post content"
  *     responses:
  *       201:
- *         description: Post created
- *       400:
- *         description: Content is required
- *       401:
- *         description: Unauthorized
+ *         description: Post created successfully
  *       403:
- *         description: Account banned or thread locked
+ *         description: Thread is locked or closed
  *       404:
  *         description: Thread not found
  *       500:
@@ -61,7 +53,7 @@ import { getUserFromToken } from "@/lib/auth"
  */
 
 /**
- * GET /api/threads/:threadId/posts
+ * GET /api/threads/:id/posts
  *
  * Visitors can view posts inside the thread.
  */
@@ -126,7 +118,7 @@ export async function GET(
 
 
 /**
- * POST /api/threads/:threadId/posts
+ * POST /api/threads/:id/posts
  *
  * User Story:
  * Users can post comments inside match discussion threads.
@@ -137,42 +129,19 @@ export async function GET(
  * - Thread must not be locked
  */
 
-export async function POST(
-  req: NextRequest,
+async function postHandler(
+  req: AuthenticatedRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const { id: threadId } = await params
+    const user = req.user
 
-    const user = await getUserFromToken(req)
-
-    if (!user) {
-      return NextResponse.json(
-        { error: "Unauthorized" },
-        { status: 401 }
-      )
-    }
-
-    // Live ban check from DB
-    const dbUser = await prisma.user.findUnique({ where: { id: user.user_id }, select: { isBanned: true } })
-    if (dbUser?.isBanned) {
-      return NextResponse.json({ error: "Your account has been banned" }, { status: 403 })
-    }
-
-    let body: { content?: string }
-    try {
-      body = await req.json()
-    } catch {
-      return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 })
-    }
-
+    const body = await req.json()
     const { content } = body
 
     if (!content || content.trim() === "") {
-      return NextResponse.json(
-        { error: "Content is required" },
-        { status: 400 }
-      )
+      return NextResponse.json({ error: "Content is required" }, { status: 400 })
     }
 
     const thread = await prisma.thread.findUnique({
@@ -180,10 +149,7 @@ export async function POST(
     })
 
     if (!thread) {
-      return NextResponse.json(
-        { error: "Thread not found" },
-        { status: 404 }
-      )
+      return NextResponse.json({ error: "Thread not found" }, { status: 404 })
     }
 
     // Block posting in hidden threads
@@ -198,24 +164,15 @@ export async function POST(
 
     // enforce open window
     if (thread.opensAt && now < thread.opensAt) {
-      return NextResponse.json(
-        { error: "Thread has not opened yet" },
-        { status: 403 }
-      )
+      return NextResponse.json({ error: "Thread has not opened yet" }, { status: 403 })
     }
 
     if (thread.lockedAt && now > thread.lockedAt) {
-      return NextResponse.json(
-        { error: "Thread is closed" },
-        { status: 403 }
-      )
+      return NextResponse.json({ error: "Thread is closed" }, { status: 403 })
     }
 
     if (thread.isLocked) {
-      return NextResponse.json(
-        { error: "Thread is locked" },
-        { status: 403 }
-      )
+      return NextResponse.json({ error: "Thread is locked" }, { status: 403 })
     }
 
     const post = await prisma.post.create({
@@ -229,12 +186,9 @@ export async function POST(
     return NextResponse.json(post, { status: 201 })
 
   } catch (error) {
-
     console.error(error)
-
-    return NextResponse.json(
-      { error: "Internal server error" },
-      { status: 500 }
-    )
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 })
   }
 }
+
+export const POST = withAuth(postHandler)

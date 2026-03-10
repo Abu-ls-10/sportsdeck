@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
-import { getUserFromToken } from "@/lib/auth"
+import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
 
 /**
  * @openapi
@@ -57,64 +57,112 @@ import { getUserFromToken } from "@/lib/auth"
  * }
  */
 
-export async function POST(
-  request: Request,
-  { params }: { params: { id: string } }
+async function postHandler(
+  req: AuthenticatedRequest,
+  { params }: { params: Promise<{ id: string }> }
 ) {
-
   try {
 
-    const user = await getUserFromToken(request)
+    const user = req.user
+    const { id: pollId } = await params
 
     if (!user)
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+      return NextResponse.json(
+        { error: "Authentication required" },
+        { status: 401 }
+      )
 
-    // Live ban check from DB
-    const dbUser = await prisma.user.findUnique({ where: { id: user.user_id }, select: { isBanned: true } })
-    if (dbUser?.isBanned)
-      return NextResponse.json({ error: "Your account has been banned" }, { status: 403 })
+    if (!pollId)
+      return NextResponse.json(
+        { error: "Poll id is required" },
+        { status: 400 }
+      )
 
     const poll = await prisma.poll.findUnique({
-      where: { id: params.id },
+      where: { id: pollId },
       include: { thread: true }
     })
 
     if (!poll)
-      return NextResponse.json({ error: "Poll not found" }, { status: 404 })
+      return NextResponse.json(
+        { error: "Poll not found" },
+        { status: 404 }
+      )
 
-    if (poll.thread.authorId !== user.id && user.role !== "ADMIN")
-      return NextResponse.json({ error: "Forbidden" }, { status: 403 })
+    if (poll.thread.authorId !== user.user_id && user.role !== "ADMIN")
+      return NextResponse.json(
+        { error: "You are not allowed to modify this poll" },
+        { status: 403 }
+      )
 
-    const body = await request.json()
+    if (poll.thread.isHidden)
+      return NextResponse.json(
+        { error: "This thread has been hidden by a moderator and cannot be modified" },
+        { status: 403 }
+      )
+
+    if (poll.isClosed)
+      return NextResponse.json(
+        { error: "Poll is closed and cannot accept new options" },
+        { status: 403 }
+      )
+
+    let body
+    try {
+      body = await req.json()
+    } catch {
+      return NextResponse.json(
+        { error: "Invalid JSON body" },
+        { status: 400 }
+      )
+    }
+
     const { options } = body
 
     if (!options || !Array.isArray(options))
-      return NextResponse.json({ error: "Options required" }, { status: 400 })
+      return NextResponse.json(
+        { error: "Options array is required" },
+        { status: 400 }
+      )
 
-    const created = []
+    if (options.length === 0)
+      return NextResponse.json(
+        { error: "At least one option must be provided" },
+        { status: 400 }
+      )
 
-    for (const optionText of options) {
+    const cleanedOptions = options
+      .map((o: string) => o?.trim())
+      .filter((o: string) => o && o.length > 0)
 
-      const option = await prisma.pollOption.create({
-        data: {
-          pollId: poll.id,
-          optionText
-        }
-      })
+    if (cleanedOptions.length === 0)
+      return NextResponse.json(
+        { error: "Options cannot be empty" },
+        { status: 400 }
+      )
 
-      created.push(option)
-    }
+    await prisma.pollOption.createMany({
+      data: cleanedOptions.map((optionText: string) => ({
+        pollId: poll.id,
+        optionText
+      }))
+    })
 
-    return NextResponse.json(created, { status: 201 })
+    const createdOptions = await prisma.pollOption.findMany({
+      where: { pollId: poll.id }
+    })
+
+    return NextResponse.json(createdOptions, { status: 201 })
 
   } catch (err) {
 
-    console.error(err)
+    console.error("POST /api/polls/:id/options error:", err)
 
     return NextResponse.json(
-      { error: "Internal server error" },
+      { error: "Failed to add poll options" },
       { status: 500 }
     )
   }
-
 }
+
+export const POST = withAuth(postHandler)

@@ -8,8 +8,8 @@ import { prisma } from "@/lib/prisma"
  *     summary: Get the list of users that a given user follows
  *     tags: [Users]
  *     parameters:
- *       - in: path
- *         name: id
+ *       - name: id
+ *         in: path
  *         required: true
  *         schema:
  *           type: string
@@ -17,6 +17,10 @@ import { prisma } from "@/lib/prisma"
  *     responses:
  *       200:
  *         description: List of followed users with profile info
+ *       400:
+ *         description: User ID is required
+ *       404:
+ *         description: User not found
  *       500:
  *         description: Internal server error
  */
@@ -24,51 +28,67 @@ import { prisma } from "@/lib/prisma"
 /**
  * GET /api/users/:id/following
  *
- * User Story:
- * As a visitor, I want to see the list of users that a given user follows.
- *
- * Access:
- * Public endpoint — authentication not required.
- *
- * Data source:
- * Uses the Follow table where:
- * - followerId = the user performing the follow
- * - followingId = the user being followed
- *
- * This endpoint retrieves all rows where followerId = :id.
- *
- * Prisma relation used:
- * Follow.following -> User
- *
- * Results are sorted by the time the follow action occurred.
+ * Returns list of users that a given user follows.
  */
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+
   try {
-    const userId = params.id
+
+    const { id: userId } = await params
+
+    if (!userId)
+      return NextResponse.json(
+        { error: "User id is required" },
+        { status: 400 }
+      )
+
+    // Optional but good API design: verify user exists
+    const userExists = await prisma.user.findUnique({
+      where: { id: userId },
+      select: { id: true }
+    })
+
+    if (!userExists)
+      return NextResponse.json(
+        { error: "User not found" },
+        { status: 404 }
+      )
 
     const following = await prisma.follow.findMany({
+
       where: { followerId: userId },
+
       orderBy: { createdAt: "desc" },
+
       select: {
         following: {
           select: {
             id: true,
             username: true,
-            avatarUrl: true,
-          },
-        },
-      },
+            avatarUrl: true
+          }
+        }
+      }
+
     })
 
     const result = following.map((f) => f.following)
 
-    return NextResponse.json(result)
+    return NextResponse.json(result, { status: 200 })
+
   } catch (error) {
-    console.error(error)
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 })
+
+    console.error("GET /api/users/:id/following error:", error)
+
+    return NextResponse.json(
+      { error: "Failed to retrieve following list" },
+      { status: 500 }
+    )
+
   }
+
 }

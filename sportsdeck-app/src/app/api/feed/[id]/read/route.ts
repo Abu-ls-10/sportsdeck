@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from "next/server"
+import { NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
-import { getUserFromToken } from "@/lib/auth"
+import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
 
 /**
  * @openapi
@@ -11,8 +11,8 @@ import { getUserFromToken } from "@/lib/auth"
  *     security:
  *       - bearerAuth: []
  *     parameters:
- *       - in: path
- *         name: id
+ *       - name: id
+ *         in: path
  *         required: true
  *         schema:
  *           type: string
@@ -38,18 +38,52 @@ import { getUserFromToken } from "@/lib/auth"
  * Authenticated users only.
  */
 
-export async function PATCH(
-  req: NextRequest,
-  { params }: { params: { id: string } }
+async function patchHandler(
+  req: AuthenticatedRequest,
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const currentUser = await getUserFromToken(req)
+    const currentUser = req.user
+    const { id: feedId } = await params
 
+    // Safety check (middleware should enforce this)
     if (!currentUser) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+      return NextResponse.json(
+        { error: "Authentication required" },
+        { status: 401 }
+      )
     }
 
-    const feedId = params.id
+    // Validate feed ID
+    if (!feedId) {
+      return NextResponse.json(
+        { error: "Feed entry id is required" },
+        { status: 400 }
+      )
+    }
+
+    // Ensure the feed entry exists AND belongs to the current user
+    const entry = await prisma.feedEntry.findUnique({
+      where: { id: feedId },
+      select: {
+        id: true,
+        userId: true
+      }
+    })
+
+    if (!entry) {
+      return NextResponse.json(
+        { error: "Feed entry not found" },
+        { status: 404 }
+      )
+    }
+
+    if (entry.userId !== currentUser.user_id) {
+      return NextResponse.json(
+        { error: "You are not allowed to modify this feed entry" },
+        { status: 403 }
+      )
+    }
 
     await prisma.feedEntry.update({
       where: { id: feedId },
@@ -58,14 +92,17 @@ export async function PATCH(
       }
     })
 
-    return NextResponse.json({ success: true })
+    return NextResponse.json({ success: true }, { status: 200 })
 
   } catch (error) {
-    console.error(error)
+
+    console.error("PATCH /api/feed/:id/read error:", error)
 
     return NextResponse.json(
-      { error: "Internal server error" },
+      { error: "Failed to mark feed entry as read" },
       { status: 500 }
     )
   }
 }
+
+export const PATCH = withAuth(patchHandler)

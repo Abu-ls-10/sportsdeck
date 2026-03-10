@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
-import { getUserFromToken } from "@/lib/auth"
-import { Prisma } from "@/generated/prisma"
+import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
 
 /**
  * @openapi
@@ -48,49 +47,49 @@ import { Prisma } from "@/generated/prisma"
  *     summary: Get paginated list of threads with optional filters
  *     tags: [Threads]
  *     parameters:
- *       - in: query
- *         name: teamId
+ *       - name: teamId
+ *         in: query
  *         schema:
  *           type: string
  *         example: "clxteam123"
- *       - in: query
- *         name: matchId
+ *       - name: matchId
+ *         in: query
  *         schema:
  *           type: string
  *         example: "clxmatch456"
- *       - in: query
- *         name: tag
+ *       - name: tag
+ *         in: query
  *         schema:
  *           type: string
  *         example: "Arsenal"
- *       - in: query
- *         name: authorId
+ *       - name: authorId
+ *         in: query
  *         schema:
  *           type: string
  *         example: "clxuser789"
- *       - in: query
- *         name: author
+ *       - name: author
+ *         in: query
  *         schema:
  *           type: string
  *         example: "john_doe"
- *       - in: query
- *         name: q
+ *       - name: q
+ *         in: query
  *         schema:
  *           type: string
  *         example: "match day"
- *       - in: query
- *         name: sort
+ *       - name: sort
+ *         in: query
  *         schema:
  *           type: string
  *           enum: [recent, top]
  *         example: "recent"
- *       - in: query
- *         name: page
+ *       - name: page
+ *         in: query
  *         schema:
  *           type: integer
  *         example: 1
- *       - in: query
- *         name: limit
+ *       - name: limit
+ *         in: query
  *         schema:
  *           type: integer
  *         example: 20
@@ -105,125 +104,139 @@ import { Prisma } from "@/generated/prisma"
  * POST /api/threads
  *
  * Creates a new discussion thread.
- *
- * User provides:
- * - title
- * - content (first post)
- * - optional teamId
- * - optional tags
- *
- * Creates:
- * - THREAD
- * - initial POST
- * - TAG relations
  */
 
-export async function POST(request: Request) {
-
+async function postHandler(req: AuthenticatedRequest) {
   try {
 
-    const user = await getUserFromToken(request)
+    const user = req.user
 
     if (!user) {
       return NextResponse.json(
-        { error: "Unauthorized" },
+        { error: "Authentication required" },
         { status: 401 }
       )
     }
 
-    // Live ban check from DB
-    const dbUser = await prisma.user.findUnique({ where: { id: user.user_id }, select: { isBanned: true } })
-    if (dbUser?.isBanned) {
-      return NextResponse.json({ error: "Your account has been banned" }, { status: 403 })
-    }
+    let body
 
-    let body: { title?: string; content?: string; teamId?: string; tags?: string[] }
     try {
-      body = await request.json()
+      body = await req.json()
     } catch {
-      return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 })
-    }
-
-    const {
-      title,
-      content,
-      teamId,
-      tags
-    } = body
-
-
-    if (!title || !content) {
       return NextResponse.json(
-        { error: "Title and content required" },
+        { error: "Invalid JSON body" },
         { status: 400 }
       )
     }
 
+    let { title, content } = body
+    const { teamId, tags } = body
 
-    const thread = await prisma.thread.create({
-      data: {
-        title,
-        authorId: user.user_id,
-        teamId: teamId ?? null,
-        isMatchThread: false,
-        isLocked: false,
-        isHidden: false
-      }
-    })
+    if (!title || !content) {
+      return NextResponse.json(
+        { error: "Title and content are required" },
+        { status: 400 }
+      )
+    }
 
+    title = title.trim()
+    content = content.trim()
 
-    // create first post
-    await prisma.post.create({
-      data: {
-        threadId: thread.id,
-        authorId: user.user_id,
-        content
-      }
-    })
+    if (title.length === 0 || content.length === 0) {
+      return NextResponse.json(
+        { error: "Title and content cannot be empty" },
+        { status: 400 }
+      )
+    }
 
+    // Validate team if provided
+    if (teamId) {
 
-    // handle tags
-    if (tags && Array.isArray(tags)) {
+      const team = await prisma.team.findUnique({
+        where: { id: teamId }
+      })
 
-      for (const tagName of tags) {
-
-        let tag = await prisma.tag.findUnique({
-          where: { name: tagName }
-        })
-
-        if (!tag) {
-          tag = await prisma.tag.create({
-            data: {
-              name: tagName
-            }
-          })
-        }
-
-        await prisma.threadTag.create({
-          data: {
-            threadId: thread.id,
-            tagId: tag.id
-          }
-        })
+      if (!team) {
+        return NextResponse.json(
+          { error: "Team not found" },
+          { status: 404 }
+        )
       }
 
     }
 
+    const result = await prisma.$transaction(async (tx) => {
 
-    return NextResponse.json(thread, { status: 201 })
+      // Create thread
+      const thread = await tx.thread.create({
+        data: {
+          title,
+          authorId: user.user_id,
+          teamId: teamId ?? null,
+          isMatchThread: false,
+          isLocked: false,
+          isHidden: false
+        }
+      })
+
+      // Create first post
+      await tx.post.create({
+        data: {
+          threadId: thread.id,
+          authorId: user.user_id,
+          content
+        }
+      })
+
+      // Handle tags
+      if (tags && Array.isArray(tags)) {
+
+        for (const tagNameRaw of tags) {
+
+          const tagName = String(tagNameRaw).trim().toLowerCase()
+
+          if (!tagName) continue
+
+          let tag = await tx.tag.findUnique({
+            where: { name: tagName }
+          })
+
+          if (!tag) {
+            tag = await tx.tag.create({
+              data: { name: tagName }
+            })
+          }
+
+          await tx.threadTag.create({
+            data: {
+              threadId: thread.id,
+              tagId: tag.id
+            }
+          })
+
+        }
+
+      }
+
+      return thread
+
+    })
+
+    return NextResponse.json(result, { status: 201 })
 
   } catch (error) {
 
-    console.error(error)
+    console.error("POST /api/threads error:", error)
 
     return NextResponse.json(
-      { error: "Internal server error" },
+      { error: "Failed to create thread" },
       { status: 500 }
     )
 
   }
-
 }
+
+export const POST = withAuth(postHandler)
 
 
 
@@ -231,14 +244,6 @@ export async function POST(request: Request) {
  * GET /api/threads
  *
  * Returns paginated list of threads.
- *
- * Supports filters:
- * - teamId
- * - matchId
- * - tag
- * - authorId
- * - q (search text)
- * - sort (recent | top)
  */
 
 export async function GET(request: Request) {
@@ -258,8 +263,19 @@ export async function GET(request: Request) {
     const page = Number(searchParams.get("page") ?? 1)
     const limit = Number(searchParams.get("limit") ?? 20)
 
-    const skip = (page - 1) * limit
+    if (isNaN(page) || page < 1)
+      return NextResponse.json(
+        { error: "Invalid page parameter" },
+        { status: 400 }
+      )
 
+    if (isNaN(limit) || limit < 1 || limit > 100)
+      return NextResponse.json(
+        { error: "Limit must be between 1 and 100" },
+        { status: 400 }
+      )
+
+    const skip = (page - 1) * limit
 
     const where: Record<string, unknown> = {
       isHidden: false
@@ -295,8 +311,7 @@ export async function GET(request: Request) {
       }
     }
 
-
-    let orderBy:  Record<string, unknown> = {
+    let orderBy: Record<string, unknown> = {
       createdAt: "desc"
     }
 
@@ -308,13 +323,10 @@ export async function GET(request: Request) {
       }
     }
 
-
     const threads = await prisma.thread.findMany({
 
       where,
-
       orderBy,
-
       skip,
       take: limit,
 
@@ -344,15 +356,14 @@ export async function GET(request: Request) {
 
     })
 
-
-    return NextResponse.json(threads)
+    return NextResponse.json(threads, { status: 200 })
 
   } catch (error) {
 
-    console.error(error)
+    console.error("GET /api/threads error:", error)
 
     return NextResponse.json(
-      { error: "Internal server error" },
+      { error: "Failed to retrieve threads" },
       { status: 500 }
     )
 

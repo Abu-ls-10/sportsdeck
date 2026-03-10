@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
-import { getUserFromToken } from "@/lib/auth"
+import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
 import { moderateContent } from "@/lib/moderation"
 
 /**
@@ -63,21 +63,13 @@ import { moderateContent } from "@/lib/moderation"
 // POST /api/posts/:id/replies
 // Creates a comment (reply) under a post.
 // Auto-flags the reply content through AI moderation on creation.
-export async function POST(request: Request, { params }: { params: Promise<{ id: string }> }) {
+async function postHandler(
+  req: AuthenticatedRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
   try {
     const { id: postId } = await params
-
-    const user = await getUserFromToken(request)
-    if (!user)
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
-
-    // Live ban check
-    const dbUser = await prisma.user.findUnique({
-      where: { id: user.user_id },
-      select: { isBanned: true },
-    })
-    if (dbUser?.isBanned)
-      return NextResponse.json({ error: "Your account has been banned" }, { status: 403 })
+    const user = req.user
 
     const post = await prisma.post.findUnique({
       where: { id: postId },
@@ -99,12 +91,7 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
     if (thread.lockedAt && now > thread.lockedAt)
       return NextResponse.json({ error: "Thread is closed" }, { status: 403 })
 
-    let body: { content?: string }
-    try {
-      body = await request.json()
-    } catch {
-      return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 })
-    }
+    const body = await req.json()
     const { content } = body
 
     if (!content || content.trim() === "")
@@ -124,11 +111,14 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
     )
 
     return NextResponse.json(reply, { status: 201 })
+
   } catch (err) {
     console.error(err)
     return NextResponse.json({ error: "Internal server error" }, { status: 500 })
   }
 }
+
+export const POST = withAuth(postHandler)
 
 // GET /api/posts/:id/replies
 // Returns all visible replies under a post.

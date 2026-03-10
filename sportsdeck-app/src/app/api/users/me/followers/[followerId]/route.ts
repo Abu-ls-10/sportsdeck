@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from "next/server"
+import { NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
-import { getUserFromToken } from "@/lib/auth"
+import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
 
 /**
  * @openapi
@@ -11,8 +11,8 @@ import { getUserFromToken } from "@/lib/auth"
  *     security:
  *       - bearerAuth: []
  *     parameters:
- *       - in: path
- *         name: followerId
+ *       - name: followerId
+ *         in: path
  *         required: true
  *         schema:
  *           type: string
@@ -20,8 +20,12 @@ import { getUserFromToken } from "@/lib/auth"
  *     responses:
  *       200:
  *         description: Follower removed
+ *       400:
+ *         description: Follower ID is required
  *       401:
  *         description: Unauthorized
+ *       404:
+ *         description: Follow relationship not found
  *       500:
  *         description: Internal server error
  */
@@ -29,43 +33,62 @@ import { getUserFromToken } from "@/lib/auth"
 /**
  * DELETE /api/users/me/followers/:followerId
  *
- * User Story:
- * As a user, I want to remove a follower that I do not like.
- *
- * Access:
- * Authenticated users only.
- *
- * Behavior:
- * - Deletes the follow relationship where the target user
- *   follows the current user.
+ * Removes a follower from the current user's followers list.
  */
 
-export async function DELETE(
-  req: NextRequest,
-  { params }: { params: { followerId: string } }
+async function deleteHandler(
+  req: AuthenticatedRequest,
+  { params }: { params: Promise<{ followerId: string }> }
 ) {
+
   try {
-    const currentUser = await getUserFromToken(req)
 
-    if (!currentUser) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
-    }
+    const currentUser = req.user
+    const { followerId } = await params
 
-    await prisma.follow.deleteMany({
+    if (!currentUser)
+      return NextResponse.json(
+        { error: "Authentication required" },
+        { status: 401 }
+      )
+
+    if (!followerId)
+      return NextResponse.json(
+        { error: "Follower id is required" },
+        { status: 400 }
+      )
+
+    const result = await prisma.follow.deleteMany({
+
       where: {
-        followerId: params.followerId,
-        followingId: currentUser.id
+        followerId: followerId,
+        followingId: currentUser.user_id
       }
+
     })
 
-    return NextResponse.json({ success: true })
-
-  } catch (error) {
-    console.error(error)
+    if (result.count === 0)
+      return NextResponse.json(
+        { error: "Follow relationship not found" },
+        { status: 404 }
+      )
 
     return NextResponse.json(
-      { error: "Internal server error" },
+      { success: true },
+      { status: 200 }
+    )
+
+  } catch (error) {
+
+    console.error("DELETE /api/users/me/followers/:followerId error:", error)
+
+    return NextResponse.json(
+      { error: "Failed to remove follower" },
       { status: 500 }
     )
+
   }
+
 }
+
+export const DELETE = withAuth(deleteHandler)

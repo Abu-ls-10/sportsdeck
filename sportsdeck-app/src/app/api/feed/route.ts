@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from "next/server"
+import { NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
-import { getUserFromToken } from "@/lib/auth"
+import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
 
 /**
  * @openapi
@@ -39,28 +39,45 @@ import { getUserFromToken } from "@/lib/auth"
  * Tables used:
  * FEED_ENTRY
  * FEED_EVENT
- *
- * Example grouped events:
- * - "5 new replies on your post"
- * - "3 new posts from users you follow"
- * - "2 new threads in your favorite team's forum"
  */
 
-export async function GET(req: NextRequest) {
+async function getHandler(req: AuthenticatedRequest) {
   try {
-    const currentUser = await getUserFromToken(req)
 
+    const currentUser = req.user
+
+    // Safety check (middleware should already enforce this)
     if (!currentUser) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+      return NextResponse.json(
+        { error: "Authentication required" },
+        { status: 401 }
+      )
     }
 
     const { searchParams } = new URL(req.url)
 
-    const limit = Number(searchParams.get("limit") ?? 20)
+    const limitParam = searchParams.get("limit")
+    const limit = limitParam ? Number(limitParam) : 20
+
+    // Validate limit
+    if (limitParam && isNaN(limit)) {
+      return NextResponse.json(
+        { error: "Invalid 'limit' query parameter" },
+        { status: 400 }
+      )
+    }
+
+    // Prevent abuse (feeds shouldn't request huge pages)
+    if (limit <= 0 || limit > 100) {
+      return NextResponse.json(
+        { error: "Limit must be between 1 and 100" },
+        { status: 400 }
+      )
+    }
 
     const entries = await prisma.feedEntry.findMany({
       where: {
-        userId: currentUser.id
+        userId: currentUser.user_id
       },
       orderBy: {
         createdAt: "desc"
@@ -71,14 +88,17 @@ export async function GET(req: NextRequest) {
       }
     })
 
-    return NextResponse.json(entries)
+    return NextResponse.json(entries, { status: 200 })
 
   } catch (error) {
-    console.error(error)
+
+    console.error("GET /api/feed error:", error)
 
     return NextResponse.json(
-      { error: "Internal server error" },
+      { error: "Failed to retrieve feed entries" },
       { status: 500 }
     )
   }
 }
+
+export const GET = withAuth(getHandler)

@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from "next/server"
+import { NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
-import { getUserFromToken } from "@/lib/auth"
+import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
 
 /**
  * @openapi
@@ -22,37 +22,32 @@ import { getUserFromToken } from "@/lib/auth"
 /**
  * GET /api/users/me/following
  *
- * User Story:
- * As a user, I want to view the list of users I am following.
- *
- * Access:
- * Authenticated users only.
- *
- * Behavior:
- * - Returns all users the current user follows.
- * - Sorted by follow time (most recent first).
- *
- * Tables used:
- * FOLLOW
- * USER
+ * Returns the list of users the authenticated user follows.
  */
 
-export async function GET(req: NextRequest) {
-  try {
-    const currentUser = await getUserFromToken(req)
+async function getHandler(req: AuthenticatedRequest) {
 
-    if (!currentUser) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
-    }
+  try {
+
+    const currentUser = req.user
+
+    if (!currentUser)
+      return NextResponse.json(
+        { error: "Authentication required" },
+        { status: 401 }
+      )
 
     const following = await prisma.follow.findMany({
+
       where: {
-        followerId: currentUser.id
+        followerId: currentUser.user_id
       },
+
       orderBy: {
         createdAt: "desc"
       },
-      include: {
+
+      select: {
         following: {
           select: {
             id: true,
@@ -61,16 +56,24 @@ export async function GET(req: NextRequest) {
           }
         }
       }
+
     })
 
-    return NextResponse.json(following)
+    const result = following.map((f) => f.following)
+
+    return NextResponse.json(result, { status: 200 })
 
   } catch (error) {
-    console.error(error)
+
+    console.error("GET /api/users/me/following error:", error)
 
     return NextResponse.json(
-      { error: "Internal server error" },
+      { error: "Failed to retrieve following list" },
       { status: 500 }
     )
+
   }
+
 }
+
+export const GET = withAuth(getHandler)

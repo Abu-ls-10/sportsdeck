@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
-import { getUserFromToken } from "@/lib/auth"
+import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
 
 /**
  * @openapi
@@ -58,53 +58,87 @@ import { getUserFromToken } from "@/lib/auth"
  * - poll not closed
  */
 
-export async function POST(
-  request: Request,
-  { params }: { params: { id: string } }
+async function postHandler(
+  req: AuthenticatedRequest,
+  { params }: { params: Promise<{ id: string }> }
 ) {
-
   try {
 
-    const user = await getUserFromToken(request)
+    const user = req.user
+    const { id: pollId } = await params
 
     if (!user)
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+      return NextResponse.json(
+        { error: "Authentication required" },
+        { status: 401 }
+      )
 
-    // Live ban check from DB
-    const dbUser = await prisma.user.findUnique({ where: { id: user.user_id }, select: { isBanned: true } })
-    if (dbUser?.isBanned)
-      return NextResponse.json({ error: "Your account has been banned" }, { status: 403 })
+    if (!pollId)
+      return NextResponse.json(
+        { error: "Poll id is required" },
+        { status: 400 }
+      )
 
     const poll = await prisma.poll.findUnique({
-      where: { id: params.id },
+      where: { id: pollId },
       include: { options: true }
     })
 
     if (!poll)
-      return NextResponse.json({ error: "Poll not found" }, { status: 404 })
+      return NextResponse.json(
+        { error: "Poll not found" },
+        { status: 404 }
+      )
 
-    if (poll.isClosed || new Date() > poll.deadline)
-      return NextResponse.json({ error: "Poll closed" }, { status: 400 })
+    if (poll.isClosed || (poll.deadline && new Date() > poll.deadline))
+      return NextResponse.json(
+        { error: "Poll is closed" },
+        { status: 403 }
+      )
 
     // Block voting on polls in hidden threads
-    const thread = await prisma.thread.findUnique({ where: { id: poll.threadId } })
-    if (thread?.isHidden)
-      return NextResponse.json({ error: "This thread has been hidden by a moderator and no further activity is allowed" }, { status: 403 })
+    const thread = await prisma.thread.findUnique({
+      where: { id: poll.threadId },
+      select: { isHidden: true }
+    })
 
-    const body = await request.json()
+    if (thread?.isHidden)
+      return NextResponse.json(
+        { error: "This thread has been hidden by a moderator and no further activity is allowed" },
+        { status: 403 }
+      )
+
+    let body
+    try {
+      body = await req.json()
+    } catch {
+      return NextResponse.json(
+        { error: "Invalid JSON body" },
+        { status: 400 }
+      )
+    }
+
     const { optionId } = body
+
+    if (!optionId)
+      return NextResponse.json(
+        { error: "optionId is required" },
+        { status: 400 }
+      )
 
     const option = await prisma.pollOption.findUnique({
       where: { id: optionId }
     })
 
     if (!option || option.pollId !== poll.id)
-      return NextResponse.json({ error: "Invalid option" }, { status: 400 })
-
+      return NextResponse.json(
+        { error: "Invalid poll option" },
+        { status: 400 }
+      )
 
     const existingVote = await prisma.vote.findFirst({
       where: {
-        userId: user.id,
+        userId: user.user_id,
         pollOption: {
           pollId: poll.id
         }
@@ -113,14 +147,13 @@ export async function POST(
 
     if (existingVote)
       return NextResponse.json(
-        { error: "User already voted in this poll" },
-        { status: 400 }
+        { error: "User has already voted in this poll" },
+        { status: 409 }
       )
-
 
     const vote = await prisma.vote.create({
       data: {
-        userId: user.id,
+        userId: user.user_id,
         pollOptionId: optionId
       }
     })
@@ -129,12 +162,13 @@ export async function POST(
 
   } catch (err) {
 
-    console.error(err)
+    console.error("POST /api/polls/:id/vote error:", err)
 
     return NextResponse.json(
-      { error: "Internal server error" },
+      { error: "Failed to cast vote" },
       { status: 500 }
     )
   }
-
 }
+
+export const POST = withAuth(postHandler)

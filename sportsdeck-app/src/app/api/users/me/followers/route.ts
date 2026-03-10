@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from "next/server"
+import { NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
-import { getUserFromToken } from "@/lib/auth"
+import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
 
 /**
  * @openapi
@@ -22,32 +22,32 @@ import { getUserFromToken } from "@/lib/auth"
 /**
  * GET /api/users/me/followers
  *
- * User Story:
- * As a user, I want to see the list of users who follow me.
- *
- * Access:
- * Authenticated users only.
- *
- * Behavior:
- * - Returns followers sorted by follow time.
+ * Returns the list of users who follow the authenticated user.
  */
 
-export async function GET(req: NextRequest) {
-  try {
-    const currentUser = await getUserFromToken(req)
+async function getHandler(req: AuthenticatedRequest) {
 
-    if (!currentUser) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
-    }
+  try {
+
+    const currentUser = req.user
+
+    if (!currentUser)
+      return NextResponse.json(
+        { error: "Authentication required" },
+        { status: 401 }
+      )
 
     const followers = await prisma.follow.findMany({
+
       where: {
-        followingId: currentUser.id
+        followingId: currentUser.user_id
       },
+
       orderBy: {
         createdAt: "desc"
       },
-      include: {
+
+      select: {
         follower: {
           select: {
             id: true,
@@ -56,16 +56,24 @@ export async function GET(req: NextRequest) {
           }
         }
       }
+
     })
 
-    return NextResponse.json(followers)
+    const result = followers.map((f) => f.follower)
+
+    return NextResponse.json(result, { status: 200 })
 
   } catch (error) {
-    console.error(error)
+
+    console.error("GET /api/users/me/followers error:", error)
 
     return NextResponse.json(
-      { error: "Internal server error" },
+      { error: "Failed to retrieve followers list" },
       { status: 500 }
     )
+
   }
+
 }
+
+export const GET = withAuth(getHandler)
