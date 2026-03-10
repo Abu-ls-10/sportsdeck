@@ -47,49 +47,49 @@ import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
  *     summary: Get paginated list of threads with optional filters
  *     tags: [Threads]
  *     parameters:
- *       - in: query
- *         name: teamId
+ *       - name: teamId
+ *         in: query
  *         schema:
  *           type: string
  *         example: "clxteam123"
- *       - in: query
- *         name: matchId
+ *       - name: matchId
+ *         in: query
  *         schema:
  *           type: string
  *         example: "clxmatch456"
- *       - in: query
- *         name: tag
+ *       - name: tag
+ *         in: query
  *         schema:
  *           type: string
  *         example: "Arsenal"
- *       - in: query
- *         name: authorId
+ *       - name: authorId
+ *         in: query
  *         schema:
  *           type: string
  *         example: "clxuser789"
- *       - in: query
- *         name: author
+ *       - name: author
+ *         in: query
  *         schema:
  *           type: string
  *         example: "john_doe"
- *       - in: query
- *         name: q
+ *       - name: q
+ *         in: query
  *         schema:
  *           type: string
  *         example: "match day"
- *       - in: query
- *         name: sort
+ *       - name: sort
+ *         in: query
  *         schema:
  *           type: string
  *           enum: [recent, top]
  *         example: "recent"
- *       - in: query
- *         name: page
+ *       - name: page
+ *         in: query
  *         schema:
  *           type: integer
  *         example: 1
- *       - in: query
- *         name: limit
+ *       - name: limit
+ *         in: query
  *         schema:
  *           type: integer
  *         example: 20

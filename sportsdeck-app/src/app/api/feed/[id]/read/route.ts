@@ -11,8 +11,8 @@ import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
  *     security:
  *       - bearerAuth: []
  *     parameters:
- *       - in: path
- *         name: id
+ *       - name: id
+ *         in: path
  *         required: true
  *         schema:
  *           type: string

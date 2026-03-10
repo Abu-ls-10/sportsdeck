@@ -3,6 +3,29 @@ import { prisma } from "@/lib/prisma"
 import { withAuth } from "@/lib/middleware"
 
 
+/**
+ * @openapi
+ * /api/users/{id}:
+ *   get:
+ *     summary: Get user details
+ *     tags: [Users]
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: User details retrieved successfully
+ *       400:
+ *         description: User ID is required
+ *       404:
+ *         description: User not found
+ *       500:
+ *         description: Internal server error
+ */
+
 export async function GET(
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> }

@@ -2,6 +2,19 @@ import { NextRequest, NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
 
 
+/**
+ * @openapi
+ * /api/tags:
+ *   get:
+ *     summary: Get all tags
+ *     tags: [Tags]
+ *     responses:
+ *       200:
+ *         description: Tags retrieved successfully
+ *       500:
+ *         description: Internal server error
+ */
+
 // GET /api/tags
 // Returns list of all tags.
 export async function GET(_req: NextRequest) {

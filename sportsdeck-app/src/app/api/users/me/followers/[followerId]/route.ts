@@ -11,8 +11,8 @@ import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
  *     security:
  *       - bearerAuth: []
  *     parameters:
- *       - in: path
- *         name: followerId
+ *       - name: followerId
+ *         in: path
  *         required: true
  *         schema:
  *           type: string
@@ -20,8 +20,12 @@ import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
  *     responses:
  *       200:
  *         description: Follower removed
+ *       400:
+ *         description: Follower ID is required
  *       401:
  *         description: Unauthorized
+ *       404:
+ *         description: Follow relationship not found
  *       500:
  *         description: Internal server error
  */

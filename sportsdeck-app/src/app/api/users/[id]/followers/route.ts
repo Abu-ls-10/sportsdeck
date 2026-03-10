@@ -8,8 +8,8 @@ import { prisma } from "@/lib/prisma"
  *     summary: Get the list of users who follow a given user
  *     tags: [Users]
  *     parameters:
- *       - in: path
- *         name: id
+ *       - name: id
+ *         in: path
  *         required: true
  *         schema:
  *           type: string
@@ -17,6 +17,10 @@ import { prisma } from "@/lib/prisma"
  *     responses:
  *       200:
  *         description: List of followers with profile info
+ *       400:
+ *         description: User ID is required
+ *       404:
+ *         description: User not found
  *       500:
  *         description: Internal server error
  */

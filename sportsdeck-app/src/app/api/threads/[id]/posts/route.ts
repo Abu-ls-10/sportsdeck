@@ -3,6 +3,56 @@ import { prisma } from "@/lib/prisma"
 import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
 
 /**
+ * @openapi
+ * /api/threads/{id}/posts:
+ *   get:
+ *     summary: Get posts in a thread
+ *     tags: [Threads]
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Posts retrieved successfully
+ *       404:
+ *         description: Thread not found
+ *   post:
+ *     summary: Create a post in a thread
+ *     tags: [Threads]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [content]
+ *             properties:
+ *               content:
+ *                 type: string
+ *                 example: "This is my post content"
+ *     responses:
+ *       201:
+ *         description: Post created successfully
+ *       403:
+ *         description: Thread is locked or closed
+ *       404:
+ *         description: Thread not found
+ *       500:
+ *         description: Internal server error
+ */
+
+/**
  * GET /api/threads/:id/posts
  *
  * Visitors can view posts inside the thread.
