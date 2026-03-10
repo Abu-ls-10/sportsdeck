@@ -1,10 +1,10 @@
 {
   "info": {
-    "_postman_id": "74da3974-3f92-403d-b36c-12628c18019e",
-    "name": "SportsDeck API Copy",
+    "_postman_id": "7fd70ddf-c551-47ea-bc3f-401b005ae003",
+    "name": "SportsDeck API Final",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "29093279",
-    "_collection_link": "https://go.postman.co/collection/29093279-74da3974-3f92-403d-b36c-12628c18019e?source=collection_link"
+    "_collection_link": "https://go.postman.co/collection/29093279-7fd70ddf-c551-47ea-bc3f-401b005ae003?source=collection_link"
   },
   "item": [
     {
@@ -163,6 +163,37 @@
                           },
                           "status": "Not Found",
                           "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "body": ""
+                        },
+                        {
+                          "name": "Internal server error",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/admin/appeals/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "admin",
+                                "appeals",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id",
+                                  "value": "clxappeal001"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
@@ -439,6 +470,52 @@
                           "header": [],
                           "cookie": [],
                           "body": ""
+                        },
+                        {
+                          "name": "Internal server error",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"status\": \"approved\",\n  \"decisionNote\": \"After review, the ban was found to be unwarranted.\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/admin/appeals/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "admin",
+                                "appeals",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id",
+                                  "value": "clxappeal001"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "body": ""
                         }
                       ]
                     }
@@ -623,6 +700,44 @@
                       },
                       "status": "Forbidden",
                       "code": 403,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "body": ""
+                    },
+                    {
+                      "name": "Internal server error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/admin/appeals?status=pending&page=1&limit=20",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "admin",
+                            "appeals"
+                          ],
+                          "query": [
+                            {
+                              "key": "status",
+                              "value": "pending"
+                            },
+                            {
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "key": "limit",
+                              "value": "20"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
                       "_postman_previewlanguage": "text",
                       "header": [],
                       "cookie": [],
@@ -826,6 +941,38 @@
                               "header": [],
                               "cookie": [],
                               "body": ""
+                            },
+                            {
+                              "name": "Internal server error",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/admin/bans/:id/lift",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "admin",
+                                    "bans",
+                                    ":id",
+                                    "lift"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id",
+                                      "value": "clxban001"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "body": ""
                             }
                           ]
                         }
@@ -975,6 +1122,37 @@
                           },
                           "status": "Not Found",
                           "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "body": ""
+                        },
+                        {
+                          "name": "Internal server error",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/admin/bans/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "admin",
+                                "bans",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id",
+                                  "value": "clxban001"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
@@ -1250,6 +1428,45 @@
                       "header": [],
                       "cookie": [],
                       "body": ""
+                    },
+                    {
+                      "name": "Internal server error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"userId\": \"clxuser789\",\n  \"reason\": \"Repeated violations of community guidelines.\",\n  \"reportedItemId\": \"clxreporteditem001\",\n  \"reportId\": \"clxreport001\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/admin/bans",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "admin",
+                            "bans"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "body": ""
                     }
                   ]
                 },
@@ -1432,6 +1649,44 @@
                       },
                       "status": "Forbidden",
                       "code": 403,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "body": ""
+                    },
+                    {
+                      "name": "Internal server error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/admin/bans?status=active&page=1&limit=20",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "admin",
+                            "bans"
+                          ],
+                          "query": [
+                            {
+                              "key": "status",
+                              "value": "active"
+                            },
+                            {
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "key": "limit",
+                              "value": "20"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
                       "_postman_previewlanguage": "text",
                       "header": [],
                       "cookie": [],
@@ -2247,79 +2502,14 @@
                               "header": [],
                               "cookie": [],
                               "body": ""
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      "name": "approve",
-                      "item": [
-                        {
-                          "name": "Approve a report — hides content and optionally bans the user (admin only)",
-                          "request": {
-                            "method": "PATCH",
-                            "header": [],
-                            "url": {
-                              "raw": "{{baseUrl}}/api/admin/reports/:id/approve",
-                              "host": [
-                                "{{baseUrl}}"
-                              ],
-                              "path": [
-                                "api",
-                                "admin",
-                                "reports",
-                                ":id",
-                                "approve"
-                              ],
-                              "variable": [
-                                {
-                                  "key": "id",
-                                  "value": "clxreporteditem001"
-                                }
-                              ]
-                            }
-                          },
-                          "response": [
-                            {
-                              "name": "Report approved and status set to APPROVED",
-                              "originalRequest": {
-                                "method": "PATCH",
-                                "header": [],
-                                "url": {
-                                  "raw": "{{baseUrl}}/api/admin/reports/:id/approve",
-                                  "host": [
-                                    "{{baseUrl}}"
-                                  ],
-                                  "path": [
-                                    "api",
-                                    "admin",
-                                    "reports",
-                                    ":id",
-                                    "approve"
-                                  ],
-                                  "variable": [
-                                    {
-                                      "key": "id",
-                                      "value": "clxreporteditem001"
-                                    }
-                                  ]
-                                }
-                              },
-                              "status": "OK",
-                              "code": 200,
-                              "_postman_previewlanguage": "text",
-                              "header": [],
-                              "cookie": [],
-                              "body": ""
                             },
                             {
-                              "name": "Unauthorized",
+                              "name": "Internal server error",
                               "originalRequest": {
-                                "method": "PATCH",
+                                "method": "POST",
                                 "header": [],
                                 "url": {
-                                  "raw": "{{baseUrl}}/api/admin/reports/:id/approve",
+                                  "raw": "{{baseUrl}}/api/admin/reports/:id/analyze",
                                   "host": [
                                     "{{baseUrl}}"
                                   ],
@@ -2328,7 +2518,7 @@
                                     "admin",
                                     "reports",
                                     ":id",
-                                    "approve"
+                                    "analyze"
                                   ],
                                   "variable": [
                                     {
@@ -2338,233 +2528,8 @@
                                   ]
                                 }
                               },
-                              "status": "Unauthorized",
-                              "code": 401,
-                              "_postman_previewlanguage": "text",
-                              "header": [],
-                              "cookie": [],
-                              "body": ""
-                            },
-                            {
-                              "name": "Forbidden",
-                              "originalRequest": {
-                                "method": "PATCH",
-                                "header": [],
-                                "url": {
-                                  "raw": "{{baseUrl}}/api/admin/reports/:id/approve",
-                                  "host": [
-                                    "{{baseUrl}}"
-                                  ],
-                                  "path": [
-                                    "api",
-                                    "admin",
-                                    "reports",
-                                    ":id",
-                                    "approve"
-                                  ],
-                                  "variable": [
-                                    {
-                                      "key": "id",
-                                      "value": "clxreporteditem001"
-                                    }
-                                  ]
-                                }
-                              },
-                              "status": "Forbidden",
-                              "code": 403,
-                              "_postman_previewlanguage": "text",
-                              "header": [],
-                              "cookie": [],
-                              "body": ""
-                            },
-                            {
-                              "name": "Reported item not found",
-                              "originalRequest": {
-                                "method": "PATCH",
-                                "header": [],
-                                "url": {
-                                  "raw": "{{baseUrl}}/api/admin/reports/:id/approve",
-                                  "host": [
-                                    "{{baseUrl}}"
-                                  ],
-                                  "path": [
-                                    "api",
-                                    "admin",
-                                    "reports",
-                                    ":id",
-                                    "approve"
-                                  ],
-                                  "variable": [
-                                    {
-                                      "key": "id",
-                                      "value": "clxreporteditem001"
-                                    }
-                                  ]
-                                }
-                              },
-                              "status": "Not Found",
-                              "code": 404,
-                              "_postman_previewlanguage": "text",
-                              "header": [],
-                              "cookie": [],
-                              "body": ""
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      "name": "dismiss",
-                      "item": [
-                        {
-                          "name": "Dismiss a report — sets status to DISMISSED (admin only)",
-                          "request": {
-                            "method": "PATCH",
-                            "header": [],
-                            "url": {
-                              "raw": "{{baseUrl}}/api/admin/reports/:id/dismiss",
-                              "host": [
-                                "{{baseUrl}}"
-                              ],
-                              "path": [
-                                "api",
-                                "admin",
-                                "reports",
-                                ":id",
-                                "dismiss"
-                              ],
-                              "variable": [
-                                {
-                                  "key": "id",
-                                  "value": "clxreporteditem001"
-                                }
-                              ]
-                            }
-                          },
-                          "response": [
-                            {
-                              "name": "Report dismissed",
-                              "originalRequest": {
-                                "method": "PATCH",
-                                "header": [],
-                                "url": {
-                                  "raw": "{{baseUrl}}/api/admin/reports/:id/dismiss",
-                                  "host": [
-                                    "{{baseUrl}}"
-                                  ],
-                                  "path": [
-                                    "api",
-                                    "admin",
-                                    "reports",
-                                    ":id",
-                                    "dismiss"
-                                  ],
-                                  "variable": [
-                                    {
-                                      "key": "id",
-                                      "value": "clxreporteditem001"
-                                    }
-                                  ]
-                                }
-                              },
-                              "status": "OK",
-                              "code": 200,
-                              "_postman_previewlanguage": "text",
-                              "header": [],
-                              "cookie": [],
-                              "body": ""
-                            },
-                            {
-                              "name": "Unauthorized",
-                              "originalRequest": {
-                                "method": "PATCH",
-                                "header": [],
-                                "url": {
-                                  "raw": "{{baseUrl}}/api/admin/reports/:id/dismiss",
-                                  "host": [
-                                    "{{baseUrl}}"
-                                  ],
-                                  "path": [
-                                    "api",
-                                    "admin",
-                                    "reports",
-                                    ":id",
-                                    "dismiss"
-                                  ],
-                                  "variable": [
-                                    {
-                                      "key": "id",
-                                      "value": "clxreporteditem001"
-                                    }
-                                  ]
-                                }
-                              },
-                              "status": "Unauthorized",
-                              "code": 401,
-                              "_postman_previewlanguage": "text",
-                              "header": [],
-                              "cookie": [],
-                              "body": ""
-                            },
-                            {
-                              "name": "Forbidden",
-                              "originalRequest": {
-                                "method": "PATCH",
-                                "header": [],
-                                "url": {
-                                  "raw": "{{baseUrl}}/api/admin/reports/:id/dismiss",
-                                  "host": [
-                                    "{{baseUrl}}"
-                                  ],
-                                  "path": [
-                                    "api",
-                                    "admin",
-                                    "reports",
-                                    ":id",
-                                    "dismiss"
-                                  ],
-                                  "variable": [
-                                    {
-                                      "key": "id",
-                                      "value": "clxreporteditem001"
-                                    }
-                                  ]
-                                }
-                              },
-                              "status": "Forbidden",
-                              "code": 403,
-                              "_postman_previewlanguage": "text",
-                              "header": [],
-                              "cookie": [],
-                              "body": ""
-                            },
-                            {
-                              "name": "Reported item not found",
-                              "originalRequest": {
-                                "method": "PATCH",
-                                "header": [],
-                                "url": {
-                                  "raw": "{{baseUrl}}/api/admin/reports/:id/dismiss",
-                                  "host": [
-                                    "{{baseUrl}}"
-                                  ],
-                                  "path": [
-                                    "api",
-                                    "admin",
-                                    "reports",
-                                    ":id",
-                                    "dismiss"
-                                  ],
-                                  "variable": [
-                                    {
-                                      "key": "id",
-                                      "value": "clxreporteditem001"
-                                    }
-                                  ]
-                                }
-                              },
-                              "status": "Not Found",
-                              "code": 404,
+                              "status": "Internal Server Error",
+                              "code": 500,
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
@@ -2749,6 +2714,355 @@
                           },
                           "status": "Not Found",
                           "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "body": ""
+                        },
+                        {
+                          "name": "Internal server error",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/admin/reports/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "admin",
+                                "reports",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id",
+                                  "value": "clxreporteditem001"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "body": ""
+                        }
+                      ]
+                    },
+                    {
+                      "name": "Dismiss or approve a reported item (admin only)",
+                      "request": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"action\": \"approve\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/admin/reports/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "admin",
+                            "reports",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "clxreporteditem001"
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "name": "Report dismissed or approved; content hidden if approved",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"action\": \"approve\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/admin/reports/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "admin",
+                                "reports",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id",
+                                  "value": "clxreporteditem001"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "body": ""
+                        },
+                        {
+                          "name": "Invalid action, invalid JSON, or report already resolved",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"action\": \"approve\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/admin/reports/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "admin",
+                                "reports",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id",
+                                  "value": "clxreporteditem001"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "body": ""
+                        },
+                        {
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"action\": \"approve\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/admin/reports/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "admin",
+                                "reports",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id",
+                                  "value": "clxreporteditem001"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "body": ""
+                        },
+                        {
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"action\": \"approve\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/admin/reports/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "admin",
+                                "reports",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id",
+                                  "value": "clxreporteditem001"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "body": ""
+                        },
+                        {
+                          "name": "Reported item not found",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"action\": \"approve\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/admin/reports/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "admin",
+                                "reports",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id",
+                                  "value": "clxreporteditem001"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "body": ""
+                        },
+                        {
+                          "name": "Internal server error",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"action\": \"approve\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/admin/reports/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "admin",
+                                "reports",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id",
+                                  "value": "clxreporteditem001"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
@@ -3519,6 +3833,44 @@
                   "header": [],
                   "cookie": [],
                   "body": ""
+                },
+                {
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"message\": \"I believe my ban was issued in error. I did not violate any rules.\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/appeals",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "appeals"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
                 }
               ]
             },
@@ -3659,6 +4011,43 @@
                   },
                   "status": "Unauthorized",
                   "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/appeals?status=pending&page=1&limit=20",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "appeals"
+                      ],
+                      "query": [
+                        {
+                          "key": "status",
+                          "value": "pending"
+                        },
+                        {
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "key": "limit",
+                          "value": "20"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
                   "_postman_previewlanguage": "text",
                   "header": [],
                   "cookie": [],
@@ -4253,7 +4642,7 @@
               },
               "response": [
                 {
-                  "name": "Daily digest content",
+                  "name": "Daily digest content, or empty result if no digest exists for the requested date",
                   "originalRequest": {
                     "method": "GET",
                     "header": [],
@@ -4280,39 +4669,6 @@
                   },
                   "status": "OK",
                   "code": 200,
-                  "_postman_previewlanguage": "text",
-                  "header": [],
-                  "cookie": [],
-                  "body": ""
-                },
-                {
-                  "name": "No digest found for the requested date",
-                  "originalRequest": {
-                    "method": "GET",
-                    "header": [],
-                    "url": {
-                      "raw": "{{baseUrl}}/api/digest?date=2026-03-08&force=false",
-                      "host": [
-                        "{{baseUrl}}"
-                      ],
-                      "path": [
-                        "api",
-                        "digest"
-                      ],
-                      "query": [
-                        {
-                          "key": "date",
-                          "value": "2026-03-08"
-                        },
-                        {
-                          "key": "force",
-                          "value": "false"
-                        }
-                      ]
-                    }
-                  },
-                  "status": "Not Found",
-                  "code": 404,
                   "_postman_previewlanguage": "text",
                   "header": [],
                   "cookie": [],
@@ -4346,280 +4702,6 @@
                   },
                   "status": "Internal Server Error",
                   "code": 500,
-                  "_postman_previewlanguage": "text",
-                  "header": [],
-                  "cookie": [],
-                  "body": ""
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "name": "favourite-teams",
-          "item": [
-            {
-              "name": "{teamId}",
-              "item": [
-                {
-                  "name": "Remove a favourite team",
-                  "request": {
-                    "method": "DELETE",
-                    "header": [],
-                    "url": {
-                      "raw": "{{baseUrl}}/api/favourite-teams/:teamId",
-                      "host": [
-                        "{{baseUrl}}"
-                      ],
-                      "path": [
-                        "api",
-                        "favourite-teams",
-                        ":teamId"
-                      ],
-                      "variable": [
-                        {
-                          "key": "teamId",
-                          "value": "clxteam123"
-                        }
-                      ]
-                    }
-                  },
-                  "response": [
-                    {
-                      "name": "Favourite team removed",
-                      "originalRequest": {
-                        "method": "DELETE",
-                        "header": [],
-                        "url": {
-                          "raw": "{{baseUrl}}/api/favourite-teams/:teamId",
-                          "host": [
-                            "{{baseUrl}}"
-                          ],
-                          "path": [
-                            "api",
-                            "favourite-teams",
-                            ":teamId"
-                          ],
-                          "variable": [
-                            {
-                              "key": "teamId",
-                              "value": "clxteam123"
-                            }
-                          ]
-                        }
-                      },
-                      "status": "OK",
-                      "code": 200,
-                      "_postman_previewlanguage": "text",
-                      "header": [],
-                      "cookie": [],
-                      "body": ""
-                    },
-                    {
-                      "name": "Unauthorized",
-                      "originalRequest": {
-                        "method": "DELETE",
-                        "header": [],
-                        "url": {
-                          "raw": "{{baseUrl}}/api/favourite-teams/:teamId",
-                          "host": [
-                            "{{baseUrl}}"
-                          ],
-                          "path": [
-                            "api",
-                            "favourite-teams",
-                            ":teamId"
-                          ],
-                          "variable": [
-                            {
-                              "key": "teamId",
-                              "value": "clxteam123"
-                            }
-                          ]
-                        }
-                      },
-                      "status": "Unauthorized",
-                      "code": 401,
-                      "_postman_previewlanguage": "text",
-                      "header": [],
-                      "cookie": [],
-                      "body": ""
-                    },
-                    {
-                      "name": "Team not found",
-                      "originalRequest": {
-                        "method": "DELETE",
-                        "header": [],
-                        "url": {
-                          "raw": "{{baseUrl}}/api/favourite-teams/:teamId",
-                          "host": [
-                            "{{baseUrl}}"
-                          ],
-                          "path": [
-                            "api",
-                            "favourite-teams",
-                            ":teamId"
-                          ],
-                          "variable": [
-                            {
-                              "key": "teamId",
-                              "value": "clxteam123"
-                            }
-                          ]
-                        }
-                      },
-                      "status": "Not Found",
-                      "code": 404,
-                      "_postman_previewlanguage": "text",
-                      "header": [],
-                      "cookie": [],
-                      "body": ""
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "name": "Set the authenticated user's favourite team",
-              "request": {
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"teamId\": \"clxteam123\"\n}",
-                  "options": {
-                    "raw": {
-                      "headerFamily": "json",
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "{{baseUrl}}/api/favourite-teams",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "api",
-                    "favourite-teams"
-                  ]
-                }
-              },
-              "response": [
-                {
-                  "name": "Favourite team set",
-                  "originalRequest": {
-                    "method": "POST",
-                    "header": [
-                      {
-                        "key": "Content-Type",
-                        "value": "application/json"
-                      }
-                    ],
-                    "body": {
-                      "mode": "raw",
-                      "raw": "{\n  \"teamId\": \"clxteam123\"\n}",
-                      "options": {
-                        "raw": {
-                          "headerFamily": "json",
-                          "language": "json"
-                        }
-                      }
-                    },
-                    "url": {
-                      "raw": "{{baseUrl}}/api/favourite-teams",
-                      "host": [
-                        "{{baseUrl}}"
-                      ],
-                      "path": [
-                        "api",
-                        "favourite-teams"
-                      ]
-                    }
-                  },
-                  "status": "OK",
-                  "code": 200,
-                  "_postman_previewlanguage": "text",
-                  "header": [],
-                  "cookie": [],
-                  "body": ""
-                },
-                {
-                  "name": "Unauthorized",
-                  "originalRequest": {
-                    "method": "POST",
-                    "header": [
-                      {
-                        "key": "Content-Type",
-                        "value": "application/json"
-                      }
-                    ],
-                    "body": {
-                      "mode": "raw",
-                      "raw": "{\n  \"teamId\": \"clxteam123\"\n}",
-                      "options": {
-                        "raw": {
-                          "headerFamily": "json",
-                          "language": "json"
-                        }
-                      }
-                    },
-                    "url": {
-                      "raw": "{{baseUrl}}/api/favourite-teams",
-                      "host": [
-                        "{{baseUrl}}"
-                      ],
-                      "path": [
-                        "api",
-                        "favourite-teams"
-                      ]
-                    }
-                  },
-                  "status": "Unauthorized",
-                  "code": 401,
-                  "_postman_previewlanguage": "text",
-                  "header": [],
-                  "cookie": [],
-                  "body": ""
-                },
-                {
-                  "name": "Team not found",
-                  "originalRequest": {
-                    "method": "POST",
-                    "header": [
-                      {
-                        "key": "Content-Type",
-                        "value": "application/json"
-                      }
-                    ],
-                    "body": {
-                      "mode": "raw",
-                      "raw": "{\n  \"teamId\": \"clxteam123\"\n}",
-                      "options": {
-                        "raw": {
-                          "headerFamily": "json",
-                          "language": "json"
-                        }
-                      }
-                    },
-                    "url": {
-                      "raw": "{{baseUrl}}/api/favourite-teams",
-                      "host": [
-                        "{{baseUrl}}"
-                      ],
-                      "path": [
-                        "api",
-                        "favourite-teams"
-                      ]
-                    }
-                  },
-                  "status": "Not Found",
-                  "code": 404,
                   "_postman_previewlanguage": "text",
                   "header": [],
                   "cookie": [],
@@ -5625,206 +5707,6 @@
                   },
                   "status": "Internal Server Error",
                   "code": 500,
-                  "_postman_previewlanguage": "text",
-                  "header": [],
-                  "cookie": [],
-                  "body": ""
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "name": "notifications",
-          "item": [
-            {
-              "name": "{id}",
-              "item": [
-                {
-                  "name": "read",
-                  "item": [
-                    {
-                      "name": "Mark a notification as read",
-                      "request": {
-                        "method": "PATCH",
-                        "header": [],
-                        "url": {
-                          "raw": "{{baseUrl}}/api/notifications/:id/read",
-                          "host": [
-                            "{{baseUrl}}"
-                          ],
-                          "path": [
-                            "api",
-                            "notifications",
-                            ":id",
-                            "read"
-                          ],
-                          "variable": [
-                            {
-                              "key": "id",
-                              "value": "clxnotif001"
-                            }
-                          ]
-                        }
-                      },
-                      "response": [
-                        {
-                          "name": "Notification marked as read",
-                          "originalRequest": {
-                            "method": "PATCH",
-                            "header": [],
-                            "url": {
-                              "raw": "{{baseUrl}}/api/notifications/:id/read",
-                              "host": [
-                                "{{baseUrl}}"
-                              ],
-                              "path": [
-                                "api",
-                                "notifications",
-                                ":id",
-                                "read"
-                              ],
-                              "variable": [
-                                {
-                                  "key": "id",
-                                  "value": "clxnotif001"
-                                }
-                              ]
-                            }
-                          },
-                          "status": "OK",
-                          "code": 200,
-                          "_postman_previewlanguage": "text",
-                          "header": [],
-                          "cookie": [],
-                          "body": ""
-                        },
-                        {
-                          "name": "Unauthorized",
-                          "originalRequest": {
-                            "method": "PATCH",
-                            "header": [],
-                            "url": {
-                              "raw": "{{baseUrl}}/api/notifications/:id/read",
-                              "host": [
-                                "{{baseUrl}}"
-                              ],
-                              "path": [
-                                "api",
-                                "notifications",
-                                ":id",
-                                "read"
-                              ],
-                              "variable": [
-                                {
-                                  "key": "id",
-                                  "value": "clxnotif001"
-                                }
-                              ]
-                            }
-                          },
-                          "status": "Unauthorized",
-                          "code": 401,
-                          "_postman_previewlanguage": "text",
-                          "header": [],
-                          "cookie": [],
-                          "body": ""
-                        },
-                        {
-                          "name": "Notification not found",
-                          "originalRequest": {
-                            "method": "PATCH",
-                            "header": [],
-                            "url": {
-                              "raw": "{{baseUrl}}/api/notifications/:id/read",
-                              "host": [
-                                "{{baseUrl}}"
-                              ],
-                              "path": [
-                                "api",
-                                "notifications",
-                                ":id",
-                                "read"
-                              ],
-                              "variable": [
-                                {
-                                  "key": "id",
-                                  "value": "clxnotif001"
-                                }
-                              ]
-                            }
-                          },
-                          "status": "Not Found",
-                          "code": 404,
-                          "_postman_previewlanguage": "text",
-                          "header": [],
-                          "cookie": [],
-                          "body": ""
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "name": "Get unread notifications for the authenticated user",
-              "request": {
-                "method": "GET",
-                "header": [],
-                "url": {
-                  "raw": "{{baseUrl}}/api/notifications",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "api",
-                    "notifications"
-                  ]
-                }
-              },
-              "response": [
-                {
-                  "name": "List of unread notifications",
-                  "originalRequest": {
-                    "method": "GET",
-                    "header": [],
-                    "url": {
-                      "raw": "{{baseUrl}}/api/notifications",
-                      "host": [
-                        "{{baseUrl}}"
-                      ],
-                      "path": [
-                        "api",
-                        "notifications"
-                      ]
-                    }
-                  },
-                  "status": "OK",
-                  "code": 200,
-                  "_postman_previewlanguage": "text",
-                  "header": [],
-                  "cookie": [],
-                  "body": ""
-                },
-                {
-                  "name": "Unauthorized",
-                  "originalRequest": {
-                    "method": "GET",
-                    "header": [],
-                    "url": {
-                      "raw": "{{baseUrl}}/api/notifications",
-                      "host": [
-                        "{{baseUrl}}"
-                      ],
-                      "path": [
-                        "api",
-                        "notifications"
-                      ]
-                    }
-                  },
-                  "status": "Unauthorized",
-                  "code": 401,
                   "_postman_previewlanguage": "text",
                   "header": [],
                   "cookie": [],
@@ -7623,100 +7505,6 @@
                   ]
                 },
                 {
-                  "name": "versions",
-                  "item": [
-                    {
-                      "name": "Get edit history of a post",
-                      "request": {
-                        "method": "GET",
-                        "header": [],
-                        "url": {
-                          "raw": "{{baseUrl}}/api/posts/:id/versions",
-                          "host": [
-                            "{{baseUrl}}"
-                          ],
-                          "path": [
-                            "api",
-                            "posts",
-                            ":id",
-                            "versions"
-                          ],
-                          "variable": [
-                            {
-                              "key": "id",
-                              "value": "clx1abc123"
-                            }
-                          ]
-                        }
-                      },
-                      "response": [
-                        {
-                          "name": "List of previous versions",
-                          "originalRequest": {
-                            "method": "GET",
-                            "header": [],
-                            "url": {
-                              "raw": "{{baseUrl}}/api/posts/:id/versions",
-                              "host": [
-                                "{{baseUrl}}"
-                              ],
-                              "path": [
-                                "api",
-                                "posts",
-                                ":id",
-                                "versions"
-                              ],
-                              "variable": [
-                                {
-                                  "key": "id",
-                                  "value": "clx1abc123"
-                                }
-                              ]
-                            }
-                          },
-                          "status": "OK",
-                          "code": 200,
-                          "_postman_previewlanguage": "text",
-                          "header": [],
-                          "cookie": [],
-                          "body": ""
-                        },
-                        {
-                          "name": "Post not found",
-                          "originalRequest": {
-                            "method": "GET",
-                            "header": [],
-                            "url": {
-                              "raw": "{{baseUrl}}/api/posts/:id/versions",
-                              "host": [
-                                "{{baseUrl}}"
-                              ],
-                              "path": [
-                                "api",
-                                "posts",
-                                ":id",
-                                "versions"
-                              ],
-                              "variable": [
-                                {
-                                  "key": "id",
-                                  "value": "clx1abc123"
-                                }
-                              ]
-                            }
-                          },
-                          "status": "Not Found",
-                          "code": 404,
-                          "_postman_previewlanguage": "text",
-                          "header": [],
-                          "cookie": [],
-                          "body": ""
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
                   "name": "Edit a post's content (owner only)",
                   "request": {
                     "method": "PATCH",
@@ -9401,370 +9189,7 @@
           "name": "tags",
           "item": [
             {
-              "name": "{id}",
-              "item": [
-                {
-                  "name": "threads",
-                  "item": [
-                    {
-                      "name": "Get threads associated with a tag",
-                      "request": {
-                        "method": "GET",
-                        "header": [],
-                        "url": {
-                          "raw": "{{baseUrl}}/api/tags/:id/threads?page=1&limit=20",
-                          "host": [
-                            "{{baseUrl}}"
-                          ],
-                          "path": [
-                            "api",
-                            "tags",
-                            ":id",
-                            "threads"
-                          ],
-                          "query": [
-                            {
-                              "key": "page",
-                              "value": "1"
-                            },
-                            {
-                              "key": "limit",
-                              "value": "20"
-                            }
-                          ],
-                          "variable": [
-                            {
-                              "key": "id",
-                              "value": "clxtag789"
-                            }
-                          ]
-                        }
-                      },
-                      "response": [
-                        {
-                          "name": "List of threads with this tag",
-                          "originalRequest": {
-                            "method": "GET",
-                            "header": [],
-                            "url": {
-                              "raw": "{{baseUrl}}/api/tags/:id/threads?page=1&limit=20",
-                              "host": [
-                                "{{baseUrl}}"
-                              ],
-                              "path": [
-                                "api",
-                                "tags",
-                                ":id",
-                                "threads"
-                              ],
-                              "query": [
-                                {
-                                  "key": "page",
-                                  "value": "1"
-                                },
-                                {
-                                  "key": "limit",
-                                  "value": "20"
-                                }
-                              ],
-                              "variable": [
-                                {
-                                  "key": "id",
-                                  "value": "clxtag789"
-                                }
-                              ]
-                            }
-                          },
-                          "status": "OK",
-                          "code": 200,
-                          "_postman_previewlanguage": "text",
-                          "header": [],
-                          "cookie": [],
-                          "body": ""
-                        },
-                        {
-                          "name": "Tag not found",
-                          "originalRequest": {
-                            "method": "GET",
-                            "header": [],
-                            "url": {
-                              "raw": "{{baseUrl}}/api/tags/:id/threads?page=1&limit=20",
-                              "host": [
-                                "{{baseUrl}}"
-                              ],
-                              "path": [
-                                "api",
-                                "tags",
-                                ":id",
-                                "threads"
-                              ],
-                              "query": [
-                                {
-                                  "key": "page",
-                                  "value": "1"
-                                },
-                                {
-                                  "key": "limit",
-                                  "value": "20"
-                                }
-                              ],
-                              "variable": [
-                                {
-                                  "key": "id",
-                                  "value": "clxtag789"
-                                }
-                              ]
-                            }
-                          },
-                          "status": "Not Found",
-                          "code": 404,
-                          "_postman_previewlanguage": "text",
-                          "header": [],
-                          "cookie": [],
-                          "body": ""
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "name": "Get tag details",
-                  "request": {
-                    "method": "GET",
-                    "header": [],
-                    "url": {
-                      "raw": "{{baseUrl}}/api/tags/:id",
-                      "host": [
-                        "{{baseUrl}}"
-                      ],
-                      "path": [
-                        "api",
-                        "tags",
-                        ":id"
-                      ],
-                      "variable": [
-                        {
-                          "key": "id",
-                          "value": "clxtag789"
-                        }
-                      ]
-                    }
-                  },
-                  "response": [
-                    {
-                      "name": "Tag details",
-                      "originalRequest": {
-                        "method": "GET",
-                        "header": [],
-                        "url": {
-                          "raw": "{{baseUrl}}/api/tags/:id",
-                          "host": [
-                            "{{baseUrl}}"
-                          ],
-                          "path": [
-                            "api",
-                            "tags",
-                            ":id"
-                          ],
-                          "variable": [
-                            {
-                              "key": "id",
-                              "value": "clxtag789"
-                            }
-                          ]
-                        }
-                      },
-                      "status": "OK",
-                      "code": 200,
-                      "_postman_previewlanguage": "text",
-                      "header": [],
-                      "cookie": [],
-                      "body": ""
-                    },
-                    {
-                      "name": "Tag not found",
-                      "originalRequest": {
-                        "method": "GET",
-                        "header": [],
-                        "url": {
-                          "raw": "{{baseUrl}}/api/tags/:id",
-                          "host": [
-                            "{{baseUrl}}"
-                          ],
-                          "path": [
-                            "api",
-                            "tags",
-                            ":id"
-                          ],
-                          "variable": [
-                            {
-                              "key": "id",
-                              "value": "clxtag789"
-                            }
-                          ]
-                        }
-                      },
-                      "status": "Not Found",
-                      "code": 404,
-                      "_postman_previewlanguage": "text",
-                      "header": [],
-                      "cookie": [],
-                      "body": ""
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "name": "Create a new tag",
-              "request": {
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"Arsenal\"\n}",
-                  "options": {
-                    "raw": {
-                      "headerFamily": "json",
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "{{baseUrl}}/api/tags",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "api",
-                    "tags"
-                  ]
-                }
-              },
-              "response": [
-                {
-                  "name": "Tag created",
-                  "originalRequest": {
-                    "method": "POST",
-                    "header": [
-                      {
-                        "key": "Content-Type",
-                        "value": "application/json"
-                      }
-                    ],
-                    "body": {
-                      "mode": "raw",
-                      "raw": "{\n  \"name\": \"Arsenal\"\n}",
-                      "options": {
-                        "raw": {
-                          "headerFamily": "json",
-                          "language": "json"
-                        }
-                      }
-                    },
-                    "url": {
-                      "raw": "{{baseUrl}}/api/tags",
-                      "host": [
-                        "{{baseUrl}}"
-                      ],
-                      "path": [
-                        "api",
-                        "tags"
-                      ]
-                    }
-                  },
-                  "status": "Created",
-                  "code": 201,
-                  "_postman_previewlanguage": "text",
-                  "header": [],
-                  "cookie": [],
-                  "body": ""
-                },
-                {
-                  "name": "Unauthorized",
-                  "originalRequest": {
-                    "method": "POST",
-                    "header": [
-                      {
-                        "key": "Content-Type",
-                        "value": "application/json"
-                      }
-                    ],
-                    "body": {
-                      "mode": "raw",
-                      "raw": "{\n  \"name\": \"Arsenal\"\n}",
-                      "options": {
-                        "raw": {
-                          "headerFamily": "json",
-                          "language": "json"
-                        }
-                      }
-                    },
-                    "url": {
-                      "raw": "{{baseUrl}}/api/tags",
-                      "host": [
-                        "{{baseUrl}}"
-                      ],
-                      "path": [
-                        "api",
-                        "tags"
-                      ]
-                    }
-                  },
-                  "status": "Unauthorized",
-                  "code": 401,
-                  "_postman_previewlanguage": "text",
-                  "header": [],
-                  "cookie": [],
-                  "body": ""
-                },
-                {
-                  "name": "Tag already exists",
-                  "originalRequest": {
-                    "method": "POST",
-                    "header": [
-                      {
-                        "key": "Content-Type",
-                        "value": "application/json"
-                      }
-                    ],
-                    "body": {
-                      "mode": "raw",
-                      "raw": "{\n  \"name\": \"Arsenal\"\n}",
-                      "options": {
-                        "raw": {
-                          "headerFamily": "json",
-                          "language": "json"
-                        }
-                      }
-                    },
-                    "url": {
-                      "raw": "{{baseUrl}}/api/tags",
-                      "host": [
-                        "{{baseUrl}}"
-                      ],
-                      "path": [
-                        "api",
-                        "tags"
-                      ]
-                    }
-                  },
-                  "status": "Conflict",
-                  "code": 409,
-                  "_postman_previewlanguage": "text",
-                  "header": [],
-                  "cookie": [],
-                  "body": ""
-                }
-              ]
-            },
-            {
-              "name": "Get list of all tags",
+              "name": "Get all tags",
               "request": {
                 "method": "GET",
                 "header": [],
@@ -9781,7 +9206,7 @@
               },
               "response": [
                 {
-                  "name": "List of tags",
+                  "name": "Tags retrieved successfully",
                   "originalRequest": {
                     "method": "GET",
                     "header": [],
@@ -10288,7 +9713,7 @@
                   "name": "posts",
                   "item": [
                     {
-                      "name": "Get all visible posts in a thread",
+                      "name": "Get posts in a thread",
                       "request": {
                         "method": "GET",
                         "header": [],
@@ -10306,14 +9731,14 @@
                           "variable": [
                             {
                               "key": "id",
-                              "value": "clxthread001"
+                              "value": "string"
                             }
                           ]
                         }
                       },
                       "response": [
                         {
-                          "name": "List of posts",
+                          "name": "Posts retrieved successfully",
                           "originalRequest": {
                             "method": "GET",
                             "header": [],
@@ -10331,7 +9756,7 @@
                               "variable": [
                                 {
                                   "key": "id",
-                                  "value": "clxthread001"
+                                  "value": "string"
                                 }
                               ]
                             }
@@ -10344,7 +9769,7 @@
                           "body": ""
                         },
                         {
-                          "name": "Thread not found or hidden",
+                          "name": "Thread not found",
                           "originalRequest": {
                             "method": "GET",
                             "header": [],
@@ -10362,7 +9787,7 @@
                               "variable": [
                                 {
                                   "key": "id",
-                                  "value": "clxthread001"
+                                  "value": "string"
                                 }
                               ]
                             }
@@ -10373,42 +9798,11 @@
                           "header": [],
                           "cookie": [],
                           "body": ""
-                        },
-                        {
-                          "name": "Internal server error",
-                          "originalRequest": {
-                            "method": "GET",
-                            "header": [],
-                            "url": {
-                              "raw": "{{baseUrl}}/api/threads/:id/posts",
-                              "host": [
-                                "{{baseUrl}}"
-                              ],
-                              "path": [
-                                "api",
-                                "threads",
-                                ":id",
-                                "posts"
-                              ],
-                              "variable": [
-                                {
-                                  "key": "id",
-                                  "value": "clxthread001"
-                                }
-                              ]
-                            }
-                          },
-                          "status": "Internal Server Error",
-                          "code": 500,
-                          "_postman_previewlanguage": "text",
-                          "header": [],
-                          "cookie": [],
-                          "body": ""
                         }
                       ]
                     },
                     {
-                      "name": "Post a comment inside a thread",
+                      "name": "Create a post in a thread",
                       "request": {
                         "method": "POST",
                         "header": [
@@ -10419,7 +9813,7 @@
                         ],
                         "body": {
                           "mode": "raw",
-                          "raw": "{\n  \"content\": \"I think Arsenal will win this one!\"\n}",
+                          "raw": "{\n  \"content\": \"This is my post content\"\n}",
                           "options": {
                             "raw": {
                               "headerFamily": "json",
@@ -10441,14 +9835,14 @@
                           "variable": [
                             {
                               "key": "id",
-                              "value": "clxthread001"
+                              "value": "string"
                             }
                           ]
                         }
                       },
                       "response": [
                         {
-                          "name": "Post created",
+                          "name": "Post created successfully",
                           "originalRequest": {
                             "method": "POST",
                             "header": [
@@ -10459,7 +9853,7 @@
                             ],
                             "body": {
                               "mode": "raw",
-                              "raw": "{\n  \"content\": \"I think Arsenal will win this one!\"\n}",
+                              "raw": "{\n  \"content\": \"This is my post content\"\n}",
                               "options": {
                                 "raw": {
                                   "headerFamily": "json",
@@ -10481,7 +9875,7 @@
                               "variable": [
                                 {
                                   "key": "id",
-                                  "value": "clxthread001"
+                                  "value": "string"
                                 }
                               ]
                             }
@@ -10494,7 +9888,7 @@
                           "body": ""
                         },
                         {
-                          "name": "Content is required",
+                          "name": "Thread is locked or closed",
                           "originalRequest": {
                             "method": "POST",
                             "header": [
@@ -10505,7 +9899,7 @@
                             ],
                             "body": {
                               "mode": "raw",
-                              "raw": "{\n  \"content\": \"I think Arsenal will win this one!\"\n}",
+                              "raw": "{\n  \"content\": \"This is my post content\"\n}",
                               "options": {
                                 "raw": {
                                   "headerFamily": "json",
@@ -10527,99 +9921,7 @@
                               "variable": [
                                 {
                                   "key": "id",
-                                  "value": "clxthread001"
-                                }
-                              ]
-                            }
-                          },
-                          "status": "Bad Request",
-                          "code": 400,
-                          "_postman_previewlanguage": "text",
-                          "header": [],
-                          "cookie": [],
-                          "body": ""
-                        },
-                        {
-                          "name": "Unauthorized",
-                          "originalRequest": {
-                            "method": "POST",
-                            "header": [
-                              {
-                                "key": "Content-Type",
-                                "value": "application/json"
-                              }
-                            ],
-                            "body": {
-                              "mode": "raw",
-                              "raw": "{\n  \"content\": \"I think Arsenal will win this one!\"\n}",
-                              "options": {
-                                "raw": {
-                                  "headerFamily": "json",
-                                  "language": "json"
-                                }
-                              }
-                            },
-                            "url": {
-                              "raw": "{{baseUrl}}/api/threads/:id/posts",
-                              "host": [
-                                "{{baseUrl}}"
-                              ],
-                              "path": [
-                                "api",
-                                "threads",
-                                ":id",
-                                "posts"
-                              ],
-                              "variable": [
-                                {
-                                  "key": "id",
-                                  "value": "clxthread001"
-                                }
-                              ]
-                            }
-                          },
-                          "status": "Unauthorized",
-                          "code": 401,
-                          "_postman_previewlanguage": "text",
-                          "header": [],
-                          "cookie": [],
-                          "body": ""
-                        },
-                        {
-                          "name": "Account banned or thread locked",
-                          "originalRequest": {
-                            "method": "POST",
-                            "header": [
-                              {
-                                "key": "Content-Type",
-                                "value": "application/json"
-                              }
-                            ],
-                            "body": {
-                              "mode": "raw",
-                              "raw": "{\n  \"content\": \"I think Arsenal will win this one!\"\n}",
-                              "options": {
-                                "raw": {
-                                  "headerFamily": "json",
-                                  "language": "json"
-                                }
-                              }
-                            },
-                            "url": {
-                              "raw": "{{baseUrl}}/api/threads/:id/posts",
-                              "host": [
-                                "{{baseUrl}}"
-                              ],
-                              "path": [
-                                "api",
-                                "threads",
-                                ":id",
-                                "posts"
-                              ],
-                              "variable": [
-                                {
-                                  "key": "id",
-                                  "value": "clxthread001"
+                                  "value": "string"
                                 }
                               ]
                             }
@@ -10643,7 +9945,7 @@
                             ],
                             "body": {
                               "mode": "raw",
-                              "raw": "{\n  \"content\": \"I think Arsenal will win this one!\"\n}",
+                              "raw": "{\n  \"content\": \"This is my post content\"\n}",
                               "options": {
                                 "raw": {
                                   "headerFamily": "json",
@@ -10665,7 +9967,7 @@
                               "variable": [
                                 {
                                   "key": "id",
-                                  "value": "clxthread001"
+                                  "value": "string"
                                 }
                               ]
                             }
@@ -10689,7 +9991,7 @@
                             ],
                             "body": {
                               "mode": "raw",
-                              "raw": "{\n  \"content\": \"I think Arsenal will win this one!\"\n}",
+                              "raw": "{\n  \"content\": \"This is my post content\"\n}",
                               "options": {
                                 "raw": {
                                   "headerFamily": "json",
@@ -10711,7 +10013,7 @@
                               "variable": [
                                 {
                                   "key": "id",
-                                  "value": "clxthread001"
+                                  "value": "string"
                                 }
                               ]
                             }
@@ -10843,336 +10145,6 @@
                           },
                           "status": "Internal Server Error",
                           "code": 500,
-                          "_postman_previewlanguage": "text",
-                          "header": [],
-                          "cookie": [],
-                          "body": ""
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "name": "tags",
-                  "item": [
-                    {
-                      "name": "{tagId}",
-                      "item": [
-                        {
-                          "name": "Remove a tag from a thread",
-                          "request": {
-                            "method": "DELETE",
-                            "header": [],
-                            "url": {
-                              "raw": "{{baseUrl}}/api/threads/:id/tags/:tagId",
-                              "host": [
-                                "{{baseUrl}}"
-                              ],
-                              "path": [
-                                "api",
-                                "threads",
-                                ":id",
-                                "tags",
-                                ":tagId"
-                              ],
-                              "variable": [
-                                {
-                                  "key": "id",
-                                  "value": "clxthread001"
-                                },
-                                {
-                                  "key": "tagId",
-                                  "value": "clxtag789"
-                                }
-                              ]
-                            }
-                          },
-                          "response": [
-                            {
-                              "name": "Tag removed from thread",
-                              "originalRequest": {
-                                "method": "DELETE",
-                                "header": [],
-                                "url": {
-                                  "raw": "{{baseUrl}}/api/threads/:id/tags/:tagId",
-                                  "host": [
-                                    "{{baseUrl}}"
-                                  ],
-                                  "path": [
-                                    "api",
-                                    "threads",
-                                    ":id",
-                                    "tags",
-                                    ":tagId"
-                                  ],
-                                  "variable": [
-                                    {
-                                      "key": "id",
-                                      "value": "clxthread001"
-                                    },
-                                    {
-                                      "key": "tagId",
-                                      "value": "clxtag789"
-                                    }
-                                  ]
-                                }
-                              },
-                              "status": "OK",
-                              "code": 200,
-                              "_postman_previewlanguage": "text",
-                              "header": [],
-                              "cookie": [],
-                              "body": ""
-                            },
-                            {
-                              "name": "Unauthorized",
-                              "originalRequest": {
-                                "method": "DELETE",
-                                "header": [],
-                                "url": {
-                                  "raw": "{{baseUrl}}/api/threads/:id/tags/:tagId",
-                                  "host": [
-                                    "{{baseUrl}}"
-                                  ],
-                                  "path": [
-                                    "api",
-                                    "threads",
-                                    ":id",
-                                    "tags",
-                                    ":tagId"
-                                  ],
-                                  "variable": [
-                                    {
-                                      "key": "id",
-                                      "value": "clxthread001"
-                                    },
-                                    {
-                                      "key": "tagId",
-                                      "value": "clxtag789"
-                                    }
-                                  ]
-                                }
-                              },
-                              "status": "Unauthorized",
-                              "code": 401,
-                              "_postman_previewlanguage": "text",
-                              "header": [],
-                              "cookie": [],
-                              "body": ""
-                            },
-                            {
-                              "name": "Thread or tag not found",
-                              "originalRequest": {
-                                "method": "DELETE",
-                                "header": [],
-                                "url": {
-                                  "raw": "{{baseUrl}}/api/threads/:id/tags/:tagId",
-                                  "host": [
-                                    "{{baseUrl}}"
-                                  ],
-                                  "path": [
-                                    "api",
-                                    "threads",
-                                    ":id",
-                                    "tags",
-                                    ":tagId"
-                                  ],
-                                  "variable": [
-                                    {
-                                      "key": "id",
-                                      "value": "clxthread001"
-                                    },
-                                    {
-                                      "key": "tagId",
-                                      "value": "clxtag789"
-                                    }
-                                  ]
-                                }
-                              },
-                              "status": "Not Found",
-                              "code": 404,
-                              "_postman_previewlanguage": "text",
-                              "header": [],
-                              "cookie": [],
-                              "body": ""
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      "name": "Attach tags to a thread",
-                      "request": {
-                        "method": "POST",
-                        "header": [
-                          {
-                            "key": "Content-Type",
-                            "value": "application/json"
-                          }
-                        ],
-                        "body": {
-                          "mode": "raw",
-                          "raw": "{\n  \"tags\": [\n    \"Arsenal\",\n    \"Derby\"\n  ]\n}",
-                          "options": {
-                            "raw": {
-                              "headerFamily": "json",
-                              "language": "json"
-                            }
-                          }
-                        },
-                        "url": {
-                          "raw": "{{baseUrl}}/api/threads/:id/tags",
-                          "host": [
-                            "{{baseUrl}}"
-                          ],
-                          "path": [
-                            "api",
-                            "threads",
-                            ":id",
-                            "tags"
-                          ],
-                          "variable": [
-                            {
-                              "key": "id",
-                              "value": "clxthread001"
-                            }
-                          ]
-                        }
-                      },
-                      "response": [
-                        {
-                          "name": "Tags attached",
-                          "originalRequest": {
-                            "method": "POST",
-                            "header": [
-                              {
-                                "key": "Content-Type",
-                                "value": "application/json"
-                              }
-                            ],
-                            "body": {
-                              "mode": "raw",
-                              "raw": "{\n  \"tags\": [\n    \"Arsenal\",\n    \"Derby\"\n  ]\n}",
-                              "options": {
-                                "raw": {
-                                  "headerFamily": "json",
-                                  "language": "json"
-                                }
-                              }
-                            },
-                            "url": {
-                              "raw": "{{baseUrl}}/api/threads/:id/tags",
-                              "host": [
-                                "{{baseUrl}}"
-                              ],
-                              "path": [
-                                "api",
-                                "threads",
-                                ":id",
-                                "tags"
-                              ],
-                              "variable": [
-                                {
-                                  "key": "id",
-                                  "value": "clxthread001"
-                                }
-                              ]
-                            }
-                          },
-                          "status": "OK",
-                          "code": 200,
-                          "_postman_previewlanguage": "text",
-                          "header": [],
-                          "cookie": [],
-                          "body": ""
-                        },
-                        {
-                          "name": "Unauthorized",
-                          "originalRequest": {
-                            "method": "POST",
-                            "header": [
-                              {
-                                "key": "Content-Type",
-                                "value": "application/json"
-                              }
-                            ],
-                            "body": {
-                              "mode": "raw",
-                              "raw": "{\n  \"tags\": [\n    \"Arsenal\",\n    \"Derby\"\n  ]\n}",
-                              "options": {
-                                "raw": {
-                                  "headerFamily": "json",
-                                  "language": "json"
-                                }
-                              }
-                            },
-                            "url": {
-                              "raw": "{{baseUrl}}/api/threads/:id/tags",
-                              "host": [
-                                "{{baseUrl}}"
-                              ],
-                              "path": [
-                                "api",
-                                "threads",
-                                ":id",
-                                "tags"
-                              ],
-                              "variable": [
-                                {
-                                  "key": "id",
-                                  "value": "clxthread001"
-                                }
-                              ]
-                            }
-                          },
-                          "status": "Unauthorized",
-                          "code": 401,
-                          "_postman_previewlanguage": "text",
-                          "header": [],
-                          "cookie": [],
-                          "body": ""
-                        },
-                        {
-                          "name": "Thread not found",
-                          "originalRequest": {
-                            "method": "POST",
-                            "header": [
-                              {
-                                "key": "Content-Type",
-                                "value": "application/json"
-                              }
-                            ],
-                            "body": {
-                              "mode": "raw",
-                              "raw": "{\n  \"tags\": [\n    \"Arsenal\",\n    \"Derby\"\n  ]\n}",
-                              "options": {
-                                "raw": {
-                                  "headerFamily": "json",
-                                  "language": "json"
-                                }
-                              }
-                            },
-                            "url": {
-                              "raw": "{{baseUrl}}/api/threads/:id/tags",
-                              "host": [
-                                "{{baseUrl}}"
-                              ],
-                              "path": [
-                                "api",
-                                "threads",
-                                ":id",
-                                "tags"
-                              ],
-                              "variable": [
-                                {
-                                  "key": "id",
-                                  "value": "clxthread001"
-                                }
-                              ]
-                            }
-                          },
-                          "status": "Not Found",
-                          "code": 404,
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
@@ -12341,6 +11313,44 @@
                   "header": [],
                   "cookie": [],
                   "body": ""
+                },
+                {
+                  "name": "Translation service unavailable",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"text\": \"Hola, ¿cómo estás?\",\n  \"contentType\": \"POST\",\n  \"contentId\": \"clxpost001\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/translate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "translate"
+                      ]
+                    }
+                  },
+                  "status": "Service Unavailable",
+                  "code": 503,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
                 }
               ]
             }
@@ -12418,6 +11428,43 @@
                           },
                           "status": "OK",
                           "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "body": ""
+                        },
+                        {
+                          "name": "User ID is required",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/users/:id/activity?range=30d",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "users",
+                                ":id",
+                                "activity"
+                              ],
+                              "query": [
+                                {
+                                  "key": "range",
+                                  "value": "30d"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id",
+                                  "value": "clxuser789"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
@@ -12706,6 +11753,68 @@
                           "body": ""
                         },
                         {
+                          "name": "User ID is required",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/users/:id/followers",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "users",
+                                ":id",
+                                "followers"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id",
+                                  "value": "clxuser789"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "body": ""
+                        },
+                        {
+                          "name": "User not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/users/:id/followers",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "users",
+                                ":id",
+                                "followers"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id",
+                                  "value": "clxuser789"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "body": ""
+                        },
+                        {
                           "name": "Internal server error",
                           "originalRequest": {
                             "method": "GET",
@@ -12800,6 +11909,68 @@
                           "body": ""
                         },
                         {
+                          "name": "User ID is required",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/users/:id/following",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "users",
+                                ":id",
+                                "following"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id",
+                                  "value": "clxuser789"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "body": ""
+                        },
+                        {
+                          "name": "User not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/users/:id/following",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "users",
+                                ":id",
+                                "following"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id",
+                                  "value": "clxuser789"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "body": ""
+                        },
+                        {
                           "name": "Internal server error",
                           "originalRequest": {
                             "method": "GET",
@@ -12835,7 +12006,7 @@
                   ]
                 },
                 {
-                  "name": "Get a user's public profile including follower counts and recent activity",
+                  "name": "Get user details",
                   "request": {
                     "method": "GET",
                     "header": [],
@@ -12852,14 +12023,14 @@
                       "variable": [
                         {
                           "key": "id",
-                          "value": "clxuser789"
+                          "value": "string"
                         }
                       ]
                     }
                   },
                   "response": [
                     {
-                      "name": "User profile with follower/following counts, threads, posts, and replies",
+                      "name": "User details retrieved successfully",
                       "originalRequest": {
                         "method": "GET",
                         "header": [],
@@ -12876,13 +12047,43 @@
                           "variable": [
                             {
                               "key": "id",
-                              "value": "clxuser789"
+                              "value": "string"
                             }
                           ]
                         }
                       },
                       "status": "OK",
                       "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "body": ""
+                    },
+                    {
+                      "name": "User ID is required",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/users/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "users",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "string"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
                       "_postman_previewlanguage": "text",
                       "header": [],
                       "cookie": [],
@@ -12906,7 +12107,7 @@
                           "variable": [
                             {
                               "key": "id",
-                              "value": "clxuser789"
+                              "value": "string"
                             }
                           ]
                         }
@@ -12936,7 +12137,7 @@
                           "variable": [
                             {
                               "key": "id",
-                              "value": "clxuser789"
+                              "value": "string"
                             }
                           ]
                         }
@@ -13020,6 +12221,38 @@
                               "body": ""
                             },
                             {
+                              "name": "Follower ID is required",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/users/me/followers/:followerId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "users",
+                                    "me",
+                                    "followers",
+                                    ":followerId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "followerId",
+                                      "value": "clxuser456"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "body": ""
+                            },
+                            {
                               "name": "Unauthorized",
                               "originalRequest": {
                                 "method": "DELETE",
@@ -13046,6 +12279,38 @@
                               },
                               "status": "Unauthorized",
                               "code": 401,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "body": ""
+                            },
+                            {
+                              "name": "Follow relationship not found",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/users/me/followers/:followerId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "users",
+                                    "me",
+                                    "followers",
+                                    ":followerId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "followerId",
+                                      "value": "clxuser456"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
@@ -13287,7 +12552,7 @@
                   ]
                 },
                 {
-                  "name": "Get the authenticated user's own profile",
+                  "name": "Get current user profile",
                   "request": {
                     "method": "GET",
                     "header": [],
@@ -13305,7 +12570,7 @@
                   },
                   "response": [
                     {
-                      "name": "Authenticated user's profile",
+                      "name": "User profile retrieved successfully",
                       "originalRequest": {
                         "method": "GET",
                         "header": [],
@@ -13351,62 +12616,12 @@
                       "header": [],
                       "cookie": [],
                       "body": ""
-                    }
-                  ]
-                },
-                {
-                  "name": "Update the authenticated user's profile",
-                  "request": {
-                    "method": "PATCH",
-                    "header": [
-                      {
-                        "key": "Content-Type",
-                        "value": "application/json"
-                      }
-                    ],
-                    "body": {
-                      "mode": "raw",
-                      "raw": "{\n  \"username\": \"john_doe_updated\",\n  \"avatarUrl\": \"https://example.com/avatar.png\"\n}",
-                      "options": {
-                        "raw": {
-                          "headerFamily": "json",
-                          "language": "json"
-                        }
-                      }
                     },
-                    "url": {
-                      "raw": "{{baseUrl}}/api/users/me",
-                      "host": [
-                        "{{baseUrl}}"
-                      ],
-                      "path": [
-                        "api",
-                        "users",
-                        "me"
-                      ]
-                    }
-                  },
-                  "response": [
                     {
-                      "name": "Profile updated",
+                      "name": "Internal server error",
                       "originalRequest": {
-                        "method": "PATCH",
-                        "header": [
-                          {
-                            "key": "Content-Type",
-                            "value": "application/json"
-                          }
-                        ],
-                        "body": {
-                          "mode": "raw",
-                          "raw": "{\n  \"username\": \"john_doe_updated\",\n  \"avatarUrl\": \"https://example.com/avatar.png\"\n}",
-                          "options": {
-                            "raw": {
-                              "headerFamily": "json",
-                              "language": "json"
-                            }
-                          }
-                        },
+                        "method": "GET",
+                        "header": [],
                         "url": {
                           "raw": "{{baseUrl}}/api/users/me",
                           "host": [
@@ -13419,86 +12634,8 @@
                           ]
                         }
                       },
-                      "status": "OK",
-                      "code": 200,
-                      "_postman_previewlanguage": "text",
-                      "header": [],
-                      "cookie": [],
-                      "body": ""
-                    },
-                    {
-                      "name": "Invalid fields",
-                      "originalRequest": {
-                        "method": "PATCH",
-                        "header": [
-                          {
-                            "key": "Content-Type",
-                            "value": "application/json"
-                          }
-                        ],
-                        "body": {
-                          "mode": "raw",
-                          "raw": "{\n  \"username\": \"john_doe_updated\",\n  \"avatarUrl\": \"https://example.com/avatar.png\"\n}",
-                          "options": {
-                            "raw": {
-                              "headerFamily": "json",
-                              "language": "json"
-                            }
-                          }
-                        },
-                        "url": {
-                          "raw": "{{baseUrl}}/api/users/me",
-                          "host": [
-                            "{{baseUrl}}"
-                          ],
-                          "path": [
-                            "api",
-                            "users",
-                            "me"
-                          ]
-                        }
-                      },
-                      "status": "Bad Request",
-                      "code": 400,
-                      "_postman_previewlanguage": "text",
-                      "header": [],
-                      "cookie": [],
-                      "body": ""
-                    },
-                    {
-                      "name": "Unauthorized",
-                      "originalRequest": {
-                        "method": "PATCH",
-                        "header": [
-                          {
-                            "key": "Content-Type",
-                            "value": "application/json"
-                          }
-                        ],
-                        "body": {
-                          "mode": "raw",
-                          "raw": "{\n  \"username\": \"john_doe_updated\",\n  \"avatarUrl\": \"https://example.com/avatar.png\"\n}",
-                          "options": {
-                            "raw": {
-                              "headerFamily": "json",
-                              "language": "json"
-                            }
-                          }
-                        },
-                        "url": {
-                          "raw": "{{baseUrl}}/api/users/me",
-                          "host": [
-                            "{{baseUrl}}"
-                          ],
-                          "path": [
-                            "api",
-                            "users",
-                            "me"
-                          ]
-                        }
-                      },
-                      "status": "Unauthorized",
-                      "code": 401,
+                      "status": "Internal Server Error",
+                      "code": 500,
                       "_postman_previewlanguage": "text",
                       "header": [],
                       "cookie": [],
@@ -13511,40 +12648,6 @@
           ]
         }
       ]
-    }
-  ],
-  "auth": {
-    "type": "bearer",
-    "bearer": [
-      {
-        "key": "token",
-        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6bnVsbCwidXNlcl9pZCI6ImNtbWlpNnl4azAwMDFlZjkwdTJtMDh4NXQiLCJyb2xlIjoidXNlciIsImlzQmFubmVkIjpmYWxzZSwiaWF0IjoxNzczMDE5OTM2LCJleHAiOjE3NzMwMjM1MzZ9.3HmlojYng0z0Ix1aMoNZDtZdwLfnLz5LRLpa3gVuq9I",
-        "type": "string"
-      }
-    ]
-  },
-  "event": [
-    {
-      "listen": "prerequest",
-      "script": {
-        "type": "text/javascript",
-        "packages": {},
-        "requests": {},
-        "exec": [
-          ""
-        ]
-      }
-    },
-    {
-      "listen": "test",
-      "script": {
-        "type": "text/javascript",
-        "packages": {},
-        "requests": {},
-        "exec": [
-          ""
-        ]
-      }
     }
   ],
   "variable": [

@@ -28,6 +28,8 @@ paths:
           description: Forbidden
         '404':
           description: Appeal not found
+        '500':
+          description: Internal server error
     patch:
       summary: Approve or reject a ban appeal (admin only)
       tags:
@@ -70,6 +72,8 @@ paths:
           description: Forbidden
         '404':
           description: Appeal not found
+        '500':
+          description: Internal server error
   /api/admin/appeals:
     get:
       summary: List all appeals with optional filters (admin only)
@@ -106,6 +110,8 @@ paths:
           description: Unauthorized
         '403':
           description: Forbidden
+        '500':
+          description: Internal server error
   /api/admin/bans/{id}/lift:
     patch:
       summary: Lift (unban) an active ban (admin only)
@@ -131,6 +137,8 @@ paths:
           description: Forbidden
         '404':
           description: Ban not found
+        '500':
+          description: Internal server error
   /api/admin/bans/{id}:
     get:
       summary: Get details of a specific ban record (admin only)
@@ -154,6 +162,8 @@ paths:
           description: Forbidden
         '404':
           description: Ban not found
+        '500':
+          description: Internal server error
   /api/admin/bans:
     post:
       summary: Ban a user (admin only)
@@ -196,6 +206,8 @@ paths:
           description: User, reported item, or report not found
         '409':
           description: User is already banned
+        '500':
+          description: Internal server error
     get:
       summary: List bans with optional status filter and pagination (admin only)
       tags:
@@ -230,6 +242,8 @@ paths:
           description: Unauthorized
         '403':
           description: Forbidden
+        '500':
+          description: Internal server error
   /api/admin/posts/{id}/hide:
     patch:
       summary: Hide a post (admin only)
@@ -347,54 +361,9 @@ paths:
           description: Forbidden
         '404':
           description: Reported item or its content not found
-  /api/admin/reports/{id}/approve:
-    patch:
-      summary: >-
-        Approve a report — hides content and optionally bans the user (admin
-        only)
-      tags:
-        - Admin
-      security:
-        - bearerAuth: []
-      parameters:
-        - in: path
-          name: id
-          required: true
-          schema:
-            type: string
-          example: clxreporteditem001
-      responses:
-        '200':
-          description: Report approved and status set to APPROVED
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Reported item not found
-  /api/admin/reports/{id}/dismiss:
-    patch:
-      summary: Dismiss a report — sets status to DISMISSED (admin only)
-      tags:
-        - Admin
-      security:
-        - bearerAuth: []
-      parameters:
-        - in: path
-          name: id
-          required: true
-          schema:
-            type: string
-          example: clxreporteditem001
-      responses:
-        '200':
-          description: Report dismissed
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Reported item not found
+        '500':
+          description: Internal server error
+  
   /api/admin/reports/{id}:
     get:
       summary: Get full detail of a reported item including AI verdict (admin only)
@@ -422,6 +391,49 @@ paths:
           description: Forbidden
         '404':
           description: Reported item not found
+        '500':
+          description: Internal server error
+    patch:
+      summary: Dismiss or approve a reported item (admin only)
+      tags:
+        - Admin
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          example: clxreporteditem001
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - action
+              properties:
+                action:
+                  type: string
+                  enum:
+                    - dismiss
+                    - approve
+                  example: approve
+      responses:
+        '200':
+          description: Report dismissed or approved; content hidden if approved
+        '400':
+          description: Invalid action, invalid JSON, or report already resolved
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Reported item not found
+        '500':
+          description: Internal server error
   /api/admin/reports:
     get:
       summary: Admin moderation queue of reported items (admin only)
@@ -548,6 +560,8 @@ paths:
           description: No active ban found
         '409':
           description: Pending appeal already exists for this ban
+        '500':
+          description: Internal server error
     get:
       summary: Get the authenticated user's own appeals
       tags:
@@ -581,6 +595,8 @@ paths:
           description: Invalid status value
         '401':
           description: Unauthorized
+        '500':
+          description: Internal server error
   /api/auth/login:
     post:
       summary: Log in with email and password
@@ -686,58 +702,11 @@ paths:
           example: false
       responses:
         '200':
-          description: Daily digest content
-        '404':
-          description: No digest found for the requested date
+          description: >-
+            Daily digest content, or empty result if no digest exists for the
+            requested date
         '500':
           description: Internal server error
-  /api/favourite-teams/{teamId}:
-    delete:
-      summary: Remove a favourite team
-      tags:
-        - FavouriteTeams
-      security:
-        - bearerAuth: []
-      parameters:
-        - in: path
-          name: teamId
-          required: true
-          schema:
-            type: string
-          example: clxteam123
-      responses:
-        '200':
-          description: Favourite team removed
-        '401':
-          description: Unauthorized
-        '404':
-          description: Team not found
-  /api/favourite-teams:
-    post:
-      summary: Set the authenticated user's favourite team
-      tags:
-        - FavouriteTeams
-      security:
-        - bearerAuth: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              required:
-                - teamId
-              properties:
-                teamId:
-                  type: string
-                  example: clxteam123
-      responses:
-        '200':
-          description: Favourite team set
-        '401':
-          description: Unauthorized
-        '404':
-          description: Team not found
   /api/feed/{id}/read:
     patch:
       summary: Mark a feed entry as read
@@ -746,8 +715,8 @@ paths:
       security:
         - bearerAuth: []
       parameters:
-        - in: path
-          name: id
+        - name: id
+          in: path
           required: true
           schema:
             type: string
@@ -898,39 +867,6 @@ paths:
           description: Invalid or missing matchday/date range parameters
         '500':
           description: Internal server error
-  /api/notifications/{id}/read:
-    patch:
-      summary: Mark a notification as read
-      tags:
-        - Notifications
-      security:
-        - bearerAuth: []
-      parameters:
-        - in: path
-          name: id
-          required: true
-          schema:
-            type: string
-          example: clxnotif001
-      responses:
-        '200':
-          description: Notification marked as read
-        '401':
-          description: Unauthorized
-        '404':
-          description: Notification not found
-  /api/notifications:
-    get:
-      summary: Get unread notifications for the authenticated user
-      tags:
-        - Notifications
-      security:
-        - bearerAuth: []
-      responses:
-        '200':
-          description: List of unread notifications
-        '401':
-          description: Unauthorized
   /api/polls/{id}/options:
     post:
       summary: Add options to an existing poll
@@ -1231,23 +1167,6 @@ paths:
           description: Forbidden
         '404':
           description: Post not found
-  /api/posts/{id}/versions:
-    get:
-      summary: Get edit history of a post
-      tags:
-        - Posts
-      parameters:
-        - in: path
-          name: id
-          required: true
-          schema:
-            type: string
-          example: clx1abc123
-      responses:
-        '200':
-          description: List of previous versions
-        '404':
-          description: Post not found
   /api/replies/{id}:
     patch:
       summary: Edit a reply's content (owner only)
@@ -1459,83 +1378,14 @@ paths:
           description: Invalid type parameter or invalid season year
         '500':
           description: Internal server error (API key missing)
-  /api/tags/{id}:
-    get:
-      summary: Get tag details
-      tags:
-        - Tags
-      parameters:
-        - in: path
-          name: id
-          required: true
-          schema:
-            type: string
-          example: clxtag789
-      responses:
-        '200':
-          description: Tag details
-        '404':
-          description: Tag not found
-  /api/tags/{id}/threads:
-    get:
-      summary: Get threads associated with a tag
-      tags:
-        - Tags
-      parameters:
-        - in: path
-          name: id
-          required: true
-          schema:
-            type: string
-          example: clxtag789
-        - in: query
-          name: page
-          schema:
-            type: integer
-          example: 1
-        - in: query
-          name: limit
-          schema:
-            type: integer
-          example: 20
-      responses:
-        '200':
-          description: List of threads with this tag
-        '404':
-          description: Tag not found
   /api/tags:
-    post:
-      summary: Create a new tag
-      tags:
-        - Tags
-      security:
-        - bearerAuth: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              required:
-                - name
-              properties:
-                name:
-                  type: string
-                  example: Arsenal
-      responses:
-        '201':
-          description: Tag created
-        '401':
-          description: Unauthorized
-        '409':
-          description: Tag already exists
     get:
-      summary: Get list of all tags
+      summary: Get all tags
       tags:
         - Tags
       responses:
         '200':
-          description: List of tags
+          description: Tags retrieved successfully
         '500':
           description: Internal server error
   /api/threads/{id}/full:
@@ -1603,36 +1453,32 @@ paths:
           description: Internal server error
   /api/threads/{id}/posts:
     get:
-      summary: Get all visible posts in a thread
+      summary: Get posts in a thread
       tags:
         - Threads
       parameters:
-        - in: path
-          name: id
+        - name: id
+          in: path
           required: true
           schema:
             type: string
-          example: clxthread001
       responses:
         '200':
-          description: List of posts
+          description: Posts retrieved successfully
         '404':
-          description: Thread not found or hidden
-        '500':
-          description: Internal server error
+          description: Thread not found
     post:
-      summary: Post a comment inside a thread
+      summary: Create a post in a thread
       tags:
         - Threads
       security:
         - bearerAuth: []
       parameters:
-        - in: path
-          name: id
+        - name: id
+          in: path
           required: true
           schema:
             type: string
-          example: clxthread001
       requestBody:
         required: true
         content:
@@ -1644,16 +1490,12 @@ paths:
               properties:
                 content:
                   type: string
-                  example: I think Arsenal will win this one!
+                  example: This is my post content
       responses:
         '201':
-          description: Post created
-        '400':
-          description: Content is required
-        '401':
-          description: Unauthorized
+          description: Post created successfully
         '403':
-          description: Account banned or thread locked
+          description: Thread is locked or closed
         '404':
           description: Thread not found
         '500':
@@ -1759,70 +1601,6 @@ paths:
           description: Thread not found or hidden
         '500':
           description: Internal server error
-  /api/threads/{id}/tags/{tagId}:
-    delete:
-      summary: Remove a tag from a thread
-      tags:
-        - Threads
-      security:
-        - bearerAuth: []
-      parameters:
-        - in: path
-          name: id
-          required: true
-          schema:
-            type: string
-          example: clxthread001
-        - in: path
-          name: tagId
-          required: true
-          schema:
-            type: string
-          example: clxtag789
-      responses:
-        '200':
-          description: Tag removed from thread
-        '401':
-          description: Unauthorized
-        '404':
-          description: Thread or tag not found
-  /api/threads/{id}/tags:
-    post:
-      summary: Attach tags to a thread
-      tags:
-        - Threads
-      security:
-        - bearerAuth: []
-      parameters:
-        - in: path
-          name: id
-          required: true
-          schema:
-            type: string
-          example: clxthread001
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              required:
-                - tags
-              properties:
-                tags:
-                  type: array
-                  items:
-                    type: string
-                  example:
-                    - Arsenal
-                    - Derby
-      responses:
-        '200':
-          description: Tags attached
-        '401':
-          description: Unauthorized
-        '404':
-          description: Thread not found
   /api/threads:
     post:
       summary: Create a new discussion thread
@@ -1872,51 +1650,51 @@ paths:
       tags:
         - Threads
       parameters:
-        - in: query
-          name: teamId
+        - name: teamId
+          in: query
           schema:
             type: string
           example: clxteam123
-        - in: query
-          name: matchId
+        - name: matchId
+          in: query
           schema:
             type: string
           example: clxmatch456
-        - in: query
-          name: tag
+        - name: tag
+          in: query
           schema:
             type: string
           example: Arsenal
-        - in: query
-          name: authorId
+        - name: authorId
+          in: query
           schema:
             type: string
           example: clxuser789
-        - in: query
-          name: author
+        - name: author
+          in: query
           schema:
             type: string
           example: john_doe
-        - in: query
-          name: q
+        - name: q
+          in: query
           schema:
             type: string
           example: match day
-        - in: query
-          name: sort
+        - name: sort
+          in: query
           schema:
             type: string
             enum:
               - recent
               - top
           example: recent
-        - in: query
-          name: page
+        - name: page
+          in: query
           schema:
             type: integer
           example: 1
-        - in: query
-          name: limit
+        - name: limit
+          in: query
           schema:
             type: integer
           example: 20
@@ -1962,20 +1740,22 @@ paths:
           description: Post or reply not found
         '500':
           description: Internal server error
+        '503':
+          description: Translation service unavailable
   /api/users/{id}/activity:
     get:
       summary: Get a user's daily activity counts over a specified time range
       tags:
         - Users
       parameters:
-        - in: path
-          name: id
+        - name: id
+          in: path
           required: true
           schema:
             type: string
           example: clxuser789
-        - in: query
-          name: range
+        - name: range
+          in: query
           schema:
             type: string
             enum:
@@ -1987,6 +1767,8 @@ paths:
       responses:
         '200':
           description: Daily activity data including posts, replies, and totals
+        '400':
+          description: User ID is required
         '404':
           description: User not found
         '500':
@@ -2024,8 +1806,8 @@ paths:
       tags:
         - Users
       parameters:
-        - in: path
-          name: id
+        - name: id
+          in: path
           required: true
           schema:
             type: string
@@ -2033,6 +1815,10 @@ paths:
       responses:
         '200':
           description: List of followers with profile info
+        '400':
+          description: User ID is required
+        '404':
+          description: User not found
         '500':
           description: Internal server error
   /api/users/{id}/following:
@@ -2041,8 +1827,8 @@ paths:
       tags:
         - Users
       parameters:
-        - in: path
-          name: id
+        - name: id
+          in: path
           required: true
           schema:
             type: string
@@ -2050,27 +1836,28 @@ paths:
       responses:
         '200':
           description: List of followed users with profile info
+        '400':
+          description: User ID is required
+        '404':
+          description: User not found
         '500':
           description: Internal server error
   /api/users/{id}:
     get:
-      summary: >-
-        Get a user's public profile including follower counts and recent
-        activity
+      summary: Get user details
       tags:
         - Users
       parameters:
-        - in: path
-          name: id
+        - name: id
+          in: path
           required: true
           schema:
             type: string
-          example: clxuser789
       responses:
         '200':
-          description: >-
-            User profile with follower/following counts, threads, posts, and
-            replies
+          description: User details retrieved successfully
+        '400':
+          description: User ID is required
         '404':
           description: User not found
         '500':
@@ -2083,8 +1870,8 @@ paths:
       security:
         - bearerAuth: []
       parameters:
-        - in: path
-          name: followerId
+        - name: followerId
+          in: path
           required: true
           schema:
             type: string
@@ -2092,8 +1879,12 @@ paths:
       responses:
         '200':
           description: Follower removed
+        '400':
+          description: Follower ID is required
         '401':
           description: Unauthorized
+        '404':
+          description: Follow relationship not found
         '500':
           description: Internal server error
   /api/users/me/followers:
@@ -2126,41 +1917,17 @@ paths:
           description: Internal server error
   /api/users/me:
     get:
-      summary: Get the authenticated user's own profile
+      summary: Get current user profile
       tags:
         - Users
       security:
         - bearerAuth: []
       responses:
         '200':
-          description: Authenticated user's profile
+          description: User profile retrieved successfully
         '401':
           description: Unauthorized
-    patch:
-      summary: Update the authenticated user's profile
-      tags:
-        - Users
-      security:
-        - bearerAuth: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                username:
-                  type: string
-                  example: john_doe_updated
-                avatarUrl:
-                  type: string
-                  example: https://example.com/avatar.png
-      responses:
-        '200':
-          description: Profile updated
-        '400':
-          description: Invalid fields
-        '401':
-          description: Unauthorized
+        '500':
+          description: Internal server error
 components: {}
 tags: []
