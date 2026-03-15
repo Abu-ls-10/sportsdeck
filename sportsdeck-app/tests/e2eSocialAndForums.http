@@ -1,23 +1,23 @@
 @baseUrl = http://localhost:3000
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFidSIsInVzZXJfaWQiOiJjbW1qcGJ6cHEwMDAwdWh5eG43a3F6ZXgxIiwicm9sZSI6IkFETUlOIiwiaXNCYW5uZWQiOmZhbHNlLCJpYXQiOjE3NzMwOTIzNTMsImV4cCI6MTc3MzExMDM1M30.DCTNfSkn2SZLogoFpU2TofjyX4QgWTSc4yS8HfO64Ns
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFidSIsImlkIjoiY21ta2o4YW9sMDAwMHVoYnNldXp3NjdleCIsInJvbGUiOiJBRE1JTiIsImlzQmFubmVkIjpmYWxzZSwiaWF0IjoxNzczMTczNzk4LCJleHAiOjE3NzMxOTE3OTh9.6UuBJkrpm_IVqoajji1_Hccgljb4WfKjTlR6cbIiBUo
 
-@abuUserId = cmmjpbzpq0000uhyxn7kqzex1
-@chelseaUserId = cmmjpbzrn0001uhyxlanb9cxe
-@arsenalUserId = cmmjpbzs10002uhyxu5k97in5
-@lfcUserId = cmmjpbzs20003uhyxf3vf7gn7
+@abuUserId = cmmkj8aol0000uhbseuzw67ex
+@chelseaUserId = cmmkj8apt0001uhbs7krpbwqh
+@arsenalUserId = cmmkj8aq60002uhbsaux7n7o4
+@lfcUserId = cmmkj8aq60003uhbszkp2pgw7
 
-@matchId = cmmjpbzzh0008uhyxo4obzjoe
+@matchId = cmmkj8ciq000puhbskf2o7ia0
 
-@matchThreadId = cmmjpc00i000auhyxkigcy6rp
-@arsenalThreadId = cmmjpc01h000cuhyxqo3b6fx6
+@matchThreadId = cmmkj8ckn000tuhbsxp3ebz2n
+@arsenalThreadId = cmmkj8ckn000tuhbsxp3ebz2n
 
-@postId = cmmjpc02e000euhyx84y6mpiu
-@replyId = cmmjpc03d000guhyxtv8or1o5
+@postId = cmmkj8clg000vuhbsep5qrmo6
+@replyId = cmmkj8cma000xuhbsto8lasem
 
-@pollId = cmmjpc047000iuhyxoxjejlnj
-@arsenalOptionId = cmmjpc055000juhyxofnleb4m
-@liverpoolOptionId = cmmjpc055000kuhyxfhvr4xs9
-@drawOptionId = cmmjpc055000luhyx6ig21vml
+@pollId = cmmkj8cn1000zuhbsb9256px3
+@arsenalOptionId = cmmkj8cnv0010uhbs7ooeofal
+@liverpoolOptionId = cmmkj8cnv0011uhbstgx8f6r0
+@drawOptionId = cmmkj8cnv0012uhbsbinbkrv4
 
 
 ############################################

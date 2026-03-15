@@ -44,15 +44,15 @@ export async function POST(req: Request){
     }
 
     // Extract payload information
-    const {username, user_id, role} = payload;
-    const access_payload = {username: username, user_id: user_id, role: role};
+    const {username, id, role} = payload;
+    const access_payload = {username: username, id: id, role: role};
 
 
     // Find the user corresponding to the refresh token. If not found, return an unauthorized error
     try {
         const user = await prisma.user.findFirst({
             where: {
-                id: user_id
+                id: id
             }
         });
 

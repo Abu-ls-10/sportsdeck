@@ -199,7 +199,7 @@ export async function PATCH(
       data: {
         status,
         decisionNote: decisionNote ?? null,
-        reviewedByAdminId: admin.user_id,
+        reviewedByAdminId: admin.id,
         reviewedAt: new Date(),
       },
       include: {

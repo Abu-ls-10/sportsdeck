@@ -171,7 +171,7 @@ async function postHandler(req: AuthenticatedRequest) {
       const thread = await tx.thread.create({
         data: {
           title,
-          authorId: user.user_id,
+          authorId: user.id,
           teamId: teamId ?? null,
           isMatchThread: false,
           isLocked: false,
@@ -183,7 +183,7 @@ async function postHandler(req: AuthenticatedRequest) {
       await tx.post.create({
         data: {
           threadId: thread.id,
-          authorId: user.user_id,
+          authorId: user.id,
           content
         }
       })

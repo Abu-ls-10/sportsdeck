@@ -199,7 +199,7 @@ export async function PATCH(
     return NextResponse.json({ message: "Report ID is required" }, { status: 400 })
   }
 
-  const adminId = user.user_id
+  const adminId = user.id
 
   let body: { action?: string }
   try {

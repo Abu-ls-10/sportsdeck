@@ -49,7 +49,7 @@ async function deleteHandler(
     }
 
     // Only owner or admin can modify thread tags
-    if (thread.authorId !== currentUser.user_id && currentUser.role !== "ADMIN") {
+    if (thread.authorId !== currentUser.id && currentUser.role !== "ADMIN") {
       return NextResponse.json(
         { error: "You do not have permission to modify tags on this thread." },
         { status: 403 }

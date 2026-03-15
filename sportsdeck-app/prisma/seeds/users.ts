@@ -6,6 +6,15 @@ export default async function seedUsers(prisma: PrismaClient) {
   const users = await Promise.all([
     prisma.user.create({
       data: {
+        id: "system",
+        email: "system@sportsdeck.com",
+        username: "system",
+        role: "ADMIN",
+        isBanned: false
+      }
+    }),
+    prisma.user.create({
+      data: {
         email: "abu@sportsdeck.com",
         username: "abu",
         role: "ADMIN",
