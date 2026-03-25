@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client"
+import { PrismaClient } from "../../src/generated/prisma"
 
 export default async function seedThreads(prisma: PrismaClient, users: any[], teams: any[], matches: any[]) {
 
