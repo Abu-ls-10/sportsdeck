@@ -1,0 +1,52 @@
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: sportsdeck-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: sportsdeck
+      POSTGRES_PASSWORD: sportsdeck
+      POSTGRES_DB: sportsdeck
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sportsdeck -d sportsdeck"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build:
+      context: ./sportsdeck-app
+      dockerfile: Dockerfile
+    container_name: sportsdeck-app
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://sportsdeck:sportsdeck@db:5432/sportsdeck
+      JWT_ACCESS_SECRET: ${JWT_ACCESS_SECRET}
+      JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET}
+      JWT_ACCESS_EXPIRATION: ${JWT_ACCESS_EXPIRATION}
+      JWT_REFRESH_EXPIRATION: ${JWT_REFRESH_EXPIRATION}
+      SALT_ROUNDS: ${SALT_ROUNDS}
+      HUGGINGFACE_API_KEY: ${HUGGINGFACE_API_KEY}
+      X_AUTH_TOKEN: ${X_AUTH_TOKEN}
+      NODE_ENV: production
+    expose:
+      - "3000"
+
+  nginx:
+    image: nginx:alpine
+    container_name: sportsdeck-nginx
+    restart: unless-stopped
+    depends_on:
+      - app
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+
+volumes:
+  postgres_data:

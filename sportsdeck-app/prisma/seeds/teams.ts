@@ -1,18 +1,7 @@
-    // First check if we are allowed to run this seed (definitely not in production)
-    // Calll the api for teams
-    // Put in database
-    // Print a message
-
-import { PrismaClient, Prisma } from "@/generated/prisma";
-import { DefaultArgs } from "@/generated/prisma/runtime/library";
-import { prisma } from "../../src/lib/prisma"
+import { PrismaClient, Prisma } from "../../src/generated/prisma";
+import { DefaultArgs } from "../../src/generated/prisma/runtime/library";
 
 export async function main(prisma: PrismaClient<Prisma.PrismaClientOptions, never, DefaultArgs>){
-    if (process.env.NODE_ENV === "production"){
-        throw new Error("Can not run this seed during production!")
-    }
-    
-    // Get the teams
     const apiKey = process.env.X_AUTH_TOKEN;
     if (!apiKey) throw new Error("Missing X_AUTH_TOKEN");
 
@@ -38,8 +27,7 @@ export async function main(prisma: PrismaClient<Prisma.PrismaClientOptions, neve
         const data = await response.json();
         const teams = data["teams"];
 
-        //Populate database
-        await Promise.all(teams.map((team:any) =>
+        await Promise.all(teams.map((team: any) =>
             prisma.team.upsert({
                 where: {externalId: String(team.id)},
                 update: {
