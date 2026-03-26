@@ -20,7 +20,9 @@ COPY . .
 # Generate Prisma client
 RUN npx prisma generate
 
-# Build Next.js app
+# Build Next.js app (NEXT_PUBLIC_* is inlined at build time — must match browser URL, e.g. Nginx http://localhost)
+ARG NEXT_PUBLIC_APP_URL=http://localhost
+ENV NEXT_PUBLIC_APP_URL=$NEXT_PUBLIC_APP_URL
 ENV NEXT_TELEMETRY_DISABLED=1
 RUN npm run build
 
