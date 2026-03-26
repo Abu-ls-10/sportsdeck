@@ -6,3 +6,4 @@
 *.db-journal
 /prisma/*.db
 /prisma/dev.db
+node_modules
