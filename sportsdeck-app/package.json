@@ -11,6 +11,11 @@
     "studio": "prisma studio"
   },
   "dependencies": {
+    "@mantine/core": "^8.3.18",
+    "@mantine/form": "^8.3.18",
+    "@mantine/hooks": "^8.3.18",
+    "@mantine/notifications": "^8.3.18",
+    "@tabler/icons-react": "^3.40.0",
     "bcrypt": "^6.0.0",
     "bcryptjs": "^3.0.3",
     "dotenv": "^17.3.1",
