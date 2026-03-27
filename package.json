@@ -1,6 +1,10 @@
 {
   "dependencies": {
+    "@mantine/core": "^8.3.18",
+    "@mantine/form": "^8.3.18",
+    "@mantine/notifications": "^8.3.18",
     "@prisma/client": "^6.19.2",
+    "@tabler/icons-react": "^3.41.0",
     "prisma": "^6.12.0"
   }
 }

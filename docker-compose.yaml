@@ -3,6 +3,8 @@ services:
     image: postgres:15-alpine
     container_name: sportsdeck-db
     restart: unless-stopped
+    ports:
+      - "5432:5432" 
     environment:
       POSTGRES_USER: sportsdeck
       POSTGRES_PASSWORD: sportsdeck
@@ -19,22 +21,21 @@ services:
     build:
       context: ./sportsdeck-app
       dockerfile: Dockerfile
-      args:
-        # Must match how users open the app (Nginx on port 80 → http://localhost). Register the same OAuth callback URLs in GitHub/Google.
-        NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL:-http://localhost}
     container_name: sportsdeck-app
     restart: unless-stopped
     depends_on:
       db:
         condition: service_healthy
-    env_file:
-      - ./sportsdeck-app/.env
     environment:
-      # Override host DB URL from .env (localhost) with the Docker service name
       DATABASE_URL: postgresql://sportsdeck:sportsdeck@db:5432/sportsdeck
+      JWT_ACCESS_SECRET: ${JWT_ACCESS_SECRET}
+      JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET}
+      JWT_ACCESS_EXPIRATION: ${JWT_ACCESS_EXPIRATION}
+      JWT_REFRESH_EXPIRATION: ${JWT_REFRESH_EXPIRATION}
+      SALT_ROUNDS: ${SALT_ROUNDS}
+      HUGGINGFACE_API_KEY: ${HUGGINGFACE_API_KEY}
+      X_AUTH_TOKEN: ${X_AUTH_TOKEN}
       NODE_ENV: production
-      # OAuth redirects and /auth/callback links must use the public origin (not :3000 inside the container)
-      NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL:-http://localhost}
     expose:
       - "3000"
 
