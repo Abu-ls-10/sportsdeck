@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
 import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
+import { reevaluateExistingReportedItem } from "@/lib/moderation"
 
 /**
  * @openapi
@@ -281,6 +282,13 @@ async function patchHandler(
       return updated
 
     })
+
+    // Re-evaluate AI verdict for already-reported threads after edit.
+    // This does NOT auto-create a ReportedItem for unreported threads.
+    const reevaluateTitle = title ?? thread.title
+    reevaluateExistingReportedItem("THREAD", thread.id, reevaluateTitle).catch((err) =>
+      console.error("[threads/edit] reevaluateExistingReportedItem failed:", err)
+    )
 
     return NextResponse.json(updatedThread, { status: 200 })
 

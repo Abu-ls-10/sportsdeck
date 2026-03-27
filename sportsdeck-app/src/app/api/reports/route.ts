@@ -3,6 +3,19 @@ import { withAuth, AuthenticatedRequest } from '@/lib/middleware';
 import { NextResponse } from 'next/server';
 import { moderateContent } from '@/lib/moderation';
 
+const REPORT_RATE_LIMIT_WINDOW_MINUTES = Math.max(
+    1,
+    parseInt(process.env.REPORT_RATE_LIMIT_WINDOW_MINUTES ?? '10', 10)
+);
+const REPORT_RATE_LIMIT_MAX_PER_WINDOW = Math.max(
+    1,
+    parseInt(process.env.REPORT_RATE_LIMIT_MAX_PER_WINDOW ?? '5', 10)
+);
+const REPORT_REASON_MIN_LENGTH = Math.max(
+    3,
+    parseInt(process.env.REPORT_REASON_MIN_LENGTH ?? '5', 10)
+);
+
 /**
  * @openapi
  * /api/reports:
@@ -59,12 +72,21 @@ export const POST = withAuth(async (req: AuthenticatedRequest) => {
             { status: 400 }
         )
     }
-    const { contentType, contentId, reason } = body;
+    const contentType = body.contentType?.trim();
+    const contentId = body.contentId?.trim();
+    const reason = body.reason?.trim();
 
     // Validate required fields
     if (!contentType || !contentId || !reason) {
         return NextResponse.json(
             { message: 'contentType, contentId, and reason are required' },
+            { status: 400 }
+        );
+    }
+
+    if (reason.length < REPORT_REASON_MIN_LENGTH) {
+        return NextResponse.json(
+            { message: `reason must be at least ${REPORT_REASON_MIN_LENGTH} characters long` },
             { status: 400 }
         );
     }
@@ -81,6 +103,16 @@ export const POST = withAuth(async (req: AuthenticatedRequest) => {
     const normalizedType = contentType.toUpperCase();
 
     try {
+        const rateLimitExceeded = await hasExceededReportRateLimit(userId);
+        if (rateLimitExceeded) {
+            return NextResponse.json(
+                {
+                    message: `Too many reports submitted. Please wait ${REPORT_RATE_LIMIT_WINDOW_MINUTES} minute(s) before reporting more content.`,
+                },
+                { status: 429 }
+            );
+        }
+
         // Verify the content actually exists and is not already hidden
         const contentExists = await verifyContentExists(normalizedType, contentId);
         if (!contentExists) {
@@ -182,8 +214,8 @@ export const POST = withAuth(async (req: AuthenticatedRequest) => {
             },
             { status: 201 }
         );
-    } catch (error: any) {
-        if (error?.message === 'DUPLICATE_REPORT') {
+    } catch (error) {
+        if (error instanceof Error && error.message === 'DUPLICATE_REPORT') {
             return NextResponse.json(
                 { message: 'You have already reported this content' },
                 { status: 409 }
@@ -196,6 +228,20 @@ export const POST = withAuth(async (req: AuthenticatedRequest) => {
         );
     }
 });
+
+async function hasExceededReportRateLimit(userId: string): Promise<boolean> {
+    const windowStart = new Date(Date.now() - REPORT_RATE_LIMIT_WINDOW_MINUTES * 60 * 1000);
+    const recentReportCount = await prisma.report.count({
+        where: {
+            reporterId: userId,
+            createdAt: {
+                gte: windowStart,
+            },
+        },
+    });
+
+    return recentReportCount >= REPORT_RATE_LIMIT_MAX_PER_WINDOW;
+}
 
 // Checks that the referenced content exists and is visible (not hidden)
 async function verifyContentExists(contentType: string, contentId: string): Promise<boolean> {
