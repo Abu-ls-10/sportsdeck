@@ -91,7 +91,7 @@ export async function GET(req: Request){
     const dateFrom = searchParams.get("dateFrom");
     const dateTo = searchParams.get("dateTo");
     const matchday = searchParams.get("matchday");
-    let  api_route = "https://api.football-data.org/v4/competitions/PL/matches";
+    let api_route = "https://api.football-data.org/v4/competitions/PL/matches";
 
 
     if ((matchday && dateFrom && dateTo) || (!matchday && !dateFrom && !dateTo)){
