@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
 import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
+import { reevaluateExistingReportedItem } from "@/lib/moderation"
 
 
 /**
@@ -151,6 +152,12 @@ async function patchHandler(
       })
 
     })
+
+    // Re-evaluate AI verdict for already-reported posts after edit.
+    // This does NOT auto-create a ReportedItem for unreported posts.
+    reevaluateExistingReportedItem("POST", post.id, newContent).catch((err) =>
+      console.error("[posts/edit] reevaluateExistingReportedItem failed:", err)
+    )
 
     return NextResponse.json(updated, { status: 200 })
 

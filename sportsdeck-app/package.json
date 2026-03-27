@@ -8,13 +8,19 @@
     "postinstall": "prisma generate",
     "start": "next start",
     "lint": "eslint",
-    "studio": "prisma studio"
+    "studio": "prisma studio",
+    "prisma:generate": "prisma generate",
+    "prisma:generate:binary": "cross-env PRISMA_CLIENT_ENGINE_TYPE=binary prisma generate",
+    "dev:binary": "cross-env PRISMA_CLIENT_ENGINE_TYPE=binary prisma generate && cross-env PRISMA_CLIENT_ENGINE_TYPE=binary next dev",
+    "studio:binary": "cross-env PRISMA_CLIENT_ENGINE_TYPE=binary prisma studio",
+    "db:seed": "prisma db seed"
   },
   "dependencies": {
     "@mantine/core": "^8.3.18",
     "@mantine/form": "^8.3.18",
     "@mantine/hooks": "^8.3.18",
     "@mantine/notifications": "^8.3.18",
+    "@prisma/adapter-pg": "^7.5.0",
     "@tabler/icons-react": "^3.40.0",
     "bcrypt": "^6.0.0",
     "bcryptjs": "^3.0.3",
@@ -22,6 +28,7 @@
     "jsonwebtoken": "^9.0.3",
     "next": "16.1.6",
     "next-swagger-doc": "^0.4.1",
+    "pg": "^8.20.0",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "uuid": "^13.0.0"
@@ -36,6 +43,7 @@
     "@types/react-dom": "^19",
     "@types/uuid": "^10.0.0",
     "babel-plugin-react-compiler": "1.0.0",
+    "cross-env": "^7.0.3",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
     "prisma": "^6.19.2",
