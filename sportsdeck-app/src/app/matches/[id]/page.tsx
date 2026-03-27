@@ -1,3 +1,10 @@
-export default function MatchPage({ params }: { params: { id: string } }) {
-  return <div>Match: {params.id}</div>;
+import MatchCenterClient from "./MatchCenterClient";
+
+export default async function MatchPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+  return <MatchCenterClient matchId={id} />;
 }
