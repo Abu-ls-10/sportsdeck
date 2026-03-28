@@ -16,7 +16,7 @@ const navItems = [
 
 export default function AppSidebar() {
   return (
-    <aside className="hidden w-[116px] shrink-0 border-r border-white/5 bg-[#0a1624] lg:flex lg:flex-col lg:justify-between">
+    <aside className="hidden lg:flex lg:flex-col w-[240px] min-h-screen bg-bg-surface border-r border-border-subtle">
       <div>
         <div className="px-4 pb-6 pt-5">
           <div className="flex items-start gap-3">

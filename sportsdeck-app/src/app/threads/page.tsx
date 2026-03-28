@@ -1,75 +1,94 @@
+"use client";
+
+import { useState } from "react";
 import AppSidebar from "@/components/layout/AppSidebar";
 import ThreadsHero from "@/components/threads/ThreadsHero";
-import ThreadSearchTabs from "@/components/threads/ThreadSearchTabs";
+import ThreadsFilterBar, {
+  ThreadFilters,
+} from "@/components/threads/ThreadsFilterBar";
 import ThreadCard from "@/components/threads/ThreadCard";
 import StartDiscussionCard from "@/components/threads/StartDiscussionCard";
-import QuickPostCard from "@/components/threads/QuickPostCard";
-import ActivePollCard from "@/components/threads/ActivePollCard";
-import StandingsCard from "@/components/threads/StandingsCard";
-import UpcomingMatchCard from "@/components/threads/UpcomingMatchCard";
-import TrendingTagsCard from "@/components/threads/TrendingTagsCard";
 
 const threads = [
   {
-    pinned: true,
-    title:
-      "Official Match Thread: Man City vs Real Madrid (UCL Quarter Final)",
-    excerpt:
-      "Post your predictions, lineups, and live reactions here for the big Champions League clash.",
-    tags: ["DISCUSSION LEAGUE", "MATCHDAY"],
-    replies: "2.4k",
+    title: "Match Thread: City vs Madrid",
+    excerpt: "Live reactions...",
+    tags: ["match"],
+    replies: 2400,
+    team: "man-city",
+    match: "ucl-qf",
     meta: "Posted 4h ago by Mod_Kevin",
   },
   {
-    title: "Potential Summer Transfers: Who should we target?",
-    excerpt:
-      "With the window approaching, we need to discuss depth in the squad and realistic targets.",
-    tags: ["TRANSFERS"],
-    replies: "158",
+    title: "Summer Transfers Discussion",
+    excerpt: "Who should we sign?",
+    tags: ["transfers"],
+    replies: 158,
+    team: "man-city",
+    match: "none",
     meta: "Posted 12h ago by BlueMoon01",
-  },
-  {
-    title: "Erling Haaland stats this season compared to last",
-    excerpt:
-      "Breaking down the heatmap and xG metrics for our star striker.",
-    tags: ["ANALYSIS", "STATS"],
-    replies: "89",
-    meta: "Posted 1d ago by Statting_City",
   },
 ];
 
 export default function ThreadsPage() {
+  const [filters, setFilters] = useState<ThreadFilters>({
+    search: "",
+    team: "all",
+    match: "all",
+    sort: "recent",
+    tag: "all",
+  });
+
+  const filteredThreads = threads
+    .filter((t) => {
+      if (
+        filters.search &&
+        !t.title.toLowerCase().includes(filters.search.toLowerCase())
+      )
+        return false;
+
+      if (filters.team !== "all" && t.team !== filters.team)
+        return false;
+
+      if (filters.match !== "all" && t.match !== filters.match)
+        return false;
+
+      if (
+        filters.tag !== "all" &&
+        !t.tags.includes(filters.tag)
+      )
+        return false;
+
+      return true;
+    })
+    .sort((a, b) => {
+      if (filters.sort === "replies") return b.replies - a.replies;
+      return 0;
+    });
+
   return (
-    <div className="min-h-screen bg-bg-main text-text-primary">
-      <div className="flex min-h-screen">
-        <AppSidebar />
+    <div className="min-h-screen bg-bg-main text-text-primary flex">
+      <AppSidebar />
 
-        <main className="flex-1 px-4 py-4 md:px-6 lg:px-8">
-          <div className="mx-auto max-w-[1280px]">
-            <ThreadsHero />
+      <main className="flex-1 px-4 py-4 md:px-6 lg:px-8 overflow-x-hidden">
+        <div className="max-w-[1100px] mx-auto">
+          
+          <ThreadsHero />
 
-            <div className="mt-5 grid grid-cols-1 gap-5 xl:grid-cols-[minmax(0,1fr)_320px]">
-              <section className="space-y-4">
-                <ThreadSearchTabs />
-
-                {threads.map((thread, index) => (
-                  <ThreadCard key={index} {...thread} />
-                ))}
-
-                <StartDiscussionCard />
-              </section>
-
-              <aside className="space-y-4">
-                <QuickPostCard />
-                <ActivePollCard />
-                <StandingsCard />
-                <UpcomingMatchCard />
-                <TrendingTagsCard />
-              </aside>
-            </div>
+          <div className="mt-5">
+            <ThreadsFilterBar onChange={setFilters} />
           </div>
-        </main>
-      </div>
+
+          <section className="mt-4 space-y-4">
+            {filteredThreads.map((thread, i) => (
+              <ThreadCard key={i} {...thread} />
+            ))}
+
+            <StartDiscussionCard />
+          </section>
+
+        </div>
+      </main>
     </div>
   );
 }

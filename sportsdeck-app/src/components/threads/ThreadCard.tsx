@@ -5,7 +5,7 @@ type ThreadCardProps = {
   title: string;
   excerpt: string;
   tags: string[];
-  replies: string;
+  replies: number;
   meta: string;
 };
 
