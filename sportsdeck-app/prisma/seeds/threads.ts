@@ -153,25 +153,6 @@ export async function create_different_match_threads(prisma: PrismaClient, match
         )
       );
 
-      // Create an initial post in the thread
-      const postAuthor = users[Math.floor(Math.random() * users.length)];
-      const matchPostContents = [
-        `Looking forward to this match! Excited to see how our team performs.`,
-        `This should be an interesting clash. What's your prediction?`,
-        `Hoping for a great performance from the boys today!`,
-        `Let's get a win! Our form has been good lately.`
-      ];
-      
-      if (!threadData.isLocked) {
-        await prisma.post.create({
-          data: {
-            threadId: thread.id,
-            authorId: postAuthor.id,
-            content: matchPostContents[Math.floor(Math.random() * matchPostContents.length)]
-          }
-        });
-      }
-
       return thread;
     })
   );
@@ -219,6 +200,8 @@ export async function create_threads_for_teams(prisma: PrismaClient, teams: Team
             )
           );
 
+          // Team forum threads only (thread.teamId). Match center uses Thread.matchId
+          // threads and never shows these posts.
           const numInitialPosts = Math.floor(Math.random() * 3) + 1;
           await Promise.all(
             Array.from({ length: numInitialPosts }).map(async () => {

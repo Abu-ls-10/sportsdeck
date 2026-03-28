@@ -2,6 +2,14 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import {
+  IconChartBar,
+  IconHeart,
+  IconMessage,
+  IconPhoto,
+  IconFlag,
+  IconSparkles,
+} from "@tabler/icons-react";
 import { useAuth } from "@/contexts/AuthContext";
 
 type Team = {
@@ -24,10 +32,17 @@ type MatchData = {
   awayTeam: Team;
 };
 
+type FanTeam = {
+  id: string;
+  name: string;
+  shortName: string;
+};
+
 type Author = {
   id: string;
   username: string | null;
   avatarUrl: string | null;
+  favoriteTeam?: FanTeam | null;
 };
 
 type Reply = {
@@ -43,6 +58,7 @@ type Post = {
   createdAt: string;
   author: Author;
   replies: Reply[];
+  _count?: { replies: number };
 };
 
 type PollOption = {
@@ -106,6 +122,81 @@ function sentimentTone(label: string): string {
   if (l.includes("positive")) return "text-emerald-400";
   if (l.includes("negative")) return "text-rose-400";
   return "text-amber-300";
+}
+
+function formatRelative(iso: string): string {
+  const rtf = new Intl.RelativeTimeFormat("en", { numeric: "auto" });
+  const diffMin = Math.round((new Date(iso).getTime() - Date.now()) / 60_000);
+  const diffHr = Math.round((new Date(iso).getTime() - Date.now()) / 3_600_000);
+  const diffDay = Math.round((new Date(iso).getTime() - Date.now()) / 86_400_000);
+  if (Math.abs(diffMin) < 1) return "Just now";
+  if (Math.abs(diffMin) < 60) return rtf.format(diffMin, "minute");
+  if (Math.abs(diffHr) < 48) return rtf.format(diffHr, "hour");
+  if (Math.abs(diffDay) < 14) return rtf.format(diffDay, "day");
+  return formatWhen(iso);
+}
+
+function moodFromContent(text: string): { label: string; tone: "positive" | "tense" | "neutral" } {
+  const t = text.toLowerCase();
+  const positive = /\b(great|world|win|love|excited|edge|come on|beaut|dominat|show|lead|narrow|midfield)\b/i.test(
+    t
+  );
+  const tense =
+    /\b(nerv|late|drama|don't|not so|careful|habit|either way|too early|expect|panic)\b/i.test(t);
+  if (tense && !positive) return { label: "Tense Mood", tone: "tense" };
+  if (positive) return { label: "Positive Mood", tone: "positive" };
+  if (tense) return { label: "Mixed Mood", tone: "neutral" };
+  return { label: "Mixed Mood", tone: "neutral" };
+}
+
+function moodBadgeClass(tone: "positive" | "tense" | "neutral"): string {
+  if (tone === "positive") return "border-emerald-500/40 bg-emerald-500/10 text-emerald-300";
+  if (tone === "tense") return "border-amber-500/40 bg-amber-500/10 text-amber-200";
+  return "border-slate-500/40 bg-slate-500/10 text-slate-300";
+}
+
+function pseudoLikes(id: string): number {
+  let h = 0;
+  for (let i = 0; i < id.length; i++) h = (h + id.charCodeAt(i) * (i + 1)) % 1009;
+  return 48 + (h % 140);
+}
+
+function sentimentBarWidth(label: string): { pct: number; barClass: string } {
+  const l = label.toLowerCase();
+  if (l.includes("positive")) return { pct: 88, barClass: "bg-emerald-500" };
+  if (l.includes("negative")) return { pct: 28, barClass: "bg-rose-500" };
+  return { pct: 52, barClass: "bg-amber-500" };
+}
+
+function UserAvatar({ author, size = "md" }: { author: Author; size?: "sm" | "md" }) {
+  const dim = size === "sm" ? "h-9 w-9" : "h-11 w-11";
+  const initial = (author.username ?? "?").slice(0, 1).toUpperCase();
+  if (author.avatarUrl) {
+    return (
+      // eslint-disable-next-line @next/next/no-img-element
+      <img
+        src={author.avatarUrl}
+        alt=""
+        className={`${dim} shrink-0 rounded-full object-cover ring-2 ring-slate-700/80`}
+      />
+    );
+  }
+  return (
+    <div
+      className={`${dim} flex shrink-0 items-center justify-center rounded-full bg-slate-700 text-sm font-semibold text-slate-200 ring-2 ring-slate-600/80`}
+    >
+      {initial}
+    </div>
+  );
+}
+
+function FanBadge({ team }: { team: FanTeam }) {
+  const label = `${team.shortName.toUpperCase()} FAN`;
+  return (
+    <span className="rounded-md border border-sky-500/35 bg-sky-500/15 px-2 py-0.5 text-[10px] font-bold tracking-wide text-sky-300">
+      {label}
+    </span>
+  );
 }
 
 function getAuthHeaders(token: string | null): HeadersInit {
@@ -315,242 +406,351 @@ export default function MatchCenterClient({ matchId }: { matchId: string }) {
     );
   }
 
-  const kickoff = new Date(match.matchDate);
   const scoreText = `${match.homeScore ?? "-"} : ${match.awayScore ?? "-"}`;
+  const statusUpper = match.status.toUpperCase();
+  const looksLive =
+    statusUpper.includes("LIVE") || statusUpper.includes("IN_PLAY") || statusUpper.includes("1H") || statusUpper.includes("2H");
 
   return (
-    <div className="min-h-screen bg-black text-zinc-50">
+    <div className="min-h-screen bg-[#060a14] text-slate-100">
       <div className="mx-auto max-w-6xl px-4 py-8">
-        <div className="mb-4 flex items-center justify-between">
-          <h1 className="text-3xl font-extrabold tracking-tight">Match Center</h1>
-          <Link href="/matches" className="rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm hover:bg-zinc-800">
+        <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
+          <div className="flex items-center gap-2">
+            <IconChartBar className="h-7 w-7 text-sky-400" aria-hidden />
+            <h1 className="text-2xl font-bold tracking-tight text-white md:text-3xl">Match Center</h1>
+          </div>
+          <Link
+            href="/matches"
+            className="rounded-lg border border-slate-600/80 bg-[#0f1729] px-3 py-2 text-sm text-slate-200 hover:bg-[#141f35]"
+          >
             Back to Matches
           </Link>
         </div>
 
-        <section className="mb-6 rounded-2xl border border-zinc-800 bg-zinc-950/60 p-6">
+        <section className="mb-6 rounded-2xl border border-slate-700/60 bg-[#0d1424] p-6 shadow-lg shadow-black/20">
           <div className="grid items-center gap-6 md:grid-cols-3">
             <div className="text-center">
-              <div className="mx-auto mb-2 h-14 w-14 overflow-hidden rounded-full bg-zinc-900">
+              <div className="mx-auto mb-2 h-16 w-16 overflow-hidden rounded-full bg-slate-800/80 ring-2 ring-slate-600/50">
                 {match.homeTeam.logoUrl ? (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img src={match.homeTeam.logoUrl} alt={`${match.homeTeam.name} logo`} className="h-full w-full object-cover" />
                 ) : null}
               </div>
-              <h2 className="text-2xl font-bold">{match.homeTeam.name}</h2>
-              <p className="text-xs tracking-wider text-zinc-400">HOME</p>
+              <h2 className="text-xl font-bold text-white md:text-2xl">{match.homeTeam.name}</h2>
+              <p className="text-[11px] font-semibold tracking-[0.2em] text-slate-500">HOME</p>
             </div>
 
             <div className="text-center">
-              <p className="text-xs font-semibold text-sky-400">{match.status}</p>
-              <p className="my-2 text-5xl font-extrabold">{scoreText}</p>
-              <p className="text-sm text-zinc-300">{match.venue || "TBA Venue"}</p>
-              <p className="text-xs text-zinc-400">
-                {match.stage} - Matchday {match.matchday} - {formatWhen(kickoff.toISOString())}
+              <div className="mb-2 flex flex-wrap items-center justify-center gap-2">
+                {looksLive ? (
+                  <span className="rounded-md border border-sky-500/40 bg-sky-500/15 px-2.5 py-1 text-[11px] font-bold tracking-wide text-sky-300">
+                    LIVE
+                  </span>
+                ) : null}
+                <span className="text-[11px] font-semibold uppercase tracking-wide text-slate-500">{match.status}</span>
+              </div>
+              <p className="my-1 text-5xl font-extrabold tracking-tight text-white">{scoreText}</p>
+              <p className="text-sm text-slate-300">{match.venue || "TBA Venue"}</p>
+              <p className="text-xs text-slate-500">
+                {match.stage} · Matchday {match.matchday}
               </p>
             </div>
 
             <div className="text-center">
-              <div className="mx-auto mb-2 h-14 w-14 overflow-hidden rounded-full bg-zinc-900">
+              <div className="mx-auto mb-2 h-16 w-16 overflow-hidden rounded-full bg-slate-800/80 ring-2 ring-slate-600/50">
                 {match.awayTeam.logoUrl ? (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img src={match.awayTeam.logoUrl} alt={`${match.awayTeam.name} logo`} className="h-full w-full object-cover" />
                 ) : null}
               </div>
-              <h2 className="text-2xl font-bold">{match.awayTeam.name}</h2>
-              <p className="text-xs tracking-wider text-zinc-400">AWAY</p>
+              <h2 className="text-xl font-bold text-white md:text-2xl">{match.awayTeam.name}</h2>
+              <p className="text-[11px] font-semibold tracking-[0.2em] text-slate-500">AWAY</p>
             </div>
           </div>
         </section>
 
         <div className="grid gap-6 lg:grid-cols-3">
           <section className="lg:col-span-2">
-            <div className="mb-3 border-b border-zinc-800">
-              <div className="inline-block border-b-2 border-sky-500 px-1 pb-2 text-sm font-semibold text-sky-400">
-                Discussion Hub
-              </div>
+            <div className="mb-4 flex gap-6 border-b border-slate-700/70 text-sm">
+              <span className="-mb-px border-b-2 border-sky-400 pb-3 font-semibold text-sky-400">Discussion Hub</span>
+              <span className="pb-3 text-slate-500">Match Stats</span>
+              <span className="pb-3 text-slate-500">Lineups</span>
+              <span className="pb-3 text-slate-500">Timeline</span>
             </div>
 
-            <div className="mb-4 rounded-2xl border border-zinc-800 bg-zinc-950/60 p-4">
-              {isVisitor ? (
-                <p className="text-sm text-zinc-400">
-                  You are browsing as a visitor. <Link href="/login" className="text-sky-400">Log in</Link> to post, reply, vote, report, and translate.
-                </p>
-              ) : !canPost ? (
-                <p className="text-sm text-zinc-400">This thread is closed right now.</p>
-              ) : (
-                <>
-                  <textarea
-                    value={newPost}
-                    onChange={(e) => setNewPost(e.target.value)}
-                    placeholder="Share your thoughts on the match..."
-                    className="h-24 w-full rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm outline-none focus:border-sky-500"
-                  />
-                  <div className="mt-3 flex justify-end">
-                    <button
-                      onClick={handleCreatePost}
-                      className="rounded-lg bg-sky-500 px-4 py-2 text-sm font-semibold text-white hover:bg-sky-400"
-                    >
-                      Post Update
-                    </button>
-                  </div>
-                </>
-              )}
-              {statusMsg ? <p className="mt-2 text-xs text-zinc-400">{statusMsg}</p> : null}
-            </div>
+            <div className="rounded-2xl border border-slate-700/60 bg-[#0d1424] p-5 shadow-md shadow-black/15">
+              <p className="mb-4 text-[11px] font-medium uppercase tracking-wider text-slate-500">Discussion thread</p>
+              <h2 className="mb-5 text-lg font-bold text-white">{thread?.title ?? "Match discussion"}</h2>
 
-            <div className="space-y-4">
-              {(thread?.posts ?? []).map((post) => (
-                <article key={post.id} className="rounded-2xl border border-zinc-800 bg-zinc-950/60 p-4">
-                  <div className="mb-2 flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <div className="h-8 w-8 rounded-full bg-zinc-800" />
-                      <div>
-                        <p className="text-sm font-semibold">{post.author.username ?? "User"}</p>
-                        <p className="text-xs text-zinc-400">{formatWhen(post.createdAt)}</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <button
-                        onClick={() => handleTranslate("POST", post.id)}
-                        className="text-xs text-sky-400 hover:text-sky-300"
-                      >
-                        Translate
-                      </button>
-                      {!isVisitor && (
-                        <button
-                          onClick={() => handleReport("POST", post.id)}
-                          className="text-xs text-zinc-400 hover:text-rose-300"
-                        >
-                          Report
-                        </button>
-                      )}
-                    </div>
-                  </div>
-                  <p className="text-sm leading-relaxed text-zinc-200">{post.content}</p>
-                  {translated[post.id] ? (
-                    <p className="mt-2 rounded-md border border-zinc-800 bg-zinc-900 p-2 text-xs text-zinc-300">
-                      EN: {translated[post.id]}
-                    </p>
-                  ) : null}
-
-                  <div className="mt-3">
-                    <button
-                      onClick={() =>
-                        setShowReplyBox((prev) => ({ ...prev, [post.id]: !prev[post.id] }))
-                      }
-                      className="text-xs text-zinc-400 hover:text-zinc-200"
-                    >
-                      Reply
-                    </button>
-                  </div>
-
-                  {showReplyBox[post.id] ? (
-                    <div className="mt-2 rounded-lg border border-zinc-800 bg-zinc-900 p-3">
+              <div className="mb-6 rounded-xl border border-slate-700/50 bg-[#111a2e] p-4">
+                {isVisitor ? (
+                  <p className="text-sm text-slate-400">
+                    You are browsing as a visitor.{" "}
+                    <Link href="/login" className="text-sky-400 hover:text-sky-300">
+                      Log in
+                    </Link>{" "}
+                    to post, reply, vote, report, and translate.
+                  </p>
+                ) : !canPost ? (
+                  <p className="text-sm text-slate-400">This thread is closed right now.</p>
+                ) : (
+                  <div className="flex gap-3">
+                    <div className="hidden h-11 w-11 shrink-0 rounded-full bg-slate-700 sm:block" aria-hidden />
+                    <div className="min-w-0 flex-1">
                       <textarea
-                        value={replyText[post.id] ?? ""}
-                        onChange={(e) =>
-                          setReplyText((prev) => ({ ...prev, [post.id]: e.target.value }))
-                        }
-                        placeholder="Write a reply..."
-                        className="h-20 w-full bg-transparent text-sm outline-none"
+                        value={newPost}
+                        onChange={(e) => setNewPost(e.target.value)}
+                        placeholder="Share your thoughts on the match..."
+                        className="h-24 w-full resize-none rounded-lg border border-slate-600/60 bg-[#0a0f1c] px-3 py-2.5 text-sm text-slate-100 placeholder:text-slate-500 outline-none focus:border-sky-500/70"
                       />
-                      <div className="mt-2 flex justify-end">
+                      <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
+                        <div className="flex items-center gap-2 text-slate-500">
+                          <button
+                            type="button"
+                            className="rounded-lg p-2 hover:bg-slate-800/80 hover:text-slate-300"
+                            aria-label="Add image"
+                          >
+                            <IconPhoto className="h-5 w-5" />
+                          </button>
+                          <button
+                            type="button"
+                            className="rounded-lg p-2 hover:bg-slate-800/80 hover:text-slate-300"
+                            aria-label="Add poll"
+                          >
+                            <IconChartBar className="h-5 w-5" />
+                          </button>
+                        </div>
                         <button
-                          onClick={() => handleReply(post.id)}
-                          className="rounded-lg bg-sky-500 px-3 py-1.5 text-xs font-semibold text-white hover:bg-sky-400"
+                          type="button"
+                          onClick={handleCreatePost}
+                          className="rounded-lg bg-sky-500 px-5 py-2 text-sm font-semibold text-white hover:bg-sky-400"
                         >
-                          Post Reply
+                          Post Update
                         </button>
                       </div>
                     </div>
-                  ) : null}
+                  </div>
+                )}
+                {statusMsg ? <p className="mt-2 text-xs text-slate-500">{statusMsg}</p> : null}
+              </div>
 
-                  {post.replies.length > 0 && (
-                    <div className="mt-3 space-y-2 border-l border-zinc-800 pl-4">
-                      {post.replies.map((reply) => (
-                        <div key={reply.id} className="rounded-lg bg-zinc-900/60 p-3">
-                          <div className="mb-1 flex items-center justify-between">
-                            <p className="text-xs font-semibold">{reply.author.username ?? "User"}</p>
-                            <div className="flex items-center gap-2">
-                              <button
-                                onClick={() => handleTranslate("REPLY", reply.id)}
-                                className="text-[11px] text-sky-400 hover:text-sky-300"
-                              >
-                                Translate
-                              </button>
-                              {!isVisitor && (
-                                <button
-                                  onClick={() => handleReport("REPLY", reply.id)}
-                                  className="text-[11px] text-zinc-400 hover:text-rose-300"
-                                >
-                                  Report
-                                </button>
-                              )}
+              <div className="space-y-5">
+                {thread && thread.posts.length === 0 ? (
+                  <p className="rounded-lg border border-dashed border-slate-700/60 bg-[#111a2e]/50 px-4 py-8 text-center text-sm text-slate-500">
+                    No posts in this thread yet. Be the first to share a take.
+                  </p>
+                ) : null}
+                {(thread?.posts ?? []).map((post) => {
+                  const mood = moodFromContent(post.content);
+                  const replyCount = post._count?.replies ?? post.replies.length;
+                  const likes = pseudoLikes(post.id);
+                  return (
+                    <article key={post.id} className="rounded-xl border border-slate-700/50 bg-[#111a2e] p-4">
+                      <div className="mb-3 flex flex-wrap items-start justify-between gap-2">
+                        <div className="flex min-w-0 gap-3">
+                          <UserAvatar author={post.author} />
+                          <div className="min-w-0">
+                            <div className="flex flex-wrap items-center gap-2">
+                              <p className="font-semibold text-white">{post.author.username ?? "Fan"}</p>
+                              {post.author.favoriteTeam ? <FanBadge team={post.author.favoriteTeam} /> : null}
+                              <span className="text-xs text-slate-500">{formatRelative(post.createdAt)}</span>
                             </div>
                           </div>
-                          <p className="text-xs text-zinc-300">{reply.content}</p>
-                          {translated[reply.id] ? (
-                            <p className="mt-2 rounded border border-zinc-800 bg-zinc-900 p-2 text-[11px] text-zinc-300">
-                              EN: {translated[reply.id]}
-                            </p>
-                          ) : null}
                         </div>
-                      ))}
-                    </div>
-                  )}
-                </article>
-              ))}
+                        <span
+                          className={`inline-flex items-center gap-1 rounded-md border px-2 py-0.5 text-[10px] font-semibold ${moodBadgeClass(mood.tone)}`}
+                        >
+                          <IconSparkles className="h-3.5 w-3.5" aria-hidden />
+                          AI: {mood.label}
+                        </span>
+                      </div>
+
+                      <p className="text-sm leading-relaxed text-slate-200">{post.content}</p>
+                      {translated[post.id] ? (
+                        <p className="mt-2 rounded-md border border-slate-700/60 bg-[#0a0f1c] p-2 text-xs text-slate-300">
+                          EN: {translated[post.id]}
+                        </p>
+                      ) : null}
+
+                      <div className="mt-4 flex flex-wrap items-center gap-4 border-t border-slate-700/40 pt-3 text-xs text-slate-400">
+                        <span className="inline-flex items-center gap-1.5 text-slate-400">
+                          <IconHeart className="h-4 w-4 text-rose-400/90" aria-hidden />
+                          <span className="font-medium text-slate-300">{likes}</span>
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() => setShowReplyBox((prev) => ({ ...prev, [post.id]: !prev[post.id] }))}
+                          className="inline-flex items-center gap-1.5 text-slate-400 hover:text-white"
+                        >
+                          <IconMessage className="h-4 w-4" aria-hidden />
+                          <span className="font-medium text-slate-300">{replyCount}</span>
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => handleTranslate("POST", post.id)}
+                          className="text-sky-400 hover:text-sky-300"
+                        >
+                          Translate to English
+                        </button>
+                        {!isVisitor ? (
+                          <button
+                            type="button"
+                            onClick={() => handleReport("POST", post.id)}
+                            className="ml-auto text-slate-500 hover:text-rose-400"
+                          >
+                            Report
+                          </button>
+                        ) : null}
+                      </div>
+
+                      {showReplyBox[post.id] ? (
+                        <div className="mt-3 rounded-lg border border-slate-700/50 bg-[#0a0f1c] p-3">
+                          <textarea
+                            value={replyText[post.id] ?? ""}
+                            onChange={(e) => setReplyText((prev) => ({ ...prev, [post.id]: e.target.value }))}
+                            placeholder="Write a reply..."
+                            className="h-20 w-full resize-none bg-transparent text-sm text-slate-100 outline-none placeholder:text-slate-500"
+                          />
+                          <div className="mt-2 flex justify-end">
+                            <button
+                              type="button"
+                              onClick={() => handleReply(post.id)}
+                              className="rounded-lg bg-sky-500 px-3 py-1.5 text-xs font-semibold text-white hover:bg-sky-400"
+                            >
+                              Post Reply
+                            </button>
+                          </div>
+                        </div>
+                      ) : null}
+
+                      {post.replies.length > 0 ? (
+                        <div className="mt-4 space-y-3 border-l-2 border-slate-600/50 pl-4">
+                          {post.replies.map((reply) => {
+                            const rm = moodFromContent(reply.content);
+                            return (
+                              <div
+                                key={reply.id}
+                                className="rounded-lg border border-slate-700/40 bg-[#0a0f1c]/90 p-3"
+                              >
+                                <div className="mb-2 flex flex-wrap items-start justify-between gap-2">
+                                  <div className="flex gap-2.5">
+                                    <UserAvatar author={reply.author} size="sm" />
+                                    <div>
+                                      <p className="text-sm font-semibold text-white">
+                                        {reply.author.username ?? "Fan"}
+                                      </p>
+                                      <p className="text-[11px] text-slate-500">{formatRelative(reply.createdAt)}</p>
+                                    </div>
+                                  </div>
+                                  <div className="flex items-center gap-2">
+                                    <span
+                                      className={`hidden items-center gap-1 rounded border px-1.5 py-0.5 text-[9px] font-medium sm:inline-flex ${moodBadgeClass(rm.tone)}`}
+                                    >
+                                      <IconSparkles className="h-3 w-3" aria-hidden />
+                                      AI
+                                    </span>
+                                    {!isVisitor ? (
+                                      <button
+                                        type="button"
+                                        onClick={() => handleReport("REPLY", reply.id)}
+                                        className="rounded p-1 text-slate-500 hover:bg-slate-800 hover:text-amber-400"
+                                        aria-label="Report reply"
+                                      >
+                                        <IconFlag className="h-4 w-4" />
+                                      </button>
+                                    ) : null}
+                                  </div>
+                                </div>
+                                <p className="text-sm leading-relaxed text-slate-300">{reply.content}</p>
+                                {translated[reply.id] ? (
+                                  <p className="mt-2 rounded border border-slate-700/50 bg-[#060a12] p-2 text-[11px] text-slate-400">
+                                    EN: {translated[reply.id]}
+                                  </p>
+                                ) : null}
+                                <div className="mt-2 flex flex-wrap gap-3 text-[11px] text-slate-500">
+                                  <button
+                                    type="button"
+                                    onClick={() => handleTranslate("REPLY", reply.id)}
+                                    className="text-sky-400 hover:text-sky-300"
+                                  >
+                                    Translate to English
+                                  </button>
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      ) : null}
+                    </article>
+                  );
+                })}
+              </div>
             </div>
           </section>
 
           <aside className="space-y-4">
-            <section className="rounded-2xl border border-zinc-800 bg-zinc-950/60 p-4">
-              <div className="mb-2 flex items-center justify-between">
-                <h3 className="text-sm font-bold">AI Fan Sentiment</h3>
-                <span className="text-[11px] text-sky-400">REAL-TIME</span>
+            <section className="rounded-2xl border border-slate-700/60 bg-[#0d1424] p-4">
+              <div className="mb-3 flex items-center justify-between">
+                <h3 className="text-sm font-bold text-white">AI Fan Sentiment</h3>
+                <span className="text-[10px] font-semibold tracking-wide text-sky-400">REAL-TIME</span>
               </div>
               {!sentiment ? (
-                <p className="text-xs text-zinc-400">No sentiment available yet.</p>
+                <p className="text-xs text-slate-500">No sentiment available yet.</p>
+              ) : sentiment.teams ? (
+                <div className="space-y-4 text-xs">
+                  <div>
+                    <div className="mb-1 flex items-center justify-between gap-2">
+                      <span className="text-slate-400">{sentiment.teams.home.teamName} fans</span>
+                      <span className={`font-bold uppercase ${sentimentTone(sentiment.teams.home.sentiment)}`}>
+                        {sentiment.teams.home.sentiment.replaceAll("_", " ")}
+                      </span>
+                    </div>
+                    <div className="h-2 overflow-hidden rounded-full bg-slate-800">
+                      <div
+                        className={sentimentBarWidth(sentiment.teams.home.sentiment).barClass}
+                        style={{ width: `${sentimentBarWidth(sentiment.teams.home.sentiment).pct}%` }}
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <div className="mb-1 flex items-center justify-between gap-2">
+                      <span className="text-slate-400">{sentiment.teams.away.teamName} fans</span>
+                      <span className={`font-bold uppercase ${sentimentTone(sentiment.teams.away.sentiment)}`}>
+                        {sentiment.teams.away.sentiment.replaceAll("_", " ")}
+                      </span>
+                    </div>
+                    <div className="h-2 overflow-hidden rounded-full bg-slate-800">
+                      <div
+                        className={sentimentBarWidth(sentiment.teams.away.sentiment).barClass}
+                        style={{ width: `${sentimentBarWidth(sentiment.teams.away.sentiment).pct}%` }}
+                      />
+                    </div>
+                  </div>
+                </div>
               ) : (
-                <div className="space-y-2 text-xs">
+                <div className="text-xs text-slate-400">
                   <p>
-                    Overall: <span className={sentimentTone(sentiment.overall.sentiment)}>{sentiment.overall.sentiment}</span>
+                    Overall:{" "}
+                    <span className={sentimentTone(sentiment.overall.sentiment)}>{sentiment.overall.sentiment}</span>
                   </p>
-                  {sentiment.teams ? (
-                    <>
-                      <p>
-                        {sentiment.teams.home.teamName}:{" "}
-                        <span className={sentimentTone(sentiment.teams.home.sentiment)}>
-                          {sentiment.teams.home.sentiment}
-                        </span>
-                      </p>
-                      <p>
-                        {sentiment.teams.away.teamName}:{" "}
-                        <span className={sentimentTone(sentiment.teams.away.sentiment)}>
-                          {sentiment.teams.away.sentiment}
-                        </span>
-                      </p>
-                    </>
-                  ) : null}
                 </div>
               )}
             </section>
 
-            <section className="rounded-2xl border border-zinc-800 bg-zinc-950/60 p-4">
+            <section className="rounded-2xl border border-slate-700/60 bg-[#0d1424] p-4">
               <div className="mb-2 flex items-center justify-between">
-                <h3 className="text-sm font-bold">Match Poll</h3>
+                <h3 className="text-sm font-bold text-white">Match Poll</h3>
                 {poll ? (
-                  <span className="text-[11px] text-zinc-400">
+                  <span className="text-[10px] font-medium text-slate-500">
                     {poll.isClosed ? "CLOSED" : "OPEN"}
                   </span>
                 ) : null}
               </div>
               {!poll ? (
-                <p className="text-xs text-zinc-400">No poll created yet.</p>
+                <p className="text-xs text-slate-500">No poll created yet.</p>
               ) : (
                 <>
-                  <p className="mb-3 text-sm text-zinc-200">{poll.question}</p>
+                  <p className="mb-3 text-sm text-slate-200">{poll.question}</p>
                   <div className="space-y-2">
                     {poll.options.map((opt) => {
                       const votes = opt._count?.votes ?? 0;
@@ -558,21 +758,23 @@ export default function MatchCenterClient({ matchId }: { matchId: string }) {
                       return (
                         <button
                           key={opt.id}
+                          type="button"
                           onClick={() => void handleVote(opt.id)}
-                          className="w-full rounded-lg border border-zinc-800 bg-zinc-900 p-2 text-left hover:bg-zinc-800"
+                          className="w-full rounded-lg border border-slate-700/60 bg-[#111a2e] p-2.5 text-left hover:bg-[#1a2744]"
                         >
-                          <div className="mb-1 flex items-center justify-between text-xs">
+                          <div className="mb-1 flex items-center justify-between text-xs text-slate-200">
                             <span>{opt.optionText}</span>
-                            <span>{pct}%</span>
+                            <span className="font-semibold text-sky-300">{pct}%</span>
                           </div>
-                          <div className="h-1.5 rounded bg-zinc-800">
-                            <div className="h-1.5 rounded bg-sky-500" style={{ width: `${pct}%` }} />
+                          <div className="h-1.5 rounded-full bg-slate-800">
+                            <div className="h-1.5 rounded-full bg-sky-500" style={{ width: `${pct}%` }} />
                           </div>
+                          <p className="mt-1 text-[10px] text-slate-500">{votes} votes</p>
                         </button>
                       );
                     })}
                   </div>
-                  <p className="mt-3 text-[11px] text-zinc-400">{totalVotes} votes cast</p>
+                  <p className="mt-3 text-[11px] text-slate-500">{totalVotes} votes cast</p>
                 </>
               )}
             </section>

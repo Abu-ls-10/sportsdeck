@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
+import { ensureMatchThreadStarterPosts } from "@/lib/ensureMatchThreadStarterPosts"
 
 /**
  * @openapi
@@ -75,6 +76,11 @@ export async function GET(
         authorId: "system",
       },
     })
+
+    // Match pages only load this thread — not team forum threads (those have random
+    // seed posts under teamId). API-synced PL matches get a new row here with no
+    // posts until we seed starter content once.
+    await ensureMatchThreadStarterPosts(prisma, thread.id, matchId)
 
     return NextResponse.json(thread)
 

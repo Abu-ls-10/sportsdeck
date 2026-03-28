@@ -99,8 +99,15 @@ export async function GET(
               select: {
                 id: true,
                 username: true,
-                avatarUrl: true
-              }
+                avatarUrl: true,
+                favoriteTeam: {
+                  select: {
+                    id: true,
+                    name: true,
+                    shortName: true,
+                  },
+                },
+              },
             },
 
             replies: {
@@ -118,10 +125,17 @@ export async function GET(
                   select: {
                     id: true,
                     username: true,
-                    avatarUrl: true
-                  }
-                }
-              }
+                    avatarUrl: true,
+                    favoriteTeam: {
+                      select: {
+                        id: true,
+                        name: true,
+                        shortName: true,
+                      },
+                    },
+                  },
+                },
+              },
 
             },
 

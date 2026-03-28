@@ -1,22 +1,23 @@
 import { PrismaClient } from "../../src/generated/prisma"
+import { ensureMatchThreadStarterPosts } from "../../src/lib/ensureMatchThreadStarterPosts"
 
-export default async function seedPosts(prisma: PrismaClient, users: any[], threads: any[]) {
+export default async function seedPosts(
+  prisma: PrismaClient,
+  _users: { id: string }[],
+  threads: { id: string; matchId: string | null }[]
+) {
+  void _users;
+  const posts = []
 
-  const post1 = await prisma.post.create({
-    data: {
-      threadId: threads[0].id,
-      authorId: users[1].id,
-      content: "Arsenal will win 2-1."
-    }
-  })
+  for (const thread of threads) {
+    if (!thread.matchId) continue
+    await ensureMatchThreadStarterPosts(prisma, thread.id, thread.matchId)
+    const root = await prisma.post.findFirst({
+      where: { threadId: thread.id },
+      orderBy: { createdAt: "asc" },
+    })
+    if (root) posts.push(root)
+  }
 
-  await prisma.reply.create({
-    data: {
-      postId: post1.id,
-      authorId: users[2].id,
-      content: "No chance, Liverpool takes this."
-    }
-  })
-
-  return [post1]
+  return posts
 }
