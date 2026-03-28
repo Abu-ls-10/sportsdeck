@@ -5,6 +5,15 @@ body {
   @apply bg-bg-main text-text-primary;
 }
 
+/* subtle background glow */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at top, rgba(34,211,238,0.08), transparent 60%);
+  z-index: -1;
+}
+
 .card {
   @apply bg-bg-card border rounded-2xl;
 }

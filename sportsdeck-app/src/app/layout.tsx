@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 
 export const metadata = {
   title: "SportsDeck",
-  description: "SportsDeck app",
+  description: "Personalized sports dashboard",
 };
 
 export default function RootLayout({
@@ -13,7 +13,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className="bg-bg-main text-text-primary">
+        {children}
+      </body>
     </html>
   );
 }
