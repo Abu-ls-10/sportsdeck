@@ -88,6 +88,9 @@ async function postHandler(
       return NextResponse.json({ error: "Thread is locked" }, { status: 403 })
 
     const now = new Date()
+    if (thread.opensAt && now < thread.opensAt)
+      return NextResponse.json({ error: "Thread has not opened yet" }, { status: 403 })
+
     if (thread.lockedAt && now > thread.lockedAt)
       return NextResponse.json({ error: "Thread is closed" }, { status: 403 })
 

@@ -56,6 +56,12 @@ export async function GET(
     const closeDate = new Date(match.matchDate)
     closeDate.setDate(closeDate.getDate() + 14)
 
+    const now = Date.now()
+    const openMs = openDate.getTime()
+    const closeMs = closeDate.getTime()
+    // Mirrors product rule: new posts only while now ∈ [opensAt, lockedAt] (kickoff ± 14 days).
+    const scheduleLocked = now < openMs || now > closeMs
+
     // Concurrency-safe: matchId is unique on Thread, so upsert prevents P2002 races.
     const thread = await prisma.thread.upsert({
       where: { matchId },
@@ -65,6 +71,7 @@ export async function GET(
         lockedAt: closeDate,
         isMatchThread: true,
         teamId: match.homeTeamId,
+        isLocked: scheduleLocked,
       },
       create: {
         title: `Match Discussion`,
@@ -74,6 +81,7 @@ export async function GET(
         opensAt: openDate,
         lockedAt: closeDate,
         authorId: "system",
+        isLocked: scheduleLocked,
       },
     })
 

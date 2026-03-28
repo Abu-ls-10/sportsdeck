@@ -200,34 +200,6 @@ export async function create_threads_for_teams(prisma: PrismaClient, teams: Team
             )
           );
 
-          // Team forum threads only (thread.teamId). Match center uses Thread.matchId
-          // threads and never shows these posts.
-          const numInitialPosts = Math.floor(Math.random() * 3) + 1;
-          await Promise.all(
-            Array.from({ length: numInitialPosts }).map(async () => {
-              const postAuthor = users[Math.floor(Math.random() * users.length)];
-              const postContents = [
-                `Great discussion starter! I think we should focus more on defense.`,
-                `Does anyone else think the team needs reinforcement in midfield?`,
-                `The performance has been improving lately. I'm optimistic about the future.`,
-                `Tough match ahead, but I believe in our squad's ability to deliver.`,
-                `Looking at the stats, our attack has been more effective recently.`,
-                `The manager is doing a good job with team coordination.`,
-                `What are your thoughts on the recent tactical changes?`,
-                `I'm impressed with the recent form of the younger players.`,
-                `The team spirit seems to be at an all-time high this season.`
-              ];
-
-              await prisma.post.create({
-                data: {
-                  threadId: thread.id,
-                  authorId: postAuthor.id,
-                  content: postContents[Math.floor(Math.random() * postContents.length)]
-                }
-              });
-            })
-          );
-
           return thread;
         })
       );

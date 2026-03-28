@@ -271,14 +271,36 @@ export default function MatchCenterClient({ matchId }: { matchId: string }) {
     [poll]
   );
 
+  /** New posts/replies allowed only during [opensAt, lockedAt] (kickoff ± 14 days), and not if thread is locked. */
   const canPost = useMemo(() => {
     if (!thread) return false;
     const now = Date.now();
-    if (thread.isLocked) return false;
     if (thread.opensAt && now < new Date(thread.opensAt).getTime()) return false;
     if (thread.lockedAt && now > new Date(thread.lockedAt).getTime()) return false;
+    if (thread.isLocked) return false;
     return true;
   }, [thread]);
+
+  const postingBlockedReason = useMemo(() => {
+    if (!thread) return null;
+    const now = Date.now();
+    const openT = thread.opensAt ? new Date(thread.opensAt).getTime() : null;
+    const closeT = thread.lockedAt ? new Date(thread.lockedAt).getTime() : null;
+    if (openT !== null && now < openT) {
+      return `Posting opens on ${formatWhen(thread.opensAt)} — the window starts two weeks before kickoff. You can read existing posts below.`;
+    }
+    if (closeT !== null && now > closeT) {
+      return `The discussion window for this match has ended (it stays open for two weeks after kickoff). New posts and replies are disabled, but you can still read the full thread below.`;
+    }
+    if (thread.isLocked) {
+      return `This thread is locked. You can read existing posts below, but you cannot add new ones.`;
+    }
+    return null;
+  }, [thread]);
+
+  useEffect(() => {
+    if (!canPost) setShowReplyBox({});
+  }, [canPost]);
 
   async function handleCreatePost() {
     if (!threadId) return;
@@ -483,16 +505,23 @@ export default function MatchCenterClient({ matchId }: { matchId: string }) {
               <h2 className="mb-5 text-lg font-bold text-white">{thread?.title ?? "Match discussion"}</h2>
 
               <div className="mb-6 rounded-xl border border-slate-700/50 bg-[#111a2e] p-4">
+                {postingBlockedReason ? (
+                  <p className="mb-3 rounded-lg border border-amber-500/35 bg-amber-500/10 px-3 py-2.5 text-sm leading-relaxed text-amber-100">
+                    {postingBlockedReason}
+                  </p>
+                ) : null}
                 {isVisitor ? (
                   <p className="text-sm text-slate-400">
                     You are browsing as a visitor.{" "}
                     <Link href="/login" className="text-sky-400 hover:text-sky-300">
                       Log in
                     </Link>{" "}
-                    to post, reply, vote, report, and translate.
+                    to post, reply, vote, report, and translate when the discussion window is open.
                   </p>
                 ) : !canPost ? (
-                  <p className="text-sm text-slate-400">This thread is closed right now.</p>
+                  postingBlockedReason ? null : (
+                    <p className="text-sm text-slate-500">You cannot post in this thread right now.</p>
+                  )
                 ) : (
                   <div className="flex gap-3">
                     <div className="hidden h-11 w-11 shrink-0 rounded-full bg-slate-700 sm:block" aria-hidden />
@@ -537,7 +566,9 @@ export default function MatchCenterClient({ matchId }: { matchId: string }) {
               <div className="space-y-5">
                 {thread && thread.posts.length === 0 ? (
                   <p className="rounded-lg border border-dashed border-slate-700/60 bg-[#111a2e]/50 px-4 py-8 text-center text-sm text-slate-500">
-                    No posts in this thread yet. Be the first to share a take.
+                    {canPost
+                      ? "No posts in this thread yet. Be the first to share a take."
+                      : "No posts in this thread yet. Posting is closed for this match, so the archive may stay empty unless content was added during the window."}
                   </p>
                 ) : null}
                 {(thread?.posts ?? []).map((post) => {
@@ -577,14 +608,24 @@ export default function MatchCenterClient({ matchId }: { matchId: string }) {
                           <IconHeart className="h-4 w-4 text-rose-400/90" aria-hidden />
                           <span className="font-medium text-slate-300">{likes}</span>
                         </span>
-                        <button
-                          type="button"
-                          onClick={() => setShowReplyBox((prev) => ({ ...prev, [post.id]: !prev[post.id] }))}
-                          className="inline-flex items-center gap-1.5 text-slate-400 hover:text-white"
-                        >
-                          <IconMessage className="h-4 w-4" aria-hidden />
-                          <span className="font-medium text-slate-300">{replyCount}</span>
-                        </button>
+                        {canPost ? (
+                          <button
+                            type="button"
+                            onClick={() => setShowReplyBox((prev) => ({ ...prev, [post.id]: !prev[post.id] }))}
+                            className="inline-flex items-center gap-1.5 text-slate-400 hover:text-white"
+                          >
+                            <IconMessage className="h-4 w-4" aria-hidden />
+                            <span className="font-medium text-slate-300">{replyCount}</span>
+                          </button>
+                        ) : (
+                          <span
+                            className="inline-flex items-center gap-1.5 text-slate-600"
+                            title="Replies are disabled outside the match discussion window"
+                          >
+                            <IconMessage className="h-4 w-4" aria-hidden />
+                            <span className="font-medium text-slate-500">{replyCount}</span>
+                          </span>
+                        )}
                         <button
                           type="button"
                           onClick={() => handleTranslate("POST", post.id)}
@@ -603,7 +644,7 @@ export default function MatchCenterClient({ matchId }: { matchId: string }) {
                         ) : null}
                       </div>
 
-                      {showReplyBox[post.id] ? (
+                      {canPost && showReplyBox[post.id] ? (
                         <div className="mt-3 rounded-lg border border-slate-700/50 bg-[#0a0f1c] p-3">
                           <textarea
                             value={replyText[post.id] ?? ""}
