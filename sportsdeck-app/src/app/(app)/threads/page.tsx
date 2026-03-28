@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ThreadsHero from "@/components/threads/ThreadsHero";
 import ThreadsFilterBar, {
   ThreadFilters,
@@ -8,26 +8,22 @@ import ThreadsFilterBar, {
 import ThreadCard from "@/components/threads/ThreadCard";
 import StartDiscussionCard from "@/components/threads/StartDiscussionCard";
 
-const threads = [
-  {
-    title: "Match Thread: City vs Madrid",
-    excerpt: "Live reactions...",
-    tags: ["match"],
-    replies: 2400,
-    team: "man-city",
-    match: "ucl-qf",
-    meta: "Posted 4h ago by Mod_Kevin",
-  },
-  {
-    title: "Summer Transfers Discussion",
-    excerpt: "Who should we sign?",
-    tags: ["transfers"],
-    replies: 158,
-    team: "man-city",
-    match: "none",
-    meta: "Posted 12h ago by BlueMoon01",
-  },
-];
+type Thread = {
+  id: string;
+  title: string;
+  createdAt: string;
+  author: {
+    username: string;
+  };
+  teamId?: string | null;
+  matchId?: string | null;
+  tags: {
+    tag: { name: string };
+  }[];
+  _count: {
+    posts: number;
+  };
+};
 
 export default function ThreadsPage() {
   const [filters, setFilters] = useState<ThreadFilters>({
@@ -38,47 +34,99 @@ export default function ThreadsPage() {
     tag: "all",
   });
 
-  const filteredThreads = threads
-    .filter((t) => {
-      if (
-        filters.search &&
-        !t.title.toLowerCase().includes(filters.search.toLowerCase())
-      )
-        return false;
+  const [threads, setThreads] = useState<Thread[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-      if (filters.team !== "all" && t.team !== filters.team)
-        return false;
+  useEffect(() => {
+    const fetchThreads = async () => {
+      try {
+        setLoading(true);
+        setError(null);
 
-      if (filters.match !== "all" && t.match !== filters.match)
-        return false;
+        const params = new URLSearchParams();
 
-      if (
-        filters.tag !== "all" &&
-        !t.tags.includes(filters.tag)
-      )
-        return false;
+        if (filters.search) params.append("q", filters.search);
 
-      return true;
-    })
-    .sort((a, b) => {
-      if (filters.sort === "replies") return b.replies - a.replies;
-      return 0;
-    });
+        if (filters.team !== "all") params.append("teamId", filters.team);
+        if (filters.match !== "all") params.append("matchId", filters.match);
+        if (filters.tag !== "all") params.append("tag", filters.tag);
+        if (filters.sort) params.append("sort", filters.sort);
+
+        const res = await fetch(`/api/threads?${params.toString()}`);
+
+        if (!res.ok) throw new Error("Failed to fetch threads");
+
+        const data = await res.json();
+
+        setThreads(data);
+
+      } catch (err) {
+        console.error(err);
+        setError("Failed to load threads");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchThreads();
+  }, [filters]);
 
   return (
     <div className="px-4 py-4 md:px-6 lg:px-8">
       <div className="max-w-[1100px] mx-auto">
         
-        <ThreadsHero />
+        <ThreadsHero
+          title={
+            filters.team !== "all"
+              ? `${filters.team} Discussions`
+              : "All Discussions"
+          }
+          subtitle="Join conversations across the community"
+        />
 
         <div className="mt-5">
           <ThreadsFilterBar onChange={setFilters} />
         </div>
 
         <section className="mt-4 space-y-4">
-          {filteredThreads.map((thread, i) => (
-            <ThreadCard key={i} {...thread} />
-          ))}
+          
+          {/* Loading */}
+          {loading && (
+            <div className="text-text-secondary text-sm">
+              Loading threads...
+            </div>
+          )}
+
+          {/* Error */}
+          {error && (
+            <div className="text-red-400 text-sm">
+              {error}
+            </div>
+          )}
+
+          {/* Empty */}
+          {!loading && !error && threads.length === 0 && (
+            <div className="text-text-muted text-sm">
+              No threads found.
+            </div>
+          )}
+
+          {/* Threads */}
+          {!loading && !error &&
+            threads.map((thread) => (
+              <ThreadCard
+                key={thread.id}
+                id={thread.id}
+                title={thread.title}
+                excerpt="" // Excerpt currently not available in the list view, would require additional API work
+                tags={thread.tags.map((t) => t.tag.name)}
+                replies={thread._count.posts}
+                team={thread.teamId || "none"}
+                match={thread.matchId || "none"}
+                meta={`Posted ${new Date(thread.createdAt).toLocaleString()} by ${thread.author.username}`}
+              />
+            ))}
 
           <StartDiscussionCard />
         </section>
