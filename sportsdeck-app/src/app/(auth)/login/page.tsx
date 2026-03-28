@@ -1,172 +1,165 @@
 "use client";
 
-import {
-  Anchor,
-  Box,
-  Button,
-  Center,
-  Divider,
-  Group,
-  Loader,
-  Paper,
-  PasswordInput,
-  Stack,
-  Text,
-  TextInput,
-  Title,
-} from "@mantine/core";
-import { useForm } from "@mantine/form";
-import { notifications } from "@mantine/notifications";
-import { IconBallFootball, IconBrandGithub, IconBrandGoogle, IconLock, IconMail } from "@tabler/icons-react";
-import Link from "next/link";
+import { useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Suspense, useEffect, useState } from "react";
+import Link from "next/link";
 import { useAuth } from "@/contexts/AuthContext";
+
+import AuthLayout from "@/components/auth/AuthLayout";
+import AuthCard from "@/components/auth/AuthCard";
+import Input from "@/components/ui/Input";
+import PasswordInput from "@/components/ui/PasswordInput";
+import Button from "@/components/ui/Button";
+import OAuthButton from "@/components/auth/OAuthButton";
+
+import { Mail } from "lucide-react";
+import { FcGoogle } from "react-icons/fc";
+import { FaGithub } from "react-icons/fa";
 
 function LoginInner() {
   const { login } = useAuth();
   const router = useRouter();
   const searchParams = useSearchParams();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [formError, setFormError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    const error = searchParams.get("error");
-    if (error) {
-      const messages: Record<string, string> = {
+  // ✅ Derived OAuth error (no useEffect)
+  const urlError = searchParams.get("error");
+
+  const oauthErrorMsg = urlError
+    ? {
         oauth_cancelled: "Sign-in was cancelled.",
         oauth_failed: "OAuth sign-in failed. Please try again.",
-        no_email: "Could not retrieve your email from the provider.",
-      };
-      notifications.show({
-        color: "red",
-        title: "Sign-in failed",
-        message: messages[error] ?? "Something went wrong.",
-      });
-    }
-  }, [searchParams]);
+        no_email: "Could not retrieve your email.",
+      }[urlError] ?? "Something went wrong."
+    : null;
 
-  const form = useForm({
-    initialValues: { email: "", password: "" },
-    validate: {
-      email: (v) => (/^\S+@\S+\.\S+$/.test(v) ? null : "Enter a valid email"),
-      password: (v) => (v.length > 0 ? null : "Password is required"),
-    },
-  });
+  const errorMsg = formError ?? oauthErrorMsg;
 
-  const handleSubmit = async (values: { email: string; password: string }) => {
-    setLoading(true);
-    const { error } = await login(values.email, values.password);
-    setLoading(false);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setFormError(null);
 
-    if (error) {
-      notifications.show({ color: "red", title: "Login failed", message: error });
+    if (!email.match(/^\S+@\S+\.\S+$/)) {
+      setFormError("Enter a valid email");
       return;
     }
 
-    notifications.show({ color: "green", title: "Welcome back!", message: "You have successfully logged in." });
+    if (!password) {
+      setFormError("Password is required");
+      return;
+    }
+
+    setLoading(true);
+    const { error } = await login(email, password);
+    setLoading(false);
+
+    if (error) {
+      setFormError(error);
+      return;
+    }
+
     router.push("/");
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 px-4">
-      <Box w="100%" maw={440}>
-        <Center mb="xl">
-          <Stack align="center" gap="xs">
-            <div className="flex items-center justify-center w-16 h-16 rounded-full bg-blue-600 shadow-lg shadow-blue-500/40">
-              <IconBallFootball size={36} color="white" />
-            </div>
-            <Title order={1} className="text-white tracking-tight" size="h2">
-              SportsDeck
-            </Title>
-            <Text size="sm" c="dimmed">
-              The Ultimate Hub for Sports Fans
-            </Text>
-          </Stack>
-        </Center>
+    <AuthLayout>
+      {/* Header */}
+      <div className="text-center mb-8">
+        <div className="mx-auto w-16 h-16 rounded-2xl bg-gradient-primary flex items-center justify-center shadow-glow mb-4 text-white font-bold text-xl">
+          SD
+        </div>
 
-        <Paper radius="lg" p="xl" withBorder className="bg-white/5 border-white/10 backdrop-blur-sm">
-          <Title order={2} mb={4} size="h3" className="text-white">
+        <h1 className="text-2xl font-semibold text-text-primary">
+          Welcome back
+        </h1>
+        <p className="text-sm text-text-secondary mt-1">
+          Sign in to continue to SportsDeck
+        </p>
+      </div>
+
+      <AuthCard>
+        {/* OAuth */}
+        <div className="space-y-3 mb-6">
+          <OAuthButton
+            href="/api/auth/oauth/github"
+            icon={<FaGithub size={16} />}
+          >
+            Continue with GitHub
+          </OAuthButton>
+
+          <OAuthButton
+            href="/api/auth/oauth/google"
+            icon={<FcGoogle size={16} />}
+          >
+            Continue with Google
+          </OAuthButton>
+        </div>
+
+        {/* Divider */}
+        <div className="flex items-center gap-3 mb-6">
+          <div className="flex-1 h-px bg-border-subtle" />
+          <span className="text-xs text-text-muted">
+            or sign in with email
+          </span>
+          <div className="flex-1 h-px bg-border-subtle" />
+        </div>
+
+        {/* Error */}
+        {errorMsg && (
+          <div className="mb-4 text-sm text-red-400 bg-red-500/10 border border-red-500/20 px-3 py-2 rounded-lg">
+            {errorMsg}
+          </div>
+        )}
+
+        {/* Form */}
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <Input
+            label="Email"
+            icon={Mail}
+            value={email}
+            onChange={(v) => {
+              setEmail(v);
+              setFormError(null);
+            }}
+            placeholder="you@example.com"
+          />
+
+          <PasswordInput
+            label="Password"
+            value={password}
+            onChange={(v) => {
+              setPassword(v);
+              setFormError(null);
+            }}
+            placeholder="Your password"
+          />
+
+          <Button type="submit" loading={loading}>
             Sign in
-          </Title>
-          <Text size="sm" c="dimmed" mb="lg">
-            Don&apos;t have an account?{" "}
-            <Anchor component={Link} href="/signup" size="sm" c="blue.4">
-              Create one
-            </Anchor>
-          </Text>
+          </Button>
+        </form>
 
-          <Stack gap="sm" mb="lg">
-            <Button
-              component="a"
-              href="/api/auth/oauth/github"
-              variant="default"
-              fullWidth
-              leftSection={<IconBrandGithub size={18} />}
-              className="border-white/20 hover:bg-white/10 text-white transition-colors"
-            >
-              Continue with GitHub
-            </Button>
-            <Button
-              component="a"
-              href="/api/auth/oauth/google"
-              variant="default"
-              fullWidth
-              leftSection={<IconBrandGoogle size={18} />}
-              className="border-white/20 hover:bg-white/10 text-white transition-colors"
-            >
-              Continue with Google
-            </Button>
-          </Stack>
-
-          <Divider label="or sign in with email" labelPosition="center" mb="lg" />
-
-          <form onSubmit={form.onSubmit(handleSubmit)}>
-            <Stack gap="md">
-              <TextInput
-                label="Email"
-                placeholder="you@example.com"
-                leftSection={<IconMail size={16} />}
-                styles={{ label: { color: "var(--mantine-color-gray-3)" } }}
-                {...form.getInputProps("email")}
-              />
-              <PasswordInput
-                label="Password"
-                placeholder="Your password"
-                leftSection={<IconLock size={16} />}
-                styles={{ label: { color: "var(--mantine-color-gray-3)" } }}
-                {...form.getInputProps("password")}
-              />
-              <Button
-                type="submit"
-                fullWidth
-                size="md"
-                loading={loading}
-                mt="xs"
-                className="bg-blue-600 hover:bg-blue-500 transition-colors"
-              >
-                Sign in
-              </Button>
-            </Stack>
-          </form>
-        </Paper>
-
-        <Group justify="center" mt="md">
-          <Text size="xs" c="dimmed">
-            New to SportsDeck?{" "}
-            <Anchor component={Link} href="/signup" size="xs" c="blue.4">
-              Sign up for free
-            </Anchor>
-          </Text>
-        </Group>
-      </Box>
-    </div>
+        {/* Footer */}
+        <p className="text-center text-xs text-text-muted mt-6">
+          New to SportsDeck?{" "}
+          <Link href="/signup" className="text-primary-400 hover:underline">
+            Create an account
+          </Link>
+        </p>
+      </AuthCard>
+    </AuthLayout>
   );
 }
 
 function LoginFallback() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900">
-      <Loader color="blue" size="lg" />
+    <div className="min-h-screen flex items-center justify-center bg-bg-main">
+      <div className="w-10 h-10 border-2 border-primary-500 border-t-transparent rounded-full animate-spin" />
     </div>
   );
 }
