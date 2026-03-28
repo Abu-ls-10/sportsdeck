@@ -1,14 +1,27 @@
-type ButtonProps = {
-  children: React.ReactNode;
-  className?: string;
-};
+"use client";
 
-export default function Button({ children, className = "" }: ButtonProps) {
+interface ButtonProps {
+  children: React.ReactNode;
+  loading?: boolean;
+  type?: "button" | "submit";
+}
+
+export default function Button({
+  children,
+  loading,
+  type = "button",
+}: ButtonProps) {
   return (
     <button
-      className={`px-4 py-2 rounded-xl bg-primary-500 text-white hover:opacity-90 transition ${className}`}
+      type={type}
+      disabled={loading}
+      className="w-full py-2.5 rounded-xl bg-gradient-primary text-white font-medium shadow-glow hover:opacity-90 transition disabled:opacity-50 flex items-center justify-center"
     >
-      {children}
+      {loading ? (
+        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+      ) : (
+        children
+      )}
     </button>
   );
 }

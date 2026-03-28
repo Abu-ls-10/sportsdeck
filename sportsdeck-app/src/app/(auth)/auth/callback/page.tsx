@@ -2,8 +2,6 @@
 
 import { Suspense, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Center, Loader, Stack, Text } from "@mantine/core";
-import { notifications } from "@mantine/notifications";
 import { useAuth } from "@/contexts/AuthContext";
 
 function OAuthCallbackInner() {
@@ -22,11 +20,10 @@ function OAuthCallbackInner() {
         oauth_failed: "OAuth sign-in failed. Please try again.",
         no_email: "Could not retrieve your email from the provider.",
       };
-      notifications.show({
-        color: "red",
-        title: "Sign-in failed",
-        message: messages[error] ?? "Something went wrong.",
-      });
+
+      // TODO: Replace with global toast system later
+      alert(messages[error] ?? "Something went wrong.");
+
       router.replace("/login");
       return;
     }
@@ -37,41 +34,49 @@ function OAuthCallbackInner() {
     }
 
     localStorage.setItem("refresh_token", refresh_token);
+
     refreshAccessToken().then(() => {
-      notifications.show({
-        color: "green",
-        title: "Signed in!",
-        message: "Welcome to SportsDeck.",
-      });
+      // TODO: Replace with toast
       router.replace("/");
     });
   }, [searchParams, router, refreshAccessToken]);
 
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900">
-      <Center>
-        <Stack align="center" gap="md">
-          <Loader color="blue" size="lg" />
-          <Text c="dimmed" size="sm">
-            Completing sign-in…
-          </Text>
-        </Stack>
-      </Center>
-    </div>
-  );
+  return <CallbackUI text="Completing sign-in…" />;
 }
 
 function CallbackFallback() {
+  return <CallbackUI text="Loading…" />;
+}
+
+/**
+ * Reusable UI component
+ * - Glass card
+ * - Glow background
+ * - Custom loader
+ */
+function CallbackUI({ text }: { text: string }) {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900">
-      <Center>
-        <Stack align="center" gap="md">
-          <Loader color="blue" size="lg" />
-          <Text c="dimmed" size="sm">
-            Loading…
-          </Text>
-        </Stack>
-      </Center>
+    <div className="min-h-screen flex items-center justify-center bg-bg-main relative overflow-hidden">
+      
+      {/* Glow Background */}
+      <div className="absolute inset-0 bg-gradient-glow pointer-events-none" />
+
+      {/* Center Card */}
+      <div className="relative z-10 w-full max-w-sm px-6">
+        <div className="bg-bg-card border border-border-subtle rounded-2xl shadow-card backdrop-blur-xs p-8 text-center">
+          
+          {/* Loader */}
+          <div className="flex justify-center mb-5">
+            <div className="w-10 h-10 border-2 border-primary-500 border-t-transparent rounded-full animate-spin" />
+          </div>
+
+          {/* Text */}
+          <p className="text-sm text-text-secondary">
+            {text}
+          </p>
+
+        </div>
+      </div>
     </div>
   );
 }
