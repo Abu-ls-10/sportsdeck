@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import AppSidebar from "@/components/layout/AppSidebar";
 import ThreadsHero from "@/components/threads/ThreadsHero";
 import ThreadsFilterBar, {
   ThreadFilters,
@@ -67,28 +66,24 @@ export default function ThreadsPage() {
     });
 
   return (
-    <div className="min-h-screen bg-bg-main text-text-primary flex">
-      <AppSidebar />
+    <div className="px-4 py-4 md:px-6 lg:px-8">
+      <div className="max-w-[1100px] mx-auto">
+        
+        <ThreadsHero />
 
-      <main className="flex-1 px-4 py-4 md:px-6 lg:px-8 overflow-x-hidden">
-        <div className="max-w-[1100px] mx-auto">
-          
-          <ThreadsHero />
-
-          <div className="mt-5">
-            <ThreadsFilterBar onChange={setFilters} />
-          </div>
-
-          <section className="mt-4 space-y-4">
-            {filteredThreads.map((thread, i) => (
-              <ThreadCard key={i} {...thread} />
-            ))}
-
-            <StartDiscussionCard />
-          </section>
-
+        <div className="mt-5">
+          <ThreadsFilterBar onChange={setFilters} />
         </div>
-      </main>
+
+        <section className="mt-4 space-y-4">
+          {filteredThreads.map((thread, i) => (
+            <ThreadCard key={i} {...thread} />
+          ))}
+
+          <StartDiscussionCard />
+        </section>
+
+      </div>
     </div>
   );
 }
