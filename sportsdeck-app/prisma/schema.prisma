@@ -7,11 +7,13 @@
 generator client {
   provider   = "prisma-client-js"
   output     = "../src/generated/prisma"
+  // Option A: schema-level native engine (binary). Prisma Studio uses this query engine.
+  // Windows ARM64 + ARM Node: this often fails (x64 DLL). Use Adminer (compose profile dev-tools), Node x64, or engineType "client" + @prisma/adapter-pg.
   engineType = "binary"
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -280,6 +282,27 @@ model ReportedItem {
   bans         Ban[]
 
   @@unique([contentType, contentId])
+}
+
+model ModerationCache {
+  id                 String   @id @default(cuid())
+  normalizedTextHash String
+  pipelineKey        String
+  originalTextLength Int
+  translatedText     String?
+  flagged            Boolean
+  toxicityScore      Float
+  labelSummary       String
+  labelsJson         Json
+  explanation        String
+  model              String
+  cachedAt           DateTime @default(now())
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  @@unique([normalizedTextHash, pipelineKey])
+  @@index([normalizedTextHash])
+  @@index([cachedAt])
 }
 
 model Report {

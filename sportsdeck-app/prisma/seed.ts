@@ -1,4 +1,3 @@
-
 import { PrismaClient } from "../src/generated/prisma"
 import seedUsers from "./seeds/users"
 import { main as seedTeams } from "./seeds/teams"
@@ -10,7 +9,36 @@ import seedFollows from "./seeds/follows"
 
 const prisma = new PrismaClient()
 
+async function clearDatabase() {
+  await prisma.feedEntry.deleteMany();
+  await prisma.feedEvent.deleteMany();
+  await prisma.activity.deleteMany();
+  await prisma.appeal.deleteMany();
+  await prisma.ban.deleteMany();
+  await prisma.adminAction.deleteMany();
+  await prisma.report.deleteMany();
+  await prisma.reportedItem.deleteMany();
+  await prisma.vote.deleteMany();
+  await prisma.pollOption.deleteMany();
+  await prisma.poll.deleteMany();
+  await prisma.threadTag.deleteMany();
+  await prisma.replyVersion.deleteMany();
+  await prisma.reply.deleteMany();
+  await prisma.postVersion.deleteMany();
+  await prisma.post.deleteMany();
+  await prisma.thread.deleteMany();
+  await prisma.follow.deleteMany();
+  await prisma.user.deleteMany();
+  await prisma.match.deleteMany();
+  await prisma.standing.deleteMany();
+  await prisma.team.deleteMany();
+  await prisma.tag.deleteMany();
+  await prisma.dailyDigest.deleteMany();
+}
+
 async function main() {
+  await clearDatabase();
+
   const users = await seedUsers(prisma)
   const teams = await seedTeams(prisma)
   const matches = await seedMatches(prisma, teams)

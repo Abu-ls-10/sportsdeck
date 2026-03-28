@@ -1,9 +1,21 @@
 import "./globals.css";
-import type { ReactNode } from "react";
+import { ColorSchemeScript, MantineProvider } from "@mantine/core";
+import { Notifications } from "@mantine/notifications";
+import { AuthProvider } from "@/contexts/AuthContext";
 
-export const metadata = {
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+export const metadata: Metadata = {
   title: "SportsDeck",
-  description: "Personalized sports dashboard",
+  description: "The Ultimate Hub for Sports Fans",
 };
 
 export default function RootLayout({
@@ -12,9 +24,15 @@ export default function RootLayout({
   children: ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className="bg-bg-main text-text-primary">
-        {children}
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <ColorSchemeScript defaultColorScheme="auto" />
+      </head>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <MantineProvider defaultColorScheme="auto">
+          <Notifications position="top-right" />
+          <AuthProvider>{children}</AuthProvider>
+        </MantineProvider>
       </body>
     </html>
   );

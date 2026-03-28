@@ -49,32 +49,32 @@ export async function GET(
       return NextResponse.json({ error: "Match not found" }, { status: 404 })
     }
 
-    let thread = await prisma.thread.findFirst({
-      where: {
+    const openDate = new Date(match.matchDate)
+    openDate.setDate(openDate.getDate() - 14)
+
+    const closeDate = new Date(match.matchDate)
+    closeDate.setDate(closeDate.getDate() + 14)
+
+    // Concurrency-safe: matchId is unique on Thread, so upsert prevents P2002 races.
+    const thread = await prisma.thread.upsert({
+      where: { matchId },
+      update: {
+        // Keep the window aligned if match time changes.
+        opensAt: openDate,
+        lockedAt: closeDate,
+        isMatchThread: true,
+        teamId: match.homeTeamId,
+      },
+      create: {
+        title: `Match Discussion`,
         matchId,
-        isMatchThread: true
-      }
+        teamId: match.homeTeamId,
+        isMatchThread: true,
+        opensAt: openDate,
+        lockedAt: closeDate,
+        authorId: "system",
+      },
     })
-
-    if (!thread) {
-      const openDate = new Date(match.matchDate)
-      openDate.setDate(openDate.getDate() - 14)
-
-      const closeDate = new Date(match.matchDate)
-      closeDate.setDate(closeDate.getDate() + 14)
-
-      thread = await prisma.thread.create({
-        data: {
-          title: `Match Discussion`,
-          matchId,
-          teamId: match.homeTeamId,
-          isMatchThread: true,
-          opensAt: openDate,
-          lockedAt: closeDate,
-          authorId: "system"
-        }
-      })
-    }
 
     return NextResponse.json(thread)
 
