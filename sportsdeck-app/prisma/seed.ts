@@ -37,10 +37,10 @@ async function clearDatabase() {
 }
 
 async function main() {
-  await clearDatabase();
 
-  const users = await seedUsers(prisma)
+  await clearDatabase();
   const teams = await seedTeams(prisma)
+  const users = await seedUsers(prisma)
   const matches = await seedMatches(prisma, teams)
   const threads = await seedThreads(prisma, users, teams, matches)
   const posts = await seedPosts(prisma, users, threads)
@@ -57,4 +57,5 @@ main()
   })
   .finally(async () => {
     await prisma.$disconnect()
+    process.exit(0)  
   })
