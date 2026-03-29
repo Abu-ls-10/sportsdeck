@@ -1,7 +1,5 @@
 import { AuthProvider } from "@/contexts/AuthContext";
 import "./globals.css";
-import type { ReactNode } from "react";
-import { AuthProvider } from "@/contexts/AuthContext";
 
 export const metadata = {
   title: "SportsDeck",
@@ -11,7 +9,7 @@ export const metadata = {
 export default function RootLayout({
   children,
 }: {
-  children: ReactNode;
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">

@@ -2,6 +2,7 @@ import { comparePassword, generateAccessToken, generateRefreshToken, hashPasswor
 import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
 export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs';
 
 /**
  * @openapi
@@ -71,13 +72,37 @@ export async function POST(req: Request){
         const new_refresh_token = generateRefreshToken(access_payload);
 
         await prisma.user.update({
-            where: {id: user.id},
-            data: {
-                refresh_token: await hashPassword(new_refresh_token)
-            }
-        })
+        where: { id: user.id },
+        data: {
+            refresh_token: await hashPassword(new_refresh_token)
+        }
+        });
 
-        return NextResponse.json({access_token: access_token, new_refresh_token: new_refresh_token}, {status: 200});
+        // Set cookies WITHOUT breaking response
+        const res = NextResponse.json(
+        {
+            access_token: access_token,
+            new_refresh_token: new_refresh_token
+        },
+        { status: 200 }
+        );
+
+        // IMPORTANT: set cookies
+        res.cookies.set("access_token", access_token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "lax",
+        path: "/",
+        });
+
+        res.cookies.set("refresh_token", new_refresh_token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "lax",
+        path: "/",
+        });
+
+        return res;
 
     }catch(error){
         console.log("CATCH ERROR:", error)

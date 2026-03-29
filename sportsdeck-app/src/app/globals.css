@@ -1,6 +1,5 @@
+@import "tailwindcss";
 @config "../../tailwind.config.ts";
-/* Relative path: Turbopack/PostCSS was resolving package name `tailwindcss` from the parent folder (PP2\PP2) instead of sportsdeck-app. */
-@import "../../node_modules/tailwindcss/index.css";
 
 body {
   @apply bg-bg-main text-text-primary;

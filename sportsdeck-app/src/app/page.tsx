@@ -24,6 +24,7 @@ import {
 
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { useAuth } from "@/contexts/AuthContext";
 
 /* =========================
    Types
@@ -345,6 +346,30 @@ async function fetchJson<T>(url: string): Promise<T | null> {
   }
 }
 
+function extractStandingsResponse(value: unknown): StandingItem[] {
+  if (Array.isArray(value)) return value as StandingItem[];
+
+  if (
+    value &&
+    typeof value === "object" &&
+    "standings" in value &&
+    Array.isArray((value as any).standings)
+  ) {
+    return (value as any).standings;
+  }
+
+  if (
+    value &&
+    typeof value === "object" &&
+    "data" in value &&
+    Array.isArray((value as any).data)
+  ) {
+    return (value as any).data;
+  }
+
+  return [];
+}
+
 /* =========================
    Small UI building blocks
 ========================= */
@@ -486,7 +511,7 @@ function LandingHero({
 
             <h1 className="max-w-3xl text-3xl font-semibold leading-tight text-white md:text-4xl xl:text-[2.55rem] xl:leading-[1.05]">
               {headline}
-          </h1>
+            </h1>
 
             <p className="mt-4 max-w-2xl text-sm leading-7 text-text-secondary md:text-base">
               {subheadline}
@@ -588,7 +613,7 @@ function HeroStatCard({
       </p>
       <p className="mt-1 truncate text-lg font-semibold text-white">{value}</p>
       <p className="mt-1 text-xs leading-5 text-text-secondary">{helper}</p>
-        </div>
+    </div>
   );
 }
 
@@ -741,14 +766,14 @@ function MatchCard({ match }: { match: MatchItem }) {
         </span>
 
         <span className="text-xs text-text-muted">{formatCompactDate(match.matchDate)}</span>
-        </div>
+      </div>
 
       <div className="mt-5 grid grid-cols-[1fr_auto_1fr] items-center gap-3">
         <TeamMini team={match.homeTeam} align="left" />
         <div className="min-w-[68px] text-center">
           <div className="text-lg font-semibold text-white">
             {match.homeScore ?? "-"} <span className="text-text-muted">:</span> {match.awayScore ?? "-"}
-    </div>
+          </div>
         </div>
         <TeamMini team={match.awayTeam} align="right" />
       </div>
@@ -761,7 +786,7 @@ function MatchCard({ match }: { match: MatchItem }) {
       <div className="mt-4">
         {match.thread?.id ? (
           <Link
-            href={`/threads/${match.thread.id}`}
+            href={`/matches/${match.id}/thread`}
             className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-primary-500/20 bg-primary-500/10 px-3 py-2.5 text-sm font-medium text-primary-300 transition hover:bg-primary-500/15"
           >
             Join discussion
@@ -1599,7 +1624,11 @@ export default function LandingPage() {
 
   const [tab, setTab] = useState<LandingTab>("for-you");
 
+  const { isLoading } = useAuth();
+
   useEffect(() => {
+    if (isLoading) return;
+
     let active = true;
 
     async function load() {
@@ -1675,17 +1704,8 @@ export default function LandingPage() {
       if (standingsData === null) {
         setStandings([]);
         setStandingsRouteAvailable(false);
-      } else if (Array.isArray(standingsData)) {
-        setStandings(standingsData);
-      } else if (
-        "standings" in standingsData &&
-        Array.isArray(standingsData.standings)
-      ) {
-        setStandings(standingsData.standings);
-      } else if ("data" in standingsData && Array.isArray(standingsData.data)) {
-        setStandings(standingsData.data);
       } else {
-        setStandings([]);
+        setStandings(extractStandingsResponse(standingsData));
       }
       setStandingsLoading(false);
     }
@@ -1695,7 +1715,7 @@ export default function LandingPage() {
     return () => {
       active = false;
     };
-  }, []);
+  }, [isLoading]);
 
   const unreadCount = useMemo(
     () => feed.filter((item) => !item.isRead).length,
