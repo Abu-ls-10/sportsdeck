@@ -1,4 +1,10 @@
+import { AuthProvider } from "@/contexts/AuthContext";
 import "./globals.css";
+
+export const metadata = {
+  title: "SportsDeck",
+  description: "The Ultimate Hub for Sports Fans",
+};
 
 export default function RootLayout({
   children,
@@ -8,7 +14,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-bg-main text-text-primary">
-        {children}
+        <AuthProvider>
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );
