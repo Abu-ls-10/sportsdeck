@@ -245,28 +245,60 @@ export default async function MatchesPage({
   );
 
   return (
-    <div className="min-h-screen bg-black text-zinc-50">
-      <div className="mx-auto max-w-6xl px-4 py-10">
-        <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-          <div>
-            <h1 className="text-4xl font-extrabold tracking-tight">Matches</h1>
-            <p className="text-sm text-zinc-400">
-              Premiere League - Season 2025-2026
-            </p>
-          </div>
-        </div>
+    <div className="min-h-screen bg-bg-main text-text-primary">
+      <div className="mx-auto max-w-7xl px-4 py-8 md:px-6 md:py-10">
 
-        <div className="mb-6 flex flex-col gap-3 rounded-2xl border border-zinc-800 bg-zinc-950/60 p-4 md:flex-row md:items-center md:justify-between">
-          <form method="get" className="flex flex-col gap-3 md:flex-row md:items-center">
-            <div className="flex items-center gap-2">
-              <label className="text-xs text-zinc-400" htmlFor="matchday">
-                Matchday
-              </label>
+        {/* ================= HERO ================= */}
+        <section className="relative overflow-hidden rounded-3xl border border-border-subtle bg-bg-surface px-6 py-6 shadow-card">
+          <div className="absolute inset-0 bg-gradient-glow opacity-90" />
+
+          <div className="relative flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+            <div>
+              <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-primary-400/20 bg-primary-400/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-primary-300">
+                Match Center
+              </div>
+
+              <h1 className="text-3xl font-semibold text-white md:text-4xl">
+                Matchday {matchdayToFetch}
+              </h1>
+
+              <p className="mt-2 text-sm text-text-secondary">
+                Premier League · Season 2025–2026
+              </p>
+            </div>
+
+            <div className="flex gap-4">
+              <div className="rounded-2xl border border-border-subtle bg-white/[0.04] px-4 py-3">
+                <p className="text-xs text-text-muted uppercase tracking-[0.12em]">
+                  Matches
+                </p>
+                <p className="text-lg font-semibold text-white">
+                  {stageFiltered.length}
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-border-subtle bg-white/[0.04] px-4 py-3">
+                <p className="text-xs text-text-muted uppercase tracking-[0.12em]">
+                  Stage
+                </p>
+                <p className="text-sm font-semibold text-white">
+                  {stageParam}
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ================= FILTER BAR ================= */}
+        <div className="mt-6 rounded-2xl border border-border-subtle bg-bg-surface/80 p-4 shadow-soft backdrop-blur-xs">
+          <form method="get" className="flex flex-wrap gap-4 items-end">
+
+            <div>
+              <label className="text-xs text-text-muted">Matchday</label>
               <select
-                id="matchday"
                 name="matchday"
                 defaultValue={matchdayToFetch}
-                className="rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm"
+                className="mt-1 rounded-xl border border-border-subtle bg-bg-card px-3 py-2 text-sm text-text-primary"
               >
                 {matchdayOptions.map((md) => (
                   <option key={md} value={md}>
@@ -276,15 +308,12 @@ export default async function MatchesPage({
               </select>
             </div>
 
-            <div className="flex items-center gap-2">
-              <label className="text-xs text-zinc-400" htmlFor="stage">
-                Stage
-              </label>
+            <div>
+              <label className="text-xs text-text-muted">Stage</label>
               <select
-                id="stage"
                 name="stage"
                 defaultValue={stageParam}
-                className="rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm"
+                className="mt-1 rounded-xl border border-border-subtle bg-bg-card px-3 py-2 text-sm text-text-primary"
               >
                 {stageOptions.map((s) => (
                   <option key={s} value={s}>
@@ -294,391 +323,148 @@ export default async function MatchesPage({
               </select>
             </div>
 
-            <button
-              type="submit"
-              className="rounded-lg bg-sky-500 px-4 py-2 text-sm font-semibold text-white hover:bg-sky-400"
-            >
+            <button className="rounded-xl bg-gradient-primary px-5 py-2 text-sm font-semibold text-white shadow-glow">
               Apply
             </button>
-          </form>
 
-          <div className="text-sm text-zinc-300">{matchCountText}</div>
+            <div className="ml-auto text-sm text-text-secondary">
+              {matchCountText}
+            </div>
+          </form>
         </div>
 
-        {stageFiltered.length === 0 ? (
-          <div className="rounded-2xl border border-zinc-800 bg-zinc-950/60 p-8 text-center text-zinc-400">
-            No matches found for this selection.
-          </div>
-        ) : (
-          <div className="space-y-10">
-            {!isFutureMatchday ? (
-              <div className="space-y-10">
-                {upcomingMatches.length > 0 && (
-                  <section>
-                    <div className="mb-3 flex items-end justify-between">
-                      <h2 className="text-xl font-bold tracking-tight">Upcoming</h2>
-                      <div className="text-xs text-zinc-400">
-                        {upcomingMatches.length}{" "}
-                        {upcomingMatches.length === 1 ? "match" : "matches"}
+        {/* ================= CONTENT ================= */}
+        <div className="mt-8 space-y-10">
+
+          {/* ================= UPCOMING ================= */}
+          {upcomingMatches.length > 0 && (
+            <section>
+              <h2 className="text-xl font-semibold text-white mb-4">
+                Upcoming Matches
+              </h2>
+
+              <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+                {upcomingMatches.map((match) => {
+                  const d = new Date(match.matchDate);
+
+                  return (
+                    <div
+                      key={match.id}
+                      className="group rounded-2xl border border-border-subtle bg-bg-card p-4 shadow-soft transition hover:-translate-y-1 hover:border-primary-500/30"
+                    >
+                      <div className="flex justify-between text-xs text-text-muted">
+                        <span>{match.stage}</span>
+                        <span>{formatMatchTime(d)}</span>
                       </div>
-                    </div>
 
-                    <div className="space-y-8">
-                      {upcomingGroups.map((g) => (
-                        <section key={`upcoming-${g.key}`}>
-                          <h3 className="mb-3 text-xs font-semibold tracking-widest text-zinc-400">
-                            {g.heading}
-                          </h3>
-                          <div className="grid gap-4 md:grid-cols-2">
-                            {g.matches.map((match: Match) => {
-                              const d = new Date(match.matchDate);
-                              const statusUpper = (match.status ?? "").toUpperCase();
-                              const isFinished = statusUpper === "FINISHED";
-                              const scoreText = isFinished
-                                ? `${match.homeScore ?? "-"} - ${match.awayScore ?? "-"}`
-                                : null;
+                      <div className="mt-4 flex items-center justify-between">
 
-                              return (
-                                <div
-                                  key={match.id}
-                                  className="rounded-2xl border border-zinc-800 bg-zinc-950/60 p-4"
-                                >
-                                  <div className="mb-3 flex items-start justify-between gap-4">
-                                    <div>
-                                      <div className="text-xs font-semibold text-zinc-400">
-                                        {match.stage || "Matchday"}
-                                      </div>
-                                      <div className="mt-1 text-sm font-semibold">
-                                        {match.venue || match.homeTeam.venue || "TBA"}
-                                      </div>
-                                      <div className="mt-1 text-xs text-zinc-400">
-                                        Kickoff {formatMatchTime(d)}
-                                      </div>
-                                    </div>
-
-                                    {scoreText ? (
-                                      <div className="text-right">
-                                        <div className="text-lg font-bold">{scoreText}</div>
-                                        <div className="text-xs text-zinc-400">Full time</div>
-                                      </div>
-                                    ) : (
-                                      <div className="text-right">
-                                        <div className="text-xs font-semibold text-zinc-400">
-                                          {statusUpper === "IN_PLAY"
-                                            ? "LIVE"
-                                            : statusUpper === "PAUSED"
-                                              ? "PAUSED"
-                                              : statusUpper || "UPCOMING"}
-                                        </div>
-                                      </div>
-                                    )}
-                                  </div>
-
-                                  <div className="flex items-center justify-between gap-3">
-                                    <div className="flex items-center gap-3">
-                                      {match.homeTeam?.logoUrl ? (
-                                        <img
-                                          src={match.homeTeam.logoUrl}
-                                          alt={`${match.homeTeam.name} logo`}
-                                          className="h-10 w-10 rounded-full bg-zinc-900"
-                                        />
-                                      ) : (
-                                        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-zinc-900 text-xs">
-                                          {match.homeTeam?.shortName?.slice(0, 2) ?? "H"}
-                                        </div>
-                                      )}
-                                      <div className="text-sm font-semibold">
-                                        {match.homeTeam?.name}
-                                      </div>
-                                    </div>
-
-                                    <div className="text-xs font-semibold text-zinc-400">VS</div>
-
-                                    <div className="flex items-center gap-3">
-                                      <div className="text-right text-sm font-semibold">
-                                        {match.awayTeam?.name}
-                                      </div>
-                                      {match.awayTeam?.logoUrl ? (
-                                        <img
-                                          src={match.awayTeam.logoUrl}
-                                          alt={`${match.awayTeam.name} logo`}
-                                          className="h-10 w-10 rounded-full bg-zinc-900"
-                                        />
-                                      ) : (
-                                        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-zinc-900 text-xs">
-                                          {match.awayTeam?.shortName?.slice(0, 2) ?? "A"}
-                                        </div>
-                                      )}
-                                    </div>
-                                  </div>
-
-                                  <div className="mt-4 flex items-center justify-between">
-                                    <Link
-                                      href={`/matches/${match.id}`}
-                                      className="rounded-lg bg-zinc-900 px-3 py-2 text-xs font-semibold text-zinc-200 hover:bg-zinc-800"
-                                    >
-                                      Match Thread
-                                    </Link>
-                                    <Link
-                                      href={`/matches/${match.id}`}
-                                      className="rounded-lg border border-zinc-800 bg-zinc-950 px-3 py-2 text-xs font-semibold text-zinc-100 hover:bg-zinc-900"
-                                    >
-                                      Details
-                                    </Link>
-                                  </div>
-                                </div>
-                              );
-                            })}
-                          </div>
-                        </section>
-                      ))}
-                    </div>
-                  </section>
-                )}
-
-                {recentMatches.length > 0 && (
-                  <section>
-                    <div className="mb-3 flex items-end justify-between">
-                      <h2 className="text-xl font-bold tracking-tight">Recent</h2>
-                      <div className="text-xs text-zinc-400">
-                        {recentMatches.length}{" "}
-                        {recentMatches.length === 1 ? "match" : "matches"}
-                      </div>
-                    </div>
-
-                    <div className="space-y-8">
-                      {recentishGroups.map((g) => (
-                        <section key={`recent-${g.key}`}>
-                          <h3 className="mb-3 text-xs font-semibold tracking-widest text-zinc-400">
-                            {g.heading}
-                          </h3>
-                          <div className="grid gap-4 md:grid-cols-2">
-                            {g.matches.map((match: Match) => {
-                              const d = new Date(match.matchDate);
-                              const statusUpper = (match.status ?? "").toUpperCase();
-                              const isFinished = statusUpper === "FINISHED";
-                              const scoreText = isFinished
-                                ? `${match.homeScore ?? "-"} - ${match.awayScore ?? "-"}`
-                                : null;
-
-                              return (
-                                <div
-                                  key={match.id}
-                                  className="rounded-2xl border border-zinc-800 bg-zinc-950/60 p-4"
-                                >
-                                  <div className="mb-3 flex items-start justify-between gap-4">
-                                    <div>
-                                      <div className="text-xs font-semibold text-zinc-400">
-                                        {match.stage || "Matchday"}
-                                      </div>
-                                      <div className="mt-1 text-sm font-semibold">
-                                        {match.venue || match.homeTeam.venue || "TBA"}
-                                      </div>
-                                      <div className="mt-1 text-xs text-zinc-400">
-                                        Kickoff {formatMatchTime(d)}
-                                      </div>
-                                    </div>
-
-                                    {scoreText ? (
-                                      <div className="text-right">
-                                        <div className="text-lg font-bold">{scoreText}</div>
-                                        <div className="text-xs text-zinc-400">Full time</div>
-                                      </div>
-                                    ) : (
-                                      <div className="text-right">
-                                        <div className="text-xs font-semibold text-zinc-400">
-                                          {statusUpper || "UNKNOWN"}
-                                        </div>
-                                      </div>
-                                    )}
-                                  </div>
-
-                                  <div className="flex items-center justify-between gap-3">
-                                    <div className="flex items-center gap-3">
-                                      {match.homeTeam?.logoUrl ? (
-                                        <img
-                                          src={match.homeTeam.logoUrl}
-                                          alt={`${match.homeTeam.name} logo`}
-                                          className="h-10 w-10 rounded-full bg-zinc-900"
-                                        />
-                                      ) : (
-                                        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-zinc-900 text-xs">
-                                          {match.homeTeam?.shortName?.slice(0, 2) ?? "H"}
-                                        </div>
-                                      )}
-                                      <div className="text-sm font-semibold">
-                                        {match.homeTeam?.name}
-                                      </div>
-                                    </div>
-
-                                    <div className="text-xs font-semibold text-zinc-400">VS</div>
-
-                                    <div className="flex items-center gap-3">
-                                      <div className="text-right text-sm font-semibold">
-                                        {match.awayTeam?.name}
-                                      </div>
-                                      {match.awayTeam?.logoUrl ? (
-                                        <img
-                                          src={match.awayTeam.logoUrl}
-                                          alt={`${match.awayTeam.name} logo`}
-                                          className="h-10 w-10 rounded-full bg-zinc-900"
-                                        />
-                                      ) : (
-                                        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-zinc-900 text-xs">
-                                          {match.awayTeam?.shortName?.slice(0, 2) ?? "A"}
-                                        </div>
-                                      )}
-                                    </div>
-                                  </div>
-
-                                  <div className="mt-4 flex items-center justify-between">
-                                    <Link
-                                      href={`/matches/${match.id}`}
-                                      className="rounded-lg bg-zinc-900 px-3 py-2 text-xs font-semibold text-zinc-200 hover:bg-zinc-800"
-                                    >
-                                      Match Thread
-                                    </Link>
-                                    <Link
-                                      href={`/matches/${match.id}`}
-                                      className="rounded-lg border border-zinc-800 bg-zinc-950 px-3 py-2 text-xs font-semibold text-zinc-100 hover:bg-zinc-900"
-                                    >
-                                      Details
-                                    </Link>
-                                  </div>
-                                </div>
-                              );
-                            })}
-                          </div>
-                        </section>
-                      ))}
-                    </div>
-                  </section>
-                )}
-              </div>
-            ) : (
-              <section>
-                <div className="mb-3 flex items-end justify-between">
-                  <h2 className="text-xl font-bold tracking-tight">Upcoming</h2>
-            
-                </div>
-
-                {upcomingGroups.length === 0 ? (
-                  <div className="rounded-2xl border border-zinc-800 bg-zinc-950/60 p-6 text-sm text-zinc-400">
-                    No upcoming matches for this matchday.
-                  </div>
-                ) : (
-                  <div className="space-y-8">
-                    {upcomingGroups.map((g) => (
-                      <section key={`upcoming-${g.key}`}>
-                        <h3 className="mb-3 text-xs font-semibold tracking-widest text-zinc-400">
-                          {g.heading}
-                        </h3>
-                        <div className="grid gap-4 md:grid-cols-2">
-                          {g.matches.map((match) => {
-                            const d = new Date(match.matchDate);
-                            const statusUpper = (match.status ?? "").toUpperCase();
-                            const isFinished = statusUpper === "FINISHED";
-
-                            const scoreText = isFinished
-                              ? `${match.homeScore ?? "-"} - ${match.awayScore ?? "-"}`
-                              : null;
-
-                            return (
-                              <div
-                                key={match.id}
-                                className="rounded-2xl border border-zinc-800 bg-zinc-950/60 p-4"
-                              >
-                                <div className="mb-3 flex items-start justify-between gap-4">
-                                  <div>
-                                    <div className="text-xs font-semibold text-zinc-400">
-                                      {match.stage || "Matchday"}
-                                    </div>
-                                    <div className="mt-1 text-sm font-semibold">
-                                      {match.venue || match.homeTeam.venue || "TBA"}
-                                    </div>
-                                    <div className="mt-1 text-xs text-zinc-400">
-                                      Kickoff {formatMatchTime(d)}
-                                    </div>
-                                  </div>
-
-                                  {scoreText ? (
-                                    <div className="text-right">
-                                      <div className="text-lg font-bold">{scoreText}</div>
-                                      <div className="text-xs text-zinc-400">Full time</div>
-                                    </div>
-                                  ) : (
-                                    <div className="text-right">
-                                      <div className="text-xs font-semibold text-zinc-400">
-                                        {statusUpper || "UNKNOWN"}
-                                      </div>
-                                    </div>
-                                  )}
-                                </div>
-
-                                <div className="flex items-center justify-between gap-3">
-                                  <div className="flex items-center gap-3">
-                                    {match.homeTeam?.logoUrl ? (
-                                      <img
-                                        src={match.homeTeam.logoUrl}
-                                        alt={`${match.homeTeam.name} logo`}
-                                        className="h-10 w-10 rounded-full bg-zinc-900"
-                                      />
-                                    ) : (
-                                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-zinc-900 text-xs">
-                                        {match.homeTeam?.shortName?.slice(0, 2) ?? "H"}
-                                      </div>
-                                    )}
-                                    <div className="text-sm font-semibold">
-                                      {match.homeTeam?.name}
-                                    </div>
-                                  </div>
-
-                                  <div className="text-xs font-semibold text-zinc-400">VS</div>
-
-                                  <div className="flex items-center gap-3">
-                                    <div className="text-right text-sm font-semibold">
-                                      {match.awayTeam?.name}
-                                    </div>
-                                    {match.awayTeam?.logoUrl ? (
-                                      <img
-                                        src={match.awayTeam.logoUrl}
-                                        alt={`${match.awayTeam.name} logo`}
-                                        className="h-10 w-10 rounded-full bg-zinc-900"
-                                      />
-                                    ) : (
-                                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-zinc-900 text-xs">
-                                        {match.awayTeam?.shortName?.slice(0, 2) ?? "A"}
-                                      </div>
-                                    )}
-                                  </div>
-                                </div>
-
-                                <div className="mt-4 flex items-center justify-between">
-                                  <Link
-                                    href={`/matches/${match.id}`}
-                                    className="rounded-lg bg-zinc-900 px-3 py-2 text-xs font-semibold text-zinc-200 hover:bg-zinc-800"
-                                  >
-                                    Match Thread
-                                  </Link>
-                                  <Link
-                                    href={`/matches/${match.id}`}
-                                    className="rounded-lg border border-zinc-800 bg-zinc-950 px-3 py-2 text-xs font-semibold text-zinc-100 hover:bg-zinc-900"
-                                  >
-                                    Details
-                                  </Link>
-                                </div>
-                              </div>
-                            );
-                          })}
+                        {/* HOME */}
+                        <div className="flex items-center gap-2">
+                          <img
+                            src={match.homeTeam.logoUrl || ""}
+                            className="h-10 w-10 rounded-xl bg-bg-surface"
+                          />
+                          <span className="text-sm font-semibold">
+                            {match.homeTeam.name}
+                          </span>
                         </div>
-                      </section>
-                    ))}
-                  </div>
-                )}
+
+                        <span className="text-xs text-text-muted">VS</span>
+
+                        {/* AWAY */}
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm font-semibold">
+                            {match.awayTeam.name}
+                          </span>
+                          <img
+                            src={match.awayTeam.logoUrl || ""}
+                            className="h-10 w-10 rounded-xl bg-bg-surface"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="mt-4 flex gap-2">
+                        <Link
+                          href={`/matches/${match.id}`}
+                          className="flex-1 rounded-xl bg-primary-500/10 text-primary-300 text-center py-2 text-sm font-medium hover:bg-primary-500/20"
+                        >
+                          Thread
+                        </Link>
+                        <Link
+                          href={`/matches/${match.id}`}
+                          className="flex-1 rounded-xl border border-border-subtle text-center py-2 text-sm hover:bg-bg-elevated"
+                        >
+                          Details
+                        </Link>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
             </section>
-            )}
-          </div>
-        )}
+          )}
+
+          {/* ================= RECENT ================= */}
+          {recentMatches.length > 0 && (
+            <section>
+              <h2 className="text-xl font-semibold text-white mb-4">
+                Recent Matches
+              </h2>
+
+              <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+                {recentMatches.map((match) => {
+                  const score = `${match.homeScore ?? "-"} - ${match.awayScore ?? "-"}`;
+
+                  return (
+                    <div
+                      key={match.id}
+                      className="rounded-2xl border border-border-subtle bg-bg-card p-4 shadow-soft"
+                    >
+                      <div className="flex justify-between text-xs text-text-muted">
+                        <span>{match.stage}</span>
+                        <span>Final</span>
+                      </div>
+
+                      <div className="mt-4 flex items-center justify-between">
+
+                        <div className="flex items-center gap-2">
+                          <img src={match.homeTeam.logoUrl || ""} className="h-10 w-10 rounded-xl" />
+                          <span>{match.homeTeam.name}</span>
+                        </div>
+
+                        <div className="text-lg font-bold text-white">
+                          {score}
+                        </div>
+
+                        <div className="flex items-center gap-2">
+                          <span>{match.awayTeam.name}</span>
+                          <img src={match.awayTeam.logoUrl || ""} className="h-10 w-10 rounded-xl" />
+                        </div>
+                      </div>
+
+                      <div className="mt-4 flex gap-2">
+                        <Link
+                          href={`/matches/${match.id}`}
+                          className="flex-1 rounded-xl bg-white/[0.05] text-center py-2 text-sm hover:bg-white/[0.08]"
+                        >
+                          Thread
+                        </Link>
+                        <Link
+                          href={`/matches/${match.id}`}
+                          className="flex-1 rounded-xl border border-border-subtle text-center py-2 text-sm hover:bg-bg-elevated"
+                        >
+                          Details
+                        </Link>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </section>
+          )}
+
+        </div>
       </div>
     </div>
   );
