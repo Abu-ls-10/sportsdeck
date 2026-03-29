@@ -144,8 +144,16 @@ export const GET = withAuth(async (req: AuthenticatedRequest) => {
       },
     })
 
+    // Add a compact preview of the actual reported content text/title for queue cards.
+    const dataWithContentPreview = await Promise.all(
+      reportedItems.map(async (item) => ({
+        ...item,
+        contentPreviewText: await getQueueContentPreviewText(item.contentType, item.contentId),
+      }))
+    )
+
     return NextResponse.json({
-      data: reportedItems,
+      data: dataWithContentPreview,
       pagination: {
         page,
         limit,
@@ -161,3 +169,39 @@ export const GET = withAuth(async (req: AuthenticatedRequest) => {
     )
   }
 }, "ADMIN")
+
+function truncatePreview(text: string, maxLength = 220): string {
+  if (text.length <= maxLength) return text
+  return `${text.slice(0, maxLength).trimEnd()}...`
+}
+
+async function getQueueContentPreviewText(
+  contentType: string,
+  contentId: string
+): Promise<string | null> {
+  switch (contentType) {
+    case "THREAD": {
+      const thread = await prisma.thread.findUnique({
+        where: { id: contentId },
+        select: { title: true },
+      })
+      return thread?.title ? truncatePreview(thread.title) : null
+    }
+    case "POST": {
+      const post = await prisma.post.findUnique({
+        where: { id: contentId },
+        select: { content: true },
+      })
+      return post?.content ? truncatePreview(post.content) : null
+    }
+    case "REPLY": {
+      const reply = await prisma.reply.findUnique({
+        where: { id: contentId },
+        select: { content: true },
+      })
+      return reply?.content ? truncatePreview(reply.content) : null
+    }
+    default:
+      return null
+  }
+}
