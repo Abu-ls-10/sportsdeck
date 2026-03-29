@@ -62,7 +62,6 @@ async function getHandler(req: AuthenticatedRequest) {
       )
     }
 
-    // STEP 1: Get feed entries
     const entries = await prisma.feedEntry.findMany({
       where: { userId: currentUser.id },
       orderBy: { createdAt: "desc" },
@@ -72,9 +71,10 @@ async function getHandler(req: AuthenticatedRequest) {
       }
     })
 
-    // STEP 2: Collect IDs
     const threadIds = new Set<string>()
     const pollIds = new Set<string>()
+    const postIds = new Set<string>()
+    const replyIds = new Set<string>()
 
     for (const entry of entries) {
       const event = entry.feedEvent
@@ -86,9 +86,16 @@ async function getHandler(req: AuthenticatedRequest) {
       if (event.entityType === "poll") {
         pollIds.add(event.entityId)
       }
+
+      if (event.entityType === "post") {
+        postIds.add(event.entityId)
+      }
+
+      if (event.entityType === "reply") {
+        replyIds.add(event.entityId)
+      }
     }
 
-    // STEP 3: Fetch related data in batch
     const threads = await prisma.thread.findMany({
       where: {
         id: { in: Array.from(threadIds) },
@@ -130,15 +137,61 @@ async function getHandler(req: AuthenticatedRequest) {
       }
     })
 
-    // STEP 4: Map for quick lookup
+    const posts = await prisma.post.findMany({
+      where: {
+        id: { in: Array.from(postIds) },
+        isHidden: false
+      },
+      include: {
+        author: {
+          select: {
+            id: true,
+            username: true,
+            avatarUrl: true
+          }
+        },
+        thread: {
+          select: {
+            id: true,
+            title: true
+          }
+        }
+      }
+    })
+
+    const replies = await prisma.reply.findMany({
+      where: {
+        id: { in: Array.from(replyIds) }
+      },
+      include: {
+        author: {
+          select: {
+            id: true,
+            username: true,
+            avatarUrl: true
+          }
+        },
+        post: {
+          include: {
+            thread: {
+              select: {
+                id: true,
+                title: true
+              }
+            }
+          }
+        }
+      }
+    })
+
     const threadMap = new Map(threads.map(t => [t.id, t]))
     const pollMap = new Map(polls.map(p => [p.id, p]))
+    const postMap = new Map(posts.map(p => [p.id, p]))
+    const replyMap = new Map(replies.map(r => [r.id, r]))
 
-    // STEP 5: Format response
     const formatted = entries.map((entry) => {
       const event = entry.feedEvent
 
-      // THREAD
       if (event.entityType === "thread") {
         const thread = threadMap.get(event.entityId)
 
@@ -147,7 +200,6 @@ async function getHandler(req: AuthenticatedRequest) {
           isRead: entry.isRead,
           createdAt: entry.createdAt,
           type: "thread",
-
           thread: thread
             ? {
                 id: thread.id,
@@ -157,7 +209,6 @@ async function getHandler(req: AuthenticatedRequest) {
                 replies: thread._count.posts
               }
             : null,
-
           meta: {
             eventType: event.eventType,
             groupKey: event.groupKey,
@@ -166,7 +217,6 @@ async function getHandler(req: AuthenticatedRequest) {
         }
       }
 
-      // POLL
       if (event.entityType === "poll") {
         const poll = pollMap.get(event.entityId)
 
@@ -183,7 +233,54 @@ async function getHandler(req: AuthenticatedRequest) {
         }
       }
 
-      // FALLBACK
+      if (event.entityType === "post") {
+        const post = postMap.get(event.entityId)
+
+        return {
+          id: entry.id,
+          isRead: entry.isRead,
+          createdAt: entry.createdAt,
+          type: "post",
+          post: post
+            ? {
+                id: post.id,
+                content: post.content,
+                author: post.author,
+                thread: post.thread
+              }
+            : null,
+          meta: {
+            eventType: event.eventType,
+            groupKey: event.groupKey,
+            count: event.aggregateCount
+          }
+        }
+      }
+
+      if (event.entityType === "reply") {
+        const reply = replyMap.get(event.entityId)
+
+        return {
+          id: entry.id,
+          isRead: entry.isRead,
+          createdAt: entry.createdAt,
+          type: "reply",
+          reply: reply
+            ? {
+                id: reply.id,
+                content: reply.content,
+                author: reply.author,
+                thread: reply.post.thread
+              }
+            : null,
+          meta: {
+            eventType: event.eventType,
+            groupKey: event.groupKey,
+            count: event.aggregateCount
+          }
+        }
+      }
+
       return {
         id: entry.id,
         isRead: entry.isRead,

@@ -370,6 +370,28 @@ function extractStandingsResponse(value: unknown): StandingItem[] {
   return [];
 }
 
+function extractData<T>(value: any): T | null {
+  if (!value) return null;
+  if ("data" in value) return value.data;
+  return value;
+}
+
+function threadsToFeed(threads: any[]): FeedItem[] {
+  return threads.map((thread) => ({
+    id: `fallback-${thread.id}`,
+    type: "thread",
+    isRead: true,
+    createdAt: thread.createdAt,
+    thread: {
+      id: thread.id,
+      title: thread.title,
+      author: thread.author,
+      tags: thread.tags ?? [],
+      replies: thread._count?.posts ?? 0,
+    },
+  }));
+}
+
 /* =========================
    Small UI building blocks
 ========================= */
@@ -1644,6 +1666,7 @@ export default function LandingPage() {
         tagsData,
         matchesData,
         standingsData,
+        fallbackThreadsData,
       ] = await Promise.all([
         fetchJson<Me>("/api/users/me"),
         fetchJson<FeedItem[] | { feed?: FeedItem[] }>("/api/feed?limit=24"),
@@ -1654,20 +1677,40 @@ export default function LandingPage() {
         fetchJson<
           StandingItem[] | { standings?: StandingItem[] } | { data?: StandingItem[] }
         >("/api/standings?limit=5"),
+        fetchJson("/api/threads?sort=recent&limit=10"),
       ]);
 
       if (!active) return;
 
-      setMe(meData ?? null);
+      setMe(extractData<Me>(meData));
       setMeLoading(false);
 
+      let finalFeed: FeedItem[] = [];
+
       if (Array.isArray(feedData)) {
-        setFeed(feedData);
+        finalFeed = feedData;
       } else if (feedData && "feed" in feedData && Array.isArray(feedData.feed)) {
-        setFeed(feedData.feed);
-      } else {
-        setFeed([]);
+        finalFeed = feedData.feed;
       }
+
+      // FALLBACK
+      if (finalFeed.length === 0) {
+        let threads: any[] = [];
+
+        if (Array.isArray(fallbackThreadsData)) {
+          threads = fallbackThreadsData;
+        } else if (
+          fallbackThreadsData &&
+          "threads" in fallbackThreadsData &&
+          Array.isArray((fallbackThreadsData as any).threads)
+        ) {
+          threads = (fallbackThreadsData as any).threads;
+        }
+
+        finalFeed = threadsToFeed(threads);
+      }
+
+      setFeed(finalFeed);
       setFeedLoading(false);
 
       if (Array.isArray(tagsData)) {
