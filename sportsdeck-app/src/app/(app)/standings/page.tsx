@@ -48,6 +48,8 @@ async function fetchStandings(type: StandingType, season: string): Promise<Stand
   return data.standings ?? [];
 }
 
+/* ---------------- PAGE ---------------- */
+
 export default async function StandingsPage({
   searchParams,
 }: {
@@ -59,7 +61,6 @@ export default async function StandingsPage({
   const selectedType: StandingType =
     rawType === "HOME" || rawType === "AWAY" ? rawType : "TOTAL";
 
-  // For now keep dropdown limited to 2025.
   const selectedSeason = getSearchParam(sp.season) ?? "2025";
 
   const standings = await fetchStandings(selectedType, selectedSeason);
@@ -68,80 +69,86 @@ export default async function StandingsPage({
     selectedType === "HOME"
       ? "Home Standings"
       : selectedType === "AWAY"
-        ? "Away Standings"
-        : "Total Standings";
+      ? "Away Standings"
+      : "Total Standings";
 
   return (
-    <div className="min-h-screen bg-black text-zinc-50">
-      <div className="mx-auto max-w-6xl px-4 py-10">
-        <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-          <div>
-            <h1 className="text-4xl font-extrabold tracking-tight">Premier League</h1>
-            <p className="mt-1 text-sm text-zinc-400">Season {selectedSeason}</p>
+    <div className="min-h-screen bg-bg-main text-text-primary">
+      <div className="mx-auto max-w-7xl px-4 py-10">
+
+        {/* ================= HERO ================= */}
+        <section className="relative overflow-hidden rounded-3xl border border-border-subtle bg-bg-surface px-6 py-6 shadow-card">
+          <div className="absolute inset-0 bg-gradient-glow opacity-80" />
+
+          <div className="relative flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+            <div>
+              <h1 className="text-3xl md:text-4xl font-semibold text-white">
+                Premier League
+              </h1>
+              <p className="mt-2 text-sm text-text-secondary">
+                Season {selectedSeason}
+              </p>
+            </div>
+
+            <Link
+              href="/matches"
+              className="inline-flex items-center justify-center rounded-xl bg-bg-card border border-border-subtle px-4 py-2 text-sm font-semibold hover:bg-bg-elevated transition"
+            >
+              View Matches
+            </Link>
           </div>
+        </section>
 
-          <Link
-            href="/matches"
-            className="inline-flex items-center justify-center rounded-lg border border-zinc-700 bg-zinc-900 px-4 py-2 text-sm font-semibold text-zinc-100 hover:bg-zinc-800"
-          >
-            Matches
-          </Link>
-        </div>
+        {/* ================= FILTER ================= */}
+        <div className="mt-6 rounded-2xl border border-border-subtle bg-bg-surface/80 p-4 shadow-soft backdrop-blur-xs">
+          <form method="get" className="flex flex-wrap gap-4 items-end">
 
-        <div className="mb-6 rounded-2xl border border-zinc-800 bg-zinc-950/60 p-4">
-          <form method="get" className="flex flex-col gap-3 md:flex-row md:items-center">
-            <div className="flex items-center gap-2">
-              <label htmlFor="type" className="text-xs text-zinc-400">
-                Standings
-              </label>
+            <div>
+              <label className="text-xs text-text-muted">Standings</label>
               <select
-                id="type"
                 name="type"
                 defaultValue={selectedType}
-                className="rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm"
+                className="mt-1 rounded-xl border border-border-subtle bg-bg-card px-3 py-2 text-sm"
               >
-                <option value="TOTAL">Total Standings</option>
-                <option value="HOME">Home Standings</option>
-                <option value="AWAY">Away Standings</option>
+                <option value="TOTAL">Total</option>
+                <option value="HOME">Home</option>
+                <option value="AWAY">Away</option>
               </select>
             </div>
 
-            <div className="flex items-center gap-2">
-              <label htmlFor="season" className="text-xs text-zinc-400">
-                Season
-              </label>
+            <div>
+              <label className="text-xs text-text-muted">Season</label>
               <select
-                id="season"
                 name="season"
                 defaultValue={selectedSeason}
-                className="rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm"
+                className="mt-1 rounded-xl border border-border-subtle bg-bg-card px-3 py-2 text-sm"
               >
                 <option value="2025">2025</option>
               </select>
             </div>
 
-            <button
-              type="submit"
-              className="rounded-lg bg-sky-500 px-4 py-2 text-sm font-semibold text-white hover:bg-sky-400"
-            >
+            <button className="rounded-xl bg-gradient-primary px-5 py-2 text-sm font-semibold text-white shadow-glow">
               Apply
             </button>
           </form>
         </div>
 
-        <section className="rounded-2xl border border-zinc-800 bg-zinc-950/60">
-          <div className="border-b border-zinc-800 px-4 py-3">
-            <h2 className="text-lg font-bold tracking-tight">{tableTitle}</h2>
+        {/* ================= TABLE ================= */}
+        <section className="mt-8 rounded-2xl border border-border-subtle bg-bg-card shadow-card overflow-hidden">
+
+          <div className="border-b border-border-subtle px-4 py-3">
+            <h2 className="text-lg font-semibold">{tableTitle}</h2>
           </div>
 
           {standings.length === 0 ? (
-            <div className="px-4 py-8 text-center text-sm text-zinc-400">
-              No standings available for this selection.
+            <div className="px-4 py-10 text-center text-text-muted">
+              No standings available.
             </div>
           ) : (
             <div className="overflow-x-auto">
               <table className="min-w-full text-sm">
-                <thead className="bg-zinc-900/80 text-xs uppercase tracking-wider text-zinc-400">
+
+                <thead className="text-xs uppercase text-text-muted border-b border-border-subtle">
                   <tr>
                     <th className="px-4 py-3 text-left">#</th>
                     <th className="px-4 py-3 text-left">Team</th>
@@ -155,45 +162,63 @@ export default async function StandingsPage({
                     <th className="px-4 py-3 text-right">PTS</th>
                   </tr>
                 </thead>
+
                 <tbody>
                   {standings.map((row) => {
                     const gd = row.goalsFor - row.goalsAgainst;
+
                     return (
-                      <tr key={row.id} className="border-t border-zinc-800">
-                        <td className="px-4 py-3 font-semibold text-zinc-300">{row.position}</td>
+                      <tr
+                        key={row.id}
+                        className="border-t border-border-subtle hover:bg-bg-elevated transition"
+                      >
+                        <td className="px-4 py-3 font-semibold text-text-secondary">
+                          {row.position}
+                        </td>
+
                         <td className="px-4 py-3">
                           <div className="flex items-center gap-3">
-                            {row.team?.logoUrl ? (
-                              // eslint-disable-next-line @next/next/no-img-element
+                            {row.team.logoUrl ? (
                               <img
                                 src={row.team.logoUrl}
-                                alt={`${row.team.name} logo`}
-                                className="h-6 w-6 rounded-full bg-zinc-900"
+                                className="h-7 w-7 rounded-full bg-bg-surface"
                               />
                             ) : (
-                              <div className="h-6 w-6 rounded-full bg-zinc-900" />
+                              <div className="h-7 w-7 rounded-full bg-bg-surface" />
                             )}
-                            <span className="font-semibold">{row.team?.name}</span>
+                            <span className="font-semibold">
+                              {row.team.name}
+                            </span>
                           </div>
                         </td>
-                        <td className="px-4 py-3 text-right text-zinc-300">{row.played}</td>
-                        <td className="px-4 py-3 text-right text-zinc-300">{row.won}</td>
-                        <td className="px-4 py-3 text-right text-zinc-300">{row.drawn}</td>
-                        <td className="px-4 py-3 text-right text-zinc-300">{row.lost}</td>
-                        <td className="px-4 py-3 text-right text-zinc-300">{row.goalsFor}</td>
-                        <td className="px-4 py-3 text-right text-zinc-300">{row.goalsAgainst}</td>
+
+                        <td className="px-4 py-3 text-right">{row.played}</td>
+                        <td className="px-4 py-3 text-right">{row.won}</td>
+                        <td className="px-4 py-3 text-right">{row.drawn}</td>
+                        <td className="px-4 py-3 text-right">{row.lost}</td>
+                        <td className="px-4 py-3 text-right">{row.goalsFor}</td>
+                        <td className="px-4 py-3 text-right">{row.goalsAgainst}</td>
+
                         <td
                           className={`px-4 py-3 text-right font-semibold ${
-                            gd > 0 ? "text-emerald-400" : gd < 0 ? "text-rose-400" : "text-zinc-300"
+                            gd > 0
+                              ? "text-emerald-400"
+                              : gd < 0
+                              ? "text-red-400"
+                              : "text-text-secondary"
                           }`}
                         >
                           {gd > 0 ? `+${gd}` : gd}
                         </td>
-                        <td className="px-4 py-3 text-right font-bold text-sky-400">{row.points}</td>
+
+                        <td className="px-4 py-3 text-right font-bold text-primary-400">
+                          {row.points}
+                        </td>
                       </tr>
                     );
                   })}
                 </tbody>
+
               </table>
             </div>
           )}

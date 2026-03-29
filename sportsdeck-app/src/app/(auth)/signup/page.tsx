@@ -15,6 +15,7 @@ import OAuthButton from "@/components/auth/OAuthButton";
 import { Mail } from "lucide-react";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
+import Logo from "@/components/ui/Logo";
 
 export default function SignupPage() {
   const { signup } = useAuth();
@@ -61,15 +62,15 @@ export default function SignupPage() {
   return (
     <AuthLayout>
       {/* Header */}
-      <div className="text-center mb-8">
-        <div className="mx-auto w-16 h-16 rounded-2xl bg-gradient-primary flex items-center justify-center shadow-glow mb-4 text-white font-bold text-xl">
-          SD
+      <div className="text-center mb-10">
+        <div className="flex justify-center mb-8">
+          <Logo variant="full" size="lg" />
         </div>
 
-        <h1 className="text-2xl font-semibold text-text-primary">
+        <h1 className="text-2xl font-semibold tracking-tight text-text-primary">
           Create your account
         </h1>
-        <p className="text-sm text-text-secondary mt-1">
+        <p className="text-base text-text-secondary/90 mt-1">
           Join SportsDeck and start engaging with fans
         </p>
       </div>

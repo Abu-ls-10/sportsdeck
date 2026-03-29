@@ -1645,10 +1645,18 @@ export default function LandingPage() {
         setTags(tagsData);
       } else if (tagsData && "tags" in tagsData && Array.isArray(tagsData.tags)) {
         setTags(tagsData.tags);
+      } else if (
+        tagsData &&
+        "data" in tagsData &&
+        tagsData.data &&
+        typeof tagsData.data === "object" &&
+        "tags" in tagsData.data &&
+        Array.isArray(tagsData.data.tags)
+      ) {
+        setTags(tagsData.data.tags);
       } else {
         setTags([]);
       }
-      setTagsLoading(false);
 
       if (matchesData === null) {
         setMatches([]);

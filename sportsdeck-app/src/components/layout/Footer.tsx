@@ -1,69 +1,108 @@
 "use client";
 
+import Link from "next/link";
+import Logo from "../ui/Logo";
+import { Globe, MessageCircle, Share2 } from "lucide-react";
+
 export default function Footer() {
   return (
-    <footer className="bg-bg-surface border-t border-border mt-12">
-      
-      <div className="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-3 gap-8">
-        
-        {/* LEFT - Brand */}
+    <footer className="relative mt-20 border-t border-border-subtle bg-bg-surface/60 backdrop-blur-xl">
+
+      {/* subtle gradient glow */}
+      <div className="pointer-events-none absolute inset-0 bg-gradient-glow opacity-30" />
+
+      <div className="relative max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-10">
+
+        {/* ===== LEFT (Brand) ===== */}
         <div>
-          <h2 className="text-xl font-bold mb-2">SportsDeck</h2>
-          <p className="text-text-secondary text-sm max-w-xs">
-            Your personalized sports feed. Follow teams, track matches, and stay
-            ahead with AI-powered insights.
+          <Logo variant="compact" />
+
+          <p className="text-text-secondary text-sm mt-4 max-w-xs leading-relaxed">
+            Your personalized sports hub. Follow teams, track matches, and stay ahead with real-time insights.
           </p>
         </div>
 
-        {/* CENTER - Links */}
-        <div className="flex flex-col md:items-center">
-          <h3 className="text-sm font-semibold mb-3 text-text-primary">
+        {/* ===== CENTER (Navigation) ===== */}
+        <div className="md:mx-auto">
+          <h3 className="text-sm font-semibold mb-4 text-text-primary tracking-wide">
             Explore
           </h3>
 
-          <div className="space-y-2 text-sm text-text-secondary">
-            <p className="hover:text-primary-500 cursor-pointer transition">
-              Home
-            </p>
-            <p className="hover:text-primary-500 cursor-pointer transition">
+          <div className="space-y-2 text-sm">
+            <Link
+              href="/"
+              className="block text-text-secondary hover:text-white transition"
+            >
+              Feed
+            </Link>
+
+            <Link
+              href="/community"
+              className="block text-text-secondary hover:text-white transition"
+            >
+              Community
+            </Link>
+
+            <Link
+              href="/matches"
+              className="block text-text-secondary hover:text-white transition"
+            >
               Matches
-            </p>
-            <p className="hover:text-primary-500 cursor-pointer transition">
+            </Link>
+
+            <Link
+              href="/teams"
+              className="block text-text-secondary hover:text-white transition"
+            >
               Teams
-            </p>
-            <p className="hover:text-primary-500 cursor-pointer transition">
-              Discussions
-            </p>
+            </Link>
+
+            <Link
+              href="/standings"
+              className="block text-text-secondary hover:text-white transition"
+            >
+              Standings
+            </Link>
           </div>
         </div>
 
-        {/* RIGHT - Social / Extra */}
-        <div className="md:text-right">
-          <h3 className="text-sm font-semibold mb-3 text-text-primary">
-            Connect
-          </h3>
+        {/* ===== RIGHT (Social + Meta) ===== */}
+        <div className="md:text-right flex flex-col justify-between">
 
-          <div className="flex md:justify-end gap-4 text-text-secondary text-lg">
-            <span className="hover:text-primary-500 cursor-pointer transition">
-              🐦
-            </span>
-            <span className="hover:text-primary-500 cursor-pointer transition">
-              📸
-            </span>
-            <span className="hover:text-primary-500 cursor-pointer transition">
-              💼
-            </span>
+          <div>
+            <h3 className="text-sm font-semibold mb-4 text-text-primary tracking-wide">
+              Connect
+            </h3>
+
+            <div className="flex md:justify-end gap-3">
+              {[Globe, MessageCircle, Share2].map((Icon, i) => (
+                <a
+                  key={i}
+                  href="#"
+                  className="
+                    w-9 h-9 rounded-xl
+                    bg-bg-card border border-border-subtle
+                    flex items-center justify-center
+                    text-text-secondary
+                    hover:text-white hover:bg-bg-elevated
+                    transition
+                  "
+                >
+                  <Icon size={16} />
+                </a>
+              ))}
+            </div>
           </div>
 
-          <p className="text-xs text-text-muted mt-4">
+          <p className="text-xs text-text-muted mt-6">
             © {new Date().getFullYear()} SportsDeck. All rights reserved.
           </p>
         </div>
       </div>
 
-      {/* Bottom subtle line */}
-      <div className="text-center text-xs text-text-muted pb-4">
-        Built with ⚡ for sports fans
+      {/* ===== Bottom Strip ===== */}
+      <div className="border-t border-border-subtle py-4 text-center text-xs text-text-muted">
+        Built for sports fans, powered by real-time data
       </div>
     </footer>
   );
