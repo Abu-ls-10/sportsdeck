@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 type Reply = {
   id: string;
@@ -13,20 +13,40 @@ type Reply = {
 
 type ReplyBoxProps = {
   postId: string;
-  onReplyCreated?: (reply: Reply) => void; // 🔥 optimistic update
+  onReplyCreated?: (reply: Reply) => void;
 };
+
+const MAX_LENGTH = 500;
 
 export default function ReplyBox({
   postId,
   onReplyCreated,
 }: ReplyBoxProps) {
   const [content, setContent] = useState("");
+  const [focused, setFocused] = useState(false);
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  // =========================
+  // AUTO RESIZE
+  // =========================
+  const autoResize = () => {
+    const el = textareaRef.current;
+    if (!el) return;
+
+    el.style.height = "auto";
+    el.style.height = el.scrollHeight + "px";
+  };
+
+  // =========================
+  // SUBMIT
+  // =========================
   const handleSubmit = async () => {
     const trimmed = content.trim();
-    if (!trimmed) return;
+    if (!trimmed || loading) return;
 
     try {
       setLoading(true);
@@ -40,18 +60,22 @@ export default function ReplyBox({
         body: JSON.stringify({ content: trimmed }),
       });
 
+      const data = await res.json().catch(() => ({}));
+
       if (!res.ok) {
-        const data = await res.json();
         throw new Error(data.error || "Failed to post reply");
       }
 
-      const newReply = await res.json();
+      // optimistic update
+      onReplyCreated?.(data);
 
-      // 🔥 optimistic update
-      onReplyCreated?.(newReply);
-
-      // reset input
+      // reset
       setContent("");
+      setFocused(false);
+
+      if (textareaRef.current) {
+        textareaRef.current.style.height = "auto";
+      }
 
     } catch (err: any) {
       console.error(err);
@@ -61,35 +85,90 @@ export default function ReplyBox({
     }
   };
 
+  // =========================
+  // KEYBOARD UX
+  // =========================
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      handleSubmit();
+    }
+  };
+
   return (
-    <div className="mt-3 space-y-2">
+    <div className="mt-4">
       
-      {/* TEXTAREA */}
-      <textarea
-        value={content}
-        onChange={(e) => setContent(e.target.value)}
-        placeholder="Write a reply..."
-        rows={2}
-        className="w-full resize-none rounded-xl border border-white/10 bg-bg-surface p-3 text-sm text-white placeholder:text-text-muted focus:outline-none focus:ring-1 focus:ring-primary-500"
-      />
+      <div
+        className={`flex gap-3 rounded-2xl border p-3 transition ${
+          focused
+            ? "border-primary-500/40 bg-bg-surface"
+            : "border-white/6 bg-bg-surface/70"
+        }`}
+      >
+        {/* Avatar */}
+        <div className="h-8 w-8 rounded-full bg-primary-500/30 shrink-0" />
 
-      {/* ACTION BAR */}
-      <div className="flex items-center justify-between">
-        
-        {/* Error */}
-        {error && (
-          <p className="text-xs text-red-400">{error}</p>
-        )}
+        {/* Input */}
+        <div className="flex-1">
+          <textarea
+            ref={textareaRef}
+            value={content}
+            onChange={(e) => {
+              if (e.target.value.length <= MAX_LENGTH) {
+                setContent(e.target.value);
+                autoResize();
+              }
+            }}
+            onFocus={() => setFocused(true)}
+            onBlur={() => !content && setFocused(false)}
+            onKeyDown={handleKeyDown}
+            placeholder="Write a reply..."
+            rows={1}
+            className="w-full resize-none bg-transparent text-sm text-white placeholder:text-text-muted outline-none"
+          />
 
-        {/* Button */}
-        <button
-          onClick={handleSubmit}
-          disabled={loading || !content.trim()}
-          className="ml-auto rounded-lg bg-primary-500 px-3 py-1.5 text-xs font-medium text-white transition hover:bg-primary-600 disabled:opacity-50"
-        >
-          {loading ? "Posting..." : "Reply"}
-        </button>
+          {/* ACTION BAR */}
+          {(focused || content) && (
+            <div className="mt-2 flex items-center justify-between">
+              
+              {/* Left */}
+              <div className="flex items-center gap-3 text-xs text-text-muted">
+                <span>{content.length}/{MAX_LENGTH}</span>
+
+                {error && (
+                  <span className="text-red-400">{error}</span>
+                )}
+              </div>
+
+              {/* Right */}
+              <div className="flex items-center gap-2">
+                
+                {/* Cancel */}
+                <button
+                  onClick={() => {
+                    setContent("");
+                    setFocused(false);
+                  }}
+                  className="text-xs text-text-muted hover:text-white transition"
+                  disabled={loading}
+                >
+                  Cancel
+                </button>
+
+                {/* Submit */}
+                <button
+                  onClick={handleSubmit}
+                  disabled={loading || !content.trim()}
+                  className="rounded-lg bg-primary-500 px-3 py-1.5 text-xs font-medium text-white transition hover:bg-primary-600 disabled:opacity-50"
+                >
+                  {loading ? "Posting..." : "Reply"}
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
+
     </div>
   );
 }

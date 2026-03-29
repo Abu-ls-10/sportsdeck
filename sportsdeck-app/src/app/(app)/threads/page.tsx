@@ -118,6 +118,9 @@ export default function ThreadsPage() {
             </div>
           )}
 
+          {/* IMPORTANT: pass refresh */}
+          <StartDiscussionCard onSuccess={fetchThreads} />
+
           {/* Threads */}
           {!loading && !error &&
             threads.map((thread) => (
@@ -134,8 +137,6 @@ export default function ThreadsPage() {
               />
             ))}
 
-          {/* IMPORTANT: pass refresh */}
-          <StartDiscussionCard onSuccess={fetchThreads} />
         </section>
 
       </div>
