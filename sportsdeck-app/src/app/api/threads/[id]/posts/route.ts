@@ -152,7 +152,6 @@ async function postHandler(
       return NextResponse.json({ error: "Thread not found" }, { status: 404 })
     }
 
-    // Block posting in hidden threads
     if (thread.isHidden) {
       return NextResponse.json(
         { error: "This thread has been hidden by a moderator and no further activity is allowed" },
@@ -162,7 +161,6 @@ async function postHandler(
 
     const now = new Date()
 
-    // enforce open window
     if (thread.opensAt && now < thread.opensAt) {
       return NextResponse.json({ error: "Thread has not opened yet" }, { status: 403 })
     }
@@ -175,15 +173,63 @@ async function postHandler(
       return NextResponse.json({ error: "Thread is locked" }, { status: 403 })
     }
 
-    const post = await prisma.post.create({
-      data: {
-        threadId: thread.id,
-        authorId: user.id,
-        content: content.trim()
+    const result = await prisma.$transaction(async (tx) => {
+
+      const post = await tx.post.create({
+        data: {
+          threadId: thread.id,
+          authorId: user.id,
+          content: content.trim()
+        }
+      })
+
+      const feedEvent = await tx.feedEvent.create({
+        data: {
+          actorId: user.id,
+          eventType: "post_created",
+          entityType: "post",
+          entityId: post.id,
+          groupKey: `thread-${thread.id}-posts`
+        }
+      })
+
+      const followers = await tx.follow.findMany({
+        where: { followingId: user.id },
+        select: { followerId: true }
+      })
+
+      const participants = await tx.post.findMany({
+        where: { threadId: thread.id },
+        select: { authorId: true },
+        distinct: ["authorId"]
+      })
+
+      const recipientSet = new Set<string>()
+
+      recipientSet.add(user.id)
+
+      for (const f of followers) {
+        recipientSet.add(f.followerId)
       }
+
+      for (const p of participants) {
+        recipientSet.add(p.authorId)
+      }
+
+      const recipientIds = Array.from(recipientSet)
+
+      await tx.feedEntry.createMany({
+        data: recipientIds.map((uid) => ({
+          userId: uid,
+          feedEventId: feedEvent.id,
+          isRead: uid === user.id
+        }))
+      })
+
+      return post
     })
 
-    return NextResponse.json(post, { status: 201 })
+    return NextResponse.json(result, { status: 201 })
 
   } catch (error) {
     console.error(error)

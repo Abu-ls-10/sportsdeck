@@ -33,22 +33,27 @@ async function getHandler(req: AuthenticatedRequest) {
   try {
     const currentUser = req.user
     const user = await prisma.user.findUnique({
-      where: {
-        id: currentUser.id
-      },
+      where: { id: currentUser.id },
       select: {
         id: true,
         username: true,
         avatarUrl: true,
-        favoriteTeamId: true,
         createdAt: true,
-
+        favoriteTeam: {
+          select: {
+            id: true,
+            name: true,
+            shortName: true,
+            logoUrl: true
+          }
+        },
         _count: {
           select: {
             followers: true,
             following: true,
             threads: true,
-            posts: true
+            posts: true,
+            replies: true
           }
         }
       }

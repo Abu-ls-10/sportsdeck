@@ -24,6 +24,7 @@ import {
 
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { useAuth } from "@/contexts/AuthContext";
 
 /* =========================
    Types
@@ -343,6 +344,52 @@ async function fetchJson<T>(url: string): Promise<T | null> {
     console.error(`Failed to fetch ${url}`, error);
     return null;
   }
+}
+
+function extractStandingsResponse(value: unknown): StandingItem[] {
+  if (Array.isArray(value)) return value as StandingItem[];
+
+  if (
+    value &&
+    typeof value === "object" &&
+    "standings" in value &&
+    Array.isArray((value as any).standings)
+  ) {
+    return (value as any).standings;
+  }
+
+  if (
+    value &&
+    typeof value === "object" &&
+    "data" in value &&
+    Array.isArray((value as any).data)
+  ) {
+    return (value as any).data;
+  }
+
+  return [];
+}
+
+function extractData<T>(value: any): T | null {
+  if (!value) return null;
+  if ("data" in value) return value.data;
+  return value;
+}
+
+function threadsToFeed(threads: any[]): FeedItem[] {
+  return threads.map((thread) => ({
+    id: `fallback-${thread.id}`,
+    type: "thread",
+    isRead: true,
+    createdAt: thread.createdAt,
+    thread: {
+      id: thread.id,
+      title: thread.title,
+      author: thread.author,
+      tags: thread.tags ?? [],
+      replies: thread._count?.posts ?? 0,
+    },
+  }));
 }
 
 /* =========================
@@ -761,7 +808,7 @@ function MatchCard({ match }: { match: MatchItem }) {
       <div className="mt-4">
         {match.thread?.id ? (
           <Link
-            href={`/threads/${match.thread.id}`}
+            href={`/matches/${match.id}/thread`}
             className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-primary-500/20 bg-primary-500/10 px-3 py-2.5 text-sm font-medium text-primary-300 transition hover:bg-primary-500/15"
           >
             Join discussion
@@ -1599,7 +1646,11 @@ export default function LandingPage() {
 
   const [tab, setTab] = useState<LandingTab>("for-you");
 
+  const { isLoading } = useAuth();
+
   useEffect(() => {
+    if (isLoading) return;
+
     let active = true;
 
     async function load() {
@@ -1615,6 +1666,7 @@ export default function LandingPage() {
         tagsData,
         matchesData,
         standingsData,
+        fallbackThreadsData,
       ] = await Promise.all([
         fetchJson<Me>("/api/users/me"),
         fetchJson<FeedItem[] | { feed?: FeedItem[] }>("/api/feed?limit=24"),
@@ -1625,30 +1677,58 @@ export default function LandingPage() {
         fetchJson<
           StandingItem[] | { standings?: StandingItem[] } | { data?: StandingItem[] }
         >("/api/standings?limit=5"),
+        fetchJson("/api/threads?sort=recent&limit=10"),
       ]);
 
       if (!active) return;
 
-      setMe(meData ?? null);
+      setMe(extractData<Me>(meData));
       setMeLoading(false);
 
+      let finalFeed: FeedItem[] = [];
+
       if (Array.isArray(feedData)) {
-        setFeed(feedData);
+        finalFeed = feedData;
       } else if (feedData && "feed" in feedData && Array.isArray(feedData.feed)) {
-        setFeed(feedData.feed);
-      } else {
-        setFeed([]);
+        finalFeed = feedData.feed;
       }
+
+      // FALLBACK
+      if (finalFeed.length === 0) {
+        let threads: any[] = [];
+
+        if (Array.isArray(fallbackThreadsData)) {
+          threads = fallbackThreadsData;
+        } else if (
+          fallbackThreadsData &&
+          "threads" in fallbackThreadsData &&
+          Array.isArray((fallbackThreadsData as any).threads)
+        ) {
+          threads = (fallbackThreadsData as any).threads;
+        }
+
+        finalFeed = threadsToFeed(threads);
+      }
+
+      setFeed(finalFeed);
       setFeedLoading(false);
 
       if (Array.isArray(tagsData)) {
         setTags(tagsData);
       } else if (tagsData && "tags" in tagsData && Array.isArray(tagsData.tags)) {
         setTags(tagsData.tags);
+      } else if (
+        tagsData &&
+        "data" in tagsData &&
+        tagsData.data &&
+        typeof tagsData.data === "object" &&
+        "tags" in tagsData.data &&
+        Array.isArray(tagsData.data.tags)
+      ) {
+        setTags(tagsData.data.tags);
       } else {
         setTags([]);
       }
-      setTagsLoading(false);
 
       if (matchesData === null) {
         setMatches([]);
@@ -1667,17 +1747,8 @@ export default function LandingPage() {
       if (standingsData === null) {
         setStandings([]);
         setStandingsRouteAvailable(false);
-      } else if (Array.isArray(standingsData)) {
-        setStandings(standingsData);
-      } else if (
-        "standings" in standingsData &&
-        Array.isArray(standingsData.standings)
-      ) {
-        setStandings(standingsData.standings);
-      } else if ("data" in standingsData && Array.isArray(standingsData.data)) {
-        setStandings(standingsData.data);
       } else {
-        setStandings([]);
+        setStandings(extractStandingsResponse(standingsData));
       }
       setStandingsLoading(false);
     }
@@ -1687,7 +1758,7 @@ export default function LandingPage() {
     return () => {
       active = false;
     };
-  }, []);
+  }, [isLoading]);
 
   const unreadCount = useMemo(
     () => feed.filter((item) => !item.isRead).length,

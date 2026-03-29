@@ -374,12 +374,13 @@ export async function moderateContent(
         data: aiData,
       })
     } else if (result.flagged) {
+      const defaultReportCount = contentType === "REPLY" ? 1 : 0
       // Auto-create only when AI actually flags it
       await prisma.reportedItem.create({
         data: {
           contentType,
           contentId,
-          reportCount: 0,
+          reportCount: defaultReportCount,
           status: "pending",
           ...aiData,
         },
