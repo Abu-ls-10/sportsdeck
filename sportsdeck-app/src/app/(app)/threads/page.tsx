@@ -96,6 +96,9 @@ export default function ThreadsPage() {
         </div>
 
         <section className="mt-4 space-y-4">
+
+          {/* IMPORTANT: pass refresh */}
+          <StartDiscussionCard onSuccess={fetchThreads} />
           
           {/* Loading */}
           {loading && (
@@ -117,9 +120,6 @@ export default function ThreadsPage() {
               No threads found.
             </div>
           )}
-
-          {/* IMPORTANT: pass refresh */}
-          <StartDiscussionCard onSuccess={fetchThreads} />
 
           {/* Threads */}
           {!loading && !error &&

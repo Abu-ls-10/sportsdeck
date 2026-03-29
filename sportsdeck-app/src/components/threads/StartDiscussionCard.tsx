@@ -1,9 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 type Props = {
   onSuccess?: () => void | Promise<void>;
+};
+
+type Team = {
+  id: string;
+  name: string;
 };
 
 export default function StartDiscussionCard({ onSuccess }: Props) {
@@ -12,9 +17,63 @@ export default function StartDiscussionCard({ onSuccess }: Props) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
+  const [teamId, setTeamId] = useState<string>("all");
+
+  const [tagInput, setTagInput] = useState("");
+  const [tags, setTags] = useState<string[]>([]);
+
+  const [teams, setTeams] = useState<Team[]>([]);
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  // =========================
+  // FETCH TEAMS
+  // =========================
+  useEffect(() => {
+    const loadTeams = async () => {
+      try {
+        const res = await fetch("/api/teams");
+        const data = await res.json().catch(() => []);
+        setTeams(Array.isArray(data) ? data : []);
+      } catch (err) {
+        console.error("Failed to load teams");
+      }
+    };
+
+    loadTeams();
+  }, []);
+
+  // =========================
+  // AUTO RESIZE
+  // =========================
+  const autoResize = () => {
+    const el = textareaRef.current;
+    if (!el) return;
+    el.style.height = "auto";
+    el.style.height = el.scrollHeight + "px";
+  };
+
+  // =========================
+  // TAG HANDLING
+  // =========================
+  const addTag = () => {
+    const value = tagInput.trim().toLowerCase();
+    if (!value || tags.includes(value)) return;
+
+    setTags((prev) => [...prev, value]);
+    setTagInput("");
+  };
+
+  const removeTag = (tag: string) => {
+    setTags((prev) => prev.filter((t) => t !== tag));
+  };
+
+  // =========================
+  // SUBMIT
+  // =========================
   const handleSubmit = async () => {
     if (!title.trim() || !content.trim()) {
       setError("Title and content are required");
@@ -33,6 +92,8 @@ export default function StartDiscussionCard({ onSuccess }: Props) {
         body: JSON.stringify({
           title: title.trim(),
           content: content.trim(),
+          teamId: teamId !== "all" ? teamId : undefined,
+          tags,
         }),
       });
 
@@ -42,14 +103,14 @@ export default function StartDiscussionCard({ onSuccess }: Props) {
         throw new Error(data.error || "Failed to create thread");
       }
 
-      // Reset form
+      // RESET
       setTitle("");
       setContent("");
+      setTags([]);
+      setTeamId("all");
 
-      // Close modal
       setOpen(false);
 
-      // Refresh threads
       await onSuccess?.();
 
     } catch (err: any) {
@@ -78,7 +139,7 @@ export default function StartDiscussionCard({ onSuccess }: Props) {
 
         <button
           onClick={() => setOpen(true)}
-          className="mt-5 rounded-xl bg-gradient-primary px-5 py-2.5 text-sm font-semibold text-white transition hover:brightness-110"
+          className="mt-5 rounded-xl bg-gradient-primary px-5 py-2.5 text-sm font-semibold text-white hover:brightness-110"
         >
           Start a Discussion
         </button>
@@ -86,53 +147,96 @@ export default function StartDiscussionCard({ onSuccess }: Props) {
 
       {/* MODAL */}
       {open && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4">
-          <div className="w-full max-w-lg rounded-2xl bg-bg-surface p-6 shadow-xl">
-            
-            <h2 className="text-lg font-semibold text-white">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4">
+          <div className="w-full max-w-2xl rounded-2xl bg-bg-surface p-6 shadow-xl space-y-5">
+
+            <h2 className="text-xl font-semibold text-white">
               Create Thread
             </h2>
 
-            {/* Title */}
-            <div className="mt-4">
-              <label className="text-xs text-text-secondary">
-                Title
-              </label>
-              <input
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                placeholder="Enter thread title..."
-                className="mt-1 w-full rounded-lg border border-white/10 bg-bg-main px-3 py-2 text-sm text-white outline-none focus:border-primary-500"
-              />
-            </div>
+            {/* TITLE */}
+            <input
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              placeholder="Thread title..."
+              className="w-full rounded-xl border border-white/10 bg-bg-main px-4 py-3 text-white focus:border-primary-500 outline-none"
+            />
 
-            {/* Content */}
-            <div className="mt-4">
-              <label className="text-xs text-text-secondary">
-                Content
-              </label>
-              <textarea
-                value={content}
-                onChange={(e) => setContent(e.target.value)}
-                placeholder="Write your post..."
-                rows={4}
-                className="mt-1 w-full rounded-lg border border-white/10 bg-bg-main px-3 py-2 text-sm text-white outline-none focus:border-primary-500"
-              />
-            </div>
+            {/* CONTENT */}
+            <textarea
+              ref={textareaRef}
+              value={content}
+              onChange={(e) => {
+                setContent(e.target.value);
+                autoResize();
+              }}
+              placeholder="Write your post..."
+              rows={3}
+              className="w-full resize-none rounded-xl border border-white/10 bg-bg-main px-4 py-3 text-white focus:border-primary-500 outline-none"
+            />
 
-            {/* Error */}
-            {error && (
-              <div className="mt-3 text-sm text-red-400">
-                {error}
+            {/* TEAM */}
+            <select
+              value={teamId}
+              onChange={(e) => setTeamId(e.target.value)}
+              className="w-full rounded-xl border border-white/10 bg-bg-main px-3 py-2 text-sm"
+            >
+              <option value="all">No team</option>
+              {teams.map((t) => (
+                <option key={t.id} value={t.id}>
+                  {t.name}
+                </option>
+              ))}
+            </select>
+
+            {/* TAG INPUT */}
+            <div>
+              <div className="flex gap-2">
+                <input
+                  value={tagInput}
+                  onChange={(e) => setTagInput(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      e.preventDefault();
+                      addTag();
+                    }
+                  }}
+                  placeholder="Add tag..."
+                  className="flex-1 rounded-lg border border-white/10 bg-bg-main px-3 py-2 text-sm"
+                />
+
+                <button
+                  onClick={addTag}
+                  className="px-3 py-2 text-sm bg-primary-500 rounded-lg text-white"
+                >
+                  Add
+                </button>
               </div>
+
+              {/* TAGS */}
+              <div className="mt-2 flex flex-wrap gap-2">
+                {tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="flex items-center gap-1 bg-primary-500/20 text-primary-400 px-2 py-1 rounded-md text-xs"
+                  >
+                    {tag}
+                    <button onClick={() => removeTag(tag)}>×</button>
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* ERROR */}
+            {error && (
+              <div className="text-sm text-red-400">{error}</div>
             )}
 
-            {/* Actions */}
-            <div className="mt-5 flex justify-end gap-3">
+            {/* ACTIONS */}
+            <div className="flex justify-end gap-3">
               <button
                 onClick={() => setOpen(false)}
-                className="text-sm text-text-secondary hover:text-white"
-                disabled={loading}
+                className="text-sm text-text-muted hover:text-white"
               >
                 Cancel
               </button>
@@ -140,7 +244,7 @@ export default function StartDiscussionCard({ onSuccess }: Props) {
               <button
                 onClick={handleSubmit}
                 disabled={loading}
-                className="rounded-lg bg-gradient-primary px-4 py-2 text-sm font-semibold text-white hover:brightness-110 disabled:opacity-50"
+                className="rounded-lg bg-gradient-primary px-5 py-2 text-sm text-white disabled:opacity-50"
               >
                 {loading ? "Posting..." : "Post Thread"}
               </button>
