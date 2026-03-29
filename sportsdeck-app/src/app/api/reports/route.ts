@@ -2,6 +2,7 @@ import { prisma } from '@/lib/prisma';
 import { withAuth, AuthenticatedRequest } from '@/lib/middleware';
 import { NextResponse } from 'next/server';
 import { moderateContent } from '@/lib/moderation';
+import { Prisma } from '@/generated/prisma';
 
 const REPORT_RATE_LIMIT_WINDOW_MINUTES = Math.max(
     1,
@@ -103,6 +104,21 @@ export const POST = withAuth(async (req: AuthenticatedRequest) => {
     const normalizedType = contentType.toUpperCase();
 
     try {
+        // Stale JWT after DB reset/seed: token id may not exist anymore → avoid FK 500 on Report
+        const reporterExists = await prisma.user.findUnique({
+            where: { id: userId },
+            select: { id: true },
+        });
+        if (!reporterExists) {
+            return NextResponse.json(
+                {
+                    message:
+                        'Your session is out of date. Log out and sign in again (this often happens after reseeding the database).',
+                },
+                { status: 401 }
+            );
+        }
+
         const rateLimitExceeded = await hasExceededReportRateLimit(userId);
         if (rateLimitExceeded) {
             return NextResponse.json(
@@ -219,6 +235,21 @@ export const POST = withAuth(async (req: AuthenticatedRequest) => {
             return NextResponse.json(
                 { message: 'You have already reported this content' },
                 { status: 409 }
+            );
+        }
+        if (
+            error instanceof Prisma.PrismaClientKnownRequestError &&
+            error.code === 'P2003' &&
+            error.meta &&
+            (String((error.meta as { field_name?: string }).field_name ?? '').includes('reporterId') ||
+                String((error.meta as { constraint?: string }).constraint ?? '').includes('reporterId'))
+        ) {
+            return NextResponse.json(
+                {
+                    message:
+                        'Your session is out of date. Log out and sign in again (this often happens after reseeding the database).',
+                },
+                { status: 401 }
             );
         }
         console.error('REPORT ERROR:', error);

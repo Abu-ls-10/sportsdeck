@@ -486,7 +486,7 @@ function LandingHero({
 
             <h1 className="max-w-3xl text-3xl font-semibold leading-tight text-white md:text-4xl xl:text-[2.55rem] xl:leading-[1.05]">
               {headline}
-            </h1>
+          </h1>
 
             <p className="mt-4 max-w-2xl text-sm leading-7 text-text-secondary md:text-base">
               {subheadline}
@@ -588,7 +588,7 @@ function HeroStatCard({
       </p>
       <p className="mt-1 truncate text-lg font-semibold text-white">{value}</p>
       <p className="mt-1 text-xs leading-5 text-text-secondary">{helper}</p>
-    </div>
+        </div>
   );
 }
 
@@ -741,14 +741,14 @@ function MatchCard({ match }: { match: MatchItem }) {
         </span>
 
         <span className="text-xs text-text-muted">{formatCompactDate(match.matchDate)}</span>
-      </div>
+        </div>
 
       <div className="mt-5 grid grid-cols-[1fr_auto_1fr] items-center gap-3">
         <TeamMini team={match.homeTeam} align="left" />
         <div className="min-w-[68px] text-center">
           <div className="text-lg font-semibold text-white">
             {match.homeScore ?? "-"} <span className="text-text-muted">:</span> {match.awayScore ?? "-"}
-          </div>
+    </div>
         </div>
         <TeamMini team={match.awayTeam} align="right" />
       </div>
