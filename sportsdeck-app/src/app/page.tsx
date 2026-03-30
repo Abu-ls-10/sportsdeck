@@ -1701,6 +1701,7 @@ export default function LandingPage() {
           threads = fallbackThreadsData;
         } else if (
           fallbackThreadsData &&
+          typeof fallbackThreadsData === "object" &&
           "threads" in fallbackThreadsData &&
           Array.isArray((fallbackThreadsData as any).threads)
         ) {
