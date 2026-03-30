@@ -5,7 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useEffect } from "react";
 import type { ReactNode } from "react";
 import { useAuth } from "@/contexts/AuthContext";
-import { ShieldCheck, Flag, Gavel, MessageSquareWarning, ChevronRight } from "lucide-react";
+import { ShieldCheck, Flag, Gavel, MessageSquareWarning, ChevronRight, ShieldOff, LogIn } from "lucide-react";
 
 type AdminShellProps = {
   title: string;
@@ -33,20 +33,64 @@ export default function AdminShell({ title, subtitle, children }: AdminShellProp
   useEffect(() => {
     if (isLoading) return;
     if (!user) {
-      router.replace("/login");
-      return;
+      router.replace(`/login?next=${encodeURIComponent(pathname)}`);
     }
-    if (user.role !== "ADMIN") {
-      router.replace("/");
-    }
-  }, [isLoading, user, router]);
+  }, [isLoading, user, router, pathname]);
 
-  if (isLoading || !user || user.role !== "ADMIN") {
+  if (isLoading) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-bg-main px-4 text-text-secondary">
         <div className="flex items-center gap-3">
           <div className="w-5 h-5 border-2 border-primary-400 border-t-transparent rounded-full animate-spin" />
           <p className="text-sm">Loading admin console...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!user) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-bg-main px-4">
+        <div className="w-full max-w-sm rounded-2xl border border-border-subtle bg-bg-surface p-8 text-center shadow-card">
+          <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-amber-500/10">
+            <LogIn className="h-7 w-7 text-amber-400" />
+          </div>
+          <h1 className="mb-2 text-lg font-bold text-white">Sign in required</h1>
+          <p className="mb-6 text-sm text-text-secondary">
+            You need to be signed in to access the Admin Console. Please log in with an administrator account.
+          </p>
+          <Link
+            href={`/login?next=${encodeURIComponent(pathname)}`}
+            className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-primary-500 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-primary-400"
+          >
+            <LogIn className="h-4 w-4" />
+            Go to login
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  if (user.role !== "ADMIN") {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-bg-main px-4">
+        <div className="w-full max-w-sm rounded-2xl border border-rose-500/20 bg-bg-surface p-8 text-center shadow-card">
+          <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-rose-500/10">
+            <ShieldOff className="h-7 w-7 text-rose-400" />
+          </div>
+          <h1 className="mb-2 text-lg font-bold text-white">Access denied</h1>
+          <p className="mb-1 text-sm text-text-secondary">
+            The Admin Console is restricted to administrators only.
+          </p>
+          <p className="mb-6 text-sm text-text-muted">
+            You are signed in as <span className="font-semibold text-text-primary">{user.username ?? user.email}</span>, which does not have admin privileges.
+          </p>
+          <Link
+            href="/"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-border-subtle bg-white/[0.04] px-4 py-2.5 text-sm font-semibold text-text-primary transition hover:bg-white/[0.08]"
+          >
+            ← Back to SportsDeck
+          </Link>
         </div>
       </div>
     );

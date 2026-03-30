@@ -7,7 +7,7 @@ import { translateToEnglish } from "@/lib/ai"
  * @openapi
  * /api/translate:
  *   post:
- *     summary: Translate a post, reply, or raw text to English
+ *     summary: Translate a reply to English
  *     tags: [Translate]
  *     security:
  *       - bearerAuth: []
@@ -23,8 +23,8 @@ import { translateToEnglish } from "@/lib/ai"
  *                 example: "Hola, ¿cómo estás?"
  *               contentType:
  *                 type: string
- *                 enum: [POST, REPLY]
- *                 example: "POST"
+ *                 enum: [REPLY]
+ *                 example: "REPLY"
  *               contentId:
  *                 type: string
  *                 example: "clxpost001"
@@ -36,7 +36,7 @@ import { translateToEnglish } from "@/lib/ai"
  *       401:
  *         description: Unauthorized
  *       404:
- *         description: Post or reply not found
+ *         description: Reply not found
  *       503:
  *         description: Translation service unavailable
  *       500:
@@ -47,17 +47,11 @@ import { translateToEnglish } from "@/lib/ai"
  * POST /api/translate
  *
  * User Story:
- *   As a user browsing, I want an option to translate a post or comment
+ *   As a user browsing, I want an option to translate a comment
  *   written in a different language into English.
  *
  * Request body:
- *   { text: string }
- *       OR
- *   { contentType: "POST" | "REPLY", contentId: string }
- *
- * When contentType + contentId are provided, the server looks up the
- * content from the database so users can translate posts/replies by ID.
- * When only `text` is supplied, it translates the raw text.
+ *   { contentType: "REPLY", contentId: string }
  *
  * Response:
  *   { originalText, translatedText }
@@ -71,7 +65,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
-    let body: { contentType?: string; contentId?: string; text?: string }
+    let body: { contentType?: string; contentId?: string }
     try {
       body = await req.json()
     } catch {
@@ -79,47 +73,29 @@ export async function POST(req: NextRequest) {
     }
     let textToTranslate: string | null = null
 
-    // Option 1 — translate by content reference
-    if (body.contentType && body.contentId) {
-      const { contentType, contentId } = body
-
-      if (contentType === "POST") {
-        const post = await prisma.post.findUnique({
-          where: { id: contentId },
-          select: { content: true, isHidden: true },
-        })
-        if (!post || post.isHidden) {
-          return NextResponse.json({ error: "Post not found" }, { status: 404 })
-        }
-        textToTranslate = post.content
-      } else if (contentType === "REPLY") {
-        const reply = await prisma.reply.findUnique({
-          where: { id: contentId },
-          select: { content: true, isHidden: true },
-        })
-        if (!reply || reply.isHidden) {
-          return NextResponse.json({ error: "Reply not found" }, { status: 404 })
-        }
-        textToTranslate = reply.content
-      } else {
-        return NextResponse.json(
-          { error: "contentType must be POST or REPLY" },
-          { status: 400 }
-        )
-      }
-    }
-
-    // Option 2 — translate raw text
-    if (!textToTranslate) {
-      textToTranslate = body.text ?? null
-    }
-
-    if (!textToTranslate || typeof textToTranslate !== "string" || textToTranslate.trim().length === 0) {
+    const { contentType, contentId } = body
+    if (!contentType || !contentId) {
       return NextResponse.json(
-        { error: "Provide either { text } or { contentType, contentId }" },
+        { error: "Provide { contentType: \"REPLY\", contentId }" },
         { status: 400 }
       )
     }
+
+    if (contentType !== "REPLY") {
+      return NextResponse.json(
+        { error: "contentType must be REPLY" },
+        { status: 400 }
+      )
+    }
+
+    const reply = await prisma.reply.findUnique({
+      where: { id: contentId },
+      select: { content: true, isHidden: true },
+    })
+    if (!reply || reply.isHidden) {
+      return NextResponse.json({ error: "Reply not found" }, { status: 404 })
+    }
+    textToTranslate = reply.content
 
     const result = await translateToEnglish(textToTranslate)
 

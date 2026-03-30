@@ -30,8 +30,9 @@ import { analyzeSentimentBatch } from "@/lib/ai"
  * User Story:
  *   As a user, I want to see an overall sentiment indicator on match threads,
  *   showing the collective mood (positive, negative, mixed) based on AI
- *   analysis of all comments. Sentiment should also be calculated for both
- *   teams in a match, based on comments posted by their fans.
+ *   analysis of all thread comments (top-level posts + replies). Sentiment
+ *   should also be calculated for both teams in a match, based on comments
+ *   posted by their fans.
  *
  * Response shape:
  * {
@@ -68,22 +69,38 @@ export async function GET(
       return NextResponse.json({ error: "Thread not found" }, { status: 404 })
     }
 
-    // Gather all non-hidden replies in this thread (posts are excluded from sentiment)
-    // Also fetch the author's favoriteTeamId so we can split by team
-    const replies = await prisma.reply.findMany({
-      where: {
-        post: { threadId },
-        isHidden: false,
-      },
-      select: {
-        id: true,
-        content: true,
-        authorId: true,
-        author: {
-          select: { favoriteTeamId: true },
+    // Gather all non-hidden thread comments (posts + replies)
+    // and the author's favoriteTeamId so we can split by team.
+    const [posts, replies] = await Promise.all([
+      prisma.post.findMany({
+        where: {
+          threadId,
+          isHidden: false,
         },
-      },
-    })
+        select: {
+          id: true,
+          content: true,
+          authorId: true,
+          author: {
+            select: { favoriteTeamId: true },
+          },
+        },
+      }),
+      prisma.reply.findMany({
+        where: {
+          post: { threadId },
+          isHidden: false,
+        },
+        select: {
+          id: true,
+          content: true,
+          authorId: true,
+          author: {
+            select: { favoriteTeamId: true },
+          },
+        },
+      }),
+    ])
 
     interface CommentEntry {
       id: string
@@ -91,11 +108,18 @@ export async function GET(
       authorFavoriteTeamId: string | null
     }
 
-    const allComments: CommentEntry[] = replies.map((reply) => ({
-      id: reply.id,
-      text: reply.content,
-      authorFavoriteTeamId: reply.author.favoriteTeamId,
-    }))
+    const allComments: CommentEntry[] = [
+      ...posts.map((post) => ({
+        id: post.id,
+        text: post.content,
+        authorFavoriteTeamId: post.author.favoriteTeamId,
+      })),
+      ...replies.map((reply) => ({
+        id: reply.id,
+        text: reply.content,
+        authorFavoriteTeamId: reply.author.favoriteTeamId,
+      })),
+    ]
 
     if (allComments.length === 0) {
       return NextResponse.json({

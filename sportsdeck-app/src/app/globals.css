@@ -1,8 +1,62 @@
 @import "tailwindcss";
 @config "../../tailwind.config.ts";
 
+:root {
+  color-scheme: light;
+  --color-bg-main: 245 247 251;
+  --color-bg-surface: 255 255 255;
+  --color-bg-card: 248 250 252;
+  --color-bg-elevated: 241 245 249;
+  --color-bg-glass: rgba(15, 23, 42, 0.04);
+
+  --color-text-primary: 15 23 42;
+  --color-text-secondary: 51 65 85;
+  --color-text-muted: 71 85 105;
+  --color-text-dim: 100 116 139;
+
+  --color-border-default: 226 232 240;
+  --color-border-subtle: rgba(15, 23, 42, 0.1);
+  --color-border-strong: 203 213 225;
+
+  --body-glow: radial-gradient(circle at top, rgba(14, 165, 233, 0.1), transparent 60%);
+}
+
+html.dark {
+  color-scheme: dark;
+  --color-bg-main: 10 15 28;
+  --color-bg-surface: 15 23 42;
+  --color-bg-card: 17 24 39;
+  --color-bg-elevated: 22 32 51;
+  --color-bg-glass: rgba(255, 255, 255, 0.03);
+
+  --color-text-primary: 230 237 245;
+  --color-text-secondary: 159 176 195;
+  --color-text-muted: 110 128 149;
+  --color-text-dim: 75 92 112;
+
+  --color-border-default: 31 41 55;
+  --color-border-subtle: rgba(255, 255, 255, 0.06);
+  --color-border-strong: 42 58 79;
+
+  --body-glow: radial-gradient(circle at top, rgba(34, 211, 238, 0.08), transparent 60%);
+}
+
+/* Legacy dark-first class compatibility for light mode */
+html.light .text-white,
+html.light [class^="text-white/"],
+html.light [class*=" text-white/"] {
+  color: rgb(15 23 42) !important;
+}
+
+/* Keep white text on filled gradient buttons/chips */
+html.light .bg-gradient-primary.text-white,
+html.light .bg-gradient-primary[class^="text-white/"],
+html.light .bg-gradient-primary[class*=" text-white/"] {
+  color: rgb(255 255 255) !important;
+}
+
 body {
-  @apply bg-bg-main text-text-primary;
+  @apply bg-bg-main text-text-primary transition-colors duration-300;
 }
 
 /* subtle background glow */
@@ -10,7 +64,7 @@ body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background: radial-gradient(circle at top, rgba(34,211,238,0.08), transparent 60%);
+  background: var(--body-glow);
   z-index: -1;
 }
 

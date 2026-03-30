@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
-import { generateText } from "@/lib/ai"
 
 /**
  * @openapi
@@ -79,13 +78,13 @@ export async function GET(req: NextRequest) {
 
     // ── Gather data for the digest ────────────────────
 
-    // 1. Recent match results (last 3 days)
-    const threeDaysAgo = new Date()
-    threeDaysAgo.setDate(threeDaysAgo.getDate() - 3)
+    // 1. Recent match results (last 7 days)
+    const sevenDaysAgo = new Date()
+    sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7)
 
     const recentMatches = await prisma.match.findMany({
       where: {
-        matchDate: { gte: threeDaysAgo },
+        matchDate: { gte: sevenDaysAgo },
         status: "FINISHED",
       },
       include: {
@@ -96,103 +95,83 @@ export async function GET(req: NextRequest) {
       take: 10,
     })
 
-    // 2. Current standings (top 4 + bottom 3 relegation)
-    // Season is stored as the start year, e.g. "2025" for the 2025-2026 season
-    const currentSeason = String(new Date().getFullYear() - 1);
+    // 2. Upcoming matches (next 7 days)
+    const sevenDaysAhead = new Date()
+    sevenDaysAhead.setDate(sevenDaysAhead.getDate() + 7)
+
+    const upcomingMatches = await prisma.match.findMany({
+      where: {
+        matchDate: { gte: new Date(), lte: sevenDaysAhead },
+        status: { in: ["SCHEDULED", "TIMED"] },
+      },
+      include: {
+        homeTeam: { select: { name: true, shortName: true } },
+        awayTeam: { select: { name: true, shortName: true } },
+      },
+      orderBy: { matchDate: "asc" },
+      take: 5,
+    })
+
+    // 3. Current standings
+    const currentSeason = String(new Date().getFullYear() - 1)
     const allStandings = await prisma.standing.findMany({
       where: { season: currentSeason, type: "TOTAL" },
       include: { team: { select: { name: true } } },
       orderBy: { position: "asc" },
     })
 
-    // Top 4 and bottom 3 (relegation zone)
-    const topStandings = allStandings.slice(0, 4)
+    const topStandings = allStandings.slice(0, 5)
     const bottomStandings = allStandings.length > 3 ? allStandings.slice(-3) : []
 
-    // 3. Trending discussion threads (most posts overall)
+    // 4. Trending discussion threads (most posts)
     const trendingThreads = await prisma.thread.findMany({
       where: { isHidden: false },
       include: {
         author: { select: { username: true } },
         _count: { select: { posts: true } },
         tags: { include: { tag: true } },
+        team: { select: { name: true } },
       },
       orderBy: { posts: { _count: "desc" } },
       take: 5,
     })
 
-    // ── Build the text block for summarization ────────
+    // 5. Most active users today
+    const oneDayAgo = new Date()
+    oneDayAgo.setDate(oneDayAgo.getDate() - 1)
 
-    let dataBlock = ""
+    const activeUsers = await prisma.user.findMany({
+      where: { isBanned: false },
+      include: {
+        _count: {
+          select: {
+            posts: { where: { createdAt: { gte: oneDayAgo } } },
+            replies: { where: { createdAt: { gte: oneDayAgo } } },
+          },
+        },
+      },
+      take: 50,
+    })
 
-    // Matches section
-    if (recentMatches.length > 0) {
-      dataBlock += "Recent Premier League match results: "
-      dataBlock += recentMatches
-        .map(
-          (m) =>
-            `${m.homeTeam.name} ${m.homeScore ?? "?"}-${m.awayScore ?? "?"} ${m.awayTeam.name} (${m.matchDate.toISOString().slice(0, 10)})`
-        )
-        .join(". ")
-      dataBlock += ". "
-    } else {
-      dataBlock += "No recent match results in the last 3 days. "
-    }
+    const topActiveUsers = activeUsers
+      .map((u) => ({
+        username: u.username ?? "anonymous",
+        activity: u._count.posts + u._count.replies,
+      }))
+      .filter((u) => u.activity > 0)
+      .sort((a, b) => b.activity - a.activity)
+      .slice(0, 3)
 
-    // Standings section
-    if (topStandings.length > 0) {
-      dataBlock += "Current Premier League top 4 standings: "
-      dataBlock += topStandings
-        .map(
-          (s) =>
-            `${s.position}. ${s.team.name} - ${s.points}pts (P${s.played} W${s.won} D${s.drawn} L${s.lost})`
-        )
-        .join(". ")
-      dataBlock += ". "
-
-      if (bottomStandings.length > 0) {
-        dataBlock += "Relegation zone (bottom 3): "
-        dataBlock += bottomStandings
-          .map(
-            (s) =>
-              `${s.position}. ${s.team.name} - ${s.points}pts (P${s.played} W${s.won} D${s.drawn} L${s.lost})`
-          )
-          .join(". ")
-        dataBlock += ". "
-      }
-    }
-
-    // Discussions section
-    if (trendingThreads.length > 0) {
-      dataBlock += "Trending discussions on SportsDeck: "
-      dataBlock += trendingThreads
-        .map(
-          (t) =>
-            `"${t.title}" by ${t.author.username ?? "anonymous"} with ${t._count.posts} posts, tags: [${t.tags.map((tt) => tt.tag.name).join(", ")}]`
-        )
-        .join(". ")
-      dataBlock += ". "
-    }
-
-    // ── Generate AI summary ──────────────────────────
-    let content: string
-
-    const aiResult = await generateText(dataBlock)
-
-    if (aiResult?.generatedText) {
-      // Wrap the AI-generated summary with a nice header
-      const dateDisplay = new Date(today).toLocaleDateString("en-US", {
-        weekday: "long",
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      })
-
-      content = `# SportsDeck Daily Digest — ${dateDisplay}\n\n${aiResult.generatedText}`
-    } else {
-      // Fallback: build a structured digest without AI
-      content = buildFallbackDigest(today, recentMatches, topStandings, bottomStandings, trendingThreads)
-    }
+    // ── Build structured digest ────────────────────────
+    const content = buildStructuredDigest(
+      today,
+      recentMatches,
+      upcomingMatches,
+      topStandings,
+      bottomStandings,
+      trendingThreads,
+      topActiveUsers
+    )
 
     // ── Cache and return ─────────────────────────────
     const digest = await prisma.dailyDigest.upsert({
@@ -211,16 +190,25 @@ export async function GET(req: NextRequest) {
   }
 }
 
-// ─── Fallback digest when AI is unavailable ──────────────────────
+// ─── Structured digest builder ───────────────────────────────────
 
-function buildFallbackDigest(
+function buildStructuredDigest(
   date: string,
-  matches: Array<{
+  recentMatches: Array<{
     homeTeam: { name: string; shortName: string }
     awayTeam: { name: string; shortName: string }
     homeScore: number | null
     awayScore: number | null
     matchDate: Date
+    stage: string
+    matchday: number
+  }>,
+  upcomingMatches: Array<{
+    homeTeam: { name: string; shortName: string }
+    awayTeam: { name: string; shortName: string }
+    matchDate: Date
+    stage: string
+    matchday: number
   }>,
   topStandings: Array<{
     position: number
@@ -230,6 +218,8 @@ function buildFallbackDigest(
     won: number
     drawn: number
     lost: number
+    goalsFor: number
+    goalsAgainst: number
   }>,
   bottomStandings: Array<{
     position: number
@@ -239,13 +229,18 @@ function buildFallbackDigest(
     won: number
     drawn: number
     lost: number
+    goalsFor: number
+    goalsAgainst: number
   }>,
   threads: Array<{
+    id: string
     title: string
     author: { username: string | null }
     _count: { posts: number }
     tags: Array<{ tag: { name: string } }>
-  }>
+    team: { name: string } | null
+  }>,
+  activeUsers: Array<{ username: string; activity: number }>
 ): string {
   const dateDisplay = new Date(date).toLocaleDateString("en-US", {
     weekday: "long",
@@ -254,52 +249,98 @@ function buildFallbackDigest(
     day: "numeric",
   })
 
-  let md = `# SportsDeck Daily Digest — ${dateDisplay}\n\n`
+  const sections: string[] = []
 
-  // Matches
-  md += "## Recent Match Results\n"
-  if (matches.length > 0) {
-    for (const m of matches) {
-      md += `- **${m.homeTeam.name}** ${m.homeScore ?? "?"} – ${m.awayScore ?? "?"} **${m.awayTeam.name}** (${m.matchDate.toISOString().slice(0, 10)})\n`
+  // ── Header ──────────────────────────────────────────
+  sections.push(`# SportsDeck Daily Digest\n### ${dateDisplay}`)
+
+  // ── Recent Results ───────────────────────────────────
+  if (recentMatches.length > 0) {
+    let s = "## ⚽ Recent Results\n\n"
+    s += "| Date | Home | Score | Away | Stage |\n"
+    s += "|------|------|-------|------|-------|\n"
+    for (const m of recentMatches) {
+      const d = m.matchDate.toLocaleDateString("en-US", { month: "short", day: "numeric" })
+      const score = `**${m.homeScore ?? "?"}** – **${m.awayScore ?? "?"}**`
+      const winner =
+        m.homeScore !== null && m.awayScore !== null
+          ? m.homeScore > m.awayScore
+            ? `**${m.homeTeam.shortName}**`
+            : m.awayScore > m.homeScore
+              ? `**${m.awayTeam.shortName}**`
+              : "Draw"
+          : "–"
+      s += `| ${d} | ${m.homeTeam.name} | ${score} | ${m.awayTeam.name} | MD ${m.matchday} |\n`
+      void winner
     }
+    sections.push(s)
   } else {
-    md += "No recent match results.\n"
+    sections.push("## ⚽ Recent Results\n\nNo matches completed in the last 7 days.")
   }
-  md += "\n"
 
-  // Top 4 Standings
-  md += "## Standings — Top 4\n"
+  // ── Upcoming Fixtures ────────────────────────────────
+  if (upcomingMatches.length > 0) {
+    let s = "## 📅 Upcoming Fixtures\n\n"
+    s += "| Date | Home | vs | Away | Stage |\n"
+    s += "|------|------|----|------|-------|\n"
+    for (const m of upcomingMatches) {
+      const d = m.matchDate.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" })
+      const t = m.matchDate.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" })
+      s += `| ${d} ${t} | ${m.homeTeam.name} | vs | ${m.awayTeam.name} | MD ${m.matchday} |\n`
+    }
+    sections.push(s)
+  }
+
+  // ── Standings ────────────────────────────────────────
   if (topStandings.length > 0) {
-    md += "| # | Team | Pts | P | W | D | L |\n"
-    md += "|---|------|-----|---|---|---|---|\n"
-    for (const s of topStandings) {
-      md += `| ${s.position} | ${s.team.name} | ${s.points} | ${s.played} | ${s.won} | ${s.drawn} | ${s.lost} |\n`
+    let s = "## 🏆 Standings — Top 5\n\n"
+    s += "| Pos | Team | Pts | P | W | D | L | GF | GA | GD |\n"
+    s += "|-----|------|-----|---|---|---|---|----|----|----|\n"
+    for (const st of topStandings) {
+      const gd = st.goalsFor - st.goalsAgainst
+      const gdStr = gd > 0 ? `+${gd}` : `${gd}`
+      s += `| ${st.position} | ${st.team.name} | **${st.points}** | ${st.played} | ${st.won} | ${st.drawn} | ${st.lost} | ${st.goalsFor} | ${st.goalsAgainst} | ${gdStr} |\n`
     }
-  } else {
-    md += "Standings data unavailable.\n"
+    sections.push(s)
   }
-  md += "\n"
 
-  // Bottom 3 (Relegation)
   if (bottomStandings.length > 0) {
-    md += "## Relegation Zone (Bottom 3)\n"
-    md += "| # | Team | Pts | P | W | D | L |\n"
-    md += "|---|------|-----|---|---|---|---|\n"
-    for (const s of bottomStandings) {
-      md += `| ${s.position} | ${s.team.name} | ${s.points} | ${s.played} | ${s.won} | ${s.drawn} | ${s.lost} |\n`
+    let s = "## 🔻 Relegation Zone\n\n"
+    s += "| Pos | Team | Pts | P | W | D | L | GD |\n"
+    s += "|-----|------|-----|---|---|---|---|----|\n"
+    for (const st of bottomStandings) {
+      const gd = st.goalsFor - st.goalsAgainst
+      const gdStr = gd > 0 ? `+${gd}` : `${gd}`
+      s += `| ${st.position} | ${st.team.name} | **${st.points}** | ${st.played} | ${st.won} | ${st.drawn} | ${st.lost} | ${gdStr} |\n`
     }
-    md += "\n"
+    sections.push(s)
   }
 
-  // Discussions
-  md += "## Trending Discussions\n"
+  // ── Trending Discussions ─────────────────────────────
   if (threads.length > 0) {
+    let s = "## 💬 Trending Discussions\n\n"
     for (const t of threads) {
-      md += `- "${t.title}" by ${t.author.username ?? "anonymous"} (${t._count.posts} posts) [${t.tags.map((tt) => tt.tag.name).join(", ")}]\n`
+      const tags = t.tags.map((tt) => `\`#${tt.tag.name}\``).join(" ")
+      const forum = t.team ? `${t.team.name} forum` : "General forum"
+      s += `### [${t.title}](/threads/${t.id})\n`
+      s += `**${t._count.posts}** posts · by **${t.author.username ?? "anonymous"}** · ${forum}\n`
+      if (tags) s += `\n${tags}\n`
+      s += "\n"
     }
+    sections.push(s)
   } else {
-    md += "No trending discussions today.\n"
+    sections.push("## 💬 Trending Discussions\n\nNo active discussions today.")
   }
 
-  return md
+  // ── Most Active Users ────────────────────────────────
+  if (activeUsers.length > 0) {
+    let s = "## 🔥 Most Active Today\n\n"
+    for (let i = 0; i < activeUsers.length; i++) {
+      const medal = i === 0 ? "🥇" : i === 1 ? "🥈" : "🥉"
+      s += `${medal} **${activeUsers[i].username}** — ${activeUsers[i].activity} contribution${activeUsers[i].activity !== 1 ? "s" : ""}\n`
+    }
+    sections.push(s)
+  }
+
+  return sections.join("\n\n---\n\n")
 }

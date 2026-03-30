@@ -24,8 +24,7 @@ export default function MatchThreadRedirectPage() {
         }
 
         const data = await res.json();
-
-        const threadId = data?.thread?.id;
+        const threadId = data?.thread?.id ?? data?.id;
 
         if (!threadId) {
           throw new Error("Thread not found");
