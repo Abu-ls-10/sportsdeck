@@ -69,57 +69,48 @@ export async function POST(
   request: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
-
   try {
+    const { id: threadId } = await params;
 
-    const { id: threadId } = await params
-
-    const user = await getUserFromToken(request)
+    const user = await getUserFromToken(request);
 
     if (!user) {
-      return NextResponse.json(
-        { error: "Unauthorized" },
-        { status: 401 }
-      )
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const thread = await prisma.thread.findUnique({
       where: { id: threadId },
       include: { polls: true }
-    })
+    });
 
     if (!thread) {
-      return NextResponse.json(
-        { error: "Thread not found" },
-        { status: 404 }
-      )
+      return NextResponse.json({ error: "Thread not found" }, { status: 404 });
     }
 
     if (thread.polls.length > 0) {
       return NextResponse.json(
         { error: "Thread already has a poll" },
         { status: 400 }
-      )
+      );
     }
 
     if (thread.authorId !== user.id && user.role !== "ADMIN") {
-      return NextResponse.json(
-        { error: "Forbidden" },
-        { status: 403 }
-      )
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
     }
 
-    const body = await request.json()
-
-    const { question, deadline } = body
+    const body = await request.json();
+    const { question, deadline } = body;
 
     if (!question || !deadline) {
       return NextResponse.json(
         { error: "Question and deadline required" },
         { status: 400 }
-      )
+      );
     }
 
+    // =========================
+    // CREATE POLL
+    // =========================
     const poll = await prisma.poll.create({
       data: {
         threadId: thread.id,
@@ -127,19 +118,50 @@ export async function POST(
         deadline: new Date(deadline),
         isClosed: false
       }
-    })
+    });
 
-    return NextResponse.json(poll, { status: 201 })
+    // =========================
+    // CREATE FEED EVENT (CORRECT FOR YOUR SCHEMA)
+    // =========================
+    const feedEvent = await prisma.feedEvent.create({
+      data: {
+        actorId: user.id,
+        eventType: "poll_created",
+        entityType: "poll",
+        entityId: poll.id,
+        groupKey: `poll-${poll.id}`
+      }
+    });
+
+    // =========================
+    // CREATE FEED ENTRIES
+    // =========================
+    const followers = await prisma.follow.findMany({
+      where: { followingId: user.id },
+      select: { followerId: true }
+    });
+
+    const recipientIds = [
+      user.id,
+      ...followers.map((f) => f.followerId)
+    ];
+
+    await prisma.feedEntry.createMany({
+      data: recipientIds.map((uid) => ({
+        userId: uid,
+        feedEventId: feedEvent.id,
+        isRead: uid === user.id
+      }))
+    });
+
+    return NextResponse.json(poll, { status: 201 });
 
   } catch (error) {
-
-    console.error(error)
+    console.error(error);
 
     return NextResponse.json(
       { error: "Internal server error" },
       { status: 500 }
-    )
-
+    );
   }
-
 }

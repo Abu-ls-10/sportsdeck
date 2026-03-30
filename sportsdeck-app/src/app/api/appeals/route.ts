@@ -85,8 +85,13 @@ export async function POST(request: Request) {
     return NextResponse.json({ message: "Unauthorized" }, { status: 401 })
   }
 
-  // Only banned users can submit appeals
-  if (!user.isBanned) {
+  // Check DB for active ban (JWT isBanned can be stale after ban/unban)
+  const activeBan = await prisma.ban.findFirst({
+    where: { userId: user.id, status: "active" },
+    orderBy: { createdAt: "desc" },
+  })
+
+  if (!activeBan) {
     return NextResponse.json(
       { message: "You are not banned and cannot submit an appeal" },
       { status: 400 }
@@ -110,18 +115,7 @@ export async function POST(request: Request) {
   }
 
   try {
-  // Find the user's active ban
-  const activeBan = await prisma.ban.findFirst({
-    where: { userId: user.id, status: "active" },
-    orderBy: { createdAt: "desc" },
-  })
-
-  if (!activeBan) {
-    return NextResponse.json(
-      { message: "No active ban found" },
-      { status: 404 }
-    )
-  }
+  // activeBan already fetched above for validation
 
   // Prevent duplicate pending appeals on the same ban
   const existingPendingAppeal = await prisma.appeal.findFirst({
@@ -194,7 +188,7 @@ export async function GET(request: Request) {
     where.status = status
   }
 
-  const [appeals, totalCount] = await Promise.all([
+  const [appeals, totalCount, activeBan] = await Promise.all([
     prisma.appeal.findMany({
       where,
       orderBy: { createdAt: "desc" },
@@ -208,10 +202,15 @@ export async function GET(request: Request) {
       },
     }),
     prisma.appeal.count({ where }),
+    prisma.ban.findFirst({
+      where: { userId: user.id, status: "active" },
+      select: { id: true },
+    }),
   ])
 
   return NextResponse.json({
     data: appeals,
+    isCurrentlyBanned: Boolean(activeBan),
     pagination: {
       page,
       limit,

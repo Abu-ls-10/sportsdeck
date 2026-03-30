@@ -26,25 +26,38 @@ import { withAuth } from "@/lib/middleware"
  *         description: Internal server error
  */
 
+/**
+ * GET /api/users/:id
+ *
+ * Returns a fully aggregated user profile
+ */
+
 export async function GET(
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
-
   try {
+    const { id: userId } = await params;
 
-    const { id: userId } = await params
-
-    if (!userId)
+    if (!userId) {
       return NextResponse.json(
         { error: "User id is required" },
         { status: 400 }
-      )
+      );
+    }
+
+    /* =========================
+       Get current user (for follow state)
+    ========================= */
+    // Assumes auth middleware attaches user to request
+    const currentUserId = (req as any).user?.id ?? null;
+
+    /* =========================
+       Fetch core user
+    ========================= */
 
     const user = await prisma.user.findUnique({
-
       where: { id: userId },
-
       select: {
         id: true,
         username: true,
@@ -55,104 +68,134 @@ export async function GET(
           select: {
             id: true,
             name: true,
-            logoUrl: true
-          }
-        }
-      }
+            logoUrl: true,
+          },
+        },
+      },
+    });
 
-    })
-
-    if (!user)
+    if (!user) {
       return NextResponse.json(
         { error: "User not found" },
         { status: 404 }
-      )
+      );
+    }
 
-    const [followersCount, followingCount] = await Promise.all([
-      prisma.follow.count({ where: { followingId: userId } }),
-      prisma.follow.count({ where: { followerId: userId } })
-    ])
+    /* =========================
+       Parallel queries
+    ========================= */
 
-    const threads = await prisma.thread.findMany({
+    const [
+      followersCount,
+      followingCount,
+      threads,
+      posts,
+      replies,
+      followRelation,
+    ] = await Promise.all([
+      prisma.follow.count({
+        where: { followingId: userId },
+      }),
 
-      where: {
-        authorId: userId,
-        isHidden: false
-      },
+      prisma.follow.count({
+        where: { followerId: userId },
+      }),
 
-      orderBy: { createdAt: "desc" },
+      prisma.thread.findMany({
+        where: {
+          authorId: userId,
+          isHidden: false,
+        },
+        orderBy: { createdAt: "desc" },
+        take: 10,
+        select: {
+          id: true,
+          title: true,
+          createdAt: true,
+          _count: {
+            select: {
+              posts: true, // reply count
+            },
+          },
+        },
+      }),
 
-      take: 10,
+      prisma.post.findMany({
+        where: {
+          authorId: userId,
+          isHidden: false,
+        },
+        orderBy: { createdAt: "desc" },
+        take: 10,
+        select: {
+          id: true,
+          threadId: true,
+          content: true,
+          createdAt: true,
+        },
+      }),
 
-      select: {
-        id: true,
-        title: true,
-        createdAt: true
-      }
+      prisma.reply.findMany({
+        where: {
+          authorId: userId,
+          isHidden: false,
+        },
+        orderBy: { createdAt: "desc" },
+        take: 10,
+        select: {
+          id: true,
+          postId: true,
+          content: true,
+          createdAt: true,
+        },
+      }),
 
-    })
+      currentUserId
+        ? prisma.follow.findUnique({
+            where: {
+              followerId_followingId: {
+                followerId: currentUserId,
+                followingId: userId,
+              },
+            },
+          })
+        : null,
+    ]);
 
-    const posts = await prisma.post.findMany({
-
-      where: {
-        authorId: userId,
-        isHidden: false
-      },
-
-      orderBy: { createdAt: "desc" },
-
-      take: 10,
-
-      select: {
-        id: true,
-        threadId: true,
-        content: true,
-        createdAt: true
-      }
-
-    })
-
-    const replies = await prisma.reply.findMany({
-
-      where: {
-        authorId: userId,
-        isHidden: false
-      },
-
-      orderBy: { createdAt: "desc" },
-
-      take: 10,
-
-      select: {
-        id: true,
-        postId: true,
-        content: true,
-        createdAt: true
-      }
-
-    })
+    /* =========================
+       Final response (FLATTENED)
+    ========================= */
 
     return NextResponse.json(
       {
-        user,
-        followersCount,
-        followingCount,
+        id: user.id,
+        username: user.username,
+        avatarUrl: user.avatarUrl,
+        createdAt: user.createdAt,
+        favoriteTeam: user.favoriteTeam,
+
+        _count: {
+          followers: followersCount,
+          following: followingCount,
+          threads: threads.length,
+          posts: posts.length,
+          replies: replies.length,
+        },
+
+        isFollowing: !!followRelation,
+
         threads,
         posts,
-        replies
+        replies,
       },
       { status: 200 }
-    )
-
+    );
   } catch (error) {
-
-    console.error("GET /api/users/:id error:", error)
+    console.error("GET /api/users/:id error:", error);
 
     return NextResponse.json(
       { error: "Failed to retrieve user profile" },
       { status: 500 }
-    )
-
+    );
   }
-
 }

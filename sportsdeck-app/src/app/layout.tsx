@@ -1,40 +1,22 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import { ColorSchemeScript, MantineProvider } from "@mantine/core";
-import { Notifications } from "@mantine/notifications";
 import { AuthProvider } from "@/contexts/AuthContext";
+import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-export const metadata: Metadata = {
+export const metadata = {
   title: "SportsDeck",
   description: "The Ultimate Hub for Sports Fans",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <head>
-        <ColorSchemeScript defaultColorScheme="auto" />
-      </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <MantineProvider defaultColorScheme="auto">
-          <Notifications position="top-right" />
-          <AuthProvider>{children}</AuthProvider>
-        </MantineProvider>
+    <html lang="en">
+      <body className="bg-bg-main text-text-primary">
+        <AuthProvider>
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );

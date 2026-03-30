@@ -108,66 +108,65 @@ import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
 
 async function postHandler(req: AuthenticatedRequest) {
   try {
-
-    const user = req.user
+    const user = req.user;
 
     if (!user) {
       return NextResponse.json(
         { error: "Authentication required" },
         { status: 401 }
-      )
+      );
     }
 
-    let body
+    let body;
 
     try {
-      body = await req.json()
+      body = await req.json();
     } catch {
       return NextResponse.json(
         { error: "Invalid JSON body" },
         { status: 400 }
-      )
+      );
     }
 
-    let { title, content } = body
-    const { teamId, tags } = body
+    let { title, content } = body;
+    const { teamId, tags } = body;
 
     if (!title || !content) {
       return NextResponse.json(
         { error: "Title and content are required" },
         { status: 400 }
-      )
+      );
     }
 
-    title = title.trim()
-    content = content.trim()
+    title = title.trim();
+    content = content.trim();
 
     if (title.length === 0 || content.length === 0) {
       return NextResponse.json(
         { error: "Title and content cannot be empty" },
         { status: 400 }
-      )
+      );
     }
 
     // Validate team if provided
     if (teamId) {
-
       const team = await prisma.team.findUnique({
         where: { id: teamId }
-      })
+      });
 
       if (!team) {
         return NextResponse.json(
           { error: "Team not found" },
           { status: 404 }
-        )
+        );
       }
-
     }
 
     const result = await prisma.$transaction(async (tx) => {
 
-      // Create thread
+      // =========================
+      // CREATE THREAD
+      // =========================
       const thread = await tx.thread.create({
         data: {
           title,
@@ -177,34 +176,35 @@ async function postHandler(req: AuthenticatedRequest) {
           isLocked: false,
           isHidden: false
         }
-      })
+      });
 
-      // Create first post
+      // =========================
+      // CREATE FIRST POST
+      // =========================
       await tx.post.create({
         data: {
           threadId: thread.id,
           authorId: user.id,
           content
         }
-      })
+      });
 
-      // Handle tags
+      // =========================
+      // HANDLE TAGS
+      // =========================
       if (tags && Array.isArray(tags)) {
-
         for (const tagNameRaw of tags) {
-
-          const tagName = String(tagNameRaw).trim().toLowerCase()
-
-          if (!tagName) continue
+          const tagName = String(tagNameRaw).trim().toLowerCase();
+          if (!tagName) continue;
 
           let tag = await tx.tag.findUnique({
             where: { name: tagName }
-          })
+          });
 
           if (!tag) {
             tag = await tx.tag.create({
               data: { name: tagName }
-            })
+            });
           }
 
           await tx.threadTag.create({
@@ -212,31 +212,60 @@ async function postHandler(req: AuthenticatedRequest) {
               threadId: thread.id,
               tagId: tag.id
             }
-          })
-
+          });
         }
-
       }
 
-      return thread
+      // =========================
+      // CREATE FEED EVENT
+      // =========================
+      const feedEvent = await tx.feedEvent.create({
+        data: {
+          actorId: user.id,
+          eventType: "thread_created",
+          entityType: "thread",
+          entityId: thread.id,
+          groupKey: `thread-${thread.id}`
+        }
+      });
 
-    })
+      // =========================
+      // CREATE FEED ENTRIES
+      // =========================
+      const followers = await tx.follow.findMany({
+        where: { followingId: user.id },
+        select: { followerId: true }
+      });
 
-    return NextResponse.json(result, { status: 201 })
+      const recipientIds = [
+        user.id,
+        ...followers.map((f) => f.followerId)
+      ];
+
+      await tx.feedEntry.createMany({
+        data: recipientIds.map((uid) => ({
+          userId: uid,
+          feedEventId: feedEvent.id,
+          isRead: uid === user.id
+        }))
+      });
+
+      return thread;
+    });
+
+    return NextResponse.json(result, { status: 201 });
 
   } catch (error) {
-
-    console.error("POST /api/threads error:", error)
+    console.error("POST /api/threads error:", error);
 
     return NextResponse.json(
       { error: "Failed to create thread" },
       { status: 500 }
-    )
-
+    );
   }
 }
 
-export const POST = withAuth(postHandler)
+export const POST = withAuth(postHandler);
 
 
 

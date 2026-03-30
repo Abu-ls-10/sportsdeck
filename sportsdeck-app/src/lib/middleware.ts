@@ -1,46 +1,58 @@
-import { verifyAccessToken } from "./auth"
-import { NextResponse, NextRequest } from "next/server"
-import { JwtPayload } from "jsonwebtoken"
+import { verifyAccessToken } from "./auth";
+import { NextResponse, NextRequest } from "next/server";
+import { JwtPayload } from "jsonwebtoken";
 
-// Extend NextRequest to carry the authenticated user payload
 export interface AuthenticatedRequest extends NextRequest {
-  user: JwtPayload
+  user: JwtPayload;
 }
 
-// Wraps a route handler with JWT authentication and optional role-based access control
 export function withAuth(
   handler: (req: AuthenticatedRequest, context?: any) => Promise<NextResponse>,
   role?: string
 ) {
   return (req: NextRequest, context?: any) => {
-    // Reject if Authorization header is missing
-    const authHeader = req.headers.get('authorization')
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      return NextResponse.json({ message: 'Unauthorized' }, { status: 401 })
+    let token: string | null = null;
+
+    // Try Authorization header (Postman / external clients)
+    const authHeader = req.headers.get("authorization");
+    if (authHeader && authHeader.startsWith("Bearer ")) {
+      token = authHeader.split(" ")[1];
     }
 
-    // Extract and verify the access token
-    const token = authHeader.split(' ')[1]
-    const payload = verifyAccessToken(token)
-
-    // Reject if token is invalid, expired, or not an object
-    if (!payload || typeof payload === 'string') {
-      return NextResponse.json({ message: 'Unauthorized' }, { status: 401 })
+    // Fallback to cookies (your frontend)
+    if (!token) {
+      token = req.cookies.get("access_token")?.value ?? null;
     }
 
-    // Reject if user is banned
+    // No token found
+    if (!token) {
+      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+    }
+
+    // Verify token
+    const payload = verifyAccessToken(token);
+
+    if (!payload || typeof payload === "string") {
+      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+    }
+
+    // Banned user
     if (payload.isBanned) {
-      return NextResponse.json({ message: 'Your account has been banned' }, { status: 403 })
+      return NextResponse.json(
+        { message: "Your account has been banned" },
+        { status: 403 }
+      );
     }
 
-    // Reject if the route requires a role the user does not have
+    // Role check
     if (role && payload.role !== role) {
-      return NextResponse.json({ message: 'Forbidden' }, { status: 403 })
+      return NextResponse.json({ message: "Forbidden" }, { status: 403 });
     }
 
-    // Attach the verified payload to the request and proceed
-    const authedReq = req as AuthenticatedRequest
-    authedReq.user = payload
-    return handler(authedReq, context)
-  }
+    // Attach user
+    const authedReq = req as AuthenticatedRequest;
+    authedReq.user = payload;
+
+    return handler(authedReq, context);
+  };
 }
