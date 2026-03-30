@@ -63,7 +63,7 @@ function LoginInner() {
       return;
     }
 
-    router.push("/");
+    router.push("/home");
   };
 
   return (
