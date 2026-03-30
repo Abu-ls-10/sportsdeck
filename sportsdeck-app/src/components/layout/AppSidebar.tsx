@@ -17,7 +17,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { Dispatch, SetStateAction } from "react";
 
 const navItems = [
-  {label: "Home", href: "/", icon: Home },
+  {label: "Home", href: "/home", icon: Home },
   { label: "Feed", href: "/feed", icon: LayoutDashboard },
   { label: "Community", href: "/community", icon: MessageSquare },
   { label: "Matches", href: "/matches", icon: Trophy },
