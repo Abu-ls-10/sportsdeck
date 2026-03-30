@@ -563,7 +563,7 @@ function LandingHero({
               quickTags.map((tag) => (
                 <Link
                   key={tag.id}
-                  href={`/tags/${tag.id}/threads`}
+                  href={`/community/tags/${tag.id}`}
                   className="rounded-full border border-border-subtle bg-white/[0.04] px-3 py-2 text-xs font-medium text-text-secondary transition hover:bg-white/[0.07] hover:text-white"
                 >
                   #{tag.name}
@@ -1081,7 +1081,7 @@ function ThreadFeedCard({
       <div className="mt-4 flex items-start justify-between gap-4">
         <div className="min-w-0 flex-1">
           <Link
-            href={`/threads/${thread.id}`}
+            href={`/community/threads/${thread.id}`}
             onClick={() => {
               if (!item.isRead) onMarkRead(item.id);
             }}
@@ -1121,7 +1121,7 @@ function ThreadFeedCard({
           thread.tags.slice(0, 5).map((tag) => (
             <Link
               key={tag.id}
-              href={`/tags/${tag.id}/threads`}
+              href={`/community/tags/${tag.id}`}
               className="rounded-full border border-border-subtle bg-white/[0.03] px-2.5 py-1 text-[11px] font-medium text-text-secondary transition hover:bg-white/[0.06] hover:text-white"
             >
               #{tag.name}
@@ -1142,7 +1142,7 @@ function ThreadFeedCard({
         </p>
 
         <Link
-          href={`/threads/${thread.id}`}
+          href={`/community/threads/${thread.id}`}
           onClick={() => {
             if (!item.isRead) onMarkRead(item.id);
           }}
@@ -1394,7 +1394,7 @@ function Sidebar({
         </div>
 
         <Link
-          href="/profile"
+          href={`/users/${me?.id}`}
           className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-border-subtle bg-white/[0.03] px-3 py-2.5 text-sm font-medium text-text-primary transition hover:bg-white/[0.06]"
         >
           View profile
@@ -1473,7 +1473,7 @@ function Sidebar({
             {tags.slice(0, 6).map((tag) => (
               <Link
                 key={tag.id}
-                href={`/tags/${tag.id}/threads`}
+                href={`/community/tags/${tag.id}`}
                 className="flex items-center justify-between rounded-xl border border-border-subtle bg-white/[0.03] px-3 py-3 transition hover:bg-white/[0.06]"
               >
                 <div>
