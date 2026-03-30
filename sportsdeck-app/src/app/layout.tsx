@@ -14,9 +14,8 @@ export default function RootLayout({
   children: ReactNode;
 }) {
   return (
-    <html lang="en" className="dark">
-      <body className="bg-bg-main text-text-primary">
-
+    <html lang="en">
+      <head>
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -36,6 +35,8 @@ export default function RootLayout({
             `,
           }}
         />
+      </head>
+      <body className="bg-bg-main text-text-primary">
 
         <AuthProvider>{children}</AuthProvider>
 

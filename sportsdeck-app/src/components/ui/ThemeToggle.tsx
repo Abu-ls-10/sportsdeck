@@ -17,7 +17,7 @@ function getInitialTheme(): Theme {
 }
 
 export default function ThemeToggle() {
-  const [theme, setTheme] = useState<Theme>(getInitialTheme);
+  const [theme, setTheme] = useState<"light" | "dark">("dark");
 
   /**
    * ONLY sync external systems
