@@ -56,7 +56,7 @@ export default function SignupPage() {
       return;
     }
 
-    router.push("/");
+    router.push("/home");
   };
 
   return (
