@@ -5,10 +5,14 @@ import {
   LayoutDashboard,
   Users,
   Trophy,
-  Shield,
   MessageSquare,
   ChevronLeft,
   ChevronRight,
+  Ban,
+  Flag,
+  BarChart3,
+  FlagTriangleRight,
+  Inbox,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -17,12 +21,22 @@ import { useAuth } from "@/contexts/AuthContext";
 import { Dispatch, SetStateAction } from "react";
 
 const navItems = [
-  {label: "Home", href: "/home", icon: Home },
+  { label: "Home", href: "/home", icon: Home },
   { label: "Feed", href: "/feed", icon: LayoutDashboard },
-  { label: "Community", href: "/community", icon: MessageSquare },
+  { label: "Community", href: "/community", icon: Users },
   { label: "Matches", href: "/matches", icon: Trophy },
-  { label: "Teams", href: "/teams", icon: Users },
-  { label: "Standings", href: "/standings", icon: Shield },
+  { label: "Teams", href: "/teams", icon: Flag },
+  { label: "Standings", href: "/standings", icon: BarChart3 },
+];
+
+const adminItems = [
+  { label: "Bans", href: "/admin/bans", icon: Ban },
+  { label: "Reports", href: "/admin/reports", icon: FlagTriangleRight },
+  { label: "Appeals", href: "/admin/appeals", icon: MessageSquare },
+];
+
+const accountItems = [
+  { label: "My Appeals", href: "/appeals", icon: Inbox },
 ];
 
 export default function AppSidebar({
@@ -152,13 +166,13 @@ function SidebarContent({
       </div>
 
       {/* ===== NAV ===== */}
-      <nav className="flex-1 px-3 space-y-1">
+      <nav className="flex-1 px-3 space-y-1 overflow-y-auto">
+
+        {/* ===== MAIN NAV ===== */}
         {navItems.map((item) => {
           const Icon = item.icon;
           const isActive =
-            item.href === "/"
-              ? pathname === "/"
-              : pathname === item.href || pathname.startsWith(item.href + "/");
+            pathname === item.href || pathname.startsWith(item.href + "/");
 
           return (
             <Link
@@ -167,10 +181,8 @@ function SidebarContent({
               title={!expanded ? item.label : ""}
               onClick={onNavigate}
               className={`
-                flex items-center gap-3
-                px-3 py-2.5 rounded-xl text-sm
+                flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm
                 transition-all duration-200
-
                 ${
                   isActive
                     ? "bg-primary-500/15 text-primary-400 shadow-inner"
@@ -178,12 +190,79 @@ function SidebarContent({
                 }
               `}
             >
-              <Icon
-                className={`h-4 w-4 ${
-                  isActive ? "text-primary-400" : ""
-                }`}
-              />
+              <Icon className={`h-4 w-4 ${isActive ? "text-primary-400" : ""}`} />
+              {expanded && <span>{item.label}</span>}
+            </Link>
+          );
+        })}
 
+        {/* ===== ADMIN SECTION ===== */}
+        {user?.role === "admin" || user?.role === "moderator" ? (
+          <>
+            <div className="mt-4 px-3">
+              {expanded && (
+                <p className="text-xs text-text-muted mb-2">MODERATION</p>
+              )}
+            </div>
+
+            {adminItems.map((item) => {
+              const Icon = item.icon;
+              const isActive =
+                pathname === item.href || pathname.startsWith(item.href + "/");
+
+              return (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  title={!expanded ? item.label : ""}
+                  onClick={onNavigate}
+                  className={`
+                    flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm
+                    transition-all duration-200
+                    ${
+                      isActive
+                        ? "bg-brand-500/15 text-brand-400 shadow-inner"
+                        : "text-text-secondary hover:bg-bg-elevated hover:text-brand-300"
+                    }
+                  `}
+                >
+                  <Icon className={`h-4 w-4 ${isActive ? "text-brand-400" : ""}`} />
+                  {expanded && <span>{item.label}</span>}
+                </Link>
+              );
+            })}
+          </>
+        ) : null}
+
+        {/* ===== ACCOUNT SECTION ===== */}
+        <div className="mt-4 px-3">
+          {expanded && (
+            <p className="text-xs text-text-muted mb-2">ACCOUNT</p>
+          )}
+        </div>
+
+        {accountItems.map((item) => {
+          const Icon = item.icon;
+          const isActive =
+            pathname === item.href || pathname.startsWith(item.href + "/");
+
+          return (
+            <Link
+              key={item.label}
+              href={item.href}
+              title={!expanded ? item.label : ""}
+              onClick={onNavigate}
+              className={`
+                flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm
+                transition-all duration-200
+                ${
+                  isActive
+                    ? "bg-accent-500/15 text-accent-400 shadow-inner"
+                    : "text-text-secondary hover:bg-bg-elevated hover:text-white"
+                }
+              `}
+            >
+              <Icon className={`h-4 w-4 ${isActive ? "text-accent-400" : ""}`} />
               {expanded && <span>{item.label}</span>}
             </Link>
           );

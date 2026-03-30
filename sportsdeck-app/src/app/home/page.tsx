@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import {
   ArrowRight,
@@ -1646,7 +1647,14 @@ export default function LandingPage() {
 
   const [tab, setTab] = useState<LandingTab>("for-you");
 
-  const { isLoading } = useAuth();
+  const { user, isLoading } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!isLoading && !user) {
+      router.replace("/auth/login?redirect=/home");
+    }
+  }, [user, isLoading, router]);
 
   useEffect(() => {
     if (isLoading) return;
@@ -1781,6 +1789,8 @@ export default function LandingPage() {
 
     return feed;
   }, [feed, tab]);
+
+  if (isLoading || !user) return null;
 
   async function markAsRead(feedId: string) {
     setFeed((prev) =>

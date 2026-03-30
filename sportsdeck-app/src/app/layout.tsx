@@ -1,6 +1,4 @@
-import { AuthProvider } from "@/contexts/AuthContext";
-import ThemeToggle from "@/components/ui/ThemeToggle";
-import "./globals.css";
+import ClientLayout from "./ClientLayout";
 
 export const metadata = {
   title: "SportsDeck",
@@ -13,30 +11,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (() => {
-                try {
-                  const key = "sportsdeck-theme";
-                  const saved = localStorage.getItem(key);
-                  const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-                  const theme = saved === "light" || saved === "dark" ? saved : (systemPrefersDark ? "dark" : "light");
-                  document.documentElement.classList.remove("light", "dark");
-                  document.documentElement.classList.add(theme);
-                } catch (_) {}
-              })();
-            `,
-          }}
-        />
-      </head>
-      <body className="bg-bg-main text-text-primary">
-        <AuthProvider>
-          {children}
-          <ThemeToggle />
-        </AuthProvider>
+    <html lang="en">
+      <body>
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   );

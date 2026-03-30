@@ -35,26 +35,26 @@ const config: Config = {
 
         /* ===== BACKGROUND SYSTEM (IMPROVED DEPTH) ===== */
         bg: {
-          main: "rgb(var(--color-bg-main) / <alpha-value>)",
-          surface: "rgb(var(--color-bg-surface) / <alpha-value>)",
-          card: "rgb(var(--color-bg-card) / <alpha-value>)",
-          elevated: "rgb(var(--color-bg-elevated) / <alpha-value>)",
-          glass: "var(--color-bg-glass)",
+          main: "#0A0F1C",       // darker base
+          surface: "#0F172A",
+          card: "#111827",
+          elevated: "#162033",  // hover / dropdown
+          glass: "rgba(255,255,255,0.03)", // glass effect
         },
 
         /* ===== TEXT SYSTEM ===== */
         text: {
-          primary: "rgb(var(--color-text-primary) / <alpha-value>)",
-          secondary: "rgb(var(--color-text-secondary) / <alpha-value>)",
-          muted: "rgb(var(--color-text-muted) / <alpha-value>)",
-          dim: "rgb(var(--color-text-dim) / <alpha-value>)",
+          primary: "#E6EDF5",
+          secondary: "#9FB0C3",
+          muted: "#6E8095",
+          dim: "#4B5C70", // NEW (for ultra subtle UI)
         },
 
         /* ===== BORDER SYSTEM ===== */
         border: {
-          DEFAULT: "rgb(var(--color-border-default) / <alpha-value>)",
-          subtle: "var(--color-border-subtle)",
-          strong: "rgb(var(--color-border-strong) / <alpha-value>)",
+          DEFAULT: "#1F2937",
+          subtle: "rgba(255,255,255,0.06)",
+          strong: "#2A3A4F",
         },
       },
 
