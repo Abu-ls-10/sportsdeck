@@ -83,7 +83,11 @@ export default function AdminShell({ title, subtitle, children }: AdminShellProp
             The Admin Console is restricted to administrators only.
           </p>
           <p className="mb-6 text-sm text-text-muted">
-            You are signed in as <span className="font-semibold text-text-primary">{user.username ?? user.email}</span>, which does not have admin privileges.
+            You are signed in as{" "}
+            <span className="font-semibold text-text-primary">
+              {user.username?.trim() || "this account"}
+            </span>
+            , which does not have admin privileges.
           </p>
           <Link
             href="/"
