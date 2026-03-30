@@ -122,8 +122,13 @@ export default async function seedPosts(
   })
 
   const createdPosts: Post[] = []
+  const totalThreads = allThreads.length
 
-  for (const thread of allThreads) {
+  for (let ti = 0; ti < allThreads.length; ti++) {
+    const thread = allThreads[ti]!
+    if (ti > 0 && (ti % 30 === 0 || ti === totalThreads - 1)) {
+      console.log(`  seedPosts: threads ${ti + 1}/${totalThreads}…`)
+    }
     let numPosts = 0
 
     if (thread.matchId && thread.match) {

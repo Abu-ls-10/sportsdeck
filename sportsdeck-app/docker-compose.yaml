@@ -21,7 +21,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: sh -c "npx prisma migrate deploy && npx prisma db seed && npm start"
     container_name: sportsdeck-app
     restart: unless-stopped
     depends_on:

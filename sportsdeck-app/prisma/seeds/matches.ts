@@ -1,4 +1,5 @@
 import { PrismaClient } from "../../src/generated/prisma"
+import { fetchWithTimeout } from "./fetchUtil"
 
 /** Same shape as football-data.org v4 competition matches. */
 interface API_Match {
@@ -59,9 +60,11 @@ export default async function seedMatches(prisma: PrismaClient, _teams: unknown[
   const season = 2025
   const url = `https://api.football-data.org/v4/competitions/PL/matches?season=${season}`
 
-  const response = await fetch(url, {
-    headers: { "X-Auth-Token": apiKey },
-  })
+  const response = await fetchWithTimeout(
+    url,
+    { headers: { "X-Auth-Token": apiKey } },
+    45_000
+  )
 
   if (!response.ok) {
     const body = await response.text()
@@ -83,7 +86,15 @@ export default async function seedMatches(prisma: PrismaClient, _teams: unknown[
     )
   }
 
-  await Promise.all(raw.map((m) => upsertMatch(prisma, m)))
+  // Avoid hundreds of parallel upserts — exhausts the DB pool and looks like a hang.
+  const CONCURRENCY = 12
+  for (let i = 0; i < raw.length; i += CONCURRENCY) {
+    const chunk = raw.slice(i, i + CONCURRENCY)
+    await Promise.all(chunk.map((m) => upsertMatch(prisma, m)))
+    if ((i + CONCURRENCY) % 60 === 0 || i + CONCURRENCY >= raw.length) {
+      console.log(`  … upserted matches ${Math.min(i + CONCURRENCY, raw.length)}/${raw.length}`)
+    }
+  }
 
   const withTeams = await prisma.match.findMany({
     include: { homeTeam: true, awayTeam: true },
