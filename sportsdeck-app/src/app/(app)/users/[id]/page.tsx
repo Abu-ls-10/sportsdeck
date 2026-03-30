@@ -547,9 +547,12 @@ function ActivityOverviewCard({
 }: {
   points: ActivityPoint[];
 }) {
-  const max = Math.max(1, ...points.map((p) => p.count));
-  const total = points.reduce((sum, point) => sum + point.count, 0);
-  const peak = Math.max(0, ...points.map((p) => p.count));
+  const sortedPoints = [...points].sort(
+    (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+  );
+
+  const total = sortedPoints.reduce((sum, point) => sum + point.count, 0);
+  const peak = Math.max(0, ...sortedPoints.map((p) => p.count));
 
   return (
     <GlassPanel className="p-5 md:p-6">
@@ -560,22 +563,32 @@ function ActivityOverviewCard({
       />
 
       <div className="mt-5">
-        {points.length === 0 ? (
+        {sortedPoints.length === 0 ? (
           <EmptyStateCard
             title="No recent activity"
             description="This chart uses the real activity endpoint. Once posts or replies appear, the trend will show up here."
           />
         ) : (
           <>
-            <div className="overflow-x-auto">
-              <div className="grid grid-flow-col auto-cols-[14px] gap-1 min-w-max">
-                {points.map((point, index) => {
+            <p className="text-xs text-text-muted mb-3">
+              Last {sortedPoints.length} days
+            </p>
+
+            <div className="flex gap-3">
+              <div className="flex flex-col justify-between text-[10px] text-text-muted pr-1">
+                <span>Mon</span>
+                <span>Wed</span>
+                <span>Fri</span>
+              </div>
+
+              <div className="grid grid-cols-7 gap-1">
+                {sortedPoints.map((point, index) => {
                   const intensity =
                     point.count === 0
                       ? "bg-white/5"
-                      : point.count < 2
+                      : point.count <= peak * 0.25
                         ? "bg-primary-500/30"
-                        : point.count < 5
+                        : point.count <= peak * 0.6
                           ? "bg-primary-500/60"
                           : "bg-primary-500";
 
@@ -583,10 +596,12 @@ function ActivityOverviewCard({
                     <div
                       key={`${point.date}-${index}`}
                       className={cx(
-                        "h-3.5 w-3.5 rounded-sm",
+                        "h-3.5 w-3.5 rounded-sm transition hover:scale-110",
                         intensity
                       )}
-                      title={`${point.date}: ${point.count}`}
+                      title={`${new Date(point.date).toLocaleDateString()}: ${
+                        point.count
+                      } activities`}
                     />
                   );
                 })}
@@ -912,13 +927,9 @@ function ProfileSettingsCard({
 }) {
   const [username, setUsername] = useState(profile.username ?? "");
   const [avatarUrl, setAvatarUrl] = useState(profile.avatarUrl ?? "");
-  const [favoriteTeamId, setFavoriteTeamId] = useState(profile.favoriteTeam?.id ?? "");
-
-  useEffect(() => {
-    setUsername(profile.username ?? "");
-    setAvatarUrl(profile.avatarUrl ?? "");
-    setFavoriteTeamId(profile.favoriteTeam?.id ?? "");
-  }, [profile.id, profile.username, profile.avatarUrl, profile.favoriteTeam?.id]);
+  const [favoriteTeamId, setFavoriteTeamId] = useState(
+    profile.favoriteTeam?.id ?? ""
+  );
 
   return (
     <GlassPanel className="p-5">
@@ -991,7 +1002,9 @@ function ProfileSettingsCard({
         </button>
 
         {saveMessage ? (
-          <p className="text-xs leading-6 text-text-secondary">{saveMessage}</p>
+          <p className="text-xs leading-6 text-text-secondary">
+            {saveMessage}
+          </p>
         ) : null}
       </form>
     </GlassPanel>
@@ -1087,7 +1100,12 @@ export default function UserProfilePage() {
   const [saveMessage, setSaveMessage] = useState<string | null>(null);
   const [followOverride, setFollowOverride] = useState<boolean | null>(null);
 
-  const loadPage = useCallback(async () => {
+  useEffect(() => {
+  if (authLoading) return;
+
+  let active = true;
+
+  async function load() {
     setPageLoading(true);
     setPageError(null);
 
@@ -1107,6 +1125,8 @@ export default function UserProfilePage() {
       fetchJson<BasicUser[]>(`/api/users/${id}/following`),
     ]);
 
+    if (!active) return;
+
     if (!profileData) {
       setProfile(null);
       setPageError("We could not load this profile.");
@@ -1120,17 +1140,18 @@ export default function UserProfilePage() {
     setActivity(normalizeActivity(activityData));
     setFollowers(Array.isArray(followersData) ? followersData : []);
     setFollowing(Array.isArray(followingData) ? followingData : []);
-    setPageLoading(false);
-  }, [id]);
 
-  useEffect(() => {
-    if (authLoading) return;
-    void loadPage();
-  }, [authLoading, loadPage]);
-
-  useEffect(() => {
     setFollowOverride(null);
-  }, [id]);
+
+    setPageLoading(false);
+  }
+
+  load();
+
+  return () => {
+    active = false;
+  };
+}, [id, authLoading]);
 
   const isMe = !!profile && !!me && profile.id === me.id;
   const username = profile?.username ?? "Unknown";
@@ -1461,6 +1482,7 @@ export default function UserProfilePage() {
               {isMe && me ? (
                 <>
                   <ProfileSettingsCard
+                    key={profile.id}
                     profile={profile}
                     teams={teams}
                     saving={saveLoading}
