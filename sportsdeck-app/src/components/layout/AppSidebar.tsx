@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  Home,
   LayoutDashboard,
   Users,
   Trophy,
@@ -16,7 +17,8 @@ import { useAuth } from "@/contexts/AuthContext";
 import { Dispatch, SetStateAction } from "react";
 
 const navItems = [
-  { label: "Feed", href: "/", icon: LayoutDashboard },
+  {label: "Home", href: "/", icon: Home },
+  { label: "Feed", href: "/feed", icon: LayoutDashboard },
   { label: "Community", href: "/community", icon: MessageSquare },
   { label: "Matches", href: "/matches", icon: Trophy },
   { label: "Teams", href: "/teams", icon: Users },
@@ -153,7 +155,10 @@ function SidebarContent({
       <nav className="flex-1 px-3 space-y-1">
         {navItems.map((item) => {
           const Icon = item.icon;
-          const isActive = pathname === item.href;
+          const isActive =
+            item.href === "/"
+              ? pathname === "/"
+              : pathname === item.href || pathname.startsWith(item.href + "/");
 
           return (
             <Link
