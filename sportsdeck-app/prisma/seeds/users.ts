@@ -124,7 +124,7 @@ export async function create_admins(){
         email: "eshan@sportsdeck.com",
         username: "Eshan",
         role: "ADMIN",
-        passwordHash: "$2b$10$hn1fobdDcHK4wHj/uRu7lezZevcPBZLNUYit9A3Vw9HvG8w6qoAXu",
+        passwordHash: "$2b$10$j8drJk6ih851hQHSmR8jM.YToeiJEg6lfm8vwFlD9wbpkrYPgs0MG",
         isBanned: false
       }
     }),
@@ -133,7 +133,7 @@ export async function create_admins(){
         email: "amaan@sportsdeck.com",
         username: "Amaan",
         role: "ADMIN",
-        passwordHash: "$2b$10$CFvQLDdz.EFcU6ws8ppdHuT.I4IjLBK31KWOsWqyv0G9efWA4xXxW",
+        passwordHash: "$2b$10$j8drJk6ih851hQHSmR8jM.YToeiJEg6lfm8vwFlD9wbpkrYPgs0MG",
         isBanned: false
       }
     }),
