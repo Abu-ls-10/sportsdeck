@@ -1,5 +1,6 @@
 import { PrismaClient, Prisma } from "../../src/generated/prisma";
 import { DefaultArgs } from "../../src/generated/prisma/runtime/library";
+import { fetchWithTimeout } from "./fetchUtil";
 
 export async function main(prisma: PrismaClient<Prisma.PrismaClientOptions, never, DefaultArgs>){
     const apiKey = process.env.X_AUTH_TOKEN;
@@ -8,13 +9,14 @@ export async function main(prisma: PrismaClient<Prisma.PrismaClientOptions, neve
     const seasons = [2025];
     for (const season of seasons){
         const api_route = `https://api.football-data.org/v4/competitions/PL/teams?season=${String(season)}`;
-        let response = await fetch(
-            api_route, 
+        let response = await fetchWithTimeout(
+            api_route,
             {
                 headers: {
                     "X-Auth-Token": apiKey
                 },
-            }
+            },
+            45_000
         );
 
         if (!response.ok) {
