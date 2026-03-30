@@ -33,7 +33,7 @@ export default function Footer() {
               href="/"
               className="block text-text-secondary hover:text-white transition"
             >
-              Feed
+              Home
             </Link>
 
             <Link

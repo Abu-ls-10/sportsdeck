@@ -1,5 +1,6 @@
 "use client";
 
+import { Goal } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -61,12 +62,27 @@ export default function Logo({
           className={`
             ${styles.icon}
             rounded-xl flex items-center justify-center
-            bg-gradient-primary
             shadow-glow
-            font-bold text-white
+            relative overflow-hidden
+            transition-all duration-300
+            hover:scale-[1.05]
           `}
+          style={{
+            background:
+              "linear-gradient(135deg, #0EA5E9 0%, #06B6D4 50%, #F97316 100%)",
+          }}
         >
-          SD
+          {/* subtle glow overlay */}
+          <div className="absolute inset-0 bg-gradient-glow opacity-40" />
+
+          {/* inner border for premium feel */}
+          <div className="absolute inset-[1.5px] rounded-lg border border-white/10" />
+
+          {/* ICON */}
+          <Goal
+            className="w-[60%] h-[60%] text-white relative z-10"
+            strokeWidth={2}
+          />
         </div>
       )}
 
