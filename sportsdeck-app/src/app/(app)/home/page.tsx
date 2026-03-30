@@ -84,6 +84,10 @@ type Tag = {
   };
 };
 
+type ThreadTag = {
+  tag: Tag;
+};
+
 type Me = {
   id: string;
   email?: string;
@@ -147,6 +151,15 @@ type LandingTab = "for-you" | "conversations" | "polls" | "activity";
 /* =========================
    Helpers
 ========================= */
+
+function normalizeThread(thread: any) {
+  return {
+    ...thread,
+    tags: (thread.tags as ThreadTag[])
+      ?.map((t) => t.tag)
+      .filter(Boolean),
+  };
+}
 
 function timeAgo(input?: string) {
   if (!input) return "Just now";
@@ -1051,6 +1064,8 @@ function ThreadFeedCard({
   const thread = item.thread;
   if (!thread) return null;
 
+  const normalizedThread = normalizeThread(thread);
+
   return (
     <article
       className={cx(
@@ -1118,8 +1133,8 @@ function ThreadFeedCard({
       </div>
 
       <div className="mt-4 flex flex-wrap gap-2">
-        {thread.tags.length > 0 ? (
-          thread.tags.slice(0, 5).map((tag) => (
+        {normalizedThread.tags.length > 0 ? (
+          normalizedThread.tags.slice(0, 5).map((tag) => (
             <Link
               key={tag.id}
               href={`/community/tags/${tag.id}`}
@@ -1652,7 +1667,7 @@ export default function LandingPage() {
 
   useEffect(() => {
     if (!isLoading && !user) {
-      router.replace("/auth/login?redirect=/home");
+      router.replace("/login?redirect=/home");
     }
   }, [user, isLoading, router]);
 
