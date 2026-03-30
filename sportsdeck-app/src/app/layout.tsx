@@ -1,4 +1,5 @@
-import ClientLayout from "./ClientLayout";
+import type { ReactNode } from "react";
+import { AuthProvider } from "@/contexts/AuthContext";
 
 export const metadata = {
   title: "SportsDeck",
@@ -8,12 +9,12 @@ export const metadata = {
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
   return (
     <html lang="en">
-      <body>
-        <ClientLayout>{children}</ClientLayout>
+      <body className="bg-bg-main text-text-primary">
+        <AuthProvider>{children}</AuthProvider>
       </body>
     </html>
   );

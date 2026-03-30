@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { MessageSquareWarning, Send, ShieldAlert, ShieldCheck, Clock } from "lucide-react";
-import Navbar from "@/components/layout/Navbar";
 import { useAuth } from "@/contexts/AuthContext";
 import { StatusBadge } from "@/components/admin/ModerationBadge";
 import { showNotice } from "@/lib/clientNotice";
@@ -128,7 +127,6 @@ export default function AppealsPage() {
   if (!user) {
     return (
       <div className="min-h-screen bg-bg-main">
-        <Navbar />
         <div className="flex min-h-[calc(100vh-4rem)] items-center justify-center px-4 pt-16">
           <div className="rounded-2xl border border-border bg-bg-surface p-8 text-center max-w-sm w-full shadow-card">
             <ShieldAlert className="mx-auto mb-4 w-10 h-10 text-text-muted" />
@@ -150,8 +148,6 @@ export default function AppealsPage() {
 
   return (
     <div className="min-h-screen bg-bg-main text-text-primary">
-      <Navbar />
-
       {/* Top glow accent */}
       <div className="pointer-events-none fixed inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary-500/50 to-transparent" />
 

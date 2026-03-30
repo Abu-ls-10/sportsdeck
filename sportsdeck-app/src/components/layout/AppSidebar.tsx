@@ -185,8 +185,8 @@ function SidebarContent({
                 transition-all duration-200
                 ${
                   isActive
-                    ? "bg-primary-500/15 text-primary-400 shadow-inner"
-                    : "text-text-secondary hover:bg-bg-elevated hover:text-white"
+                    ? "bg-primary-500/15 text-primary-400 shadow-inner border border-primary-500/20"
+                    : "text-text-secondary hover:bg-bg-elevated hover:scale-[1.02] hover:text-white"
                 }
               `}
             >
@@ -221,8 +221,8 @@ function SidebarContent({
                     transition-all duration-200
                     ${
                       isActive
-                        ? "bg-brand-500/15 text-brand-400 shadow-inner"
-                        : "text-text-secondary hover:bg-bg-elevated hover:text-brand-300"
+                        ? "bg-brand-500/15 text-brand-400 shadow-inner border border-brand-500/20"
+                        : "text-text-secondary hover:bg-bg-elevated hover:scale-[1.02] hover:bg-brand-500/10 hover:text-brand-300"
                     }
                   `}
                 >
@@ -257,8 +257,8 @@ function SidebarContent({
                 transition-all duration-200
                 ${
                   isActive
-                    ? "bg-accent-500/15 text-accent-400 shadow-inner"
-                    : "text-text-secondary hover:bg-bg-elevated hover:text-white"
+                    ? "bg-accent-500/15 text-accent-400 shadow-inner border border-accent-500/20"
+                    : "text-text-secondary hover:bg-bg-elevated hover:scale-[1.02] hover:text-white"
                 }
               `}
             >
@@ -273,27 +273,55 @@ function SidebarContent({
       <div className="p-3 border-t border-border-subtle">
         <div className="flex items-center gap-3">
 
-          <div className="w-9 h-9 rounded-full bg-gradient-primary flex items-center justify-center text-white text-sm font-semibold">
+          {/* Avatar */}
+          <div className="
+            w-9 h-9 rounded-full
+            bg-gradient-primary
+            flex items-center justify-center
+            text-white text-sm font-semibold
+            shadow-glow
+          ">
             {user?.username?.[0]?.toUpperCase() ?? "U"}
           </div>
 
           {expanded && (
             <>
+              {/* User Info */}
               <div className="flex-1 min-w-0">
                 <p className="text-sm text-text-primary truncate">
                   @{user?.username ?? "user"}
                 </p>
-                <p className="text-xs text-text-muted">
-                  {user?.role ?? "Guest"}
+                <p className="text-xs text-text-muted capitalize">
+                  {user?.role ?? "guest"}
                 </p>
               </div>
 
-              <button
-                onClick={logout}
-                className="text-xs text-red-400 hover:text-red-300 transition"
-              >
-                Logout
-              </button>
+              {/* Actions */}
+              <div className="flex items-center gap-2">
+
+                {/* Profile Button */}
+                <Link
+                  href="/profile"
+                  className="
+                    text-xs text-text-muted hover:text-white
+                    transition
+                  "
+                >
+                  Profile
+                </Link>
+
+                {/* Logout */}
+                <button
+                  onClick={logout}
+                  className="
+                    text-xs text-red-400 hover:text-red-300
+                    transition
+                  "
+                >
+                  Logout
+                </button>
+
+              </div>
             </>
           )}
         </div>

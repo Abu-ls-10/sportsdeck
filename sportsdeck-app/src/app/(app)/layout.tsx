@@ -1,23 +1,22 @@
 "use client";
 
 import { useState } from "react";
+import type { ReactNode } from "react";
+
 import AppSidebar from "@/components/layout/AppSidebar";
 import MobileTopbar from "@/components/layout/MobileTopbar";
-import { AuthProvider, useAuth } from "@/contexts/AuthContext";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
+import { AuthProvider, useAuth } from "@/contexts/AuthContext";
 
-function ClientLayoutShell({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+function LayoutShell({ children }: { children: ReactNode }) {
   const { user, isLoading } = useAuth();
 
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
+  // LOADING
   if (isLoading) {
     return (
       <div className="min-h-screen bg-bg-main text-text-primary">
@@ -33,10 +32,11 @@ function ClientLayoutShell({
     );
   }
 
-  // AUTHENTICATED SHELL
+  // AUTHENTICATED (SIDEBAR)
   if (user) {
     return (
       <div className="min-h-screen bg-bg-main text-text-primary">
+
         <MobileTopbar onOpenSidebar={() => setMobileOpen(true)} />
 
         <AppSidebar
@@ -52,15 +52,19 @@ function ClientLayoutShell({
             ${collapsed ? "md:ml-[80px]" : "md:ml-[260px]"}
           `}
         >
-          <main className="px-4 py-6 md:px-6">{children}</main>
+          <main className="px-4 py-6 md:px-6">
+            {children}
+          </main>
         </div>
+
       </div>
     );
   }
 
-  // PUBLIC SHELL
+  // PUBLIC (NAVBAR + FOOTER)
   return (
     <div className="min-h-screen bg-bg-main text-text-primary flex flex-col">
+
       <Navbar />
 
       <main className="flex-1">
@@ -68,18 +72,15 @@ function ClientLayoutShell({
       </main>
 
       <Footer />
+
     </div>
   );
 }
 
-export default function ClientLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <AuthProvider>
-      <ClientLayoutShell>{children}</ClientLayoutShell>
+      <LayoutShell>{children}</LayoutShell>
     </AuthProvider>
   );
 }
