@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
 import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
+import { logActivity } from "@/lib/activity";
 
 /**
  * @openapi
@@ -216,41 +217,14 @@ async function postHandler(req: AuthenticatedRequest) {
         }
       }
 
-      // =========================
-      // CREATE FEED EVENT
-      // =========================
-      const feedEvent = await tx.feedEvent.create({
-        data: {
-          actorId: user.id,
-          eventType: "thread_created",
-          entityType: "thread",
-          entityId: thread.id,
-          groupKey: `thread-${thread.id}`
-        }
-      });
-
-      // =========================
-      // CREATE FEED ENTRIES
-      // =========================
-      const followers = await tx.follow.findMany({
-        where: { followingId: user.id },
-        select: { followerId: true }
-      });
-
-      const recipientIds = [
-        user.id,
-        ...followers.map((f) => f.followerId)
-      ];
-
-      await tx.feedEntry.createMany({
-        data: recipientIds.map((uid) => ({
-          userId: uid,
-          feedEventId: feedEvent.id,
-          isRead: uid === user.id
-        }))
-      });
-
       return thread;
+    });
+
+    await logActivity({
+      actorId: user.id,
+      type: "thread_created",
+      entityType: "thread",
+      entityId: result.id,
     });
 
     return NextResponse.json(result, { status: 201 });

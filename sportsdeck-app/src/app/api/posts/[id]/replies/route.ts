@@ -2,6 +2,7 @@ import { NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
 import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
 import { moderateContent } from "@/lib/moderation"
+import { logActivity } from "@/lib/activity"
 
 /**
  * @openapi
@@ -110,66 +111,15 @@ async function postHandler(
         },
       })
 
-      const feedEvent = await tx.feedEvent.create({
-        data: {
-          actorId: user.id,
-          eventType: "reply_created",
-          entityType: "reply",
-          entityId: reply.id,
-          groupKey: `thread-${thread.id}-replies`
-        }
-      })
-
-      const followers = await tx.follow.findMany({
-        where: { followingId: user.id },
-        select: { followerId: true }
-      })
-
-      const participants = await tx.post.findMany({
-        where: { threadId: thread.id },
-        select: { authorId: true },
-        distinct: ["authorId"]
-      })
-
-      const repliers = await tx.reply.findMany({
-        where: {
-          post: {
-            threadId: thread.id
-          }
-        },
-        select: { authorId: true },
-        distinct: ["authorId"]
-      })
-
-      const recipientSet = new Set<string>()
-
-      recipientSet.add(user.id)
-      recipientSet.add(post.authorId)
-
-      for (const f of followers) {
-        recipientSet.add(f.followerId)
-      }
-
-      for (const p of participants) {
-        recipientSet.add(p.authorId)
-      }
-
-      for (const r of repliers) {
-        recipientSet.add(r.authorId)
-      }
-
-      const recipientIds = Array.from(recipientSet)
-
-      await tx.feedEntry.createMany({
-        data: recipientIds.map((uid) => ({
-          userId: uid,
-          feedEventId: feedEvent.id,
-          isRead: uid === user.id
-        }))
-      })
-
       return reply
     })
+
+    await logActivity({
+      actorId: user.id,
+      type: "reply_created",
+      entityType: "reply",
+      entityId: result.id,
+    });
 
     moderateContent("REPLY", result.id, result.content).catch((err) =>
       console.error("[replies] moderateContent failed:", err)
