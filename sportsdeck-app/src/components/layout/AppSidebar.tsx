@@ -13,12 +13,19 @@ import {
   BarChart3,
   FlagTriangleRight,
   Inbox,
+  Settings,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Logo from "../ui/Logo";
 import { useAuth } from "@/contexts/AuthContext";
 import { Dispatch, SetStateAction } from "react";
+
+// Utility Functions
+function formatRole(role?: string) {
+  if (!role) return "Guest";
+  return role.trim().toLowerCase().replace(/^\w/, (c) => c.toUpperCase());
+}
 
 const navItems = [
   { label: "Home", href: "/home", icon: Home },
@@ -37,6 +44,7 @@ const adminItems = [
 
 const accountItems = [
   { label: "My Appeals", href: "/appeals", icon: Inbox },
+  { label: "Settings", href: "/settings", icon: Settings },
 ];
 
 export default function AppSidebar({
@@ -197,7 +205,7 @@ function SidebarContent({
         })}
 
         {/* ===== ADMIN SECTION ===== */}
-        {user?.role === "admin" || user?.role === "moderator" ? (
+        {["admin", "moderator"].includes(user?.role?.toLowerCase?.()) ? (
           <>
             <div className="mt-4 px-3">
               {expanded && (
@@ -222,7 +230,7 @@ function SidebarContent({
                     ${
                       isActive
                         ? "bg-brand-500/15 text-brand-400 shadow-inner border border-brand-500/20"
-                        : "text-text-secondary hover:bg-bg-elevated hover:scale-[1.02] hover:bg-brand-500/10 hover:text-brand-300"
+                        : "text-text-secondary hover:bg-brand-500/10 hover:text-brand-300 hover:scale-[1.02]"
                     }
                   `}
                 >
@@ -258,7 +266,7 @@ function SidebarContent({
                 ${
                   isActive
                     ? "bg-accent-500/15 text-accent-400 shadow-inner border border-accent-500/20"
-                    : "text-text-secondary hover:bg-bg-elevated hover:scale-[1.02] hover:text-white"
+                    : "text-text-secondary hover:bg-accent-500/10 hover:text-accent-300 hover:scale-[1.02]"
                 }
               `}
             >
@@ -273,16 +281,21 @@ function SidebarContent({
       <div className="p-3 border-t border-border-subtle">
         <div className="flex items-center gap-3">
 
-          {/* Avatar */}
-          <div className="
-            w-9 h-9 rounded-full
-            bg-gradient-primary
-            flex items-center justify-center
-            text-white text-sm font-semibold
-            shadow-glow
-          ">
+          {/* Avatar (CLICKABLE) */}
+          <Link
+            href={`/users/${user?.id}`}
+            className="
+              w-9 h-9 rounded-full
+              bg-gradient-primary
+              flex items-center justify-center
+              text-white text-sm font-semibold
+              shadow-glow
+              hover:scale-105 hover:shadow-glow
+              transition-all duration-200
+            "
+          >
             {user?.username?.[0]?.toUpperCase() ?? "U"}
-          </div>
+          </Link>
 
           {expanded && (
             <>
@@ -292,16 +305,16 @@ function SidebarContent({
                   @{user?.username ?? "user"}
                 </p>
                 <p className="text-xs text-text-muted capitalize">
-                  {user?.role ?? "guest"}
+                  {formatRole(user?.role) ?? "Guest"}
                 </p>
               </div>
 
               {/* Actions */}
               <div className="flex items-center gap-2">
 
-                {/* Profile Button */}
+                {/* Optional: keep Profile (recommended for clarity) */}
                 <Link
-                  href="/profile"
+                  href={`/users/${user?.id}`}
                   className="
                     text-xs text-text-muted hover:text-white
                     transition
