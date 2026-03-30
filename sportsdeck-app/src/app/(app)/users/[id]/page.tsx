@@ -699,7 +699,7 @@ function ThreadShowcaseCard({
                 </div>
 
                 <Link
-                  href={`/threads/${thread.id}`}
+                  href={`/community/threads/${thread.id}`}
                   className="inline-flex items-center gap-1 text-sm font-medium text-primary-300 transition hover:text-primary-200"
                 >
                   Open thread
@@ -1455,7 +1455,7 @@ export default function UserProfilePage() {
                 emptyDescription="Once this user writes public posts, they will appear here."
                 items={recentPosts.map((post) => ({
                   id: post.id,
-                  href: `/threads/${post.threadId}`,
+                  href: `/community/threads/${post.threadId}`,
                   title: `Post in thread ${post.threadId.slice(0, 8)}`,
                   body: truncateText(post.content, 180),
                   meta: timeAgo(post.createdAt),

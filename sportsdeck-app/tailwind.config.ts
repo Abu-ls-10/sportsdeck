@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss"
 
 const config: Config = {
+  darkMode: "class",
   content: [
     "./src/app/**/*.{ts,tsx}",
     "./src/components/**/*.{ts,tsx}",
@@ -33,28 +34,26 @@ const config: Config = {
           600: "#EA580C",
         },
 
-        /* ===== BACKGROUND SYSTEM (IMPROVED DEPTH) ===== */
+        /* ===== THEME TOKENS VIA CSS VARIABLES ===== */
         bg: {
-          main: "#0A0F1C",       // darker base
-          surface: "#0F172A",
-          card: "#111827",
-          elevated: "#162033",  // hover / dropdown
-          glass: "rgba(255,255,255,0.03)", // glass effect
+          main: "var(--bg-main)",
+          surface: "var(--bg-surface)",
+          card: "var(--bg-card)",
+          elevated: "var(--bg-elevated)",
+          glass: "var(--bg-glass)",
         },
 
-        /* ===== TEXT SYSTEM ===== */
         text: {
-          primary: "#E6EDF5",
-          secondary: "#9FB0C3",
-          muted: "#6E8095",
-          dim: "#4B5C70", // NEW (for ultra subtle UI)
+          primary: "var(--text-primary)",
+          secondary: "var(--text-secondary)",
+          muted: "var(--text-muted)",
+          dim: "var(--text-dim)",
         },
 
-        /* ===== BORDER SYSTEM ===== */
         border: {
-          DEFAULT: "#1F2937",
-          subtle: "rgba(255,255,255,0.06)",
-          strong: "#2A3A4F",
+          DEFAULT: "var(--border-default)",
+          subtle: "var(--border-subtle)",
+          strong: "var(--border-strong)",
         },
       },
 
@@ -64,31 +63,31 @@ const config: Config = {
           "linear-gradient(135deg, #0EA5E9 0%, #06B6D4 100%)",
 
         "gradient-card":
-          "linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0))",
+          "linear-gradient(180deg, var(--gradient-card-from), var(--gradient-card-to))",
 
         "gradient-glow":
-          "radial-gradient(circle at top, rgba(34,211,238,0.18), transparent 70%)",
+          "radial-gradient(circle at top, var(--gradient-glow), transparent 70%)",
 
         "gradient-border":
-          "linear-gradient(120deg, rgba(14,165,233,0.4), rgba(6,182,212,0.2), transparent)",
+          "linear-gradient(120deg, var(--gradient-border-start), var(--gradient-border-mid), transparent)",
       },
 
       /* ===== SHADOWS ===== */
       boxShadow: {
-        card: "0 10px 35px rgba(0,0,0,0.35)",
-        glow: "0 0 30px rgba(14,165,233,0.18)",
-        soft: "0 6px 20px rgba(0,0,0,0.25)",
-        inner: "inset 0 1px 0 rgba(255,255,255,0.05)",
+        card: "var(--shadow-card)",
+        glow: "var(--shadow-glow)",
+        soft: "var(--shadow-soft)",
+        inner: "var(--shadow-inner)",
       },
 
       /* ===== BORDER RADIUS ===== */
       borderRadius: {
         xl: "1rem",
         "2xl": "1.25rem",
-        "3xl": "1.75rem", // NEW (for hero cards)
+        "3xl": "1.75rem",
       },
 
-      /* ===== SPACING (UX POLISH) ===== */
+      /* ===== SPACING ===== */
       spacing: {
         18: "4.5rem",
         22: "5.5rem",
