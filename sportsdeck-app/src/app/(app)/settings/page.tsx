@@ -11,6 +11,7 @@ type TeamOption = {
   name: string;
   shortName: string;
 };
+type ThemeMode = "light" | "dark";
 
 type MeResponse = {
   data: {
@@ -44,6 +45,7 @@ export default function SettingsPage() {
   const [avatarUrl, setAvatarUrl] = useState("");
   const [bannerUrl, setBannerUrl] = useState("");
   const [caption, setCaption] = useState("");
+  const [themeMode, setThemeMode] = useState<ThemeMode>("dark");
 
   const [teams, setTeams] = useState<TeamOption[]>([]);
 
@@ -54,6 +56,22 @@ export default function SettingsPage() {
     () => teams.find((t) => t.id === favoriteTeamId) ?? null,
     [teams, favoriteTeamId]
   );
+
+  function applyTheme(mode: ThemeMode) {
+    const root = document.documentElement;
+    root.classList.toggle("dark", mode === "dark");
+    localStorage.setItem("sportsdeck-theme", mode);
+    setThemeMode(mode);
+  }
+
+  useEffect(() => {
+    const saved = localStorage.getItem("sportsdeck-theme");
+    if (saved === "light" || saved === "dark") {
+      applyTheme(saved);
+      return;
+    }
+    applyTheme(document.documentElement.classList.contains("dark") ? "dark" : "light");
+  }, []);
 
   useEffect(() => {
     async function loadData() {
@@ -296,6 +314,21 @@ export default function SettingsPage() {
                         className="h-24 w-full resize-none rounded-lg border border-border-subtle bg-bg-elevated px-3 py-2 text-sm outline-none focus:border-primary-500"
                         placeholder="Write a short bio/caption"
                       />
+                    </div>
+
+                    <div>
+                      <label className="mb-1 block text-xs text-text-muted">Theme</label>
+                      <select
+                        value={themeMode}
+                        onChange={(e) => applyTheme(e.target.value as ThemeMode)}
+                        className="w-full rounded-lg border border-border-subtle bg-bg-elevated px-3 py-2 text-sm outline-none focus:border-primary-500"
+                      >
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                      </select>
+                      <p className="mt-1 text-xs text-text-muted">
+                        This theme is applied across all pages and saved for future visits.
+                      </p>
                     </div>
 
                     <div className="pt-2">

@@ -5,6 +5,8 @@ import Logo from "../ui/Logo";
 import { Globe, MessageCircle, Share2 } from "lucide-react";
 
 export default function Footer() {
+  const socialClass = "w-9 h-9 rounded-xl bg-bg-card border border-border-subtle flex items-center justify-center text-text-secondary hover:text-white hover:bg-bg-elevated transition";
+
   return (
     <footer className="relative mt-20 border-t border-border-subtle bg-bg-surface/60 backdrop-blur-xl">
 
@@ -79,14 +81,7 @@ export default function Footer() {
                 <a
                   key={i}
                   href="#"
-                  className="
-                    w-9 h-9 rounded-xl
-                    bg-bg-card border border-border-subtle
-                    flex items-center justify-center
-                    text-text-secondary
-                    hover:text-white hover:bg-bg-elevated
-                    transition
-                  "
+                  className={socialClass}
                 >
                   <Icon size={16} />
                 </a>

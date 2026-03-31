@@ -14,6 +14,8 @@ import { useAuth } from "../../contexts/AuthContext";
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
+  const navLinkClass = "px-3 py-1.5 rounded-lg text-sm text-text-secondary hover:text-white hover:bg-bg-elevated transition";
+  const searchInputClass = "w-full pl-9 pr-3 py-2 rounded-xl bg-bg-card border border-border-subtle text-sm text-white placeholder:text-text-muted focus:outline-none focus:ring-1 focus:ring-primary-500 transition";
 
   const profileRef = useRef<HTMLDivElement>(null);
 
@@ -79,12 +81,7 @@ export default function Navbar() {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="
-                    px-3 py-1.5 rounded-lg text-sm
-                    text-text-secondary
-                    hover:text-white hover:bg-bg-elevated
-                    transition
-                  "
+                  className={navLinkClass}
                 >
                   {link.name}
                 </Link>
@@ -97,13 +94,7 @@ export default function Navbar() {
             <Search className="absolute left-3 w-4 h-4 text-text-muted" />
             <input
               placeholder="Search matches, teams, players..."
-              className="
-                w-full pl-9 pr-3 py-2 rounded-xl
-                bg-bg-card border border-border-subtle
-                text-sm text-white placeholder:text-text-muted
-                focus:outline-none focus:ring-1 focus:ring-primary-500
-                transition
-              "
+              className={searchInputClass}
             />
           </div>
 
