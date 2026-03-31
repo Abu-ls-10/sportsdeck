@@ -1,29 +1,12 @@
-import fetch from "node-fetch";
+import fetch, { type RequestInit } from "node-fetch";
 
 const BASE_URL = "http://localhost:3000";
 
-// =========================
-// CONFIG
-// =========================
 const USER_COUNT = 120;
 const ACTIONS_PER_USER = 25;
 const CONCURRENCY = 10;
-const TAG_NAMES = [
-  "Transfer News",
-  "Match Analysis",
-  "Hot Take",
-  "Injury Update",
-  "Tactics",
-  "Rumors",
-  "Lineups",
-  "Predictions",
-  "Breaking News",
-  "Fan Debate",
-];
+const RUN_ID = Date.now();
 
-// =========================
-// TYPES
-// =========================
 type Personality = "casual" | "debater" | "troll" | "analyst";
 
 type UserSession = {
@@ -33,424 +16,337 @@ type UserSession = {
   personality: Personality;
 };
 
+type PollOption = {
+  id: string;
+};
+
 type Poll = {
   id: string;
-  options: { id: string }[];
+  options: PollOption[];
 };
 
 type Thread = {
   id: string;
-  post: { id: string };
-  team: string;
+  authorId: string;
+  postId: string;
   poll?: Poll;
 };
 
-type Tag = {
+type SignupResponse = {
+  user: {
+    id: string;
+    username: string;
+  };
+  access_token: string;
+};
+
+type ThreadCreateResponse = {
   id: string;
-  name: string;
+  authorId: string;
+};
+
+type PostSummary = {
+  id: string;
+};
+
+type ApiErrorShape = {
+  error?: string;
+  message?: string;
 };
 
 // =========================
 // UTILS
 // =========================
-const sleep = (ms: number) => new Promise(r => setTimeout(r, ms));
+const sleep = (ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms));
 
-function rand<T>(arr: T[]): T {
+function rand<T>(arr: readonly T[]): T {
+  if (arr.length === 0) {
+    throw new Error("rand() received an empty array");
+  }
+
   return arr[Math.floor(Math.random() * arr.length)];
 }
 
 function assignPersonality(): Personality {
-  return rand(["casual", "debater", "troll", "analyst"]);
+  return rand<Personality>(["casual", "debater", "troll", "analyst"]);
+}
+
+function isDefined<T>(value: T | undefined): value is T {
+  return value !== undefined;
+}
+
+function getErrorMessage(error: unknown): string {
+  if (error instanceof Error) return error.message;
+  return "Unknown error";
 }
 
 // =========================
-// CONTENT ENGINE
+// USERNAME
 // =========================
-const teams = [
-  "Arsenal",
-  "Chelsea",
-  "Liverpool",
-  "Man City",
-  "Barcelona",
-  "Real Madrid",
-  "Bayern",
-];
+export function generateUsername(i: number): string {
+  const adjectives = [
+    "swift", "silent", "savage", "elite", "clutch",
+    "rapid", "cold", "prime", "dynamic", "tactical"
+  ];
 
-const titleTemplates = [
-  "Is {team} actually overrated this season?",
-  "Hot take: {team} won't make top 4",
-  "What went wrong for {team} today?",
-  "{team} fans, be honest...",
-  "This ref decision ruined the {team} game",
-  "Unpopular opinion about {team}",
-  "{team} are being carried by one player",
-  "Can we talk about {team}'s defense?",
-];
+  const roles = [
+    "striker", "playmaker", "winger", "keeper",
+    "defender", "midfielder", "finisher", "captain"
+  ];
 
-function generateTitle(team: string) {
-  return rand(titleTemplates).replace("{team}", team);
-}
+  const fandom = [
+    "arsenal", "chelsea", "liverpool", "madrid",
+    "barca", "bayern", "city"
+  ];
 
-const genericReplies = [
-  "Completely agree with this",
-  "Nah this is a terrible take",
-  "People aren't ready to hear this",
-  "This is exactly what I've been saying",
-  "You're overreacting tbh",
-  "Stats don't support this at all",
-  "Watch the game again",
-  "Lowkey true",
-  "Highkey wrong 😭",
-  "Cooked take 🔥",
-];
+  const extras = ["fan", "ultra", "zone", "hub", "daily"];
+  const separators = ["", "_"];
 
-function generateReply(personality: Personality): string {
-  if (personality === "analyst") {
-    return rand([
-      "Statistically this doesn't hold up",
-      "If you look at the last 5 games...",
-      "The xG tells a different story",
-    ]);
+  const number = `_${i}`; // guaranteed unique
+
+  const style = Math.floor(Math.random() * 5);
+
+  let username = "";
+
+  switch (style) {
+    case 0:
+      username = `${rand(adjectives)}${rand(roles)}${number}`;
+      break;
+    case 1:
+      username = `${rand(fandom)}${rand(extras)}${rand(separators)}${number}`;
+      break;
+    case 2:
+      username = `${rand(adjectives)}${rand(roles)}${number}`;
+      break;
+    case 3:
+      username = `${rand(adjectives)}${rand(separators)}${rand(extras)}${number}`;
+      break;
+    case 4:
+      username = `${rand(roles)}${rand(["maestro", "vision", "brain", "iq"])}${number}`;
+      break;
   }
 
-  if (personality === "troll") {
-    return rand([
-      "Worst take I've seen today",
-      "Delete this 😭",
-      "You don't watch football",
-    ]);
-  }
-
-  if (personality === "debater") {
-    return rand([
-      "I disagree and here's why",
-      "You're ignoring context here",
-      "This argument doesn't make sense",
-    ]);
-  }
-
-  return rand(genericReplies);
+  return username.toLowerCase();
 }
 
 // =========================
 // API
 // =========================
-async function api(path: string, options: any = {}) {
+async function api<T>(path: string, options: RequestInit = {}): Promise<T> {
   const res = await fetch(`${BASE_URL}${path}`, {
+    ...options,
     headers: {
       "Content-Type": "application/json",
-      ...(options.headers || {}),
+      ...(options.headers ?? {}),
     },
-    ...options,
   });
 
-  const data = await res.json().catch(() => ({}));
+  const data: unknown = await res.json().catch(() => ({}));
 
   if (!res.ok) {
-    console.error("❌ API ERROR:", path);
-    console.error("Status:", res.status);
-    console.error("Response:", data);
-
-    throw new Error((data as any)?.error || "Request failed");
+    const err = data as ApiErrorShape;
+    throw new Error(err.error || err.message || "Request failed");
   }
 
-  return data as any;
+  return data as T;
 }
 
 // =========================
 // AUTH
 // =========================
 async function createUser(i: number): Promise<UserSession> {
-  const email = `sim${i}@test.com`;
-  const password = "password123";
+  const email = `sim_${RUN_ID}_${i}@test.com`;
 
-  await api("/api/auth/signup", {
+  const signup = await api<SignupResponse>("/api/auth/signup", {
     method: "POST",
     body: JSON.stringify({
-      username: `simUser${i}`,
+      username: generateUsername(i),
       email,
-      password,
+      password: "password123",
     }),
   });
 
-  const login = await api("/api/auth/login", {
-    method: "POST",
-    body: JSON.stringify({ email, password }),
-  });
-
   return {
-    id: login.user.id,
-    token: login.token,
-    username: login.user.username,
+    id: signup.user.id,
+    token: signup.access_token,
+    username: signup.user.username,
     personality: assignPersonality(),
   };
 }
 
 // =========================
-// ACTIONS
+// THREAD
 // =========================
-async function seedTags(actor: UserSession): Promise<Tag[]> {
-  const created: Tag[] = [];
-
-  for (const name of TAG_NAMES) {
-    try {
-      const tag = await api(`/api/tags`, {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${actor.token}`,
-        },
-        body: JSON.stringify({ name }),
-      });
-
-      created.push(tag);
-    } catch {
-      // tag probably already exists → ignore
-    }
-  }
-
-  console.log(`Tags ready: ${created.length}`);
-  return created;
-}
-
-async function attachTagsToThread(
-  actor: UserSession,
-  threadId: string,
-  tags: Tag[]
-) {
-  // pick 1–3 random tags
-  const shuffled = [...tags].sort(() => 0.5 - Math.random());
-  const selected = shuffled.slice(0, Math.floor(Math.random() * 3) + 1);
-
-  for (const tag of selected) {
-    try {
-      await api(`/api/threads/${threadId}/tags`, {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${actor.token}`,
-        },
-        body: JSON.stringify({ tagId: tag.id }),
-      });
-    } catch {
-      // ignore duplicates or failures
-    }
-  }
-}
-
-async function follow(users: UserSession[], actor: UserSession) {
-  const target = rand(users.filter(u => u.id !== actor.id));
-
-  await api(`/api/follow/${target.id}`, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${actor.token}`,
-    },
-  });
-}
-
-async function createPoll(
-  actor: UserSession,
-  threadId: string
-): Promise<Poll> {
-  return api(`/api/polls/${threadId}`, {
+async function createThread(actor: UserSession): Promise<Thread> {
+  const thread = await api<ThreadCreateResponse>("/api/threads", {
     method: "POST",
     headers: {
       Authorization: `Bearer ${actor.token}`,
     },
     body: JSON.stringify({
-      question: rand([
-        "Who wins this matchup?",
-        "Was this the right decision?",
-        "Man of the match?",
-        "Is this team overrated?",
-      ]),
-      options: [
-        { text: "Yes" },
-        { text: "No" },
-        { text: "Not sure" },
-      ],
+      title: "Hot take discussion",
+      content: "Thoughts?",
+      tags: ["hot take", "debate"],
     }),
   });
+
+  const posts = await api<PostSummary[]>(`/api/threads/${thread.id}/posts`);
+  const rootPost = posts[0];
+
+  if (!rootPost) {
+    throw new Error(`Thread ${thread.id} was created but no root post was returned`);
+  }
+
+  return {
+    id: thread.id,
+    authorId: thread.authorId,
+    postId: rootPost.id,
+  };
 }
 
-async function createThread(
-  actor: UserSession,
-  allTags: Tag[]
-): Promise<Thread> {
-  const team = rand(teams);
+// =========================
+// POLL
+// =========================
+async function createPoll(actor: UserSession, thread: Thread): Promise<Poll | undefined> {
+  if (thread.authorId !== actor.id) {
+    return undefined;
+  }
 
-  const thread = await api(`/api/threads`, {
+  return api<Poll>(`/api/threads/${thread.id}/poll`, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${actor.token}`,
     },
     body: JSON.stringify({
-      title: generateTitle(team),
-      content: rand([
-        "Thoughts?",
-        "Am I wrong here?",
-        "Curious what everyone thinks",
-      ]),
+      question: "Who wins?",
+      deadline: new Date(Date.now() + 60 * 60 * 1000).toISOString(),
+      options: ["yes", "no", "maybe"],
     }),
   });
-
-  // attach tags here
-  if (allTags.length > 0) {
-    await attachTagsToThread(actor, thread.id, allTags);
-  }
-
-  let poll: Poll | undefined;
-
-  if (Math.random() < 0.3) {
-    try {
-      poll = await createPoll(actor, thread.id);
-    } catch {}
-  }
-
-  return { ...thread, team, poll };
 }
 
-async function reply(actor: UserSession, thread: Thread) {
-  return api(`/api/posts/${thread.post.id}/replies`, {
+// =========================
+// REPLY
+// =========================
+async function reply(actor: UserSession, thread: Thread): Promise<void> {
+  await api<unknown>(`/api/posts/${thread.postId}/replies`, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${actor.token}`,
     },
     body: JSON.stringify({
-      content: generateReply(actor.personality),
+      content: "Interesting take",
     }),
   });
 }
 
 // =========================
-// VOTING SYSTEM
+// FOLLOW
 // =========================
-const votedPolls = new Map<string, Set<string>>();
+async function follow(users: UserSession[], actor: UserSession): Promise<void> {
+  const candidates = users.filter((u) => u.id !== actor.id);
 
-async function votePoll(user: UserSession, poll: Poll) {
-  const votedUsers = votedPolls.get(poll.id) || new Set();
+  if (candidates.length === 0) {
+    return;
+  }
 
-  if (votedUsers.has(user.id)) return;
+  const target = rand(candidates);
+
+  try {
+    await api<unknown>(`/api/follow/${target.id}`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${actor.token}`,
+      },
+    });
+  } catch {
+    // ignore duplicate/self-like follow failures during simulation
+  }
+}
+
+// =========================
+// VOTE
+// =========================
+async function vote(actor: UserSession, poll: Poll): Promise<void> {
+  if (poll.options.length === 0) {
+    return;
+  }
 
   const option = rand(poll.options);
 
-  await api(`/api/polls/${poll.id}/vote`, {
+  await api<unknown>(`/api/polls/${poll.id}/vote`, {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${user.token}`,
+      Authorization: `Bearer ${actor.token}`,
     },
-    body: JSON.stringify({ optionId: option.id }),
+    body: JSON.stringify({
+      optionId: option.id,
+    }),
   });
-
-  votedUsers.add(user.id);
-  votedPolls.set(poll.id, votedUsers);
 }
 
 // =========================
-// ACTION LOGIC
-// =========================
-function weightedAction(): "follow" | "thread" | "reply" | "vote" {
-  const r = Math.random();
-
-  if (r < 0.5) return "reply";
-  if (r < 0.75) return "follow";
-  if (r < 0.9) return "thread";
-  return "vote";
-}
-
-// =========================
-// USER SIMULATION
+// SIMULATION
 // =========================
 async function simulateUser(
   user: UserSession,
   users: UserSession[],
-  threads: Thread[],
-  allTags: Tag[]
-) {
+  threads: Thread[]
+): Promise<void> {
   for (let i = 0; i < ACTIONS_PER_USER; i++) {
-    const action = weightedAction();
+    const r = Math.random();
 
     try {
-      if (action === "follow") {
+      if (r < 0.5 && threads.length > 0) {
+        await reply(user, rand(threads));
+      } else if (r < 0.75) {
         await follow(users, user);
-      }
+      } else if (r < 0.9) {
+        const thread = await createThread(user);
 
-      if (action === "thread") {
-        const thread = await createThread(user, allTags);
+        if (Math.random() < 0.3) {
+          const poll = await createPoll(user, thread);
+          if (poll) {
+            thread.poll = poll;
+          }
+        }
+
         threads.push(thread);
-      }
-
-      if (action === "reply" && threads.length > 0) {
-        const thread = rand(threads);
-        await reply(user, thread);
-      }
-
-      if (action === "vote") {
-        const threadsWithPolls = threads.filter(t => t.poll);
+      } else {
+        const threadsWithPolls = threads
+          .map((t) => t.poll)
+          .filter(isDefined);
 
         if (threadsWithPolls.length > 0) {
-          const thread = rand(threadsWithPolls);
-          await votePoll(user, thread.poll!);
+          await vote(user, rand(threadsWithPolls));
         }
       }
 
-      console.log(`✔ ${user.username} → ${action}`);
-    } catch (err: any) {
-      console.log(`✖ ${user.username} ${action}: ${err.message}`);
+      console.log(`✔ ${user.username}`);
+    } catch (error: unknown) {
+      console.log(`✖ ${user.username}: ${getErrorMessage(error)}`);
     }
 
-    await sleep(50 + Math.random() * 150);
+    await sleep(100);
   }
-}
-
-// =========================
-// CONCURRENCY
-// =========================
-async function runWithConcurrency<T>(
-  items: T[],
-  limit: number,
-  fn: (item: T) => Promise<void>
-) {
-  const queue = [...items];
-
-  const workers = Array.from({ length: limit }).map(async () => {
-    while (queue.length) {
-      const item = queue.pop();
-      if (!item) return;
-      await fn(item);
-    }
-  });
-
-  await Promise.all(workers);
 }
 
 // =========================
 // MAIN
 // =========================
-async function run() {
-  console.log("Creating users...");
-
+async function run(): Promise<void> {
   const users = await Promise.all(
-    Array.from({ length: USER_COUNT }).map((_, i) => createUser(i))
-    );
-
-    // seed tags using first user
-    const allTags = await seedTags(users[0]);
-
-    await runWithConcurrency(users, CONCURRENCY, async (user) => {
-    await simulateUser(user, users, threads, allTags);
-    });
-
-  console.log(`Created ${users.length} users`);
+    Array.from({ length: USER_COUNT }, (_, i) => createUser(i))
+  );
 
   const threads: Thread[] = [];
 
-  console.log("Starting simulation...");
+  for (let i = 0; i < users.length; i += CONCURRENCY) {
+    const batch = users.slice(i, i + CONCURRENCY);
+    await Promise.all(batch.map((user) => simulateUser(user, users, threads)));
+  }
 
-  await runWithConcurrency(users, CONCURRENCY, async (user) => {
-    await simulateUser(user, users, threads, allTags);
-  });
-
-  console.log("Simulation complete");
+  console.log("Done");
 }
 
-run().catch(console.error);
+void run();
