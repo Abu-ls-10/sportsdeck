@@ -18,19 +18,25 @@ export default function RootLayout({
         <script
           dangerouslySetInnerHTML={{
             __html: `
-              (function() {
-                try {
-                  var saved = localStorage.getItem("sportsdeck-theme");
-                  var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-                  var theme = saved || (prefersDark ? "dark" : "light");
+        (function () {
+          try {
+            var saved = localStorage.getItem("sportsdeck-theme");
 
-                  if (theme === "dark") {
-                    document.documentElement.classList.add("dark");
-                  } else {
-                    document.documentElement.classList.remove("dark");
-                  }
-                } catch (e) {}
-              })();
+            // Respect saved preference
+            if (saved === "light") {
+              document.documentElement.classList.remove("dark");
+              return;
+            }
+
+            if (saved === "dark") {
+              document.documentElement.classList.add("dark");
+              return;
+            }
+
+            // Default for first-time users
+            document.documentElement.classList.add("dark");
+          } catch (e) {}
+        })();
             `,
           }}
         />
