@@ -20,9 +20,6 @@ ALTER TABLE "Reply" ADD COLUMN     "parentReplyId" TEXT;
 ALTER TABLE "Vote" ADD COLUMN     "pollId" TEXT NOT NULL;
 
 -- CreateIndex
-CREATE UNIQUE INDEX "FeedEntry_userId_feedEventId_key" ON "FeedEntry"("userId", "feedEventId");
-
--- CreateIndex
 CREATE UNIQUE INDEX "Poll_threadId_key" ON "Poll"("threadId");
 
 -- CreateIndex
