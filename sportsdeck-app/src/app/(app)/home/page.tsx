@@ -23,9 +23,8 @@ import {
   Vote,
 } from "lucide-react";
 
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
 import { useAuth } from "@/contexts/AuthContext";
+import { on } from "events";
 
 /* =========================
    Types
@@ -58,15 +57,55 @@ type FeedPoll = {
   question: string;
   isClosed?: boolean;
   options?: PollOption[];
+
+  thread?: {
+    id: string;
+    title?: string;
+  };
+
+  userVote?: string; // optionId user selected
+};
+
+type FeedPost = {
+  id: string;
+  content: string;
+  author: {
+    id: string;
+    username?: string | null;
+    avatarUrl?: string | null;
+  };
+  thread: {
+    id: string;
+    title: string;
+  };
+};
+
+type FeedReply = {
+  id: string;
+  content: string;
+  author: {
+    id: string;
+    username?: string | null;
+    avatarUrl?: string | null;
+  };
+  thread: {
+    id: string;
+    title: string;
+  };
 };
 
 type FeedItem = {
   id: string;
   isRead: boolean;
   createdAt: string;
-  type: "thread" | "poll" | "activity";
+
+  type: "thread" | "poll" | "post" | "reply" | "activity";
+
   thread?: FeedThread | null;
   poll?: FeedPoll | null;
+  post?: FeedPost | null;
+  reply?: FeedReply | null;
+
   meta?: {
     eventType?: string;
     groupKey?: string;
@@ -146,7 +185,13 @@ type StandingItem = {
   } | null;
 };
 
-type LandingTab = "for-you" | "conversations" | "polls" | "activity";
+type LandingTab =
+  | "for-you"
+  | "conversations"
+  | "posts"
+  | "replies"
+  | "polls"
+  | "activity";
 
 /* =========================
    Helpers
@@ -323,25 +368,27 @@ function getMatchStatusTone(status?: string) {
 function formatActivity(meta?: FeedItem["meta"]) {
   if (!meta) return "New activity across your network";
 
+  const count = meta.count ?? 1;
+
   if (meta.eventType === "post_reply") {
-    return meta.count && meta.count > 1
-      ? `${meta.count} new replies on threads you follow`
-      : "A new reply landed on a thread you follow";
+    return count > 1
+      ? `${count} new replies`
+      : "A new reply";
   }
 
   if (meta.eventType === "thread_created") {
-    return meta.count && meta.count > 1
-      ? `${meta.count} new threads were created`
-      : "A new thread was created";
+    return count > 1
+      ? `${count} new threads`
+      : "A new thread";
   }
 
   if (meta.eventType === "poll_created") {
-    return meta.count && meta.count > 1
-      ? `${meta.count} new polls are gaining traction`
-      : "A new poll is gaining traction";
+    return count > 1
+      ? `${count} new polls`
+      : "A new poll";
   }
 
-  return "Fresh activity is rolling through your feed";
+  return "Fresh activity in your feed";
 }
 
 async function fetchJson<T>(url: string): Promise<T | null> {
@@ -404,6 +451,37 @@ function threadsToFeed(threads: any[]): FeedItem[] {
       replies: thread._count?.posts ?? 0,
     },
   }));
+}
+
+function getActivityContext(item: FeedItem): {
+  title: string;
+  threadId: string;
+} | null {
+  // Thread activity
+  if (item.type === "thread" && item.thread) {
+    return {
+      title: item.thread.title,
+      threadId: item.thread.id,
+    };
+  }
+
+  // Post activity
+  if (item.type === "post" && item.post?.thread) {
+    return {
+      title: item.post.thread.title,
+      threadId: item.post.thread.id,
+    };
+  }
+
+  // Reply activity
+  if (item.type === "reply" && item.reply?.thread) {
+    return {
+      title: item.reply.thread.title,
+      threadId: item.reply.thread.id,
+    };
+  }
+
+  return null;
 }
 
 /* =========================
@@ -908,6 +986,8 @@ function LandingTabs({
   const tabs: Array<{ key: LandingTab; label: string }> = [
     { key: "for-you", label: "For You" },
     { key: "conversations", label: "Conversations" },
+    { key: "posts", label: "Posts" },
+    { key: "replies", label: "Replies" },
     { key: "polls", label: "Polls" },
     { key: "activity", label: "Activity" },
   ];
@@ -945,6 +1025,9 @@ function FeedShell({
   activeTab,
   onTabChange,
   onMarkRead,
+  onMarkAllRead,
+  hasUnread,
+  onVote,
 }: {
   feed: FeedItem[];
   filteredFeed: FeedItem[];
@@ -952,16 +1035,44 @@ function FeedShell({
   activeTab: LandingTab;
   onTabChange: (tab: LandingTab) => void;
   onMarkRead: (id: string) => void;
+  onMarkAllRead: () => void;
+  hasUnread: boolean;
+  onVote: (pollId: string, optionId: string) => void;
 }) {
   return (
     <GlassPanel className="p-5 md:p-6">
-      <SectionHeader
-        icon={<Sparkles className="h-3.5 w-3.5" />}
-        eyebrow="Smart Feed"
-        title="The pulse of SportsDeck"
-        actionHref="/feed"
-        actionLabel="Open full feed"
-      />
+
+      <div className="flex items-end justify-between gap-4">
+        <SectionHeader
+          icon={<Sparkles className="h-3.5 w-3.5" />}
+          eyebrow="Smart Feed"
+          title="The pulse of SportsDeck"
+        />
+
+        <div className="flex items-center gap-2">
+          <button
+            onClick={onMarkAllRead}
+            disabled={!hasUnread}
+            className={cx(
+              "inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-medium transition",
+              hasUnread
+                ? "border border-border-subtle bg-white/[0.04] text-text-primary hover:bg-white/[0.07]"
+                : "border border-border-subtle bg-white/[0.02] text-text-muted cursor-not-allowed"
+            )}
+          >
+            <CheckCheck className="h-4 w-4" />
+            Mark all read
+          </button>
+
+          <Link
+            href="/feed"
+            className="inline-flex items-center gap-1 text-sm font-medium text-primary-300 transition hover:text-primary-200"
+          >
+            Open full feed
+            <ChevronRight className="h-4 w-4" />
+          </Link>
+        </div>
+      </div>
 
       <div className="mt-5">
         <LandingTabs active={activeTab} onChange={onTabChange} />
@@ -991,6 +1102,27 @@ function FeedShell({
               if (item.type === "poll" && item.poll) {
                 return (
                   <PollFeedCard
+                    key={item.id}
+                    item={item}
+                    onMarkRead={onMarkRead}
+                    onVote={onVote}
+                  />
+                );
+              }
+
+              if (item.type === "post" && item.post) {
+                return (
+                  <PostFeedCard
+                    key={item.id}
+                    item={item}
+                    onMarkRead={onMarkRead}
+                  />
+                );
+              }
+
+              if (item.type === "reply" && item.reply) {
+                return (
+                  <ReplyFeedCard
                     key={item.id}
                     item={item}
                     onMarkRead={onMarkRead}
@@ -1175,15 +1307,22 @@ function ThreadFeedCard({
 function PollFeedCard({
   item,
   onMarkRead,
+  onVote,
 }: {
   item: FeedItem;
   onMarkRead: (id: string) => void;
+  onVote: (pollId: string, optionId: string) => void;
 }) {
   const poll = item.poll;
   if (!poll) return null;
 
   const options = normalizePollOptions(poll.options);
-  const totalVotes = options.reduce((sum, option) => sum + (option._count?.votes ?? 0), 0);
+  const totalVotes = options.reduce(
+    (sum, option) => sum + (option._count?.votes ?? 0),
+    0
+  );
+
+  const isClosed = poll.isClosed;
 
   return (
     <article
@@ -1194,60 +1333,107 @@ function PollFeedCard({
           : "border-brand-400/30 bg-bg-surface"
       )}
     >
-      {!item.isRead ? (
-        <div className="absolute right-4 top-4 h-2.5 w-2.5 rounded-full bg-brand-400 shadow-[0_0_16px_rgba(251,146,60,0.8)]" />
-      ) : null}
 
+      {/* Top indicator */}
+      {!item.isRead && (
+        <div className="absolute right-4 top-4 h-2.5 w-2.5 rounded-full bg-brand-400 shadow-[0_0_16px_rgba(251,146,60,0.8)]" />
+      )}
+
+      {/* Header */}
       <div className="flex flex-wrap items-center gap-2">
         <span className="inline-flex items-center gap-1 rounded-full bg-brand-500/10 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-300">
           <Vote className="h-3.5 w-3.5" />
           Poll
         </span>
 
-        <span className="text-xs text-text-muted">{timeAgo(item.createdAt)}</span>
+        <span className="text-xs text-text-muted">
+          {timeAgo(item.createdAt)}
+        </span>
 
-        {!item.isRead ? (
+        {!item.isRead && (
           <span className="rounded-full border border-brand-400/20 bg-brand-400/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-brand-300">
             New
           </span>
-        ) : null}
+        )}
       </div>
 
+      {/* Question */}
       <div className="mt-4">
-        <h3 className="text-lg font-semibold leading-snug text-white">{poll.question}</h3>
+        <h3 className="text-lg font-semibold leading-snug text-white">
+          {poll.question}
+        </h3>
+
         <p className="mt-2 text-sm text-text-secondary">
-          {poll.isClosed ? "Poll closed" : "Poll open"} · {totalVotes} total votes
+          {isClosed ? "Poll closed" : "Tap an option to vote"} ·{" "}
+          {totalVotes} votes
         </p>
       </div>
 
+      {/* Options */}
       <div className="mt-4 space-y-2.5">
         {options.slice(0, 4).map((option) => {
+          const isSelected = poll.userVote === option.id;
           const votes = option._count?.votes ?? 0;
-          const pct = totalVotes > 0 ? Math.round((votes / totalVotes) * 100) : 0;
+          const pct =
+            totalVotes > 0
+              ? Math.round((votes / totalVotes) * 100)
+              : 0;
 
           return (
             <div
               key={option.id}
-              className="rounded-xl border border-border-subtle bg-white/[0.03] p-3"
+              onClick={() => {
+                if (isClosed || poll.userVote) return;
+                onVote(poll.id, option.id);
+              }}
+              className={cx(
+                "relative cursor-pointer rounded-xl border p-3 transition duration-200",
+                "border-border-subtle bg-white/[0.03]",
+                !isClosed && "hover:bg-white/[0.06] hover:border-brand-400/30",
+                isClosed && "cursor-not-allowed opacity-70",
+                isSelected && "border-primary-400 bg-primary-500/10"
+              )}
             >
+              {/* Selection indicator */}
+              {isSelected && (
+                <div className="absolute right-2 top-2 text-[10px] font-semibold text-primary-300">
+                  ✓ You voted
+                </div>
+              )}
+
+              {/* Label + % */}
               <div className="mb-2 flex items-center justify-between gap-3">
-                <span className="truncate text-sm text-text-primary">{option.text}</span>
-                <span className="text-xs text-text-muted">{pct}%</span>
+                <span className="truncate text-sm text-text-primary">
+                  {option.text}
+                </span>
+
+                <span className="text-xs font-medium text-text-muted">
+                  {pct}%
+                </span>
               </div>
 
+              {/* Progress bar */}
               <div className="h-2 overflow-hidden rounded-full bg-white/10">
                 <div
-                  className="h-full rounded-full bg-gradient-primary"
+                  className="h-full rounded-full bg-gradient-primary transition-all duration-500 ease-out"
                   style={{ width: `${pct}%` }}
                 />
+              </div>
+
+              {/* Votes count */}
+              <div className="mt-1 text-[11px] text-text-muted">
+                {votes} vote{votes !== 1 ? "s" : ""}
               </div>
             </div>
           );
         })}
       </div>
 
+      {/* Footer */}
       <div className="mt-5 flex items-center justify-between gap-3">
-        <p className="text-xs text-text-muted">Quick sentiment snapshot from the community</p>
+        <p className="text-xs text-text-muted">
+          Live community sentiment
+        </p>
 
         {!item.isRead ? (
           <button
@@ -1258,9 +1444,85 @@ function PollFeedCard({
             <CheckCheck className="h-4 w-4" />
           </button>
         ) : (
-          <span className="text-xs font-medium text-text-muted">Already read</span>
+          <span className="text-xs font-medium text-text-muted">
+            Viewed
+          </span>
         )}
       </div>
+    </article>
+  );
+}
+
+function PostFeedCard({
+  item,
+  onMarkRead,
+}: {
+  item: FeedItem;
+  onMarkRead: (id: string) => void;
+}) {
+  const post = item.post;
+  if (!post) return null;
+
+  return (
+    <article className="relative rounded-2xl border border-border-subtle bg-bg-surface p-5 shadow-soft">
+      {!item.isRead && (
+        <div className="absolute left-0 top-0 h-full w-1 bg-primary-400 rounded-l-2xl" />
+      )}
+
+      <p className="text-xs text-text-muted">{timeAgo(item.createdAt)}</p>
+
+      <h3 className="mt-2 text-sm text-text-secondary">
+        {post.author.username || "User"} posted in
+      </h3>
+
+      <Link
+        href={`/community/threads/${post.thread.id}`}
+        onClick={() => !item.isRead && onMarkRead(item.id)}
+        className="text-white font-medium hover:text-primary-300"
+      >
+        {post.thread.title}
+      </Link>
+
+      <p className="mt-3 text-text-primary line-clamp-3">
+        {post.content}
+      </p>
+    </article>
+  );
+}
+
+function ReplyFeedCard({
+  item,
+  onMarkRead,
+}: {
+  item: FeedItem;
+  onMarkRead: (id: string) => void;
+}) {
+  const reply = item.reply;
+  if (!reply) return null;
+
+  return (
+    <article className="relative rounded-2xl border border-border-subtle bg-bg-surface p-5 shadow-soft">
+      {!item.isRead && (
+        <div className="absolute left-0 top-0 h-full w-1 bg-accent-400 rounded-l-2xl" />
+      )}
+
+      <p className="text-xs text-text-muted">{timeAgo(item.createdAt)}</p>
+
+      <h3 className="mt-2 text-sm text-text-secondary">
+        {reply.author.username || "User"} replied in
+      </h3>
+
+      <Link
+        href={`/community/threads/${reply.thread.id}`}
+        onClick={() => !item.isRead && onMarkRead(item.id)}
+        className="text-white font-medium hover:text-primary-300"
+      >
+        {reply.thread.title}
+      </Link>
+
+      <p className="mt-3 text-text-primary line-clamp-3">
+        {reply.content}
+      </p>
     </article>
   );
 }
@@ -1272,6 +1534,9 @@ function ActivityCard({
   item: FeedItem;
   onMarkRead: (id: string) => void;
 }) {
+  
+  const context = getActivityContext(item);
+
   return (
     <article
       className={cx(
@@ -1288,9 +1553,22 @@ function ActivityCard({
             Activity
           </div>
 
-          <h3 className="mt-3 text-base font-semibold text-white">
+          <h3 className="mt-3 text-base font-semibold text-white leading-snug">
             {formatActivity(item.meta)}
           </h3>
+
+          {context && (
+            <p className="mt-2 text-sm text-text-secondary">
+              In{" "}
+              <Link
+                href={`/community/threads/${context.threadId}`}
+                onClick={() => !item.isRead && onMarkRead(item.id)}
+                className="text-accent-300 font-medium hover:underline"
+              >
+                {context.title}
+              </Link>
+            </p>
+          )}
 
           <p className="mt-2 text-sm text-text-secondary">
             Grouped activity keeps your landing page clean while still surfacing what matters.
@@ -1364,15 +1642,28 @@ function Sidebar({
 }) {
   const recentActivity = feed.filter((item) => item.type === "activity").slice(0, 4);
   const quickPoll = feed.find((item) => item.type === "poll" && item.poll)?.poll ?? null;
-  const followSuggestions = feed
-    .filter((item) => item.thread?.author)
-    .map((item) => item.thread!.author)
-    .filter(
-      (author, index, arr) =>
-        author?.id &&
-        arr.findIndex((entry) => entry.id === author.id) === index
-    )
-    .slice(0, 3);
+  const followSuggestions = useMemo(() => {
+    const counts = new Map<string, any>();
+
+    for (const item of feed) {
+      const author =
+        item.thread?.author ||
+        item.post?.author ||
+        item.reply?.author;
+
+      if (!author?.id) continue;
+
+      if (!counts.has(author.id)) {
+        counts.set(author.id, { ...author, count: 0 });
+      }
+
+      counts.get(author.id).count++;
+    }
+
+    return Array.from(counts.values())
+      .sort((a, b) => b.count - a.count)
+      .slice(0, 3);
+  }, [feed]);
 
   return (
     <div className="space-y-4 xl:sticky xl:top-6 xl:self-start">
@@ -1510,28 +1801,70 @@ function Sidebar({
         title="Quick Poll Snapshot"
       >
         {!quickPoll ? (
-          <p className="text-sm text-text-secondary">No active poll in your feed yet.</p>
+          <p className="text-sm text-text-secondary">
+            No active poll in your feed yet.
+          </p>
         ) : (
           <div className="space-y-3">
+            {/* Question */}
             <div>
-              <p className="text-sm font-medium leading-6 text-white">{quickPoll.question}</p>
+              <p className="text-sm font-semibold leading-6 text-white">
+                {quickPoll.question}
+              </p>
+
               <p className="mt-1 text-xs text-text-muted">
-                {normalizePollOptions(quickPoll.options).length} options available
+                Snapshot of current voting · {normalizePollOptions(quickPoll.options).length} options
               </p>
             </div>
 
+            {/* Options (STATIC) */}
             <div className="space-y-2">
-              {normalizePollOptions(quickPoll.options)
-                .slice(0, 3)
-                .map((option) => (
-                  <div
-                    key={option.id}
-                    className="rounded-xl border border-border-subtle bg-white/[0.03] px-3 py-2 text-sm text-text-secondary"
-                  >
-                    {option.text}
-                  </div>
-                ))}
+              {(() => {
+                const options = normalizePollOptions(quickPoll.options);
+                const totalVotes = options.reduce(
+                  (sum, o) => sum + (o._count?.votes ?? 0),
+                  0
+                );
+
+                return options.slice(0, 3).map((option) => {
+                  const votes = option._count?.votes ?? 0;
+                  const pct =
+                    totalVotes > 0
+                      ? Math.round((votes / totalVotes) * 100)
+                      : 0;
+
+                  return (
+                    <div
+                      key={option.id}
+                      className="rounded-xl border border-border-subtle bg-white/[0.03] px-3 py-2"
+                    >
+                      <div className="flex items-center justify-between text-sm text-text-primary">
+                        <span className="truncate">{option.text}</span>
+                        <span className="text-xs text-text-muted">{pct}%</span>
+                      </div>
+
+                      <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-white/10">
+                        <div
+                          className="h-full rounded-full bg-gradient-primary transition-all duration-500"
+                          style={{ width: `${pct}%` }}
+                        />
+                      </div>
+                    </div>
+                  );
+                });
+              })()}
             </div>
+
+            {/* CTA BUTTON */}
+            {quickPoll.thread?.id && (
+              <Link
+                href={`/community/threads/${quickPoll.thread.id}`}
+                className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-primary-500/20 bg-primary-500/10 px-3 py-2.5 text-sm font-medium text-primary-300 transition hover:bg-primary-500/15"
+              >
+                View poll & join discussion
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            )}
           </div>
         )}
       </SidebarCard>
@@ -1784,25 +2117,106 @@ export default function LandingPage() {
     };
   }, [isLoading]);
 
+  const updatePollInFeed = (updatedPoll: any) => {
+    setFeed((prev) =>
+      prev.map((item) => {
+        if (item.type === "poll" && item.poll?.id === updatedPoll.id) {
+          return {
+            ...item,
+            poll: updatedPoll,
+          };
+        }
+        return item;
+      })
+    );
+  };
+
+  const handleVote = async (pollId: string, optionId: string) => {
+    try {
+      // optimistic update (optional but nice)
+      setFeed((prev) =>
+        prev.map((item) => {
+          if (item.type === "poll" && item.poll?.id === pollId) {
+            return {
+              ...item,
+              poll: {
+                ...item.poll,
+                userVote: optionId,
+                options: item.poll.options?.map((opt) =>
+                  opt.id === optionId
+                    ? {
+                        ...opt,
+                        _count: {
+                          votes: (opt._count?.votes ?? 0) + 1,
+                        },
+                      }
+                    : opt
+                ),
+              },
+            };
+          }
+          return item;
+        })
+      );
+
+      // real backend call
+      const res = await fetch(`/api/polls/${pollId}/vote`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ optionId }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || "Vote failed");
+      }
+
+      // sync with backend truth
+      updatePollInFeed({
+        ...data,
+        userVote: optionId, // preserve selection
+      });
+    } catch (err) {
+      console.error(err);
+
+      // optional rollback → or just refetch
+    }
+  };
+
   const unreadCount = useMemo(
     () => feed.filter((item) => !item.isRead).length,
     [feed]
   );
 
+  const hasUnread = feed.some((item) => !item.isRead);
+
   const filteredFeed = useMemo(() => {
-    if (tab === "conversations") {
-      return feed.filter((item) => item.type === "thread");
-    }
+    switch (tab) {
+      case "conversations":
+        return feed.filter((item) => item.type === "thread");
 
-    if (tab === "polls") {
-      return feed.filter((item) => item.type === "poll");
-    }
+      case "posts":
+        return feed.filter((item) => item.type === "post");
 
-    if (tab === "activity") {
-      return feed.filter((item) => item.type === "activity");
-    }
+      case "replies":
+        return feed.filter((item) => item.type === "reply");
 
-    return feed;
+      case "polls":
+        return feed.filter((item) => item.type === "poll");
+
+      case "activity":
+        return feed.filter((item) => item.type === "activity");
+
+      case "for-you":
+        return feed
+          .filter((item) => item.type !== "activity") // remove noise
+          .slice(0, 10); // top highlights
+      default:
+        return feed;
+    }
   }, [feed, tab]);
 
   if (isLoading || !user) return null;
@@ -1832,7 +2246,28 @@ export default function LandingPage() {
         )
       );
     }
-  }
+  };
+
+  const markAllAsRead = async () => {
+    // optimistic update
+    setFeed((prev) => prev.map((item) => ({ ...item, isRead: true })));
+
+    try {
+      const res = await fetch("/api/feed/read-all", {
+        method: "PATCH",
+        credentials: "include",
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to mark all as read");
+      }
+    } catch (error) {
+      console.error(error);
+
+      // rollback if needed
+      setFeed((prev) => [...prev]); // or refetch if you want stricter correctness
+    }
+  };
 
   const pageLoading =
     meLoading && feedLoading && tagsLoading && matchesLoading && standingsLoading;
@@ -1873,6 +2308,9 @@ export default function LandingPage() {
                     activeTab={tab}
                     onTabChange={setTab}
                     onMarkRead={markAsRead}
+                    onMarkAllRead={markAllAsRead}
+                    hasUnread={hasUnread}
+                    onVote={handleVote}
                   />
                 </section>
 

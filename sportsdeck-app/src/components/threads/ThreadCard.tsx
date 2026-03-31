@@ -33,11 +33,11 @@ export default function ThreadCard({
 
   // Prefetch for instant navigation
   useEffect(() => {
-    router.prefetch(`/threads/${id}`);
+    router.prefetch(`community/threads/${id}`);
   }, [id, router]);
 
   const handleClick = () => {
-    router.push(`/threads/${id}`);
+    router.push(`/community/threads/${id}`);
   };
 
   // Generate excerpt fallback
