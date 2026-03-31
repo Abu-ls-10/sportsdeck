@@ -19,7 +19,7 @@ type NoticeState = {
 };
 
 type ReportModalState = {
-  contentType: "THREAD" | "POST" | "REPLY";
+  contentType: "THREAD" | "POST" | "REPLY" | "POLL";
   contentId: string;
 } | null;
 
@@ -45,7 +45,7 @@ type Thread = {
 export default function ThreadPage() {
   const router = useRouter();
   const params = useParams();
-  const { accessToken } = useAuth();
+  const { accessToken, user } = useAuth();
 
   const userId = useMemo(() => {
     if (!accessToken) return null;
@@ -202,7 +202,7 @@ export default function ThreadPage() {
   // REPORTING
   // =========================
   const openReportModal = useCallback(
-    (contentType: "THREAD" | "POST" | "REPLY", contentId: string) => {
+    (contentType: "THREAD" | "POST" | "REPLY" | "POLL", contentId: string) => {
       if (!accessToken) {
         setNotice({ message: "Log in to submit reports.", tone: "info" });
         return;
@@ -514,6 +514,8 @@ export default function ThreadPage() {
                 prev ? { ...prev, poll: updatedPoll } : prev
               )
             }
+            onReport={() => openReportModal("POLL", thread.poll!.id)}
+            isBanned={Boolean(user?.isBanned)}
           />
         )}
 
@@ -543,6 +545,7 @@ export default function ThreadPage() {
               <ReplyBox
                 postId={thread.post.id}
                 onReplyCreated={() => loadThread()}
+                isBanned={Boolean(user?.isBanned)}
               />
             </div>
 
@@ -564,7 +567,21 @@ export default function ThreadPage() {
                       {r.content}
                     </div>
 
+                    {/* TRANSLATION */}
+                    {translations[`REPLY:${r.id}`] && (
+                      <div className="mt-2 rounded-lg bg-white/[0.04] px-3 py-2 text-sm text-white border border-white/10">
+                        {translations[`REPLY:${r.id}`]}
+                      </div>
+                    )}
+
                     <div className="mt-2 flex gap-2 text-xs">
+                      <button
+                        onClick={() => translateReply(r.id)}
+                        disabled={translatingKey === `REPLY:${r.id}`}
+                        className="text-text-muted hover:text-white transition disabled:opacity-50"
+                      >
+                        {translatingKey === `REPLY:${r.id}` ? "Translating…" : "Translate"}
+                      </button>
                       <button
                         onClick={() => openReportModal("REPLY", r.id)}
                         className="text-text-muted hover:text-red-400 transition"
@@ -572,6 +589,13 @@ export default function ThreadPage() {
                         Report
                       </button>
                     </div>
+
+                    {/* NESTED CHILDREN */}
+                    {r.children?.length > 0 && (
+                      <div className="mt-3 border-l border-white/5 pl-4 space-y-3">
+                        {renderReplies(r.children, 1)}
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}

@@ -63,6 +63,14 @@ export async function GET(req: NextRequest) {
           providerUserId: String(profile.id),
         },
       });
+    } else {
+      user = await prisma.user.update({
+        where: { id: user.id },
+        data: {
+          authProvider: "github",
+          providerUserId: String(profile.id),
+        },
+      });
     }
 
     // Issue our own JWT tokens

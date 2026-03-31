@@ -89,6 +89,12 @@ async function postHandler(
         { status: 404 }
       )
 
+    if (poll.isHidden)
+      return NextResponse.json(
+        { error: "This poll has been hidden by a moderator and cannot be modified" },
+        { status: 403 }
+      )
+
     if (poll.thread.authorId !== user.id && user.role !== "ADMIN")
       return NextResponse.json(
         { error: "You are not allowed to modify this poll" },

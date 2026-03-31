@@ -79,6 +79,14 @@ export async function GET(req: NextRequest) {
           providerUserId: profile.sub,
         },
       });
+    } else {
+      user = await prisma.user.update({
+        where: { id: user.id },
+        data: {
+          authProvider: "google",
+          providerUserId: profile.sub,
+        },
+      });
     }
 
     // Issue our own JWT tokens

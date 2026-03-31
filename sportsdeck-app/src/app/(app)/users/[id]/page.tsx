@@ -258,7 +258,7 @@ function SectionHeader({
             {eyebrow}
           </div>
         ) : null}
-        <h2 className="text-lg font-semibold text-white md:text-xl">{title}</h2>
+        <h2 className="text-lg font-semibold text-text-primary md:text-xl">{title}</h2>
       </div>
 
       {action ? action : null}
@@ -360,7 +360,7 @@ function StatCard({
       <p className="mt-4 text-xs uppercase tracking-[0.14em] text-text-muted">
         {label}
       </p>
-      <p className="mt-1 truncate text-lg font-semibold text-white">{value}</p>
+      <p className="mt-1 truncate text-lg font-semibold text-text-primary">{value}</p>
       <p className="mt-1 text-xs leading-5 text-text-secondary">{helper}</p>
     </div>
   );
@@ -378,7 +378,7 @@ function EmptyStateCard({
       <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl border border-border-subtle bg-white/[0.04]">
         <Sparkles className="h-5 w-5 text-accent-300" />
       </div>
-      <p className="mt-4 text-base font-medium text-white">{title}</p>
+      <p className="mt-4 text-base font-medium text-text-primary">{title}</p>
       <p className="mt-2 text-sm leading-6 text-text-secondary">{description}</p>
     </div>
   );
@@ -393,7 +393,7 @@ function MiniInsight({
 }) {
   return (
     <div className="rounded-xl border border-border-subtle bg-white/[0.03] px-3 py-2.5 text-center">
-      <p className="text-sm font-semibold text-white">{value}</p>
+      <p className="text-sm font-semibold text-text-primary">{value}</p>
       <p className="mt-0.5 text-[11px] uppercase tracking-[0.12em] text-text-muted">
         {label}
       </p>
@@ -411,7 +411,7 @@ function MiniRow({
   return (
     <div className="flex items-center justify-between rounded-xl border border-border-subtle bg-white/[0.03] px-3 py-3">
       <span className="text-sm text-text-secondary">{label}</span>
-      <span className="text-sm font-semibold text-white">{value}</span>
+      <span className="text-sm font-semibold text-text-primary">{value}</span>
     </div>
   );
 }
@@ -466,7 +466,7 @@ function ProfileHero({
 
             <div className="min-w-0">
               <div className="flex flex-wrap items-center gap-2">
-                <h1 className="text-2xl font-semibold text-white md:text-3xl">
+                <h1 className="text-2xl font-semibold text-text-primary md:text-3xl">
                   {username}
                 </h1>
 
@@ -672,7 +672,7 @@ function ThreadShowcaseCard({
               <div className="mt-4 flex items-start justify-between gap-4">
                 <div className="min-w-0 flex-1">
                   <Link href={`/threads/${thread.id}`} className="inline-block">
-                    <h3 className="text-lg font-semibold leading-snug text-white transition group-hover:text-primary-300">
+                    <h3 className="text-lg font-semibold leading-snug text-text-primary transition group-hover:text-primary-300">
                       {thread.title}
                     </h3>
                   </Link>
@@ -686,7 +686,7 @@ function ThreadShowcaseCard({
                   <p className="text-[11px] uppercase tracking-[0.14em] text-text-muted">
                     Posts
                   </p>
-                  <p className="mt-1 text-lg font-semibold text-white">
+                  <p className="mt-1 text-lg font-semibold text-text-primary">
                     {thread._count?.posts ?? 0}
                   </p>
                 </div>
@@ -752,7 +752,7 @@ function ContentTimelineCard({
                 <div className="min-w-0 flex-1">
                   <Link
                     href={item.href}
-                    className="text-base font-semibold text-white transition hover:text-primary-300"
+                    className="text-base font-semibold text-text-primary transition hover:text-primary-300"
                   >
                     {item.title}
                   </Link>
@@ -810,7 +810,7 @@ function PeopleListCard({
               <div className="flex min-w-0 items-center gap-3">
                 <Avatar name={user.username ?? "User"} src={user.avatarUrl} size="sm" />
                 <div className="min-w-0">
-                  <p className="truncate text-sm font-medium text-white">
+                  <p className="truncate text-sm font-medium text-text-primary">
                     {user.username ?? "Community member"}
                   </p>
                   <p className="text-xs text-text-muted">View profile</p>
@@ -845,12 +845,12 @@ function ProfileStrengthCard({
         <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/[0.04] text-text-primary">
           <ShieldCheck className="h-4 w-4 text-accent-300" />
         </div>
-        <h3 className="text-sm font-semibold text-white">Profile snapshot</h3>
+        <h3 className="text-sm font-semibold text-text-primary">Profile snapshot</h3>
       </div>
 
       <div className="rounded-2xl border border-border-subtle bg-white/[0.03] p-4">
         <div className="flex items-center justify-between gap-3">
-          <p className="text-sm font-medium text-white">{strength}% complete</p>
+          <p className="text-sm font-medium text-text-primary">{strength}% complete</p>
           <p className="text-xs text-text-muted">Based on supported public fields</p>
         </div>
 
@@ -890,7 +890,7 @@ function OwnerInsightsCard({
         <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/[0.04] text-text-primary">
           <Flame className="h-4 w-4 text-brand-300" />
         </div>
-        <h3 className="text-sm font-semibold text-white">Your stats</h3>
+        <h3 className="text-sm font-semibold text-text-primary">Your stats</h3>
       </div>
 
       <div className="space-y-3">
@@ -954,7 +954,7 @@ function ProfileSettingsCard({
           <input
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            className="w-full rounded-xl border border-border-subtle bg-white/[0.03] px-3 py-3 text-sm text-white outline-none transition placeholder:text-text-dim focus:border-primary-500/40 focus:bg-white/[0.05]"
+            className="w-full rounded-xl border border-border-subtle bg-white/[0.03] px-3 py-3 text-sm text-text-primary outline-none transition placeholder:text-text-dim focus:border-primary-500/40 focus:bg-white/[0.05]"
             placeholder="Choose a username"
           />
         </Field>
@@ -963,7 +963,7 @@ function ProfileSettingsCard({
           <input
             value={avatarUrl}
             onChange={(e) => setAvatarUrl(e.target.value)}
-            className="w-full rounded-xl border border-border-subtle bg-white/[0.03] px-3 py-3 text-sm text-white outline-none transition placeholder:text-text-dim focus:border-primary-500/40 focus:bg-white/[0.05]"
+            className="w-full rounded-xl border border-border-subtle bg-white/[0.03] px-3 py-3 text-sm text-text-primary outline-none transition placeholder:text-text-dim focus:border-primary-500/40 focus:bg-white/[0.05]"
             placeholder="https://..."
           />
         </Field>
@@ -972,7 +972,7 @@ function ProfileSettingsCard({
           <select
             value={favoriteTeamId}
             onChange={(e) => setFavoriteTeamId(e.target.value)}
-            className="w-full rounded-xl border border-border-subtle bg-white/[0.03] px-3 py-3 text-sm text-white outline-none transition focus:border-primary-500/40 focus:bg-white/[0.05]"
+            className="w-full rounded-xl border border-border-subtle bg-white/[0.03] px-3 py-3 text-sm text-text-primary outline-none transition focus:border-primary-500/40 focus:bg-white/[0.05]"
           >
             <option value="">No favorite team</option>
             {teams.map((team) => (
@@ -1032,7 +1032,7 @@ function AuthPromptModal({
           </button>
         </div>
 
-        <h3 className="mt-5 text-xl font-semibold text-white">Sign in to follow users</h3>
+        <h3 className="mt-5 text-xl font-semibold text-text-primary">Sign in to follow users</h3>
         <p className="mt-2 text-sm leading-7 text-text-secondary">
           Create your SportsDeck account or sign back in to follow fans, personalize
           your feed, and keep up with the conversations you care about.

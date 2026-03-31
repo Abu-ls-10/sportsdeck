@@ -34,7 +34,7 @@ type ContentPreview = {
   title?: string;
   content?: string;
   isHidden?: boolean;
-  author?: { id: string; username: string | null };
+  author?: { id: string; username: string | null; isBanned?: boolean };
   thread?: { id: string; title: string };
   post?: { id: string; thread: { id: string; title: string } };
 };
@@ -229,6 +229,7 @@ export default function AdminReportDetailPage() {
     [detail?.aiVerdict?.recommendation]
   );
   const author = detail ? authorFromPreview(detail) : null;
+  const authorAlreadyBanned = author != null && (detail?.contentPreview?.author?.isBanned ?? false);
   const aiScore = detail?.aiVerdict?.score ?? detail?.aiScore ?? null;
 
   return (
@@ -396,11 +397,12 @@ export default function AdminReportDetailPage() {
                 <button
                   type="button"
                   onClick={openBanModal}
-                  disabled={Boolean(busyAction)}
-                  className="flex items-center gap-2 rounded-xl border border-rose-500/40 bg-rose-500/10 px-4 py-2 text-sm font-semibold text-rose-300 hover:bg-rose-500/20 transition disabled:opacity-40"
+                  disabled={Boolean(busyAction) || authorAlreadyBanned}
+                  title={authorAlreadyBanned ? "This user is already banned" : undefined}
+                  className="flex items-center gap-2 rounded-xl border border-rose-500/40 bg-rose-500/10 px-4 py-2 text-sm font-semibold text-rose-300 hover:bg-rose-500/20 transition disabled:opacity-40 disabled:cursor-not-allowed"
                 >
                   <ShieldBan className="w-4 h-4" />
-                  Ban User
+                  {authorAlreadyBanned ? "Already Banned" : "Ban User"}
                 </button>
                 <button
                   type="button"

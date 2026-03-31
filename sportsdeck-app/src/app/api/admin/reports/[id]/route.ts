@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
 import { getUserFromToken } from "@/lib/auth"
-import { analyzeContent } from "@/lib/moderation"
 
 /**
  * @openapi
@@ -173,7 +172,7 @@ export async function GET(
  *            No change to the underlying content.
  *
  * - approve: Marks the reported item and all its reports as approved.
- *            Hides the original content (thread/post/reply) by setting isHidden = true.
+ *            Hides the original content (thread/post/reply/poll) by setting isHidden = true.
  *            Creates an AdminAction audit record.
  *            No further activity (reply, vote, edit) is allowed on that content.
  */
@@ -335,6 +334,11 @@ async function hideContent(
           data: { isHidden: true },
         })
       }
+      // Hide polls attached to this thread and close them immediately.
+      await tx.poll.updateMany({
+        where: { threadId: contentId },
+        data: { isHidden: true, isClosed: true },
+      })
       break
     }
     case "POST": {
@@ -348,6 +352,17 @@ async function hideContent(
         where: { postId: contentId },
         data: { isHidden: true },
       })
+      // Hide polls attached to replies under this post.
+      const postReplies = await tx.reply.findMany({
+        where: { postId: contentId },
+        select: { id: true },
+      })
+      if (postReplies.length > 0) {
+        await tx.poll.updateMany({
+          where: { replyId: { in: postReplies.map((r) => r.id) } },
+          data: { isHidden: true, isClosed: true },
+        })
+      }
       break
     }
     case "REPLY": {
@@ -355,6 +370,19 @@ async function hideContent(
       await tx.reply.update({
         where: { id: contentId },
         data: { isHidden: true },
+      })
+      // Hide a poll attached directly to this reply, if any.
+      await tx.poll.updateMany({
+        where: { replyId: contentId },
+        data: { isHidden: true, isClosed: true },
+      })
+      break
+    }
+    case "POLL": {
+      // Hide and close the poll itself.
+      await tx.poll.update({
+        where: { id: contentId },
+        data: { isHidden: true, isClosed: true },
       })
       break
     }
@@ -374,7 +402,7 @@ async function getContentPreview(contentType: string, contentId: string) {
           title: true,
           isHidden: true,
           createdAt: true,
-          author: { select: { id: true, username: true } },
+          author: { select: { id: true, username: true, isBanned: true } },
         },
       })
       return thread
@@ -387,7 +415,7 @@ async function getContentPreview(contentType: string, contentId: string) {
           content: true,
           isHidden: true,
           createdAt: true,
-          author: { select: { id: true, username: true } },
+          author: { select: { id: true, username: true, isBanned: true } },
           thread: { select: { id: true, title: true } },
         },
       })
@@ -401,7 +429,7 @@ async function getContentPreview(contentType: string, contentId: string) {
           content: true,
           isHidden: true,
           createdAt: true,
-          author: { select: { id: true, username: true } },
+          author: { select: { id: true, username: true, isBanned: true } },
           post: {
             select: {
               id: true,
@@ -411,6 +439,35 @@ async function getContentPreview(contentType: string, contentId: string) {
         },
       })
       return reply
+    }
+    case "POLL": {
+      const poll = await prisma.poll.findUnique({
+        where: { id: contentId },
+        select: {
+          id: true,
+          question: true,
+          isHidden: true,
+          isClosed: true,
+          createdAt: true,
+          thread: {
+            select: {
+              id: true,
+              title: true,
+              author: { select: { id: true, username: true, isBanned: true } },
+            },
+          },
+        },
+      })
+      if (!poll) return null
+      return {
+        id: poll.id,
+        content: poll.question,
+        isHidden: poll.isHidden,
+        isClosed: poll.isClosed,
+        createdAt: poll.createdAt,
+        thread: { id: poll.thread.id, title: poll.thread.title },
+        author: poll.thread.author,
+      }
     }
     default:
       return null

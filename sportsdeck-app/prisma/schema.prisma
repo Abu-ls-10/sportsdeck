@@ -238,6 +238,7 @@ model Poll {
   question  String
   deadline  DateTime
   isClosed  Boolean  @default(false)
+  isHidden  Boolean  @default(false)
   createdAt DateTime @default(now())
 
   replyId String? @unique

@@ -18,6 +18,7 @@ function getInitialTheme(): Theme {
 
 export default function ThemeToggle() {
   const [theme, setTheme] = useState<"light" | "dark">("dark");
+  const toggleClass = "group relative inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-border-subtle bg-bg-card/80 text-text-secondary backdrop-blur-md shadow-card transition-all duration-300 ease-smooth hover:scale-[1.05] hover:border-primary-500/30 hover:bg-bg-elevated hover:text-text-primary active:scale-[0.97] animate-[float_4s_ease-in-out_infinite] hover:animate-none";
 
   /**
    * ONLY sync external systems
@@ -38,17 +39,7 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={toggleTheme}
-      className="
-        group relative inline-flex h-11 w-11 items-center justify-center
-        rounded-2xl border border-border-subtle
-        bg-bg-card/80 text-text-secondary
-        backdrop-blur-md shadow-card
-        transition-all duration-300 ease-smooth
-        hover:scale-[1.05] hover:border-primary-500/30
-        hover:bg-bg-elevated hover:text-text-primary
-        active:scale-[0.97]
-        animate-[float_4s_ease-in-out_infinite] hover:animate-none
-      "
+      className={toggleClass}
     >
       <span className="absolute inset-0 rounded-2xl opacity-0 bg-gradient-primary transition-opacity duration-300 group-hover:opacity-[0.08]" />
 
