@@ -36,6 +36,64 @@ import { getUserFromToken } from "@/lib/auth"
  * - poll (if exists)
  */
 
+
+// -------------------------
+// Types
+// -------------------------
+type NestedReply = {
+  id: string
+  content: string
+  createdAt: Date
+  parentReplyId: string | null
+  author: {
+    id: string
+    username: string
+    avatarUrl: string | null
+    favoriteTeam: {
+      id: string
+      name: string
+      shortName: string
+    } | null
+  }
+  children: NestedReply[]
+}
+
+// -------------------------
+// Helper: Build reply tree
+// -------------------------
+function buildReplyTree(replies: any[]): NestedReply[] {
+  const map = new Map<string, NestedReply>()
+  const roots: NestedReply[] = []
+
+  replies.forEach((r) => {
+    map.set(r.id, {
+      id: r.id,
+      content: r.content,
+      createdAt: r.createdAt,
+      parentReplyId: r.parentReplyId,
+      author: r.author,
+      children: [],
+    })
+  })
+
+  replies.forEach((r) => {
+    const node = map.get(r.id)!
+    if (r.parentReplyId) {
+      const parent = map.get(r.parentReplyId)
+      if (parent) {
+        parent.children.push(node)
+      }
+    } else {
+      roots.push(node)
+    }
+  })
+
+  return roots
+}
+
+// -------------------------
+// Route
+// -------------------------
 export async function GET(
   request: Request,
   { params }: { params: Promise<{ id: string }> }
@@ -51,13 +109,13 @@ export async function GET(
     }
 
     // =========================
-    // OPTIONAL USER (for votes)
+    // OPTIONAL USER
     // =========================
-    const user = await getUserFromToken(request).catch(() => null)
+    const user = getUserFromToken(request)
     const userId = user?.id ?? null
 
     // =========================
-    // FETCH THREAD + MAIN POST
+    // FETCH THREAD
     // =========================
     const thread = await prisma.thread.findUnique({
       where: { id: threadId },
@@ -124,12 +182,24 @@ export async function GET(
       )
     }
 
+    // =========================
+    // THREAD OPEN CHECK
+    // =========================
+    const now = new Date()
+
+    if (thread.opensAt && now < thread.opensAt) {
+      return NextResponse.json(
+        { error: "Thread not opened yet" },
+        { status: 403 }
+      )
+    }
+
     const mainPost = thread.posts?.[0] ?? null
 
     // =========================
-    // FETCH REPLIES (FLAT)
+    // FETCH REPLIES
     // =========================
-    let nestedReplies: any[] = []
+    let nestedReplies: NestedReply[] = []
 
     if (mainPost) {
       const replies = await prisma.reply.findMany({
@@ -158,31 +228,13 @@ export async function GET(
         },
       })
 
-      const map = new Map<string, any>()
-      const roots: any[] = []
-
-      replies.forEach((r) => {
-        map.set(r.id, { ...r, children: [] })
-      })
-
-      replies.forEach((r) => {
-        if (r.parentReplyId) {
-          const parent = map.get(r.parentReplyId)
-          if (parent) {
-            parent.children.push(map.get(r.id))
-          }
-        } else {
-          roots.push(map.get(r.id))
-        }
-      })
-
-      nestedReplies = roots
+      nestedReplies = buildReplyTree(replies)
     }
 
     // =========================
     // POLL PROCESSING
     // =========================
-    const poll = thread.polls?.[0] ?? null
+    const poll = thread.polls.length > 0 ? thread.polls[0] : null
 
     let userVote: string | null = null
 
@@ -200,21 +252,34 @@ export async function GET(
       userVote = vote?.pollOptionId ?? null
     }
 
-    const normalizedPoll = poll
-      ? {
-          id: poll.id,
-          question: poll.question,
-          deadline: poll.deadline,
-          isClosed: poll.isClosed,
-          replyId: poll.replyId ?? null,
-          options: poll.options.map((o) => ({
-            id: o.id,
-            text: o.optionText,
-            votes: o._count.votes,
-          })),
-          userVote,
-        }
-      : null
+    let normalizedPoll = null
+
+    if (poll) {
+      const totalVotes = poll.options.reduce(
+        (sum, o) => sum + o._count.votes,
+        0
+      )
+
+      normalizedPoll = {
+        id: poll.id,
+        question: poll.question,
+        deadline: poll.deadline,
+        isClosed: poll.isClosed,
+        replyId: poll.replyId ?? null,
+        totalVotes,
+
+        options: poll.options.map((o) => ({
+          id: o.id,
+          text: o.optionText,
+          votes: o._count.votes,
+          percentage: totalVotes
+            ? Math.round((o._count.votes / totalVotes) * 100)
+            : 0,
+        })),
+
+        userVote,
+      }
+    }
 
     // =========================
     // RESPONSE
@@ -224,6 +289,9 @@ export async function GET(
         id: thread.id,
         title: thread.title,
         createdAt: thread.createdAt,
+
+        isLocked: thread.isLocked,
+        isHidden: thread.isHidden,
 
         author: thread.author,
 
@@ -235,6 +303,7 @@ export async function GET(
               content: mainPost.content,
               createdAt: mainPost.createdAt,
               author: mainPost.author,
+              replyCount: nestedReplies.length,
               replies: nestedReplies,
             }
           : null,
@@ -244,7 +313,10 @@ export async function GET(
       { status: 200 }
     )
   } catch (error) {
-    console.error("GET /api/threads/:id/full error:", error)
+    console.error({
+      route: "GET /api/threads/:id/full",
+      error,
+    })
 
     return NextResponse.json(
       { error: "Failed to retrieve thread data" },

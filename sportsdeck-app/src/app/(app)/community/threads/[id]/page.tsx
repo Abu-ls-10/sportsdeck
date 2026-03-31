@@ -1,305 +1,583 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
 
 import ReplyBox from "@/components/threads/ReplyBox";
 import PollCard from "@/components/threads/PollCard";
 
+type TranslationMap = Record<string, string>;
+type ReplyMessageMap = Record<string, string>;
+
+type NoticeTone = "info" | "success" | "warning" | "error";
+
+type NoticeState = {
+  message: string;
+  tone: NoticeTone;
+};
+
+type ReportModalState = {
+  contentType: "THREAD" | "POST" | "REPLY";
+  contentId: string;
+} | null;
+
+type Thread = {
+  id: string;
+  title: string;
+  createdAt: string;
+  author: { 
+    id: string; 
+    username: string;
+  };
+  post: {
+    id: string;
+    content: string;
+    createdAt: string;
+    author: any;
+    replies: any[];
+    replyCount: number;
+  } | null;
+  poll: any | null;
+};
+
 export default function ThreadPage() {
   const router = useRouter();
   const params = useParams();
+  const { accessToken } = useAuth();
+
+  const userId = useMemo(() => {
+    if (!accessToken) return null;
+
+    try {
+      const payload = JSON.parse(atob(accessToken.split(".")[1]));
+      return payload?.id ?? null;
+    } catch {
+      return null;
+    }
+  }, [accessToken]);
+
   const threadId = params?.id as string;
 
-  const [thread, setThread] = useState<any>(null);
+  const [thread, setThread] = useState<Thread | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const [replyTarget, setReplyTarget] = useState<any>(null);
+  const [notice, setNotice] = useState<NoticeState | null>(null);
+  const [reportModal, setReportModal] = useState<ReportModalState>(null);
+  const [reportReason, setReportReason] = useState("");
+  const [reportingKey, setReportingKey] = useState<string | null>(null);
+
+  const [translatingKey, setTranslatingKey] = useState<string | null>(null);
+  const [translations, setTranslations] = useState<TranslationMap>({});
+  const [replyMessages, setReplyMessages] = useState<ReplyMessageMap>({});
+
+  const [showPollCreator, setShowPollCreator] = useState(false);
+
+  const [pollQuestion, setPollQuestion] = useState("");
+  const [pollOptions, setPollOptions] = useState(["", ""]);
 
   // =========================
-  // FETCH
+  // FETCH THREAD
   // =========================
-  useEffect(() => {
+  const loadThread = useCallback(async () => {
     if (!threadId) return;
 
-    let active = true;
+    try {
+      setLoading(true);
+      setError(null);
 
-    const loadThread = async () => {
-      try {
-        setLoading(true);
-        const res = await fetch(`/api/threads/${threadId}/full`);
-        if (!res.ok) throw new Error();
+      const res = await fetch(`/api/threads/${threadId}/full`);
+      if (!res.ok) throw new Error("Failed to load thread");
 
-        const data = await res.json();
-        if (active) setThread(data);
-      } catch (err) {
-        console.error(err);
-        if (active) setError("Failed to load thread");
-      } finally {
-        if (active) setLoading(false);
-      }
-    };
-
-    loadThread();
-
-    return () => {
-      active = false;
-    };
+      const data = await res.json();
+      setThread(data);
+    } catch (err) {
+      console.error(err);
+      setError("Failed to load thread");
+    } finally {
+      setLoading(false);
+    }
   }, [threadId]);
+
+  useEffect(() => {
+    loadThread();
+  }, [loadThread]);
+
+  useEffect(() => {
+    if (!notice) return;
+    const timer = setTimeout(() => setNotice(null), 4000);
+    return () => clearTimeout(timer);
+  }, [notice]);
+
+  const authHeaders = useMemo(() => {
+    const headers: Record<string, string> = {
+      "Content-Type": "application/json",
+    };
+    if (accessToken) headers.Authorization = `Bearer ${accessToken}`;
+    return headers;
+  }, [accessToken]);
 
   // =========================
   // HELPERS
   // =========================
-  const timeAgo = (date: string) => {
+  const formatTime = (date: string) => {
     const diff = Date.now() - new Date(date).getTime();
     const mins = Math.floor(diff / 60000);
+    const hrs = Math.floor(mins / 60);
+    const days = Math.floor(hrs / 24);
+
     if (mins < 1) return "Just now";
     if (mins < 60) return `${mins}m ago`;
-    const hrs = Math.floor(mins / 60);
     if (hrs < 24) return `${hrs}h ago`;
-    return `${Math.floor(hrs / 24)}d ago`;
+    return `${days}d ago`;
   };
 
-  const Avatar = ({ user, size = 36 }: any) => {
-    if (user?.avatarUrl) {
-      return (
-        <img
-          src={user.avatarUrl}
-          className="rounded-full object-cover"
-          style={{ width: size, height: size }}
-        />
-      );
-    }
+  const addPollOption = () => {
+    setPollOptions((prev) => [...prev, ""]);
+  };
 
-    return (
-      <div
-        className="rounded-full bg-gradient-primary flex items-center justify-center text-white font-semibold"
-        style={{ width: size, height: size }}
-      >
-        {user?.username?.[0]?.toUpperCase()}
-      </div>
+  const updatePollOption = (index: number, value: string) => {
+    setPollOptions((prev) =>
+      prev.map((o, i) => (i === index ? value : o))
     );
   };
 
   // =========================
-  // SCROLL TO REPLY
+  // POLL CREATION
   // =========================
-  const scrollToReply = (replyId: string) => {
-    const el = document.getElementById(`reply-${replyId}`);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "center" });
+  const handleCreatePoll = async () => {
+    const cleanOptions = pollOptions
+      .map((o) => o.trim())
+      .filter((o) => o.length > 0);
 
-      // highlight effect
-      el.classList.add("ring-2", "ring-accent-400");
-      setTimeout(() => {
-        el.classList.remove("ring-2", "ring-accent-400");
-      }, 1500);
+    if (!pollQuestion.trim()) {
+      setNotice({
+        message: "Question required",
+        tone: "warning",
+      });
+      return;
+    }
+
+    if (cleanOptions.length < 2) {
+      setNotice({
+        message: "At least 2 options required",
+        tone: "warning",
+      });
+      return;
+    }
+
+    try {
+      const res = await fetch(`/api/threads/${threadId}/poll`, {
+        method: "POST",
+        headers: authHeaders,
+        body: JSON.stringify({
+          question: pollQuestion,
+          deadline: new Date(Date.now() + 86400000).toISOString(),
+          options: cleanOptions,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) throw new Error(data.error);
+
+      // update UI
+      setThread((prev) =>
+        prev ? { ...prev, poll: data } : prev
+      );
+
+      // reset state
+      setShowPollCreator(false);
+      setPollQuestion("");
+      setPollOptions(["", ""]);
+
+    } catch (err: any) {
+      setNotice(err.message);
     }
   };
 
   // =========================
-  // POLL UPDATE
+  // REPORTING
   // =========================
-  const handlePollUpdate = (updated: any) => {
-    setThread((prev: any) => ({
-      ...prev,
-      poll: {
-        ...prev.poll,
-        options: updated.options,
-        userVote: updated.userVote,
-      },
-    }));
-  };
+  const openReportModal = useCallback(
+    (contentType: "THREAD" | "POST" | "REPLY", contentId: string) => {
+      if (!accessToken) {
+        setNotice({ message: "Log in to submit reports.", tone: "info" });
+        return;
+      }
+      setReportModal({ contentType, contentId });
+      setReportReason("");
+    },
+    [accessToken]
+  );
 
-  // =========================
-  // ADD REPLY (TREE UPDATE)
-  // =========================
-  const insertReply = (replies: any[], newReply: any): any[] => {
-    if (!newReply.parentReplyId) {
-      return [...replies, { ...newReply, children: [] }];
+  const submitReport = useCallback(async () => {
+    if (!reportModal || !reportReason.trim()) return;
+
+    const { contentType, contentId } = reportModal;
+    const targetKey = `${contentType}:${contentId}`;
+    setReportingKey(targetKey);
+
+    try {
+      const res = await fetch("/api/reports", {
+        method: "POST",
+        headers: authHeaders,
+        body: JSON.stringify({
+          contentType,
+          contentId,
+          reason: reportReason.trim(),
+        }),
+      });
+
+      const data = await res.json().catch(() => ({}));
+
+      if (!res.ok) throw new Error(data.message || "Failed to submit report");
+
+      setNotice({ message: "Report submitted", tone: "success" });
+      setReportModal(null);
+    } catch (err: any) {
+      setNotice({ message: err.message, tone: "error" });
+    } finally {
+      setReportingKey(null);
     }
+  }, [reportModal, reportReason, authHeaders]);
 
-    return replies.map((r) => {
-      if (r.id === newReply.parentReplyId) {
-        return {
-          ...r,
-          children: [...(r.children || []), { ...newReply, children: [] }],
-        };
-      }
+  // =========================
+  // TRANSLATION
+  // =========================
+  const translateReply = async (replyId: string) => {
+    if (!accessToken) return;
 
-      if (r.children?.length) {
-        return {
-          ...r,
-          children: insertReply(r.children, newReply),
-        };
-      }
+    const key = `REPLY:${replyId}`;
+    setTranslatingKey(key);
 
-      return r;
-    });
+    try {
+      const res = await fetch("/api/translate", {
+        method: "POST",
+        headers: authHeaders,
+        body: JSON.stringify({
+          contentType: "REPLY",
+          contentId: replyId,
+        }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error);
+
+      setTranslations((prev) => ({
+        ...prev,
+        [key]: data.translatedText,
+      }));
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setTranslatingKey(null);
+    }
   };
 
   // =========================
-  // STATES
+  // RECURSIVE REPLIES
   // =========================
-  if (!threadId) return <div className="p-6">Invalid thread</div>;
-  if (loading) return <div className="p-6">Loading...</div>;
-  if (error) return <div className="p-6 text-red-400">{error}</div>;
-  if (!thread || !thread.post) return <div className="p-6">Thread not found</div>;
-
-  // =========================
-  // REPLY COMPONENT
-  // =========================
-  const ReplyItem = ({ reply, depth = 0 }: any) => {
-    return (
-      <div id={`reply-${reply.id}`} className="flex gap-3">
-
+  const renderReplies = (replies: any[], depth = 0) =>
+    replies.map((r) => (
+      <div
+        key={r.id}
+        className={`flex gap-3 transition ${
+          depth === 0 ? "" : "ml-4"
+        }`}
+      >
         {/* AVATAR */}
-        <Link href={`/users/${reply.author.id}`}>
-          <div className="cursor-pointer">
-            <Avatar user={reply.author} size={32} />
-          </div>
-        </Link>
+        <div className="w-7 h-7 rounded-full bg-gradient-primary flex items-center justify-center text-xs text-white font-semibold shadow-glow">
+          {r.author?.username?.[0]?.toUpperCase()}
+        </div>
 
-        <div className="flex-1">
+        <div className="flex-1 space-y-1">
 
-          {/* HEADER */}
-          <div className="text-xs text-text-muted mb-1">
-            <Link
-              href={`/users/${reply.author.id}`}
-              className="text-white font-medium hover:text-accent-300"
-            >
-              {reply.author.username}
-            </Link>
-            <span className="mx-1">•</span>
-            {timeAgo(reply.createdAt)}
+          {/* META */}
+          <div className="text-xs text-text-muted">
+            <span className="text-white font-medium">
+              {r.author?.username ?? "User"}
+            </span>{" "}
+            • {formatTime(r.createdAt)}
           </div>
 
           {/* CONTENT */}
-          <div className="text-sm text-text-secondary">
-            {reply.content}
+          <div className="text-sm text-text-secondary leading-6">
+            {r.content}
           </div>
 
-          {/* POLL IN REPLY */}
-          {thread.poll?.replyId === reply.id && (
-            <div className="mt-3">
-              <PollCard
-                poll={thread.poll}
-                onVote={handlePollUpdate}
-              />
+          {/* TRANSLATION */}
+          {translations[`REPLY:${r.id}`] && (
+            <div className="mt-2 rounded-lg bg-white/[0.04] px-3 py-2 text-sm text-white border border-white/10">
+              {translations[`REPLY:${r.id}`]}
             </div>
           )}
 
           {/* ACTIONS */}
-          <div className="mt-2 text-xs text-text-muted flex gap-4">
+          <div className="flex gap-2 pt-1 text-xs">
             <button
-              onClick={() => setReplyTarget(reply)}
-              className="hover:text-accent-300"
+              onClick={() => translateReply(r.id)}
+              className="text-text-muted hover:text-white transition"
             >
-              Reply
+              Translate
+            </button>
+
+            <button
+              onClick={() => openReportModal("REPLY", r.id)}
+              className="text-text-muted hover:text-red-400 transition"
+            >
+              Report
             </button>
           </div>
 
           {/* CHILDREN */}
-          {reply.children?.length > 0 && (
-            <div className="mt-3 space-y-3 border-l border-white/10 pl-4">
-              {reply.children.map((child: any) => (
-                <ReplyItem key={child.id} reply={child} depth={depth + 1} />
-              ))}
+          {r.children?.length > 0 && (
+            <div className="mt-3 border-l border-white/5 pl-4 space-y-3">
+              {renderReplies(r.children, depth + 1)}
             </div>
           )}
         </div>
       </div>
-    );
-  };
+    ));
 
   // =========================
-  // RENDER
+  // UI STATES
   // =========================
+  if (loading) return <div className="p-6">Loading...</div>;
+  if (error) return <div className="p-6 text-red-400">{error}</div>;
+  if (!thread) return <div className="p-6">Not found</div>;
+
   return (
     <div className="px-4 py-6 md:px-6 lg:px-8">
       <div className="max-w-[900px] mx-auto space-y-6">
 
+        {/* NOTICE */}
+        {notice && (
+          <div className="rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-2 text-sm text-red-200">
+            {notice.message}
+          </div>
+        )}
+
         {/* BACK */}
         <button
-          onClick={() => router.back()}
-          className="flex items-center gap-2 text-sm text-text-muted hover:text-white"
+          onClick={() => router.push("/home")}
+          className="flex items-center gap-2 text-sm text-text-muted hover:text-white transition"
         >
           <ArrowLeft className="w-4 h-4" />
           Back
         </button>
 
-        {/* THREAD HERO */}
-        <section className="rounded-3xl border border-border-subtle bg-bg-surface p-6 space-y-4">
+        {/* REPORT MODAL */}
+        {reportModal && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60">
+            <div className="w-full max-w-md rounded-2xl bg-bg-surface p-6 shadow-card">
 
-          <h1 className="text-2xl font-semibold text-white">
+              <h2 className="text-lg font-semibold text-white">
+                Report Content
+              </h2>
+
+              <textarea
+                value={reportReason}
+                onChange={(e) => setReportReason(e.target.value)}
+                placeholder="Describe the issue..."
+                className="mt-4 w-full rounded-lg bg-bg-card p-2 text-white"
+              />
+
+              <div className="mt-4 flex gap-2">
+                <button
+                  onClick={submitReport}
+                  disabled={!reportReason.trim()}
+                  className="bg-gradient-primary px-4 py-2 rounded-lg text-white text-sm disabled:opacity-50"
+                >
+                  Submit
+                </button>
+
+                <button
+                  onClick={() => setReportModal(null)}
+                  className="text-sm text-text-muted"
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* ================= HEADER ================= */}
+        <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-gradient-to-br from-bg-surface to-bg-card p-6 shadow-card">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary-500/5 to-transparent pointer-events-none" />
+
+          <h1 className="relative text-2xl md:text-3xl font-semibold text-white leading-tight">
             {thread.title}
           </h1>
 
-          <div className="flex items-center gap-3 text-sm text-text-muted">
-            <Link href={`/users/${thread.author.id}`}>
-              <Avatar user={thread.author} />
-            </Link>
+          <div className="relative mt-4 flex items-center gap-3 text-sm text-text-muted">
+            <div className="w-9 h-9 rounded-full bg-gradient-primary flex items-center justify-center text-white text-sm font-semibold shadow-glow">
+              {thread.author?.username?.[0]?.toUpperCase() ?? "U"}
+            </div>
 
-            <Link href={`/users/${thread.author.id}`} className="text-white">
-              {thread.author.username}
-            </Link>
+            <span className="text-white font-medium">
+              {thread.author?.username}
+            </span>
 
             <span>•</span>
-            {timeAgo(thread.createdAt)}
+            <span>{formatTime(thread.createdAt)}</span>
           </div>
 
-          <div className="pt-4 border-t border-white/10 text-text-secondary">
-            {thread.post.content}
+          {/* REPORT THREAD */}
+          <div className="mt-4">
+            <button
+              onClick={() => openReportModal("THREAD", thread.id)}
+              className="text-xs text-text-muted hover:text-red-400 transition"
+            >
+              Report thread
+            </button>
           </div>
+        </div>
 
-        </section>
+        {/* ================= CREATE POLL CTA ================= */}
+        {!thread.poll && (
+          <div className="flex items-center justify-between">
+            <div className="text-xs text-text-muted">
+              {userId === thread.author?.id
+                ? "You can create a poll for this thread"
+                : "Only the thread author can create a poll"}
+            </div>
 
-        {/* HERO POLL */}
-        {thread.poll && (
-          <div className="space-y-3">
-            <PollCard
-              poll={thread.poll}
-              onVote={handlePollUpdate}
-            />
-
-            {thread.poll.replyId && (
+            {userId === thread.author?.id && (
               <button
-                onClick={() => scrollToReply(thread.poll.replyId)}
-                className="text-xs text-accent-300 hover:text-accent-200 transition"
+                onClick={() => setShowPollCreator(true)}
+                className="rounded-xl bg-gradient-primary px-4 py-2 text-sm text-white shadow-glow hover:opacity-90 transition"
               >
-                View poll in discussion ↓
+                Create Poll
               </button>
             )}
           </div>
         )}
 
-        {/* REPLY BOX */}
-        <ReplyBox
-          postId={thread.post.id}
-          parentReplyId={replyTarget?.id ?? null}
-          replyingTo={replyTarget?.author?.username ?? null}
-          onCancel={() => setReplyTarget(null)}
-          onReplyCreated={(newReply: any) => {
-            setThread((prev: any) => ({
-              ...prev,
-              post: {
-                ...prev.post,
-                replies: insertReply(prev.post.replies, newReply),
-              },
-            }));
-            setReplyTarget(null);
-          }}
-        />
+        {/* POLL CREATOR */}
+        {showPollCreator && (
+          <div className="rounded-2xl border border-white/10 bg-bg-surface p-5 shadow-card space-y-4">
 
-        {/* REPLIES */}
-        <div className="space-y-4">
-          {thread.post.replies.map((reply: any) => (
-            <ReplyItem key={reply.id} reply={reply} />
-          ))}
-        </div>
+            <h3 className="text-white font-semibold">Create Poll</h3>
+
+            <input
+              placeholder="Poll question"
+              value={pollQuestion}
+              onChange={(e) => setPollQuestion(e.target.value)}
+              className="w-full rounded-lg bg-bg-card px-3 py-2 text-sm text-white"
+            />
+
+            {pollOptions.map((opt, i) => (
+              <input
+                key={i}
+                placeholder={`Option ${i + 1}`}
+                value={opt}
+                onChange={(e) => updatePollOption(i, e.target.value)}
+                className="w-full rounded-lg bg-bg-card px-3 py-2 text-sm text-white"
+              />
+            ))}
+
+            <button
+              onClick={addPollOption}
+              className="text-xs text-text-muted hover:text-white"
+            >
+              + Add option
+            </button>
+
+            <div className="flex gap-2">
+              <button
+                onClick={handleCreatePoll}
+                className="bg-gradient-primary px-4 py-2 rounded-lg text-white text-sm"
+              >
+                Create Poll
+              </button>
+
+              <button
+                onClick={() => setShowPollCreator(false)}
+                className="text-sm text-text-muted"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* ================= POLL ================= */}
+        {thread.poll && (
+          <PollCard
+            poll={thread.poll}
+            onVote={(updatedPoll) =>
+              setThread((prev) =>
+                prev ? { ...prev, poll: updatedPoll } : prev
+              )
+            }
+          />
+        )}
+
+        {/* ================= MAIN POST ================= */}
+        {thread.post && (
+          <div className="rounded-2xl border border-white/10 bg-bg-card p-6 shadow-card space-y-4">
+
+            <p className="text-[15px] leading-7 text-text-primary">
+              {thread.post.content}
+            </p>
+
+            <div className="flex justify-between text-xs text-text-muted">
+              <span>{thread.post.replyCount} replies</span>
+
+              <button
+                onClick={() => {
+                  if (!thread.post) return;
+                  openReportModal("POST", thread.post.id);
+                }}
+                className="hover:text-red-400 transition"
+              >
+                Report
+              </button>
+            </div>
+
+            <div className="pt-2 border-t border-white/5">
+              <ReplyBox
+                postId={thread.post.id}
+                onReplyCreated={() => loadThread()}
+              />
+            </div>
+
+            {/* REPLIES */}
+            <div className="pt-4 space-y-4">
+              {thread.post.replies.map((r: any) => (
+                <div key={r.id} className="flex gap-3">
+
+                  <div className="w-7 h-7 rounded-full bg-gradient-primary flex items-center justify-center text-xs text-white">
+                    {r.author?.username?.[0]?.toUpperCase() ?? "U"}
+                  </div>
+
+                  <div className="flex-1">
+                    <div className="text-xs text-text-muted">
+                      {r.author?.username ?? "User"} • {formatTime(r.createdAt)}
+                    </div>
+
+                    <div className="text-sm text-text-secondary">
+                      {r.content}
+                    </div>
+
+                    <div className="mt-2 flex gap-2 text-xs">
+                      <button
+                        onClick={() => openReportModal("REPLY", r.id)}
+                        className="text-text-muted hover:text-red-400 transition"
+                      >
+                        Report
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
       </div>
     </div>

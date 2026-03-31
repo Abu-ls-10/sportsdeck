@@ -6,6 +6,7 @@ type Option = {
   id: string;
   text: string;
   votes: number;
+  percentage: number;
 };
 
 type Poll = {
@@ -14,6 +15,7 @@ type Poll = {
   options: Option[];
   isClosed: boolean;
   userVote: string | null;
+  totalVotes: number;
 };
 
 export default function PollCard({
@@ -21,15 +23,13 @@ export default function PollCard({
   onVote,
 }: {
   poll: Poll;
-  onVote: (data: any) => void;
+  onVote: (data: Poll) => void;
 }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const totalVotes = poll.options.reduce((sum, o) => sum + o.votes, 0);
-
   const handleClick = async (optionId: string) => {
-    if (loading || poll.isClosed) return;
+    if (loading || poll.isClosed || poll.userVote) return;
 
     try {
       setLoading(true);
@@ -49,9 +49,7 @@ export default function PollCard({
         throw new Error(data.error || "Vote failed");
       }
 
-      // 🔥 update parent state
       onVote(data);
-
     } catch (err: any) {
       console.error(err);
       setError(err.message || "Vote failed");
@@ -62,7 +60,7 @@ export default function PollCard({
 
   return (
     <div className="rounded-2xl border border-white/6 bg-bg-surface p-5 shadow-card">
-
+      
       {/* QUESTION */}
       <h3 className="text-base font-semibold text-white">
         {poll.question}
@@ -71,17 +69,14 @@ export default function PollCard({
       {/* OPTIONS */}
       <div className="mt-4 space-y-2">
         {poll.options.map((opt) => {
-          const votes = opt.votes;
-          const percent =
-            totalVotes > 0 ? Math.round((votes / totalVotes) * 100) : 0;
-
           const isSelected = poll.userVote === opt.id;
 
           return (
             <button
               key={opt.id}
               onClick={() => handleClick(opt.id)}
-              disabled={poll.isClosed || loading}
+              disabled={poll.isClosed || loading || !!poll.userVote}
+              aria-disabled={poll.isClosed || loading || !!poll.userVote}
               className={`relative w-full overflow-hidden rounded-xl border p-3 text-left text-sm transition ${
                 isSelected
                   ? "border-primary-500/40 bg-primary-500/10"
@@ -91,19 +86,19 @@ export default function PollCard({
               {/* RESULT BAR */}
               <div
                 className="absolute inset-y-0 left-0 bg-primary-500/20 transition-all"
-                style={{ width: `${percent}%` }}
+                style={{ width: `${opt.percentage}%` }}
               />
 
               <div className="relative flex items-center justify-between">
                 <span className="text-white">{opt.text}</span>
 
                 <span className="text-xs text-text-muted">
-                  {percent}%
+                  {opt.percentage}%
                 </span>
               </div>
 
               <div className="relative mt-1 text-[11px] text-text-muted">
-                {votes} votes
+                {opt.votes} votes
               </div>
             </button>
           );
@@ -126,7 +121,7 @@ export default function PollCard({
 
       {/* TOTAL */}
       <div className="mt-3 text-xs text-text-muted">
-        {totalVotes} total votes
+        {poll.totalVotes} total votes
       </div>
     </div>
   );

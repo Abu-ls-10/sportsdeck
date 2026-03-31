@@ -53,19 +53,15 @@ import { logActivity } from "@/lib/activity";
  *
  * Creates a poll attached to a thread.
  *
- * Request body:
- * {
- *   question: string
- *   deadline: string (ISO date)
- * }
- *
  * Rules:
  * - must be authenticated
  * - thread must exist
+ * - thread must not be hidden
  * - thread cannot already have a poll
  * - only thread owner or admin can create poll
+ * - deadline must be valid
+ * - at least 2 non-empty options required
  */
-
 export async function POST(
   request: Request,
   { params }: { params: Promise<{ id: string }> }
@@ -73,7 +69,14 @@ export async function POST(
   try {
     const { id: threadId } = await params
 
-    const user = await getUserFromToken(request)
+    if (!threadId) {
+      return NextResponse.json(
+        { error: "Thread id is required" },
+        { status: 400 }
+      )
+    }
+
+    const user = getUserFromToken(request)
 
     if (!user) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
@@ -84,11 +87,29 @@ export async function POST(
       include: { polls: true },
     })
 
-    if (!thread) {
+    if (!thread || thread.isHidden) {
       return NextResponse.json({ error: "Thread not found" }, { status: 404 })
     }
 
-    // only 1 poll allowed
+    if (thread.isLocked) {
+      return NextResponse.json(
+        { error: "Thread is locked" },
+        { status: 403 }
+      )
+    }
+
+    const now = new Date()
+    if (thread.opensAt && now < thread.opensAt) {
+      return NextResponse.json(
+        { error: "Thread has not opened yet" },
+        { status: 403 }
+      )
+    }
+
+    if (thread.authorId !== user.id && user.role !== "ADMIN") {
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 })
+    }
+
     if (thread.polls.length > 0) {
       return NextResponse.json(
         { error: "Thread already has a poll" },
@@ -96,25 +117,41 @@ export async function POST(
       )
     }
 
-    // only owner/admin
-    if (thread.authorId !== user.id && user.role !== "ADMIN") {
-      return NextResponse.json({ error: "Forbidden" }, { status: 403 })
-    }
-
     const body = await request.json().catch(() => null)
-
     const { question, deadline, options, replyId } = body || {}
 
-    if (!question || !deadline || !options || options.length < 2) {
+    const trimmedQuestion =
+      typeof question === "string" ? question.trim() : ""
+
+    const normalizedOptions = Array.isArray(options)
+      ? options
+          .filter((opt): opt is string => typeof opt === "string")
+          .map((opt) => opt.trim())
+          .filter((opt) => opt.length > 0)
+      : []
+
+    if (!trimmedQuestion || !deadline || normalizedOptions.length < 2) {
       return NextResponse.json(
         { error: "Question, deadline, and at least 2 options are required" },
         { status: 400 }
       )
     }
 
-    // =========================
-    // VALIDATE REPLY (optional)
-    // =========================
+    const parsedDeadline = new Date(deadline)
+    if (Number.isNaN(parsedDeadline.getTime())) {
+      return NextResponse.json(
+        { error: "Invalid deadline" },
+        { status: 400 }
+      )
+    }
+
+    if (parsedDeadline <= now) {
+      return NextResponse.json(
+        { error: "Deadline must be in the future" },
+        { status: 400 }
+      )
+    }
+
     if (replyId) {
       const reply = await prisma.reply.findUnique({
         where: { id: replyId },
@@ -142,18 +179,15 @@ export async function POST(
       }
     }
 
-    // =========================
-    // CREATE POLL + OPTIONS
-    // =========================
     const poll = await prisma.poll.create({
       data: {
         threadId: thread.id,
-        question,
-        deadline: new Date(deadline),
+        question: trimmedQuestion,
+        deadline: parsedDeadline,
         isClosed: false,
         replyId: replyId ?? null,
         options: {
-          create: options.map((text: string) => ({
+          create: normalizedOptions.map((text) => ({
             optionText: text,
           })),
         },
@@ -170,10 +204,25 @@ export async function POST(
       entityId: poll.id,
     })
 
-    return NextResponse.json(poll, { status: 201 })
+    const normalizedPoll = {
+      id: poll.id,
+      question: poll.question,
+      deadline: poll.deadline,
+      isClosed: poll.isClosed,
+      replyId: poll.replyId ?? null,
+      totalVotes: 0,
+      options: poll.options.map((option) => ({
+        id: option.id,
+        text: option.optionText,
+        votes: 0,
+        percentage: 0,
+      })),
+      userVote: null,
+    }
 
+    return NextResponse.json(normalizedPoll, { status: 201 })
   } catch (error) {
-    console.error(error)
+    console.error("POST /api/threads/:id/poll error:", error)
 
     return NextResponse.json(
       { error: "Internal server error" },
