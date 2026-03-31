@@ -1,7 +1,12 @@
 import {
+  STANDINGS_TTL_SECONDS,
+  standingsCacheKey,
+} from "@/lib/cache/warmCache";
+import {
   loadStandingsPayload,
   type StandingsType,
 } from "@/lib/data/standingsPayload";
+import { getOrSetJSON } from "@/lib/redis";
 import { NextResponse } from "next/server";
 
 /**
@@ -69,11 +74,14 @@ export async function GET(req: Request) {
     return NextResponse.json({ message: "Invalid season" }, { status: 400 });
   }
 
-  const payload = await loadStandingsPayload({
-    apiKey,
-    season,
-    type,
-  });
+  const key = standingsCacheKey(season, type);
+  const payload = await getOrSetJSON(key, STANDINGS_TTL_SECONDS, () =>
+    loadStandingsPayload({
+      apiKey,
+      season,
+      type,
+    })
+  );
 
   return NextResponse.json(payload, { status: 200 });
 }

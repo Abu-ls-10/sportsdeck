@@ -1,4 +1,11 @@
+import {
+  MATCHES_TTL_SECONDS,
+  matchesCacheKeyDateRange,
+  matchesCacheKeyLimit,
+  matchesCacheKeyMatchday,
+} from "@/lib/cache/warmCache";
 import { loadMatchesPayload } from "@/lib/data/matchesPayload";
+import { getOrSetJSON } from "@/lib/redis";
 import { NextResponse } from "next/server";
 
 /**
@@ -83,8 +90,6 @@ export async function GET(req: Request) {
     }
   }
 
-  let payload;
-
   if (hasMatchday) {
     const md = parseInt(matchday!, 10);
     if (!Number.isFinite(md)) {
@@ -93,22 +98,34 @@ export async function GET(req: Request) {
         { status: 400 }
       );
     }
-    payload = await loadMatchesPayload({ apiKey, matchday: md });
-  } else if (hasDateRange) {
-    payload = await loadMatchesPayload({
-      apiKey,
-      dateFrom: dateFrom!,
-      dateTo: dateTo!,
-    });
-  } else {
-    if (!Number.isFinite(limit)) {
-      return NextResponse.json(
-        { message: "Invalid limit" },
-        { status: 400 }
-      );
-    }
-    payload = await loadMatchesPayload({ apiKey, limit: limit! });
+    const key = matchesCacheKeyMatchday(md);
+    const payload = await getOrSetJSON(key, MATCHES_TTL_SECONDS, () =>
+      loadMatchesPayload({ apiKey, matchday: md })
+    );
+    return NextResponse.json(payload, { status: 200 });
   }
 
+  if (hasDateRange) {
+    const key = matchesCacheKeyDateRange(dateFrom!, dateTo!);
+    const payload = await getOrSetJSON(key, MATCHES_TTL_SECONDS, () =>
+      loadMatchesPayload({
+        apiKey,
+        dateFrom: dateFrom!,
+        dateTo: dateTo!,
+      })
+    );
+    return NextResponse.json(payload, { status: 200 });
+  }
+
+  if (!Number.isFinite(limit)) {
+    return NextResponse.json(
+      { message: "Invalid limit" },
+      { status: 400 }
+    );
+  }
+  const key = matchesCacheKeyLimit(limit!);
+  const payload = await getOrSetJSON(key, MATCHES_TTL_SECONDS, () =>
+    loadMatchesPayload({ apiKey, limit: limit! })
+  );
   return NextResponse.json(payload, { status: 200 });
 }

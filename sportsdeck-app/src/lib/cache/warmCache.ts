@@ -4,7 +4,7 @@ import {
   type StandingsType,
 } from "@/lib/data/standingsPayload";
 import { prisma } from "@/lib/prisma";
-import { setJson } from "@/lib/redis";
+import { setJson, tryAcquireLock } from "@/lib/redis";
 
 const globalForWarmer = globalThis as unknown as {
   sportsdeckCacheWarmerStarted?: boolean;
@@ -19,6 +19,13 @@ export function matchesCacheKeyMatchday(matchday: number): string {
   return `matches:md:${matchday}`;
 }
 
+export function matchesCacheKeyDateRange(
+  dateFrom: string,
+  dateTo: string
+): string {
+  return `matches:dr:${dateFrom}:${dateTo}`;
+}
+
 /** Align with GET /api/standings Redis keys once wired. */
 export function standingsCacheKey(season: string, type: StandingsType): string {
   return `standings:${season}:${type}`;
@@ -28,8 +35,14 @@ const HOME_MATCH_LIMIT = 6;
 const MATCHES_INTERVAL_MS = 90_000;
 const STANDINGS_INTERVAL_MS = 600_000;
 /** TTL > refresh interval so a missed tick does not leave a gap. */
-const MATCHES_TTL_SECONDS = 120;
-const STANDINGS_TTL_SECONDS = 900;
+export const MATCHES_TTL_SECONDS = 120;
+export const STANDINGS_TTL_SECONDS = 900;
+
+/** Slightly longer than tick interval so only one replica runs Football-Data fetches per window. */
+const MATCHES_LOCK_TTL_SECONDS = 95;
+const STANDINGS_LOCK_TTL_SECONDS = 620;
+const LOCK_MATCHES = "cachewarmer:matches";
+const LOCK_STANDINGS = "cachewarmer:standings";
 
 const STANDINGS_TYPES: StandingsType[] = ["TOTAL", "HOME", "AWAY"];
 
@@ -93,6 +106,8 @@ export function startCacheWarmer(): void {
 
   const tickMatches = async () => {
     try {
+      const got = await tryAcquireLock(LOCK_MATCHES, MATCHES_LOCK_TTL_SECONDS);
+      if (!got) return;
       await warmMatchesKeys(apiKey);
     } catch (e) {
       console.error("[cache-warmer] matches tick failed:", e);
@@ -101,6 +116,8 @@ export function startCacheWarmer(): void {
 
   const tickStandings = async () => {
     try {
+      const got = await tryAcquireLock(LOCK_STANDINGS, STANDINGS_LOCK_TTL_SECONDS);
+      if (!got) return;
       await warmStandingsKeys(apiKey);
     } catch (e) {
       console.error("[cache-warmer] standings tick failed:", e);
