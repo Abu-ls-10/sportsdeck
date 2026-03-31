@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 
 import {
@@ -22,6 +22,14 @@ export default function ThreadPage() {
   const [thread, setThread] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  const handleBack = useCallback(() => {
+    if (window.history.length > 1) {
+      router.back();
+      return;
+    }
+    router.push("/community");
+  }, [router]);
 
   // =========================
   // FETCH
@@ -101,7 +109,7 @@ export default function ThreadPage() {
 
         {/* BACK */}
         <button
-          onClick={() => router.back()}
+          onClick={handleBack}
           className="flex items-center gap-2 text-sm text-text-muted hover:text-white transition"
         >
           <ArrowLeft className="w-4 h-4" />

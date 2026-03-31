@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useRef } from "react";
+import { showNotice } from "@/lib/clientNotice";
+import { getApiErrorMessage, isBannedActionError } from "@/lib/apiError";
 
 type Props = {
   threadId: string;
@@ -52,7 +54,12 @@ export default function PostComposer({
       const data = await res.json().catch(() => ({}));
 
       if (!res.ok) {
-        throw new Error(data.error || "Failed to create post");
+        if (isBannedActionError(res.status, data)) {
+          throw new Error(
+            "Your account is currently banned, so posting is disabled. If you think this is a mistake, submit an appeal from My Appeals."
+          );
+        }
+        throw new Error(getApiErrorMessage(data, "Failed to create post"));
       }
 
       // optimistic update
@@ -66,9 +73,15 @@ export default function PostComposer({
         textareaRef.current.style.height = "auto";
       }
 
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error(err);
-      setError(err.message || "Something went wrong");
+      const message = err instanceof Error ? err.message : "Something went wrong";
+      setError(message);
+      showNotice({
+        tone: "warning",
+        title: "Unable to create post",
+        message,
+      });
     } finally {
       setLoading(false);
     }

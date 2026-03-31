@@ -12,6 +12,12 @@ import PollCard from "@/components/threads/PollCard";
 
 type TranslationMap = Record<string, string>;
 type ReplyMessageMap = Record<string, string>;
+type NoticeTone = "info" | "success" | "warning" | "error";
+
+type NoticeState = {
+  message: string;
+  tone: NoticeTone;
+};
 
 type ReportModalState = {
   contentType: "THREAD" | "POST" | "REPLY";
@@ -28,13 +34,21 @@ export default function ThreadPage() {
   const [thread, setThread] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [notice, setNotice] = useState<string | null>(null);
+  const [notice, setNotice] = useState<NoticeState | null>(null);
   const [reportingKey, setReportingKey] = useState<string | null>(null);
   const [translatingKey, setTranslatingKey] = useState<string | null>(null);
   const [translations, setTranslations] = useState<TranslationMap>({});
   const [replyMessages, setReplyMessages] = useState<ReplyMessageMap>({});
   const [reportModal, setReportModal] = useState<ReportModalState>(null);
   const [reportReason, setReportReason] = useState("");
+
+  const handleBack = useCallback(() => {
+    if (window.history.length > 1) {
+      router.back();
+      return;
+    }
+    router.push("/threads");
+  }, [router]);
 
   const loadThread = useCallback(async () => {
     if (!threadId) return;
@@ -75,7 +89,7 @@ export default function ThreadPage() {
   const openReportModal = useCallback(
     (contentType: "THREAD" | "POST" | "REPLY", contentId: string) => {
       if (!accessToken) {
-        setNotice("Log in to submit reports.");
+        setNotice({ message: "Log in to submit reports.", tone: "info" });
         return;
       }
       setReportModal({ contentType, contentId });
@@ -110,21 +124,21 @@ export default function ThreadPage() {
         const errorMessage = responseData?.message ?? "Failed to submit report";
         
         if (res.status === 400 && errorMessage.includes("cannot report your own content")) {
-          setNotice("You cannot report your own content.");
+          setNotice({ message: "You cannot report your own content.", tone: "warning" });
           setReportModal(null);
           setReportReason("");
           return;
         }
 
         if (res.status === 409 && errorMessage.includes("already reported")) {
-          setNotice("You have already reported this content.");
+          setNotice({ message: "You have already reported this content.", tone: "warning" });
           setReportModal(null);
           setReportReason("");
           return;
         }
 
         if (res.status === 429) {
-          setNotice(errorMessage);
+          setNotice({ message: errorMessage, tone: "warning" });
           setReportModal(null);
           setReportReason("");
           return;
@@ -133,12 +147,15 @@ export default function ThreadPage() {
         throw new Error(errorMessage);
       }
 
-      setNotice("Report submitted successfully.");
+      setNotice({ message: "Report submitted successfully.", tone: "success" });
       setReportModal(null);
       setReportReason("");
     } catch (err) {
       console.error("[report] error:", err);
-      setNotice(err instanceof Error ? err.message : "Failed to submit report");
+      setNotice({
+        message: err instanceof Error ? err.message : "Failed to submit report",
+        tone: "error",
+      });
       setReportModal(null);
       setReportReason("");
     } finally {
@@ -239,8 +256,18 @@ export default function ThreadPage() {
     <div className="px-4 py-6 md:px-6 lg:px-8">
       <div className="max-w-[900px] mx-auto space-y-6">
         {notice && (
-          <div className="rounded-xl border border-border-subtle bg-bg-card px-4 py-3 text-sm text-text-primary">
-            {notice}
+          <div
+            className={`rounded-xl px-4 py-3 text-sm ${
+              notice.tone === "success"
+                ? "border border-emerald-500/40 bg-emerald-500/10 text-emerald-100"
+                : notice.tone === "warning"
+                ? "border border-amber-500/40 bg-amber-500/10 text-amber-100"
+                : notice.tone === "error"
+                ? "border border-rose-500/40 bg-rose-500/10 text-rose-100"
+                : "border border-border-subtle bg-bg-card text-text-primary"
+            }`}
+          >
+            {notice.message}
           </div>
         )}
 
@@ -282,7 +309,7 @@ export default function ThreadPage() {
         )}
 
         <button
-          onClick={() => router.back()}
+          onClick={handleBack}
           className="flex items-center gap-2 text-sm text-text-muted hover:text-white transition"
         >
           <ArrowLeft className="w-4 h-4" />

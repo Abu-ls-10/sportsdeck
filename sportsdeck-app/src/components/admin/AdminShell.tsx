@@ -1,11 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import type { ReactNode } from "react";
 import { useAuth } from "@/contexts/AuthContext";
-import { ShieldCheck, Flag, Gavel, MessageSquareWarning, ChevronRight, ShieldOff, LogIn } from "lucide-react";
+import { ShieldOff, LogIn } from "lucide-react";
+import AppSidebar from "@/components/layout/AppSidebar";
+import MobileTopbar from "@/components/layout/MobileTopbar";
 
 type AdminShellProps = {
   title: string;
@@ -13,29 +15,18 @@ type AdminShellProps = {
   children: ReactNode;
 };
 
-type NavItem = {
-  label: string;
-  href: string;
-  icon: ReactNode;
-};
-
-const navItems: NavItem[] = [
-  { label: "Reports Queue", href: "/admin/reports", icon: <Flag className="w-4 h-4" /> },
-  { label: "Appeals", href: "/admin/appeals", icon: <MessageSquareWarning className="w-4 h-4" /> },
-  { label: "Bans", href: "/admin/bans", icon: <Gavel className="w-4 h-4" /> },
-];
-
 export default function AdminShell({ title, subtitle, children }: AdminShellProps) {
-  const pathname = usePathname();
   const router = useRouter();
   const { user, isLoading } = useAuth();
+  const [collapsed, setCollapsed] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
     if (isLoading) return;
     if (!user) {
-      router.replace(`/login?next=${encodeURIComponent(pathname)}`);
+      router.replace("/login");
     }
-  }, [isLoading, user, router, pathname]);
+  }, [isLoading, user, router]);
 
   if (isLoading) {
     return (
@@ -60,7 +51,7 @@ export default function AdminShell({ title, subtitle, children }: AdminShellProp
             You need to be signed in to access the Admin Console. Please log in with an administrator account.
           </p>
           <Link
-            href={`/login?next=${encodeURIComponent(pathname)}`}
+            href="/login"
             className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-primary-500 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-primary-400"
           >
             <LogIn className="h-4 w-4" />
@@ -102,74 +93,31 @@ export default function AdminShell({ title, subtitle, children }: AdminShellProp
 
   return (
     <div className="min-h-screen bg-bg-main text-text-primary">
-      {/* Top glow accent */}
-      <div className="pointer-events-none fixed inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary-500/50 to-transparent" />
+      <MobileTopbar onOpenSidebar={() => setMobileOpen(true)} />
+      <AppSidebar
+        collapsed={collapsed}
+        setCollapsed={setCollapsed}
+        mobileOpen={mobileOpen}
+        setMobileOpen={setMobileOpen}
+      />
 
-      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 px-4 py-6 md:grid-cols-[240px_1fr]">
-        {/* ── Sidebar ── */}
-        <aside className="h-fit rounded-2xl border border-border bg-bg-surface p-4 shadow-card">
-          {/* Logo */}
-          <div className="mb-6 flex items-center gap-2.5">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-primary shadow-glow">
-              <ShieldCheck className="w-4 h-4 text-white" />
-            </div>
-            <div>
-              <p className="text-sm font-bold text-text-primary">SportsDeck</p>
-              <p className="text-[10px] text-text-muted uppercase tracking-widest">Admin Console</p>
-            </div>
-          </div>
-
-          {/* Nav */}
-          <nav className="space-y-1">
-            {navItems.map((item) => {
-              const active = pathname === item.href || pathname.startsWith(`${item.href}/`);
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={
-                    active
-                      ? "flex items-center gap-2.5 rounded-xl border border-primary-500/30 bg-primary-500/10 px-3 py-2.5 text-sm font-semibold text-primary-300"
-                      : "flex items-center gap-2.5 rounded-xl border border-transparent px-3 py-2.5 text-sm text-text-secondary hover:border-border hover:bg-bg-elevated hover:text-text-primary transition"
-                  }
-                >
-                  <span className={active ? "text-primary-400" : "text-text-muted"}>{item.icon}</span>
-                  {item.label}
-                  {active && <ChevronRight className="ml-auto w-3.5 h-3.5 text-primary-400" />}
-                </Link>
-              );
-            })}
-          </nav>
-
-          {/* User info */}
-          <div className="mt-8 border-t border-border pt-4">
-            <div className="flex items-center gap-2.5">
-              <div className="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-primary text-[10px] font-bold text-white">
-                {(user.username ?? "A").slice(0, 1).toUpperCase()}
-              </div>
+      <div className={`transition-all duration-300 pt-14 md:pt-0 ${collapsed ? "md:ml-[80px]" : "md:ml-[260px]"}`}>
+        <main className="px-4 md:px-6 py-6">
+          <div className="mx-auto max-w-7xl">
+            <header className="mb-6 flex flex-wrap items-end justify-between gap-4">
               <div>
-                <p className="text-xs font-semibold text-text-primary">{user.username ?? "Admin"}</p>
-                <p className="text-[10px] text-text-muted">Administrator</p>
+                <h1 className="text-2xl font-bold text-text-primary">{title}</h1>
+                {subtitle ? <p className="mt-1 text-sm text-text-secondary">{subtitle}</p> : null}
               </div>
-            </div>
+              <Link
+                href="/"
+                className="rounded-xl border border-border bg-bg-surface px-4 py-2 text-sm text-text-secondary hover:border-border-strong hover:bg-bg-elevated hover:text-text-primary transition"
+              >
+                ← Back to app
+              </Link>
+            </header>
+            {children}
           </div>
-        </aside>
-
-        {/* ── Main ── */}
-        <main>
-          <header className="mb-6 flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <h1 className="text-2xl font-bold text-text-primary">{title}</h1>
-              {subtitle ? <p className="mt-1 text-sm text-text-secondary">{subtitle}</p> : null}
-            </div>
-            <Link
-              href="/"
-              className="rounded-xl border border-border bg-bg-surface px-4 py-2 text-sm text-text-secondary hover:border-border-strong hover:bg-bg-elevated hover:text-text-primary transition"
-            >
-              ← Back to app
-            </Link>
-          </header>
-          {children}
         </main>
       </div>
     </div>
