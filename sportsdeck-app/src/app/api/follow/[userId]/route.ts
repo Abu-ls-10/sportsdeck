@@ -132,7 +132,10 @@ async function postHandler(
       type: "follow_created",
       entityType: "user",
       entityId: targetUserId,
-    });
+    })
+
+    await invalidateUserProfileCache(targetUserId)
+    await invalidateUserProfileCache(currentUser.id)
 
     return NextResponse.json({ success: true }, { status: 201 })
 

@@ -3,6 +3,11 @@ import {Prisma} from '@/generated/prisma';
 import { hashPassword, generateAccessToken, generateRefreshToken} from '@/lib/auth';
 import { NextResponse } from 'next/server';
 import { generateUniqueUsername } from "@/lib/username";
+import {
+  rateLimitByIp,
+  RL_SIGNUP_MAX,
+  RL_SIGNUP_WINDOW_SEC,
+} from "@/lib/rateLimitHttp";
 
 /**
  * @openapi
@@ -35,6 +40,15 @@ import { generateUniqueUsername } from "@/lib/username";
  *         description: Internal server error
  */
 export async function POST(req: Request){
+
+    const limited = await rateLimitByIp(
+      req,
+      "signup",
+      RL_SIGNUP_MAX,
+      RL_SIGNUP_WINDOW_SEC,
+      { message: "Too many signup attempts. Try again later." }
+    );
+    if (limited) return limited;
 
     // Get usernames, emails, password. 
     const body = await req.json();

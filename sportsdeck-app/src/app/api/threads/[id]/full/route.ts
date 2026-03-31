@@ -2,10 +2,20 @@ import {
   THREAD_FULL_TTL_SECONDS,
   threadFullCacheKey,
 } from "@/lib/cache/apiCacheKeys"
-import { getUserFromToken } from "@/lib/auth"
 import { prisma } from "@/lib/prisma"
-import { getJson, setJson } from "@/lib/redis"
+import { getOptionalViewerIdFromRequest } from "@/lib/requestAuth"
+import { getOrSetJSON } from "@/lib/redis"
 import { NextResponse } from "next/server"
+
+class ThreadFullRouteError extends Error {
+  constructor(
+    public readonly status: number,
+    public readonly jsonBody: Record<string, unknown>
+  ) {
+    super(`ThreadFullRouteError:${status}`)
+    this.name = "ThreadFullRouteError"
+  }
+}
 
 /**
  * @openapi
@@ -116,15 +126,14 @@ export async function GET(
     // =========================
     // OPTIONAL USER
     // =========================
-    const user = getUserFromToken(request)
-    const userId = user?.id ?? null
+    const userId = getOptionalViewerIdFromRequest(request)
 
     const cacheKey = threadFullCacheKey(threadId, userId)
-    const cached = await getJson<Record<string, unknown>>(cacheKey)
-    if (cached) {
-      return NextResponse.json(cached, { status: 200 })
-    }
 
+    try {
+      const responseBody = await getOrSetJSON<
+        Record<string, unknown>
+      >(cacheKey, THREAD_FULL_TTL_SECONDS, async () => {
     // =========================
     // FETCH THREAD
     // =========================
@@ -190,10 +199,7 @@ export async function GET(
     })
 
     if (!thread || thread.isHidden) {
-      return NextResponse.json(
-        { error: "Thread not found" },
-        { status: 404 }
-      )
+      throw new ThreadFullRouteError(404, { error: "Thread not found" })
     }
 
     // =========================
@@ -202,10 +208,9 @@ export async function GET(
     const now = new Date()
 
     if (thread.opensAt && now < thread.opensAt) {
-      return NextResponse.json(
-        { error: "Thread not opened yet" },
-        { status: 403 }
-      )
+      throw new ThreadFullRouteError(403, {
+        error: "Thread not opened yet",
+      })
     }
 
     const mainPost = thread.posts?.[0] ?? null
@@ -298,34 +303,40 @@ export async function GET(
     // =========================
     // RESPONSE
     // =========================
-    const responseBody = {
-      id: thread.id,
-      title: thread.title,
-      createdAt: thread.createdAt,
+        return {
+          id: thread.id,
+          title: thread.title,
+          createdAt: thread.createdAt,
 
-      isLocked: thread.isLocked,
-      isHidden: thread.isHidden,
+          isLocked: thread.isLocked,
+          isHidden: thread.isHidden,
 
-      author: thread.author,
+          author: thread.author,
 
-      tags: thread.tags.map((t) => t.tag),
+          tags: thread.tags.map((t) => t.tag),
 
-      post: mainPost
-        ? {
-            id: mainPost.id,
-            content: mainPost.content,
-            createdAt: mainPost.createdAt,
-            author: mainPost.author,
-            replyCount: nestedReplies.length,
-            replies: nestedReplies,
-          }
-        : null,
+          post: mainPost
+            ? {
+                id: mainPost.id,
+                content: mainPost.content,
+                createdAt: mainPost.createdAt,
+                author: mainPost.author,
+                replyCount: nestedReplies.length,
+                replies: nestedReplies,
+              }
+            : null,
 
-      poll: normalizedPoll,
+          poll: normalizedPoll,
+        }
+      })
+
+      return NextResponse.json(responseBody, { status: 200 })
+    } catch (e) {
+      if (e instanceof ThreadFullRouteError) {
+        return NextResponse.json(e.jsonBody, { status: e.status })
+      }
+      throw e
     }
-
-    await setJson(cacheKey, responseBody, THREAD_FULL_TTL_SECONDS)
-    return NextResponse.json(responseBody, { status: 200 })
   } catch (error) {
     console.error({
       route: "GET /api/threads/:id/full",
