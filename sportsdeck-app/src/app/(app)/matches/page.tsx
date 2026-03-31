@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import { headers } from "next/headers";
+import { prisma } from "@/lib/prisma";
 
 type Team = {
   id: string;
@@ -28,20 +29,182 @@ let cachedCurrentMatchday: number | null = null;
 let cachedCurrentMatchdayAt = 0;
 let currentMatchdayInFlight: Promise<number> | null = null;
 
+/** When football-data.org is unreachable (e.g. connect timeout), use seeded DB matches. */
+async function getCurrentMatchdayFromDatabase(): Promise<number> {
+  const agg = await prisma.match.aggregate({ _max: { matchday: true } });
+  const md = agg._max.matchday;
+  if (md != null && !Number.isNaN(md) && md >= 1) {
+    // #region agent log
+    fetch("http://127.0.0.1:7566/ingest/e4f4ce26-3bb7-4649-9c07-27dc446e55e9", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Debug-Session-Id": "d1b01d",
+      },
+      body: JSON.stringify({
+        sessionId: "d1b01d",
+        location: "matches/page.tsx:getCurrentMatchdayFromDatabase",
+        message: "db aggregate matchday",
+        data: { matchday: md },
+        timestamp: Date.now(),
+        hypothesisId: "FIX",
+        runId: "post-fix",
+      }),
+    }).catch(() => {});
+    // #endregion
+    return md;
+  }
+  throw new Error(
+    "Could not determine current matchday: football-data.org unavailable and no matches in the database."
+  );
+}
+
 async function get_Matchday(): Promise<number> {
   const apiKey = process.env.X_AUTH_TOKEN;
+  // #region agent log
+  fetch("http://127.0.0.1:7566/ingest/e4f4ce26-3bb7-4649-9c07-27dc446e55e9", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-Debug-Session-Id": "d1b01d",
+    },
+    body: JSON.stringify({
+      sessionId: "d1b01d",
+      location: "matches/page.tsx:get_Matchday:entry",
+      message: "get_Matchday start",
+      data: { hasApiKey: Boolean(apiKey) },
+      timestamp: Date.now(),
+      hypothesisId: "H5",
+      runId: "pre",
+    }),
+  }).catch(() => {});
+  // #endregion
   if (!apiKey) {
     throw new Error("Missing X_AUTH_TOKEN environment variable");
   }
 
-  const response = await fetch("https://api.football-data.org/v4/competitions/PL", {
+  // #region agent log
+  let dnsData: Record<string, unknown> = {};
+  try {
+    const dns = await import("dns/promises");
+    const r = await dns.lookup("api.football-data.org");
+    dnsData = { address: r.address, family: r.family };
+  } catch (dnsErr) {
+    dnsData = {
+      dnsError: dnsErr instanceof Error ? dnsErr.message : String(dnsErr),
+    };
+  }
+  fetch("http://127.0.0.1:7566/ingest/e4f4ce26-3bb7-4649-9c07-27dc446e55e9", {
+    method: "POST",
     headers: {
-      "X-Auth-Token": apiKey,
+      "Content-Type": "application/json",
+      "X-Debug-Session-Id": "d1b01d",
     },
-  });
+    body: JSON.stringify({
+      sessionId: "d1b01d",
+      location: "matches/page.tsx:get_Matchday:dns",
+      message: "dns lookup api.football-data.org",
+      data: dnsData,
+      timestamp: Date.now(),
+      hypothesisId: "H2",
+      runId: "pre",
+    }),
+  }).catch(() => {});
+  // #endregion
+
+  const t0 = Date.now();
+  let response: Response;
+  try {
+    response = await fetch("https://api.football-data.org/v4/competitions/PL", {
+      headers: {
+        "X-Auth-Token": apiKey,
+      },
+    });
+  } catch (err) {
+    // #region agent log
+    const e = err as Error & { cause?: { code?: string; name?: string } };
+    fetch("http://127.0.0.1:7566/ingest/e4f4ce26-3bb7-4649-9c07-27dc446e55e9", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Debug-Session-Id": "d1b01d",
+      },
+      body: JSON.stringify({
+        sessionId: "d1b01d",
+        location: "matches/page.tsx:get_Matchday:fetchErr",
+        message: "football-data fetch threw",
+        data: {
+          name: e?.name,
+          msg: e?.message,
+          causeCode: e?.cause?.code,
+          causeName: e?.cause?.name,
+          elapsedMs: Date.now() - t0,
+        },
+        timestamp: Date.now(),
+        hypothesisId: "H1",
+        runId: "pre",
+      }),
+    }).catch(() => {});
+    // #endregion
+    // #region agent log
+    fetch("http://127.0.0.1:7566/ingest/e4f4ce26-3bb7-4649-9c07-27dc446e55e9", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Debug-Session-Id": "d1b01d",
+      },
+      body: JSON.stringify({
+        sessionId: "d1b01d",
+        location: "matches/page.tsx:get_Matchday:fallback",
+        message: "using DB matchday after fetch error",
+        data: { reason: "fetch_throw" },
+        timestamp: Date.now(),
+        hypothesisId: "FIX",
+        runId: "post-fix",
+      }),
+    }).catch(() => {});
+    // #endregion
+    return getCurrentMatchdayFromDatabase();
+  }
+  // #region agent log
+  fetch("http://127.0.0.1:7566/ingest/e4f4ce26-3bb7-4649-9c07-27dc446e55e9", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-Debug-Session-Id": "d1b01d",
+    },
+    body: JSON.stringify({
+      sessionId: "d1b01d",
+      location: "matches/page.tsx:get_Matchday:fetchOk",
+      message: "football-data fetch got response",
+      data: { ok: response.ok, status: response.status, elapsedMs: Date.now() - t0 },
+      timestamp: Date.now(),
+      hypothesisId: "H3",
+      runId: "pre",
+    }),
+  }).catch(() => {});
+  // #endregion
 
   if (!response.ok) {
-    throw new Error(`football-data.org returned ${response.status}`);
+    // #region agent log
+    fetch("http://127.0.0.1:7566/ingest/e4f4ce26-3bb7-4649-9c07-27dc446e55e9", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Debug-Session-Id": "d1b01d",
+      },
+      body: JSON.stringify({
+        sessionId: "d1b01d",
+        location: "matches/page.tsx:get_Matchday:fallback",
+        message: "using DB matchday after non-OK response",
+        data: { reason: "http_status", status: response.status },
+        timestamp: Date.now(),
+        hypothesisId: "FIX",
+        runId: "post-fix",
+      }),
+    }).catch(() => {});
+    // #endregion
+    return getCurrentMatchdayFromDatabase();
   }
 
   const competition = (await response.json()) as {
@@ -50,7 +213,25 @@ async function get_Matchday(): Promise<number> {
 
   const currentMatchday = competition.currentSeason?.currentMatchday;
   if (!currentMatchday || Number.isNaN(currentMatchday)) {
-    throw new Error("Could not determine current matchday from football-data.org");
+    // #region agent log
+    fetch("http://127.0.0.1:7566/ingest/e4f4ce26-3bb7-4649-9c07-27dc446e55e9", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Debug-Session-Id": "d1b01d",
+      },
+      body: JSON.stringify({
+        sessionId: "d1b01d",
+        location: "matches/page.tsx:get_Matchday:fallback",
+        message: "using DB matchday after missing currentMatchday in payload",
+        data: { reason: "parse" },
+        timestamp: Date.now(),
+        hypothesisId: "FIX",
+        runId: "post-fix",
+      }),
+    }).catch(() => {});
+    // #endregion
+    return getCurrentMatchdayFromDatabase();
   }
 
   return currentMatchday;

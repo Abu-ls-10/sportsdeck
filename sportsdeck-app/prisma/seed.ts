@@ -8,6 +8,8 @@ import seedPosts from "./seeds/posts"
 import seedPolls from "./seeds/polls"
 import seedFollows from "./seeds/follows"
 import seedActivities from "./seeds/activity"
+import seedFeedEvents from "./seeds/feedEvents"
+import seedFeedEntries from "./seeds/feedEntries"
 import seedVotes from "./seeds/votes"
 
 const prisma = new PrismaClient({
@@ -84,6 +86,12 @@ async function main() {
 
   console.log("[seed] activities…")
   await seedActivities(prisma)
+
+  console.log("[seed] feed events…")
+  await seedFeedEvents(prisma)
+
+  console.log("[seed] feed entries…")
+  await seedFeedEntries(prisma)
 
   console.log("Seeding complete.")
 }
