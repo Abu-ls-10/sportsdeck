@@ -400,7 +400,7 @@ model FeedEvent {
   id             String   @id @default(cuid())
   actorId        String
   eventType      String
-  groupKey       String
+  groupKey       String?
   entityType     String
   entityId       String
   aggregateCount Int      @default(1)
@@ -420,4 +420,6 @@ model FeedEntry {
 
   user      User      @relation(fields: [userId],      references: [id])
   feedEvent FeedEvent @relation(fields: [feedEventId], references: [id])
+
+  @@unique([userId, feedEventId])
 }

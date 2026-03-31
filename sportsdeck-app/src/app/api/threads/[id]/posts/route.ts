@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
 import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
+import { logActivity } from "@/lib/activity"
 
 /**
  * @openapi
@@ -183,51 +184,15 @@ async function postHandler(
         }
       })
 
-      const feedEvent = await tx.feedEvent.create({
-        data: {
-          actorId: user.id,
-          eventType: "post_created",
-          entityType: "post",
-          entityId: post.id,
-          groupKey: `thread-${thread.id}-posts`
-        }
-      })
-
-      const followers = await tx.follow.findMany({
-        where: { followingId: user.id },
-        select: { followerId: true }
-      })
-
-      const participants = await tx.post.findMany({
-        where: { threadId: thread.id },
-        select: { authorId: true },
-        distinct: ["authorId"]
-      })
-
-      const recipientSet = new Set<string>()
-
-      recipientSet.add(user.id)
-
-      for (const f of followers) {
-        recipientSet.add(f.followerId)
-      }
-
-      for (const p of participants) {
-        recipientSet.add(p.authorId)
-      }
-
-      const recipientIds = Array.from(recipientSet)
-
-      await tx.feedEntry.createMany({
-        data: recipientIds.map((uid) => ({
-          userId: uid,
-          feedEventId: feedEvent.id,
-          isRead: uid === user.id
-        }))
-      })
-
       return post
     })
+
+    await logActivity({
+      actorId: user.id,
+      type: "post_created",
+      entityType: "post",
+      entityId: result.id,
+    });
 
     return NextResponse.json(result, { status: 201 })
 

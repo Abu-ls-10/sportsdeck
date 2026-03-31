@@ -6,12 +6,6 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className="bg-bg-main text-text-primary">
-        <AuthProvider>
-          {children}
-        </AuthProvider>
-      </body>
-    </html>
+    <AuthProvider>{children}</AuthProvider>
   );
 }

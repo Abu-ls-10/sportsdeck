@@ -1,58 +1,64 @@
 "use client";
 
-import { Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
+import { Moon, Sun } from "lucide-react";
 
-const STORAGE_KEY = "sportsdeck-theme";
 type Theme = "light" | "dark";
 
+/**
+ * Safe initial state (no hydration mismatch)
+ */
 function getInitialTheme(): Theme {
-  if (typeof window === "undefined") {
-    return "light";
-  }
+  if (typeof document === "undefined") return "dark";
 
-  const savedTheme = window.localStorage.getItem(STORAGE_KEY);
-  if (savedTheme === "light" || savedTheme === "dark") {
-    return savedTheme;
-  }
-
-  return window.matchMedia("(prefers-color-scheme: dark)").matches
+  return document.documentElement.classList.contains("dark")
     ? "dark"
     : "light";
 }
 
 export default function ThemeToggle() {
-  const [mounted, setMounted] = useState(false);
-  const [theme, setTheme] = useState<Theme>("light");
+  const [theme, setTheme] = useState<"light" | "dark">("dark");
 
+  /**
+   * ONLY sync external systems
+   */
   useEffect(() => {
-    const initialTheme = getInitialTheme();
-    setTheme(initialTheme);
-    document.documentElement.classList.remove("light", "dark");
-    document.documentElement.classList.add(initialTheme);
-    setMounted(true);
-  }, []);
+    const root = document.documentElement;
+
+    root.classList.toggle("dark", theme === "dark");
+    localStorage.setItem("sportsdeck-theme", theme);
+  }, [theme]);
 
   const toggleTheme = () => {
-    const nextTheme: Theme = theme === "dark" ? "light" : "dark";
-    setTheme(nextTheme);
-    document.documentElement.classList.remove("light", "dark");
-    document.documentElement.classList.add(nextTheme);
-    window.localStorage.setItem(STORAGE_KEY, nextTheme);
+    setTheme((prev) => (prev === "dark" ? "light" : "dark"));
   };
 
-  const isDark = mounted ? theme === "dark" : false;
-  const label = isDark ? "Switch to light mode" : "Switch to dark mode";
+  const isDark = theme === "dark";
 
   return (
     <button
-      type="button"
       onClick={toggleTheme}
-      aria-label={label}
-      title={label}
-      className="fixed bottom-5 right-5 z-50 inline-flex h-11 w-11 items-center justify-center rounded-full border border-border bg-bg-card text-text-primary shadow-card transition hover:bg-bg-elevated"
+      className="
+        group relative inline-flex h-11 w-11 items-center justify-center
+        rounded-2xl border border-border-subtle
+        bg-bg-card/80 text-text-secondary
+        backdrop-blur-md shadow-card
+        transition-all duration-300 ease-smooth
+        hover:scale-[1.05] hover:border-primary-500/30
+        hover:bg-bg-elevated hover:text-text-primary
+        active:scale-[0.97]
+        animate-[float_4s_ease-in-out_infinite] hover:animate-none
+      "
     >
-      {isDark ? <Sun size={18} /> : <Moon size={18} />}
+      <span className="absolute inset-0 rounded-2xl opacity-0 bg-gradient-primary transition-opacity duration-300 group-hover:opacity-[0.08]" />
+
+      <span className="relative flex items-center justify-center">
+        {isDark ? (
+          <Sun className="h-5 w-5 transition-transform duration-300 group-hover:rotate-12" />
+        ) : (
+          <Moon className="h-5 w-5 transition-transform duration-300 group-hover:-rotate-12" />
+        )}
+      </span>
     </button>
   );
 }

@@ -1,26 +1,44 @@
 "use client";
 
 import { useState } from "react";
+import type { ReactNode } from "react";
+
 import AppSidebar from "@/components/layout/AppSidebar";
 import MobileTopbar from "@/components/layout/MobileTopbar";
-import { AuthProvider } from "@/contexts/AuthContext";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 
-export default function AppLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+import { AuthProvider, useAuth } from "@/contexts/AuthContext";
+
+function LayoutShell({ children }: { children: ReactNode }) {
+  const { user, isLoading } = useAuth();
+
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  return (
-    <AuthProvider>
+  // LOADING
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-bg-main text-text-primary">
+        <div className="mx-auto max-w-[1280px] px-4 py-6 md:px-6 lg:px-8">
+          <div className="animate-pulse space-y-4">
+            <div className="h-10 w-40 rounded-xl bg-white/5" />
+            <div className="h-40 rounded-3xl bg-white/5" />
+            <div className="h-24 rounded-2xl bg-white/5" />
+            <div className="h-24 rounded-2xl bg-white/5" />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // AUTHENTICATED (SIDEBAR)
+  if (user) {
+    return (
       <div className="min-h-screen bg-bg-main text-text-primary">
 
-        {/* Mobile Topbar */}
         <MobileTopbar onOpenSidebar={() => setMobileOpen(true)} />
 
-        {/* Sidebar */}
         <AppSidebar
           collapsed={collapsed}
           setCollapsed={setCollapsed}
@@ -28,19 +46,41 @@ export default function AppLayout({
           setMobileOpen={setMobileOpen}
         />
 
-        {/* Main */}
         <div
           className={`
             transition-all duration-300 pt-14 md:pt-0
             ${collapsed ? "md:ml-[80px]" : "md:ml-[260px]"}
           `}
         >
-          <main className="px-4 md:px-6 py-6">
+          <main className="px-4 py-6 md:px-6">
             {children}
           </main>
         </div>
 
       </div>
+    );
+  }
+
+  // PUBLIC (NAVBAR + FOOTER)
+  return (
+    <div className="min-h-screen bg-bg-main text-text-primary flex flex-col">
+
+      <Navbar />
+
+      <main className="flex-1">
+        {children}
+      </main>
+
+      <Footer />
+
+    </div>
+  );
+}
+
+export default function RootLayout({ children }: { children: ReactNode }) {
+  return (
+    <AuthProvider>
+      <LayoutShell>{children}</LayoutShell>
     </AuthProvider>
   );
 }

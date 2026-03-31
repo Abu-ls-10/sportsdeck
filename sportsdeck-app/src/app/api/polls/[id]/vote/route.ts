@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
 import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
+import { logActivity } from "@/lib/activity"
 
 /**
  * @openapi
@@ -157,6 +158,13 @@ async function postHandler(
         pollOptionId: optionId
       }
     })
+
+    await logActivity({
+      actorId: user.id,
+      type: "poll_voted",
+      entityType: "poll",
+      entityId: pollId,
+    });
 
     return NextResponse.json(vote, { status: 201 })
 

@@ -223,7 +223,7 @@ export default function MatchCenterClient({ matchId }: { matchId: string }) {
               </div>
               {thread?.id ? (
                 <Link
-                  href={`/threads/${thread.id}`}
+                  href={`/community/threads/${thread.id}`}
                   className="pb-3 text-xs font-medium text-primary-300 hover:text-primary-200"
                 >
                   Open full thread →

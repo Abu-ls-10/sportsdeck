@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import {
   ArrowRight,
@@ -83,6 +84,10 @@ type Tag = {
   };
 };
 
+type ThreadTag = {
+  tag: Tag;
+};
+
 type Me = {
   id: string;
   email?: string;
@@ -146,6 +151,15 @@ type LandingTab = "for-you" | "conversations" | "polls" | "activity";
 /* =========================
    Helpers
 ========================= */
+
+function normalizeThread(thread: any) {
+  return {
+    ...thread,
+    tags: (thread.tags as ThreadTag[])
+      ?.map((t) => t.tag)
+      .filter(Boolean),
+  };
+}
 
 function timeAgo(input?: string) {
   if (!input) return "Just now";
@@ -1050,6 +1064,8 @@ function ThreadFeedCard({
   const thread = item.thread;
   if (!thread) return null;
 
+  const normalizedThread = normalizeThread(thread);
+
   return (
     <article
       className={cx(
@@ -1117,8 +1133,8 @@ function ThreadFeedCard({
       </div>
 
       <div className="mt-4 flex flex-wrap gap-2">
-        {thread.tags.length > 0 ? (
-          thread.tags.slice(0, 5).map((tag) => (
+        {normalizedThread.tags.length > 0 ? (
+          normalizedThread.tags.slice(0, 5).map((tag) => (
             <Link
               key={tag.id}
               href={`/community/tags/${tag.id}`}
@@ -1646,7 +1662,14 @@ export default function LandingPage() {
 
   const [tab, setTab] = useState<LandingTab>("for-you");
 
-  const { isLoading } = useAuth();
+  const { user, isLoading } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!isLoading && !user) {
+      router.replace("/login?redirect=/home");
+    }
+  }, [user, isLoading, router]);
 
   useEffect(() => {
     if (isLoading) return;
@@ -1781,6 +1804,8 @@ export default function LandingPage() {
 
     return feed;
   }, [feed, tab]);
+
+  if (isLoading || !user) return null;
 
   async function markAsRead(feedId: string) {
     setFeed((prev) =>
