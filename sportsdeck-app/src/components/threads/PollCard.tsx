@@ -31,6 +31,33 @@ export default function PollCard({
   const handleClick = async (optionId: string) => {
     if (loading || poll.isClosed || poll.userVote) return;
 
+    // =========================
+    // OPTIMISTIC UPDATE
+    // =========================
+    const optimisticPoll = {
+      ...poll,
+      userVote: optionId,
+      totalVotes: poll.totalVotes + 1,
+      options: poll.options.map((opt) => {
+        if (opt.id === optionId) {
+          const newVotes = opt.votes + 1;
+          return { ...opt, votes: newVotes };
+        }
+        return opt;
+      }),
+    };
+
+    // recalc percentages
+    optimisticPoll.options = optimisticPoll.options.map((opt) => ({
+      ...opt,
+      percentage: optimisticPoll.totalVotes
+        ? Math.round((opt.votes / optimisticPoll.totalVotes) * 100)
+        : 0,
+    }));
+
+    // instant UI update
+    onVote(optimisticPoll);
+
     try {
       setLoading(true);
       setError(null);
@@ -49,10 +76,15 @@ export default function PollCard({
         throw new Error(data.error || "Vote failed");
       }
 
+      // sync with backend (real values)
       onVote(data);
+
     } catch (err: any) {
       console.error(err);
       setError(err.message || "Vote failed");
+
+      // rollback UI if request failed
+      onVote(poll);
     } finally {
       setLoading(false);
     }
