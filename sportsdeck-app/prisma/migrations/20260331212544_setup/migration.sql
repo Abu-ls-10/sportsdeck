@@ -168,6 +168,7 @@ CREATE TABLE "Poll" (
     "question" TEXT NOT NULL,
     "deadline" TIMESTAMP(3) NOT NULL,
     "isClosed" BOOLEAN NOT NULL DEFAULT false,
+    "isHidden" BOOLEAN NOT NULL DEFAULT false,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "replyId" TEXT,
 
