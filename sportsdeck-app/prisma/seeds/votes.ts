@@ -11,7 +11,8 @@ export default async function seedVotes(prisma: PrismaClient, users: any[], poll
         for (const option of selectedOptions) {
             votes.push({
                 userId: user.id,
-                pollOptionId: option.id
+                pollOptionId: option.id,
+                pollId: option.pollId
             });
         }
     }
