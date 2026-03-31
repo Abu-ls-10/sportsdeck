@@ -1,0 +1,310 @@
+import { PrismaClient } from "../../src/generated/prisma"
+import type { User, Team, Match, Tag } from "../../src/generated/prisma"
+
+function shuffle<T>(arr: T[]): T[] {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+type MatchWithTeams = Match & {
+  homeTeam: Team | null;
+  awayTeam: Team | null;
+}
+
+// Default thread titles for match threads
+const preMatchTitles = [
+  "Pre-match discussion thread",
+  "Match day thread",
+  "Your predictions for today",
+  "Lineup discussion"
+];
+
+const postMatchTitles = [
+  "Post-match analysis",
+  "Match reactions",
+  "Player ratings thread",
+  "What did we learn today?"
+];
+
+// Default thread titles for team forums
+const teamThreadTitles = [
+  "Team form discussion",
+  "Transfer rumors and news",
+  "Upcoming fixtures preview",
+  "Recent performance analysis",
+  "Player spotlight discussion",
+  "Squad depth and tactics",
+  "Manager's strategies",
+  "Fan expectations for the season",
+  "Historical retrospective",
+  "Best moments from last season",
+  "Comparing squad depth",
+  "Injury updates and concerns",
+  "Youth academy prospects",
+  "Reserve team updates",
+  "Community meet-up ideas"
+];
+
+// Available tags for threads
+const availableTags = [
+  "discussion",
+  "analysis",
+  "tactics",
+  "team-news",
+  "transfer",
+  "player-performance",
+  "injury",
+  "fixture",
+  "season",
+  "history",
+  "highlight",
+  "prediction",
+  "match-thread",
+  "live" 
+];
+
+async function getOrCreateTags(prisma: PrismaClient, tagNames: string[]) {
+  const tags = await Promise.all(
+    tagNames.map(name =>
+      prisma.tag.upsert({
+        where: { name },
+        update: {},
+        create: { name }
+      })
+    )
+  );
+  return tags;
+}
+
+export async function create_different_match_threads(prisma: PrismaClient, matches: MatchWithTeams[], users: User[], matchTags: Tag[]){
+  const now = new Date();
+  const twoWeeksInMs = 14 * 24 * 60 * 60 * 1000;
+  const oneYearInMs = 365 * 24 * 60 * 60 * 1000;  
+    
+  if (users.length === 0) {
+    console.warn("No users available, skipping match thread creation");
+    return [];
+  }
+  
+  // Filter and process matches
+  const matchThreadsToCreate = matches.filter((match) => {
+      const matchDate = new Date(match.matchDate);
+      // Only create threads for matches within 2 weeks past or future from now
+      const timeDiff = matchDate.getTime() - now.getTime();
+      return timeDiff <= oneYearInMs && timeDiff >= -(oneYearInMs);
+      
+    })
+    .map(match => {
+      const matchDate = new Date(match.matchDate);
+      const timeSinceMatch = now.getTime() - matchDate.getTime();
+      const isPast = timeSinceMatch > 0;
+      
+      return {
+        match,
+        isPast,
+        opensAt: new Date(matchDate.getTime() - twoWeeksInMs),
+        lockedAt: new Date(matchDate.getTime() + twoWeeksInMs),
+        isLocked: now.getTime() > matchDate.getTime() + twoWeeksInMs || matchDate.getTime() - now.getTime() > twoWeeksInMs
+
+      };
+    });
+
+  // #region agent log
+  fetch("http://127.0.0.1:7566/ingest/e4f4ce26-3bb7-4649-9c07-27dc446e55e9", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-Debug-Session-Id": "d1b01d",
+    },
+    body: JSON.stringify({
+      sessionId: "d1b01d",
+      runId: "pre",
+      hypothesisId: "T1",
+      location: "prisma/seeds/threads.ts:create_different_match_threads:start",
+      message: "match threads batch prepared",
+      data: { totalMatches: matches.length, toCreate: matchThreadsToCreate.length, users: users.length },
+      timestamp: Date.now(),
+    }),
+  }).catch(() => {});
+  // #endregion
+  let started = 0;
+  let finished = 0;
+  let maxInFlight = 0;
+  // Create threads
+  const createdThreads = await Promise.all(
+    matchThreadsToCreate.map(async (threadData, idx) => {
+      started += 1;
+      const inFlight = started - finished;
+      if (inFlight > maxInFlight) {
+        maxInFlight = inFlight;
+      }
+      if (idx % 50 === 0) {
+        // #region agent log
+        fetch("http://127.0.0.1:7566/ingest/e4f4ce26-3bb7-4649-9c07-27dc446e55e9", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-Debug-Session-Id": "d1b01d",
+          },
+          body: JSON.stringify({
+            sessionId: "d1b01d",
+            runId: "pre",
+            hypothesisId: "T1",
+            location: "prisma/seeds/threads.ts:create_different_match_threads:progress",
+            message: "thread create progress",
+            data: { idx, started, finished, inFlight, maxInFlight },
+            timestamp: Date.now(),
+          }),
+        }).catch(() => {});
+        // #endregion
+      }
+      const titlePool = threadData.isPast ? postMatchTitles : preMatchTitles;
+      const randomAuthor = users[Math.floor(Math.random() * users.length)];
+      const homeTeamName = threadData.match.homeTeam?.name || "Team A";
+      const awayTeamName = threadData.match.awayTeam?.name || "Team B";
+      
+      let thread;
+      try {
+        thread = await prisma.thread.create({
+        data: {
+          title: `${homeTeamName} vs ${awayTeamName} - ${titlePool[Math.floor(Math.random() * titlePool.length)]}`,
+          authorId: randomAuthor.id,
+          matchId: threadData.match.id,
+          isMatchThread: true,
+          isLocked: threadData.isLocked,
+          opensAt: threadData.opensAt,
+          lockedAt: threadData.lockedAt,
+        }
+      });
+      } catch (e) {
+        // #region agent log
+        fetch("http://127.0.0.1:7566/ingest/e4f4ce26-3bb7-4649-9c07-27dc446e55e9", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-Debug-Session-Id": "d1b01d",
+          },
+          body: JSON.stringify({
+            sessionId: "d1b01d",
+            runId: "pre",
+            hypothesisId: "T2",
+            location: "prisma/seeds/threads.ts:create_different_match_threads:create_error",
+            message: "thread create failed",
+            data: {
+              idx,
+              inFlight: started - finished,
+              maxInFlight,
+              matchId: threadData.match.id,
+              homeTeamId: threadData.match.homeTeamId,
+              awayTeamId: threadData.match.awayTeamId,
+              matchDate: String(threadData.match.matchDate),
+              errName: e instanceof Error ? e.name : "unknown",
+              errMsg: e instanceof Error ? e.message : String(e),
+            },
+            timestamp: Date.now(),
+          }),
+        }).catch(() => {});
+        // #endregion
+        throw e;
+      }
+
+      // Add random tags to the thread
+      const numTags = Math.min(Math.floor(Math.random() * 3) + 1, matchTags.length);
+      const uniqueTags = shuffle(matchTags).slice(0, numTags).map(t => t.id)
+
+      
+      await Promise.all(
+        uniqueTags.map(tagId =>
+          prisma.threadTag.create({
+            data: {
+              threadId: thread.id,
+              tagId
+            }
+          }).catch((e) => {
+            if (!e.message.includes('Unique constraint')) {
+              throw e;
+            }
+          })
+        )
+      );
+
+      finished += 1;
+      return thread;
+    })
+  );
+
+  const validThreads = createdThreads.filter(t => t !== null);
+  console.log(`Match threads created: ${validThreads.length}`);
+  return validThreads;
+}
+
+export async function create_threads_for_teams(prisma: PrismaClient, teams: Team[], users: User[], teamTags: Tag[]) {
+  if (users.length === 0) {
+      console.warn("No users available, skipping team thread creation");
+      return [];
+  }
+  const allTeamThreads = (await Promise.all(
+  teams.map(async (team) => {
+      const numThreadsForTeam = Math.floor(Math.random() * 5) + 1;
+
+      const teamThreads = await Promise.all(
+        Array.from({ length: numThreadsForTeam }).map(async () => {
+
+          const randomAuthor = users[Math.floor(Math.random() * users.length)];
+          const threadTitle = teamThreadTitles[Math.floor(Math.random() * teamThreadTitles.length)];
+
+          const thread = await prisma.thread.create({
+            data: {
+              title: `[${team.shortName}] ${threadTitle}`,
+              authorId: randomAuthor.id,
+              teamId: team.id,
+              isMatchThread: false,
+              isLocked: false,
+            }
+          });
+
+          const numTags = Math.min(Math.floor(Math.random() * 3) + 2, teamTags.length);
+          const uniqueTags = shuffle(teamTags).slice(0, numTags).map(t => t.id);    
+
+          await Promise.all(
+            uniqueTags.map(tagId =>
+              prisma.threadTag.create({
+                data: { threadId: thread.id, tagId }
+              }).catch((e) => {
+                if (!e.message.includes('Unique constraint')) throw e;
+              })
+            )
+          );
+
+          return thread;
+        })
+      );
+
+      return teamThreads.filter(t => t !== null);
+    })
+  )).flat();
+
+  console.log(`Team threads created: ${allTeamThreads.length}`);
+  return allTeamThreads;
+}
+
+
+
+export default async function seedThreads(prisma: PrismaClient, users: User[], teams: Team[], matches: MatchWithTeams[]) {
+  const allTags = await getOrCreateTags(prisma, availableTags);  
+  const matchOnlyTagNames = ["match-thread", "live", "prediction", "analysis", "tactics"];
+  const teamOnlyTagNames  = ["discussion", "team-news", "transfer", "player-performance", "injury", "fixture", "season", "history", "highlight"];
+
+  const matchTags = allTags.filter(t => matchOnlyTagNames.includes(t.name));
+  const teamTags  = allTags.filter(t => teamOnlyTagNames.includes(t.name));
+
+  const match_threads = await create_different_match_threads(prisma, matches, users, matchTags);
+  const team_threads  = await create_threads_for_teams(prisma, teams, users, teamTags);
+
+  console.log("Threads added!!!")
+  return [...match_threads.filter(t => t !== null), ...team_threads.filter(t => t !== null)]
+}
