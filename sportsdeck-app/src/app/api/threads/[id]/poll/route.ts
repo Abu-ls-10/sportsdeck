@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
 import { getUserFromToken } from "@/lib/auth"
+import { logActivity } from "@/lib/activity";
 
 /**
  * @openapi
@@ -120,38 +121,11 @@ export async function POST(
       }
     });
 
-    // =========================
-    // CREATE FEED EVENT (CORRECT FOR YOUR SCHEMA)
-    // =========================
-    const feedEvent = await prisma.feedEvent.create({
-      data: {
-        actorId: user.id,
-        eventType: "poll_created",
-        entityType: "poll",
-        entityId: poll.id,
-        groupKey: `poll-${poll.id}`
-      }
-    });
-
-    // =========================
-    // CREATE FEED ENTRIES
-    // =========================
-    const followers = await prisma.follow.findMany({
-      where: { followingId: user.id },
-      select: { followerId: true }
-    });
-
-    const recipientIds = [
-      user.id,
-      ...followers.map((f) => f.followerId)
-    ];
-
-    await prisma.feedEntry.createMany({
-      data: recipientIds.map((uid) => ({
-        userId: uid,
-        feedEventId: feedEvent.id,
-        isRead: uid === user.id
-      }))
+    await logActivity({
+      actorId: user.id,
+      type: "poll_created",
+      entityType: "poll",
+      entityId: poll.id,
     });
 
     return NextResponse.json(poll, { status: 201 });
