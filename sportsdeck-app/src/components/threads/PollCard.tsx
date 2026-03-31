@@ -33,7 +33,7 @@ export default function PollCard({
   const [error, setError] = useState<string | null>(null);
 
   const handleClick = async (optionId: string) => {
-    if (loading || poll.isClosed || poll.userVote) return;
+    if (loading || poll.isClosed) return;
     if (isBanned) {
       setError("Your account is banned. Voting is disabled.");
       return;
@@ -63,8 +63,25 @@ export default function PollCard({
         throw new Error(message);
       }
 
-      // Update with backend source of truth (no optimistic flicker)
-      onVote(data);
+      // Merge partial response (options + userVote) back onto the existing poll
+      // so we never lose id, question, isClosed, etc.
+      const rawOptions: { id: string; text: string; votes: number }[] =
+        data.options ?? [];
+      const totalVotes = rawOptions.reduce((sum, o) => sum + (o.votes ?? 0), 0);
+      const mergedOptions: Option[] = rawOptions.map((o) => ({
+        id: o.id,
+        text: o.text,
+        votes: o.votes,
+        percentage:
+          totalVotes > 0 ? Math.round((o.votes / totalVotes) * 100) : 0,
+      }));
+
+      onVote({
+        ...poll,
+        options: mergedOptions.length ? mergedOptions : poll.options,
+        userVote: data.userVote ?? null,
+        totalVotes,
+      });
 
     } catch (err: unknown) {
       console.error(err);
@@ -91,13 +108,13 @@ export default function PollCard({
             <button
               key={opt.id}
               onClick={() => handleClick(opt.id)}
-              disabled={poll.isClosed || loading || !!poll.userVote}
-              aria-disabled={poll.isClosed || loading || !!poll.userVote || isBanned}
+              disabled={poll.isClosed || loading || isBanned}
+              aria-disabled={poll.isClosed || loading || isBanned}
               className={`relative w-full overflow-hidden rounded-xl border p-3 text-left text-sm transition ${
-                isSelected
-                  ? "border-primary-500/40 bg-primary-500/10"
-                  : isBanned
+                isBanned
                   ? "border-white/10 bg-bg-card opacity-60 cursor-not-allowed"
+                  : isSelected
+                  ? "border-primary-500/40 bg-primary-500/10 hover:bg-primary-500/15"
                   : "border-white/10 bg-bg-card hover:bg-bg-elevated"
               }`}
             >
