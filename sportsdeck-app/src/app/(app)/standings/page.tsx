@@ -82,7 +82,7 @@ export default async function StandingsPage({
 
           <div className="relative flex flex-col md:flex-row md:items-center md:justify-between gap-6">
             <div>
-              <h1 className="text-3xl md:text-4xl font-semibold text-white">
+              <h1 className="text-3xl md:text-4xl font-semibold text-primary">
                 Premier League
               </h1>
               <p className="mt-2 text-sm text-text-secondary">
@@ -127,7 +127,7 @@ export default async function StandingsPage({
               </select>
             </div>
 
-            <button className="rounded-xl bg-gradient-primary px-5 py-2 text-sm font-semibold text-white shadow-glow">
+            <button className="rounded-xl bg-gradient-primary px-5 py-2 text-sm font-semibold text-primary shadow-glow">
               Apply
             </button>
           </form>

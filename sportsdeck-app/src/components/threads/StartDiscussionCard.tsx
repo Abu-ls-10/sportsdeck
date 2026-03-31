@@ -143,11 +143,11 @@ export default function StartDiscussionCard({ onSuccess, isBanned = false }: Pro
     <>
       {/* CARD */}
       <div className="rounded-2xl border border-dashed border-primary-500/30 bg-[linear-gradient(180deg,rgba(14,165,233,0.07),rgba(14,165,233,0.02))] px-6 py-8 text-center shadow-soft">
-        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-gradient-primary text-xl font-semibold text-white shadow-glow">
+        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-gradient-primary text-xl font-semibold text-primary shadow-glow">
           +
         </div>
 
-        <h3 className="mt-4 text-xl font-semibold text-white">
+        <h3 className="mt-4 text-xl font-semibold text-primary">
           Have something to share?
         </h3>
 
@@ -162,7 +162,7 @@ export default function StartDiscussionCard({ onSuccess, isBanned = false }: Pro
         ) : (
           <button
             onClick={() => setOpen(true)}
-            className="mt-5 rounded-xl bg-gradient-primary px-5 py-2.5 text-sm font-semibold text-white hover:brightness-110"
+            className="mt-5 rounded-xl bg-gradient-primary px-5 py-2.5 text-sm font-semibold text-primary hover:brightness-110"
           >
             Start a Discussion
           </button>
@@ -174,7 +174,7 @@ export default function StartDiscussionCard({ onSuccess, isBanned = false }: Pro
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4">
           <div className="w-full max-w-2xl rounded-2xl bg-bg-surface p-6 shadow-xl space-y-5">
 
-            <h2 className="text-xl font-semibold text-white">
+            <h2 className="text-xl font-semibold text-primary">
               Create Thread
             </h2>
 
@@ -190,7 +190,7 @@ export default function StartDiscussionCard({ onSuccess, isBanned = false }: Pro
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="Thread title..."
-              className="w-full rounded-xl border border-white/10 bg-bg-main px-4 py-3 text-white focus:border-primary-500 outline-none"
+              className="w-full rounded-xl border border-white/10 bg-bg-main px-4 py-3 text-primary focus:border-primary-500 outline-none"
             />
 
             {/* CONTENT */}
@@ -203,7 +203,7 @@ export default function StartDiscussionCard({ onSuccess, isBanned = false }: Pro
               }}
               placeholder="Write your post..."
               rows={3}
-              className="w-full resize-none rounded-xl border border-white/10 bg-bg-main px-4 py-3 text-white focus:border-primary-500 outline-none"
+              className="w-full resize-none rounded-xl border border-white/10 bg-bg-main px-4 py-3 text-primary focus:border-primary-500 outline-none"
             />
 
             {/* TEAM */}
@@ -238,7 +238,7 @@ export default function StartDiscussionCard({ onSuccess, isBanned = false }: Pro
 
                 <button
                   onClick={addTag}
-                  className="px-3 py-2 text-sm bg-primary-500 rounded-lg text-white"
+                  className="px-3 py-2 text-sm bg-primary-500 rounded-lg text-primary"
                 >
                   Add
                 </button>
@@ -267,7 +267,7 @@ export default function StartDiscussionCard({ onSuccess, isBanned = false }: Pro
             <div className="flex justify-end gap-3">
               <button
                 onClick={() => setOpen(false)}
-                className="text-sm text-text-muted hover:text-white"
+                className="text-sm text-text-muted hover:text-primary"
               >
                 Cancel
               </button>
@@ -275,7 +275,7 @@ export default function StartDiscussionCard({ onSuccess, isBanned = false }: Pro
               <button
                 onClick={handleSubmit}
                 disabled={loading || isBanned}
-                className="rounded-lg bg-gradient-primary px-5 py-2 text-sm text-white disabled:opacity-50 disabled:cursor-not-allowed"
+                className="rounded-lg bg-gradient-primary px-5 py-2 text-sm text-primary disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {loading ? "Posting..." : "Post Thread"}
               </button>

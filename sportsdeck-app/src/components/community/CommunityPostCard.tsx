@@ -21,7 +21,7 @@ export default function CommunityPostCard() {
       </div>
 
       {/* Title */}
-      <h3 className="text-lg font-semibold text-white leading-snug">
+      <h3 className="text-lg font-semibold text-primary leading-snug">
         Is the new draft structure favoring lower seeds too much?
       </h3>
 

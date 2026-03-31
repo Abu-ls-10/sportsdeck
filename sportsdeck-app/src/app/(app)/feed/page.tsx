@@ -200,8 +200,8 @@ function FeedTabs({
               className={[
                 "rounded-xl px-4 py-2 text-sm font-medium transition",
                 activeTab
-                  ? "bg-gradient-primary text-white shadow-glow"
-                  : "bg-white/[0.03] text-text-secondary hover:bg-white/[0.06] hover:text-white",
+                  ? "bg-gradient-primary text-primary shadow-glow"
+                  : "bg-white/[0.03] text-text-secondary hover:bg-white/[0.06] hover:text-primary",
               ].join(" ")}
             >
               {tab.label}
@@ -231,7 +231,7 @@ function FeedHero({
             Personalized Feed
           </div>
 
-          <h1 className="text-2xl font-semibold text-white md:text-3xl">
+          <h1 className="text-2xl font-semibold text-primary md:text-3xl">
             Your SportsDeck feed
           </h1>
 
@@ -245,14 +245,14 @@ function FeedHero({
               <p className="text-xs uppercase tracking-[0.12em] text-text-muted">
                 Feed items
               </p>
-              <p className="mt-1 text-lg font-semibold text-white">{total}</p>
+              <p className="mt-1 text-lg font-semibold text-primary">{total}</p>
             </div>
 
             <div className="rounded-2xl border border-border-subtle bg-white/[0.03] px-4 py-3">
               <p className="text-xs uppercase tracking-[0.12em] text-text-muted">
                 Unread
               </p>
-              <p className="mt-1 text-lg font-semibold text-white">{unread}</p>
+              <p className="mt-1 text-lg font-semibold text-primary">{unread}</p>
             </div>
           </div>
         </div>
@@ -260,7 +260,7 @@ function FeedHero({
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:w-[360px]">
           <div className="rounded-2xl border border-border-subtle bg-white/[0.04] p-4">
             <Bell className="h-4 w-4 text-accent-300" />
-            <p className="mt-3 text-sm font-medium text-white">Notifications</p>
+            <p className="mt-3 text-sm font-medium text-primary">Notifications</p>
             <p className="mt-1 text-xs leading-5 text-text-secondary">
               Grouped updates keep your feed easier to scan.
             </p>
@@ -268,7 +268,7 @@ function FeedHero({
 
           <div className="rounded-2xl border border-border-subtle bg-white/[0.04] p-4">
             <MessageSquare className="h-4 w-4 text-primary-300" />
-            <p className="mt-3 text-sm font-medium text-white">Threads</p>
+            <p className="mt-3 text-sm font-medium text-primary">Threads</p>
             <p className="mt-1 text-xs leading-5 text-text-secondary">
               Open the latest discussions instantly.
             </p>
@@ -276,7 +276,7 @@ function FeedHero({
 
           <div className="col-span-2 rounded-2xl border border-border-subtle bg-white/[0.04] p-4 sm:col-span-1">
             <Vote className="h-4 w-4 text-brand-300" />
-            <p className="mt-3 text-sm font-medium text-white">Polls</p>
+            <p className="mt-3 text-sm font-medium text-primary">Polls</p>
             <p className="mt-1 text-xs leading-5 text-text-secondary">
               See what fans are voting on right now.
             </p>
@@ -356,7 +356,7 @@ function ThreadFeedCard({
             }}
             className="inline-block"
           >
-            <h2 className="text-lg font-semibold leading-snug text-white transition group-hover:text-primary-300">
+            <h2 className="text-lg font-semibold leading-snug text-primary transition group-hover:text-primary-300">
               {thread.title}
             </h2>
           </Link>
@@ -370,7 +370,7 @@ function ThreadFeedCard({
           <p className="text-xs uppercase tracking-[0.12em] text-text-muted">
             Replies
           </p>
-          <p className="mt-1 text-base font-semibold text-white">
+          <p className="mt-1 text-base font-semibold text-primary">
             {thread.replies}
           </p>
         </div>
@@ -452,7 +452,7 @@ function PollFeedCard({
       </div>
 
       <div className="mt-4">
-        <h2 className="text-lg font-semibold leading-snug text-white">
+        <h2 className="text-lg font-semibold leading-snug text-primary">
           {poll.question}
         </h2>
         <p className="mt-2 text-sm text-text-secondary">
@@ -526,7 +526,7 @@ function PostFeedCard({
       <Link
         href={`/community/threads/${post.thread.id}`}
         onClick={() => !item.isRead && onMarkRead(item.id)}
-        className="text-white font-medium hover:text-primary-300"
+        className="text-primary font-medium hover:text-primary-300"
       >
         {post.thread.title}
       </Link>
@@ -561,7 +561,7 @@ function ReplyFeedCard({
       <Link
         href={`/community/threads/${reply.thread.id}`}
         onClick={() => !item.isRead && onMarkRead(item.id)}
-        className="text-white font-medium hover:text-primary-300"
+        className="text-primary font-medium hover:text-primary-300"
       >
         {reply.thread.title}
       </Link>
@@ -605,7 +605,7 @@ function ActivityCard({
           </div>
 
           {/* 🔥 Main message */}
-          <h3 className="mt-3 text-base font-semibold text-white leading-snug">
+          <h3 className="mt-3 text-base font-semibold text-primary leading-snug">
             {formatActivity(item.meta)}
           </h3>
 
@@ -636,7 +636,7 @@ function ActivityCard({
         {!item.isRead && (
           <button
             onClick={() => onMarkRead(item.id)}
-            className="shrink-0 rounded-xl border border-border-subtle bg-white/[0.03] px-3 py-2 text-sm text-text-secondary transition hover:bg-white/[0.06] hover:text-white"
+            className="shrink-0 rounded-xl border border-border-subtle bg-white/[0.03] px-3 py-2 text-sm text-text-secondary transition hover:bg-white/[0.06] hover:text-primary"
           >
             Mark read
           </button>
@@ -661,7 +661,7 @@ function SidebarCard({
         <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/[0.04] text-text-primary">
           {icon}
         </div>
-        <h3 className="text-sm font-semibold text-white">{title}</h3>
+        <h3 className="text-sm font-semibold text-primary">{title}</h3>
       </div>
       {children}
     </section>
@@ -799,7 +799,7 @@ export default function FeedPage() {
               <FeedSkeleton />
             ) : filteredFeed.length === 0 ? (
               <div className="rounded-2xl border border-border-subtle bg-bg-surface p-8 text-center shadow-soft">
-                <p className="text-base font-medium text-white">
+                <p className="text-base font-medium text-primary">
                   Nothing to show right now
                 </p>
                 <p className="mt-2 text-sm text-text-secondary">
@@ -888,7 +888,7 @@ export default function FeedPage() {
                       className="flex items-center justify-between rounded-xl border border-border-subtle bg-white/[0.03] px-3 py-3 transition hover:bg-white/[0.06]"
                     >
                       <div>
-                        <p className="text-sm font-medium text-white">
+                        <p className="text-sm font-medium text-primary">
                           #{tag.name}
                         </p>
                         <p className="mt-0.5 text-xs text-text-muted">
@@ -913,7 +913,7 @@ export default function FeedPage() {
               ) : (
                 <div className="space-y-3">
                   <div>
-                    <p className="text-sm font-medium leading-6 text-white">
+                    <p className="text-sm font-medium leading-6 text-primary">
                       {sidebarPoll.question}
                     </p>
                     <p className="mt-1 text-xs text-text-muted">
@@ -950,7 +950,7 @@ export default function FeedPage() {
                       key={item.id}
                       className="rounded-xl border border-border-subtle bg-white/[0.03] p-3"
                     >
-                      <p className="text-sm font-medium text-white">
+                      <p className="text-sm font-medium text-primary">
                         {formatActivity(item.meta)}
                       </p>
                       <p className="mt-1 text-xs text-text-muted">

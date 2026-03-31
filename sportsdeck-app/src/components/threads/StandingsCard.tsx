@@ -7,7 +7,7 @@ const standings = [
 export default function StandingsCard() {
   return (
     <div className="rounded-2xl border border-white/6 bg-bg-surface p-4 shadow-soft">
-      <h3 className="mb-4 text-sm font-semibold text-white">Team Standings</h3>
+      <h3 className="mb-4 text-sm font-semibold text-primary">Team Standings</h3>
 
       <div className="space-y-2">
         {standings.map((team, index) => (
@@ -21,7 +21,7 @@ export default function StandingsCard() {
               <span className="w-4 text-xs text-text-muted">{index + 1}</span>
               <span className="text-sm text-text-primary">{team.team}</span>
             </div>
-            <span className="text-sm font-semibold text-white">{team.pts} pts</span>
+            <span className="text-sm font-semibold text-primary">{team.pts} pts</span>
           </div>
         ))}
       </div>

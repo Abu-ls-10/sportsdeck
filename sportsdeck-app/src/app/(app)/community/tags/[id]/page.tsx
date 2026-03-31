@@ -143,7 +143,7 @@ export default function TagPage() {
         {/* BACK */}
         <button
           onClick={handleBack}
-          className="flex items-center gap-2 text-sm text-text-muted hover:text-white transition"
+          className="flex items-center gap-2 text-sm text-text-muted hover:text-primary transition"
         >
           <ArrowLeft className="w-4 h-4" />
           Back
@@ -161,7 +161,7 @@ export default function TagPage() {
               Tag Overview
             </div>
 
-            <h1 className="text-3xl font-semibold text-white flex items-center gap-2">
+            <h1 className="text-3xl font-semibold text-primary flex items-center gap-2">
               <Hash className="w-6 h-6 text-primary-300" />
               {tag.name}
             </h1>
@@ -175,21 +175,21 @@ export default function TagPage() {
 
               <div className="rounded-2xl border border-border-subtle bg-white/[0.03] px-4 py-3">
                 <p className="text-xs text-text-muted uppercase">Threads</p>
-                <p className="text-lg font-semibold text-white">
+                <p className="text-lg font-semibold text-primary">
                   {threads.length}
                 </p>
               </div>
 
               <div className="rounded-2xl border border-border-subtle bg-white/[0.03] px-4 py-3">
                 <p className="text-xs text-text-muted uppercase">Replies</p>
-                <p className="text-lg font-semibold text-white">
+                <p className="text-lg font-semibold text-primary">
                   {totalReplies}
                 </p>
               </div>
 
               <div className="rounded-2xl border border-border-subtle bg-white/[0.03] px-4 py-3">
                 <p className="text-xs text-text-muted uppercase">Activity</p>
-                <p className="text-lg font-semibold text-white">
+                <p className="text-lg font-semibold text-primary">
                   {activityLevel}
                 </p>
               </div>
@@ -208,7 +208,7 @@ export default function TagPage() {
 
             {threads.length === 0 ? (
               <div className="rounded-2xl border border-border-subtle bg-bg-surface p-8 text-center">
-                <p className="text-white font-medium">
+                <p className="text-primary font-medium">
                   No threads for this tag yet
                 </p>
                 <p className="text-text-secondary text-sm mt-2">
@@ -231,7 +231,7 @@ export default function TagPage() {
                       {timeAgo(thread.createdAt)}
                     </div>
 
-                    <h2 className="text-lg font-semibold text-white">
+                    <h2 className="text-lg font-semibold text-primary">
                       {thread.title}
                     </h2>
 
@@ -267,18 +267,18 @@ export default function TagPage() {
             <div className="rounded-2xl border border-border-subtle bg-bg-surface p-4">
               <div className="flex items-center gap-2 mb-3">
                 <TrendingUp className="w-4 h-4 text-primary-300" />
-                <p className="text-sm font-semibold text-white">
+                <p className="text-sm font-semibold text-primary">
                   Tag Insights
                 </p>
               </div>
 
               <p className="text-sm text-text-secondary">
                 This tag has{" "}
-                <span className="text-white font-medium">
+                <span className="text-primary font-medium">
                   {threads.length}
                 </span>{" "}
                 threads with{" "}
-                <span className="text-white font-medium">
+                <span className="text-primary font-medium">
                   {totalReplies}
                 </span>{" "}
                 total replies.
@@ -286,7 +286,7 @@ export default function TagPage() {
 
               <p className="mt-3 text-sm text-text-secondary">
                 Activity level is{" "}
-                <span className="text-white font-medium">
+                <span className="text-primary font-medium">
                   {activityLevel}
                 </span>
               </p>
@@ -295,7 +295,7 @@ export default function TagPage() {
             <div className="rounded-2xl border border-border-subtle bg-bg-surface p-4">
               <div className="flex items-center gap-2 mb-2">
                 <Flame className="w-4 h-4 text-brand-300" />
-                <p className="text-sm font-semibold text-white">
+                <p className="text-sm font-semibold text-primary">
                   Why this matters
                 </p>
               </div>

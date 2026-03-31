@@ -95,7 +95,7 @@ export default function PollCard({
     <div className="rounded-2xl border border-white/6 bg-bg-surface p-5 shadow-card">
       
       {/* QUESTION */}
-      <h3 className="text-base font-semibold text-white">
+      <h3 className="text-base font-semibold text-primary">
         {poll.question}
       </h3>
 
@@ -125,7 +125,7 @@ export default function PollCard({
               />
 
               <div className="relative flex items-center justify-between">
-                <span className="text-white">{opt.text}</span>
+                <span className="text-primary">{opt.text}</span>
 
                 <span className="text-xs text-text-muted">
                   {opt.percentage}%

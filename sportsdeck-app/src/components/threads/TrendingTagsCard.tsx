@@ -3,7 +3,7 @@ const tags = ["#UCL", "#Haaland", "#Pep", "#TrebleCharge", "#InjuryUpdate"];
 export default function TrendingTagsCard() {
   return (
     <div className="rounded-2xl border border-white/6 bg-bg-surface p-4 shadow-soft">
-      <h3 className="mb-4 text-sm font-semibold text-white">Trending Tags</h3>
+      <h3 className="mb-4 text-sm font-semibold text-primary">Trending Tags</h3>
 
       <div className="flex flex-wrap gap-2">
         {tags.map((tag) => (

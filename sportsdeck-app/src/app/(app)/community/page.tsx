@@ -58,7 +58,7 @@ function CommunityHero({
             Community
           </div>
 
-          <h1 className="text-2xl md:text-3xl font-semibold text-white">
+          <h1 className="text-2xl md:text-3xl font-semibold text-primary">
             Explore discussions
           </h1>
 
@@ -69,7 +69,7 @@ function CommunityHero({
           <div className="mt-4 flex gap-3">
             <div className="rounded-2xl border border-border-subtle bg-white/[0.03] px-4 py-3">
               <p className="text-xs text-text-muted uppercase">Threads</p>
-              <p className="text-lg font-semibold text-white">{total}</p>
+              <p className="text-lg font-semibold text-primary">{total}</p>
             </div>
           </div>
         </div>
@@ -77,17 +77,17 @@ function CommunityHero({
         <div className="grid grid-cols-3 gap-3 w-full max-w-[360px]">
           <div className="rounded-2xl border border-border-subtle bg-white/[0.04] p-4">
             <MessageSquare className="h-4 w-4 text-primary-300" />
-            <p className="mt-2 text-sm text-white font-medium">Discussions</p>
+            <p className="mt-2 text-sm text-primary font-medium">Discussions</p>
           </div>
 
           <div className="rounded-2xl border border-border-subtle bg-white/[0.04] p-4">
             <Flame className="h-4 w-4 text-brand-300" />
-            <p className="mt-2 text-sm text-white font-medium">Trending</p>
+            <p className="mt-2 text-sm text-primary font-medium">Trending</p>
           </div>
 
           <div className="rounded-2xl border border-border-subtle bg-white/[0.04] p-4">
             <Clock3 className="h-4 w-4 text-accent-300" />
-            <p className="mt-2 text-sm text-white font-medium">Live updates</p>
+            <p className="mt-2 text-sm text-primary font-medium">Live updates</p>
           </div>
         </div>
       </div>
@@ -196,7 +196,7 @@ export default function CommunityPage() {
 
             {!loading && !error && threads.length === 0 && (
               <div className="rounded-2xl border border-border-subtle bg-bg-surface p-8 text-center">
-                <p className="text-white font-medium">No discussions found</p>
+                <p className="text-primary font-medium">No discussions found</p>
                 <p className="text-text-secondary text-sm mt-2">
                   Try adjusting filters or start a new thread.
                 </p>
@@ -232,7 +232,7 @@ export default function CommunityPage() {
             <div className="rounded-2xl border border-border-subtle bg-bg-surface p-4">
               <div className="flex items-center gap-2 mb-3">
                 <TrendingUp className="h-4 w-4 text-primary-300" />
-                <p className="text-sm font-semibold text-white">Trending Tags</p>
+                <p className="text-sm font-semibold text-primary">Trending Tags</p>
               </div>
 
               {trendingTags.length === 0 ? (
@@ -257,7 +257,7 @@ export default function CommunityPage() {
             <div className="rounded-2xl border border-border-subtle bg-bg-surface p-4">
               <div className="flex items-center gap-2 mb-2">
                 <Flame className="h-4 w-4 text-brand-300" />
-                <p className="text-sm font-semibold text-white">
+                <p className="text-sm font-semibold text-primary">
                   Community Activity
                 </p>
               </div>

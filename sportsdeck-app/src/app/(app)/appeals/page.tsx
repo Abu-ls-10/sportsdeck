@@ -135,7 +135,7 @@ export default function AppealsPage() {
             <p className="text-sm text-text-secondary mb-5">You must be logged in to view or submit appeals.</p>
             <Link
               href="/login"
-              className="inline-block rounded-xl bg-gradient-primary px-5 py-2.5 text-sm font-semibold text-white shadow-glow hover:opacity-90 transition"
+              className="inline-block rounded-xl bg-gradient-primary px-5 py-2.5 text-sm font-semibold text-primary shadow-glow hover:opacity-90 transition"
             >
               Go to login
             </Link>
@@ -157,7 +157,7 @@ export default function AppealsPage() {
         <header className="rounded-2xl border border-border bg-bg-surface p-6 shadow-card">
           <div className="flex items-start gap-4">
             <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-primary shadow-glow">
-              <MessageSquareWarning className="w-5 h-5 text-white" />
+              <MessageSquareWarning className="w-5 h-5 text-primary" />
             </div>
             <div>
               <h1 className="text-2xl font-bold text-text-primary">Ban Appeal Center</h1>
@@ -202,7 +202,7 @@ export default function AppealsPage() {
               type="button"
               onClick={() => void submitAppeal()}
               disabled={submitting || message.trim().length === 0}
-              className="flex items-center gap-2 rounded-xl bg-gradient-primary px-5 py-2.5 text-sm font-semibold text-white shadow-glow hover:opacity-90 transition disabled:opacity-50"
+              className="flex items-center gap-2 rounded-xl bg-gradient-primary px-5 py-2.5 text-sm font-semibold text-primary shadow-glow hover:opacity-90 transition disabled:opacity-50"
             >
               <Send className="w-4 h-4" />
               {submitting ? "Submitting..." : "Submit Appeal"}

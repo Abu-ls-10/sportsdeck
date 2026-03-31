@@ -389,7 +389,7 @@ export default function AdminReportDetailPage() {
                   type="button"
                   onClick={() => void runAction("approve")}
                   disabled={!canResolve || Boolean(busyAction)}
-                  className="flex items-center gap-2 rounded-xl bg-gradient-primary px-4 py-2 text-sm font-semibold text-white shadow-glow hover:opacity-90 transition disabled:opacity-40"
+                  className="flex items-center gap-2 rounded-xl bg-gradient-primary px-4 py-2 text-sm font-semibold text-primary shadow-glow hover:opacity-90 transition disabled:opacity-40"
                 >
                   <EyeOff className="w-4 h-4" />
                   Approve & Hide Content

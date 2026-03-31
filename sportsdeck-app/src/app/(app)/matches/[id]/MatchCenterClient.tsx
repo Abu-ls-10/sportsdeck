@@ -241,7 +241,7 @@ export default function MatchCenterClient({ matchId }: { matchId: string }) {
               />
 
               <div className="mt-3 flex justify-end">
-                <button className="bg-gradient-primary px-5 py-2 rounded-xl text-white">
+                <button className="bg-gradient-primary px-5 py-2 rounded-xl text-primary">
                   Post
                 </button>
               </div>

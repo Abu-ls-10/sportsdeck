@@ -304,7 +304,7 @@ function AvatarBadge({
   return (
     <div
       className={cx(
-        "flex items-center justify-center rounded-2xl border border-border-subtle bg-gradient-primary font-semibold text-white shadow-soft",
+        "flex items-center justify-center rounded-2xl border border-border-subtle bg-gradient-primary font-semibold text-primary shadow-soft",
         sizeClass
       )}
     >
@@ -417,7 +417,7 @@ function LandingHero() {
             <div className="mt-7 flex flex-wrap gap-3">
               <Link
                 href="/signup"
-                className="inline-flex items-center gap-2 rounded-2xl bg-gradient-primary px-5 py-3 text-sm font-semibold text-white shadow-glow transition duration-200 hover:-translate-y-0.5"
+                className="inline-flex items-center gap-2 rounded-2xl bg-gradient-primary px-5 py-3 text-sm font-semibold text-primary shadow-glow transition duration-200 hover:-translate-y-0.5"
               >
                 Create your account
                 <ArrowRight className="h-4 w-4" />
@@ -853,7 +853,7 @@ function FinalCTA() {
         <div className="mt-6 flex flex-wrap justify-center gap-3">
           <Link
             href="/signup"
-            className="inline-flex items-center gap-2 rounded-2xl bg-gradient-primary px-6 py-3 text-sm font-semibold text-white shadow-glow hover:-translate-y-0.5"
+            className="inline-flex items-center gap-2 rounded-2xl bg-gradient-primary px-6 py-3 text-sm font-semibold text-primary shadow-glow hover:-translate-y-0.5"
           >
             Get started for free
             <ArrowRight className="h-4 w-4" />

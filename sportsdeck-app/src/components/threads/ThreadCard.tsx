@@ -79,7 +79,7 @@ export default function ThreadCard({
           )}
 
           {/* Title */}
-          <h3 className="max-w-[620px] text-lg font-semibold leading-snug text-white group-hover:text-primary-400 transition">
+          <h3 className="max-w-[620px] text-lg font-semibold leading-snug text-primary group-hover:text-primary-400 transition">
             {title}
           </h3>
 

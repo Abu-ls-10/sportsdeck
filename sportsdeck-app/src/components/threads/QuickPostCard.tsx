@@ -1,7 +1,7 @@
 export default function QuickPostCard() {
   return (
     <div className="rounded-2xl border border-white/6 bg-bg-surface p-4 shadow-soft">
-      <h3 className="mb-4 text-sm font-semibold text-white">Quick Post</h3>
+      <h3 className="mb-4 text-sm font-semibold text-primary">Quick Post</h3>
 
       <div className="space-y-3">
         <input
@@ -20,7 +20,7 @@ export default function QuickPostCard() {
           className="h-10 w-full rounded-xl border border-white/5 bg-bg-card px-3 text-sm text-text-primary outline-none placeholder:text-text-muted focus:border-primary-500/50"
         />
 
-        <button className="w-full rounded-xl bg-gradient-primary py-2.5 text-sm font-semibold text-white transition hover:brightness-110">
+        <button className="w-full rounded-xl bg-gradient-primary py-2.5 text-sm font-semibold text-primary transition hover:brightness-110">
           Post Discussion
         </button>
       </div>

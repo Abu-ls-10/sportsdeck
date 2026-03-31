@@ -14,8 +14,8 @@ import { useAuth } from "../../contexts/AuthContext";
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
-  const navLinkClass = "px-3 py-1.5 rounded-lg text-sm text-text-secondary hover:text-white hover:bg-bg-elevated transition";
-  const searchInputClass = "w-full pl-9 pr-3 py-2 rounded-xl bg-bg-card border border-border-subtle text-sm text-white placeholder:text-text-muted focus:outline-none focus:ring-1 focus:ring-primary-500 transition";
+  const navLinkClass = "px-3 py-1.5 rounded-lg text-sm text-text-secondary hover:text-primary hover:bg-bg-elevated transition";
+  const searchInputClass = "w-full pl-9 pr-3 py-2 rounded-xl bg-bg-card border border-border-subtle text-sm text-primary placeholder:text-text-muted focus:outline-none focus:ring-1 focus:ring-primary-500 transition";
 
   const profileRef = useRef<HTMLDivElement>(null);
 
@@ -111,7 +111,7 @@ export default function Navbar() {
                 href={user ? "/home" : "/signup"}
                 className="
                   px-4 py-2 rounded-xl text-sm font-medium
-                  bg-gradient-primary text-white
+                  bg-gradient-primary text-primary
                   hover:opacity-90 transition
                 "
               >
@@ -147,7 +147,7 @@ export default function Navbar() {
         >
           {/* Top */}
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-white font-semibold">Menu</h2>
+            <h2 className="text-primary font-semibold">Menu</h2>
             <button onClick={() => setMobileOpen(false)}>
               <X className="w-5 h-5 text-text-secondary" />
             </button>

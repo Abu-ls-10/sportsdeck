@@ -9,7 +9,7 @@ export default function CommunityPollCard() {
         <span className="text-xs text-text-muted">8.4k votes</span>
       </div>
 
-      <h3 className="text-white font-semibold">
+      <h3 className="text-primary font-semibold">
         Who is your MVP mid-season favorite?
       </h3>
 

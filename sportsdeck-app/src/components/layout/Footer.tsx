@@ -5,7 +5,7 @@ import Logo from "../ui/Logo";
 import { Globe, MessageCircle, Share2 } from "lucide-react";
 
 export default function Footer() {
-  const socialClass = "w-9 h-9 rounded-xl bg-bg-card border border-border-subtle flex items-center justify-center text-text-secondary hover:text-white hover:bg-bg-elevated transition";
+  const socialClass = "w-9 h-9 rounded-xl bg-bg-card border border-border-subtle flex items-center justify-center text-text-secondary hover:text-primary hover:bg-bg-elevated transition";
 
   return (
     <footer className="relative mt-20 border-t border-border-subtle bg-bg-surface/60 backdrop-blur-xl">
@@ -33,35 +33,35 @@ export default function Footer() {
           <div className="space-y-2 text-sm">
             <Link
               href="/"
-              className="block text-text-secondary hover:text-white transition"
+              className="block text-text-secondary hover:text-primary transition"
             >
               Home
             </Link>
 
             <Link
               href="/community"
-              className="block text-text-secondary hover:text-white transition"
+              className="block text-text-secondary hover:text-primary transition"
             >
               Community
             </Link>
 
             <Link
               href="/matches"
-              className="block text-text-secondary hover:text-white transition"
+              className="block text-text-secondary hover:text-primary transition"
             >
               Matches
             </Link>
 
             <Link
               href="/teams"
-              className="block text-text-secondary hover:text-white transition"
+              className="block text-text-secondary hover:text-primary transition"
             >
               Teams
             </Link>
 
             <Link
               href="/standings"
-              className="block text-text-secondary hover:text-white transition"
+              className="block text-text-secondary hover:text-primary transition"
             >
               Standings
             </Link>

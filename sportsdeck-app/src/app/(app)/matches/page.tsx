@@ -439,7 +439,7 @@ export default async function MatchesPage({
                 Match Center
               </div>
 
-              <h1 className="text-3xl font-semibold text-white md:text-4xl">
+              <h1 className="text-3xl font-semibold text-primary md:text-4xl">
                 Matchday {matchdayToFetch}
               </h1>
 
@@ -453,7 +453,7 @@ export default async function MatchesPage({
                 <p className="text-xs text-text-muted uppercase tracking-[0.12em]">
                   Matches
                 </p>
-                <p className="text-lg font-semibold text-white">
+                <p className="text-lg font-semibold text-primary">
                   {stageFiltered.length}
                 </p>
               </div>
@@ -462,7 +462,7 @@ export default async function MatchesPage({
                 <p className="text-xs text-text-muted uppercase tracking-[0.12em]">
                   Stage
                 </p>
-                <p className="text-sm font-semibold text-white">
+                <p className="text-sm font-semibold text-primary">
                   {stageParam}
                 </p>
               </div>
@@ -504,7 +504,7 @@ export default async function MatchesPage({
               </select>
             </div>
 
-            <button className="rounded-xl bg-gradient-primary px-5 py-2 text-sm font-semibold text-white shadow-glow">
+            <button className="rounded-xl bg-gradient-primary px-5 py-2 text-sm font-semibold text-primary shadow-glow">
               Apply
             </button>
 
@@ -520,7 +520,7 @@ export default async function MatchesPage({
           {/* ================= UPCOMING ================= */}
           {upcomingMatches.length > 0 && (
             <section>
-              <h2 className="text-xl font-semibold text-white mb-4">
+              <h2 className="text-xl font-semibold text-primary mb-4">
                 Upcoming Matches
               </h2>
 
@@ -589,7 +589,7 @@ export default async function MatchesPage({
           {/* ================= RECENT ================= */}
           {recentMatches.length > 0 && (
             <section>
-              <h2 className="text-xl font-semibold text-white mb-4">
+              <h2 className="text-xl font-semibold text-primary mb-4">
                 Recent Matches
               </h2>
 
@@ -614,7 +614,7 @@ export default async function MatchesPage({
                           <span>{match.homeTeam.name}</span>
                         </div>
 
-                        <div className="text-lg font-bold text-white">
+                        <div className="text-lg font-bold text-primary">
                           {score}
                         </div>
 

@@ -71,7 +71,7 @@ export default async function TeamDetailPage({
 
             {/* INFO */}
             <div className="flex-1">
-              <h1 className="text-3xl font-semibold text-white">
+              <h1 className="text-3xl font-semibold text-primary">
                 {team.name}
               </h1>
 
@@ -87,7 +87,7 @@ export default async function TeamDetailPage({
               <div className="mt-4 flex flex-wrap justify-center gap-3 sm:justify-start">
                 <div className="rounded-xl border border-border-subtle bg-bg-card px-4 py-2 text-sm">
                   <span className="text-text-muted">Threads</span>{" "}
-                  <span className="font-semibold text-white">
+                  <span className="font-semibold text-primary">
                     {team._count.threads}
                   </span>
                 </div>
@@ -98,7 +98,7 @@ export default async function TeamDetailPage({
 
                 <Link
                   href={`/threads?teamId=${team.id}`}
-                  className="rounded-xl bg-gradient-primary px-5 py-2 text-sm font-semibold text-white shadow-glow"
+                  className="rounded-xl bg-gradient-primary px-5 py-2 text-sm font-semibold text-primary shadow-glow"
                 >
                   Open Forum
                 </Link>
@@ -116,7 +116,7 @@ export default async function TeamDetailPage({
 
         {/* ================= FUTURE SECTION ================= */}
         <section className="mt-8 rounded-2xl border border-border-subtle bg-bg-card p-6 shadow-soft">
-          <h2 className="text-lg font-semibold text-white mb-2">
+          <h2 className="text-lg font-semibold text-primary mb-2">
             Team Overview
           </h2>
           <p className="text-sm text-text-muted">

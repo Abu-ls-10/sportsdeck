@@ -69,7 +69,7 @@ export default function DailyDigestPage() {
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div>
               <p className="text-xs uppercase tracking-[0.12em] text-text-muted">AI-generated summary</p>
-              <h1 className="mt-1 text-xl font-semibold text-white md:text-2xl">Daily Digest</h1>
+              <h1 className="mt-1 text-xl font-semibold text-primary md:text-2xl">Daily Digest</h1>
             </div>
             <button
               onClick={() => loadDigest(true)}
@@ -104,10 +104,10 @@ export default function DailyDigestPage() {
                   remarkPlugins={[remarkGfm]}
                   components={{
                     h1: ({ children }) => (
-                      <h1 className="mb-4 text-2xl font-bold text-white md:text-3xl">{children}</h1>
+                      <h1 className="mb-4 text-2xl font-bold text-primary md:text-3xl">{children}</h1>
                     ),
                     h2: ({ children }) => (
-                      <h2 className="mb-3 mt-6 text-xl font-semibold text-white md:text-2xl">{children}</h2>
+                      <h2 className="mb-3 mt-6 text-xl font-semibold text-primary md:text-2xl">{children}</h2>
                     ),
                     h3: ({ children }) => (
                       <h3 className="mb-2 mt-4 text-lg font-semibold text-text-primary">{children}</h3>
@@ -145,7 +145,7 @@ export default function DailyDigestPage() {
                       <tr className="border-b border-border-subtle last:border-0">{children}</tr>
                     ),
                     th: ({ children }) => (
-                      <th className="px-4 py-3 text-left text-sm font-semibold text-white">
+                      <th className="px-4 py-3 text-left text-sm font-semibold text-primary">
                         {children}
                       </th>
                     ),
@@ -153,7 +153,7 @@ export default function DailyDigestPage() {
                       <td className="px-4 py-3 text-sm text-text-secondary">{children}</td>
                     ),
                     strong: ({ children }) => (
-                      <strong className="font-semibold text-white">{children}</strong>
+                      <strong className="font-semibold text-primary">{children}</strong>
                     ),
                     em: ({ children }) => <em className="italic text-text-primary">{children}</em>,
                     code: ({ children }) => (

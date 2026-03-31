@@ -289,7 +289,7 @@ export default function ThreadPage() {
         }`}
       >
         {/* AVATAR */}
-        <div className="w-7 h-7 rounded-full bg-gradient-primary flex items-center justify-center text-xs text-white font-semibold shadow-glow">
+        <div className="w-7 h-7 rounded-full bg-gradient-primary flex items-center justify-center text-xs text-primary font-semibold shadow-glow">
           {r.author?.username?.[0]?.toUpperCase()}
         </div>
 
@@ -297,7 +297,7 @@ export default function ThreadPage() {
 
           {/* META */}
           <div className="text-xs text-text-muted">
-            <span className="text-white font-medium">
+            <span className="text-primary font-medium">
               {r.author?.username ?? "User"}
             </span>{" "}
             • {formatTime(r.createdAt)}
@@ -310,7 +310,7 @@ export default function ThreadPage() {
 
           {/* TRANSLATION */}
           {translations[`REPLY:${r.id}`] && (
-            <div className="mt-2 rounded-lg bg-white/[0.04] px-3 py-2 text-sm text-white border border-white/10">
+            <div className="mt-2 rounded-lg bg-white/[0.04] px-3 py-2 text-sm text-primary border border-white/10">
               {translations[`REPLY:${r.id}`]}
             </div>
           )}
@@ -319,7 +319,7 @@ export default function ThreadPage() {
           <div className="flex gap-2 pt-1 text-xs">
             <button
               onClick={() => translateReply(r.id)}
-              className="text-text-muted hover:text-white transition"
+              className="text-text-muted hover:text-primary transition"
             >
               Translate
             </button>
@@ -363,7 +363,7 @@ export default function ThreadPage() {
         {/* BACK */}
         <button
           onClick={() => router.push("/home")}
-          className="flex items-center gap-2 text-sm text-text-muted hover:text-white transition"
+          className="flex items-center gap-2 text-sm text-text-muted hover:text-primary transition"
         >
           <ArrowLeft className="w-4 h-4" />
           Back
@@ -374,7 +374,7 @@ export default function ThreadPage() {
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60">
             <div className="w-full max-w-md rounded-2xl bg-bg-surface p-6 shadow-card">
 
-              <h2 className="text-lg font-semibold text-white">
+              <h2 className="text-lg font-semibold text-primary">
                 Report Content
               </h2>
 
@@ -382,14 +382,14 @@ export default function ThreadPage() {
                 value={reportReason}
                 onChange={(e) => setReportReason(e.target.value)}
                 placeholder="Describe the issue..."
-                className="mt-4 w-full rounded-lg bg-bg-card p-2 text-white"
+                className="mt-4 w-full rounded-lg bg-bg-card p-2 text-primary"
               />
 
               <div className="mt-4 flex gap-2">
                 <button
                   onClick={submitReport}
                   disabled={!reportReason.trim()}
-                  className="bg-gradient-primary px-4 py-2 rounded-lg text-white text-sm disabled:opacity-50"
+                  className="bg-gradient-primary px-4 py-2 rounded-lg text-primary text-sm disabled:opacity-50"
                 >
                   Submit
                 </button>
@@ -409,16 +409,16 @@ export default function ThreadPage() {
         <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-gradient-to-br from-bg-surface to-bg-card p-6 shadow-card">
           <div className="absolute inset-0 bg-gradient-to-br from-primary-500/5 to-transparent pointer-events-none" />
 
-          <h1 className="relative text-2xl md:text-3xl font-semibold text-white leading-tight">
+          <h1 className="relative text-2xl md:text-3xl font-semibold text-primary leading-tight">
             {thread.title}
           </h1>
 
           <div className="relative mt-4 flex items-center gap-3 text-sm text-text-muted">
-            <div className="w-9 h-9 rounded-full bg-gradient-primary flex items-center justify-center text-white text-sm font-semibold shadow-glow">
+            <div className="w-9 h-9 rounded-full bg-gradient-primary flex items-center justify-center text-primary text-sm font-semibold shadow-glow">
               {thread.author?.username?.[0]?.toUpperCase() ?? "U"}
             </div>
 
-            <span className="text-white font-medium">
+            <span className="text-primary font-medium">
               {thread.author?.username}
             </span>
 
@@ -449,7 +449,7 @@ export default function ThreadPage() {
             {userId === thread.author?.id && (
               <button
                 onClick={() => setShowPollCreator(true)}
-                className="rounded-xl bg-gradient-primary px-4 py-2 text-sm text-white shadow-glow hover:opacity-90 transition"
+                className="rounded-xl bg-gradient-primary px-4 py-2 text-sm text-primary shadow-glow hover:opacity-90 transition"
               >
                 Create Poll
               </button>
@@ -461,13 +461,13 @@ export default function ThreadPage() {
         {showPollCreator && (
           <div className="rounded-2xl border border-white/10 bg-bg-surface p-5 shadow-card space-y-4">
 
-            <h3 className="text-white font-semibold">Create Poll</h3>
+            <h3 className="text-primary font-semibold">Create Poll</h3>
 
             <input
               placeholder="Poll question"
               value={pollQuestion}
               onChange={(e) => setPollQuestion(e.target.value)}
-              className="w-full rounded-lg bg-bg-card px-3 py-2 text-sm text-white"
+              className="w-full rounded-lg bg-bg-card px-3 py-2 text-sm text-primary"
             />
 
             {pollOptions.map((opt, i) => (
@@ -476,13 +476,13 @@ export default function ThreadPage() {
                 placeholder={`Option ${i + 1}`}
                 value={opt}
                 onChange={(e) => updatePollOption(i, e.target.value)}
-                className="w-full rounded-lg bg-bg-card px-3 py-2 text-sm text-white"
+                className="w-full rounded-lg bg-bg-card px-3 py-2 text-sm text-primary"
               />
             ))}
 
             <button
               onClick={addPollOption}
-              className="text-xs text-text-muted hover:text-white"
+              className="text-xs text-text-muted hover:text-primary"
             >
               + Add option
             </button>
@@ -490,7 +490,7 @@ export default function ThreadPage() {
             <div className="flex gap-2">
               <button
                 onClick={handleCreatePoll}
-                className="bg-gradient-primary px-4 py-2 rounded-lg text-white text-sm"
+                className="bg-gradient-primary px-4 py-2 rounded-lg text-primary text-sm"
               >
                 Create Poll
               </button>
@@ -554,7 +554,7 @@ export default function ThreadPage() {
               {thread.post.replies.map((r: any) => (
                 <div key={r.id} className="flex gap-3">
 
-                  <div className="w-7 h-7 rounded-full bg-gradient-primary flex items-center justify-center text-xs text-white">
+                  <div className="w-7 h-7 rounded-full bg-gradient-primary flex items-center justify-center text-xs text-primary">
                     {r.author?.username?.[0]?.toUpperCase() ?? "U"}
                   </div>
 
@@ -569,7 +569,7 @@ export default function ThreadPage() {
 
                     {/* TRANSLATION */}
                     {translations[`REPLY:${r.id}`] && (
-                      <div className="mt-2 rounded-lg bg-white/[0.04] px-3 py-2 text-sm text-white border border-white/10">
+                      <div className="mt-2 rounded-lg bg-white/[0.04] px-3 py-2 text-sm text-primary border border-white/10">
                         {translations[`REPLY:${r.id}`]}
                       </div>
                     )}
@@ -578,7 +578,7 @@ export default function ThreadPage() {
                       <button
                         onClick={() => translateReply(r.id)}
                         disabled={translatingKey === `REPLY:${r.id}`}
-                        className="text-text-muted hover:text-white transition disabled:opacity-50"
+                        className="text-text-muted hover:text-primary transition disabled:opacity-50"
                       >
                         {translatingKey === `REPLY:${r.id}` ? "Translating…" : "Translate"}
                       </button>

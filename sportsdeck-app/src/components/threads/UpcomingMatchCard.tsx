@@ -5,7 +5,7 @@ export default function UpcomingMatchCard() {
         <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-primary-400">
           Upcoming Match
         </p>
-        <span className="rounded-md bg-brand-500 px-2 py-1 text-[10px] font-semibold text-white">
+        <span className="rounded-md bg-brand-500 px-2 py-1 text-[10px] font-semibold text-primary">
           LIVE SOON
         </span>
       </div>
@@ -19,7 +19,7 @@ export default function UpcomingMatchCard() {
 
           <div>
             <p className="text-xs text-text-muted">20:00</p>
-            <p className="mt-1 text-lg font-semibold text-white">VS</p>
+            <p className="mt-1 text-lg font-semibold text-primary">VS</p>
           </div>
 
           <div>

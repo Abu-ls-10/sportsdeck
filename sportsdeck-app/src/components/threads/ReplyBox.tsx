@@ -59,7 +59,7 @@ export default function ReplyBox({
   // =========================
   const Avatar = ({ username }: { username?: string }) => {
     return (
-      <div className="h-8 w-8 rounded-full bg-gradient-primary flex items-center justify-center text-white text-xs font-semibold shrink-0">
+      <div className="h-8 w-8 rounded-full bg-gradient-primary flex items-center justify-center text-primary text-xs font-semibold shrink-0">
         {username?.[0]?.toUpperCase() ?? "U"}
       </div>
     );
@@ -159,7 +159,7 @@ export default function ReplyBox({
 
           <button
             onClick={onCancel}
-            className="text-text-muted hover:text-white transition"
+            className="text-text-muted hover:text-primary transition"
           >
             Cancel
           </button>
@@ -196,7 +196,7 @@ export default function ReplyBox({
                 : "Write a reply..."
             }
             rows={1}
-            className="w-full resize-none bg-transparent text-sm text-white placeholder:text-text-muted outline-none"
+            className="w-full resize-none bg-transparent text-sm text-primary placeholder:text-text-muted outline-none"
           />
 
           {/* ACTION BAR */}
@@ -222,7 +222,7 @@ export default function ReplyBox({
                     setFocused(false);
                     onCancel?.();
                   }}
-                  className="text-xs text-text-muted hover:text-white transition"
+                  className="text-xs text-text-muted hover:text-primary transition"
                   disabled={loading}
                 >
                   Cancel
@@ -232,7 +232,7 @@ export default function ReplyBox({
                 <button
                   onClick={handleSubmit}
                   disabled={loading || !content.trim() || isBanned}
-                  className="rounded-lg bg-primary-500 px-3 py-1.5 text-xs font-medium text-white transition hover:bg-primary-600 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="rounded-lg bg-primary-500 px-3 py-1.5 text-xs font-medium text-primary transition hover:bg-primary-600 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {loading ? "Posting..." : "Reply"}
                 </button>

@@ -20,7 +20,7 @@ export default function ThreadSearchTabs() {
             className={`rounded-lg px-3 py-2 text-sm transition ${
               index === 0
                 ? "text-primary-400"
-                : "text-text-secondary hover:text-white"
+                : "text-text-secondary hover:text-primary"
             }`}
           >
             {tab}

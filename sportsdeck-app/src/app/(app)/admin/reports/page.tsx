@@ -242,7 +242,7 @@ export default function AdminReportsPage() {
                     <p className="text-xs text-text-dim truncate max-w-[60%]">ID: {item.id}</p>
                     <Link
                       href={`/admin/reports/${item.id}`}
-                      className="rounded-xl bg-gradient-primary px-4 py-1.5 text-sm font-semibold text-white shadow-glow hover:opacity-90 transition"
+                      className="rounded-xl bg-gradient-primary px-4 py-1.5 text-sm font-semibold text-primary shadow-glow hover:opacity-90 transition"
                     >
                       Review →
                     </Link>

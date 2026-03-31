@@ -159,7 +159,7 @@ export default function AdminBansPage() {
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div className="flex items-start gap-3 flex-1 min-w-0">
                     {/* Avatar */}
-                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-primary text-sm font-bold text-white shadow-glow">
+                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-primary text-sm font-bold text-primary shadow-glow">
                       {getInitials(ban.user.username)}
                     </div>
                     <div className="min-w-0">

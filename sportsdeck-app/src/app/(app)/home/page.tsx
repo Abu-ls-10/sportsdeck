@@ -511,7 +511,7 @@ function SectionHeader({
           </div>
         ) : null}
 
-        <h2 className="text-lg font-semibold text-white md:text-xl">{title}</h2>
+        <h2 className="text-lg font-semibold text-primary md:text-xl">{title}</h2>
       </div>
 
       {actionHref && actionLabel ? (
@@ -578,7 +578,7 @@ function Avatar({
   return (
     <div
       className={cx(
-        "flex items-center justify-center rounded-2xl border border-border-subtle bg-gradient-primary font-semibold text-white shadow-soft",
+        "flex items-center justify-center rounded-2xl border border-border-subtle bg-gradient-primary font-semibold text-primary shadow-soft",
         sizeClass
       )}
     >
@@ -623,7 +623,7 @@ function LandingHero({
               Daily Digest
             </div>
 
-            <h1 className="max-w-3xl text-3xl font-semibold leading-tight text-white md:text-4xl xl:text-[2.55rem] xl:leading-[1.05]">
+            <h1 className="max-w-3xl text-3xl font-semibold leading-tight text-primary md:text-4xl xl:text-[2.55rem] xl:leading-[1.05]">
               {headline}
             </h1>
 
@@ -634,7 +634,7 @@ function LandingHero({
             <div className="mt-6 flex flex-wrap gap-3">
               <Link
                 href="/feed"
-                className="inline-flex items-center gap-2 rounded-2xl bg-gradient-primary px-5 py-3 text-sm font-semibold text-white shadow-glow transition duration-200 hover:-translate-y-0.5"
+                className="inline-flex items-center gap-2 rounded-2xl bg-gradient-primary px-5 py-3 text-sm font-semibold text-primary shadow-glow transition duration-200 hover:-translate-y-0.5"
               >
                 Explore your feed
                 <ArrowRight className="h-4 w-4" />
@@ -656,7 +656,7 @@ function LandingHero({
                 <Link
                   key={tag.id}
                   href={`/community/tags/${tag.id}`}
-                  className="rounded-full border border-border-subtle bg-white/[0.04] px-3 py-2 text-xs font-medium text-text-secondary transition hover:bg-white/[0.07] hover:text-white"
+                  className="rounded-full border border-border-subtle bg-white/[0.04] px-3 py-2 text-xs font-medium text-text-secondary transition hover:bg-white/[0.07] hover:text-primary"
                 >
                   #{tag.name}
                 </Link>
@@ -725,7 +725,7 @@ function HeroStatCard({
       <p className="mt-4 text-xs uppercase tracking-[0.14em] text-text-muted">
         {label}
       </p>
-      <p className="mt-1 truncate text-lg font-semibold text-white">{value}</p>
+      <p className="mt-1 truncate text-lg font-semibold text-primary">{value}</p>
       <p className="mt-1 text-xs leading-5 text-text-secondary">{helper}</p>
     </div>
   );
@@ -800,7 +800,7 @@ function FeatureCard({
           {icon}
         </div>
 
-        <h3 className="mt-4 text-base font-semibold text-white">{title}</h3>
+        <h3 className="mt-4 text-base font-semibold text-primary">{title}</h3>
         <p className="mt-2 text-sm leading-6 text-text-secondary">{description}</p>
       </div>
     </GlassPanel>
@@ -885,7 +885,7 @@ function MatchCard({ match }: { match: MatchItem }) {
       <div className="mt-5 grid grid-cols-[1fr_auto_1fr] items-center gap-3">
         <TeamMini team={match.homeTeam} align="left" />
         <div className="min-w-[68px] text-center">
-          <div className="text-lg font-semibold text-white">
+          <div className="text-lg font-semibold text-primary">
             {match.homeScore ?? "-"} <span className="text-text-muted">:</span> {match.awayScore ?? "-"}
           </div>
         </div>
@@ -909,7 +909,7 @@ function MatchCard({ match }: { match: MatchItem }) {
         ) : (
           <Link
             href="/matches"
-            className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-border-subtle bg-white/[0.03] px-3 py-2.5 text-sm font-medium text-text-secondary transition hover:bg-white/[0.06] hover:text-white"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-border-subtle bg-white/[0.03] px-3 py-2.5 text-sm font-medium text-text-secondary transition hover:bg-white/[0.06] hover:text-primary"
           >
             View details
             <ArrowRight className="h-4 w-4" />
@@ -936,13 +936,13 @@ function TeamMini({
           className="h-10 w-10 rounded-xl border border-border-subtle object-cover"
         />
       ) : (
-        <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-border-subtle bg-white/[0.04] text-xs font-semibold text-white">
+        <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-border-subtle bg-white/[0.04] text-xs font-semibold text-primary">
           {getInitials(team?.shortName || team?.name || "TM")}
         </div>
       )}
 
       <div className={cx("min-w-0", align === "right" ? "text-right" : "text-left")}>
-        <p className="truncate text-sm font-semibold text-white">
+        <p className="truncate text-sm font-semibold text-primary">
           {team?.shortName || team?.name || "Team"}
         </p>
         <p className="truncate text-xs text-text-muted">{team?.name || "Club"}</p>
@@ -1005,8 +1005,8 @@ function LandingTabs({
               className={cx(
                 "rounded-xl px-4 py-2 text-sm font-medium transition duration-200",
                 isActive
-                  ? "bg-gradient-primary text-white shadow-glow"
-                  : "bg-white/[0.03] text-text-secondary hover:bg-white/[0.06] hover:text-white"
+                  ? "bg-gradient-primary text-primary shadow-glow"
+                  : "bg-white/[0.03] text-text-secondary hover:bg-white/[0.06] hover:text-primary"
               )}
             >
               {tab.label}
@@ -1145,7 +1145,7 @@ function FeedShell({
       {!loading && feed.length > 0 ? (
         <div className="mt-6 flex items-center justify-between rounded-2xl border border-border-subtle bg-white/[0.03] px-4 py-3">
           <div>
-            <p className="text-sm font-medium text-white">Want the deeper thread view?</p>
+            <p className="text-sm font-medium text-primary">Want the deeper thread view?</p>
             <p className="mt-1 text-xs text-text-muted">
               Open a thread, jump into replies, or continue the discussion in the dedicated community experience.
             </p>
@@ -1235,7 +1235,7 @@ function ThreadFeedCard({
             }}
             className="inline-block"
           >
-            <h3 className="text-lg font-semibold leading-snug text-white transition group-hover:text-primary-300">
+            <h3 className="text-lg font-semibold leading-snug text-primary transition group-hover:text-primary-300">
               {thread.title}
             </h3>
           </Link>
@@ -1260,7 +1260,7 @@ function ThreadFeedCard({
           <p className="text-[11px] uppercase tracking-[0.14em] text-text-muted">
             Replies
           </p>
-          <p className="mt-1 text-lg font-semibold text-white">{thread.replies}</p>
+          <p className="mt-1 text-lg font-semibold text-primary">{thread.replies}</p>
         </div>
       </div>
 
@@ -1270,7 +1270,7 @@ function ThreadFeedCard({
             <Link
               key={tag.id}
               href={`/community/tags/${tag.id}`}
-              className="rounded-full border border-border-subtle bg-white/[0.03] px-2.5 py-1 text-[11px] font-medium text-text-secondary transition hover:bg-white/[0.06] hover:text-white"
+              className="rounded-full border border-border-subtle bg-white/[0.03] px-2.5 py-1 text-[11px] font-medium text-text-secondary transition hover:bg-white/[0.06] hover:text-primary"
             >
               #{tag.name}
             </Link>
@@ -1359,7 +1359,7 @@ function PollFeedCard({
 
       {/* Question */}
       <div className="mt-4">
-        <h3 className="text-lg font-semibold leading-snug text-white">
+        <h3 className="text-lg font-semibold leading-snug text-primary">
           {poll.question}
         </h3>
 
@@ -1478,7 +1478,7 @@ function PostFeedCard({
       <Link
         href={`/community/threads/${post.thread.id}`}
         onClick={() => !item.isRead && onMarkRead(item.id)}
-        className="text-white font-medium hover:text-primary-300"
+        className="text-primary font-medium hover:text-primary-300"
       >
         {post.thread.title}
       </Link>
@@ -1515,7 +1515,7 @@ function ReplyFeedCard({
       <Link
         href={`/community/threads/${reply.thread.id}`}
         onClick={() => !item.isRead && onMarkRead(item.id)}
-        className="text-white font-medium hover:text-primary-300"
+        className="text-primary font-medium hover:text-primary-300"
       >
         {reply.thread.title}
       </Link>
@@ -1553,7 +1553,7 @@ function ActivityCard({
             Activity
           </div>
 
-          <h3 className="mt-3 text-base font-semibold text-white leading-snug">
+          <h3 className="mt-3 text-base font-semibold text-primary leading-snug">
             {formatActivity(item.meta)}
           </h3>
 
@@ -1588,7 +1588,7 @@ function ActivityCard({
         {!item.isRead ? (
           <button
             onClick={() => onMarkRead(item.id)}
-            className="rounded-xl border border-border-subtle bg-white/[0.03] px-3 py-2 text-sm text-text-secondary transition hover:bg-white/[0.06] hover:text-white"
+            className="rounded-xl border border-border-subtle bg-white/[0.03] px-3 py-2 text-sm text-text-secondary transition hover:bg-white/[0.06] hover:text-primary"
           >
             Mark read
           </button>
@@ -1617,7 +1617,7 @@ function SidebarCard({
         <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/[0.04] text-text-primary">
           {icon}
         </div>
-        <h3 className="text-sm font-semibold text-white">{title}</h3>
+        <h3 className="text-sm font-semibold text-primary">{title}</h3>
       </div>
 
       {children}
@@ -1674,7 +1674,7 @@ function Sidebar({
         <div className="flex items-center gap-3">
           <Avatar name={me?.username || "SportsDeck User"} src={me?.avatarUrl} size="lg" />
           <div className="min-w-0">
-            <p className="truncate text-sm font-semibold text-white">
+            <p className="truncate text-sm font-semibold text-primary">
               {me?.username || "SportsDeck User"}
             </p>
             <p className="mt-0.5 text-xs text-text-muted">
@@ -1738,13 +1738,13 @@ function Sidebar({
                       className="h-8 w-8 rounded-lg border border-border-subtle object-cover"
                     />
                   ) : (
-                    <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-border-subtle bg-white/[0.04] text-[10px] font-semibold text-white">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-border-subtle bg-white/[0.04] text-[10px] font-semibold text-primary">
                       {getInitials(entry.team?.shortName || entry.team?.name || "TM")}
                     </div>
                   )}
 
                   <div className="min-w-0">
-                    <p className="truncate text-sm font-medium text-white">
+                    <p className="truncate text-sm font-medium text-primary">
                       {entry.team?.shortName || entry.team?.name || "Team"}
                     </p>
                     <p className="text-[11px] text-text-muted">
@@ -1754,7 +1754,7 @@ function Sidebar({
                 </div>
 
                 <div className="text-right">
-                  <p className="text-sm font-semibold text-white">{entry.points ?? 0}</p>
+                  <p className="text-sm font-semibold text-primary">{entry.points ?? 0}</p>
                   <p className="text-[11px] text-text-muted">pts</p>
                 </div>
               </div>
@@ -1784,7 +1784,7 @@ function Sidebar({
                 className="flex items-center justify-between rounded-xl border border-border-subtle bg-white/[0.03] px-3 py-3 transition hover:bg-white/[0.06]"
               >
                 <div>
-                  <p className="text-sm font-medium text-white">#{tag.name}</p>
+                  <p className="text-sm font-medium text-primary">#{tag.name}</p>
                   <p className="mt-0.5 text-xs text-text-muted">
                     Explore related discussions
                   </p>
@@ -1808,7 +1808,7 @@ function Sidebar({
           <div className="space-y-3">
             {/* Question */}
             <div>
-              <p className="text-sm font-semibold leading-6 text-white">
+              <p className="text-sm font-semibold leading-6 text-primary">
                 {quickPoll.question}
               </p>
 
@@ -1882,7 +1882,7 @@ function Sidebar({
                 key={item.id}
                 className="rounded-xl border border-border-subtle bg-white/[0.03] p-3"
               >
-                <p className="text-sm font-medium text-white">
+                <p className="text-sm font-medium text-primary">
                   {formatActivity(item.meta)}
                 </p>
                 <p className="mt-1 text-xs text-text-muted">{timeAgo(item.createdAt)}</p>
@@ -1910,7 +1910,7 @@ function Sidebar({
                 <div className="flex min-w-0 items-center gap-3">
                   <Avatar name={author.username || "User"} src={author.avatarUrl} size="sm" />
                   <div className="min-w-0">
-                    <p className="truncate text-sm font-medium text-white">
+                    <p className="truncate text-sm font-medium text-primary">
                       {author.username || "SportsDeck User"}
                     </p>
                     <p className="text-xs text-text-muted">Active contributor</p>
@@ -1941,7 +1941,7 @@ function MiniMetric({
 }) {
   return (
     <div className="rounded-xl border border-border-subtle bg-white/[0.03] px-3 py-2.5 text-center">
-      <p className="text-sm font-semibold text-white">{value}</p>
+      <p className="text-sm font-semibold text-primary">{value}</p>
       <p className="mt-0.5 text-[11px] uppercase tracking-[0.12em] text-text-muted">
         {label}
       </p>
@@ -1966,7 +1966,7 @@ function EmptyStateCard({
         <Sparkles className="h-5 w-5 text-accent-300" />
       </div>
 
-      <p className="mt-4 text-base font-medium text-white">{title}</p>
+      <p className="mt-4 text-base font-medium text-primary">{title}</p>
       <p className="mt-2 text-sm leading-6 text-text-secondary">{description}</p>
     </div>
   );

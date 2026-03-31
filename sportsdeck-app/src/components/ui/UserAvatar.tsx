@@ -51,7 +51,7 @@ export function UserAvatar({
           }}
         />
       ) : (
-        <span className="flex h-full w-full items-center justify-center bg-gradient-primary text-sm font-semibold text-white">
+        <span className="flex h-full w-full items-center justify-center bg-gradient-primary text-sm font-semibold text-primary">
           {initial}
         </span>
       )}

@@ -172,7 +172,7 @@ export default function SettingsPage() {
           <button
             onClick={handleSave}
             disabled={saving}
-            className="rounded-xl bg-gradient-primary px-5 py-2 text-white shadow-glow hover:scale-[1.02] transition"
+            className="rounded-xl bg-gradient-primary px-5 py-2 text-primary shadow-glow hover:scale-[1.02] transition"
           >
             {saving ? "Saving..." : "Save Changes"}
           </button>
@@ -194,7 +194,7 @@ export default function SettingsPage() {
               <img src={avatarPreview} className="h-full w-full object-cover" />
 
               <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
-                <Camera size={18} className="text-white" />
+                <Camera size={18} className="text-primary" />
               </div>
             </div>
 
@@ -273,7 +273,7 @@ export default function SettingsPage() {
                   onClick={() => setThemeDraft(mode as ThemeMode)}
                   className={`flex-1 rounded-xl px-4 py-2 transition ${
                     themeDraft === mode
-                      ? "bg-gradient-primary text-white"
+                      ? "bg-gradient-primary text-primary"
                       : "bg-bg-elevated text-text-secondary"
                   }`}
                 >

@@ -233,7 +233,7 @@ function SidebarContent({
                 ${
                   isActive
                     ? "bg-primary-500/15 text-primary-400 shadow-inner border border-primary-500/20"
-                    : "text-text-secondary hover:bg-bg-elevated hover:scale-[1.02] hover:text-white"
+                    : "text-text-secondary hover:bg-bg-elevated hover:scale-[1.02] hover:text-primary"
                 }
               `}
             >

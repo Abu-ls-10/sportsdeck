@@ -188,7 +188,7 @@ export default function ThreadsFilterBar({ onChange }: Props) {
         {/* RESET */}
         <button
           onClick={resetFilters}
-          className="text-xs text-text-muted hover:text-white transition"
+          className="text-xs text-text-muted hover:text-primary transition"
         >
           Reset filters
         </button>

@@ -80,7 +80,7 @@ export default function Logo({
 
           {/* ICON */}
           <Goal
-            className="w-[60%] h-[60%] text-white relative z-10"
+            className="w-[60%] h-[60%] text-primary relative z-10"
             strokeWidth={2}
           />
         </div>

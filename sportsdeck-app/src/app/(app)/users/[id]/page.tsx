@@ -329,7 +329,7 @@ function Avatar({
   return (
     <div
       className={cx(
-        "flex items-center justify-center rounded-2xl border border-border-subtle bg-gradient-primary font-semibold text-white shadow-soft",
+        "flex items-center justify-center rounded-2xl border border-border-subtle bg-gradient-primary font-semibold text-primary shadow-soft",
         sizeClass
       )}
     >
@@ -514,7 +514,7 @@ function ProfileHero({
                   "inline-flex items-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold transition duration-200 disabled:cursor-not-allowed disabled:opacity-70",
                   isFollowing
                     ? "border border-border-subtle bg-white/[0.04] text-text-primary hover:bg-white/[0.07]"
-                    : "bg-gradient-primary text-white shadow-glow hover:-translate-y-0.5"
+                    : "bg-gradient-primary text-primary shadow-glow hover:-translate-y-0.5"
                 )}
               >
                 {followLoading ? (
@@ -763,7 +763,7 @@ function ContentTimelineCard({
 
                 <Link
                   href={item.href}
-                  className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-border-subtle bg-white/[0.03] text-text-secondary transition hover:bg-white/[0.06] hover:text-white"
+                  className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-border-subtle bg-white/[0.03] text-text-secondary transition hover:bg-white/[0.06] hover:text-primary"
                 >
                   <ExternalLink className="h-4 w-4" />
                 </Link>
@@ -991,7 +991,7 @@ function ProfileSettingsCard({
         <button
           type="submit"
           disabled={saving}
-          className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-primary px-5 py-3 text-sm font-semibold text-white shadow-glow transition duration-200 hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70"
+          className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-primary px-5 py-3 text-sm font-semibold text-primary shadow-glow transition duration-200 hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70"
         >
           {saving ? (
             <Loader2 className="h-4 w-4 animate-spin" />
@@ -1026,7 +1026,7 @@ function AuthPromptModal({
 
           <button
             onClick={onClose}
-            className="rounded-xl border border-border-subtle bg-white/[0.03] p-2 text-text-secondary transition hover:bg-white/[0.06] hover:text-white"
+            className="rounded-xl border border-border-subtle bg-white/[0.03] p-2 text-text-secondary transition hover:bg-white/[0.06] hover:text-primary"
           >
             <X className="h-4 w-4" />
           </button>
@@ -1041,7 +1041,7 @@ function AuthPromptModal({
         <div className="mt-6 flex flex-wrap gap-3">
           <Link
             href="/auth/login"
-            className="inline-flex items-center justify-center rounded-2xl bg-gradient-primary px-5 py-3 text-sm font-semibold text-white shadow-glow transition hover:-translate-y-0.5"
+            className="inline-flex items-center justify-center rounded-2xl bg-gradient-primary px-5 py-3 text-sm font-semibold text-primary shadow-glow transition hover:-translate-y-0.5"
           >
             Go to sign in
           </Link>

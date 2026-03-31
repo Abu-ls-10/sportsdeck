@@ -46,13 +46,13 @@ export default function AdminShell({ title, subtitle, children }: AdminShellProp
           <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-amber-500/10">
             <LogIn className="h-7 w-7 text-amber-400" />
           </div>
-          <h1 className="mb-2 text-lg font-bold text-white">Sign in required</h1>
+          <h1 className="mb-2 text-lg font-bold text-primary">Sign in required</h1>
           <p className="mb-6 text-sm text-text-secondary">
             You need to be signed in to access the Admin Console. Please log in with an administrator account.
           </p>
           <Link
             href="/login"
-            className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-primary-500 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-primary-400"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-primary-500 px-4 py-2.5 text-sm font-semibold text-primary transition hover:bg-primary-400"
           >
             <LogIn className="h-4 w-4" />
             Go to login
@@ -69,7 +69,7 @@ export default function AdminShell({ title, subtitle, children }: AdminShellProp
           <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-rose-500/10">
             <ShieldOff className="h-7 w-7 text-rose-400" />
           </div>
-          <h1 className="mb-2 text-lg font-bold text-white">Access denied</h1>
+          <h1 className="mb-2 text-lg font-bold text-primary">Access denied</h1>
           <p className="mb-1 text-sm text-text-secondary">
             The Admin Console is restricted to administrators only.
           </p>
