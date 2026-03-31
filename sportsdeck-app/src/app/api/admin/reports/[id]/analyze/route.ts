@@ -147,6 +147,13 @@ async function getContentText(
       })
       return reply?.content ?? null
     }
+    case "POLL": {
+      const poll = await prisma.poll.findUnique({
+        where: { id: contentId },
+        select: { question: true },
+      })
+      return poll?.question ?? null
+    }
     default:
       return null
   }

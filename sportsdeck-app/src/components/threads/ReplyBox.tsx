@@ -21,8 +21,8 @@ type ReplyBoxProps = {
   parentReplyId?: string | null;
   replyingTo?: string | null;
   onCancel?: () => void;
-
   onReplyCreated?: (reply: Reply) => void;
+  isBanned?: boolean;
 };
 
 const MAX_LENGTH = 500;
@@ -33,6 +33,7 @@ export default function ReplyBox({
   replyingTo = null,
   onCancel,
   onReplyCreated,
+  isBanned = false,
 }: ReplyBoxProps) {
   const [content, setContent] = useState("");
   const [focused, setFocused] = useState(false);
@@ -70,6 +71,10 @@ export default function ReplyBox({
   const handleSubmit = async () => {
     const trimmed = content.trim();
     if (!trimmed || loading) return;
+    if (isBanned) {
+      setError("Your account is banned. Replying is disabled.");
+      return;
+    }
 
     try {
       setLoading(true);
@@ -137,6 +142,13 @@ export default function ReplyBox({
 
   return (
     <div className="mt-4">
+
+      {/* BANNED NOTICE */}
+      {isBanned && (
+        <div className="mb-3 rounded-lg border border-rose-500/30 bg-rose-500/10 px-3 py-2 text-sm text-rose-300">
+          Your account is banned. Replying is disabled.
+        </div>
+      )}
 
       {/* REPLYING TO BAR */}
       {replyingTo && (
@@ -219,8 +231,8 @@ export default function ReplyBox({
                 {/* Submit */}
                 <button
                   onClick={handleSubmit}
-                  disabled={loading || !content.trim()}
-                  className="rounded-lg bg-primary-500 px-3 py-1.5 text-xs font-medium text-white transition hover:bg-primary-600 disabled:opacity-50"
+                  disabled={loading || !content.trim() || isBanned}
+                  className="rounded-lg bg-primary-500 px-3 py-1.5 text-xs font-medium text-white transition hover:bg-primary-600 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {loading ? "Posting..." : "Reply"}
                 </button>

@@ -6,6 +6,7 @@ import { getApiErrorMessage, isBannedActionError } from "@/lib/apiError";
 
 type Props = {
   onSuccess?: () => void | Promise<void>;
+  isBanned?: boolean;
 };
 
 type Team = {
@@ -13,7 +14,7 @@ type Team = {
   name: string;
 };
 
-export default function StartDiscussionCard({ onSuccess }: Props) {
+export default function StartDiscussionCard({ onSuccess, isBanned = false }: Props) {
   const [open, setOpen] = useState(false);
 
   const [title, setTitle] = useState("");
@@ -77,6 +78,10 @@ export default function StartDiscussionCard({ onSuccess }: Props) {
   // SUBMIT
   // =========================
   const handleSubmit = async () => {
+    if (isBanned) {
+      setError("Your account is banned. Creating threads is disabled.");
+      return;
+    }
     if (!title.trim() || !content.trim()) {
       setError("Title and content are required");
       return;
@@ -150,12 +155,18 @@ export default function StartDiscussionCard({ onSuccess }: Props) {
           Start a new thread and engage with the community.
         </p>
 
-        <button
-          onClick={() => setOpen(true)}
-          className="mt-5 rounded-xl bg-gradient-primary px-5 py-2.5 text-sm font-semibold text-white hover:brightness-110"
-        >
-          Start a Discussion
-        </button>
+        {isBanned ? (
+          <div className="mt-5 rounded-lg border border-rose-500/30 bg-rose-500/10 px-4 py-2.5 text-sm text-rose-300">
+            Your account is banned. Creating threads is disabled.
+          </div>
+        ) : (
+          <button
+            onClick={() => setOpen(true)}
+            className="mt-5 rounded-xl bg-gradient-primary px-5 py-2.5 text-sm font-semibold text-white hover:brightness-110"
+          >
+            Start a Discussion
+          </button>
+        )}
       </div>
 
       {/* MODAL */}
@@ -166,6 +177,13 @@ export default function StartDiscussionCard({ onSuccess }: Props) {
             <h2 className="text-xl font-semibold text-white">
               Create Thread
             </h2>
+
+            {/* BANNED NOTICE */}
+            {isBanned && (
+              <div className="rounded-lg border border-rose-500/30 bg-rose-500/10 px-3 py-2 text-sm text-rose-300">
+                Your account is banned. Creating threads is disabled.
+              </div>
+            )}
 
             {/* TITLE */}
             <input
@@ -256,8 +274,8 @@ export default function StartDiscussionCard({ onSuccess }: Props) {
 
               <button
                 onClick={handleSubmit}
-                disabled={loading}
-                className="rounded-lg bg-gradient-primary px-5 py-2 text-sm text-white disabled:opacity-50"
+                disabled={loading || isBanned}
+                className="rounded-lg bg-gradient-primary px-5 py-2 text-sm text-white disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {loading ? "Posting..." : "Post Thread"}
               </button>

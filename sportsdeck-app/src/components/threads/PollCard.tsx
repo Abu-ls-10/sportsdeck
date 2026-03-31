@@ -21,42 +21,23 @@ type Poll = {
 export default function PollCard({
   poll,
   onVote,
+  onReport,
+  isBanned = false,
 }: {
   poll: Poll;
   onVote: (data: Poll) => void;
+  onReport?: () => void;
+  isBanned?: boolean;
 }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const handleClick = async (optionId: string) => {
-    if (loading || poll.isClosed || poll.userVote) return;
-
-    // =========================
-    // OPTIMISTIC UPDATE
-    // =========================
-    const optimisticPoll = {
-      ...poll,
-      userVote: optionId,
-      totalVotes: poll.totalVotes + 1,
-      options: poll.options.map((opt) => {
-        if (opt.id === optionId) {
-          const newVotes = opt.votes + 1;
-          return { ...opt, votes: newVotes };
-        }
-        return opt;
-      }),
-    };
-
-    // recalc percentages
-    optimisticPoll.options = optimisticPoll.options.map((opt) => ({
-      ...opt,
-      percentage: optimisticPoll.totalVotes
-        ? Math.round((opt.votes / optimisticPoll.totalVotes) * 100)
-        : 0,
-    }));
-
-    // instant UI update
-    onVote(optimisticPoll);
+    if (loading || poll.isClosed) return;
+    if (isBanned) {
+      setError("Your account is banned. Voting is disabled.");
+      return;
+    }
 
     try {
       setLoading(true);
@@ -73,18 +54,38 @@ export default function PollCard({
       const data = await res.json().catch(() => ({}));
 
       if (!res.ok) {
-        throw new Error(data.error || "Vote failed");
+        const message =
+          data.error ||
+          data.message ||
+          (res.status === 403
+            ? "Your account is banned or this poll is no longer available."
+            : "Vote failed");
+        throw new Error(message);
       }
 
-      // sync with backend (real values)
-      onVote(data);
+      // Merge partial response (options + userVote) back onto the existing poll
+      // so we never lose id, question, isClosed, etc.
+      const rawOptions: { id: string; text: string; votes: number }[] =
+        data.options ?? [];
+      const totalVotes = rawOptions.reduce((sum, o) => sum + (o.votes ?? 0), 0);
+      const mergedOptions: Option[] = rawOptions.map((o) => ({
+        id: o.id,
+        text: o.text,
+        votes: o.votes,
+        percentage:
+          totalVotes > 0 ? Math.round((o.votes / totalVotes) * 100) : 0,
+      }));
 
-    } catch (err: any) {
+      onVote({
+        ...poll,
+        options: mergedOptions.length ? mergedOptions : poll.options,
+        userVote: data.userVote ?? null,
+        totalVotes,
+      });
+
+    } catch (err: unknown) {
       console.error(err);
-      setError(err.message || "Vote failed");
-
-      // rollback UI if request failed
-      onVote(poll);
+      setError(err instanceof Error ? err.message : "Vote failed");
     } finally {
       setLoading(false);
     }
@@ -107,11 +108,13 @@ export default function PollCard({
             <button
               key={opt.id}
               onClick={() => handleClick(opt.id)}
-              disabled={poll.isClosed || loading || !!poll.userVote}
-              aria-disabled={poll.isClosed || loading || !!poll.userVote}
+              disabled={poll.isClosed || loading || isBanned}
+              aria-disabled={poll.isClosed || loading || isBanned}
               className={`relative w-full overflow-hidden rounded-xl border p-3 text-left text-sm transition ${
-                isSelected
-                  ? "border-primary-500/40 bg-primary-500/10"
+                isBanned
+                  ? "border-white/10 bg-bg-card opacity-60 cursor-not-allowed"
+                  : isSelected
+                  ? "border-primary-500/40 bg-primary-500/10 hover:bg-primary-500/15"
                   : "border-white/10 bg-bg-card hover:bg-bg-elevated"
               }`}
             >
@@ -144,16 +147,31 @@ export default function PollCard({
         </div>
       )}
 
+      {/* BANNED NOTICE — always visible when banned */}
+      {isBanned && (
+        <div className="mt-3 rounded-lg border border-rose-500/30 bg-rose-500/10 px-3 py-2 text-sm text-rose-300">
+          Your account is banned. Voting is disabled.
+        </div>
+      )}
+
       {/* ERROR */}
-      {error && (
-        <div className="mt-2 text-xs text-red-400">
+      {!isBanned && error && (
+        <div className="mt-2 rounded-lg border border-rose-500/20 bg-rose-500/5 px-3 py-2 text-sm text-rose-300">
           {error}
         </div>
       )}
 
-      {/* TOTAL */}
-      <div className="mt-3 text-xs text-text-muted">
-        {poll.totalVotes} total votes
+      <div className="mt-3 flex items-center justify-between text-xs text-text-muted">
+        <span>{poll.totalVotes} total votes</span>
+        {onReport ? (
+          <button
+            type="button"
+            onClick={onReport}
+            className="text-text-muted hover:text-red-400 transition"
+          >
+            Report poll
+          </button>
+        ) : null}
       </div>
     </div>
   );

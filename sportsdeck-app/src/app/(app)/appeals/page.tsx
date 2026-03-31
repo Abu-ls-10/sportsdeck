@@ -55,13 +55,12 @@ export default function AppealsPage() {
   const [appeals, setAppeals] = useState<AppealItem[]>([]);
   const [isCurrentlyBanned, setIsCurrentlyBanned] = useState<boolean | null>(null);
 
-  const loadAppeals = useCallback(async () => {
-    if (!accessToken) return;
+  const loadAppeals = useCallback(async (token: string) => {
     setLoading(true);
     try {
       const res = await fetch("/api/appeals?limit=20", {
         method: "GET",
-        headers: authHeaders(accessToken),
+        headers: authHeaders(token),
         cache: "no-store",
       });
       const payload = (await res.json().catch(() => ({}))) as AppealsResponse & { message?: string };
@@ -71,6 +70,8 @@ export default function AppealsPage() {
         typeof payload.isCurrentlyBanned === "boolean" ? payload.isCurrentlyBanned : null
       );
     } catch (error) {
+      // Silently ignore errors that happen after the user has logged out
+      if (!accessToken) return;
       showNotice({
         tone: "error",
         title: "Load failed",
@@ -85,7 +86,7 @@ export default function AppealsPage() {
 
   useEffect(() => {
     if (isLoading || !accessToken) return;
-    void loadAppeals();
+    void loadAppeals(accessToken);
   }, [accessToken, isLoading, loadAppeals]);
 
   const submitAppeal = useCallback(async () => {
@@ -101,7 +102,7 @@ export default function AppealsPage() {
       if (!res.ok) throw new Error(payload.message ?? "Could not submit appeal");
       setMessage("");
       showNotice({ tone: "success", title: "Appeal submitted", message: "Your appeal has been sent for review." });
-      await loadAppeals();
+      await loadAppeals(accessToken);
     } catch (error) {
       showNotice({
         tone: "error",

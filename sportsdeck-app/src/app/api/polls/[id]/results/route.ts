@@ -63,6 +63,12 @@ export async function GET(
         { status: 404 }
       )
 
+    if (poll.isHidden)
+      return NextResponse.json(
+        { error: "Poll not found" },
+        { status: 404 }
+      )
+
     const results = poll.options.map(option => ({
       id: option.id,
       optionText: option.optionText,
