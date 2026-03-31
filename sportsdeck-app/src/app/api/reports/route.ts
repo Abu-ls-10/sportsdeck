@@ -21,7 +21,7 @@ const REPORT_REASON_MIN_LENGTH = Math.max(
  * @openapi
  * /api/reports:
  *   post:
- *     summary: Report a thread, post, or reply as inappropriate
+ *     summary: Report a thread, post, reply, or poll as inappropriate
  *     tags: [Reports]
  *     security:
  *       - bearerAuth: []
@@ -35,7 +35,7 @@ const REPORT_REASON_MIN_LENGTH = Math.max(
  *             properties:
  *               contentType:
  *                 type: string
- *                 enum: [THREAD, POST, REPLY]
+ *                 enum: [THREAD, POST, REPLY, POLL]
  *                 example: "POST"
  *               contentId:
  *                 type: string
@@ -58,7 +58,7 @@ const REPORT_REASON_MIN_LENGTH = Math.max(
  *         description: Internal server error
  */
 // POST /api/reports
-// Allows an authenticated user to report a thread, post, or reply as inappropriate.
+// Allows an authenticated user to report a thread, post, reply, or poll as inappropriate.
 // Creates a ReportedItem (or reuses an existing one) and attaches a Report from this user.
 export const POST = withAuth(async (req: AuthenticatedRequest) => {
     const userId = req.user.id;
@@ -93,10 +93,10 @@ export const POST = withAuth(async (req: AuthenticatedRequest) => {
     }
 
     // Validate contentType is one of the allowed values
-    const allowedTypes = ['THREAD', 'POST', 'REPLY'];
+    const allowedTypes = ['THREAD', 'POST', 'REPLY', 'POLL'];
     if (!allowedTypes.includes(contentType.toUpperCase())) {
         return NextResponse.json(
-            { message: 'contentType must be one of: THREAD, POST, REPLY' },
+            { message: 'contentType must be one of: THREAD, POST, REPLY, POLL' },
             { status: 400 }
         );
     }
@@ -295,6 +295,16 @@ async function verifyContentExists(contentType: string, contentId: string): Prom
             });
             return !!reply && !reply.isHidden;
         }
+        case 'POLL': {
+            const poll = await prisma.poll.findUnique({
+                where: { id: contentId },
+                select: {
+                    isHidden: true,
+                    thread: { select: { isHidden: true } },
+                },
+            });
+            return !!poll && !poll.isHidden && !poll.thread.isHidden;
+        }
         default:
             return false;
     }
@@ -324,6 +334,17 @@ async function getContentAuthorId(contentType: string, contentId: string): Promi
             });
             return reply?.authorId ?? null;
         }
+        case 'POLL': {
+            const poll = await prisma.poll.findUnique({
+                where: { id: contentId },
+                select: {
+                    thread: {
+                        select: { authorId: true },
+                    },
+                },
+            });
+            return poll?.thread.authorId ?? null;
+        }
         default:
             return null;
     }
@@ -352,6 +373,13 @@ async function getContentText(contentType: string, contentId: string): Promise<s
                 select: { content: true },
             });
             return reply?.content ?? null;
+        }
+        case 'POLL': {
+            const poll = await prisma.poll.findUnique({
+                where: { id: contentId },
+                select: { question: true },
+            });
+            return poll?.question ?? null;
         }
         default:
             return null;

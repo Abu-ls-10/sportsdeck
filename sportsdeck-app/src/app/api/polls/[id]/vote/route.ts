@@ -84,6 +84,12 @@ async function postHandler(
         { status: 404 }
       )
 
+    if (poll.isHidden)
+      return NextResponse.json(
+        { error: "Poll is hidden" },
+        { status: 403 }
+      )
+
     if (poll.isClosed || (poll.deadline && new Date() > poll.deadline))
       return NextResponse.json(
         { error: "Poll is closed" },

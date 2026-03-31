@@ -134,6 +134,13 @@ export async function GET(
       )
     }
 
+    if (poll.isHidden) {
+      return NextResponse.json(
+        { error: "Poll not found" },
+        { status: 404 }
+      )
+    }
+
     return NextResponse.json(poll, { status: 200 })
 
   } catch (err) {
@@ -182,6 +189,12 @@ async function patchHandler(
       return NextResponse.json(
         { error: "Poll not found" },
         { status: 404 }
+      )
+
+    if (poll.isHidden)
+      return NextResponse.json(
+        { error: "This poll has been hidden by a moderator and cannot be modified" },
+        { status: 403 }
       )
 
     if (poll.thread.authorId !== user.id && user.role !== "ADMIN")
@@ -266,6 +279,12 @@ async function deleteHandler(
       return NextResponse.json(
         { error: "Poll not found" },
         { status: 404 }
+      )
+
+    if (poll.isHidden)
+      return NextResponse.json(
+        { error: "This poll has been hidden by a moderator and cannot be deleted" },
+        { status: 403 }
       )
 
     if (poll.thread.authorId !== user.id && user.role !== "ADMIN")

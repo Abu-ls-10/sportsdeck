@@ -7,6 +7,7 @@ import { getApiErrorMessage, isBannedActionError } from "@/lib/apiError";
 type Props = {
   threadId: string;
   onPostCreated: (post: any) => void;
+  isBanned?: boolean;
 };
 
 const MAX_LENGTH = 2000;
@@ -14,6 +15,7 @@ const MAX_LENGTH = 2000;
 export default function PostComposer({
   threadId,
   onPostCreated,
+  isBanned = false,
 }: Props) {
   const [content, setContent] = useState("");
   const [focused, setFocused] = useState(false);
@@ -40,6 +42,10 @@ export default function PostComposer({
   const handleSubmit = async () => {
     const trimmed = content.trim();
     if (!trimmed || loading) return;
+    if (isBanned) {
+      setError("Your account is banned. Posting is disabled.");
+      return;
+    }
 
     try {
       setLoading(true);
@@ -98,6 +104,15 @@ export default function PostComposer({
   };
 
   return (
+    <div className="space-y-2">
+
+      {/* BANNED NOTICE */}
+      {isBanned && (
+        <div className="rounded-lg border border-rose-500/30 bg-rose-500/10 px-3 py-2 text-sm text-rose-300">
+          Your account is banned. Posting is disabled.
+        </div>
+      )}
+
     <div
       className={`rounded-2xl border p-4 transition ${
         focused
@@ -160,8 +175,8 @@ export default function PostComposer({
                 {/* Submit */}
                 <button
                   onClick={handleSubmit}
-                  disabled={loading || !content.trim()}
-                  className="rounded-lg bg-gradient-primary px-4 py-2 text-sm font-medium text-white transition hover:brightness-110 disabled:opacity-50"
+                  disabled={loading || !content.trim() || isBanned}
+                  className="rounded-lg bg-gradient-primary px-4 py-2 text-sm font-medium text-white transition hover:brightness-110 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {loading ? "Posting..." : "Post"}
                 </button>
@@ -170,6 +185,7 @@ export default function PostComposer({
           )}
         </div>
       </div>
+    </div>
     </div>
   );
 }

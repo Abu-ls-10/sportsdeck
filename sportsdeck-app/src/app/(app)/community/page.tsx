@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useCallback, useMemo } from "react";
+import { useAuth } from "@/contexts/AuthContext";
 import {
   Sparkles,
   MessageSquare,
@@ -115,6 +116,7 @@ function ThreadsSkeleton() {
 }
 
 export default function CommunityPage() {
+  const { user } = useAuth();
   const [filters, setFilters] = useState<ThreadFilters>({
     search: "",
     team: "all",
@@ -184,7 +186,7 @@ export default function CommunityPage() {
 
             <ThreadsFilterBar onChange={setFilters} />
 
-            <StartDiscussionCard onSuccess={fetchThreads} />
+            <StartDiscussionCard onSuccess={fetchThreads} isBanned={Boolean(user?.isBanned)} />
 
             {loading && <ThreadsSkeleton />}
 
