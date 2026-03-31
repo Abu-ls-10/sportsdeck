@@ -31,10 +31,11 @@ function parseJwt(token: string): AuthUser | null {
         .join("")
     );
     const payload = JSON.parse(json);
+    const normalizedRole = String(payload.role ?? "USER").trim().toUpperCase();
     return {
       id: payload.id,
       username: payload.username ?? null,
-      role: payload.role ?? "USER",
+      role: normalizedRole || "USER",
       isBanned: payload.isBanned ?? false,
     };
   } catch {
@@ -93,6 +94,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const login = useCallback(
     async (email: string, password: string): Promise<{ error?: string }> => {
+      // Always wipe any previous session before applying new credentials.
+      localStorage.removeItem("refresh_token");
+      setAccessToken(null);
+      setUser(null);
+      // Best-effort clear of server-side cookies from the old session.
+      fetch("/api/auth/logout", { method: "POST", credentials: "include" }).catch(() => {});
+
       try {
         const res = await fetch("/api/auth/login", {
           method: "POST",
@@ -135,6 +143,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const logout = useCallback(() => {
     localStorage.removeItem("refresh_token");
+    fetch("/api/auth/logout", {
+      method: "POST",
+      credentials: "include",
+    }).catch(() => {
+      // Best effort: clear server cookies even if request fails.
+    });
     setAccessToken(null);
     setUser(null);
   }, []);

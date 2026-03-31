@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useRef } from "react";
+import { showNotice } from "@/lib/clientNotice";
+import { getApiErrorMessage, isBannedActionError } from "@/lib/apiError";
 
 type Reply = {
   id: string;
@@ -87,7 +89,12 @@ export default function ReplyBox({
       const data = await res.json().catch(() => ({}));
 
       if (!res.ok) {
-        throw new Error(data.error || "Failed to post reply");
+        if (isBannedActionError(res.status, data)) {
+          throw new Error(
+            "Your account is currently banned, so posting is disabled. If you think this is a mistake, submit an appeal from My Appeals."
+          );
+        }
+        throw new Error(getApiErrorMessage(data, "Failed to post reply"));
       }
 
       // optimistic update
@@ -106,7 +113,13 @@ export default function ReplyBox({
 
     } catch (err: any) {
       console.error(err);
-      setError(err.message || "Something went wrong");
+      const message = err instanceof Error ? err.message : "Something went wrong";
+      setError(message);
+      showNotice({
+        tone: "warning",
+        title: "Unable to post reply",
+        message,
+      });
     } finally {
       setLoading(false);
     }

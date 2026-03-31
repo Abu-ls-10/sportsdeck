@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
+import { showNotice } from "@/lib/clientNotice";
+import { getApiErrorMessage, isBannedActionError } from "@/lib/apiError";
 
 type Props = {
   onSuccess?: () => void | Promise<void>;
@@ -100,7 +102,12 @@ export default function StartDiscussionCard({ onSuccess }: Props) {
       const data = await res.json().catch(() => ({}));
 
       if (!res.ok) {
-        throw new Error(data.error || "Failed to create thread");
+        if (isBannedActionError(res.status, data)) {
+          throw new Error(
+            "Your account is currently banned, so posting is disabled. If you think this is a mistake, submit an appeal from My Appeals."
+          );
+        }
+        throw new Error(getApiErrorMessage(data, "Failed to create thread"));
       }
 
       // RESET
@@ -113,9 +120,15 @@ export default function StartDiscussionCard({ onSuccess }: Props) {
 
       await onSuccess?.();
 
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error(err);
-      setError(err.message || "Something went wrong");
+      const message = err instanceof Error ? err.message : "Something went wrong";
+      setError(message);
+      showNotice({
+        tone: "warning",
+        title: "Unable to create thread",
+        message,
+      });
     } finally {
       setLoading(false);
     }
