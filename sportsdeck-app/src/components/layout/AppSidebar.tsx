@@ -14,6 +14,7 @@ import {
   FlagTriangleRight,
   Inbox,
   Settings,
+  Newspaper,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -22,45 +23,43 @@ import Logo from "../ui/Logo";
 import { UserAvatar } from "../ui/UserAvatar";
 import { useAuth } from "@/contexts/AuthContext";
 
-/** JWT does not include avatarUrl; load it for the sidebar avatar. */
 function useMyAvatarUrl(
   userId: string | undefined,
-  accessToken: string | null,
-  pathname: string
+  accessToken: string | null
 ) {
   const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
 
   useEffect(() => {
-  if (!userId || !accessToken) {
-    setAvatarUrl(null);
-    return;
-  }
-
-  let cancelled = false;
-
-  void (async () => {
-    try {
-      const res = await fetch("/api/users/me", {
-        headers: { Authorization: `Bearer ${accessToken}` },
-        cache: "no-store",
-      });
-
-      if (!res.ok) return;
-
-      const json = await res.json();
-
-      if (!cancelled) {
-        setAvatarUrl(json.data?.avatarUrl ?? null);
-      }
-    } catch {
-      if (!cancelled) setAvatarUrl(null);
+    if (!userId || !accessToken) {
+      setAvatarUrl(null);
+      return;
     }
-  })();
 
-  return () => {
-    cancelled = true;
-  };
-}, [userId, accessToken]);
+    const controller = new AbortController();
+
+    const fetchAvatar = async () => {
+      try {
+        const res = await fetch("/api/users/me", {
+          headers: { Authorization: `Bearer ${accessToken}` },
+          signal: controller.signal,
+          cache: "no-store",
+        });
+
+        if (!res.ok) return;
+
+        const json = await res.json();
+        setAvatarUrl(json?.data?.avatarUrl ?? null);
+      } catch (err: any) {
+        if (err.name !== "AbortError") {
+          setAvatarUrl(null);
+        }
+      }
+    };
+
+    fetchAvatar();
+
+    return () => controller.abort();
+  }, [userId, accessToken]);
 
   return avatarUrl;
 }
@@ -69,6 +68,7 @@ const navItems = [
   { label: "Home", href: "/home", icon: Home },
   { label: "Feed", href: "/feed", icon: LayoutDashboard },
   { label: "Community", href: "/community", icon: Users },
+  { label: "Daily Digest", href: "/daily-digest", icon: Newspaper },
   { label: "Matches", href: "/matches", icon: Trophy },
   { label: "Teams", href: "/teams", icon: Flag },
   { label: "Standings", href: "/standings", icon: BarChart3 },
@@ -98,8 +98,7 @@ export default function AppSidebar({
 }) {
   const pathname = usePathname();
   const { user, logout, accessToken } = useAuth();
-  const meAvatarUrl = useMyAvatarUrl(user?.id, accessToken, pathname);
-
+  const meAvatarUrl = useMyAvatarUrl(user?.id, accessToken);
   const isExpanded = !collapsed;
 
   return (
@@ -334,15 +333,11 @@ function SidebarContent({
       {/* ===== PROFILE ===== */}
       <div className="p-3 border-t border-border-subtle">
         <div className="flex items-start gap-3">
-          {user?.id ? (
-            <UserAvatar
-              username={user.username}
-              avatarUrl={meAvatarUrl}
-              href={`/users/${user.id}`}
-              title="View profile"
-              sizeClass="h-9 w-9"
-            />
-          ) : null}
+          <UserAvatar
+            username={user?.username ?? null}
+            avatarUrl={meAvatarUrl}
+            href={user?.id ? `/users/${user.id}` : undefined}
+          />
 
           {expanded && (
             <div className="flex min-w-0 flex-1 flex-col gap-1">

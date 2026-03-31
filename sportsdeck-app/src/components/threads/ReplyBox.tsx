@@ -103,7 +103,10 @@ export default function ReplyBox({
       }
 
       // optimistic update
-      onReplyCreated?.(data);
+      onReplyCreated?.({
+        ...data,
+        optimistic: false,
+      });
 
       // reset
       setContent("");

@@ -4,6 +4,13 @@ import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import {
+  Sparkles,
+  RefreshCw,
+  Clock,
+  CalendarDays,
+  ArrowRight,
+} from "lucide-react";
 
 type DigestResponse = {
   date: string;
@@ -11,6 +18,10 @@ type DigestResponse = {
   generatedAt: string | null;
   message?: string;
 };
+
+function cx(...classes: any[]) {
+  return classes.filter(Boolean).join(" ");
+}
 
 export default function DailyDigestPage() {
   const [digest, setDigest] = useState<DigestResponse | null>(null);
@@ -20,39 +31,27 @@ export default function DailyDigestPage() {
 
   const loadDigest = useCallback(async (force = false) => {
     const controller = new AbortController();
-    const clientTimeoutMs = 120_000;
-    const timeoutId = window.setTimeout(() => controller.abort(), clientTimeoutMs);
+    const timeout = setTimeout(() => controller.abort(), 120000);
 
     try {
-      if (force) {
-        setRefreshing(true);
-      } else {
-        setLoading(true);
-      }
+      force ? setRefreshing(true) : setLoading(true);
       setError(null);
 
       const res = await fetch(`/api/digest${force ? "?force=true" : ""}`, {
         credentials: "include",
         signal: controller.signal,
       });
-      const payload = (await res.json().catch(() => ({}))) as DigestResponse & { error?: string };
 
-      if (!res.ok) {
-        throw new Error(payload.error ?? "Failed to fetch daily digest");
-      }
+      const payload = await res.json();
+
+      if (!res.ok) throw new Error(payload.error || "Failed to fetch digest");
 
       setDigest(payload);
-    } catch (err) {
-      if (err instanceof Error && err.name === "AbortError") {
-        setError(
-          "Request timed out. The digest service may be slow; try Regenerate in a moment."
-        );
-      } else {
-        setError(err instanceof Error ? err.message : "Failed to fetch daily digest");
-      }
+    } catch (err: any) {
+      setError(err.message || "Failed to fetch digest");
       setDigest(null);
     } finally {
-      window.clearTimeout(timeoutId);
+      clearTimeout(timeout);
       setLoading(false);
       setRefreshing(false);
     }
@@ -63,117 +62,164 @@ export default function DailyDigestPage() {
   }, [loadDigest]);
 
   return (
-    <div className="px-4 py-5 md:px-6 md:py-6 lg:px-8">
-      <div className="mx-auto max-w-[980px] space-y-4">
-        <section className="rounded-2xl border border-border-subtle bg-bg-surface p-5 shadow-soft">
-          <div className="flex flex-wrap items-center justify-between gap-3">
+    <div className="px-4 py-6 md:px-6 lg:px-8">
+      <div className="mx-auto max-w-[1200px] space-y-6">
+
+        {/* ================= HERO ================= */}
+        <section className="relative overflow-hidden rounded-[28px] border border-border-subtle bg-bg-surface shadow-card">
+          <div className="absolute inset-0 bg-gradient-glow opacity-80" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(14,165,233,0.18),transparent_30%)]" />
+
+          <div className="relative flex flex-col gap-6 p-6 md:p-8 md:flex-row md:items-center md:justify-between">
+
             <div>
-              <p className="text-xs uppercase tracking-[0.12em] text-text-muted">AI-generated summary</p>
-              <h1 className="mt-1 text-xl font-semibold text-primary md:text-2xl">Daily Digest</h1>
+              <div className="inline-flex items-center gap-2 rounded-full bg-accent-400/10 px-3 py-1 text-xs text-accent-300">
+                <Sparkles size={14} />
+                AI Daily Digest
+              </div>
+
+              <h1 className="mt-3 text-3xl font-semibold text-text-primary">
+                Your SportsDeck Briefing
+              </h1>
+
+              <p className="mt-2 text-text-secondary max-w-xl">
+                A curated, AI-generated summary of everything happening across matches,
+                standings, and conversations.
+              </p>
             </div>
+
             <button
               onClick={() => loadDigest(true)}
               disabled={refreshing}
-              className="rounded-xl border border-border-subtle bg-white/[0.03] px-4 py-2 text-sm text-text-primary transition hover:bg-white/[0.06] disabled:cursor-not-allowed disabled:opacity-70"
+              className="inline-flex items-center gap-2 rounded-xl bg-gradient-primary px-5 py-3 text-sm font-semibold text-white shadow-glow hover:scale-[1.02] transition"
             >
-              {refreshing ? "Refreshing..." : "Regenerate"}
+              <RefreshCw size={16} />
+              {refreshing ? "Regenerating..." : "Regenerate"}
             </button>
           </div>
         </section>
 
-        <section className="rounded-2xl border border-border-subtle bg-bg-card p-6 shadow-soft">
-          {loading ? (
-            <div className="space-y-2 text-sm text-text-secondary">
-              <p>Loading digest…</p>
-              <p className="text-xs text-text-muted">
-                First load may take up to a minute while we gather matches, standings, and
-                discussions. If this stays here too long, use Regenerate or refresh the page.
-              </p>
+        {/* ================= META BAR ================= */}
+        {digest && !loading && !error && (
+          <div className="flex flex-wrap items-center gap-3 rounded-2xl border border-border-subtle bg-white/[0.03] px-4 py-3 text-xs text-text-muted">
+            <span className="flex items-center gap-1">
+              <CalendarDays size={14} /> {digest.date}
+            </span>
+
+            {digest.generatedAt && (
+              <span className="flex items-center gap-1">
+                <Clock size={14} />
+                {new Date(digest.generatedAt).toLocaleString()}
+              </span>
+            )}
+          </div>
+        )}
+
+        {/* ================= MAIN ================= */}
+        <section className="rounded-[28px] border border-border-subtle bg-bg-card p-6 shadow-card">
+
+          {/* LOADING */}
+          {loading && (
+            <div className="space-y-4 animate-pulse">
+              <div className="h-6 w-40 bg-white/10 rounded" />
+              <div className="h-4 w-full bg-white/10 rounded" />
+              <div className="h-4 w-5/6 bg-white/10 rounded" />
+              <div className="h-4 w-2/3 bg-white/10 rounded" />
             </div>
-          ) : error ? (
-            <p className="text-sm text-red-400">{error}</p>
-          ) : !digest?.content ? (
-            <p className="text-sm text-text-secondary">{digest?.message ?? "No digest available yet."}</p>
-          ) : (
-            <>
-              <div className="mb-6 rounded-xl border border-border-subtle bg-white/[0.03] px-4 py-3 text-xs text-text-muted">
-                Date: {digest.date} {digest.generatedAt ? `· Generated ${new Date(digest.generatedAt).toLocaleString()}` : ""}
-              </div>
-              <article className="prose prose-invert prose-sm md:prose-base max-w-none">
-                <ReactMarkdown
-                  remarkPlugins={[remarkGfm]}
-                  components={{
-                    h1: ({ children }) => (
-                      <h1 className="mb-4 text-2xl font-bold text-primary md:text-3xl">{children}</h1>
-                    ),
-                    h2: ({ children }) => (
-                      <h2 className="mb-3 mt-6 text-xl font-semibold text-primary md:text-2xl">{children}</h2>
-                    ),
-                    h3: ({ children }) => (
-                      <h3 className="mb-2 mt-4 text-lg font-semibold text-text-primary">{children}</h3>
-                    ),
-                    a: ({ href, children }) => (
-                      <Link
-                        href={href ?? "#"}
-                        className="font-medium text-primary-400 underline underline-offset-2 hover:text-primary-300 transition-colors"
-                      >
+          )}
+
+          {/* ERROR */}
+          {error && (
+            <div className="text-red-400 text-sm">{error}</div>
+          )}
+
+          {/* EMPTY */}
+          {!loading && !error && !digest?.content && (
+            <p className="text-text-secondary text-sm">
+              {digest?.message || "No digest available yet."}
+            </p>
+          )}
+
+          {/* CONTENT */}
+          {digest?.content && (
+            <article className="prose prose-invert max-w-none">
+
+              <ReactMarkdown
+                remarkPlugins={[remarkGfm]}
+                components={{
+                  h1: ({ children }) => (
+                    <h1 className="text-3xl font-bold text-primary mb-4">
+                      {children}
+                    </h1>
+                  ),
+                  h2: ({ children }) => (
+                    <h2 className="text-xl font-semibold text-primary mt-8 mb-3">
+                      {children}
+                    </h2>
+                  ),
+                  p: ({ children }) => (
+                    <p className="text-text-secondary leading-7 mb-4">
+                      {children}
+                    </p>
+                  ),
+                  a: ({ href, children }) => (
+                    <Link
+                      href={href || "#"}
+                      className="text-primary-400 hover:text-primary-300 underline"
+                    >
+                      {children}
+                    </Link>
+                  ),
+                  ul: ({ children }) => (
+                    <ul className="list-disc ml-5 space-y-2 text-text-secondary mb-4">
+                      {children}
+                    </ul>
+                  ),
+                  table: ({ children }) => (
+                    <div className="overflow-x-auto">
+                      <table className="w-full border border-border-subtle rounded-xl">
                         {children}
-                      </Link>
-                    ),
-                    p: ({ children }) => (
-                      <p className="mb-4 leading-7 text-text-secondary">{children}</p>
-                    ),
-                    ul: ({ children }) => (
-                      <ul className="mb-4 ml-5 list-disc space-y-2 text-text-secondary">{children}</ul>
-                    ),
-                    ol: ({ children }) => (
-                      <ol className="mb-4 ml-5 list-decimal space-y-2 text-text-secondary">{children}</ol>
-                    ),
-                    li: ({ children }) => <li className="leading-6">{children}</li>,
-                    table: ({ children }) => (
-                      <div className="mb-4 overflow-x-auto">
-                        <table className="w-full border-collapse rounded-xl border border-border-subtle">
-                          {children}
-                        </table>
-                      </div>
-                    ),
-                    thead: ({ children }) => (
-                      <thead className="bg-white/[0.05]">{children}</thead>
-                    ),
-                    tbody: ({ children }) => <tbody>{children}</tbody>,
-                    tr: ({ children }) => (
-                      <tr className="border-b border-border-subtle last:border-0">{children}</tr>
-                    ),
-                    th: ({ children }) => (
-                      <th className="px-4 py-3 text-left text-sm font-semibold text-primary">
-                        {children}
-                      </th>
-                    ),
-                    td: ({ children }) => (
-                      <td className="px-4 py-3 text-sm text-text-secondary">{children}</td>
-                    ),
-                    strong: ({ children }) => (
-                      <strong className="font-semibold text-primary">{children}</strong>
-                    ),
-                    em: ({ children }) => <em className="italic text-text-primary">{children}</em>,
-                    code: ({ children }) => (
-                      <code className="rounded bg-white/[0.08] px-1.5 py-0.5 text-xs font-mono text-accent-300">
-                        {children}
-                      </code>
-                    ),
-                    blockquote: ({ children }) => (
-                      <blockquote className="mb-4 border-l-4 border-primary-500/50 bg-white/[0.03] pl-4 py-2 italic text-text-secondary">
-                        {children}
-                      </blockquote>
-                    ),
-                  }}
-                >
-                  {digest.content}
-                </ReactMarkdown>
-              </article>
-            </>
+                      </table>
+                    </div>
+                  ),
+                  th: ({ children }) => (
+                    <th className="px-4 py-3 text-primary text-left">
+                      {children}
+                    </th>
+                  ),
+                  td: ({ children }) => (
+                    <td className="px-4 py-3 text-text-secondary">
+                      {children}
+                    </td>
+                  ),
+                }}
+              >
+                {digest.content}
+              </ReactMarkdown>
+            </article>
           )}
         </section>
+
+        {/* ================= CTA ================= */}
+        <div className="flex justify-between items-center rounded-2xl border border-border-subtle bg-white/[0.03] px-5 py-4">
+          <div>
+            <p className="text-sm font-medium text-text-primary">
+              Want deeper discussion?
+            </p>
+            <p className="text-xs text-text-muted">
+              Jump into threads and live conversations.
+            </p>
+          </div>
+
+          <Link
+            href="/community"
+            className="inline-flex items-center gap-2 rounded-xl border border-border-subtle px-4 py-2 text-sm hover:bg-white/[0.06]"
+          >
+            Community
+            <ArrowRight size={16} />
+          </Link>
+        </div>
+
       </div>
     </div>
   );
