@@ -17,14 +17,44 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import Logo from "../ui/Logo";
+import { UserAvatar } from "../ui/UserAvatar";
 import { useAuth } from "@/contexts/AuthContext";
-import { Dispatch, SetStateAction } from "react";
 
-// Utility Functions
-function formatRole(role?: string) {
-  if (!role) return "Guest";
-  return role.trim().toLowerCase().replace(/^\w/, (c) => c.toUpperCase());
+/** JWT does not include avatarUrl; load it for the sidebar avatar. */
+function useMyAvatarUrl(
+  userId: string | undefined,
+  accessToken: string | null,
+  pathname: string
+) {
+  const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!userId || !accessToken) {
+      setAvatarUrl(null);
+      return;
+    }
+    let cancelled = false;
+    void (async () => {
+      try {
+        const res = await fetch("/api/users/me", {
+          headers: { Authorization: `Bearer ${accessToken}` },
+          cache: "no-store",
+        });
+        if (!res.ok) return;
+        const json = (await res.json()) as { data?: { avatarUrl?: string | null } };
+        if (!cancelled) setAvatarUrl(json.data?.avatarUrl ?? null);
+      } catch {
+        if (!cancelled) setAvatarUrl(null);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [userId, accessToken, pathname]);
+
+  return avatarUrl;
 }
 
 const navItems = [
@@ -59,7 +89,8 @@ export default function AppSidebar({
   setMobileOpen: Dispatch<SetStateAction<boolean>>;
 }) {
   const pathname = usePathname();
-  const { user, logout } = useAuth();
+  const { user, logout, accessToken } = useAuth();
+  const meAvatarUrl = useMyAvatarUrl(user?.id, accessToken, pathname);
 
   const isExpanded = !collapsed;
 
@@ -92,6 +123,7 @@ export default function AppSidebar({
           expanded={true}
           pathname={pathname}
           user={user}
+          meAvatarUrl={meAvatarUrl}
           logout={logout}
           onNavigate={() => setMobileOpen(false)}
         />
@@ -113,6 +145,7 @@ export default function AppSidebar({
           expanded={isExpanded}
           pathname={pathname}
           user={user}
+          meAvatarUrl={meAvatarUrl}
           logout={logout}
         />
       </aside>
@@ -150,15 +183,21 @@ function SidebarContent({
   expanded,
   pathname,
   user,
+  meAvatarUrl,
   logout,
   onNavigate,
 }: {
   expanded: boolean;
   pathname: string;
-  user: any;
+  user: { id: string; username: string | null; role: string } | null;
+  meAvatarUrl: string | null;
   logout: () => void;
   onNavigate?: () => void;
 }) {
+  const roleLower = user?.role?.toLowerCase() ?? "";
+  const isAdmin = roleLower === "admin";
+  const showAdminNav = isAdmin || roleLower === "moderator";
+
   return (
     <div className="flex h-full flex-col">
 
@@ -205,7 +244,7 @@ function SidebarContent({
         })}
 
         {/* ===== ADMIN SECTION ===== */}
-        {["admin", "moderator"].includes(user?.role?.toLowerCase?.()) ? (
+        {showAdminNav ? (
           <>
             <div className="mt-4 px-3">
               {expanded && (
@@ -279,63 +318,39 @@ function SidebarContent({
 
       {/* ===== PROFILE ===== */}
       <div className="p-3 border-t border-border-subtle">
-        <div className="flex items-center gap-3">
-
-          {/* Avatar (CLICKABLE) */}
-          <Link
-            href={`/users/${user?.id}`}
-            className="
-              w-9 h-9 rounded-full
-              bg-gradient-primary
-              flex items-center justify-center
-              text-white text-sm font-semibold
-              shadow-glow
-              hover:scale-105 hover:shadow-glow
-              transition-all duration-200
-            "
-          >
-            {user?.username?.[0]?.toUpperCase() ?? "U"}
-          </Link>
+        <div className="flex items-start gap-3">
+          {user?.id ? (
+            <UserAvatar
+              username={user.username}
+              avatarUrl={meAvatarUrl}
+              href={`/users/${user.id}`}
+              title="View profile"
+              sizeClass="h-9 w-9"
+            />
+          ) : null}
 
           {expanded && (
-            <>
-              {/* User Info */}
-              <div className="flex-1 min-w-0">
-                <p className="text-sm text-text-primary truncate">
-                  @{user?.username ?? "user"}
-                </p>
-                <p className="text-xs text-text-muted capitalize">
-                  {formatRole(user?.role) ?? "Guest"}
-                </p>
-              </div>
-
-              {/* Actions */}
-              <div className="flex items-center gap-2">
-
-                {/* Optional: keep Profile (recommended for clarity) */}
-                <Link
-                  href={`/users/${user?.id}`}
-                  className="
-                    text-xs text-text-muted hover:text-white
-                    transition
-                  "
-                >
-                  Profile
-                </Link>
-
-                {/* Logout */}
-                <button
-                  onClick={logout}
-                  className="
-                    text-xs text-red-400 hover:text-red-300
-                    transition
-                  "
-                >
-                  Logout
-                </button>
-
-              </div>
-            </>
+            <div className="flex min-w-0 flex-1 flex-col gap-1">
+              <p className="truncate text-sm text-text-primary">
+                @{user?.username ?? "user"}
+              </p>
+              <p
+                className={
+                  isAdmin
+                    ? "text-xs font-semibold text-emerald-400"
+                    : "text-xs text-text-muted"
+                }
+              >
+                {isAdmin ? "Admin" : "User"}
+              </p>
+              <button
+                type="button"
+                onClick={logout}
+                className="self-start text-xs text-red-400 transition hover:text-red-300"
+              >
+                Logout
+              </button>
+            </div>
           )}
         </div>
       </div>
