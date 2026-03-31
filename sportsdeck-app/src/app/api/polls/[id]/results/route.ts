@@ -1,5 +1,10 @@
 import { NextResponse } from "next/server"
-import { prisma } from "@/lib/prisma"
+import {
+  pollResultsCacheKey,
+  POLL_RESULTS_TTL_SECONDS,
+} from "@/lib/cache/apiCacheKeys"
+import { loadPollResultsPayload } from "@/lib/data/pollResultsPayload"
+import { getJson, setJson } from "@/lib/redis"
 
 /**
  * @openapi
@@ -30,12 +35,10 @@ import { prisma } from "@/lib/prisma"
  */
 
 export async function GET(
-  request: Request,
+  _req: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
-
   try {
-
     const { id: pollId } = await params
 
     if (!pollId)
@@ -44,48 +47,27 @@ export async function GET(
         { status: 400 }
       )
 
-    const poll = await prisma.poll.findUnique({
-      where: { id: pollId },
-      include: {
-        options: {
-          include: {
-            _count: {
-              select: { votes: true }
-            }
-          }
-        }
-      }
-    })
+    const key = pollResultsCacheKey(pollId)
+    const cached = await getJson<{
+      pollId: string
+      question: string
+      results: { id: string; optionText: string; votes: number }[]
+    }>(key)
+    if (cached) {
+      return NextResponse.json(cached, { status: 200 })
+    }
 
-    if (!poll)
+    const payload = await loadPollResultsPayload(pollId)
+    if (!payload) {
       return NextResponse.json(
         { error: "Poll not found" },
         { status: 404 }
       )
+    }
 
-    if (poll.isHidden)
-      return NextResponse.json(
-        { error: "Poll not found" },
-        { status: 404 }
-      )
-
-    const results = poll.options.map(option => ({
-      id: option.id,
-      optionText: option.optionText,
-      votes: option._count?.votes ?? 0
-    }))
-
-    return NextResponse.json(
-      {
-        pollId: poll.id,
-        question: poll.question,
-        results
-      },
-      { status: 200 }
-    )
-
+    await setJson(key, payload, POLL_RESULTS_TTL_SECONDS)
+    return NextResponse.json(payload, { status: 200 })
   } catch (err) {
-
     console.error("GET /api/polls/:id/results error:", err)
 
     return NextResponse.json(
@@ -93,5 +75,4 @@ export async function GET(
       { status: 500 }
     )
   }
-
 }

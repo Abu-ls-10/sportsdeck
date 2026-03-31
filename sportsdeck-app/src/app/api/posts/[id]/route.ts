@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server"
+import { invalidateThreadFullCache } from "@/lib/cache/invalidateApiCache"
 import { prisma } from "@/lib/prisma"
 import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
 import { reevaluateExistingReportedItem } from "@/lib/moderation"
@@ -91,7 +92,14 @@ async function patchHandler(
       )
 
     const post = await prisma.post.findUnique({
-      where: { id: postId }
+      where: { id: postId },
+      select: {
+        id: true,
+        authorId: true,
+        threadId: true,
+        isHidden: true,
+        content: true,
+      },
     })
 
     if (!post)
@@ -159,6 +167,8 @@ async function patchHandler(
       console.error("[posts/edit] reevaluateExistingReportedItem failed:", err)
     )
 
+    await invalidateThreadFullCache(post.threadId)
+
     return NextResponse.json(updated, { status: 200 })
 
   } catch (err) {
@@ -198,7 +208,13 @@ async function deleteHandler(
       )
 
     const post = await prisma.post.findUnique({
-      where: { id: postId }
+      where: { id: postId },
+      select: {
+        id: true,
+        authorId: true,
+        threadId: true,
+        isHidden: true,
+      },
     })
 
     if (!post)
@@ -223,6 +239,8 @@ async function deleteHandler(
       where: { id: post.id },
       data: { isHidden: true }
     })
+
+    await invalidateThreadFullCache(post.threadId)
 
     return NextResponse.json(
       { success: true },

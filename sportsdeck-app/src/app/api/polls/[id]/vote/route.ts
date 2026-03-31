@@ -1,4 +1,8 @@
 import { NextResponse } from "next/server"
+import {
+  invalidatePollResultsCache,
+  invalidateThreadFullCache,
+} from "@/lib/cache/invalidateApiCache"
 import { prisma } from "@/lib/prisma"
 import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
 import { logActivity } from "@/lib/activity"
@@ -192,6 +196,9 @@ async function postHandler(
         pollOptionId: true,
       },
     })
+
+    await invalidatePollResultsCache(pollId)
+    await invalidateThreadFullCache(poll.threadId)
 
     return NextResponse.json({
       options: options.map((o) => ({

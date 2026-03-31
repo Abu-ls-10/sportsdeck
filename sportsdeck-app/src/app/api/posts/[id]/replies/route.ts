@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server"
+import { invalidateThreadFullCache } from "@/lib/cache/invalidateApiCache"
 import { prisma } from "@/lib/prisma"
 import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
 import { moderateContent } from "@/lib/moderation"
@@ -184,6 +185,8 @@ async function postHandler(
     moderateContent("REPLY", reply.id, reply.content).catch((err) =>
       console.error("[replies] moderateContent failed:", err)
     )
+
+    await invalidateThreadFullCache(thread.id)
 
     return NextResponse.json(reply, { status: 201 })
   } catch (err) {

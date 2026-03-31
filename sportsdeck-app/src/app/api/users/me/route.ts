@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server"
+import { invalidateUserProfileCache } from "@/lib/cache/invalidateApiCache"
 import { prisma } from "@/lib/prisma"
 import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
 import { DEFAULT_AVATAR_URL } from "@/lib/avatar"
@@ -156,6 +157,8 @@ async function patchHandler(req: AuthenticatedRequest) {
         createdAt: true
       }
     })
+
+    await invalidateUserProfileCache(currentUser.id)
 
     return NextResponse.json({
       message: "User profile updated successfully.",

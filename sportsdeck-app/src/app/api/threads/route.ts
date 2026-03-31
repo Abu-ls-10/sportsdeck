@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server"
+import { invalidateTagsListCache } from "@/lib/cache/invalidateApiCache"
 import { prisma } from "@/lib/prisma"
 import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
 import { logActivity } from "@/lib/activity";
@@ -226,6 +227,10 @@ async function postHandler(req: AuthenticatedRequest) {
       entityType: "thread",
       entityId: result.id,
     });
+
+    if (tags && Array.isArray(tags)) {
+      await invalidateTagsListCache()
+    }
 
     return NextResponse.json(result, { status: 201 });
 

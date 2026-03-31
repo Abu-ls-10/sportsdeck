@@ -1,4 +1,8 @@
 import { NextResponse } from "next/server"
+import {
+  invalidatePollResultsCache,
+  invalidateThreadFullCache,
+} from "@/lib/cache/invalidateApiCache"
 import { prisma } from "@/lib/prisma"
 import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
 
@@ -228,6 +232,9 @@ async function patchHandler(
       }
     })
 
+    await invalidatePollResultsCache(poll.id)
+    await invalidateThreadFullCache(poll.threadId)
+
     return NextResponse.json(updated, { status: 200 })
 
   } catch (err) {
@@ -293,9 +300,15 @@ async function deleteHandler(
         { status: 403 }
       )
 
+    const threadId = poll.threadId
+    const pollPk = poll.id
+
     await prisma.poll.delete({
       where: { id: poll.id }
     })
+
+    await invalidatePollResultsCache(pollPk)
+    await invalidateThreadFullCache(threadId)
 
     return NextResponse.json(
       { success: true },

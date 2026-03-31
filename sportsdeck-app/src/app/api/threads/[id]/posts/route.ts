@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server"
+import { invalidateThreadFullCache } from "@/lib/cache/invalidateApiCache"
 import { prisma } from "@/lib/prisma"
 import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
 import { logActivity } from "@/lib/activity"
@@ -193,6 +194,8 @@ async function postHandler(
       entityType: "post",
       entityId: result.id,
     });
+
+    await invalidateThreadFullCache(thread.id)
 
     return NextResponse.json(result, { status: 201 })
 

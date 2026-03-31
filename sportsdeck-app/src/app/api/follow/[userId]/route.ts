@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server"
+import { invalidateUserProfileCache } from "@/lib/cache/invalidateApiCache"
 import { prisma } from "@/lib/prisma"
 import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
 import { logActivity } from "@/lib/activity"
@@ -190,6 +191,9 @@ async function deleteHandler(
         { status: 404 }
       )
     }
+
+    await invalidateUserProfileCache(targetUserId)
+    await invalidateUserProfileCache(currentUser.id)
 
     return NextResponse.json({ success: true }, { status: 200 })
 
