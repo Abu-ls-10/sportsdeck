@@ -31,28 +31,36 @@ function useMyAvatarUrl(
   const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!userId || !accessToken) {
-      setAvatarUrl(null);
-      return;
-    }
-    let cancelled = false;
-    void (async () => {
-      try {
-        const res = await fetch("/api/users/me", {
-          headers: { Authorization: `Bearer ${accessToken}` },
-          cache: "no-store",
-        });
-        if (!res.ok) return;
-        const json = (await res.json()) as { data?: { avatarUrl?: string | null } };
-        if (!cancelled) setAvatarUrl(json.data?.avatarUrl ?? null);
-      } catch {
-        if (!cancelled) setAvatarUrl(null);
+  if (!userId || !accessToken) {
+    setAvatarUrl(null);
+    return;
+  }
+
+  let cancelled = false;
+
+  void (async () => {
+    try {
+      const res = await fetch("/api/users/me", {
+        headers: { Authorization: `Bearer ${accessToken}` },
+        cache: "no-store",
+      });
+
+      if (!res.ok) return;
+
+      const json = await res.json();
+
+      if (!cancelled) {
+        setAvatarUrl(json.data?.avatarUrl ?? null);
       }
-    })();
-    return () => {
-      cancelled = true;
-    };
-  }, [userId, accessToken, pathname]);
+    } catch {
+      if (!cancelled) setAvatarUrl(null);
+    }
+  })();
+
+  return () => {
+    cancelled = true;
+  };
+}, [userId, accessToken]);
 
   return avatarUrl;
 }
@@ -213,7 +221,14 @@ function SidebarContent({
       </div>
 
       {/* ===== NAV ===== */}
-      <nav className="flex-1 px-3 space-y-1 overflow-y-auto">
+      <nav
+        className="
+          flex-1 px-3 space-y-1
+          overflow-y-auto
+          scrollbar-hide
+          pb-4
+        "
+      >
 
         {/* ===== MAIN NAV ===== */}
         {navItems.map((item) => {
