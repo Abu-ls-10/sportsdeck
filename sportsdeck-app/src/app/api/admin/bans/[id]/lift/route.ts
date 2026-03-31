@@ -78,6 +78,12 @@ export async function PATCH(
       data: { isBanned: false },
     })
 
+    // Resolve any pending appeals for this ban so they disappear from the queue
+    await tx.appeal.updateMany({
+      where: { banId: id, status: "pending" },
+      data: { status: "approved", reviewedAt: new Date() },
+    })
+
     // Update ban record
     const lifted = await tx.ban.update({
       where: { id },

@@ -78,7 +78,23 @@ export async function POST(req: Request){
             data: {refresh_token: await hashPassword(refresh_token)}
         })
     
-        return NextResponse.json({access_token: access_token, refresh_token: refresh_token}, {status: 201});
+        const res = NextResponse.json(
+            {access_token: access_token, refresh_token: refresh_token},
+            {status: 201}
+        );
+        res.cookies.set("access_token", access_token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            sameSite: "lax",
+            path: "/",
+        });
+        res.cookies.set("refresh_token", refresh_token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            sameSite: "lax",
+            path: "/",
+        });
+        return res;
 
     }
 

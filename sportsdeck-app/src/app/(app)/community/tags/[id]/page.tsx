@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useMemo } from "react";
+import { useCallback, useEffect, useState, useMemo } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 
@@ -38,6 +38,14 @@ export default function TagPage() {
   const [threads, setThreads] = useState<Thread[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  const handleBack = useCallback(() => {
+    if (window.history.length > 1) {
+      router.back();
+      return;
+    }
+    router.push("/community");
+  }, [router]);
 
   // =========================
   // FETCH
@@ -134,7 +142,7 @@ export default function TagPage() {
 
         {/* BACK */}
         <button
-          onClick={() => router.back()}
+          onClick={handleBack}
           className="flex items-center gap-2 text-sm text-text-muted hover:text-white transition"
         >
           <ArrowLeft className="w-4 h-4" />

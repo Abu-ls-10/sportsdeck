@@ -75,6 +75,10 @@ export function getUserFromToken(req: Request): JwtPayload | null {
   const payload = verifyAccessToken(token)
 
   if (!payload || typeof payload === 'string') return null
-  return payload
+  return {
+    ...payload,
+    role: String(payload.role ?? "").trim().toUpperCase(),
+    isBanned: Boolean(payload.isBanned),
+  }
 }
 

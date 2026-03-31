@@ -126,7 +126,7 @@ export async function POST(request: Request) {
   }
 
   // Cannot ban an admin
-  if (targetUser.role === "ADMIN") {
+  if (String(targetUser.role ?? "").trim().toUpperCase() === "ADMIN") {
     return NextResponse.json({ message: "Cannot ban an admin" }, { status: 400 })
   }
 
