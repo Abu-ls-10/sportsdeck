@@ -7,12 +7,19 @@ type Reply = {
   content: string;
   createdAt: string;
   author: {
+    id: string;
     username: string;
+    avatarUrl?: string;
   };
+  parentReplyId?: string | null;
 };
 
 type ReplyBoxProps = {
   postId: string;
+  parentReplyId?: string | null;
+  replyingTo?: string | null;
+  onCancel?: () => void;
+
   onReplyCreated?: (reply: Reply) => void;
 };
 
@@ -20,6 +27,9 @@ const MAX_LENGTH = 500;
 
 export default function ReplyBox({
   postId,
+  parentReplyId = null,
+  replyingTo = null,
+  onCancel,
   onReplyCreated,
 }: ReplyBoxProps) {
   const [content, setContent] = useState("");
@@ -42,6 +52,17 @@ export default function ReplyBox({
   };
 
   // =========================
+  // AVATAR
+  // =========================
+  const Avatar = ({ username }: { username?: string }) => {
+    return (
+      <div className="h-8 w-8 rounded-full bg-gradient-primary flex items-center justify-center text-white text-xs font-semibold shrink-0">
+        {username?.[0]?.toUpperCase() ?? "U"}
+      </div>
+    );
+  };
+
+  // =========================
   // SUBMIT
   // =========================
   const handleSubmit = async () => {
@@ -57,7 +78,10 @@ export default function ReplyBox({
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ content: trimmed }),
+        body: JSON.stringify({
+          content: trimmed,
+          parentReplyId,
+        }),
       });
 
       const data = await res.json().catch(() => ({}));
@@ -76,6 +100,9 @@ export default function ReplyBox({
       if (textareaRef.current) {
         textareaRef.current.style.height = "auto";
       }
+
+      // clear reply target
+      onCancel?.();
 
     } catch (err: any) {
       console.error(err);
@@ -97,16 +124,32 @@ export default function ReplyBox({
 
   return (
     <div className="mt-4">
-      
+
+      {/* REPLYING TO BAR */}
+      {replyingTo && (
+        <div className="mb-2 text-xs text-accent-300 flex items-center justify-between">
+          <span>
+            Replying to <span className="font-medium">@{replyingTo}</span>
+          </span>
+
+          <button
+            onClick={onCancel}
+            className="text-text-muted hover:text-white transition"
+          >
+            Cancel
+          </button>
+        </div>
+      )}
+
       <div
         className={`flex gap-3 rounded-2xl border p-3 transition ${
-          focused
+          focused || replyingTo
             ? "border-primary-500/40 bg-bg-surface"
             : "border-white/6 bg-bg-surface/70"
         }`}
       >
         {/* Avatar */}
-        <div className="h-8 w-8 rounded-full bg-primary-500/30 shrink-0" />
+        <Avatar username="You" />
 
         {/* Input */}
         <div className="flex-1">
@@ -120,17 +163,21 @@ export default function ReplyBox({
               }
             }}
             onFocus={() => setFocused(true)}
-            onBlur={() => !content && setFocused(false)}
+            onBlur={() => !content && !replyingTo && setFocused(false)}
             onKeyDown={handleKeyDown}
-            placeholder="Write a reply..."
+            placeholder={
+              replyingTo
+                ? `Reply to @${replyingTo}...`
+                : "Write a reply..."
+            }
             rows={1}
             className="w-full resize-none bg-transparent text-sm text-white placeholder:text-text-muted outline-none"
           />
 
           {/* ACTION BAR */}
-          {(focused || content) && (
+          {(focused || content || replyingTo) && (
             <div className="mt-2 flex items-center justify-between">
-              
+
               {/* Left */}
               <div className="flex items-center gap-3 text-xs text-text-muted">
                 <span>{content.length}/{MAX_LENGTH}</span>
@@ -142,12 +189,13 @@ export default function ReplyBox({
 
               {/* Right */}
               <div className="flex items-center gap-2">
-                
+
                 {/* Cancel */}
                 <button
                   onClick={() => {
                     setContent("");
                     setFocused(false);
+                    onCancel?.();
                   }}
                   className="text-xs text-text-muted hover:text-white transition"
                   disabled={loading}
@@ -163,6 +211,7 @@ export default function ReplyBox({
                 >
                   {loading ? "Posting..." : "Reply"}
                 </button>
+
               </div>
             </div>
           )}

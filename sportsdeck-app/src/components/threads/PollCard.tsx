@@ -5,7 +5,7 @@ import { useState } from "react";
 type Option = {
   id: string;
   text: string;
-  _count?: { votes: number };
+  votes: number;
 };
 
 type Poll = {
@@ -13,22 +13,23 @@ type Poll = {
   question: string;
   options: Option[];
   isClosed: boolean;
+  userVote: string | null;
 };
 
-export default function PollCard({ poll }: { poll: Poll }) {
-  const [selected, setSelected] = useState<string | null>(null);
-  const [voted, setVoted] = useState(false);
+export default function PollCard({
+  poll,
+  onVote,
+}: {
+  poll: Poll;
+  onVote: (data: any) => void;
+}) {
   const [loading, setLoading] = useState(false);
-  const [localOptions, setLocalOptions] = useState(poll.options);
   const [error, setError] = useState<string | null>(null);
 
-  const totalVotes = localOptions.reduce(
-    (sum, o) => sum + (o._count?.votes ?? 0),
-    0
-  );
+  const totalVotes = poll.options.reduce((sum, o) => sum + o.votes, 0);
 
-  const handleVote = async () => {
-    if (!selected || loading || poll.isClosed) return;
+  const handleClick = async (optionId: string) => {
+    if (loading || poll.isClosed) return;
 
     try {
       setLoading(true);
@@ -39,7 +40,7 @@ export default function PollCard({ poll }: { poll: Poll }) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ optionId: selected }),
+        body: JSON.stringify({ optionId }),
       });
 
       const data = await res.json().catch(() => ({}));
@@ -48,21 +49,8 @@ export default function PollCard({ poll }: { poll: Poll }) {
         throw new Error(data.error || "Vote failed");
       }
 
-      // Optimistic update
-      setLocalOptions((prev) =>
-        prev.map((opt) =>
-          opt.id === selected
-            ? {
-                ...opt,
-                _count: {
-                  votes: (opt._count?.votes ?? 0) + 1,
-                },
-              }
-            : opt
-        )
-      );
-
-      setVoted(true);
+      // 🔥 update parent state
+      onVote(data);
 
     } catch (err: any) {
       console.error(err);
@@ -74,7 +62,7 @@ export default function PollCard({ poll }: { poll: Poll }) {
 
   return (
     <div className="rounded-2xl border border-white/6 bg-bg-surface p-5 shadow-card">
-      
+
       {/* QUESTION */}
       <h3 className="text-base font-semibold text-white">
         {poll.question}
@@ -82,19 +70,18 @@ export default function PollCard({ poll }: { poll: Poll }) {
 
       {/* OPTIONS */}
       <div className="mt-4 space-y-2">
-        {localOptions.map((opt) => {
-          const votes = opt._count?.votes ?? 0;
+        {poll.options.map((opt) => {
+          const votes = opt.votes;
           const percent =
             totalVotes > 0 ? Math.round((votes / totalVotes) * 100) : 0;
 
-          const isSelected = selected === opt.id;
-          const showResults = voted || poll.isClosed;
+          const isSelected = poll.userVote === opt.id;
 
           return (
             <button
               key={opt.id}
-              onClick={() => !showResults && setSelected(opt.id)}
-              disabled={showResults}
+              onClick={() => handleClick(opt.id)}
+              disabled={poll.isClosed || loading}
               className={`relative w-full overflow-hidden rounded-xl border p-3 text-left text-sm transition ${
                 isSelected
                   ? "border-primary-500/40 bg-primary-500/10"
@@ -102,45 +89,26 @@ export default function PollCard({ poll }: { poll: Poll }) {
               }`}
             >
               {/* RESULT BAR */}
-              {showResults && (
-                <div
-                  className="absolute inset-y-0 left-0 bg-primary-500/20 transition-all"
-                  style={{ width: `${percent}%` }}
-                />
-              )}
+              <div
+                className="absolute inset-y-0 left-0 bg-primary-500/20 transition-all"
+                style={{ width: `${percent}%` }}
+              />
 
               <div className="relative flex items-center justify-between">
                 <span className="text-white">{opt.text}</span>
 
-                {showResults && (
-                  <span className="text-xs text-text-muted">
-                    {percent}%
-                  </span>
-                )}
+                <span className="text-xs text-text-muted">
+                  {percent}%
+                </span>
               </div>
 
-              {showResults && (
-                <div className="relative mt-1 text-[11px] text-text-muted">
-                  {votes} votes
-                </div>
-              )}
+              <div className="relative mt-1 text-[11px] text-text-muted">
+                {votes} votes
+              </div>
             </button>
           );
         })}
       </div>
-
-      {/* ACTION */}
-      {!poll.isClosed && !voted && (
-        <div className="mt-4 flex justify-end">
-          <button
-            onClick={handleVote}
-            disabled={!selected || loading}
-            className="rounded-lg bg-gradient-primary px-4 py-2 text-xs font-semibold text-white transition hover:brightness-110 disabled:opacity-50"
-          >
-            {loading ? "Voting..." : "Vote"}
-          </button>
-        </div>
-      )}
 
       {/* CLOSED STATE */}
       {poll.isClosed && (

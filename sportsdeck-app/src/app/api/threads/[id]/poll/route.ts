@@ -71,71 +71,113 @@ export async function POST(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { id: threadId } = await params;
+    const { id: threadId } = await params
 
-    const user = await getUserFromToken(request);
+    const user = await getUserFromToken(request)
 
     if (!user) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
     const thread = await prisma.thread.findUnique({
       where: { id: threadId },
-      include: { polls: true }
-    });
+      include: { polls: true },
+    })
 
     if (!thread) {
-      return NextResponse.json({ error: "Thread not found" }, { status: 404 });
+      return NextResponse.json({ error: "Thread not found" }, { status: 404 })
     }
 
+    // only 1 poll allowed
     if (thread.polls.length > 0) {
       return NextResponse.json(
         { error: "Thread already has a poll" },
         { status: 400 }
-      );
+      )
     }
 
+    // only owner/admin
     if (thread.authorId !== user.id && user.role !== "ADMIN") {
-      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 })
     }
 
-    const body = await request.json();
-    const { question, deadline } = body;
+    const body = await request.json().catch(() => null)
 
-    if (!question || !deadline) {
+    const { question, deadline, options, replyId } = body || {}
+
+    if (!question || !deadline || !options || options.length < 2) {
       return NextResponse.json(
-        { error: "Question and deadline required" },
+        { error: "Question, deadline, and at least 2 options are required" },
         { status: 400 }
-      );
+      )
     }
 
     // =========================
-    // CREATE POLL
+    // VALIDATE REPLY (optional)
+    // =========================
+    if (replyId) {
+      const reply = await prisma.reply.findUnique({
+        where: { id: replyId },
+        include: {
+          post: {
+            include: {
+              thread: true,
+            },
+          },
+        },
+      })
+
+      if (!reply || reply.isHidden) {
+        return NextResponse.json(
+          { error: "Reply not found" },
+          { status: 404 }
+        )
+      }
+
+      if (reply.post.thread.id !== threadId) {
+        return NextResponse.json(
+          { error: "Invalid reply for this thread" },
+          { status: 400 }
+        )
+      }
+    }
+
+    // =========================
+    // CREATE POLL + OPTIONS
     // =========================
     const poll = await prisma.poll.create({
       data: {
         threadId: thread.id,
         question,
         deadline: new Date(deadline),
-        isClosed: false
-      }
-    });
+        isClosed: false,
+        replyId: replyId ?? null,
+        options: {
+          create: options.map((text: string) => ({
+            optionText: text,
+          })),
+        },
+      },
+      include: {
+        options: true,
+      },
+    })
 
     await logActivity({
       actorId: user.id,
       type: "poll_created",
       entityType: "poll",
       entityId: poll.id,
-    });
+    })
 
-    return NextResponse.json(poll, { status: 201 });
+    return NextResponse.json(poll, { status: 201 })
 
   } catch (error) {
-    console.error(error);
+    console.error(error)
 
     return NextResponse.json(
       { error: "Internal server error" },
       { status: 500 }
-    );
+    )
   }
 }

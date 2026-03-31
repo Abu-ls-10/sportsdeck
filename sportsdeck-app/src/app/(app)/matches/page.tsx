@@ -386,7 +386,7 @@ export default async function MatchesPage({
 
                       <div className="mt-4 flex gap-2">
                         <Link
-                          href={`/matches/${match.id}`}
+                          href={`/matches/${match.id}/thread`}
                           className="flex-1 rounded-xl bg-primary-500/10 text-primary-300 text-center py-2 text-sm font-medium hover:bg-primary-500/20"
                         >
                           Thread

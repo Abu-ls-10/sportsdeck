@@ -30,7 +30,7 @@ export default function MatchThreadRedirectPage() {
           throw new Error("Thread not found");
         }
 
-        router.replace(`/threads/${threadId}`);
+        router.replace(`/community/threads/${threadId}`);
       } catch (err) {
         console.error(err);
         router.replace("/matches");

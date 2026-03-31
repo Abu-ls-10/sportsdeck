@@ -64,7 +64,6 @@ async function postHandler(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-
     const user = req.user
     const { id: pollId } = await params
 
@@ -74,15 +73,9 @@ async function postHandler(
         { status: 401 }
       )
 
-    if (!pollId)
-      return NextResponse.json(
-        { error: "Poll id is required" },
-        { status: 400 }
-      )
-
     const poll = await prisma.poll.findUnique({
       where: { id: pollId },
-      include: { options: true }
+      include: { options: true },
     })
 
     if (!poll)
@@ -97,29 +90,19 @@ async function postHandler(
         { status: 403 }
       )
 
-    // Block voting on polls in hidden threads
     const thread = await prisma.thread.findUnique({
       where: { id: poll.threadId },
-      select: { isHidden: true }
+      select: { isHidden: true },
     })
 
     if (thread?.isHidden)
       return NextResponse.json(
-        { error: "This thread has been hidden by a moderator and no further activity is allowed" },
+        { error: "Thread is hidden" },
         { status: 403 }
       )
 
-    let body
-    try {
-      body = await req.json()
-    } catch {
-      return NextResponse.json(
-        { error: "Invalid JSON body" },
-        { status: 400 }
-      )
-    }
-
-    const { optionId } = body
+    const body = await req.json().catch(() => null)
+    const optionId = body?.optionId
 
     if (!optionId)
       return NextResponse.json(
@@ -128,7 +111,7 @@ async function postHandler(
       )
 
     const option = await prisma.pollOption.findUnique({
-      where: { id: optionId }
+      where: { id: optionId },
     })
 
     if (!option || option.pollId !== poll.id)
@@ -137,39 +120,83 @@ async function postHandler(
         { status: 400 }
       )
 
+    // =========================
+    // SINGLE-SELECT TOGGLE
+    // =========================
+
+    // Find existing vote in this poll
     const existingVote = await prisma.vote.findFirst({
       where: {
         userId: user.id,
-        pollOption: {
-          pollId: poll.id
-        }
-      }
+        pollId: poll.id,
+      },
     })
 
-    if (existingVote)
-      return NextResponse.json(
-        { error: "User has already voted in this poll" },
-        { status: 409 }
-      )
+    if (existingVote) {
+      if (existingVote.pollOptionId === optionId) {
+        // SAME OPTION → UNVOTE
+        await prisma.vote.delete({
+          where: { id: existingVote.id },
+        })
+      } else {
+        // DIFFERENT OPTION → SWITCH
+        await prisma.vote.update({
+          where: { id: existingVote.id },
+          data: {
+            pollOptionId: optionId,
+          },
+        })
+      }
+    } else {
+      // NO EXISTING VOTE → CREATE
+      await prisma.vote.create({
+        data: {
+          userId: user.id,
+          pollId: poll.id,
+          pollOptionId: optionId,
+        },
+      })
 
-    const vote = await prisma.vote.create({
-      data: {
+      await logActivity({
+        actorId: user.id,
+        type: "poll_voted",
+        entityType: "poll",
+        entityId: pollId,
+      })
+    }
+
+    // =========================
+    // RETURN UPDATED STATE
+    // =========================
+    const options = await prisma.pollOption.findMany({
+      where: { pollId },
+      include: {
+        _count: {
+          select: { votes: true },
+        },
+      },
+    })
+
+    const userVote = await prisma.vote.findFirst({
+      where: {
+        pollId,
         userId: user.id,
-        pollOptionId: optionId
-      }
+      },
+      select: {
+        pollOptionId: true,
+      },
     })
 
-    await logActivity({
-      actorId: user.id,
-      type: "poll_voted",
-      entityType: "poll",
-      entityId: pollId,
-    });
-
-    return NextResponse.json(vote, { status: 201 })
+    return NextResponse.json({
+      options: options.map((o) => ({
+        id: o.id,
+        text: o.optionText,
+        votes: o._count.votes,
+      })),
+      userVote: userVote?.pollOptionId ?? null,
+    })
 
   } catch (err) {
-
     console.error("POST /api/polls/:id/vote error:", err)
 
     return NextResponse.json(
