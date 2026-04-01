@@ -146,7 +146,7 @@ export async function processFeed(input: {
   try {
     const groupKey = buildGroupKey(input);
 
-    let event;
+    let event: any;
 
     if (groupKey) {
       event = await prisma.feedEvent.findFirst({
