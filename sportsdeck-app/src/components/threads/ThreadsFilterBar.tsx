@@ -18,6 +18,8 @@ type Props = {
 type Team = {
   id: string;
   name: string;
+  shortName?: string;
+  logoUrl?: string;
 };
 
 type Tag = {
@@ -41,6 +43,8 @@ export default function ThreadsFilterBar({ onChange }: Props) {
   });
 
   const [searchInput, setSearchInput] = useState("");
+  const [teamDropdownOpen, setTeamDropdownOpen] = useState(false);
+  const [teamSearch, setTeamSearch] = useState("");
 
   // USER SEARCH
   const [userResults, setUserResults] = useState<SearchUser[]>([]);
@@ -49,6 +53,7 @@ export default function ThreadsFilterBar({ onChange }: Props) {
   const [highlightIndex, setHighlightIndex] = useState(-1);
 
   const searchRef = useRef<HTMLDivElement>(null);
+  const teamDropdownRef = useRef<HTMLDivElement>(null);
 
   // =========================
   // FILTER DATA
@@ -56,6 +61,10 @@ export default function ThreadsFilterBar({ onChange }: Props) {
   const [teams, setTeams] = useState<Team[]>([]);
   const [tags, setTags] = useState<Tag[]>([]);
   const [loadingMeta, setLoadingMeta] = useState(true);
+  const selectedTeam = teams.find((team) => team.id === filters.team) ?? null;
+  const filteredTeams = teams.filter((team) =>
+    team.name.toLowerCase().includes(teamSearch.toLowerCase())
+  );
 
   useEffect(() => {
     const fetchMeta = async () => {
@@ -67,10 +76,16 @@ export default function ThreadsFilterBar({ onChange }: Props) {
           fetch("/api/tags"),
         ]);
 
-        const teamsData = await teamsRes.json().catch(() => []);
+        const teamsData = await teamsRes.json().catch(() => ({}));
         const tagsData = await tagsRes.json().catch(() => []);
 
-        setTeams(Array.isArray(teamsData) ? teamsData : []);
+        const normalizedTeams = Array.isArray(teamsData)
+          ? teamsData
+          : Array.isArray(teamsData?.teams)
+          ? teamsData.teams
+          : [];
+
+        setTeams(normalizedTeams);
         setTags(Array.isArray(tagsData) ? tagsData : []);
       } catch (err) {
         console.error("Failed to load filter metadata", err);
@@ -148,6 +163,10 @@ export default function ThreadsFilterBar({ onChange }: Props) {
     const handler = (e: MouseEvent) => {
       if (searchRef.current && !searchRef.current.contains(e.target as Node)) {
         setShowDropdown(false);
+      }
+      if (teamDropdownRef.current && !teamDropdownRef.current.contains(e.target as Node)) {
+        setTeamDropdownOpen(false);
+        setTeamSearch("");
       }
     };
 
@@ -262,20 +281,104 @@ export default function ThreadsFilterBar({ onChange }: Props) {
 
       {/* FILTER ROW */}
       <div className="grid grid-cols-1 md:grid-cols-5 gap-3 mt-4">
+        <div ref={teamDropdownRef} className="relative">
+          <button
+            type="button"
+            onClick={() => {
+              if (loadingMeta) return;
+              setTeamDropdownOpen((v) => !v);
+              setTeamSearch("");
+            }}
+            className="flex w-full items-center justify-between gap-2 rounded-xl border border-border-subtle bg-bg-card px-3 py-2 text-sm transition hover:border-primary-500/40 disabled:cursor-not-allowed disabled:opacity-60"
+            disabled={loadingMeta}
+          >
+            <span className="flex min-w-0 items-center gap-2">
+              {selectedTeam?.logoUrl ? (
+                <img
+                  src={selectedTeam.logoUrl}
+                  alt=""
+                  className="h-4 w-4 rounded-full object-contain shrink-0"
+                />
+              ) : null}
+              <span className="truncate">
+                {selectedTeam ? selectedTeam.name : "All Teams"}
+              </span>
+            </span>
+            <svg
+              className={`h-4 w-4 shrink-0 text-text-muted transition-transform ${teamDropdownOpen ? "rotate-180" : ""}`}
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
 
-        <select
-          value={filters.team}
-          onChange={(e) => updateFilters({ team: e.target.value })}
-          className="bg-bg-card border border-border-subtle px-3 py-2 rounded-xl text-sm"
-          disabled={loadingMeta}
-        >
-          <option value="all">All Teams</option>
-          {teams.map((team) => (
-            <option key={team.id} value={team.id}>
-              {team.name}
-            </option>
-          ))}
-        </select>
+          {teamDropdownOpen && (
+            <div className="absolute z-50 mt-1.5 w-full overflow-hidden rounded-xl border border-border-subtle bg-bg-surface shadow-xl">
+              <div className="border-b border-border-subtle p-2">
+                <div className="flex items-center gap-2 rounded-lg bg-bg-main px-2.5 py-1.5">
+                  <Search className="h-3.5 w-3.5 text-text-muted" />
+                  <input
+                    autoFocus
+                    value={teamSearch}
+                    onChange={(e) => setTeamSearch(e.target.value)}
+                    placeholder="Search teams..."
+                    className="w-full bg-transparent text-xs text-primary placeholder:text-text-muted outline-none"
+                  />
+                </div>
+              </div>
+
+              <div className="max-h-56 overflow-y-auto py-1">
+                <button
+                  type="button"
+                  onClick={() => {
+                    updateFilters({ team: "all" });
+                    setTeamDropdownOpen(false);
+                    setTeamSearch("");
+                  }}
+                  className={`flex w-full items-center gap-2 px-3 py-2 text-left text-sm transition hover:bg-bg-elevated ${
+                    filters.team === "all" ? "bg-accent-500/10 text-primary" : "text-text-secondary"
+                  }`}
+                >
+                  <span className="flex h-5 w-5 items-center justify-center rounded-full bg-white/10 text-xs">
+                    *
+                  </span>
+                  <span>All Teams</span>
+                </button>
+
+                {filteredTeams.map((team) => (
+                  <button
+                    key={team.id}
+                    type="button"
+                    onClick={() => {
+                      updateFilters({ team: team.id });
+                      setTeamDropdownOpen(false);
+                      setTeamSearch("");
+                    }}
+                    className={`flex w-full items-center gap-2 px-3 py-2 text-left text-sm transition hover:bg-bg-elevated ${
+                      filters.team === team.id ? "bg-accent-500/10 text-primary" : "text-text-secondary"
+                    }`}
+                  >
+                    {team.logoUrl ? (
+                      <img src={team.logoUrl} alt="" className="h-5 w-5 rounded-full object-contain shrink-0" />
+                    ) : (
+                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-primary-500/20 text-[10px] font-semibold text-primary-300">
+                        {team.shortName?.[0] ?? team.name[0]}
+                      </span>
+                    )}
+                    <span className="truncate">{team.name}</span>
+                  </button>
+                ))}
+
+                {filteredTeams.length === 0 && (
+                  <p className="px-3 py-2 text-xs text-text-muted">No teams found</p>
+                )}
+              </div>
+            </div>
+          )}
+        </div>
 
         <select
           value={filters.match}
