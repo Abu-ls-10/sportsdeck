@@ -188,9 +188,13 @@ export async function create_users(){
   const teamIds = teams.map(t => t.id);
   const roles = ["user", "user", "user", "user", "user", "user", "user", "user", "user"];
   
-  // Track used usernames and emails to ensure uniqueness
-  const usedUsernames = new Set<string>();
-  const usedEmails = new Set<string>();
+  const existing = await prisma.user.findMany({
+    select: { username: true, email: true },
+  });
+  const usedUsernames = new Set<string>(
+    existing.map((u) => u.username).filter((n): n is string => n != null && n !== "")
+  );
+  const usedEmails = new Set<string>(existing.map((u) => u.email));
   
   // Generate user data first without hashing
   const userData = [];
