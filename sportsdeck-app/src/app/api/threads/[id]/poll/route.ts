@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server"
+import { invalidateThreadFullCache } from "@/lib/cache/invalidateApiCache"
 import { prisma } from "@/lib/prisma"
 import { getUserFromToken } from "@/lib/auth"
 import { logActivity } from "@/lib/activity";
@@ -203,6 +204,8 @@ export async function POST(
       entityType: "poll",
       entityId: poll.id,
     })
+
+    await invalidateThreadFullCache(thread.id)
 
     const normalizedPoll = {
       id: poll.id,

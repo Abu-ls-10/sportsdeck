@@ -1,4 +1,8 @@
 import { NextResponse } from "next/server"
+import {
+  invalidateTagsListCache,
+  invalidateThreadFullCache,
+} from "@/lib/cache/invalidateApiCache"
 import { prisma } from "@/lib/prisma"
 import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
 import { reevaluateExistingReportedItem } from "@/lib/moderation"
@@ -293,6 +297,11 @@ async function patchHandler(
       console.error("[threads/edit] reevaluateExistingReportedItem failed:", err)
     )
 
+    await invalidateThreadFullCache(thread.id)
+    if (tags && Array.isArray(tags)) {
+      await invalidateTagsListCache()
+    }
+
     return NextResponse.json(updatedThread, { status: 200 })
 
   } catch (error) {
@@ -363,6 +372,8 @@ async function deleteHandler(
       where: { id: thread.id },
       data: { isHidden: true }
     })
+
+    await invalidateThreadFullCache(thread.id)
 
     return NextResponse.json(
       { success: true },

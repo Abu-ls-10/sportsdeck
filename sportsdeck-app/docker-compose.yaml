@@ -1,3 +1,5 @@
+# Stack: Postgres, Redis (REDIS_URL for app), Next.js app, nginx.
+# App gets REDIS_URL from the host `.env` if set; otherwise redis://redis:6379.
 services:
   db:
     image: postgres:15-alpine
