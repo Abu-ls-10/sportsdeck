@@ -280,9 +280,9 @@ async function api<T>(path: string, options: RequestInit = {}): Promise<T> {
 
   const data = await res.json().catch(() => ({}));
 
-  if (!res.ok) {
-    throw new Error(data.error || data.message || "Request failed");
-  }
+  // if (!res.ok) {
+  //   throw new Error(data.error || data.message || "Request failed");
+  // }
 
   return data as T;
 }
