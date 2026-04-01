@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict 2AWOkhcqrB0ZawbVbRoEYDXhvSgBgMeqL6K4Ze5wxh5BgivdPgmwwRg3zn2WWVh
+\restrict djAhts7xUzf3GjnClmITYo1r3AiC457zoxOkxA24BWYMqfz3IRFmw5U3iPvOeLX
 
 -- Dumped from database version 15.17
 -- Dumped by pg_dump version 15.17
@@ -575,6 +575,49 @@ cmnf5aub500ryuh3l8kc97st7	cmnf572dg001juh3ltdggx63m	follow_created	user	cmnf572c
 cmnf5axuf00tguh3lyyyi8s6k	cmnf572cm0011uh3lv5ilcx95	reply_created	reply	cmnf5axl900tauh3lpff0k5c5	\N	2026-03-31 21:45:04.983
 cmnf5b45400v3uh3lr225sdcy	cmnf572cn0013uh3la08lbk2z	reply_created	reply	cmnf5b2cy00uzuh3l6kt9gn40	\N	2026-03-31 21:45:13.142
 cmnf5b46600v7uh3l6tkw44p9	cmnf572da001cuh3lnhbhloh5	reply_created	reply	cmnf5b41z00v1uh3l61246lc3	\N	2026-03-31 21:45:13.182
+cmnfcrgtx004xuhv7lxbmkjdg	cmnfcqlh1000juhv7dxofh1jg	reply_created	reply	cmnfcrgsr004puhv78ixlf6mk	\N	2026-04-01 01:13:53.397
+cmnfcrllt006buhv7nh8gku4f	cmnfcqldo0003uhv77gqzh84t	poll_created	poll	cmnfcrljd0066uhv7y5pjasfn	\N	2026-04-01 01:13:59.585
+cmnfcrmkl006juhv70uxb0ckc	cmnfcqldo0003uhv77gqzh84t	reply_created	reply	cmnfcrmji006huhv76iadfolu	\N	2026-04-01 01:14:00.837
+cmnfcryd0006uuhv7zl4lawo3	cmnfcqlek000fuhv7ydofzkc9	poll_voted	poll	cmnfcrdt2003muhv757kh1g3k	\N	2026-04-01 01:14:16.116
+cmnfcrz280079uhv7c9pgqkcl	cmnfcqlek000fuhv7ydofzkc9	reply_created	reply	cmnfcrz1j0075uhv7k7l8at3r	\N	2026-04-01 01:14:17.024
+cmnfcsf6m008muhv7qvmn6hmh	cmnfcqle40009uhv72zt9hg5l	poll_voted	poll	cmnfcrdt2003muhv757kh1g3k	\N	2026-04-01 01:14:37.918
+cmnfcsf7c008quhv7el47rs6m	cmnfcqlh1000juhv7dxofh1jg	thread_created	thread	cmnfcsf1t0082uhv7bsj0v7ec	\N	2026-04-01 01:14:37.944
+cmnfcshie00a0uhv7hwey4jd8	cmnfcqlh1000juhv7dxofh1jg	poll_voted	poll	cmnfcrdt6003tuhv7m8herb8w	\N	2026-04-01 01:14:40.934
+cmnfcsi1200a4uhv7snuqj239	cmnfcqldt0005uhv7d4terocy	reply_created	reply	cmnfcshnu00a2uhv7pbtl42wg	\N	2026-04-01 01:14:41.606
+cmnfcsipr00aruhv7pl39if2x	cmnfcqle40009uhv72zt9hg5l	thread_created	thread	cmnfcsi6p00a6uhv72pugyahq	\N	2026-04-01 01:14:42.495
+cmnfcslp900buuhv7brywzoq2	cmnfcqle40009uhv72zt9hg5l	poll_created	poll	cmnfcslit00bluhv7226npi0w	\N	2026-04-01 01:14:46.365
+cmnfcsn2f00cluhv75rov0935	cmnfcqlek000fuhv7ydofzkc9	reply_created	reply	cmnfcsmxm00cjuhv7lf96prh7	\N	2026-04-01 01:14:48.135
+cmnfctgka00mfuhv7n42i33qy	cmnfcqldo0003uhv77gqzh84t	thread_created	thread	cmnfctg6500lpuhv7x7txps20	\N	2026-04-01 01:15:26.361
+cmnfctieg00mvuhv7u0i08mbm	cmnfcqle40009uhv72zt9hg5l	thread_created	thread	cmnfcth4t00mouhv79vkbad14	\N	2026-04-01 01:15:28.744
+cmnfctigy00mxuhv78fkxvxv9	cmnfcqlek000fuhv7ydofzkc9	follow_created	user	cmnfcqle7000auhv7u5byu7x1	\N	2026-04-01 01:15:28.834
+cmnfctjiv00ncuhv7jsd3e3s9	cmnfcqlh1000juhv7dxofh1jg	reply_created	reply	cmnfctj2y00n8uhv7mnyj4zw5	\N	2026-04-01 01:15:30.199
+cmnfctk1400nzuhv7abpcjsje	cmnfcqlek000fuhv7ydofzkc9	thread_created	thread	cmnfctjo100neuhv7c9mawaag	\N	2026-04-01 01:15:30.857
+cmnfctlp600o9uhv7dfqo5qfl	cmnfcqle40009uhv72zt9hg5l	thread_created	thread	cmnfctkye00o5uhv7dogypdf0	\N	2026-04-01 01:15:33.019
+cmnfcto0400pauhv7rfzp8yh1	cmnfcqldo0003uhv77gqzh84t	reply_created	reply	cmnfctnna00p4uhv7zbq419kn	\N	2026-04-01 01:15:36.005
+cmnfcto1900pfuhv7fuifsm5m	cmnfcqlh1000juhv7dxofh1jg	reply_created	reply	cmnfctnnh00p6uhv70tq8msvb	\N	2026-04-01 01:15:36.045
+cmnfctsef00rwuhv7pn71bywc	cmnfcqldt0005uhv7d4terocy	reply_created	reply	cmnfctsce00rmuhv7dbrdy51i	\N	2026-04-01 01:15:41.702
+cmnfctser00s0uhv78qsy9vs8	cmnfcqldo0003uhv77gqzh84t	reply_created	reply	cmnfctscu00rquhv7qjwlwbck	\N	2026-04-01 01:15:41.715
+cmnfcu8a300ycuhv7u43aps7a	cmnfcqlh1000juhv7dxofh1jg	reply_created	reply	cmnfcu88800y6uhv7vnr3i56m	\N	2026-04-01 01:16:02.283
+cmnfcu8ah00yguhv7akb9i42f	cmnfcqlek000fuhv7ydofzkc9	reply_created	reply	cmnfcu88000y4uhv7ssnoslys	\N	2026-04-01 01:16:02.297
+cmnfcu8ax00yiuhv776ondccu	cmnfcqle40009uhv72zt9hg5l	reply_created	reply	cmnfcu88x00yauhv7site56xj	\N	2026-04-01 01:16:02.313
+cmnfcub2z00zhuhv7z05ixcik	cmnfcqlh1000juhv7dxofh1jg	reply_created	reply	cmnfcuaz100zfuhv7fbx9j9r2	\N	2026-04-01 01:16:05.915
+cmnfcub3a00zjuhv7kwtkk7w5	cmnfcqldt0005uhv7d4terocy	thread_created	thread	cmnfcuapj00zbuhv7ck4mi4wf	\N	2026-04-01 01:16:05.925
+cmnfcubcq00zvuhv7432p2p2k	cmnfcqldo0003uhv77gqzh84t	poll_created	poll	cmnfcubbk00zpuhv7dfh7u448	\N	2026-04-01 01:16:06.266
+cmnfcug4a011uuhv7l3omkmkm	cmnfcqlh1000juhv7dxofh1jg	poll_created	poll	cmnfcufz5011nuhv7902nk1eq	\N	2026-04-01 01:16:12.442
+cmnfcui3d012kuhv7ya1267sz	cmnfcqlek000fuhv7ydofzkc9	thread_created	thread	cmnfcuhd10122uhv7bg2ytk7w	\N	2026-04-01 01:16:14.998
+cmnfcumto014suhv7sdfpxayv	cmnfcqldt0005uhv7d4terocy	reply_created	reply	cmnfcumsu014nuhv7j4wrtlfo	\N	2026-04-01 01:16:21.132
+cmnfcuqc90158uhv77pk79y8x	cmnfcqlek000fuhv7ydofzkc9	reply_created	reply	cmnfcupze0152uhv7u6hbxpgt	\N	2026-04-01 01:16:25.689
+cmnfcutm60166uhv7g7pevu94	cmnfcqlh1000juhv7dxofh1jg	thread_created	thread	cmnfcusx0015uuhv7cyg578r0	\N	2026-04-01 01:16:29.934
+cmnfcutn9016cuhv7fb89nmu5	cmnfcqldo0003uhv77gqzh84t	reply_created	reply	cmnfcutld0162uhv7h1lkuuc1	\N	2026-04-01 01:16:29.973
+cmnfcuwpt017auhv72bxle02u	cmnfcqle40009uhv72zt9hg5l	reply_created	reply	cmnfcuwom0178uhv7pcmyxn4c	\N	2026-04-01 01:16:33.953
+cmnfcuy4s017xuhv7hdapd6h5	cmnfcqldt0005uhv7d4terocy	poll_voted	poll	cmnfcslit00bluhv7226npi0w	\N	2026-04-01 01:16:35.788
+cmnfcuy4z017zuhv7cj8xnk7d	cmnfcqlek000fuhv7ydofzkc9	reply_created	reply	cmnfcuy3m017puhv7ssiinuhd	\N	2026-04-01 01:16:35.796
+cmnfcv28s019duhv7pdi07y6u	cmnfcqldt0005uhv7d4terocy	reply_created	reply	cmnfcv27c0195uhv72ggicjsc	\N	2026-04-01 01:16:41.116
+cmnfcv296019fuhv7nf3mj4j4	cmnfcqlh1000juhv7dxofh1jg	follow_created	user	cmnfcqldr0004uhv7haksqth1	\N	2026-04-01 01:16:41.13
+cmnfcv4a901ahuhv7cvthr18s	cmnfcqlh1000juhv7dxofh1jg	follow_created	user	cmnfcqle7000auhv7u5byu7x1	\N	2026-04-01 01:16:43.761
+cmnfcv4s801apuhv7ixetrhm0	cmnfcqldt0005uhv7d4terocy	thread_created	thread	cmnfcv3zf01abuhv7x6x2e4ft	\N	2026-04-01 01:16:44.408
+cmnfcv4w801b0uhv7mevk837r	cmnfcqle40009uhv72zt9hg5l	poll_created	poll	cmnfcv4so01atuhv76xn8mnl3	\N	2026-04-01 01:16:44.552
+cmnfcv5ce01bduhv79qentj81	cmnfcqlh1000juhv7dxofh1jg	reply_created	reply	cmnfcv58701bbuhv7bvqdmjy4	\N	2026-04-01 01:16:45.134
 cmnf5ab3800j9uh3luiku0btc	cmnf572da001cuh3lnhbhloh5	reply_created	reply	cmnf5aai900izuh3lwhf35wwj	\N	2026-03-31 21:44:35.493
 cmnf5abty00jtuh3lhaksnjl9	cmnf572cn0013uh3la08lbk2z	reply_created	reply	cmnf5abmg00jnuh3lezbpgubs	\N	2026-03-31 21:44:36.454
 cmnf5abvo00jzuh3laruk0p91	cmnf572cz0018uh3lvmz9s9cm	follow_created	user	cmnf572c7000uuh3l9dklkdjb	\N	2026-03-31 21:44:36.515
@@ -673,7 +716,56 @@ cmnf5cm1t01kyuh3lf7dz2k3z	cmnf572de001iuh3lp8ldh93t	reply_created	reply	cmnf5clg
 cmnf5cmfn01l4uh3lwjbdz0v3	cmnf572d3001auh3leddsab4m	poll_voted	poll	cmnf59hsm00a2uh3lz7ilzz0y	\N	2026-03-31 21:46:23.507
 cmnf5cmlw01l8uh3lnytj8ncq	cmnf572cm0011uh3lv5ilcx95	reply_created	reply	cmnf5cly801kwuh3l06w6fngv	\N	2026-03-31 21:46:23.732
 cmnf5cnuv01liuh3ld2bvxe45	cmnf572da001cuh3lnhbhloh5	reply_created	reply	cmnf5cn2b01lauh3lrvtn5w44	\N	2026-03-31 21:46:25.352
+cmnfcrgub004zuhv7681fweqd	cmnfcqldt0005uhv7d4terocy	reply_created	reply	cmnfcrgt7004ruhv7jkemnzh4	\N	2026-04-01 01:13:53.411
+cmnfcrgum0051uhv73e5ie80f	cmnfcqle40009uhv72zt9hg5l	reply_created	reply	cmnfcrgtd004vuhv79v5napqt	\N	2026-04-01 01:13:53.422
+cmnfcryd5006wuhv77b0p8una	cmnfcqldo0003uhv77gqzh84t	poll_voted	poll	cmnfcrdt2003muhv757kh1g3k	\N	2026-04-01 01:14:16.122
+cmnfcrz2t007buhv7dgzba002	cmnfcqldo0003uhv77gqzh84t	reply_created	reply	cmnfcrz220077uhv77llscs9c	\N	2026-04-01 01:14:17.046
+cmnfcrznb007ouhv74v7bcjdh	cmnfcqldo0003uhv77gqzh84t	thread_created	thread	cmnfcrzkz007kuhv7o22dznts	\N	2026-04-01 01:14:17.783
+cmnfcs0hw007wuhv7jmxatog0	cmnfcqldo0003uhv77gqzh84t	reply_created	reply	cmnfcs0hc007uuhv7q6sk16bg	\N	2026-04-01 01:14:18.884
+cmnfcsitw00b2uhv7r7f2vdaf	cmnfcqldo0003uhv77gqzh84t	thread_created	thread	cmnfcsi7l00acuhv70gmb60w4	\N	2026-04-01 01:14:42.644
+cmnfcsiu400b4uhv79e8y206e	cmnfcqlh1000juhv7dxofh1jg	follow_created	user	cmnfcqlem000guhv7alb0f7l8	\N	2026-04-01 01:14:42.652
+cmnfcsl8q00bhuhv79mz8qkae	cmnfcqlh1000juhv7dxofh1jg	reply_created	reply	cmnfcsl1f00bfuhv7336xuprb	\N	2026-04-01 01:14:45.771
+cmnfcsltl00c4uhv7ctonc4e7	cmnfcqldo0003uhv77gqzh84t	thread_created	thread	cmnfcslid00bjuhv7fxz4wn6m	\N	2026-04-01 01:14:46.521
+cmnfcsnez00cruhv796rsoz99	cmnfcqlh1000juhv7dxofh1jg	reply_created	reply	cmnfcsn3400cnuhv7wtlafc1w	\N	2026-04-01 01:14:48.587
+cmnfcsqz400dbuhv7bw8j4w6a	cmnfcqldo0003uhv77gqzh84t	reply_created	reply	cmnfcsq3x00d8uhv77ft4grwj	\N	2026-04-01 01:14:53.2
+cmnfcsr4600dhuhv7j5lr3frj	cmnfcqldt0005uhv7d4terocy	reply_created	reply	cmnfcsqzc00dduhv7v84157vm	\N	2026-04-01 01:14:53.382
+cmnfcssiw00e1uhv7qpz62t3n	cmnfcqlek000fuhv7ydofzkc9	reply_created	reply	cmnfcss7a00dzuhv7npg6m29w	\N	2026-04-01 01:14:55.208
+cmnfcst1000ebuhv7i4hcfkth	cmnfcqle40009uhv72zt9hg5l	thread_created	thread	cmnfcssp800e5uhv7t7yu3d3v	\N	2026-04-01 01:14:55.86
+cmnfcsu8400eouhv7f29u2zgj	cmnfcqlh1000juhv7dxofh1jg	thread_created	thread	cmnfcstpb00efuhv7x18e6mtd	\N	2026-04-01 01:14:57.412
+cmnfcsunb00f0uhv718jhxek1	cmnfcqldt0005uhv7d4terocy	reply_created	reply	cmnfcsujz00euuhv7jnf47zoy	\N	2026-04-01 01:14:57.959
+cmnfcsxdj00g0uhv7ztjdh4m5	cmnfcqldo0003uhv77gqzh84t	follow_created	user	cmnfcqle7000auhv7u5byu7x1	\N	2026-04-01 01:15:01.495
 cmnf5bk8r012yuh3lsqaynzuj	cmnf572cn0013uh3la08lbk2z	follow_created	user	cmnf572fl002quh3lezz4ld6y	\N	2026-03-31 21:45:34.011
+cmnfcrgv30055uhv7erfeshlr	cmnfcqldo0003uhv77gqzh84t	reply_created	reply	cmnfcrgtc004tuhv7kfpfx0sz	\N	2026-04-01 01:13:53.439
+cmnfcri24005puhv71kagohg9	cmnfcqldo0003uhv77gqzh84t	thread_created	thread	cmnfcrhyh005luhv7ylj162nc	\N	2026-04-01 01:13:54.988
+cmnfcsf5e008cuhv722v25l8x	cmnfcqldt0005uhv7d4terocy	poll_voted	poll	cmnfcrdt2003muhv757kh1g3k	\N	2026-04-01 01:14:37.874
+cmnfcsf6c008kuhv73ak4r163	cmnfcqldo0003uhv77gqzh84t	poll_voted	poll	cmnfcrljd0066uhv7y5pjasfn	\N	2026-04-01 01:14:37.908
+cmnfcsgn20092uhv758t6e8l5	cmnfcqlek000fuhv7ydofzkc9	reply_created	reply	cmnfcsgh8008yuhv7nfjzx58c	\N	2026-04-01 01:14:39.806
+cmnfcsgnc0094uhv7mk704lqw	cmnfcqldt0005uhv7d4terocy	follow_created	user	cmnfcqlh1000juhv7dxofh1jg	\N	2026-04-01 01:14:39.816
+cmnfcsgt5009guhv7p9189cgt	cmnfcqle40009uhv72zt9hg5l	poll_voted	poll	cmnfcrdt6003tuhv7m8herb8w	\N	2026-04-01 01:14:40.025
+cmnfcsgtm009iuhv7edvcr6wz	cmnfcqldo0003uhv77gqzh84t	reply_created	reply	cmnfcsgq80098uhv7ygaw3wo2	\N	2026-04-01 01:14:40.043
+cmnfcsibs00aiuhv7u5ugnun8	cmnfcqlek000fuhv7ydofzkc9	reply_created	reply	cmnfcsi6u00a8uhv71vvdy2zb	\N	2026-04-01 01:14:41.992
+cmnfct7xv00jguhv74fi2k9cz	cmnfcqldt0005uhv7d4terocy	reply_created	reply	cmnfct7qo00jauhv7rhhwvlcf	\N	2026-04-01 01:15:15.187
+cmnfcta9n00k0uhv7ozo4tiie	cmnfcqldt0005uhv7d4terocy	follow_created	user	cmnfcqleo000huhv7n0m7asjb	\N	2026-04-01 01:15:18.203
+cmnfctavl00kcuhv74q7oulpk	cmnfcqlek000fuhv7ydofzkc9	follow_created	user	cmnfcqleb000cuhv7bxrx8k4b	\N	2026-04-01 01:15:18.993
+cmnfctayr00kguhv71v1ucw5c	cmnfcqle40009uhv72zt9hg5l	thread_created	thread	cmnfctab600k4uhv7xlmpcnyw	\N	2026-04-01 01:15:19.107
+cmnfctg2z00lnuhv7iimhks5l	cmnfcqle40009uhv72zt9hg5l	reply_created	reply	cmnfctf5b00lluhv7p3ujmnle	\N	2026-04-01 01:15:25.739
+cmnfctgfp00lxuhv7ly7656x9	cmnfcqlek000fuhv7ydofzkc9	reply_created	reply	cmnfctg7e00ltuhv7ixecry1u	\N	2026-04-01 01:15:26.197
+cmnfctghk00m4uhv7cj442okn	cmnfcqldt0005uhv7d4terocy	poll_created	poll	cmnfctgg700lzuhv7kyh418xf	\N	2026-04-01 01:15:26.262
+cmnfctjwb00nkuhv7zsg0dh6r	cmnfcqldo0003uhv77gqzh84t	thread_created	thread	cmnfctj2k00n6uhv7fgsp8nfq	\N	2026-04-01 01:15:30.684
+cmnfcto3i00ppuhv79nnilfmd	cmnfcqle40009uhv72zt9hg5l	follow_created	user	cmnfcqldl0002uhv7conjfxzx	\N	2026-04-01 01:15:36.126
+cmnfcto5q00pxuhv7rq055n4p	cmnfcqldt0005uhv7d4terocy	thread_created	thread	cmnfctnry00p8uhv7h5ob7emt	\N	2026-04-01 01:15:36.206
+cmnfctpon00qfuhv7g52t10u4	cmnfcqle40009uhv72zt9hg5l	reply_created	reply	cmnfctpkt00qduhv71ife5fx7	\N	2026-04-01 01:15:38.183
+cmnfctsd600rsuhv7cf3o52g0	cmnfcqle40009uhv72zt9hg5l	reply_created	reply	cmnfctsb600riuhv7gf7fs4pt	\N	2026-04-01 01:15:41.658
+cmnfctwh300ttuhv72b50wh5h	cmnfcqlek000fuhv7ydofzkc9	thread_created	thread	cmnfctw6r00t8uhv77nhwioyv	\N	2026-04-01 01:15:46.983
+cmnfctydu00ubuhv7pxqdnbuu	cmnfcqldt0005uhv7d4terocy	reply_created	reply	cmnfcty8q00u9uhv7v3mugjyy	\N	2026-04-01 01:15:49.458
+cmnfcu0c500uzuhv7i9fel62x	cmnfcqle40009uhv72zt9hg5l	thread_created	thread	cmnfctz7z00upuhv7r5ilgkhu	\N	2026-04-01 01:15:51.989
+cmnfcu1ck00vluhv7n719hyt5	cmnfcqlh1000juhv7dxofh1jg	thread_created	thread	cmnfcu0kn00vduhv7efbzqmgp	\N	2026-04-01 01:15:53.3
+cmnfcu66z00wzuhv7pfdqjbhb	cmnfcqldt0005uhv7d4terocy	reply_created	reply	cmnfcu5ov00wtuhv78c0nq9rq	\N	2026-04-01 01:15:59.579
+cmnfcu67700x1uhv7jy42umve	cmnfcqlek000fuhv7ydofzkc9	reply_created	reply	cmnfcu5p900wvuhv7m4rb1nrn	\N	2026-04-01 01:15:59.587
+cmnfcu68b00x3uhv7jgahjpt2	cmnfcqldo0003uhv77gqzh84t	reply_created	reply	cmnfcu60s00wxuhv7k3p23jt2	\N	2026-04-01 01:15:59.627
+cmnfcu6ca00xluhv7wxxs197m	cmnfcqle40009uhv72zt9hg5l	follow_created	user	cmnfcqleb000cuhv7bxrx8k4b	\N	2026-04-01 01:15:59.77
+cmnfcu8ab00yeuhv7nxesx7zf	cmnfcqldt0005uhv7d4terocy	reply_created	reply	cmnfcu88e00y8uhv7dg139brc	\N	2026-04-01 01:16:02.292
+cmnfcud5g010luhv7gglhf0rh	cmnfcqle40009uhv72zt9hg5l	reply_created	reply	cmnfcucy7010cuhv7xnd97to4	\N	2026-04-01 01:16:08.596
 cmnf5bkmy0136uh3ly2is3xc2	cmnf572de001iuh3lp8ldh93t	reply_created	reply	cmnf5bk5i012uuh3l8auf2hj7	\N	2026-03-31 21:45:34.522
 cmnf5bla4013ruh3leukbn9ke	cmnf572d5001buh3lo9yjk2c4	reply_created	reply	cmnf5bknv013cuh3ljvd4v54m	\N	2026-03-31 21:45:35.356
 cmnf5boau0152uh3luotzdsuh	cmnf572cn0013uh3la08lbk2z	reply_created	reply	cmnf5bnpw0150uh3llr0kqb70	\N	2026-03-31 21:45:39.27
@@ -735,6 +827,50 @@ cmnf5cx8p01q3uh3ldm3uoogd	cmnf572cz0018uh3lvmz9s9cm	follow_created	user	cmnf572c
 cmnf5cxie01q9uh3lpovsek42	cmnf572d3001auh3leddsab4m	reply_created	reply	cmnf5cx8501pzuh3lkbuqm5zr	\N	2026-03-31 21:46:37.862
 cmnf5cywj01qxuh3l98ehua9e	cmnf572d5001buh3lo9yjk2c4	reply_created	reply	cmnf5cyji01qouh3ln3ue99gh	\N	2026-03-31 21:46:39.667
 cmnf5czwf01rxuh3l4du4pv4u	cmnf572d3001auh3leddsab4m	follow_created	user	cmnf5734n003buh3l9703h19z	\N	2026-03-31 21:46:40.959
+cmnfcrkh4005yuhv72ej59ggy	cmnfcqle40009uhv72zt9hg5l	reply_created	reply	cmnfcrk5p005uuhv7gn8vf5vf	\N	2026-04-01 01:13:58.12
+cmnfcsf59008auhv7ca21dbdg	cmnfcqlek000fuhv7ydofzkc9	follow_created	user	cmnfcqleg000euhv72i6namax	\N	2026-04-01 01:14:37.869
+cmnfcsmaf00c9uhv7oqmwx3fi	cmnfcqldt0005uhv7d4terocy	thread_created	thread	cmnfcslqo00byuhv79p1tv6xb	\N	2026-04-01 01:14:47.127
+cmnfcsnj800ctuhv7dgzlze80	cmnfcqle40009uhv72zt9hg5l	thread_created	thread	cmnfcsmmt00ceuhv7lv7706a3	\N	2026-04-01 01:14:48.74
+cmnfcsrg300druhv7q64ryzck	cmnfcqle40009uhv72zt9hg5l	poll_created	poll	cmnfcsrd300dmuhv7is77lt29	\N	2026-04-01 01:14:53.811
+cmnfcsuko00ewuhv7jb334gh0	cmnfcqldo0003uhv77gqzh84t	thread_created	thread	cmnfcstyt00ekuhv78dydcveq	\N	2026-04-01 01:14:57.864
+cmnfcsv4700fauhv7m2piken6	cmnfcqle40009uhv72zt9hg5l	poll_created	poll	cmnfcsux700f5uhv7dsa7uhte	\N	2026-04-01 01:14:58.567
+cmnfcswef00fjuhv7gtvizmlb	cmnfcqlek000fuhv7ydofzkc9	reply_created	reply	cmnfcsvxt00fhuhv76hfivuw1	\N	2026-04-01 01:15:00.231
+cmnfcswvm00fpuhv7l2ec7ugk	cmnfcqlh1000juhv7dxofh1jg	reply_created	reply	cmnfcswgw00fluhv7lew2hx87	\N	2026-04-01 01:15:00.85
+cmnfcsznp00gouhv7xu4ae9yi	cmnfcqldo0003uhv77gqzh84t	reply_created	reply	cmnfcszm100ghuhv799fenmbz	\N	2026-04-01 01:15:04.453
+cmnfct2pb00hiuhv77t5qr439	cmnfcqldt0005uhv7d4terocy	poll_created	poll	cmnfct2n700hduhv77pqhhbai	\N	2026-04-01 01:15:08.387
+cmnfct3pu00hruhv7waxoax5i	cmnfcqlek000fuhv7ydofzkc9	poll_voted	poll	cmnfcrdt6003tuhv7m8herb8w	\N	2026-04-01 01:15:09.714
+cmnfct4pe00hzuhv7os9mv3pm	cmnfcqle40009uhv72zt9hg5l	reply_created	reply	cmnfct4kk00htuhv7k69g4pz4	\N	2026-04-01 01:15:10.994
+cmnfct4sy00i5uhv71wos8a8y	cmnfcqldo0003uhv77gqzh84t	poll_voted	poll	cmnfcsrd300dmuhv7is77lt29	\N	2026-04-01 01:15:11.122
+cmnfct5ik00inuhv7p9fsf7ef	cmnfcqlek000fuhv7ydofzkc9	reply_created	reply	cmnfct59o00iluhv7vkji58jl	\N	2026-04-01 01:15:12.044
+cmnfct70600j6uhv7lpre1asa	cmnfcqldo0003uhv77gqzh84t	reply_created	reply	cmnfct6p100j0uhv7vai34w5f	\N	2026-04-01 01:15:13.974
+cmnfct7qg00j8uhv7bs62l17e	cmnfcqlh1000juhv7dxofh1jg	reply_created	reply	cmnfct6z800j4uhv7lcrsoxcc	\N	2026-04-01 01:15:14.92
+cmnfct8k600jsuhv728zwldgd	cmnfcqle40009uhv72zt9hg5l	follow_created	user	cmnfcqleo000huhv7n0m7asjb	\N	2026-04-01 01:15:15.991
+cmnfctjxh00nquhv74h5f9ik1	cmnfcqldt0005uhv7d4terocy	poll_voted	poll	cmnfcrdt5003suhv7zwxvr5wk	\N	2026-04-01 01:15:30.725
+cmnfctm5900oiuhv72cbx1fuj	cmnfcqldt0005uhv7d4terocy	reply_created	reply	cmnfctly300oduhv7ei0axa5t	\N	2026-04-01 01:15:33.597
+cmnfctm6700okuhv7o8tnxnhy	cmnfcqldo0003uhv77gqzh84t	follow_created	user	cmnfcqldy0007uhv7gx0b561v	\N	2026-04-01 01:15:33.631
+cmnfctmjz00oxuhv7qyfv1pjc	cmnfcqlek000fuhv7ydofzkc9	poll_created	poll	cmnfctmh700oquhv7jbajrrfw	\N	2026-04-01 01:15:34.127
+cmnfctq9800r0uhv722fa2h9l	cmnfcqlek000fuhv7ydofzkc9	follow_created	user	cmnfcqldo0003uhv77gqzh84t	\N	2026-04-01 01:15:38.924
+cmnfctsdz00ruuhv7twrdm9gh	cmnfcqlh1000juhv7dxofh1jg	reply_created	reply	cmnfctsbx00rkuhv781j04ar3	\N	2026-04-01 01:15:41.687
+cmnfctuj800ssuhv7v3d4t18z	cmnfcqlek000fuhv7ydofzkc9	reply_created	reply	cmnfctuhn00squhv7o9dck932	\N	2026-04-01 01:15:44.468
+cmnfctujd00suuhv7bebafw9t	cmnfcqle40009uhv72zt9hg5l	thread_created	thread	cmnfctu1n00smuhv7fxkayvby	\N	2026-04-01 01:15:44.473
+cmnfctw9v00tguhv7er9g2mqg	cmnfcqldt0005uhv7d4terocy	poll_voted	poll	cmnfcrljd0066uhv7y5pjasfn	\N	2026-04-01 01:15:46.723
+cmnfctwa100tiuhv7t9d64ukc	cmnfcqlh1000juhv7dxofh1jg	thread_created	thread	cmnfctvqs00t4uhv7cp30ec0c	\N	2026-04-01 01:15:46.729
+cmnfctwa900tkuhv7ps652hyd	cmnfcqldo0003uhv77gqzh84t	reply_created	reply	cmnfctw8j00tcuhv7tcryxu02	\N	2026-04-01 01:15:46.737
+cmnfctwrd00u4uhv7ux0i13y7	cmnfcqle40009uhv72zt9hg5l	thread_created	thread	cmnfctwgk00touhv7im45m6eb	\N	2026-04-01 01:15:47.353
+cmnfctz1v00uhuhv7x6cvuh3b	cmnfcqlh1000juhv7dxofh1jg	reply_created	reply	cmnfctyvs00ufuhv7vl67b3v0	\N	2026-04-01 01:15:50.323
+cmnfctz8y00utuhv7a56ielnn	cmnfcqlek000fuhv7ydofzkc9	reply_created	reply	cmnfctz6y00uluhv78shuejsn	\N	2026-04-01 01:15:50.578
+cmnfcu1az00vhuhv7x8ye8e9u	cmnfcqldo0003uhv77gqzh84t	thread_created	thread	cmnfcu0j000v8uhv7zmv9ct6o	\N	2026-04-01 01:15:53.243
+cmnfcu2ty00vzuhv7kc43ngpl	cmnfcqle40009uhv72zt9hg5l	follow_created	user	cmnfcqlem000guhv7alb0f7l8	\N	2026-04-01 01:15:55.222
+cmnfcu3ba00w3uhv7zlmpsw88	cmnfcqldt0005uhv7d4terocy	reply_created	reply	cmnfcu2rr00vxuhv7v98tn2dp	\N	2026-04-01 01:15:55.844
+cmnfcuiet012vuhv7ibpzwowh	cmnfcqldt0005uhv7d4terocy	thread_created	thread	cmnfcui22012euhv7ejkx4c2y	\N	2026-04-01 01:16:15.413
+cmnfcujk0013cuhv7r0c1y5q6	cmnfcqldo0003uhv77gqzh84t	reply_created	reply	cmnfcujhf0138uhv7bwkxjny4	\N	2026-04-01 01:16:16.896
+cmnfcujwm013ruhv7nxrb4ygx	cmnfcqlek000fuhv7ydofzkc9	poll_created	poll	cmnfcujs3013iuhv7ydjypkzx	\N	2026-04-01 01:16:17.35
+cmnfcumrp014huhv7fp61sclh	cmnfcqlh1000juhv7dxofh1jg	thread_created	thread	cmnfculps0149uhv7zysc23o3	\N	2026-04-01 01:16:21.061
+cmnfcuq9i0156uhv7zbyrp9m9	cmnfcqldo0003uhv77gqzh84t	reply_created	reply	cmnfcuprg0150uhv7nzctvkm4	\N	2026-04-01 01:16:25.59
+cmnfcuqrc015ouhv72yn9z2yy	cmnfcqlh1000juhv7dxofh1jg	poll_voted	poll	cmnfcslit00bluhv7226npi0w	\N	2026-04-01 01:16:26.232
+cmnfcutlw0164uhv7wevft4qt	cmnfcqldt0005uhv7d4terocy	reply_created	reply	cmnfcutkg015yuhv75i9c86ou	\N	2026-04-01 01:16:29.924
+cmnfcuwrb017euhv7wcrwbei9	cmnfcqlh1000juhv7dxofh1jg	thread_created	thread	cmnfcuwny0174uhv7498p0wk2	\N	2026-04-01 01:16:34.007
+cmnfcuyxo018muhv7cfu3q9sq	cmnfcqlh1000juhv7dxofh1jg	reply_created	reply	cmnfcuyq9018kuhv7a3dn690x	\N	2026-04-01 01:16:36.828
 cmnf5cyzo01r1uh3lb7b4b7jz	cmnf572de001guh3l71ks2fz5	reply_created	reply	cmnf5cyw201qvuh3l319ja8ya	\N	2026-03-31 21:46:39.781
 cmnf5cz5h01r5uh3lolveywqc	cmnf572de001iuh3lp8ldh93t	reply_created	reply	cmnf5cyz601qzuh3lszkztqeh	\N	2026-03-31 21:46:39.989
 cmnf5d0yx01s7uh3l6ougsbed	cmnf572d5001buh3lo9yjk2c4	reply_created	reply	cmnf5d0xf01s3uh3lthwpwmm9	\N	2026-03-31 21:46:42.345
@@ -796,12 +932,58 @@ cmnf5dqpb026suh3l9nt11q1n	cmnf5734d0032uh3llttnseos	follow_created	user	cmnf572b
 cmnf5dqu3026uuh3letuxxfcu	cmnf572cz0019uh3lpbkbeqcq	thread_created	thread	cmnf5dph3025puh3lptgv1j4q	\N	2026-03-31 21:47:15.867
 cmnf5dvk5029guh3l2sdm6uzl	cmnf572dd001euh3lkotv3yzh	reply_created	reply	cmnf5dv460290uh3l2kp96bn3	\N	2026-03-31 21:47:21.989
 cmnf5dy3s02a4uh3lq8ogjkcn	cmnf572ds001nuh3lown562fs	follow_created	user	cmnf572f8002iuh3ldc5h80ws	\N	2026-03-31 21:47:25.288
+cmnfcszfo00gduhv7rk2luj6t	cmnfcqle40009uhv72zt9hg5l	thread_created	thread	cmnfcsyit00g9uhv73p99qpbo	\N	2026-04-01 01:15:04.164
+cmnfcszzg00gsuhv73na1rv4w	cmnfcqldt0005uhv7d4terocy	thread_created	thread	cmnfcszm700gjuhv71ro4wcv7	\N	2026-04-01 01:15:04.877
+cmnfct23l00h3uhv7pf6uf79a	cmnfcqle40009uhv72zt9hg5l	follow_created	user	cmnfcqlh1000juhv7dxofh1jg	\N	2026-04-01 01:15:07.617
+cmnfct23u00h5uhv7sg73l847	cmnfcqlh1000juhv7dxofh1jg	reply_created	reply	cmnfct1wt00gzuhv74vu1xz03	\N	2026-04-01 01:15:07.626
+cmnfct4xh00i7uhv7qr7hdfpb	cmnfcqldt0005uhv7d4terocy	thread_created	thread	cmnfct4np00hvuhv7wo6y0q5i	\N	2026-04-01 01:15:11.285
+cmnfct6gm00iwuhv7rp8fkews	cmnfcqle40009uhv72zt9hg5l	follow_created	user	cmnfcqldo0003uhv77gqzh84t	\N	2026-04-01 01:15:13.27
+cmnfctcay00kruhv7v9waiyq5	cmnfcqldt0005uhv7d4terocy	thread_created	thread	cmnfctayk00keuhv7ao93ydeb	\N	2026-04-01 01:15:20.842
+cmnfctdd700kxuhv7ui5qbokl	cmnfcqlh1000juhv7dxofh1jg	reply_created	reply	cmnfctcbb00ktuhv7x9a51lzj	\N	2026-04-01 01:15:22.219
+cmnfctdqe00l4uhv7tnnqjkp2	cmnfcqlek000fuhv7ydofzkc9	follow_created	user	cmnfcqldl0002uhv7conjfxzx	\N	2026-04-01 01:15:22.691
+cmnfcte1l00lcuhv7lrdjgwc3	cmnfcqldo0003uhv77gqzh84t	follow_created	user	cmnfcqleg000euhv72i6namax	\N	2026-04-01 01:15:23.097
+cmnfcto5800ptuhv7yvt5su97	cmnfcqlek000fuhv7ydofzkc9	reply_created	reply	cmnfcto3800pnuhv79ohbslg2	\N	2026-04-01 01:15:36.188
+cmnfctpzs00qluhv7suyfdvpr	cmnfcqldo0003uhv77gqzh84t	poll_voted	poll	cmnfct2n700hduhv77pqhhbai	\N	2026-04-01 01:15:38.585
+cmnfctq0v00qpuhv72qwswimo	cmnfcqlh1000juhv7dxofh1jg	poll_voted	poll	cmnfct2n700hduhv77pqhhbai	\N	2026-04-01 01:15:38.623
+cmnfctqas00r4uhv7dpbapk9s	cmnfcqldt0005uhv7d4terocy	poll_created	poll	cmnfctq8x00qvuhv7xk5byjvk	\N	2026-04-01 01:15:38.98
+cmnfctsck00rouhv71fgvtv5p	cmnfcqlek000fuhv7ydofzkc9	reply_created	reply	cmnfctsai00rguhv7nr5softi	\N	2026-04-01 01:15:41.636
+cmnfcu3mp00wguhv7q3zh090n	cmnfcqldo0003uhv77gqzh84t	poll_created	poll	cmnfcu3c100w7uhv75flsczgu	\N	2026-04-01 01:15:56.255
+cmnfcu3nd00wiuhv7qjz8191m	cmnfcqlek000fuhv7ydofzkc9	follow_created	user	cmnfcqle10008uhv7xleeivtf	\N	2026-04-01 01:15:56.281
+cmnfcu69w00xbuhv7ecyjj94v	cmnfcqlh1000juhv7dxofh1jg	follow_created	user	cmnfcqlee000duhv7yzusv1k2	\N	2026-04-01 01:15:59.684
+cmnfcu8du00ysuhv7mioy3llk	cmnfcqldo0003uhv77gqzh84t	thread_created	thread	cmnfcu86p00y0uhv7f32c9yad	\N	2026-04-01 01:16:02.418
+cmnfcud6j010puhv7cspad0dz	cmnfcqlh1000juhv7dxofh1jg	thread_created	thread	cmnfcucsg0102uhv7x7oztcvc	\N	2026-04-01 01:16:08.635
+cmnfcud73010tuhv7bl4kyied	cmnfcqldo0003uhv77gqzh84t	thread_created	thread	cmnfcucuz0104uhv7v1zjjalg	\N	2026-04-01 01:16:08.655
+cmnfcui1o012cuhv7dtcy41lz	cmnfcqldo0003uhv77gqzh84t	reply_created	reply	cmnfcuhv40128uhv7hw5c5x8a	\N	2026-04-01 01:16:14.94
+cmnfcuj3i0132uhv7zieh9b7w	cmnfcqle40009uhv72zt9hg5l	reply_created	reply	cmnfcuiuh0130uhv7z8wsjdj1	\N	2026-04-01 01:16:16.302
+cmnfcujji013auhv7ixfhi5nq	cmnfcqlh1000juhv7dxofh1jg	reply_created	reply	cmnfcujh30136uhv77fmlk2fr	\N	2026-04-01 01:16:16.878
+cmnfcul5k0144uhv7awropzte	cmnfcqldt0005uhv7d4terocy	poll_created	poll	cmnfcuko4013yuhv7mfy7ms33	\N	2026-04-01 01:16:18.969
+cmnfcumrk014fuhv7nlnnggi7	cmnfcqlek000fuhv7ydofzkc9	reply_created	reply	cmnfcumfa014duhv7xizl67wj	\N	2026-04-01 01:16:21.056
+cmnfcuqcd015auhv7onqd0209	cmnfcqle40009uhv72zt9hg5l	reply_created	reply	cmnfcuq9d0154uhv7ydvf5fuo	\N	2026-04-01 01:16:25.694
+cmnfcuy560181uhv79g2p5bsp	cmnfcqldo0003uhv77gqzh84t	reply_created	reply	cmnfcuy3p017ruhv774jqceor	\N	2026-04-01 01:16:35.802
+cmnfcuy5d0183uhv77w23avqy	cmnfcqle40009uhv72zt9hg5l	reply_created	reply	cmnfcuy3x017tuhv7z0w1efmw	\N	2026-04-01 01:16:35.809
+cmnfcv29d019huhv7158k4uia	cmnfcqlek000fuhv7ydofzkc9	reply_created	reply	cmnfcv27m0197uhv725l9baa4	\N	2026-04-01 01:16:41.137
+cmnfcv29l019juhv7gzmg4zoa	cmnfcqldo0003uhv77gqzh84t	reply_created	reply	cmnfcv27w0199uhv74y02viaf	\N	2026-04-01 01:16:41.145
+cmnfcv4sd01aruhv73mhvc342	cmnfcqlek000fuhv7ydofzkc9	reply_created	reply	cmnfcv4hb01anuhv7n84ydpvd	\N	2026-04-01 01:16:44.413
+cmnfcv68w01btuhv7r6uqczwg	cmnfcqlek000fuhv7ydofzkc9	reply_created	reply	cmnfcv63b01bruhv7fp3w1nr1	\N	2026-04-01 01:16:46.305
+cmnfcv9l301cvuhv7es54j0tu	cmnfcqle40009uhv72zt9hg5l	reply_created	reply	cmnfcv9cf01ctuhv7rmtxxqda	\N	2026-04-01 01:16:50.631
+cmnfcv9oh01d7uhv7cty5o38t	cmnfcqlh1000juhv7dxofh1jg	follow_created	user	cmnfcqlh0000iuhv7diftlhgx	\N	2026-04-01 01:16:50.753
 cmnf5dsi4027suh3lkg575w0z	cmnf572ds001nuh3lown562fs	reply_created	reply	cmnf5drsu027huh3lvxj792x0	\N	2026-03-31 21:47:18.028
 cmnf5dsyh027uuh3l6mlqved2	cmnf572de001huh3le101cf9s	reply_created	reply	cmnf5dsbf027quh3lmvk4ehsj	\N	2026-03-31 21:47:18.617
 cmnf5du8f0286uh3l57ngy8xx	cmnf572di001luh3lrsinyetf	reply_created	reply	cmnf5dtcn0282uh3l7tvp0qp3	\N	2026-03-31 21:47:20.271
 cmnf5duvj028quh3l0wp0r5vo	cmnf572dz001quh3l20nv7abr	thread_created	thread	cmnf5dsyo027wuh3lz8ls04i8	\N	2026-03-31 21:47:21.103
 cmnf5dvi70292uh3lilxwxe4b	cmnf572dg001kuh3llzir1a1w	reply_created	reply	cmnf5duw4028suh3l8u8j7u88	\N	2026-03-31 21:47:21.919
 cmnf5dvrs029kuh3l0nnnqdy6	cmnf572dz001puh3lzyxc06lw	thread_created	thread	cmnf5dui1028euh3legaa19ib	\N	2026-03-31 21:47:22.264
+cmnfcud4p010euhv7rs13qkab	cmnfcqlek000fuhv7ydofzkc9	reply_created	reply	cmnfcucvh0106uhv76p0epm4b	\N	2026-04-01 01:16:08.569
+cmnfcud7s010xuhv7t1822ghn	cmnfcqldt0005uhv7d4terocy	poll_created	poll	cmnfcud5f010guhv72jr3eoed	\N	2026-04-01 01:16:08.68
+cmnfcug44011suhv7fpc0fg5r	cmnfcqldt0005uhv7d4terocy	thread_created	thread	cmnfcufg9011juhv7qw7vd6tk	\N	2026-04-01 01:16:12.436
+cmnfcui0n012auhv722bs2e3g	cmnfcqlh1000juhv7dxofh1jg	reply_created	reply	cmnfcuhtx0126uhv7kis1rkys	\N	2026-04-01 01:16:14.903
+cmnfcutmw0168uhv7alx582s4	cmnfcqlek000fuhv7ydofzkc9	reply_created	reply	cmnfcutl00160uhv7b130qnj0	\N	2026-04-01 01:16:29.96
+cmnfcutop016iuhv786i9r9ht	cmnfcqle40009uhv72zt9hg5l	poll_voted	poll	cmnfcuko4013yuhv7mfy7ms33	\N	2026-04-01 01:16:30.025
+cmnfcv0m8018vuhv770ccl5y4	cmnfcqldt0005uhv7d4terocy	poll_voted	poll	cmnfcubbk00zpuhv7dfh7u448	\N	2026-04-01 01:16:39.009
+cmnfcv2ar019puhv7z3vnsxof	cmnfcqle40009uhv72zt9hg5l	thread_created	thread	cmnfcv1uw0191uhv7oup6bju2	\N	2026-04-01 01:16:41.187
+cmnfcv6dj01bzuhv7k7r9x7xt	cmnfcqle40009uhv72zt9hg5l	thread_created	thread	cmnfcv5ta01bhuhv7s4r48toh	\N	2026-04-01 01:16:46.471
+cmnfcv6gl01c1uhv7tg045wy3	cmnfcqldo0003uhv77gqzh84t	thread_created	thread	cmnfcv5zz01bluhv7yri5ij5v	\N	2026-04-01 01:16:46.581
+cmnfcv6kz01c3uhv7g8kimcd3	cmnfcqldt0005uhv7d4terocy	follow_created	user	cmnfcqlck0000uhv732mhsi8o	\N	2026-04-01 01:16:46.739
 cmnf5dv26028uuh3l4rvol7k9	cmnf572ds001muh3lymk98he9	reply_created	reply	cmnf5duq2028iuh3l0vz5r78z	\N	2026-03-31 21:47:21.342
 cmnf5dv2t028wuh3lb84n0jq0	cmnf5734d0032uh3llttnseos	reply_created	reply	cmnf5duqq028muh3lnvuuwoyy	\N	2026-03-31 21:47:21.365
 cmnf5dyem02afuh3lz05w57k3	cmnf572cz0019uh3lpbkbeqcq	reply_created	reply	cmnf5dxo2029xuh3ltgg0y1k7	\N	2026-03-31 21:47:25.678
@@ -866,6 +1048,9 @@ cmnf5ezs302rkuh3lhujph37n	cmnf572ds001muh3lymk98he9	reply_created	reply	cmnf5eyn
 cmnf5ezxm02rsuh3l9s0jttfa	cmnf572dg001kuh3llzir1a1w	thread_created	thread	cmnf5exnf02r4uh3lstso2u9r	\N	2026-03-31 21:48:14.314
 cmnf5ezza02rwuh3l9pt33a5p	cmnf572dz001puh3lzyxc06lw	follow_created	user	cmnf572dg001kuh3llzir1a1w	\N	2026-03-31 21:48:14.374
 cmnf5f0rq02siuh3lusthp92r	cmnf572dz001quh3l20nv7abr	reply_created	reply	cmnf5f0dc02s6uh3lj8uv047p	\N	2026-03-31 21:48:15.398
+cmnfcv8wj01cluhv7b0jlxnvy	cmnfcqldt0005uhv7d4terocy	reply_created	reply	cmnfcv8p001cjuhv7wlgnfc5m	\N	2026-04-01 01:16:49.747
+cmnfcv95101cpuhv7k1vfqxfz	cmnfcqlek000fuhv7ydofzkc9	poll_voted	poll	cmnfcrljd0066uhv7y5pjasfn	\N	2026-04-01 01:16:50.053
+cmnfcv9ng01d3uhv78cc69ss0	cmnfcqldo0003uhv77gqzh84t	reply_created	reply	cmnfcv9ld01cxuhv7kdauy0u0	\N	2026-04-01 01:16:50.716
 cmnf5ewtt02q5uh3lm7vojnyc	cmnf572cz0019uh3lpbkbeqcq	thread_created	thread	cmnf5ev1c02omuh3lw8srbem9	\N	2026-03-31 21:48:10.289
 cmnf5ewx502qmuh3l26p9zq4s	cmnf572di001luh3lrsinyetf	follow_created	user	cmnf572fb002muh3l5zuvj9zy	\N	2026-03-31 21:48:10.409
 cmnf5ex2o02qouh3lqma6v10t	cmnf572dd001euh3lkotv3yzh	poll_created	poll	cmnf5eww702qbuh3ll34n4gwm	\N	2026-03-31 21:48:10.608
@@ -877,11 +1062,69 @@ cmnf5f3r102ueuh3lwy0fbjxc	cmnf572dz001puh3lzyxc06lw	reply_created	reply	cmnf5f3a
 cmnf5f60i02vbuh3lalom0r5r	cmnf572dz001quh3l20nv7abr	follow_created	user	cmnf572bq000luh3lvhao7zyd	\N	2026-03-31 21:48:22.194
 cmnf5f6y502vruh3lb9ixgdwi	cmnf572dd001euh3lkotv3yzh	reply_created	reply	cmnf5f6l002vjuh3lruq8pzvt	\N	2026-03-31 21:48:23.405
 cmnf5f82202w4uh3lo679duct	cmnf572di001luh3lrsinyetf	poll_created	poll	cmnf5f7m202vxuh3lkn1w61pw	\N	2026-03-31 21:48:24.842
+cmnfcvb0t01druhv7up2a1xeu	cmnfcqldt0005uhv7d4terocy	follow_created	user	cmnfcqldv0006uhv7rhgmfmtl	\N	2026-04-01 01:16:52.493
+cmnfcvb0z01dtuhv72to3s5na	cmnfcqlek000fuhv7ydofzkc9	reply_created	reply	cmnfcvaxq01djuhv7o58dhkzy	\N	2026-04-01 01:16:52.499
+cmnfcvcxt01eruhv7ms76dxk4	cmnfcqldt0005uhv7d4terocy	thread_created	thread	cmnfcvblr01ejuhv73p2wv52s	\N	2026-04-01 01:16:54.977
+cmnfcvhjx01g3uhv77is35nom	cmnfcqldo0003uhv77gqzh84t	reply_created	reply	cmnfcvhen01fyuhv7ltu67guj	\N	2026-04-01 01:17:00.956
+cmnfcvpsh01iruhv7n6xnchfm	cmnfcqldo0003uhv77gqzh84t	thread_created	thread	cmnfcvosy01iguhv7s5xvb19g	\N	2026-04-01 01:17:11.633
+cmnfcvpwu01ituhv7fw84zcz1	cmnfcqle40009uhv72zt9hg5l	thread_created	thread	cmnfcvowb01ijuhv71k0hkybe	\N	2026-04-01 01:17:11.79
+cmnfcvpy201izuhv7xwx39ttc	cmnfcqlh1000juhv7dxofh1jg	reply_created	reply	cmnfcvpsd01ipuhv7y5wyn7sj	\N	2026-04-01 01:17:11.834
+cmnfcvrej01jkuhv77ipv9jxv	cmnfcqlek000fuhv7ydofzkc9	thread_created	thread	cmnfcvqp701jauhv7l7v1i5pi	\N	2026-04-01 01:17:13.723
+cmnfcvtis01kwuhv7pk2ou5sg	cmnfcqlh1000juhv7dxofh1jg	follow_created	user	cmnfcqldj0001uhv7hfyotibv	\N	2026-04-01 01:17:16.468
+cmnfcvvmq01louhv7ioehom9y	cmnfcqldt0005uhv7d4terocy	reply_created	reply	cmnfcvvdg01lmuhv7csfvp4gg	\N	2026-04-01 01:17:19.202
+cmnfcvvto01luuhv73a0i5ger	cmnfcqlh1000juhv7dxofh1jg	reply_created	reply	cmnfcvvn301lquhv7ekurgvpe	\N	2026-04-01 01:17:19.452
+cmnfcvwo601m6uhv7g3vfd29h	cmnfcqlek000fuhv7ydofzkc9	poll_created	poll	cmnfcvwh401lyuhv7h65t7ttg	\N	2026-04-01 01:17:20.55
+cmnfcvwzh01mhuhv7wmoax97f	cmnfcqle40009uhv72zt9hg5l	reply_created	reply	cmnfcvwt001meuhv76fuaokyq	\N	2026-04-01 01:17:20.957
+cmnfcvykr01mzuhv7lulavreq	cmnfcqldt0005uhv7d4terocy	reply_created	reply	cmnfcvyih01mruhv7ftxl67iu	\N	2026-04-01 01:17:23.019
+cmnfcw30101nzuhv7g5zexqg1	cmnfcqlh1000juhv7dxofh1jg	reply_created	reply	cmnfcw2y301ntuhv7322xxtbi	\N	2026-04-01 01:17:28.753
+cmnfcw5ta01opuhv708klkm35	cmnfcqldt0005uhv7d4terocy	thread_created	thread	cmnfcw5pb01ohuhv7g7qv2w9j	\N	2026-04-01 01:17:32.398
+cmnfcw8ue01p0uhv7zlc5mi41	cmnfcqlek000fuhv7ydofzkc9	thread_created	thread	cmnfcw86q01owuhv7gaaksf3t	\N	2026-04-01 01:17:36.326
+cmnfcwb4201p9uhv7qsz7iih6	cmnfcqldt0005uhv7d4terocy	reply_created	reply	cmnfcwb1v01p5uhv7n4y1w02m	\N	2026-04-01 01:17:39.266
+cmnfcwdtm01psuhv7q4v5pmoh	cmnfcqlek000fuhv7ydofzkc9	poll_created	poll	cmnfcwd1d01pnuhv7ois2cuxh	\N	2026-04-01 01:17:42.778
+cmnfcwepp01q1uhv7omhxp255	cmnfcqlh1000juhv7dxofh1jg	thread_created	thread	cmnfcwefc01pwuhv7aroktu7j	\N	2026-04-01 01:17:43.933
+cmnfcwffh01qauhv708fse1jv	cmnfcqlek000fuhv7ydofzkc9	reply_created	reply	cmnfcwfba01q8uhv72mytjzgz	\N	2026-04-01 01:17:44.861
+cmnfcwpvt01tquhv72h0goe3b	cmnfcqleb000cuhv7bxrx8k4b	reply_created	reply	cmnfcwpl901tkuhv7s6mk6et0	\N	2026-04-01 01:17:58.409
+cmnfcwwb301vkuhv7n7yebzeg	cmnfcqle9000buhv78pneu9lv	follow_created	user	cmnfcqldt0005uhv7d4terocy	\N	2026-04-01 01:18:06.735
 cmnf5exnq02r6uh3ltctz6paz	cmnf572de001huh3le101cf9s	thread_created	thread	cmnf5ewl102psuh3ly8vvabie	\N	2026-03-31 21:48:11.366
 cmnf5f4fv02uguh3lfhntn0i9	cmnf572ds001muh3lymk98he9	reply_created	reply	cmnf5f3n802ucuh3lg0vdjpd5	\N	2026-03-31 21:48:20.155
 cmnf5f4hh02ukuh3lh4wgc577	cmnf5734d0032uh3llttnseos	thread_created	thread	cmnf5f2kw02tnuh3la7pttbov	\N	2026-03-31 21:48:20.213
 cmnf5f6pl02vluh3lo9k2768d	cmnf572dg001kuh3llzir1a1w	reply_created	reply	cmnf5f5zn02v9uh3l1nfa4dpu	\N	2026-03-31 21:48:23.097
+cmnfcvbca01e1uhv73pr174cg	cmnfcqlh1000juhv7dxofh1jg	thread_created	thread	cmnfcvay401dnuhv79tqtx44i	\N	2026-04-01 01:16:52.906
+cmnfcvbe301ecuhv70np1f8e0	cmnfcqldo0003uhv77gqzh84t	reply_created	reply	cmnfcvbcg01e3uhv74l9qym2r	\N	2026-04-01 01:16:52.972
+cmnfcve3a01f4uhv7egg966p7	cmnfcqle40009uhv72zt9hg5l	thread_created	thread	cmnfcvcy101etuhv7n0ew2hwa	\N	2026-04-01 01:16:56.47
+cmnfcvn2s01houhv7jtwwt1b2	cmnfcqldt0005uhv7d4terocy	reply_created	reply	cmnfcvmyn01hkuhv7jnk6uvz9	\N	2026-04-01 01:17:08.116
+cmnfcvn3901hquhv7vaktfksp	cmnfcqldo0003uhv77gqzh84t	reply_created	reply	cmnfcvmxg01hiuhv741carpoo	\N	2026-04-01 01:17:08.133
+cmnfcvrlh01k1uhv710g90plr	cmnfcqle40009uhv72zt9hg5l	poll_created	poll	cmnfcvrk801jsuhv744b0vjmj	\N	2026-04-01 01:17:13.973
+cmnfcvsm601kfuhv7iocyqtl3	cmnfcqldt0005uhv7d4terocy	reply_created	reply	cmnfcvsad01kduhv7n5aibf6s	\N	2026-04-01 01:17:15.294
+cmnfcvt7k01kpuhv7jv06yv79	cmnfcqle40009uhv72zt9hg5l	reply_created	reply	cmnfcvt4g01knuhv7y1zmz5r6	\N	2026-04-01 01:17:16.064
+cmnfcvtl801l2uhv7y6dzbrmt	cmnfcqlek000fuhv7ydofzkc9	thread_created	thread	cmnfcvsrf01khuhv7bsb1gb7v	\N	2026-04-01 01:17:16.555
+cmnfcw1ae01nhuhv7i6kj5a75	cmnfcqldt0005uhv7d4terocy	reply_created	reply	cmnfcw19401nduhv7wtnrlwrw	\N	2026-04-01 01:17:26.534
+cmnfcw1as01njuhv7kqri8tmk	cmnfcqlh1000juhv7dxofh1jg	poll_voted	poll	cmnfcrdt5003suhv7zwxvr5wk	\N	2026-04-01 01:17:26.547
+cmnfcwb5m01pduhv7pd6ixvjr	cmnfcqlh1000juhv7dxofh1jg	reply_created	reply	cmnfcwb3001p7uhv7tnk8k2wo	\N	2026-04-01 01:17:39.322
+cmnfcwg8z01qmuhv7o7afz6kp	cmnfcqlh1000juhv7dxofh1jg	poll_created	poll	cmnfcwg6a01qhuhv7xa1k5wwa	\N	2026-04-01 01:17:45.924
+cmnfcwha801qvuhv7bwni7vam	cmnfcqlh1000juhv7dxofh1jg	thread_created	thread	cmnfcwh7h01qruhv78t39a5li	\N	2026-04-01 01:17:47.264
+cmnfcwidr01r7uhv7i2lhhl9c	cmnfcqlh1000juhv7dxofh1jg	poll_created	poll	cmnfcwicj01r2uhv718nz2h2c	\N	2026-04-01 01:17:48.687
+cmnfcwj0i01reuhv768u9219y	cmnfcqlh1000juhv7dxofh1jg	follow_created	user	cmnfcqlek000fuhv7ydofzkc9	\N	2026-04-01 01:17:49.507
+cmnfcwl8r01ryuhv7so31dasg	cmnfcqle9000buhv78pneu9lv	reply_created	reply	cmnfcwl6201rouhv76d364wpa	\N	2026-04-01 01:17:52.395
+cmnfcwl9s01s0uhv7im4b7dq5	cmnfcqle10008uhv7xleeivtf	poll_voted	poll	cmnfcv4so01atuhv76xn8mnl3	\N	2026-04-01 01:17:52.432
+cmnfcwnq601sxuhv72oophmls	cmnfcqldv0006uhv7rhgmfmtl	reply_created	reply	cmnfcwnoo01stuhv7sf495r0s	\N	2026-04-01 01:17:55.614
+cmnfcwnqc01szuhv76e0y96zd	cmnfcqldy0007uhv7gx0b561v	follow_created	user	cmnfcqlee000duhv7yzusv1k2	\N	2026-04-01 01:17:55.62
+cmnfcwt8401uxuhv7xirghr59	cmnfcqle9000buhv78pneu9lv	poll_created	poll	cmnfcwt6x01uquhv7safl0ui9	\N	2026-04-01 01:18:02.74
+cmnfcwwd801vwuhv7hfvvypce	cmnfcqldy0007uhv7gx0b561v	follow_created	user	cmnfcqlck0000uhv732mhsi8o	\N	2026-04-01 01:18:06.812
 cmnf5f38502u2uh3l7uyoxn4z	cmnf572cz0019uh3lpbkbeqcq	reply_created	reply	cmnf5f29z02tluh3l6w2yl9ks	\N	2026-03-31 21:48:18.581
+cmnfcvdc501ezuhv7y6zieo2q	cmnfcqlek000fuhv7ydofzkc9	reply_created	reply	cmnfcvcwu01epuhv7c7bks9fg	\N	2026-04-01 01:16:55.493
+cmnfcveu401fduhv7jo5ipmpi	cmnfcqlh1000juhv7dxofh1jg	reply_created	reply	cmnfcveoj01fbuhv75wzu7zkf	\N	2026-04-01 01:16:57.436
+cmnfcvgmp01fouhv7hnyyyzme	cmnfcqldt0005uhv7d4terocy	thread_created	thread	cmnfcvfha01fhuhv752mitjiy	\N	2026-04-01 01:16:59.761
+cmnfcvhtn01g7uhv7skprwd8o	cmnfcqlek000fuhv7ydofzkc9	thread_created	thread	cmnfcvh7s01fsuhv75hy6do6w	\N	2026-04-01 01:17:01.307
+cmnfcvi0t01g9uhv7mcyvm5le	cmnfcqle40009uhv72zt9hg5l	thread_created	thread	cmnfcvh8801fuuhv7infcc7ec	\N	2026-04-01 01:17:01.565
+cmnfcvkuc01gnuhv7hfgrqik1	cmnfcqldt0005uhv7d4terocy	reply_created	reply	cmnfcvkh701gjuhv7d7i9xhlu	\N	2026-04-01 01:17:05.22
+cmnfcvkvp01h0uhv7nk2pqff7	cmnfcqlh1000juhv7dxofh1jg	reply_created	reply	cmnfcvkuh01gpuhv7cr5x1t26	\N	2026-04-01 01:17:05.269
+cmnfcvkw201h2uhv7df8usci2	cmnfcqle40009uhv72zt9hg5l	poll_created	poll	cmnfcvkuw01gtuhv761yn7ijc	\N	2026-04-01 01:17:05.283
+cmnfcvkye01hbuhv7df1yz5hp	cmnfcqlek000fuhv7ydofzkc9	thread_created	thread	cmnfcvkkb01gluhv72cpb8yey	\N	2026-04-01 01:17:05.366
+cmnfcwl8601ruuhv7jowjjgcp	cmnfcqldy0007uhv7gx0b561v	reply_created	reply	cmnfcwl3o01rmuhv762rcwom0	\N	2026-04-01 01:17:52.374
+cmnfcwnr901t7uhv7c0tcsjlj	cmnfcqle10008uhv7xleeivtf	thread_created	thread	cmnfcwni001spuhv7uyouoj6k	\N	2026-04-01 01:17:55.653
+cmnfcwpvo01touhv7hslehkso	cmnfcqle9000buhv78pneu9lv	thread_created	thread	cmnfcwp8701tguhv7dz3ksjjy	\N	2026-04-01 01:17:58.403
+cmnfcwwdf01vyuhv77g0upz52	cmnfcqldv0006uhv7rhgmfmtl	poll_voted	poll	cmnfctq8x00qvuhv7xk5byjvk	\N	2026-04-01 01:18:06.819
 cmnf5f3b602u6uh3lb9d9i0cl	cmnf572de001huh3le101cf9s	poll_created	poll	cmnf5f38102txuh3ln4ruut0b	\N	2026-03-31 21:48:18.69
 cmnf5f94202wcuh3l726tx4f1	cmnf572ds001nuh3lown562fs	reply_created	reply	cmnf5f8dr02w6uh3lnz4lw2jq	\N	2026-03-31 21:48:26.21
 cmnf5faau02wnuh3l4fhj8ej0	cmnf572de001huh3le101cf9s	reply_created	reply	cmnf5f93002wauh3l1qvnochr	\N	2026-03-31 21:48:27.75
@@ -949,6 +1192,23 @@ cmnf5gw1k03fvuh3l75p245zg	cmnf572dz001puh3lzyxc06lw	reply_created	reply	cmnf5gvq
 cmnf5gw2k03fxuh3llwazkcu0	cmnf572dg001kuh3llzir1a1w	thread_created	thread	cmnf5gv4103euuh3losnymc1r	\N	2026-03-31 21:49:42.62
 cmnf5gxfo03guuh3lpn1f0ouv	cmnf572dd001euh3lkotv3yzh	reply_created	reply	cmnf5gwvq03gjuh3ldxx2w89m	\N	2026-03-31 21:49:44.388
 cmnf5h0tx03hwuh3ldi3h5kis	cmnf572dz001quh3l20nv7abr	thread_created	thread	cmnf5gxys03h2uh3l3ff9yb5k	\N	2026-03-31 21:49:48.789
+cmnfcvn4q01hsuhv7o8nee8wm	cmnfcqle40009uhv72zt9hg5l	reply_created	reply	cmnfcvn2g01hmuhv7hqus2abz	\N	2026-04-01 01:17:08.186
+cmnfcvo0q01icuhv7brhu2rxq	cmnfcqlek000fuhv7ydofzkc9	thread_created	thread	cmnfcvnl401i0uhv7e9vcnem2	\N	2026-04-01 01:17:09.338
+cmnfcvrbl01jguhv7cxdalnx8	cmnfcqldt0005uhv7d4terocy	reply_created	reply	cmnfcvqsq01jeuhv74fetwfdl	\N	2026-04-01 01:17:13.617
+cmnfcvroc01k5uhv7tt4a9fep	cmnfcqldo0003uhv77gqzh84t	thread_created	thread	cmnfcvree01jiuhv7wud9voxw	\N	2026-04-01 01:17:14.076
+cmnfcvu4u01lfuhv7ut3ghs4d	cmnfcqldo0003uhv77gqzh84t	thread_created	thread	cmnfcvtln01l4uhv74szbnyty	\N	2026-04-01 01:17:17.262
+cmnfcvyhm01mpuhv7x2qnj2bq	cmnfcqlek000fuhv7ydofzkc9	reply_created	reply	cmnfcvy5601mnuhv7vwxc719l	\N	2026-04-01 01:17:22.905
+cmnfcvys101n5uhv7a9giqfof	cmnfcqle40009uhv72zt9hg5l	thread_created	thread	cmnfcvyj501mtuhv7ym8os71r	\N	2026-04-01 01:17:23.281
+cmnfcw2yn01nvuhv7952hc3tt	cmnfcqle40009uhv72zt9hg5l	reply_created	reply	cmnfcw2vc01npuhv7i3wjzknt	\N	2026-04-01 01:17:28.703
+cmnfcw2yt01nxuhv79lztg1kq	cmnfcqlek000fuhv7ydofzkc9	reply_created	reply	cmnfcw2xi01nruhv7nud2kpjd	\N	2026-04-01 01:17:28.709
+cmnfcw5qf01oluhv7bdeof76z	cmnfcqle40009uhv72zt9hg5l	reply_created	reply	cmnfcw5p401ofuhv7ft63bozt	\N	2026-04-01 01:17:32.295
+cmnfcwl7d01rquhv75clbtgow	cmnfcqleb000cuhv7bxrx8k4b	reply_created	reply	cmnfcwl3201rkuhv7oykvw7r1	\N	2026-04-01 01:17:52.345
+cmnfcwl9y01s2uhv7i8uhhzx3	cmnfcqldv0006uhv7rhgmfmtl	poll_voted	poll	cmnfcslit00bluhv7226npi0w	\N	2026-04-01 01:17:52.439
+cmnfcwpy901u0uhv736h3cv33	cmnfcqle10008uhv7xleeivtf	reply_created	reply	cmnfcwpw901tuuhv79o7n4x70	\N	2026-04-01 01:17:58.497
+cmnfcwq1901u6uhv7hh3ruphd	cmnfcqldy0007uhv7gx0b561v	thread_created	thread	cmnfcwpvf01tmuhv7kpsy0slf	\N	2026-04-01 01:17:58.605
+cmnfcwsz901uouhv7wwaykhgk	cmnfcqldv0006uhv7rhgmfmtl	reply_created	reply	cmnfcwsme01umuhv75dyvfs9x	\N	2026-04-01 01:18:02.421
+cmnfcwtpe01v9uhv7vtz0i5f8	cmnfcqldy0007uhv7gx0b561v	poll_created	poll	cmnfcwtnp01v4uhv7ljujevib	\N	2026-04-01 01:18:03.362
+cmnfcwwcz01vuuhv78ofx2fqh	cmnfcqle10008uhv7xleeivtf	reply_created	reply	cmnfcwway01viuhv7xww3l1l2	\N	2026-04-01 01:18:06.803
 cmnf5gf6u03cnuh3li4ijbhpz	cmnf572de001huh3le101cf9s	follow_created	user	cmnf572ds001nuh3lown562fs	\N	2026-03-31 21:49:20.742
 cmnf5gfgm03cruh3lsojh24mv	cmnf572di001luh3lrsinyetf	reply_created	reply	cmnf5geil03cjuh3ld6xqjv6h	\N	2026-03-31 21:49:21.094
 cmnf5gg1303cvuh3lqo667wj3	cmnf572dd001euh3lkotv3yzh	follow_created	user	cmnf572ft002uuh3l5iiqlqv5	\N	2026-03-31 21:49:21.831
@@ -973,8 +1233,25 @@ cmnf5hpbv03s6uh3lgizhi6qh	cmnf5734c0031uh3l5iauslv3	reply_created	reply	cmnf5hp7
 cmnf5hpcr03scuh3l6hv7zc34	cmnf572e1001ruh3lc14fgiqv	reply_created	reply	cmnf5hp8m03ruuh3l6g1kxsai	\N	2026-03-31 21:50:20.572
 cmnf5hpdv03sguh3lj3iswsti	cmnf572du001ouh3ls53aoe4z	reply_created	reply	cmnf5hp9003rwuh3lzeixrkl4	\N	2026-03-31 21:50:20.611
 cmnf5hpeu03siuh3lxcziiv66	cmnf572e2001suh3l1ugho0mg	reply_created	reply	cmnf5hp9k03ryuh3lvzni18d4	\N	2026-03-31 21:50:20.646
+cmnfcwwc301vquhv7ptddw668	cmnfcqleb000cuhv7bxrx8k4b	reply_created	reply	cmnfcww8z01veuhv730tfkhvz	\N	2026-04-01 01:18:06.767
 cmnf5guei03eiuh3lvmlwthtq	cmnf572de001huh3le101cf9s	reply_created	reply	cmnf5gtjq03e2uh3lse39t6bo	\N	2026-03-31 21:49:40.456
 cmnf5gv3503equh3lqqzjr8oi	cmnf572ds001muh3lymk98he9	reply_created	reply	cmnf5gudt03ecuh3lpmhexyer	\N	2026-03-31 21:49:41.345
+cmnfcwzmt01wluhv7ihdlg1xq	cmnfcqle9000buhv78pneu9lv	reply_created	reply	cmnfcwyv101wjuhv7g4fiaj6k	\N	2026-04-01 01:18:11.045
+cmnfcwzrd01wvuhv71gtad9di	cmnfcqleb000cuhv7bxrx8k4b	follow_created	user	cmnfcqldj0001uhv7hfyotibv	\N	2026-04-01 01:18:11.209
+cmnfcx1k001xpuhv7gehmusp1	cmnfcqleb000cuhv7bxrx8k4b	follow_created	user	cmnfcqle10008uhv7xleeivtf	\N	2026-04-01 01:18:13.536
+cmnfcx1su01xruhv7mxfbxp5k	cmnfcqle9000buhv78pneu9lv	reply_created	reply	cmnfcx19r01xjuhv7rqyddysh	\N	2026-04-01 01:18:13.855
+cmnfcx45r01ypuhv7h673p2to	cmnfcqleb000cuhv7bxrx8k4b	reply_created	reply	cmnfcx3x301ynuhv79onrtjjr	\N	2026-04-01 01:18:16.911
+cmnfcx8sn01zxuhv7e8j3jerr	cmnfcqldy0007uhv7gx0b561v	thread_created	thread	cmnfcx7le01zfuhv7aoumyc72	\N	2026-04-01 01:18:22.917
+cmnfcx8vw020fuhv7vsoe6f3f	cmnfcqldv0006uhv7rhgmfmtl	follow_created	user	cmnfcqleo000huhv7n0m7asjb	\N	2026-04-01 01:18:23.036
+cmnfcxb80020xuhv7z7pv46ni	cmnfcqleb000cuhv7bxrx8k4b	reply_created	reply	cmnfcxb27020uuhv7jpvmqyni	\N	2026-04-01 01:18:26.064
+cmnfcxbdu0211uhv7rqucuds1	cmnfcqldv0006uhv7rhgmfmtl	follow_created	user	cmnfcqle10008uhv7xleeivtf	\N	2026-04-01 01:18:26.274
+cmnfcxdnl021uuhv7iapu1ko4	cmnfcqldv0006uhv7rhgmfmtl	reply_created	reply	cmnfcxdlt021ouhv7ov7a7a3m	\N	2026-04-01 01:18:29.217
+cmnfcxgk5022cuhv7e5uvtk8y	cmnfcqle9000buhv78pneu9lv	reply_created	reply	cmnfcxg1j0228uhv73tgql0c7	\N	2026-04-01 01:18:32.981
+cmnfcxrky023xuhv7j49zy598	cmnfcqle9000buhv78pneu9lv	reply_created	reply	cmnfcxr64023vuhv7kaep0nvm	\N	2026-04-01 01:18:47.266
+cmnfcxsgs024kuhv7n88y0zve	cmnfcqldy0007uhv7gx0b561v	poll_voted	poll	cmnfcubbk00zpuhv7dfh7u448	\N	2026-04-01 01:18:48.413
+cmnfcxuln024vuhv7va72f1yd	cmnfcqle10008uhv7xleeivtf	follow_created	user	cmnfcqleg000euhv72i6namax	\N	2026-04-01 01:18:51.179
+cmnfcxuro0253uhv7i9dobrte	cmnfcqldv0006uhv7rhgmfmtl	thread_created	thread	cmnfcxtqu024puhv7kblcv6vd	\N	2026-04-01 01:18:51.397
+cmnfcxwh70261uhv7h5088y3w	cmnfcqleb000cuhv7bxrx8k4b	reply_created	reply	cmnfcxwf6025vuhv7puarnrs3	\N	2026-04-01 01:18:53.612
 cmnf5gv6e03eyuh3ls2yq17fb	cmnf572dz001quh3l20nv7abr	reply_created	reply	cmnf5gun403ekuh3lvukc8jjo	\N	2026-03-31 21:49:41.462
 cmnf5gvq703fiuh3lqtcwftyi	cmnf572cz0019uh3lpbkbeqcq	reply_created	reply	cmnf5gvht03f8uh3lt0jjsuib	\N	2026-03-31 21:49:42.175
 cmnf5gziv03hiuh3lx0d56eiw	cmnf572de001huh3le101cf9s	reply_created	reply	cmnf5gyns03hcuh3lzn6u1ipf	\N	2026-03-31 21:49:47.092
@@ -990,6 +1267,19 @@ cmnf5hjem03q3uh3lvcu7cels	cmnf572dg001kuh3llzir1a1w	follow_created	user	cmnf5734
 cmnf5hkzt03rduh3l2zm2s8rp	cmnf5734d0032uh3llttnseos	thread_created	thread	cmnf5hkw903r9uh3l8qx16hfy	\N	2026-03-31 21:50:14.921
 cmnf5hpiz03swuh3lf9y44ai6	cmnf572eb001wuh3lgy6hz6te	reply_created	reply	cmnf5hpda03seuh3lui9ns605	\N	2026-03-31 21:50:20.795
 cmnf5hpjh03syuh3lk8imgjip	cmnf572ec001xuh3lno7o8em1	poll_voted	poll	cmnf5eww702qbuh3ll34n4gwm	\N	2026-03-31 21:50:20.813
+cmnfcwzqz01wtuhv7vivwbtl4	cmnfcqldy0007uhv7gx0b561v	poll_voted	poll	cmnfcwicj01r2uhv718nz2h2c	\N	2026-04-01 01:18:11.195
+cmnfcwzud01x3uhv7n5575qkc	cmnfcqldv0006uhv7rhgmfmtl	poll_voted	poll	cmnfctgg700lzuhv7kyh418xf	\N	2026-04-01 01:18:11.317
+cmnfcx1z801y5uhv783tjqetk	cmnfcqldy0007uhv7gx0b561v	reply_created	reply	cmnfcx1ud01xxuhv7qlnm029d	\N	2026-04-01 01:18:14.084
+cmnfcxbnv0217uhv7j9slzppf	cmnfcqle9000buhv78pneu9lv	thread_created	thread	cmnfcxak5020quhv7gy48pmya	\N	2026-04-01 01:18:26.635
+cmnfcxhou022iuhv79q2urfm4	cmnfcqleb000cuhv7bxrx8k4b	reply_created	reply	cmnfcxgaw022auhv7hb02b85b	\N	2026-04-01 01:18:34.446
+cmnfcxm8b023euhv7ocr165st	cmnfcqldv0006uhv7rhgmfmtl	reply_created	reply	cmnfcxm3u023auhv7wrte8kiw	\N	2026-04-01 01:18:40.331
+cmnfcxma7023luhv76evkwwno	cmnfcqle10008uhv7xleeivtf	follow_created	user	cmnfcqldt0005uhv7d4terocy	\N	2026-04-01 01:18:40.399
+cmnfcxs9q0241uhv7qrsq55k7	cmnfcqle10008uhv7xleeivtf	follow_created	user	cmnfcqldv0006uhv7rhgmfmtl	\N	2026-04-01 01:18:48.158
+cmnfcxusd0255uhv76nrke2yh	cmnfcqleb000cuhv7bxrx8k4b	follow_created	user	cmnfcqlek000fuhv7ydofzkc9	\N	2026-04-01 01:18:51.421
+cmnfcxuue025iuhv77p4iyhk5	cmnfcqldy0007uhv7gx0b561v	reply_created	reply	cmnfcxusv0259uhv7wo207kak	\N	2026-04-01 01:18:51.494
+cmnfcxwfs025xuhv7v4jwhgw7	cmnfcqle10008uhv7xleeivtf	reply_created	reply	cmnfcxw9p025tuhv7hgzohw17	\N	2026-04-01 01:18:53.56
+cmnfcxwrr026tuhv7r3f48g6t	cmnfcqldy0007uhv7gx0b561v	thread_created	thread	cmnfcxwgs025zuhv7gw9czm3i	\N	2026-04-01 01:18:53.991
+cmnfcxytd027euhv78wgqh1dv	cmnfcqle10008uhv7xleeivtf	thread_created	thread	cmnfcxxtc0276uhv777yj1400	\N	2026-04-01 01:18:56.641
 cmnf5gvpl03feuh3lhnvrermz	cmnf572ds001nuh3lown562fs	reply_created	reply	cmnf5gvgr03f4uh3lsehegyzp	\N	2026-03-31 21:49:42.153
 cmnf5h26903ipuh3lhcz232bf	cmnf572dz001puh3lzyxc06lw	reply_created	reply	cmnf5h1sn03ihuh3lzlj7e4ph	\N	2026-03-31 21:49:50.528
 cmnf5h55m03juuh3lwe8n4and	cmnf5734d0032uh3llttnseos	thread_created	thread	cmnf5h2za03iyuh3lyr5wnfk0	\N	2026-03-31 21:49:54.394
@@ -999,6 +1289,18 @@ cmnf5h7dp03kruh3l6epxrjqg	cmnf572dz001quh3l20nv7abr	poll_created	poll	cmnf5h6yt0
 cmnf5h8rm03lzuh3lwx3w0g5n	cmnf572cz0019uh3lpbkbeqcq	reply_created	reply	cmnf5h8e003louh3lou2zgyug	\N	2026-03-31 21:49:59.074
 cmnf5hc5a03mwuh3ld5v1j27a	cmnf572de001huh3le101cf9s	poll_voted	poll	cmnf5cqj001n0uh3ltb4yb4b9	\N	2026-03-31 21:50:03.454
 cmnf5heiz03nquh3lqq8y0qie	cmnf572dz001puh3lzyxc06lw	thread_created	thread	cmnf5hcct03n1uh3lvhxeki4e	\N	2026-03-31 21:50:06.539
+cmnfcx1jt01xnuhv7a4y3fdg7	cmnfcqle10008uhv7xleeivtf	thread_created	thread	cmnfcx06j01xduhv7spe80rx8	\N	2026-04-01 01:18:13.528
+cmnfcx8hy01zruhv74yrdb419	cmnfcqle10008uhv7xleeivtf	reply_created	reply	cmnfcx89p01zluhv7omenamkj	\N	2026-04-01 01:18:22.534
+cmnfcx8iu01ztuhv7c6zorj3p	cmnfcqle9000buhv78pneu9lv	reply_created	reply	cmnfcx8cv01znuhv7ukl6scwr	\N	2026-04-01 01:18:22.566
+cmnfcxbz5021kuhv7mfe26ui5	cmnfcqldy0007uhv7gx0b561v	reply_created	reply	cmnfcxbrs021guhv7nijtcgy7	\N	2026-04-01 01:18:27.041
+cmnfcxdpl021wuhv7qv5smcem	cmnfcqle10008uhv7xleeivtf	reply_created	reply	cmnfcxdn5021suhv7xcyss724	\N	2026-04-01 01:18:29.288
+cmnfcxhoo022guhv7743eom6z	cmnfcqldy0007uhv7gx0b561v	follow_created	user	cmnfcqldt0005uhv7d4terocy	\N	2026-04-01 01:18:34.44
+cmnfcxkum0236uhv7x96jeweo	cmnfcqldy0007uhv7gx0b561v	poll_voted	poll	cmnfcrljd0066uhv7y5pjasfn	\N	2026-04-01 01:18:38.542
+cmnfcxm390238uhv7zyzh8d38	cmnfcqleb000cuhv7bxrx8k4b	thread_created	thread	cmnfcxkgw0230uhv7aa8uy8yu	\N	2026-04-01 01:18:40.149
+cmnfcxsdi024euhv7i020s40z	cmnfcqleb000cuhv7bxrx8k4b	poll_created	poll	cmnfcxsb60245uhv7kthers5y	\N	2026-04-01 01:18:48.294
+cmnfcxwlw0267uhv7u4lylb68	cmnfcqle9000buhv78pneu9lv	thread_created	thread	cmnfcxw0d025puhv7df5o1skz	\N	2026-04-01 01:18:53.78
+cmnfcxx2k026xuhv7ud348uhy	cmnfcqldv0006uhv7rhgmfmtl	thread_created	thread	cmnfcxwn7026duhv7kw0xfj52	\N	2026-04-01 01:18:54.381
+cmnfcxzs5027nuhv7gaa0q2qd	cmnfcqle9000buhv78pneu9lv	poll_created	poll	cmnfcxzpa027iuhv77u9bfhvt	\N	2026-04-01 01:18:57.893
 cmnf5gxzo03h6uh3lrg3hptqs	cmnf5734d0032uh3llttnseos	poll_voted	poll	cmnf5fcbf02xkuh3lihn9okj0	\N	2026-03-31 21:49:45.108
 cmnf5h1no03i8uh3lqrn9iwr4	cmnf572ds001nuh3lown562fs	reply_created	reply	cmnf5h1bs03i0uh3ljc2dqyb1	\N	2026-03-31 21:49:49.86
 cmnf5h1t303ijuh3leng2p1wo	cmnf572cz0019uh3lpbkbeqcq	thread_created	thread	cmnf5gzgz03hguh3lst1to7nl	\N	2026-03-31 21:49:50.055
@@ -1071,6 +1373,10 @@ cmnf5j1sf04giuh3lire7w2yl	cmnf572ea001vuh3lfza4shn3	follow_created	user	cmnf572e
 cmnf5j6mk04ieuh3lth2xpp7x	cmnf5734f0034uh3l1wc4bcdb	thread_created	thread	cmnf5j3i504hmuh3le3329n0g	\N	2026-03-31 21:51:29.612
 cmnf5jc7w04lcuh3llhej4icl	cmnf5734f0034uh3l1wc4bcdb	poll_created	poll	cmnf5jbxy04kwuh3ltkpvysip	\N	2026-03-31 21:51:36.853
 cmnf5jndd04qeuh3lhajat7y2	cmnf572ec001xuh3lno7o8em1	reply_created	reply	cmnf5jmxy04q6uh3l5he7xvl9	\N	2026-03-31 21:51:51.313
+cmnfcx24g01yauhv7m57s7s71	cmnfcqldv0006uhv7rhgmfmtl	reply_created	reply	cmnfcx1yh01y1uhv7f81fqu0l	\N	2026-04-01 01:18:14.271
+cmnfcx5x801yyuhv7z4xsbbd2	cmnfcqle10008uhv7xleeivtf	poll_created	poll	cmnfcx59101ytuhv7lb7jvdba	\N	2026-04-01 01:18:19.196
+cmnfcx62401z8uhv7nx257cpi	cmnfcqldy0007uhv7gx0b561v	follow_created	user	cmnfcqle7000auhv7u5byu7x1	\N	2026-04-01 01:18:19.372
+cmnfcx8d301zpuhv7jwnq8g9t	cmnfcqleb000cuhv7bxrx8k4b	reply_created	reply	cmnfcx88401zjuhv796ejol02	\N	2026-04-01 01:18:22.359
 cmnf5igdq0476uh3lapak13r6	cmnf572e2001suh3l1ugho0mg	poll_voted	poll	cmnf5f7m202vxuh3lkn1w61pw	\N	2026-03-31 21:50:55.598
 cmnf5igeg0478uh3lfkvtqjyy	cmnf572ec001xuh3lno7o8em1	reply_created	reply	cmnf5ig40046wuh3ly4x0da4x	\N	2026-03-31 21:50:55.624
 cmnf5imb5049muh3lt3bt5hwq	cmnf5734f0034uh3l1wc4bcdb	follow_created	user	cmnf572f5002huh3ll5xlexep	\N	2026-03-31 21:51:03.281
@@ -1721,6 +2027,33 @@ cmnf5tldt09afuh3lklj931za	cmnf572f5002huh3ll5xlexep	follow_created	user	cmnf572b
 cmnf5tle109ahuh3lyh6wzkwj	cmnf5734h0037uh3lmzxdes2n	reply_created	reply	cmnf5tl0q099puh3l5v9y57o9	\N	2026-03-31 21:59:35.305
 cmnf5tlg609aluh3lfiogjd5e	cmnf572er0027uh3l5t2a2ymg	reply_created	reply	cmnf5tla909a9uh3l2lzh089x	\N	2026-03-31 21:59:35.383
 cmnf5tlwt09axuh3lo9tmwr85	cmnf5734l003auh3lznt8814k	reply_created	reply	cmnf5tlix09apuh3l35cn4y0w	\N	2026-03-31 21:59:35.981
+cmnf70fh20aicuh3lpff56gsz	cmnf548r30000uhtd7g7vaybf	reply_created	reply	cmnf70fgc0aiauh3l6slbfbqo	\N	2026-03-31 22:32:53.846
+cmnf793640ailuh3lf4gwv3u6	cmnf548r30000uhtd7g7vaybf	reply_created	reply	cmnf793590aijuh3l4zwoe62u	\N	2026-03-31 22:39:37.804
+cmnf8sfl30003uhpbqgoy3htr	cmnf548r30000uhtd7g7vaybf	reply_created	reply	cmnf8sfk20001uhpbycpqjwj3	\N	2026-03-31 23:22:39.975
+cmnf8xk8g000guhpbi6gw9x63	cmnf548r30000uhtd7g7vaybf	follow_created	user	cmnf572ew002buh3lz3plaglv	\N	2026-03-31 23:26:39.28
+cmnf92pkg000puhpbisaoe2hp	cmnf548r30000uhtd7g7vaybf	reply_created	reply	cmnf92pjc000nuhpbpk50541q	\N	2026-03-31 23:30:39.472
+cmnfbay8h0003uhz6m1ry8qce	cmnf548r30000uhtd7g7vaybf	follow_created	user	cmnf54ks4000nuhtduo1zemv4	\N	2026-04-01 00:33:03.185
+cmnfbpozn00mquhz6f1ddogw7	cmnf548r30000uhtd7g7vaybf	thread_created	thread	cmnfbpow400mhuhz68v9ki53e	\N	2026-04-01 00:44:31.043
+cmnfbqq6c00mzuhz6ujkoclsk	cmnf548r30000uhtd7g7vaybf	poll_created	poll	cmnfbqq5f00mvuhz6igfklpq7	\N	2026-04-01 00:45:19.237
+cmnfbrrpp00n6uhz6l40a1cro	cmnf548r30000uhtd7g7vaybf	poll_voted	poll	cmnfbqq5f00mvuhz6igfklpq7	\N	2026-04-01 00:46:07.885
+cmnfbuxuj00nduhz6rtgwapu7	cmnf548r30000uhtd7g7vaybf	reply_created	reply	cmnfbuxtw00nbuhz6zcnzk4v5	\N	2026-04-01 00:48:35.803
+cmnfcqqin000puhv7cjz1ohmd	cmnfcqlek000fuhv7ydofzkc9	thread_created	thread	cmnfcqqg5000luhv7l483637o	\N	2026-04-01 01:13:19.296
+cmnfcr0kd000yuhv74whk6ino	cmnfcqle40009uhv72zt9hg5l	follow_created	user	cmnfcqldy0007uhv7gx0b561v	\N	2026-04-01 01:13:32.318
+cmnfcr0kr0010uhv7e1b6rdjm	cmnfcqldt0005uhv7d4terocy	follow_created	user	cmnfcqldy0007uhv7gx0b561v	\N	2026-04-01 01:13:32.332
+cmnfcr0l8001auhv7sj1ufbbw	cmnfcqlh1000juhv7dxofh1jg	follow_created	user	cmnfcqldy0007uhv7gx0b561v	\N	2026-04-01 01:13:32.348
+cmnfcr0ld001cuhv7m68ycl96	cmnfcqldo0003uhv77gqzh84t	follow_created	user	cmnfcqlck0000uhv732mhsi8o	\N	2026-04-01 01:13:32.353
+cmnfcr1l3001wuhv7gtlcrfi1	cmnfcqldt0005uhv7d4terocy	follow_created	user	cmnfcqlh0000iuhv7diftlhgx	\N	2026-04-01 01:13:33.639
+cmnfcr1lz0022uhv72y6t2a6q	cmnfcqle40009uhv72zt9hg5l	follow_created	user	cmnfcqldj0001uhv7hfyotibv	\N	2026-04-01 01:13:33.671
+cmnfcr1n7002auhv753s4anpt	cmnfcqldo0003uhv77gqzh84t	follow_created	user	cmnfcqlh0000iuhv7diftlhgx	\N	2026-04-01 01:13:33.715
+cmnfcr1oe002guhv74vor8cp5	cmnfcqlh1000juhv7dxofh1jg	thread_created	thread	cmnfcr172001quhv7bk9uw804	\N	2026-04-01 01:13:33.758
+cmnfcr3i1002xuhv7nqzkj133	cmnfcqldt0005uhv7d4terocy	thread_created	thread	cmnfcr2sw002nuhv7ckh2tw9k	\N	2026-04-01 01:13:36.121
+cmnfcr3ip0031uhv7nyt33kzu	cmnfcqle40009uhv72zt9hg5l	thread_created	thread	cmnfcr2ul002puhv7v6p68bld	\N	2026-04-01 01:13:36.145
+cmnfcr5xp003huhv71b5lj9gx	cmnfcqldo0003uhv77gqzh84t	thread_created	thread	cmnfcr4d4003duhv7as1a9wwm	\N	2026-04-01 01:13:39.277
+cmnfcr3ia002zuhv7s2wrdf0u	cmnfcqldo0003uhv77gqzh84t	follow_created	user	cmnfcqle9000buhv78pneu9lv	\N	2026-04-01 01:13:36.13
+cmnfcrdv40049uhv7g4rptw33	cmnfcqldo0003uhv77gqzh84t	poll_created	poll	cmnfcrdt6003tuhv7m8herb8w	\N	2026-04-01 01:13:49.553
+cmnfcrdu80041uhv7qjwvshus	cmnfcqlek000fuhv7ydofzkc9	poll_created	poll	cmnfcrdt2003muhv757kh1g3k	\N	2026-04-01 01:13:49.521
+cmnfcrduf0043uhv7g98qwh3j	cmnfcqldt0005uhv7d4terocy	poll_created	poll	cmnfcrdt5003suhv7zwxvr5wk	\N	2026-04-01 01:13:49.527
+cmnfcrf1q004kuhv7ekz5kv1s	cmnfcqldo0003uhv77gqzh84t	thread_created	thread	cmnfcredw004guhv79bgkuh32	\N	2026-04-01 01:13:51.087
 \.
 
 
@@ -1753,6 +2086,7 @@ COPY public."Ban" (id, "userId", "bannedByAdminId", "reportedItemId", "reportId"
 --
 
 COPY public."DailyDigest" (id, date, content, "generatedAt") FROM stdin;
+cmnf8yp6c000luhpbsk4vt3lk	2026-03-31	# SportsDeck Daily Digest\n### Monday, March 30, 2026\n\n---\n\n## ⚽ Recent Results\n\nNo matches completed in the last 7 days.\n\n---\n\n## 🏆 Standings — Top 5\n\n| Pos | Team | Pts | P | W | D | L | GF | GA | GD |\n|-----|------|-----|---|---|---|---|----|----|----|\n| 1 | Arsenal FC | **70** | 31 | 21 | 7 | 3 | 61 | 22 | +39 |\n| 2 | Manchester City FC | **61** | 30 | 18 | 7 | 5 | 60 | 28 | +32 |\n| 3 | Manchester United FC | **55** | 31 | 15 | 10 | 6 | 56 | 43 | +13 |\n| 4 | Aston Villa FC | **54** | 31 | 16 | 6 | 9 | 42 | 37 | +5 |\n| 5 | Liverpool FC | **49** | 31 | 14 | 7 | 10 | 50 | 42 | +8 |\n\n\n---\n\n## 🔻 Relegation Zone\n\n| Pos | Team | Pts | P | W | D | L | GD |\n|-----|------|-----|---|---|---|---|----|\n| 18 | West Ham United FC | **29** | 31 | 7 | 8 | 16 | -21 |\n| 19 | Burnley FC | **20** | 31 | 4 | 8 | 19 | -28 |\n| 20 | Wolverhampton Wanderers FC | **17** | 31 | 3 | 8 | 20 | -30 |\n\n\n---\n\n## 💬 Trending Discussions\n\n### [Hot take discussion](/threads/cmnf58lb70060uh3lnytid6d5)\n**1** posts · by **swiftmidfielder_3** · General forum\n\n`#hot take` `#debate`\n\n### [Hot take discussion](/threads/cmnf58m8x0066uh3lyszoxrp4)\n**1** posts · by **defendervision_8** · General forum\n\n`#hot take` `#debate`\n\n### [Hot take discussion](/threads/cmnf57ofv003duh3lxgekr9jy)\n**1** posts · by **cityhub_2** · General forum\n\n`#hot take` `#debate`\n\n### [Hot take discussion](/threads/cmnf58lap005yuh3l9i5h2j8f)\n**1** posts · by **coldcaptain_4** · General forum\n\n`#hot take` `#debate`\n\n### [Hot take discussion](/threads/cmnf59tay00eeuh3luedi1zj7)\n**1** posts · by **barcadaily__7** · General forum\n\n`#hot take` `#debate`\n\n\n\n---\n\n## 🔥 Most Active Today\n\n🥇 **abu** — 3 contributions\n	2026-03-31 23:27:32.341
 \.
 
 
@@ -6014,6 +6348,693 @@ cmnf5tls409asuh3ljxwbh6vx	cmnf572f5002huh3ll5xlexep	cmnf5tlgf09anuh3ldce5c4bs	f	
 cmnf5tls409atuh3l43zu11lk	cmnf572bh000fuh3l32zu8oa1	cmnf5tlgf09anuh3ldce5c4bs	f	2026-03-31 21:59:35.812
 cmnf5tn5i09b4uh3llckg49np	cmnf5734h0037uh3lmzxdes2n	cmnf5tlrz09aruh3lu9p8y7da	f	2026-03-31 21:59:37.591
 cmnf5tn5i09b5uh3l6gr4azye	cmnf572ew002buh3lz3plaglv	cmnf5tlrz09aruh3lu9p8y7da	f	2026-03-31 21:59:37.591
+cmnf70fjd0aiguh3lqitp0qwv	cmnf572ee001yuh3lp0tzqqpg	cmnf70fi10aieuh3lubid9qxv	f	2026-03-31 22:32:53.93
+cmnf70fjd0aifuh3li4uduxiy	cmnf548r30000uhtd7g7vaybf	cmnf70fi10aieuh3lubid9qxv	t	2026-03-31 22:32:53.93
+cmnf793810aipuh3lef7z8eg1	cmnf572ew002buh3lz3plaglv	cmnf7936u0ainuh3lpfi29emf	f	2026-03-31 22:39:37.873
+cmnf8sfnx0007uhpbt98xbzwi	cmnf572ew002buh3lz3plaglv	cmnf8sfme0005uhpbluv3r76s	f	2026-03-31 23:22:40.077
+cmnf8xk99000kuhpbcpxepkk4	cmnf572ew002buh3lz3plaglv	cmnf8xk8t000iuhpbq8x8x6a1	f	2026-03-31 23:26:39.31
+cmnf92pnx000tuhpbzepm4ntp	cmnf572ee001yuh3lp0tzqqpg	cmnf92plo000ruhpbwep221tp	f	2026-03-31 23:30:39.597
+cmnfbaya50007uhz6k0gw5mmn	cmnf54ks4000nuhtduo1zemv4	cmnfbay9a0005uhz6xco7qz87	f	2026-04-01 00:33:03.245
+cmnfbaya50006uhz6el1fh892	cmnf548r30000uhtd7g7vaybf	cmnfbay9a0005uhz6xco7qz87	t	2026-04-01 00:33:03.245
+cmnf8xk99000juhpb1tmj4krp	cmnf548r30000uhtd7g7vaybf	cmnf8xk8t000iuhpbq8x8x6a1	t	2026-03-31 23:26:39.31
+cmnfbrrrg00n9uhz6bz85lx3s	cmnf548r30000uhtd7g7vaybf	cmnfbrrqm00n8uhz6ra0q100g	t	2026-04-01 00:46:07.948
+cmnfbqq7s00n2uhz60slqcg03	cmnf548r30000uhtd7g7vaybf	cmnfbqq6p00n1uhz6xb05jymo	t	2026-04-01 00:45:19.288
+cmnf793810aiouh3lq0y6918q	cmnf548r30000uhtd7g7vaybf	cmnf7936u0ainuh3lpfi29emf	t	2026-03-31 22:39:37.873
+cmnf8sfnw0006uhpbh9qr30js	cmnf548r30000uhtd7g7vaybf	cmnf8sfme0005uhpbluv3r76s	t	2026-03-31 23:22:40.077
+cmnf92pnx000suhpbh7617g26	cmnf548r30000uhtd7g7vaybf	cmnf92plo000ruhpbwep221tp	t	2026-03-31 23:30:39.597
+cmnfbpp0l00mtuhz6l9ziv2fk	cmnf548r30000uhtd7g7vaybf	cmnfbpozz00msuhz65nefb9sx	t	2026-04-01 00:44:31.078
+cmnfbuxw900nguhz6lppa3pah	cmnf548r30000uhtd7g7vaybf	cmnfbuxv400nfuhz6vp5az6og	t	2026-04-01 00:48:35.865
+cmnfcqqk4000suhv7iphfxwzy	cmnfcqlek000fuhv7ydofzkc9	cmnfcqqj5000ruhv70lso82k7	f	2026-04-01 01:13:19.348
+cmnfcr0li001duhv74sw4gt33	cmnfcqle40009uhv72zt9hg5l	cmnfcr0kw0012uhv780qq39uz	f	2026-04-01 01:13:32.359
+cmnfcr0li001euhv7usmaok0e	cmnfcqldy0007uhv7gx0b561v	cmnfcr0kw0012uhv780qq39uz	f	2026-04-01 01:13:32.359
+cmnfcr0ln001fuhv7ip1bps08	cmnfcqldt0005uhv7d4terocy	cmnfcr0l30018uhv7ei1xcnn3	f	2026-04-01 01:13:32.363
+cmnfcr0ln001guhv7vsguq40s	cmnfcqldy0007uhv7gx0b561v	cmnfcr0l30018uhv7ei1xcnn3	f	2026-04-01 01:13:32.363
+cmnfcr0me001luhv7h0diy038	cmnfcqlh1000juhv7dxofh1jg	cmnfcr0ls001iuhv7nwixvxcm	f	2026-04-01 01:13:32.391
+cmnfcr0me001muhv7vxgk7uvf	cmnfcqldy0007uhv7gx0b561v	cmnfcr0ls001iuhv7nwixvxcm	f	2026-04-01 01:13:32.391
+cmnfcr0mv001nuhv7umc8ima5	cmnfcqldo0003uhv77gqzh84t	cmnfcr0ly001kuhv7o3l97s3n	f	2026-04-01 01:13:32.407
+cmnfcr0mv001ouhv74loaouo3	cmnfcqlck0000uhv732mhsi8o	cmnfcr0ly001kuhv7o3l97s3n	f	2026-04-01 01:13:32.407
+cmnfcr1mn0025uhv7nbj9c3un	cmnfcqldt0005uhv7d4terocy	cmnfcr1lt0020uhv7mqknmxs1	f	2026-04-01 01:13:33.695
+cmnfcr1mn0026uhv7dpwz90yw	cmnfcqlh0000iuhv7diftlhgx	cmnfcr1lt0020uhv7mqknmxs1	f	2026-04-01 01:13:33.695
+cmnfcr1nr002buhv72wb96cb8	cmnfcqle40009uhv72zt9hg5l	cmnfcr1mt0028uhv7j9eywgnu	f	2026-04-01 01:13:33.735
+cmnfcr1nr002cuhv70cfmh8kr	cmnfcqldj0001uhv7hfyotibv	cmnfcr1mt0028uhv7j9eywgnu	f	2026-04-01 01:13:33.735
+cmnfcr1r9002huhv7183tjkja	cmnfcqldo0003uhv77gqzh84t	cmnfcr1o7002euhv76qc760hk	f	2026-04-01 01:13:33.861
+cmnfcr1r9002iuhv7lshpsx9p	cmnfcqlh0000iuhv7diftlhgx	cmnfcr1o7002euhv76qc760hk	f	2026-04-01 01:13:33.861
+cmnfcr24d002luhv7lt6gj0qh	cmnfcqlh1000juhv7dxofh1jg	cmnfcr1ri002kuhv7uq5cmdjp	f	2026-04-01 01:13:34.333
+cmnfcr3lu0038uhv7qmca8gun	cmnfcqldo0003uhv77gqzh84t	cmnfcr3jp0035uhv7lk3bv8ls	f	2026-04-01 01:13:36.259
+cmnfcr3lu0039uhv7wk5htw7p	cmnfcqle9000buhv78pneu9lv	cmnfcr3jp0035uhv7lk3bv8ls	f	2026-04-01 01:13:36.259
+cmnfcr3mo003auhv7qp7nmpsw	cmnfcqldt0005uhv7d4terocy	cmnfcr3j60033uhv7s3lgi27x	f	2026-04-01 01:13:36.288
+cmnfcr3nz003buhv7enb7b3xz	cmnfcqle40009uhv72zt9hg5l	cmnfcr3ku0037uhv7sudfnj0a	f	2026-04-01 01:13:36.335
+cmnfcr68h003kuhv751kmxcwy	cmnfcqldo0003uhv77gqzh84t	cmnfcr62i003juhv78iskfhea	f	2026-04-01 01:13:39.666
+cmnfcrdwc004cuhv7gpp3qajd	cmnfcqlek000fuhv7ydofzkc9	cmnfcrduv0045uhv7w9lycfz0	f	2026-04-01 01:13:49.596
+cmnfcrdwj004duhv7fnpqr6a9	cmnfcqldt0005uhv7d4terocy	cmnfcrdv30047uhv75dnhd1nz	f	2026-04-01 01:13:49.603
+cmnfcrdxn004euhv7r6yla0at	cmnfcqldo0003uhv77gqzh84t	cmnfcrdvp004buhv7d3moseu3	f	2026-04-01 01:13:49.643
+cmnfcrf2j004nuhv75a988mnh	cmnfcqldo0003uhv77gqzh84t	cmnfcrf21004muhv7y2dn3szz	f	2026-04-01 01:13:51.116
+cmnfcrgxu005cuhv7h8zjypwo	cmnfcqlh1000juhv7dxofh1jg	cmnfcrguy0053uhv7pbtxzj42	f	2026-04-01 01:13:53.538
+cmnfcrgxu005duhv77qu05d8j	cmnfcqle40009uhv72zt9hg5l	cmnfcrguy0053uhv7pbtxzj42	f	2026-04-01 01:13:53.538
+cmnfcrgy0005euhv7dvusihbc	cmnfcqldt0005uhv7d4terocy	cmnfcrgve0057uhv7424niqg5	f	2026-04-01 01:13:53.544
+cmnfcrgy0005fuhv72f27n1c0	cmnfcqle40009uhv72zt9hg5l	cmnfcrgve0057uhv7424niqg5	f	2026-04-01 01:13:53.544
+cmnfcrgyb005guhv751wdqpwc	cmnfcqle40009uhv72zt9hg5l	cmnfcrgvw0059uhv7rhkumyp6	f	2026-04-01 01:13:53.556
+cmnfcrgyb005huhv70tj04d9k	cmnfcqlh1000juhv7dxofh1jg	cmnfcrgvw0059uhv7rhkumyp6	f	2026-04-01 01:13:53.556
+cmnfcrgyz005iuhv7v1bmclma	cmnfcqldo0003uhv77gqzh84t	cmnfcrgw9005buhv7h4s4epj5	f	2026-04-01 01:13:53.579
+cmnfcrgyz005juhv7sfautgdv	cmnfcqldt0005uhv7d4terocy	cmnfcrgw9005buhv7h4s4epj5	f	2026-04-01 01:13:53.579
+cmnfcri3k005suhv7819ae7bl	cmnfcqldo0003uhv77gqzh84t	cmnfcri2n005ruhv7r97n1odt	f	2026-04-01 01:13:55.04
+cmnfcsf6q008nuhv7a62x6tt3	cmnfcqlek000fuhv7ydofzkc9	cmnfcsf61008iuhv77rdlql1t	f	2026-04-01 01:14:37.923
+cmnfcsf6q008ouhv7usw0s4i4	cmnfcqleg000euhv72i6namax	cmnfcsf61008iuhv77rdlql1t	f	2026-04-01 01:14:37.923
+cmnfcsfah008wuhv7mzslcb7p	cmnfcqldo0003uhv77gqzh84t	cmnfcsf7y008suhv7y538kwuq	f	2026-04-01 01:14:38.058
+cmnfcsgsp009duhv775855krv	cmnfcqldt0005uhv7d4terocy	cmnfcsgq20096uhv7ax0x6gq4	f	2026-04-01 01:14:40.009
+cmnfcsgsp009euhv7tv0muxxj	cmnfcqlh1000juhv7dxofh1jg	cmnfcsgq20096uhv7ax0x6gq4	f	2026-04-01 01:14:40.009
+cmnfcsh4s009nuhv7mcwu9yph	cmnfcqlek000fuhv7ydofzkc9	cmnfcsgsg009cuhv74ieu5y5p	f	2026-04-01 01:14:40.444
+cmnfcsh4s009ouhv71sqaf4eh	cmnfcqlh1000juhv7dxofh1jg	cmnfcsgsg009cuhv74ieu5y5p	f	2026-04-01 01:14:40.444
+cmnfcsh4s009puhv7v6dvyoxf	cmnfcqle40009uhv72zt9hg5l	cmnfcsgsg009cuhv74ieu5y5p	f	2026-04-01 01:14:40.444
+cmnfcsh4s009quhv7sidmjxyi	cmnfcqldo0003uhv77gqzh84t	cmnfcsgsg009cuhv74ieu5y5p	f	2026-04-01 01:14:40.444
+cmnfcto6700pyuhv7lt99nmnc	cmnfcqldo0003uhv77gqzh84t	cmnfcto2m00phuhv7nx6k50h8	f	2026-04-01 01:15:36.223
+cmnfcto6700pzuhv720bgc99n	cmnfcqlek000fuhv7ydofzkc9	cmnfcto2m00phuhv7nx6k50h8	f	2026-04-01 01:15:36.223
+cmnfcto6700q0uhv7fh0f9x0i	cmnfcqle40009uhv72zt9hg5l	cmnfcto2m00phuhv7nx6k50h8	f	2026-04-01 01:15:36.223
+cmnfcto9k00q8uhv76pohjqj3	cmnfcqldt0005uhv7d4terocy	cmnfcto6s00q2uhv7t00hb9sn	f	2026-04-01 01:15:36.344
+cmnfctwk000u0uhv7ltqczebv	cmnfcqlek000fuhv7ydofzkc9	cmnfctwhv00tzuhv7c5ju6z18	f	2026-04-01 01:15:47.089
+cmnfctwmu00u1uhv7dx1tx3qk	cmnfcqldo0003uhv77gqzh84t	cmnfctwha00tvuhv7y4nj6vjl	f	2026-04-01 01:15:47.19
+cmnfctwmu00u2uhv7rn3uv4j3	cmnfcqlh1000juhv7dxofh1jg	cmnfctwha00tvuhv7y4nj6vjl	f	2026-04-01 01:15:47.19
+cmnfctz6h00uiuhv7mjm5edmr	cmnfcqldt0005uhv7d4terocy	cmnfctysc00uduhv76dtl9ycn	f	2026-04-01 01:15:50.49
+cmnfctz6h00ujuhv77o86jh1h	cmnfcqldo0003uhv77gqzh84t	cmnfctysc00uduhv76dtl9ycn	f	2026-04-01 01:15:50.49
+cmnfcu1h500vouhv7lg9m7ane	cmnfcqldo0003uhv77gqzh84t	cmnfcu1bo00vjuhv7vjezu5va	f	2026-04-01 01:15:53.465
+cmnfcu1h500vpuhv74u8zrl6w	cmnfcqle40009uhv72zt9hg5l	cmnfcu1bo00vjuhv7vjezu5va	f	2026-04-01 01:15:53.465
+cmnfcu1h500vquhv785y3la6q	cmnfcqlek000fuhv7ydofzkc9	cmnfcu1bo00vjuhv7vjezu5va	f	2026-04-01 01:15:53.465
+cmnfcu1id00vruhv7zqgt6q5g	cmnfcqlh1000juhv7dxofh1jg	cmnfcu1h100vnuhv7x5p1lp4a	f	2026-04-01 01:15:53.51
+cmnfcu1id00vsuhv7rl2ljj97	cmnfcqldt0005uhv7d4terocy	cmnfcu1h100vnuhv7x5p1lp4a	f	2026-04-01 01:15:53.51
+cmnfcu1ie00vtuhv74lvt654z	cmnfcqle40009uhv72zt9hg5l	cmnfcu1h100vnuhv7x5p1lp4a	f	2026-04-01 01:15:53.51
+cmnfcu3bm00w4uhv7qpu8jorl	cmnfcqle40009uhv72zt9hg5l	cmnfcu30c00w1uhv7zq1q3lzj	f	2026-04-01 01:15:55.858
+cmnfcu3bm00w5uhv7fozjntlm	cmnfcqlem000guhv7alb0f7l8	cmnfcu30c00w1uhv7zq1q3lzj	f	2026-04-01 01:15:55.858
+cmnfcu6dw00xtuhv72yqfu7wy	cmnfcqlek000fuhv7ydofzkc9	cmnfcu69f00x9uhv7uvg7urb4	f	2026-04-01 01:15:59.829
+cmnfcu6dw00xuuhv706rl0a14	cmnfcqle40009uhv72zt9hg5l	cmnfcu69f00x9uhv7uvg7urb4	f	2026-04-01 01:15:59.829
+cmnfcu8g600yvuhv7aop8ds01	cmnfcqlh1000juhv7dxofh1jg	cmnfcu8c100ykuhv7slk5gif3	f	2026-04-01 01:16:02.502
+cmnfcu8g600ywuhv7gpjtf7um	cmnfcqle40009uhv72zt9hg5l	cmnfcu8c100ykuhv7slk5gif3	f	2026-04-01 01:16:02.502
+cmnfcu8g600yxuhv7u72oxo82	cmnfcqldt0005uhv7d4terocy	cmnfcu8c100ykuhv7slk5gif3	f	2026-04-01 01:16:02.502
+cmnfcu8g600yyuhv7tm4cflw7	cmnfcqlek000fuhv7ydofzkc9	cmnfcu8c100ykuhv7slk5gif3	f	2026-04-01 01:16:02.502
+cmnfcu8hf00z4uhv7ru5tyyo6	cmnfcqldo0003uhv77gqzh84t	cmnfcu8ex00yuuhv7jt5hz25w	f	2026-04-01 01:16:02.548
+cmnfcu8hf00z5uhv7ir4s1gje	cmnfcqle40009uhv72zt9hg5l	cmnfcu8ex00yuuhv7jt5hz25w	f	2026-04-01 01:16:02.548
+cmnfcu8hf00z6uhv7gfbbxxsq	cmnfcqlek000fuhv7ydofzkc9	cmnfcu8ex00yuuhv7jt5hz25w	f	2026-04-01 01:16:02.548
+cmnfcv62y01bouhv76vqebxhj	cmnfcqlh1000juhv7dxofh1jg	cmnfcv5mp01bfuhv79v58r28d	f	2026-04-01 01:16:46.089
+cmnfcv62y01bpuhv751mrqlra	cmnfcqle40009uhv72zt9hg5l	cmnfcv5mp01bfuhv79v58r28d	f	2026-04-01 01:16:46.089
+cmnfcvhfa01fzuhv7x8tsboao	cmnfcqldt0005uhv7d4terocy	cmnfcvh7l01fquhv74wfjstkv	f	2026-04-01 01:17:00.79
+cmnfcvrtc01k9uhv7iqi0ux0m	cmnfcqldo0003uhv77gqzh84t	cmnfcvrqq01k7uhv71g8wzgbr	f	2026-04-01 01:17:14.256
+cmnfcvrtc01kauhv78yul3ioz	cmnfcqle40009uhv72zt9hg5l	cmnfcvrqq01k7uhv71g8wzgbr	f	2026-04-01 01:17:14.256
+cmnfcvrtc01kbuhv7qq50kknm	cmnfcqlek000fuhv7ydofzkc9	cmnfcvrqq01k7uhv71g8wzgbr	f	2026-04-01 01:17:14.256
+cmnfcvywp01n6uhv7vag2hhvg	cmnfcqldt0005uhv7d4terocy	cmnfcvyn101n1uhv7jb5lymvs	f	2026-04-01 01:17:23.449
+cmnfcvywp01n7uhv76xrmh8tx	cmnfcqlek000fuhv7ydofzkc9	cmnfcvyn101n1uhv7jb5lymvs	f	2026-04-01 01:17:23.449
+cmnfcvywp01n8uhv75x1p0tc5	cmnfcqldo0003uhv77gqzh84t	cmnfcvyn101n1uhv7jb5lymvs	f	2026-04-01 01:17:23.449
+cmnfcvzgk01nbuhv7rzbpcffj	cmnfcqle40009uhv72zt9hg5l	cmnfcvyxz01nauhv7z0wnuel5	f	2026-04-01 01:17:24.164
+cmnfcw1g001nmuhv7okqgp3z5	cmnfcqldt0005uhv7d4terocy	cmnfcw1be01nluhv7rskw6wgv	f	2026-04-01 01:17:26.736
+cmnfcw1g001nnuhv7sfaqbegf	cmnfcqldo0003uhv77gqzh84t	cmnfcw1be01nluhv7rskw6wgv	f	2026-04-01 01:17:26.736
+cmnfcw32q01o9uhv7yzj6d5kb	cmnfcqlek000fuhv7ydofzkc9	cmnfcw30f01o3uhv74g11s8js	f	2026-04-01 01:17:28.851
+cmnfcw34801oauhv78ejn5q7u	cmnfcqlh1000juhv7dxofh1jg	cmnfcw31601o5uhv79glmnmog	f	2026-04-01 01:17:28.904
+cmnfcw34801obuhv7vs5qe8h0	cmnfcqle40009uhv72zt9hg5l	cmnfcw31601o5uhv79glmnmog	f	2026-04-01 01:17:28.904
+cmnfcw34801ocuhv7b0wd6khn	cmnfcqlek000fuhv7ydofzkc9	cmnfcw31601o5uhv79glmnmog	f	2026-04-01 01:17:28.904
+cmnfcw34801oduhv78es8de3z	cmnfcqldt0005uhv7d4terocy	cmnfcw31601o5uhv79glmnmog	f	2026-04-01 01:17:28.904
+cmnfcrli20063uhv7b216rzbc	cmnfcqle40009uhv72zt9hg5l	cmnfcrkkh0061uhv7klkvwkex	f	2026-04-01 01:13:59.45
+cmnfcrli30064uhv7n663qjwo	cmnfcqlek000fuhv7ydofzkc9	cmnfcrkkh0061uhv7klkvwkex	f	2026-04-01 01:13:59.45
+cmnfcrlwd006fuhv7dxl01vb8	cmnfcqldo0003uhv77gqzh84t	cmnfcrlmf006duhv7t008t2lg	f	2026-04-01 01:13:59.965
+cmnfcrmpb006muhv7t4o1kdn1	cmnfcqldo0003uhv77gqzh84t	cmnfcrmlr006luhv7ojffykr2	f	2026-04-01 01:14:01.007
+cmnfcrmpb006nuhv74hilsc4k	cmnfcqldt0005uhv7d4terocy	cmnfcrmlr006luhv7ojffykr2	f	2026-04-01 01:14:01.007
+cmnfcryfe0071uhv7f8msmedq	cmnfcqlek000fuhv7ydofzkc9	cmnfcrydp006yuhv7gzjg1pbi	f	2026-04-01 01:14:16.202
+cmnfcrz4m007guhv7ve64s1d4	cmnfcqlek000fuhv7ydofzkc9	cmnfcrz31007duhv7abtdeabp	f	2026-04-01 01:14:17.11
+cmnfcrz4m007huhv77593hfih	cmnfcqldo0003uhv77gqzh84t	cmnfcrz31007duhv7abtdeabp	f	2026-04-01 01:14:17.11
+cmnfcsfa1008vuhv72iwnzelj	cmnfcqlh1000juhv7dxofh1jg	cmnfcsf8e008uuhv753lzwvs2	f	2026-04-01 01:14:38.041
+cmnfcsh91009ruhv70pn3euja	cmnfcqle40009uhv72zt9hg5l	cmnfcsh12009kuhv71n3lms4e	f	2026-04-01 01:14:40.597
+cmnfcsh91009suhv73kjv0m69	cmnfcqldo0003uhv77gqzh84t	cmnfcsh12009kuhv71n3lms4e	f	2026-04-01 01:14:40.597
+cmnfcshb0009vuhv7r2slnap7	cmnfcqldo0003uhv77gqzh84t	cmnfcsh1v009muhv7904adtw5	f	2026-04-01 01:14:40.669
+cmnfcshb0009wuhv7mkkw5zc8	cmnfcqlh1000juhv7dxofh1jg	cmnfcsh1v009muhv7904adtw5	f	2026-04-01 01:14:40.669
+cmnfcshb0009xuhv7lf65kish	cmnfcqle40009uhv72zt9hg5l	cmnfcsh1v009muhv7904adtw5	f	2026-04-01 01:14:40.669
+cmnfcshb0009yuhv74s1w709v	cmnfcqlek000fuhv7ydofzkc9	cmnfcsh1v009muhv7904adtw5	f	2026-04-01 01:14:40.669
+cmnfcslrx00c1uhv77k44tbdm	cmnfcqlh1000juhv7dxofh1jg	cmnfcslj600bquhv7gbfimrpk	f	2026-04-01 01:14:46.462
+cmnfcsmxd00chuhv7wvbcrdwc	cmnfcqldt0005uhv7d4terocy	cmnfcsmm300ccuhv7b3th48b5	f	2026-04-01 01:14:47.953
+cmnfcsujd00eruhv7xeztq3mb	cmnfcqlh1000juhv7dxofh1jg	cmnfcsudv00equhv7ztjg8oak	f	2026-04-01 01:14:57.815
+cmnfcsujd00esuhv7zq1mh2s5	cmnfcqldt0005uhv7d4terocy	cmnfcsudv00equhv7ztjg8oak	f	2026-04-01 01:14:57.815
+cmnfcszmf00gkuhv7nh7vsvdm	cmnfcqle40009uhv72zt9hg5l	cmnfcszl600gfuhv7spx5xffa	f	2026-04-01 01:15:04.407
+cmnfctgn200miuhv79krg0con	cmnfcqldt0005uhv7d4terocy	cmnfctgio00mduhv7sgyvqmwl	f	2026-04-01 01:15:26.462
+cmnfctgqu00mluhv710sgdq1w	cmnfcqldo0003uhv77gqzh84t	cmnfctgme00mhuhv7jig2gmth	f	2026-04-01 01:15:26.598
+cmnfctgqu00mmuhv78nbz99wn	cmnfcqle40009uhv72zt9hg5l	cmnfctgme00mhuhv7jig2gmth	f	2026-04-01 01:15:26.598
+cmnfctiwp00n4uhv7gdza1rfw	cmnfcqle40009uhv72zt9hg5l	cmnfctih700mzuhv7x8klapjd	f	2026-04-01 01:15:29.401
+cmnfctk7b00o2uhv79qigj8o6	cmnfcqldt0005uhv7d4terocy	cmnfctjzq00nxuhv76nrwiu03	f	2026-04-01 01:15:31.079
+cmnfctkgv00o3uhv70ay7s2gs	cmnfcqlek000fuhv7ydofzkc9	cmnfctk2100o1uhv79qtu6po7	f	2026-04-01 01:15:31.424
+cmnfctm1w00oeuhv7q5lpmijb	cmnfcqle40009uhv72zt9hg5l	cmnfctlxk00obuhv7tpdnrgio	f	2026-04-01 01:15:33.476
+cmnfctsjn00sbuhv79aksxo6l	cmnfcqle40009uhv72zt9hg5l	cmnfctsf800s2uhv794b8y61u	f	2026-04-01 01:15:41.892
+cmnfctsjn00scuhv7mn88613q	cmnfcqldt0005uhv7d4terocy	cmnfctsf800s2uhv794b8y61u	f	2026-04-01 01:15:41.892
+cmnfctsjn00sduhv7v0ydbahv	cmnfcqlek000fuhv7ydofzkc9	cmnfctsf800s2uhv794b8y61u	f	2026-04-01 01:15:41.892
+cmnfctukk00szuhv7oxvg52m1	cmnfcqle40009uhv72zt9hg5l	cmnfctujq00swuhv72k6ntso6	f	2026-04-01 01:15:44.516
+cmnfctumg00t0uhv7s107wux6	cmnfcqlek000fuhv7ydofzkc9	cmnfctujv00syuhv7s9sl6l2h	f	2026-04-01 01:15:44.584
+cmnfctumg00t1uhv78325su5o	cmnfcqle40009uhv72zt9hg5l	cmnfctujv00syuhv7s9sl6l2h	f	2026-04-01 01:15:44.584
+cmnfctumg00t2uhv7trijy270	cmnfcqldo0003uhv77gqzh84t	cmnfctujv00syuhv7s9sl6l2h	f	2026-04-01 01:15:44.584
+cmnfcu8gp00yzuhv7g7e4sk9h	cmnfcqldt0005uhv7d4terocy	cmnfcu8c900ymuhv7ztzj95k3	f	2026-04-01 01:16:02.522
+cmnfcu8gq00z0uhv76xvcjx4m	cmnfcqldo0003uhv77gqzh84t	cmnfcu8c900ymuhv7ztzj95k3	f	2026-04-01 01:16:02.522
+cmnfcu8h800z1uhv7jmimxnh7	cmnfcqlek000fuhv7ydofzkc9	cmnfcu8ch00youhv7lsmz1sg5	f	2026-04-01 01:16:02.539
+cmnfcu8h800z2uhv7jhh05qiu	cmnfcqldo0003uhv77gqzh84t	cmnfcu8ch00youhv7lsmz1sg5	f	2026-04-01 01:16:02.539
+cmnfcu8h800z3uhv79eahk9pe	cmnfcqldt0005uhv7d4terocy	cmnfcu8ch00youhv7lsmz1sg5	f	2026-04-01 01:16:02.539
+cmnfcu8hr00z7uhv7alxalic6	cmnfcqle40009uhv72zt9hg5l	cmnfcu8cw00yquhv7ab9zloed	f	2026-04-01 01:16:02.559
+cmnfcu8hr00z8uhv79ssnc1qc	cmnfcqldt0005uhv7d4terocy	cmnfcu8cw00yquhv7ab9zloed	f	2026-04-01 01:16:02.559
+cmnfcu8hr00z9uhv7c16n2jur	cmnfcqlek000fuhv7ydofzkc9	cmnfcu8cw00yquhv7ab9zloed	f	2026-04-01 01:16:02.559
+cmnfcubbp00ztuhv77n2y0lqi	cmnfcqldt0005uhv7d4terocy	cmnfcub5t00zluhv7x1fuhq5j	f	2026-04-01 01:16:06.229
+cmnfcubde00zyuhv779nwv2r5	cmnfcqlh1000juhv7dxofh1jg	cmnfcub6600znuhv7uzg6nl97	f	2026-04-01 01:16:06.29
+cmnfcubde00zzuhv7io0ap5s5	cmnfcqle40009uhv72zt9hg5l	cmnfcub6600znuhv7uzg6nl97	f	2026-04-01 01:16:06.29
+cmnfcubj20100uhv7ba8lf748	cmnfcqldo0003uhv77gqzh84t	cmnfcubd700zxuhv7fzjw7r88	f	2026-04-01 01:16:06.494
+cmnfcud9g0112uhv73h5j0vfk	cmnfcqlh1000juhv7dxofh1jg	cmnfcud7i010vuhv7uhdra97b	f	2026-04-01 01:16:08.74
+cmnfcud9g0113uhv7pzznjtyr	cmnfcqldt0005uhv7d4terocy	cmnfcud7i010vuhv7uhdra97b	f	2026-04-01 01:16:08.74
+cmnfcud9g0114uhv770bqpb52	cmnfcqle40009uhv72zt9hg5l	cmnfcud7i010vuhv7uhdra97b	f	2026-04-01 01:16:08.74
+cmnfcuda10115uhv7agklbipj	cmnfcqldo0003uhv77gqzh84t	cmnfcud81010zuhv7wlv2ywfm	f	2026-04-01 01:16:08.761
+cmnfcuda10116uhv76wtipwhr	cmnfcqle40009uhv72zt9hg5l	cmnfcud81010zuhv7wlv2ywfm	f	2026-04-01 01:16:08.761
+cmnfcuda10117uhv7l6j2r3k2	cmnfcqlek000fuhv7ydofzkc9	cmnfcud81010zuhv7wlv2ywfm	f	2026-04-01 01:16:08.761
+cmnfcudah011duhv7qrp4v2ry	cmnfcqle40009uhv72zt9hg5l	cmnfcud6q010ruhv7gr11rvvo	f	2026-04-01 01:16:08.778
+cmnfcudai011euhv7la93u0sj	cmnfcqldo0003uhv77gqzh84t	cmnfcud6q010ruhv7gr11rvvo	f	2026-04-01 01:16:08.778
+cmnfcudai011fuhv7srp1sek3	cmnfcqldt0005uhv7d4terocy	cmnfcud6q010ruhv7gr11rvvo	f	2026-04-01 01:16:08.778
+cmnfcudai011guhv7e2joii41	cmnfcqlek000fuhv7ydofzkc9	cmnfcud6q010ruhv7gr11rvvo	f	2026-04-01 01:16:08.778
+cmnfcuddd011huhv7hm6o2w01	cmnfcqldt0005uhv7d4terocy	cmnfcud8t0111uhv7zqzdnunm	f	2026-04-01 01:16:08.881
+cmnfcug60011zuhv7i5ejm05v	cmnfcqldt0005uhv7d4terocy	cmnfcug4p011wuhv7tnlmdr4y	f	2026-04-01 01:16:12.505
+cmnfcug6o0120uhv7mafe1xdt	cmnfcqlh1000juhv7dxofh1jg	cmnfcug4v011yuhv7cx8wqds7	f	2026-04-01 01:16:12.528
+cmnfcui9x012puhv7ri2qzbjb	cmnfcqlek000fuhv7ydofzkc9	cmnfcui4p012ouhv7xnzpft7b	f	2026-04-01 01:16:15.237
+cmnfcumt8014ouhv739bt2xfz	cmnfcqlh1000juhv7dxofh1jg	cmnfcums7014juhv7gyasfxbs	f	2026-04-01 01:16:21.115
+cmnfcumt8014puhv76qgaeldg	cmnfcqldt0005uhv7d4terocy	cmnfcums7014juhv7gyasfxbs	f	2026-04-01 01:16:21.115
+cmnfcumt8014quhv7bdj96wy1	cmnfcqle40009uhv72zt9hg5l	cmnfcums7014juhv7gyasfxbs	f	2026-04-01 01:16:21.115
+cmnfcumv2014tuhv7w76o8h5k	cmnfcqlek000fuhv7ydofzkc9	cmnfcumsh014luhv76tylg7pd	f	2026-04-01 01:16:21.182
+cmnfcumv2014uuhv72xaloa9h	cmnfcqldo0003uhv77gqzh84t	cmnfcumsh014luhv76tylg7pd	f	2026-04-01 01:16:21.182
+cmnfcutw4016wuhv7degmuasu	cmnfcqlek000fuhv7ydofzkc9	cmnfcutp6016kuhv7hfslcz4q	f	2026-04-01 01:16:30.293
+cmnfcutw4016xuhv7j0yt61ct	cmnfcqlh1000juhv7dxofh1jg	cmnfcutp6016kuhv7hfslcz4q	f	2026-04-01 01:16:30.293
+cmnfcuwsu017huhv7cq872nty	cmnfcqlh1000juhv7dxofh1jg	cmnfcuwrw017guhv7ypuievpp	f	2026-04-01 01:16:34.062
+cmnfcuwsu017iuhv7uy4rizyz	cmnfcqldt0005uhv7d4terocy	cmnfcuwrw017guhv7ypuievpp	f	2026-04-01 01:16:34.062
+cmnfcuwsu017juhv7btalktbx	cmnfcqle40009uhv72zt9hg5l	cmnfcuwrw017guhv7ypuievpp	f	2026-04-01 01:16:34.062
+cmnfcryfm0072uhv78jzh7vhm	cmnfcqldo0003uhv77gqzh84t	cmnfcrydw0070uhv7vz74zy2s	f	2026-04-01 01:14:16.211
+cmnfcryfm0073uhv7qqtaosap	cmnfcqlek000fuhv7ydofzkc9	cmnfcrydw0070uhv7vz74zy2s	f	2026-04-01 01:14:16.211
+cmnfcrz5q007iuhv7caieadyg	cmnfcqldo0003uhv77gqzh84t	cmnfcrz3k007fuhv7oijr29vg	f	2026-04-01 01:14:17.15
+cmnfcrzod007ruhv7sc1m0qld	cmnfcqldo0003uhv77gqzh84t	cmnfcrzno007quhv79xzdnadu	f	2026-04-01 01:14:17.821
+cmnfcs0jt007zuhv7kkih68jp	cmnfcqldo0003uhv77gqzh84t	cmnfcs0ik007yuhv79qi0pnkb	f	2026-04-01 01:14:18.953
+cmnfcsigj00aluhv7ekdycr2x	cmnfcqldt0005uhv7d4terocy	cmnfcsi7800aauhv7fi0r8fok	f	2026-04-01 01:14:42.163
+cmnfcsigj00amuhv79oj5a2ez	cmnfcqlh1000juhv7dxofh1jg	cmnfcsi7800aauhv7fi0r8fok	f	2026-04-01 01:14:42.163
+cmnfcsigj00anuhv73tcn942h	cmnfcqle40009uhv72zt9hg5l	cmnfcsi7800aauhv7fi0r8fok	f	2026-04-01 01:14:42.163
+cmnfcsigj00aouhv7jqsjpogg	cmnfcqlek000fuhv7ydofzkc9	cmnfcsi7800aauhv7fi0r8fok	f	2026-04-01 01:14:42.163
+cmnfcsigj00apuhv7fkiy6w5g	cmnfcqldo0003uhv77gqzh84t	cmnfcsi7800aauhv7fi0r8fok	f	2026-04-01 01:14:42.163
+cmnfcsita00awuhv7tdejodot	cmnfcqlek000fuhv7ydofzkc9	cmnfcsigb00akuhv7tgz5kol9	f	2026-04-01 01:14:42.622
+cmnfcsita00axuhv7no05rux0	cmnfcqlh1000juhv7dxofh1jg	cmnfcsigb00akuhv7tgz5kol9	f	2026-04-01 01:14:42.622
+cmnfcsita00ayuhv7vo8a3c9n	cmnfcqle40009uhv72zt9hg5l	cmnfcsigb00akuhv7tgz5kol9	f	2026-04-01 01:14:42.622
+cmnfcsita00azuhv7p8i3er4m	cmnfcqldo0003uhv77gqzh84t	cmnfcsigb00akuhv7tgz5kol9	f	2026-04-01 01:14:42.622
+cmnfcsita00b0uhv7yih5fmmc	cmnfcqldt0005uhv7d4terocy	cmnfcsigb00akuhv7tgz5kol9	f	2026-04-01 01:14:42.622
+cmnfcslsq00c2uhv7qflet1rt	cmnfcqle40009uhv72zt9hg5l	cmnfcslq700bwuhv7qwj82abt	f	2026-04-01 01:14:46.49
+cmnfcsnwe00cyuhv77f6aaisj	cmnfcqlek000fuhv7ydofzkc9	cmnfcsne500cpuhv71hu2ym9l	f	2026-04-01 01:14:49.214
+cmnfcsnwe00czuhv7yiyeo2kt	cmnfcqldt0005uhv7d4terocy	cmnfcsne500cpuhv71hu2ym9l	f	2026-04-01 01:14:49.214
+cmnfcsnwe00d0uhv7ngrgfrqu	cmnfcqldo0003uhv77gqzh84t	cmnfcsne500cpuhv71hu2ym9l	f	2026-04-01 01:14:49.214
+cmnfcsnwe00d1uhv7oqp39965	cmnfcqlh1000juhv7dxofh1jg	cmnfcsne500cpuhv71hu2ym9l	f	2026-04-01 01:14:49.214
+cmnfcsrct00dkuhv732krxbcs	cmnfcqldo0003uhv77gqzh84t	cmnfcsr3y00dfuhv7dw0x5dea	f	2026-04-01 01:14:53.694
+cmnfcsrwz00dxuhv78a9m0dso	cmnfcqle40009uhv72zt9hg5l	cmnfcsrit00dvuhv7gy22ip2h	f	2026-04-01 01:14:54.419
+cmnfcsur500f1uhv7gwfte6z7	cmnfcqldo0003uhv77gqzh84t	cmnfcsun500eyuhv7jws7wut7	f	2026-04-01 01:14:58.097
+cmnfcsx7t00fsuhv7d53x8e1j	cmnfcqlek000fuhv7ydofzkc9	cmnfcswj600fnuhv7ronzmf0f	f	2026-04-01 01:15:01.289
+cmnfcsx7t00ftuhv7hh63qzjk	cmnfcqlh1000juhv7dxofh1jg	cmnfcswj600fnuhv7ronzmf0f	f	2026-04-01 01:15:01.289
+cmnfcsx7t00fuuhv71co66eqf	cmnfcqle40009uhv72zt9hg5l	cmnfcswj600fnuhv7ronzmf0f	f	2026-04-01 01:15:01.289
+cmnfcsx7t00fvuhv7xkxltdas	cmnfcqldo0003uhv77gqzh84t	cmnfcswj600fnuhv7ronzmf0f	f	2026-04-01 01:15:01.289
+cmnfcsx7t00fwuhv7g5wkncle	cmnfcqldt0005uhv7d4terocy	cmnfcswj600fnuhv7ronzmf0f	f	2026-04-01 01:15:01.289
+cmnfcsxqf00g6uhv7rw1an0qh	cmnfcqldo0003uhv77gqzh84t	cmnfcsxhf00g2uhv7d22qu998	f	2026-04-01 01:15:01.959
+cmnfcsxqf00g7uhv7iu8groyn	cmnfcqle7000auhv7u5byu7x1	cmnfcsxhf00g2uhv7d22qu998	f	2026-04-01 01:15:01.959
+cmnfct2j200h8uhv754zmylav	cmnfcqle40009uhv72zt9hg5l	cmnfct24800h7uhv7t92dq9dj	f	2026-04-01 01:15:08.174
+cmnfct2j200h9uhv743sax83h	cmnfcqlh1000juhv7dxofh1jg	cmnfct24800h7uhv7t92dq9dj	f	2026-04-01 01:15:08.174
+cmnfct57b00ihuhv7fdvf5uz6	cmnfcqldt0005uhv7d4terocy	cmnfct50c00iguhv7fjthwvac	f	2026-04-01 01:15:11.639
+cmnfctb2900knuhv7yurlq1d6	cmnfcqlek000fuhv7ydofzkc9	cmnfctaz700kiuhv7qh7ei0nn	f	2026-04-01 01:15:19.233
+cmnfctb2900kouhv7n9jwzr2m	cmnfcqleb000cuhv7bxrx8k4b	cmnfctaz700kiuhv7qh7ei0nn	f	2026-04-01 01:15:19.233
+cmnfctbdo00kpuhv77mfvfzue	cmnfcqle40009uhv72zt9hg5l	cmnfctb2400kmuhv730ej21wo	f	2026-04-01 01:15:19.644
+cmnfctdt400l7uhv78unw5krb	cmnfcqlek000fuhv7ydofzkc9	cmnfctdro00l6uhv7h7eo6iib	f	2026-04-01 01:15:22.792
+cmnfctdt400l8uhv7ncn2lfcg	cmnfcqldl0002uhv7conjfxzx	cmnfctdro00l6uhv7h7eo6iib	f	2026-04-01 01:15:22.792
+cmnfcte4u00lduhv7128m5icb	cmnfcqlh1000juhv7dxofh1jg	cmnfctdq300l2uhv7r3byrtve	f	2026-04-01 01:15:23.214
+cmnfcte4u00leuhv76mnikza0	cmnfcqldo0003uhv77gqzh84t	cmnfctdq300l2uhv7r3byrtve	f	2026-04-01 01:15:23.214
+cmnfcte4u00lfuhv7q5lxx9u5	cmnfcqlek000fuhv7ydofzkc9	cmnfctdq300l2uhv7r3byrtve	f	2026-04-01 01:15:23.214
+cmnfctefm00liuhv7nmc9ip2g	cmnfcqldo0003uhv77gqzh84t	cmnfcte7y00lhuhv7mnlkz6x5	f	2026-04-01 01:15:23.602
+cmnfctefm00ljuhv7cnikvb1z	cmnfcqleg000euhv72i6namax	cmnfcte7y00lhuhv7mnlkz6x5	f	2026-04-01 01:15:23.602
+cmnfctgnm00mjuhv7wgm06uty	cmnfcqlek000fuhv7ydofzkc9	cmnfctghp00m6uhv7ekf5z1hy	f	2026-04-01 01:15:26.477
+cmnfctgnm00mkuhv75uyyel8w	cmnfcqle40009uhv72zt9hg5l	cmnfctghp00m6uhv7ekf5z1hy	f	2026-04-01 01:15:26.477
+cmnfctiwh00n2uhv7p0n5nd71	cmnfcqlek000fuhv7ydofzkc9	cmnfctihq00n1uhv7f0ba7maw	f	2026-04-01 01:15:29.393
+cmnfctiwh00n3uhv7bih2239i	cmnfcqle7000auhv7u5byu7x1	cmnfctihq00n1uhv7f0ba7maw	f	2026-04-01 01:15:29.393
+cmnfctjz500nuuhv7ig50ztxq	cmnfcqldo0003uhv77gqzh84t	cmnfctjx400nouhv7vq6io3su	f	2026-04-01 01:15:30.785
+cmnfctjz500nvuhv7y64ylpjz	cmnfcqle40009uhv72zt9hg5l	cmnfctjx400nouhv7vq6io3su	f	2026-04-01 01:15:30.785
+cmnfcto5h00puuhv7h2aip5w9	cmnfcqle40009uhv72zt9hg5l	cmnfcto4h00pruhv7w3sw2i3e	f	2026-04-01 01:15:36.197
+cmnfcto5h00pvuhv7dyqgjilf	cmnfcqldl0002uhv7conjfxzx	cmnfcto4h00pruhv7w3sw2i3e	f	2026-04-01 01:15:36.197
+cmnfcto6x00q3uhv74pjb8a2m	cmnfcqlh1000juhv7dxofh1jg	cmnfcto2v00pluhv75xoyg25n	f	2026-04-01 01:15:36.25
+cmnfcto6x00q4uhv7omc1ybvi	cmnfcqle40009uhv72zt9hg5l	cmnfcto2v00pluhv75xoyg25n	f	2026-04-01 01:15:36.25
+cmnfcto6x00q5uhv795rbkt3o	cmnfcqlek000fuhv7ydofzkc9	cmnfcto2v00pluhv75xoyg25n	f	2026-04-01 01:15:36.25
+cmnfctogh00q9uhv7hpbjhje1	cmnfcqlek000fuhv7ydofzkc9	cmnfcto7900q7uhv7ybbylypk	f	2026-04-01 01:15:36.593
+cmnfctogh00qauhv7cavo3lwk	cmnfcqle40009uhv72zt9hg5l	cmnfcto7900q7uhv7ybbylypk	f	2026-04-01 01:15:36.593
+cmnfctogh00qbuhv7oknjs0jc	cmnfcqldt0005uhv7d4terocy	cmnfcto7900q7uhv7ybbylypk	f	2026-04-01 01:15:36.593
+cmnfctqb400r5uhv78dis8l22	cmnfcqle40009uhv72zt9hg5l	cmnfctpzi00qjuhv79iz48d6j	f	2026-04-01 01:15:38.992
+cmnfctqb400r6uhv7bjxs6tvj	cmnfcqldt0005uhv7d4terocy	cmnfctpzi00qjuhv79iz48d6j	f	2026-04-01 01:15:38.992
+cmnfctqb400r7uhv7lnw8kexj	cmnfcqlek000fuhv7ydofzkc9	cmnfctpzi00qjuhv79iz48d6j	f	2026-04-01 01:15:38.992
+cmnfctqca00r8uhv7cepnoumd	cmnfcqlek000fuhv7ydofzkc9	cmnfctqab00r2uhv7u4z9fkpt	f	2026-04-01 01:15:39.033
+cmnfctqca00r9uhv7lhyyxibl	cmnfcqldo0003uhv77gqzh84t	cmnfctqab00r2uhv7u4z9fkpt	f	2026-04-01 01:15:39.033
+cmnfctwgx00tpuhv7nw85ovl7	cmnfcqlh1000juhv7dxofh1jg	cmnfctwf400tmuhv7ddpwixai	f	2026-04-01 01:15:46.977
+cmnfctwgx00tquhv7zp2epukh	cmnfcqldt0005uhv7d4terocy	cmnfctwf400tmuhv7ddpwixai	f	2026-04-01 01:15:46.977
+cmnfctwgx00truhv7kjequ0gi	cmnfcqle40009uhv72zt9hg5l	cmnfctwf400tmuhv7ddpwixai	f	2026-04-01 01:15:46.977
+cmnfcu0kd00vbuhv7wqh9yns5	cmnfcqle40009uhv72zt9hg5l	cmnfcu0dc00v6uhv7idnvhp5b	f	2026-04-01 01:15:52.286
+cmnfcu6c000xiuhv7urjb0ivj	cmnfcqlh1000juhv7dxofh1jg	cmnfcu6at00xfuhv7se3pqw08	f	2026-04-01 01:15:59.76
+cmnfcu6c000xjuhv7sty0jbwd	cmnfcqlee000duhv7yzusv1k2	cmnfcu6at00xfuhv7se3pqw08	f	2026-04-01 01:15:59.76
+cmnfcu6dp00xouhv7kq14q5wh	cmnfcqldt0005uhv7d4terocy	cmnfcu69900x7uhv7k6y3u83a	f	2026-04-01 01:15:59.821
+cmnfcu6dp00xpuhv747vw2jtl	cmnfcqldo0003uhv77gqzh84t	cmnfcu69900x7uhv7k6y3u83a	f	2026-04-01 01:15:59.821
+cmnfcsiyf00b9uhv76afe4ncz	cmnfcqle40009uhv72zt9hg5l	cmnfcsit400avuhv7vym9p4xm	f	2026-04-01 01:14:42.807
+cmnfcsj3v00bauhv7ryzvai8b	cmnfcqlh1000juhv7dxofh1jg	cmnfcsiy900b8uhv7qrnd1drq	f	2026-04-01 01:14:43.004
+cmnfcsj3v00bbuhv7qma39909	cmnfcqlem000guhv7alb0f7l8	cmnfcsiy900b8uhv7qrnd1drq	f	2026-04-01 01:14:43.004
+cmnfcsje100bcuhv76uzuloco	cmnfcqldo0003uhv77gqzh84t	cmnfcsixy00b6uhv7kz22tnkr	f	2026-04-01 01:14:43.369
+cmnfcsm4300c7uhv7cpxfn8va	cmnfcqldo0003uhv77gqzh84t	cmnfcslxy00c6uhv702vlbwa8	f	2026-04-01 01:14:46.9
+cmnfcsnx900d2uhv7xgwkfnay	cmnfcqle40009uhv72zt9hg5l	cmnfcsnkt00cvuhv7qgalpxxe	f	2026-04-01 01:14:49.245
+cmnfcso7b00d3uhv7rsggx4md	cmnfcqlh1000juhv7dxofh1jg	cmnfcsnlb00cxuhv7hg22e5d5	f	2026-04-01 01:14:49.607
+cmnfcso7b00d4uhv7tlws8wm9	cmnfcqldt0005uhv7d4terocy	cmnfcsnlb00cxuhv7hg22e5d5	f	2026-04-01 01:14:49.607
+cmnfcso7b00d5uhv79ed338hu	cmnfcqldo0003uhv77gqzh84t	cmnfcsnlb00cxuhv7hg22e5d5	f	2026-04-01 01:14:49.607
+cmnfcso7b00d6uhv7sjow4g7p	cmnfcqlek000fuhv7ydofzkc9	cmnfcsnlb00cxuhv7hg22e5d5	f	2026-04-01 01:14:49.607
+cmnfcsrgn00dsuhv7poythhd6	cmnfcqldt0005uhv7d4terocy	cmnfcsr7v00djuhv7lu1sebk0	f	2026-04-01 01:14:53.831
+cmnfcsrgn00dtuhv7b7w9mspz	cmnfcqldo0003uhv77gqzh84t	cmnfcsr7v00djuhv7lu1sebk0	f	2026-04-01 01:14:53.831
+cmnfcssq500e8uhv761l75am5	cmnfcqlek000fuhv7ydofzkc9	cmnfcssny00e3uhv79oi8t4jn	f	2026-04-01 01:14:55.47
+cmnfcssq500e9uhv784xyrsgr	cmnfcqldt0005uhv7d4terocy	cmnfcssny00e3uhv79oi8t4jn	f	2026-04-01 01:14:55.47
+cmnfcstry00eiuhv78qw28e62	cmnfcqle40009uhv72zt9hg5l	cmnfcstbk00eduhv74p48lcuz	f	2026-04-01 01:14:56.83
+cmnfcsv7t00fduhv70ssr1x0y	cmnfcqldt0005uhv7d4terocy	cmnfcsusz00f3uhv7hed8j3al	f	2026-04-01 01:14:58.697
+cmnfcsv7t00feuhv77amfpxoh	cmnfcqldo0003uhv77gqzh84t	cmnfcsusz00f3uhv7hed8j3al	f	2026-04-01 01:14:58.697
+cmnfcsvfv00ffuhv7dxdcnhk0	cmnfcqle40009uhv72zt9hg5l	cmnfcsv6300fcuhv7eyveoxcj	f	2026-04-01 01:14:58.987
+cmnfcsxpz00g3uhv7m8tjn2ps	cmnfcqlh1000juhv7dxofh1jg	cmnfcsx6v00fruhv7ri3sc8ow	f	2026-04-01 01:15:01.943
+cmnfcsxpz00g4uhv7duhvrsxq	cmnfcqldt0005uhv7d4terocy	cmnfcsx6v00fruhv7ri3sc8ow	f	2026-04-01 01:15:01.943
+cmnfcsxpz00g5uhv703t5gmuw	cmnfcqlek000fuhv7ydofzkc9	cmnfcsx6v00fruhv7ri3sc8ow	f	2026-04-01 01:15:01.943
+cmnfct00b00gvuhv7hbxzixft	cmnfcqldo0003uhv77gqzh84t	cmnfcszr600gquhv7cmqmjz3i	f	2026-04-01 01:15:04.907
+cmnfct00b00gwuhv7ico5xabf	cmnfcqlek000fuhv7ydofzkc9	cmnfcszr600gquhv7cmqmjz3i	f	2026-04-01 01:15:04.907
+cmnfct01k00gxuhv7wnegaoe7	cmnfcqldt0005uhv7d4terocy	cmnfct00500guuhv7kpgkpxuo	f	2026-04-01 01:15:04.953
+cmnfct38y00hluhv73tbq07m9	cmnfcqlh1000juhv7dxofh1jg	cmnfct2mp00hbuhv74t6b4cip	f	2026-04-01 01:15:09.106
+cmnfct38y00hmuhv7m10tfh84	cmnfcqldo0003uhv77gqzh84t	cmnfct2mp00hbuhv74t6b4cip	f	2026-04-01 01:15:09.106
+cmnfct3cq00hnuhv7e1sfthyp	cmnfcqldt0005uhv7d4terocy	cmnfct35800hkuhv7bzymyfin	f	2026-04-01 01:15:09.242
+cmnfct50400iauhv7tt721dbe	cmnfcqle40009uhv72zt9hg5l	cmnfct4rl00i1uhv7lil62yim	f	2026-04-01 01:15:11.381
+cmnfct50400ibuhv73r36lgqa	cmnfcqldt0005uhv7d4terocy	cmnfct4rl00i1uhv7lil62yim	f	2026-04-01 01:15:11.381
+cmnfct50400icuhv7kpgm772q	cmnfcqldo0003uhv77gqzh84t	cmnfct4rl00i1uhv7lil62yim	f	2026-04-01 01:15:11.381
+cmnfct50400iduhv7h96p11jy	cmnfcqlek000fuhv7ydofzkc9	cmnfct4rl00i1uhv7lil62yim	f	2026-04-01 01:15:11.381
+cmnfct50400ieuhv7bjs8z348	cmnfcqlh1000juhv7dxofh1jg	cmnfct4rl00i1uhv7lil62yim	f	2026-04-01 01:15:11.381
+cmnfct58800iiuhv7v45jiswl	cmnfcqldo0003uhv77gqzh84t	cmnfct4xn00i9uhv7vqem43z0	f	2026-04-01 01:15:11.672
+cmnfct58800ijuhv7rug2wgtb	cmnfcqle40009uhv72zt9hg5l	cmnfct4xn00i9uhv7vqem43z0	f	2026-04-01 01:15:11.672
+cmnfct6g200ituhv7e176kfly	cmnfcqlek000fuhv7ydofzkc9	cmnfct5u800iquhv7fl7a692c	f	2026-04-01 01:15:13.25
+cmnfct6g200iuuhv7xh58uzx3	cmnfcqle40009uhv72zt9hg5l	cmnfct5u800iquhv7fl7a692c	f	2026-04-01 01:15:13.25
+cmnfct6p900j1uhv7px0yshzg	cmnfcqle40009uhv72zt9hg5l	cmnfct6o600iyuhv7ijklsvzp	f	2026-04-01 01:15:13.581
+cmnfct6p900j2uhv71i9eiquw	cmnfcqldo0003uhv77gqzh84t	cmnfct6o600iyuhv7ijklsvzp	f	2026-04-01 01:15:13.581
+cmnfct82k00jjuhv7dkm1plir	cmnfcqldo0003uhv77gqzh84t	cmnfct7qw00jcuhv7o5260e3o	f	2026-04-01 01:15:15.357
+cmnfct88w00jkuhv7ys44dxi0	cmnfcqlh1000juhv7dxofh1jg	cmnfct7xh00jeuhv7vtqg4cx9	f	2026-04-01 01:15:15.584
+cmnfct88w00jluhv7z9skcny9	cmnfcqldo0003uhv77gqzh84t	cmnfct7xh00jeuhv7vtqg4cx9	f	2026-04-01 01:15:15.584
+cmnfct8df00jmuhv735zyeqs8	cmnfcqldt0005uhv7d4terocy	cmnfct82a00jiuhv7wsuyplx2	f	2026-04-01 01:15:15.747
+cmnfct8df00jnuhv7s1jlua5s	cmnfcqldo0003uhv77gqzh84t	cmnfct82a00jiuhv7wsuyplx2	f	2026-04-01 01:15:15.747
+cmnfct8df00jouhv7zrsf5mgq	cmnfcqlh1000juhv7dxofh1jg	cmnfct82a00jiuhv7wsuyplx2	f	2026-04-01 01:15:15.747
+cmnfct9aq00jvuhv7kzolhbrt	cmnfcqle40009uhv72zt9hg5l	cmnfct8pk00juuhv7eea5m14r	f	2026-04-01 01:15:16.947
+cmnfct9aq00jwuhv7jjg3vuea	cmnfcqleo000huhv7n0m7asjb	cmnfct8pk00juuhv7eea5m14r	f	2026-04-01 01:15:16.947
+cmnfctaek00k5uhv791xol1oj	cmnfcqldt0005uhv7d4terocy	cmnfctaap00k2uhv7hig5tk45	f	2026-04-01 01:15:18.381
+cmnfctaek00k6uhv7h77mlsg3	cmnfcqleo000huhv7n0m7asjb	cmnfctaap00k2uhv7hig5tk45	f	2026-04-01 01:15:18.381
+cmnfctdef00kyuhv7sf9yqfhk	cmnfcqldt0005uhv7d4terocy	cmnfctcgb00kvuhv7t03akxbv	f	2026-04-01 01:15:22.263
+cmnfctgib00m7uhv7g1niree7	cmnfcqle40009uhv72zt9hg5l	cmnfctg7s00lvuhv7vn3wm65n	f	2026-04-01 01:15:26.289
+cmnfctgib00m8uhv7cdc574j2	cmnfcqlh1000juhv7dxofh1jg	cmnfctg7s00lvuhv7vn3wm65n	f	2026-04-01 01:15:26.289
+cmnfctgib00m9uhv71du6mdx3	cmnfcqlek000fuhv7ydofzkc9	cmnfctg7s00lvuhv7vn3wm65n	f	2026-04-01 01:15:26.289
+cmnfctgib00mauhv77fb5251n	cmnfcqldo0003uhv77gqzh84t	cmnfctg7s00lvuhv7vn3wm65n	f	2026-04-01 01:15:26.289
+cmnfctgic00mbuhv7k1svmgf3	cmnfcqldt0005uhv7d4terocy	cmnfctg7s00lvuhv7vn3wm65n	f	2026-04-01 01:15:26.289
+cmnfctjyc00nruhv7eautcdvf	cmnfcqlh1000juhv7dxofh1jg	cmnfctjoc00nguhv7swcsh81e	f	2026-04-01 01:15:30.756
+cmnfctjyc00nsuhv7nig1wxot	cmnfcqldo0003uhv77gqzh84t	cmnfctjoc00nguhv7swcsh81e	f	2026-04-01 01:15:30.756
+cmnfctjyc00ntuhv7cbqtoqmt	cmnfcqldt0005uhv7d4terocy	cmnfctjoc00nguhv7swcsh81e	f	2026-04-01 01:15:30.756
+cmnfctmji00ouuhv74cxom02v	cmnfcqldo0003uhv77gqzh84t	cmnfctmfx00omuhv7suc1wcuv	f	2026-04-01 01:15:34.11
+cmnfctmji00ovuhv7a74ebleg	cmnfcqldy0007uhv7gx0b561v	cmnfctmfx00omuhv7suc1wcuv	f	2026-04-01 01:15:34.11
+cmnfctmx300p0uhv79uygfgr5	cmnfcqldt0005uhv7d4terocy	cmnfctmg700oouhv7mk5lb0j0	f	2026-04-01 01:15:34.599
+cmnfctmx300p1uhv7q4z4nkpv	cmnfcqldo0003uhv77gqzh84t	cmnfctmg700oouhv7mk5lb0j0	f	2026-04-01 01:15:34.599
+cmnfctn1h00p2uhv7hnuaz6ep	cmnfcqlek000fuhv7ydofzkc9	cmnfctmn800ozuhv7y6sdko83	f	2026-04-01 01:15:34.757
+cmnfctqd100rcuhv7l0gmvo12	cmnfcqldo0003uhv77gqzh84t	cmnfctq8600qtuhv77tx7r3c9	f	2026-04-01 01:15:39.061
+cmnfctqd100rduhv7v9tg1kbt	cmnfcqldt0005uhv7d4terocy	cmnfctq8600qtuhv77tx7r3c9	f	2026-04-01 01:15:39.061
+cmnfctqhv00reuhv75sbixv4j	cmnfcqldt0005uhv7d4terocy	cmnfctqcq00rbuhv7zg28yxai	f	2026-04-01 01:15:39.236
+cmnfctsiz00s9uhv7klp0gb5q	cmnfcqlek000fuhv7ydofzkc9	cmnfctsem00ryuhv7w6w0deme	f	2026-04-01 01:15:41.868
+cmnfctsiz00sauhv734p6dmdg	cmnfcqldt0005uhv7d4terocy	cmnfctsem00ryuhv7w6w0deme	f	2026-04-01 01:15:41.868
+cmnfctsks00seuhv7kplp6pba	cmnfcqlh1000juhv7dxofh1jg	cmnfctsg500s4uhv7jfh3kutn	f	2026-04-01 01:15:41.932
+cmnfctsks00sfuhv70bj7kqqx	cmnfcqldo0003uhv77gqzh84t	cmnfctsg500s4uhv7jfh3kutn	f	2026-04-01 01:15:41.932
+cmnfctsks00sguhv75ed0akng	cmnfcqldt0005uhv7d4terocy	cmnfctsg500s4uhv7jfh3kutn	f	2026-04-01 01:15:41.932
+cmnfctsly00shuhv77w83l0qs	cmnfcqldt0005uhv7d4terocy	cmnfctsgn00s6uhv7n9wpkagd	f	2026-04-01 01:15:41.975
+cmnfctslz00siuhv7sig1ve08	cmnfcqldo0003uhv77gqzh84t	cmnfctsgn00s6uhv7n9wpkagd	f	2026-04-01 01:15:41.975
+cmnfctslz00sjuhv7uai6clrh	cmnfcqlh1000juhv7dxofh1jg	cmnfctsgn00s6uhv7n9wpkagd	f	2026-04-01 01:15:41.975
+cmnfctsmp00skuhv7keqkkmkb	cmnfcqldo0003uhv77gqzh84t	cmnfctsh400s8uhv7harg4p1c	f	2026-04-01 01:15:42.001
+cmnfctxc300u7uhv7yhsnswnd	cmnfcqle40009uhv72zt9hg5l	cmnfctwus00u6uhv76p5z57x8	f	2026-04-01 01:15:48.099
+cmnfctzdb00uwuhv77zlsgqci	cmnfcqlh1000juhv7dxofh1jg	cmnfctz7a00unuhv7iabppl72	f	2026-04-01 01:15:50.735
+cmnfctzdb00uxuhv7hxj4gf1e	cmnfcqlek000fuhv7ydofzkc9	cmnfctz7a00unuhv7iabppl72	f	2026-04-01 01:15:50.735
+cmnfcu0ca00v0uhv7z8vab81z	cmnfcqlek000fuhv7ydofzkc9	cmnfctzd400uvuhv7jugsig2o	f	2026-04-01 01:15:51.994
+cmnfcu0ca00v1uhv7q9lqxtwj	cmnfcqldt0005uhv7d4terocy	cmnfctzd400uvuhv7jugsig2o	f	2026-04-01 01:15:51.994
+cmnfcu0ca00v2uhv7q1rpourr	cmnfcqldo0003uhv77gqzh84t	cmnfctzd400uvuhv7jugsig2o	f	2026-04-01 01:15:51.994
+cmnfcu0ca00v3uhv7mnott9pg	cmnfcqlh1000juhv7dxofh1jg	cmnfctzd400uvuhv7jugsig2o	f	2026-04-01 01:15:51.994
+cmnfcu0ca00v4uhv7hldf50rc	cmnfcqle40009uhv72zt9hg5l	cmnfctzd400uvuhv7jugsig2o	f	2026-04-01 01:15:51.994
+cmnfcu3pd00wnuhv7dzjsp3jn	cmnfcqlek000fuhv7ydofzkc9	cmnfcu3od00wmuhv7az2rwjui	f	2026-04-01 01:15:56.353
+cmnfcu3pd00wouhv7bamkguag	cmnfcqle10008uhv7xleeivtf	cmnfcu3od00wmuhv7az2rwjui	f	2026-04-01 01:15:56.353
+cmnfcu3pt00wpuhv7t9no82ul	cmnfcqldt0005uhv7d4terocy	cmnfcu3m600wcuhv7qin3qf17	f	2026-04-01 01:15:56.369
+cmnfcu3sv00wquhv7n9d795y3	cmnfcqldo0003uhv77gqzh84t	cmnfcu3nr00wkuhv75i9v5d5k	f	2026-04-01 01:15:56.479
+cmnfcuie3012suhv7kx5dl2ba	cmnfcqldo0003uhv77gqzh84t	cmnfcui46012muhv73k9x0yw7	f	2026-04-01 01:16:15.387
+cmnfcuie3012tuhv7x2t53b2v	cmnfcqle40009uhv72zt9hg5l	cmnfcui46012muhv73k9x0yw7	f	2026-04-01 01:16:15.387
+cmnfcuiu9012yuhv7ejjraulx	cmnfcqldt0005uhv7d4terocy	cmnfcuili012xuhv7jiuuo81o	f	2026-04-01 01:16:15.969
+cmnfcuk9q013uuhv7omjbsb3j	cmnfcqlh1000juhv7dxofh1jg	cmnfcujs8013nuhv7z6c0vue9	f	2026-04-01 01:16:17.821
+cmnfcukje013vuhv7ausm3h41	cmnfcqldo0003uhv77gqzh84t	cmnfcujv7013puhv7afsg24xx	f	2026-04-01 01:16:18.17
+cmnfcukje013wuhv75yzs1f0r	cmnfcqle40009uhv72zt9hg5l	cmnfcujv7013puhv7afsg24xx	f	2026-04-01 01:16:18.17
+cmnfculjp0147uhv7pn598hwn	cmnfcqldt0005uhv7d4terocy	cmnfcul8t0146uhv798wjynor	f	2026-04-01 01:16:19.477
+cmnfcuncw014xuhv7r6gq0d95	cmnfcqldt0005uhv7d4terocy	cmnfcumv8014wuhv7yi6oyduo	f	2026-04-01 01:16:21.824
+cmnfcuncw014yuhv7ugpj6kan	cmnfcqle40009uhv72zt9hg5l	cmnfcumv8014wuhv7yi6oyduo	f	2026-04-01 01:16:21.824
+cmnfcuqqh015luhv7gb1u79cg	cmnfcqle40009uhv72zt9hg5l	cmnfcuqn9015guhv704iyvyna	f	2026-04-01 01:16:26.202
+cmnfcuqqi015muhv7u59vpz52	cmnfcqldo0003uhv77gqzh84t	cmnfcuqn9015guhv704iyvyna	f	2026-04-01 01:16:26.202
+cmnfcusfa015ruhv7vj2k4fst	cmnfcqlh1000juhv7dxofh1jg	cmnfcuqv9015quhv71vgghy6c	f	2026-04-01 01:16:28.39
+cmnfcusfa015suhv738i3fkmi	cmnfcqle40009uhv72zt9hg5l	cmnfcuqv9015quhv71vgghy6c	f	2026-04-01 01:16:28.39
+cmnfcutpe016luhv7bx6w62es	cmnfcqlh1000juhv7dxofh1jg	cmnfcutn0016auhv79kd5rbzq	f	2026-04-01 01:16:30.05
+cmnfcutpe016muhv7z5ri9jjv	cmnfcqldt0005uhv7d4terocy	cmnfcutn0016auhv79kd5rbzq	f	2026-04-01 01:16:30.05
+cmnfcutpe016nuhv71lufkifz	cmnfcqle40009uhv72zt9hg5l	cmnfcutn0016auhv79kd5rbzq	f	2026-04-01 01:16:30.05
+cmnfcuttv016suhv70eu76cbo	cmnfcqldt0005uhv7d4terocy	cmnfcutnn016guhv7umsen8t0	f	2026-04-01 01:16:30.211
+cmnfcuttv016tuhv7vjl9x4x6	cmnfcqldo0003uhv77gqzh84t	cmnfcutnn016guhv7umsen8t0	f	2026-04-01 01:16:30.211
+cmnfcuttv016uuhv76worsvw8	cmnfcqlek000fuhv7ydofzkc9	cmnfcutnn016guhv7umsen8t0	f	2026-04-01 01:16:30.211
+cmnfcuttv016vuhv7atw1phdn	cmnfcqlh1000juhv7dxofh1jg	cmnfcutnn016guhv7umsen8t0	f	2026-04-01 01:16:30.211
+cmnfcutwn016yuhv7af9hksyz	cmnfcqldo0003uhv77gqzh84t	cmnfcutpq016puhv7oyylq2xp	f	2026-04-01 01:16:30.311
+cmnfcutwn016zuhv7hdv39wsi	cmnfcqlek000fuhv7ydofzkc9	cmnfcutpq016puhv7oyylq2xp	f	2026-04-01 01:16:30.311
+cmnfcutwn0170uhv76wr13vg6	cmnfcqle40009uhv72zt9hg5l	cmnfcutpq016puhv7oyylq2xp	f	2026-04-01 01:16:30.311
+cmnfcutzq0171uhv779pw1vbm	cmnfcqle40009uhv72zt9hg5l	cmnfcutrd016ruhv7lp2q3w11	f	2026-04-01 01:16:30.422
+cmnfcutzq0172uhv7jn5oj8nd	cmnfcqldt0005uhv7d4terocy	cmnfcutrd016ruhv7lp2q3w11	f	2026-04-01 01:16:30.422
+cmnfcuwt4017kuhv740fola3n	cmnfcqle40009uhv72zt9hg5l	cmnfcuwqy017cuhv7fh34jvd5	f	2026-04-01 01:16:34.072
+cmnfcuwt4017luhv7uu41dibn	cmnfcqldo0003uhv77gqzh84t	cmnfcuwqy017cuhv7fh34jvd5	f	2026-04-01 01:16:34.072
+cmnfcuwt4017muhv7gf1yv1nz	cmnfcqldt0005uhv7d4terocy	cmnfcuwqy017cuhv7fh34jvd5	f	2026-04-01 01:16:34.072
+cmnfcuwt4017nuhv77qudhqxa	cmnfcqlek000fuhv7ydofzkc9	cmnfcuwqy017cuhv7fh34jvd5	f	2026-04-01 01:16:34.072
+cmnfcv0m1018ruhv7bby4kbnn	cmnfcqlh1000juhv7dxofh1jg	cmnfcuzv6018ouhv7erncnftr	f	2026-04-01 01:16:39.001
+cmnfcv0m1018suhv700p9s2o2	cmnfcqldt0005uhv7d4terocy	cmnfcuzv6018ouhv7erncnftr	f	2026-04-01 01:16:39.001
+cmnfcv0m1018tuhv71yiggct2	cmnfcqldo0003uhv77gqzh84t	cmnfcuzv6018ouhv7erncnftr	f	2026-04-01 01:16:39.001
+cmnfcu6dp00xquhv7phyer0it	cmnfcqlek000fuhv7ydofzkc9	cmnfcu69900x7uhv7k6y3u83a	f	2026-04-01 01:15:59.821
+cmnfcu6dp00xruhv7npo0bl3p	cmnfcqlh1000juhv7dxofh1jg	cmnfcu69900x7uhv7k6y3u83a	f	2026-04-01 01:15:59.821
+cmnfcu6dp00xsuhv7wujh27iu	cmnfcqle40009uhv72zt9hg5l	cmnfcu69900x7uhv7k6y3u83a	f	2026-04-01 01:15:59.821
+cmnfcu6ec00xvuhv7dlx08kne	cmnfcqle40009uhv72zt9hg5l	cmnfcu6dh00xnuhv7qh8xdej8	f	2026-04-01 01:15:59.844
+cmnfcu6ec00xwuhv7qwwuvr3u	cmnfcqleb000cuhv7bxrx8k4b	cmnfcu6dh00xnuhv7qh8xdej8	f	2026-04-01 01:15:59.844
+cmnfcu6f900xxuhv72nm4by1t	cmnfcqldo0003uhv77gqzh84t	cmnfcu6am00xduhv7jlfbkr68	f	2026-04-01 01:15:59.877
+cmnfcu6f900xyuhv786n79oag	cmnfcqldt0005uhv7d4terocy	cmnfcu6am00xduhv7jlfbkr68	f	2026-04-01 01:15:59.877
+cmnfcudab0118uhv7r42fztis	cmnfcqlek000fuhv7ydofzkc9	cmnfcud6b010nuhv7mw8bgj61	f	2026-04-01 01:16:08.771
+cmnfcudab0119uhv7ts4gh7wn	cmnfcqlh1000juhv7dxofh1jg	cmnfcud6b010nuhv7mw8bgj61	f	2026-04-01 01:16:08.771
+cmnfcudab011auhv7ookft2h5	cmnfcqle40009uhv72zt9hg5l	cmnfcud6b010nuhv7mw8bgj61	f	2026-04-01 01:16:08.771
+cmnfcudab011buhv78qtzgyns	cmnfcqldo0003uhv77gqzh84t	cmnfcud6b010nuhv7mw8bgj61	f	2026-04-01 01:16:08.771
+cmnfcudab011cuhv7y06lw6rm	cmnfcqldt0005uhv7d4terocy	cmnfcud6b010nuhv7mw8bgj61	f	2026-04-01 01:16:08.771
+cmnfcuia2012quhv70d6622wk	cmnfcqlh1000juhv7dxofh1jg	cmnfcui2c012guhv7aqwtebe0	f	2026-04-01 01:16:15.242
+cmnfcuia2012ruhv70jhocckd	cmnfcqle40009uhv72zt9hg5l	cmnfcui2c012guhv7aqwtebe0	f	2026-04-01 01:16:15.242
+cmnfcujrd013duhv7gdv61aa9	cmnfcqle40009uhv72zt9hg5l	cmnfcujce0134uhv71piw2su4	f	2026-04-01 01:16:17.161
+cmnfcujrd013euhv718fou0w9	cmnfcqldt0005uhv7d4terocy	cmnfcujce0134uhv71piw2su4	f	2026-04-01 01:16:17.161
+cmnfcujrd013fuhv73kpwqggq	cmnfcqlek000fuhv7ydofzkc9	cmnfcujce0134uhv71piw2su4	f	2026-04-01 01:16:17.161
+cmnfcujrd013guhv73mwf5h7d	cmnfcqlh1000juhv7dxofh1jg	cmnfcujce0134uhv71piw2su4	f	2026-04-01 01:16:17.161
+cmnfcukol0142uhv7vcp9vz9c	cmnfcqlek000fuhv7ydofzkc9	cmnfcuk2q013tuhv7rc4mflar	f	2026-04-01 01:16:18.357
+cmnfcuqpr015huhv73og9yh9f	cmnfcqldo0003uhv77gqzh84t	cmnfcuqci015cuhv7y70xxq0i	f	2026-04-01 01:16:26.175
+cmnfcuqqe015kuhv7kgw4jifx	cmnfcqlek000fuhv7ydofzkc9	cmnfcuqn3015euhv7q1gq2ifd	f	2026-04-01 01:16:26.198
+cmnfcuyl6018cuhv7k9vdctzq	cmnfcqldo0003uhv77gqzh84t	cmnfcuy8n0187uhv7ms0c9qwk	f	2026-04-01 01:16:36.378
+cmnfcuyl6018duhv71k4rgrai	cmnfcqle40009uhv72zt9hg5l	cmnfcuy8n0187uhv7ms0c9qwk	f	2026-04-01 01:16:36.378
+cmnfcuyl6018euhv78frxenq2	cmnfcqldt0005uhv7d4terocy	cmnfcuy8n0187uhv7ms0c9qwk	f	2026-04-01 01:16:36.378
+cmnfcuyll018fuhv71gerjdu1	cmnfcqle40009uhv72zt9hg5l	cmnfcuy8t0189uhv74euqpp4t	f	2026-04-01 01:16:36.393
+cmnfcuyll018guhv7g0ak78py	cmnfcqldo0003uhv77gqzh84t	cmnfcuy8t0189uhv74euqpp4t	f	2026-04-01 01:16:36.393
+cmnfcuyll018huhv7f1znap2f	cmnfcqldt0005uhv7d4terocy	cmnfcuy8t0189uhv74euqpp4t	f	2026-04-01 01:16:36.393
+cmnfcuyll018iuhv78sz83tka	cmnfcqlek000fuhv7ydofzkc9	cmnfcuy8t0189uhv74euqpp4t	f	2026-04-01 01:16:36.393
+cmnfcv0uv018yuhv7v97mvx0v	cmnfcqldt0005uhv7d4terocy	cmnfcv0nf018xuhv7ivoujm1y	f	2026-04-01 01:16:39.32
+cmnfcv0uv018zuhv7srq8mlog	cmnfcqldo0003uhv77gqzh84t	cmnfcv0nf018xuhv7ivoujm1y	f	2026-04-01 01:16:39.32
+cmnfcv2b0019quhv7az0wk9f6	cmnfcqlh1000juhv7dxofh1jg	cmnfcv2a4019luhv7otuvmytu	f	2026-04-01 01:16:41.196
+cmnfcv2b0019ruhv7jv9m7ejj	cmnfcqldr0004uhv7haksqth1	cmnfcv2a4019luhv7otuvmytu	f	2026-04-01 01:16:41.196
+cmnfcv2eu019zuhv7ng4z5376	cmnfcqldt0005uhv7d4terocy	cmnfcv2am019nuhv7cpk3mut5	f	2026-04-01 01:16:41.334
+cmnfcv2fp01a0uhv72vfnmajb	cmnfcqlek000fuhv7ydofzkc9	cmnfcv2b8019tuhv7pdtnb2i6	f	2026-04-01 01:16:41.365
+cmnfcv2fp01a1uhv7tl52xotc	cmnfcqlh1000juhv7dxofh1jg	cmnfcv2b8019tuhv7pdtnb2i6	f	2026-04-01 01:16:41.365
+cmnfcv2fp01a2uhv7nruq20k3	cmnfcqle40009uhv72zt9hg5l	cmnfcv2b8019tuhv7pdtnb2i6	f	2026-04-01 01:16:41.365
+cmnfcv2fp01a3uhv71pi04y8e	cmnfcqldo0003uhv77gqzh84t	cmnfcv2b8019tuhv7pdtnb2i6	f	2026-04-01 01:16:41.365
+cmnfcv2fp01a4uhv73wj8nib0	cmnfcqldt0005uhv7d4terocy	cmnfcv2b8019tuhv7pdtnb2i6	f	2026-04-01 01:16:41.365
+cmnfcv4ep01akuhv7iu9iato2	cmnfcqlh1000juhv7dxofh1jg	cmnfcv4dz01ajuhv7ti1pzq5h	f	2026-04-01 01:16:43.921
+cmnfcv4ep01aluhv7elcgh1t8	cmnfcqle7000auhv7u5byu7x1	cmnfcv4dz01ajuhv7ti1pzq5h	f	2026-04-01 01:16:43.921
+cmnfcv4yh01b3uhv78ygci9qj	cmnfcqldt0005uhv7d4terocy	cmnfcv4sy01ayuhv72yxefmrx	f	2026-04-01 01:16:44.634
+cmnfcv56601b6uhv7snnmh4cp	cmnfcqle40009uhv72zt9hg5l	cmnfcv4ys01b5uhv75mo8crwf	f	2026-04-01 01:16:44.906
+cmnfcv56801b7uhv7md0l0qrp	cmnfcqlek000fuhv7ydofzkc9	cmnfcv4yc01b2uhv7afowylq2	f	2026-04-01 01:16:44.911
+cmnfcv56801b8uhv7xvmq274i	cmnfcqldt0005uhv7d4terocy	cmnfcv4yc01b2uhv7afowylq2	f	2026-04-01 01:16:44.911
+cmnfcv56801b9uhv78fsaqo9y	cmnfcqle40009uhv72zt9hg5l	cmnfcv4yc01b2uhv7afowylq2	f	2026-04-01 01:16:44.911
+cmnfcv6x901cbuhv7tyq917cs	cmnfcqldt0005uhv7d4terocy	cmnfcv6uf01c9uhv7ry3yciaz	f	2026-04-01 01:16:47.181
+cmnfcv6x901ccuhv7leo2flk6	cmnfcqlck0000uhv732mhsi8o	cmnfcv6uf01c9uhv7ry3yciaz	f	2026-04-01 01:16:47.181
+cmnfcv6xq01cduhv7dhsuyqlh	cmnfcqldo0003uhv77gqzh84t	cmnfcv6lb01c7uhv72u509x2d	f	2026-04-01 01:16:47.198
+cmnfcv6xq01ceuhv7t8shrr88	cmnfcqle40009uhv72zt9hg5l	cmnfcv6lb01c7uhv72u509x2d	f	2026-04-01 01:16:47.198
+cmnfcv6xq01cfuhv79c13ryw1	cmnfcqlek000fuhv7ydofzkc9	cmnfcv6lb01c7uhv72u509x2d	f	2026-04-01 01:16:47.198
+cmnfcv9ll01cyuhv7zg9zzz4j	cmnfcqldt0005uhv7d4terocy	cmnfcv95801cruhv7hg9euu21	f	2026-04-01 01:16:50.649
+cmnfcv9ll01czuhv7r8s102nd	cmnfcqle40009uhv72zt9hg5l	cmnfcv95801cruhv7hg9euu21	f	2026-04-01 01:16:50.649
+cmnfcv9q001dcuhv7n625q7tk	cmnfcqlh1000juhv7dxofh1jg	cmnfcv9pa01dbuhv7q9mdbe59	f	2026-04-01 01:16:50.808
+cmnfcv9q001dduhv7eko70acq	cmnfcqlh0000iuhv7diftlhgx	cmnfcv9pa01dbuhv7q9mdbe59	f	2026-04-01 01:16:50.808
+cmnfcvb4p01dwuhv7os2b06e9	cmnfcqldt0005uhv7d4terocy	cmnfcvb3z01dvuhv7qa95ezqm	f	2026-04-01 01:16:52.633
+cmnfcvb4p01dxuhv7ymwf526x	cmnfcqldv0006uhv7rhgmfmtl	cmnfcvb3z01dvuhv7qa95ezqm	f	2026-04-01 01:16:52.633
+cmnfcvbcn01e4uhv79krp10ze	cmnfcqlek000fuhv7ydofzkc9	cmnfcvb4z01dzuhv7h3okiy2g	f	2026-04-01 01:16:52.919
+cmnfcvbcn01e5uhv70bov8ans	cmnfcqlh1000juhv7dxofh1jg	cmnfcvb4z01dzuhv7h3okiy2g	f	2026-04-01 01:16:52.919
+cmnfcvbcn01e6uhv7het951mo	cmnfcqle40009uhv72zt9hg5l	cmnfcvb4z01dzuhv7h3okiy2g	f	2026-04-01 01:16:52.919
+cmnfcvbcn01e7uhv7ii3srxeq	cmnfcqldo0003uhv77gqzh84t	cmnfcvb4z01dzuhv7h3okiy2g	f	2026-04-01 01:16:52.919
+cmnfcvbcn01e8uhv70re8ftpk	cmnfcqldt0005uhv7d4terocy	cmnfcvb4z01dzuhv7h3okiy2g	f	2026-04-01 01:16:52.919
+cmnfcvbei01eduhv7yitbzu9m	cmnfcqlh1000juhv7dxofh1jg	cmnfcvbcw01eauhv7cc5p1w6b	f	2026-04-01 01:16:52.986
+cmnfcvbei01eeuhv716zp6qxw	cmnfcqldt0005uhv7d4terocy	cmnfcvbcw01eauhv7cc5p1w6b	f	2026-04-01 01:16:52.986
+cmnfcvbei01efuhv7tu508cln	cmnfcqle40009uhv72zt9hg5l	cmnfcvbcw01eauhv7cc5p1w6b	f	2026-04-01 01:16:52.986
+cmnfcvedm01f5uhv7778ryomh	cmnfcqlek000fuhv7ydofzkc9	cmnfcvdw501f2uhv7zp656ucv	f	2026-04-01 01:16:56.842
+cmnfcvedm01f6uhv71wnlco4i	cmnfcqldt0005uhv7d4terocy	cmnfcvdw501f2uhv7zp656ucv	f	2026-04-01 01:16:56.842
+cmnfcveo701f9uhv70lh4qu87	cmnfcqle40009uhv72zt9hg5l	cmnfcvedt01f8uhv7qzbh5vqk	f	2026-04-01 01:16:57.223
+cmnfcvfn101fkuhv74zccib93	cmnfcqlh1000juhv7dxofh1jg	cmnfcvf1001ffuhv7c36tfbgw	f	2026-04-01 01:16:58.477
+cmnfcvfn101fluhv7kefo1boo	cmnfcqldo0003uhv77gqzh84t	cmnfcvf1001ffuhv7c36tfbgw	f	2026-04-01 01:16:58.477
+cmnfcvfn101fmuhv7cbeluwha	cmnfcqldt0005uhv7d4terocy	cmnfcvf1001ffuhv7c36tfbgw	f	2026-04-01 01:16:58.477
+cmnfcuykz018auhv788ywdu4c	cmnfcqlek000fuhv7ydofzkc9	cmnfcuy8f0185uhv7k6walutl	f	2026-04-01 01:16:36.371
+cmnfcuykz018buhv7dacxx3kj	cmnfcqlh1000juhv7dxofh1jg	cmnfcuy8f0185uhv7k6walutl	f	2026-04-01 01:16:36.371
+cmnfcv2e4019yuhv7cyua0t0v	cmnfcqle40009uhv72zt9hg5l	cmnfcv2br019xuhv7x8wkbnz1	f	2026-04-01 01:16:41.309
+cmnfcv2g301a5uhv7cw6itub3	cmnfcqldo0003uhv77gqzh84t	cmnfcv2bd019vuhv7fxk1o8xf	f	2026-04-01 01:16:41.379
+cmnfcv2g301a6uhv7kmon2co4	cmnfcqldt0005uhv7d4terocy	cmnfcv2bd019vuhv7fxk1o8xf	f	2026-04-01 01:16:41.379
+cmnfcv2g301a7uhv7wi4o4uw3	cmnfcqlek000fuhv7ydofzkc9	cmnfcv2bd019vuhv7fxk1o8xf	f	2026-04-01 01:16:41.379
+cmnfcv2g301a8uhv75wvsrhst	cmnfcqlh1000juhv7dxofh1jg	cmnfcv2bd019vuhv7fxk1o8xf	f	2026-04-01 01:16:41.379
+cmnfcv2g301a9uhv7568cmmas	cmnfcqle40009uhv72zt9hg5l	cmnfcv2bd019vuhv7fxk1o8xf	f	2026-04-01 01:16:41.379
+cmnfcv6x401cauhv76pe3efxe	cmnfcqle40009uhv72zt9hg5l	cmnfcv6l301c5uhv7ajy08v1w	f	2026-04-01 01:16:47.176
+cmnfcv6xv01cguhv7f7dp29b5	cmnfcqlek000fuhv7ydofzkc9	cmnfcv6d201bvuhv711m4xddh	f	2026-04-01 01:16:47.203
+cmnfcv6xv01chuhv7ffwtkp2d	cmnfcqldo0003uhv77gqzh84t	cmnfcv6d201bvuhv711m4xddh	f	2026-04-01 01:16:47.203
+cmnfcv9q901deuhv7ur6mk137	cmnfcqle40009uhv72zt9hg5l	cmnfcv9n701d1uhv7nr4ganzl	f	2026-04-01 01:16:50.817
+cmnfcv9q901dfuhv7xfrrwnqs	cmnfcqldt0005uhv7d4terocy	cmnfcv9n701d1uhv7nr4ganzl	f	2026-04-01 01:16:50.817
+cmnfcva0l01dguhv7yj0r2bhn	cmnfcqldo0003uhv77gqzh84t	cmnfcv9ox01d9uhv7n7917v0u	f	2026-04-01 01:16:51.189
+cmnfcva0l01dhuhv7uex9o9u0	cmnfcqlek000fuhv7ydofzkc9	cmnfcv9ox01d9uhv7n7917v0u	f	2026-04-01 01:16:51.189
+cmnfcvc0b01emuhv7lwgee5p1	cmnfcqldo0003uhv77gqzh84t	cmnfcvblb01ehuhv70bu401sf	f	2026-04-01 01:16:53.771
+cmnfcvc0b01enuhv7e8do9gl2	cmnfcqldt0005uhv7d4terocy	cmnfcvblb01ehuhv70bu401sf	f	2026-04-01 01:16:53.771
+cmnfcvdss01f0uhv7jgs83qfp	cmnfcqldt0005uhv7d4terocy	cmnfcvd2x01evuhv7w74sdp9h	f	2026-04-01 01:16:56.093
+cmnfcvie601geuhv76ckr3xfg	cmnfcqlek000fuhv7ydofzkc9	cmnfcvi1a01gbuhv7qugqfuc6	f	2026-04-01 01:17:02.046
+cmnfcvif701ghuhv7z5i4y402	cmnfcqle40009uhv72zt9hg5l	cmnfcvi2g01gduhv7xyh73ljf	f	2026-04-01 01:17:02.083
+cmnfcvpys01j0uhv7vcmgdnvv	cmnfcqldo0003uhv77gqzh84t	cmnfcvpxd01ivuhv76zt66nb8	f	2026-04-01 01:17:11.86
+cmnfcvpys01j1uhv7hnrgglzf	cmnfcqle40009uhv72zt9hg5l	cmnfcvpxd01ivuhv76zt66nb8	f	2026-04-01 01:17:11.86
+cmnfcvpys01j2uhv7acr5slt1	cmnfcqlek000fuhv7ydofzkc9	cmnfcvpxd01ivuhv76zt66nb8	f	2026-04-01 01:17:11.86
+cmnfcvqag01j6uhv7gezivwv4	cmnfcqlh1000juhv7dxofh1jg	cmnfcvpz401j5uhv7jl0ajry2	f	2026-04-01 01:17:12.28
+cmnfcvqag01j7uhv7iyho3zba	cmnfcqldo0003uhv77gqzh84t	cmnfcvpz401j5uhv7jl0ajry2	f	2026-04-01 01:17:12.28
+cmnfcvqag01j8uhv75utvsixf	cmnfcqldt0005uhv7d4terocy	cmnfcvpz401j5uhv7jl0ajry2	f	2026-04-01 01:17:12.28
+cmnfcvrkj01jwuhv77xfzl4rc	cmnfcqlek000fuhv7ydofzkc9	cmnfcvrfl01jquhv75yzf9ap8	f	2026-04-01 01:17:13.939
+cmnfcvien01gfuhv70utdv3t8	cmnfcqldo0003uhv77gqzh84t	cmnfcvht201g5uhv7xvgjde47	f	2026-04-01 01:17:02.063
+cmnfcvien01gguhv7xhs6n884	cmnfcqlh1000juhv7dxofh1jg	cmnfcvht201g5uhv7xvgjde47	f	2026-04-01 01:17:02.063
+cmnfcvky801h7uhv7dadqq2w7	cmnfcqldt0005uhv7d4terocy	cmnfcvkvk01gyuhv7mg0zgcr7	f	2026-04-01 01:17:05.361
+cmnfcvky901h8uhv7cye01rfh	cmnfcqle40009uhv72zt9hg5l	cmnfcvkvk01gyuhv7mg0zgcr7	f	2026-04-01 01:17:05.361
+cmnfcvky901h9uhv7p3m2jlah	cmnfcqlek000fuhv7ydofzkc9	cmnfcvkvk01gyuhv7mg0zgcr7	f	2026-04-01 01:17:05.361
+cmnfcvl2301hguhv7uia7tl0q	cmnfcqlek000fuhv7ydofzkc9	cmnfcvkz901heuhv74lbvirbi	f	2026-04-01 01:17:05.499
+cmnfcvnlp01i1uhv78kgpf2ou	cmnfcqldt0005uhv7d4terocy	cmnfcvn5601huuhv7gio0m2rz	f	2026-04-01 01:17:08.797
+cmnfcvnlp01i2uhv7lftd4b6c	cmnfcqle40009uhv72zt9hg5l	cmnfcvn5601huuhv7gio0m2rz	f	2026-04-01 01:17:08.797
+cmnfcvnlp01i3uhv719n5bdrf	cmnfcqlek000fuhv7ydofzkc9	cmnfcvn5601huuhv7gio0m2rz	f	2026-04-01 01:17:08.797
+cmnfcvnm501i4uhv7sgrzfaqf	cmnfcqldo0003uhv77gqzh84t	cmnfcvn5m01hwuhv7h4zx6jwe	f	2026-04-01 01:17:08.813
+cmnfcvnm501i5uhv7qh5ahq6t	cmnfcqlh1000juhv7dxofh1jg	cmnfcvn5m01hwuhv7h4zx6jwe	f	2026-04-01 01:17:08.813
+cmnfcvotd01ihuhv7ffnd1xr7	cmnfcqlek000fuhv7ydofzkc9	cmnfcvobf01ieuhv7hti2gv0i	f	2026-04-01 01:17:10.369
+cmnfcvrt601k8uhv7jkb38ys1	cmnfcqle40009uhv72zt9hg5l	cmnfcvrmb01k3uhv7xdeeg0u9	f	2026-04-01 01:17:14.25
+cmnfcvti501ksuhv77bmpn6hr	cmnfcqldt0005uhv7d4terocy	cmnfcvss801kluhv7zdas7apc	f	2026-04-01 01:17:16.446
+cmnfcvti501ktuhv7slbqf1lg	cmnfcqlh1000juhv7dxofh1jg	cmnfcvss801kluhv7zdas7apc	f	2026-04-01 01:17:16.446
+cmnfcvti501kuuhv7ig5iprcy	cmnfcqlek000fuhv7ydofzkc9	cmnfcvss801kluhv7zdas7apc	f	2026-04-01 01:17:16.446
+cmnfcvtmn01l5uhv7xa7hq6wv	cmnfcqlh1000juhv7dxofh1jg	cmnfcvtl101l0uhv7xvy0lf5m	f	2026-04-01 01:17:16.608
+cmnfcvtmn01l6uhv7nlzxfc9d	cmnfcqldj0001uhv7hfyotibv	cmnfcvtl101l0uhv7xvy0lf5m	f	2026-04-01 01:17:16.608
+cmnfcvtqb01lbuhv7i5ncjb9z	cmnfcqlek000fuhv7ydofzkc9	cmnfcvtmu01l8uhv7id40ufjo	f	2026-04-01 01:17:16.739
+cmnfcvtu901lcuhv78d59ec1s	cmnfcqle40009uhv72zt9hg5l	cmnfcvtkm01kyuhv7dglgho15	f	2026-04-01 01:17:16.881
+cmnfcvtu901lduhv7gmqvy28i	cmnfcqldo0003uhv77gqzh84t	cmnfcvtkm01kyuhv7dglgho15	f	2026-04-01 01:17:16.881
+cmnfcvv0901liuhv78nu7p1se	cmnfcqldo0003uhv77gqzh84t	cmnfcvuhb01lhuhv7wj2e8txr	f	2026-04-01 01:17:18.393
+cmnfcvv0901ljuhv79ujc6155	cmnfcqle40009uhv72zt9hg5l	cmnfcvuhb01lhuhv7wj2e8txr	f	2026-04-01 01:17:18.393
+cmnfcvv0901lkuhv7qp4qd7wt	cmnfcqlek000fuhv7ydofzkc9	cmnfcvuhb01lhuhv7wj2e8txr	f	2026-04-01 01:17:18.393
+cmnfcwefs01pxuhv7c9eemhbn	cmnfcqlek000fuhv7ydofzkc9	cmnfcwdw201puuhv7v293p0bm	f	2026-04-01 01:17:43.576
+cmnfcwfoy01qduhv7mjh8zzxo	cmnfcqlek000fuhv7ydofzkc9	cmnfcwfmq01qcuhv7tjf9dter	f	2026-04-01 01:17:45.202
+cmnfcwfoy01qeuhv7kk0c1ici	cmnfcqlh1000juhv7dxofh1jg	cmnfcwfmq01qcuhv7tjf9dter	f	2026-04-01 01:17:45.202
+cmnfcwfoy01qfuhv70cpe3gcg	cmnfcqldt0005uhv7d4terocy	cmnfcwfmq01qcuhv7tjf9dter	f	2026-04-01 01:17:45.202
+cmnfcwgsd01qpuhv7712nmd95	cmnfcqlh1000juhv7dxofh1jg	cmnfcwg9e01qouhv7c87z1pvf	f	2026-04-01 01:17:46.621
+cmnfcwhbx01qyuhv7pzo8yntx	cmnfcqlh1000juhv7dxofh1jg	cmnfcwhat01qxuhv73yaiopf4	f	2026-04-01 01:17:47.325
+cmnfcwhbx01qzuhv77b8tgpop	cmnfcqldt0005uhv7d4terocy	cmnfcwhat01qxuhv73yaiopf4	f	2026-04-01 01:17:47.325
+cmnfcwhbx01r0uhv7gq0j663i	cmnfcqle40009uhv72zt9hg5l	cmnfcwhat01qxuhv73yaiopf4	f	2026-04-01 01:17:47.325
+cmnfcwif801rauhv745d5g5eg	cmnfcqlh1000juhv7dxofh1jg	cmnfcwie701r9uhv73to5lkdh	f	2026-04-01 01:17:48.74
+cmnfcwj1h01rhuhv7lasv81mm	cmnfcqlh1000juhv7dxofh1jg	cmnfcwj1101rguhv77coi8ij8	f	2026-04-01 01:17:49.541
+cmnfcwj1h01riuhv7ced6m4ww	cmnfcqlek000fuhv7ydofzkc9	cmnfcwj1101rguhv77coi8ij8	f	2026-04-01 01:17:49.541
+cmnfcvkyj01hcuhv73owvi6na	cmnfcqle40009uhv72zt9hg5l	cmnfcvkwu01h4uhv7z8cyrvkk	f	2026-04-01 01:17:05.371
+cmnfcvl1p01hfuhv7d985tdco	cmnfcqlh1000juhv7dxofh1jg	cmnfcvkx901h6uhv7mg55fzht	f	2026-04-01 01:17:05.485
+cmnfcvnpi01i8uhv73soxkm9m	cmnfcqle40009uhv72zt9hg5l	cmnfcvn7k01hyuhv7crmhvrdz	f	2026-04-01 01:17:08.934
+cmnfcvnpi01i9uhv7alu3v1x5	cmnfcqldo0003uhv77gqzh84t	cmnfcvn7k01hyuhv7crmhvrdz	f	2026-04-01 01:17:08.934
+cmnfcvnpi01iauhv7rg4ritc0	cmnfcqlek000fuhv7ydofzkc9	cmnfcvn7k01hyuhv7crmhvrdz	f	2026-04-01 01:17:08.934
+cmnfcvpyw01j3uhv75zedrqyc	cmnfcqle40009uhv72zt9hg5l	cmnfcvpxu01ixuhv77x65q0id	f	2026-04-01 01:17:11.865
+cmnfcvrl801jxuhv75ml766mz	cmnfcqldt0005uhv7d4terocy	cmnfcvren01jmuhv7kgs8a6sy	f	2026-04-01 01:17:13.964
+cmnfcvrl801jyuhv7n8mjltxm	cmnfcqldo0003uhv77gqzh84t	cmnfcvren01jmuhv7kgs8a6sy	f	2026-04-01 01:17:13.964
+cmnfcvrl801jzuhv7v2noglrt	cmnfcqlh1000juhv7dxofh1jg	cmnfcvren01jmuhv7kgs8a6sy	f	2026-04-01 01:17:13.964
+cmnfcvwh601m2uhv73jk0fra2	cmnfcqldt0005uhv7d4terocy	cmnfcvvti01lsuhv7fq9763ov	f	2026-04-01 01:17:20.298
+cmnfcvwh601m3uhv7syg1kfcf	cmnfcqle40009uhv72zt9hg5l	cmnfcvvti01lsuhv7fq9763ov	f	2026-04-01 01:17:20.298
+cmnfcvwh601m4uhv7a9rli12g	cmnfcqlh1000juhv7dxofh1jg	cmnfcvvti01lsuhv7fq9763ov	f	2026-04-01 01:17:20.298
+cmnfcvwpa01m9uhv7aexnczow	cmnfcqlh1000juhv7dxofh1jg	cmnfcvw8h01lwuhv7fwgw5aba	f	2026-04-01 01:17:20.59
+cmnfcvwpa01mauhv7p0tta9by	cmnfcqle40009uhv72zt9hg5l	cmnfcvw8h01lwuhv7fwgw5aba	f	2026-04-01 01:17:20.59
+cmnfcvwpa01mbuhv7wou8zvzb	cmnfcqldt0005uhv7d4terocy	cmnfcvw8h01lwuhv7fwgw5aba	f	2026-04-01 01:17:20.59
+cmnfcvwpa01mcuhv7ge6r3dfx	cmnfcqlek000fuhv7ydofzkc9	cmnfcvw8h01lwuhv7fwgw5aba	f	2026-04-01 01:17:20.59
+cmnfcvwwt01mfuhv7wgp49q8k	cmnfcqlek000fuhv7ydofzkc9	cmnfcvwoy01m8uhv7eviwwmgy	f	2026-04-01 01:17:20.861
+cmnfcvxr401mkuhv70f9uk1p8	cmnfcqle40009uhv72zt9hg5l	cmnfcvxbq01mjuhv7moyz3cdy	f	2026-04-01 01:17:21.953
+cmnfcvxr401mluhv7k7ihhrxo	cmnfcqlh1000juhv7dxofh1jg	cmnfcvxbq01mjuhv7moyz3cdy	f	2026-04-01 01:17:21.953
+cmnfcvynt01n2uhv7iq054wah	cmnfcqlek000fuhv7ydofzkc9	cmnfcvyjc01mvuhv72lsd8rbx	f	2026-04-01 01:17:23.129
+cmnfcvynt01n3uhv7roetktni	cmnfcqle40009uhv72zt9hg5l	cmnfcvyjc01mvuhv72lsd8rbx	f	2026-04-01 01:17:23.129
+cmnfcw32l01o6uhv71owrebve	cmnfcqle40009uhv72zt9hg5l	cmnfcw30501o1uhv7jdszvov8	f	2026-04-01 01:17:28.845
+cmnfcw32l01o7uhv761aynan8	cmnfcqlh1000juhv7dxofh1jg	cmnfcw30501o1uhv7jdszvov8	f	2026-04-01 01:17:28.845
+cmnfcw32l01o8uhv7v55lib5c	cmnfcqldo0003uhv77gqzh84t	cmnfcw30501o1uhv7jdszvov8	f	2026-04-01 01:17:28.845
+cmnfcw5uf01osuhv7p6uce9sk	cmnfcqle40009uhv72zt9hg5l	cmnfcw5ru01onuhv7l6n3ygx2	f	2026-04-01 01:17:32.44
+cmnfcw5uf01otuhv7d5hvo2yp	cmnfcqlek000fuhv7ydofzkc9	cmnfcw5ru01onuhv7l6n3ygx2	f	2026-04-01 01:17:32.44
+cmnfcw5v001ouuhv7tp7s0m77	cmnfcqldt0005uhv7d4terocy	cmnfcw5u001oruhv7j09d8ftm	f	2026-04-01 01:17:32.46
+cmnfcw8w601p3uhv76r6zgwoe	cmnfcqlek000fuhv7ydofzkc9	cmnfcw8uz01p2uhv7e2bdejc6	f	2026-04-01 01:17:36.39
+cmnfcwbmj01pguhv7o2380g4y	cmnfcqldt0005uhv7d4terocy	cmnfcwb5601pbuhv74omrde43	f	2026-04-01 01:17:39.931
+cmnfcwbmj01phuhv7bj2kqptu	cmnfcqldo0003uhv77gqzh84t	cmnfcwb5601pbuhv74omrde43	f	2026-04-01 01:17:39.931
+cmnfcwc0o01piuhv7do6510yi	cmnfcqlh1000juhv7dxofh1jg	cmnfcwblw01pfuhv7dwzhnxz7	f	2026-04-01 01:17:40.44
+cmnfcwc0o01pjuhv7qel6ap8c	cmnfcqldt0005uhv7d4terocy	cmnfcwblw01pfuhv7dwzhnxz7	f	2026-04-01 01:17:40.44
+cmnfcwc0o01pkuhv7jen1hjrq	cmnfcqlek000fuhv7ydofzkc9	cmnfcwblw01pfuhv7dwzhnxz7	f	2026-04-01 01:17:40.44
+cmnfcwc0o01pluhv7kylwtot1	cmnfcqle40009uhv72zt9hg5l	cmnfcwblw01pfuhv7dwzhnxz7	f	2026-04-01 01:17:40.44
+cmnfcweur01q4uhv7nbl7capj	cmnfcqlh1000juhv7dxofh1jg	cmnfcweq601q3uhv7ne1p2dpu	f	2026-04-01 01:17:44.115
+cmnfcweur01q5uhv7mnn3ff8l	cmnfcqldt0005uhv7d4terocy	cmnfcweq601q3uhv7ne1p2dpu	f	2026-04-01 01:17:44.115
+cmnfcweur01q6uhv783w4bzzh	cmnfcqle40009uhv72zt9hg5l	cmnfcweq601q3uhv7ne1p2dpu	f	2026-04-01 01:17:44.115
+cmnfcwlgj01sbuhv7i3elubfd	cmnfcqleb000cuhv7bxrx8k4b	cmnfcwlah01s4uhv70x7w4yo1	f	2026-04-01 01:17:52.675
+cmnfcwlgj01scuhv75c7rbtb7	cmnfcqldo0003uhv77gqzh84t	cmnfcwlah01s4uhv70x7w4yo1	f	2026-04-01 01:17:52.675
+cmnfcwlgj01sduhv79czush0c	cmnfcqldt0005uhv7d4terocy	cmnfcwlah01s4uhv70x7w4yo1	f	2026-04-01 01:17:52.675
+cmnfcwlh701seuhv7esmocenk	cmnfcqle10008uhv7xleeivtf	cmnfcwlcr01sauhv7wh6i33rr	f	2026-04-01 01:17:52.699
+cmnfcwlh701sfuhv7oqjppnte	cmnfcqle40009uhv72zt9hg5l	cmnfcwlcr01sauhv7wh6i33rr	f	2026-04-01 01:17:52.699
+cmnfcwlho01sguhv70efzvjl0	cmnfcqldy0007uhv7gx0b561v	cmnfcwlau01s6uhv7ec3aozez	f	2026-04-01 01:17:52.717
+cmnfcwlho01shuhv76bij6mki	cmnfcqldo0003uhv77gqzh84t	cmnfcwlau01s6uhv7ec3aozez	f	2026-04-01 01:17:52.717
+cmnfcwlhr01siuhv7t57sfbri	cmnfcqldt0005uhv7d4terocy	cmnfcwlau01s6uhv7ec3aozez	f	2026-04-01 01:17:52.717
+cmnfcwlhr01sjuhv7sjtar6k6	cmnfcqlek000fuhv7ydofzkc9	cmnfcwlau01s6uhv7ec3aozez	f	2026-04-01 01:17:52.717
+cmnfcwlhr01skuhv7wuz3sb4s	cmnfcqle40009uhv72zt9hg5l	cmnfcwlau01s6uhv7ec3aozez	f	2026-04-01 01:17:52.717
+cmnfcwljh01sluhv73ayqddgu	cmnfcqle9000buhv78pneu9lv	cmnfcwlbx01s8uhv7qscc1c22	f	2026-04-01 01:17:52.781
+cmnfcwljh01smuhv78dph9s8a	cmnfcqle40009uhv72zt9hg5l	cmnfcwlbx01s8uhv7qscc1c22	f	2026-04-01 01:17:52.781
+cmnfcwljh01snuhv718carkmi	cmnfcqlh1000juhv7dxofh1jg	cmnfcwlbx01s8uhv7qscc1c22	f	2026-04-01 01:17:52.781
+cmnfcwnr501t4uhv7hi0wmzj8	cmnfcqldy0007uhv7gx0b561v	cmnfcwnqq01t1uhv72bkq8msd	f	2026-04-01 01:17:55.649
+cmnfcwnr501t5uhv7uzlzozh5	cmnfcqlee000duhv7yzusv1k2	cmnfcwnqq01t1uhv72bkq8msd	f	2026-04-01 01:17:55.649
+cmnfcwnta01tauhv7rdb47j7f	cmnfcqle10008uhv7xleeivtf	cmnfcwnrp01t9uhv7w9tfzukx	f	2026-04-01 01:17:55.726
+cmnfcwnta01tbuhv7m3xd0yl4	cmnfcqlek000fuhv7ydofzkc9	cmnfcwnrp01t9uhv7w9tfzukx	f	2026-04-01 01:17:55.726
+cmnfcwntq01tcuhv78db7jpan	cmnfcqldv0006uhv7rhgmfmtl	cmnfcwnr101t3uhv7asppud62	f	2026-04-01 01:17:55.742
+cmnfcwntq01tduhv7bgvvmw9e	cmnfcqldo0003uhv77gqzh84t	cmnfcwnr101t3uhv7asppud62	f	2026-04-01 01:17:55.742
+cmnfcwpyg01u1uhv7a7c4q73r	cmnfcqle9000buhv78pneu9lv	cmnfcwpwi01twuhv71znq80ca	f	2026-04-01 01:17:58.505
+cmnfcwpyg01u2uhv7uxojytfj	cmnfcqldo0003uhv77gqzh84t	cmnfcwpwi01twuhv71znq80ca	f	2026-04-01 01:17:58.505
+cmnfcwq4e01u7uhv7x60tfqza	cmnfcqleb000cuhv7bxrx8k4b	cmnfcwpxr01tyuhv7x4efftbk	f	2026-04-01 01:17:58.718
+cmnfcwq4e01u8uhv79riabq3n	cmnfcqldt0005uhv7d4terocy	cmnfcwpxr01tyuhv7x4efftbk	f	2026-04-01 01:17:58.718
+cmnfcwq9001ubuhv7ofbp4txv	cmnfcqle10008uhv7xleeivtf	cmnfcwq0201u4uhv7cnxqwra9	f	2026-04-01 01:17:58.884
+cmnfcwq9001ucuhv71ll6ur2p	cmnfcqlh1000juhv7dxofh1jg	cmnfcwq0201u4uhv7cnxqwra9	f	2026-04-01 01:17:58.884
+cmnfcwq9001uduhv7s0u4f2ga	cmnfcqlek000fuhv7ydofzkc9	cmnfcwq0201u4uhv7cnxqwra9	f	2026-04-01 01:17:58.884
+cmnfcwqcu01ueuhv7tuhdiu0m	cmnfcqldy0007uhv7gx0b561v	cmnfcwq5301uauhv7jicyw3hs	f	2026-04-01 01:17:59.023
+cmnfcwqcu01ufuhv70c97xv35	cmnfcqle40009uhv72zt9hg5l	cmnfcwq5301uauhv7jicyw3hs	f	2026-04-01 01:17:59.023
+cmnfcwqcu01uguhv70k5ft8rl	cmnfcqldt0005uhv7d4terocy	cmnfcwq5301uauhv7jicyw3hs	f	2026-04-01 01:17:59.023
+cmnfcwqcu01uhuhv7xzj4001x	cmnfcqlh1000juhv7dxofh1jg	cmnfcwq5301uauhv7jicyw3hs	f	2026-04-01 01:17:59.023
+cmnfcwqcv01uiuhv7l6jo0u3q	cmnfcqldo0003uhv77gqzh84t	cmnfcwq5301uauhv7jicyw3hs	f	2026-04-01 01:17:59.023
+cmnfcwtfi01v0uhv7eaqeib1d	cmnfcqldv0006uhv7rhgmfmtl	cmnfcwt7k01uvuhv7xc1vwbgr	f	2026-04-01 01:18:03.006
+cmnfcwtfi01v1uhv70gxqhst6	cmnfcqldo0003uhv77gqzh84t	cmnfcwt7k01uvuhv7xc1vwbgr	f	2026-04-01 01:18:03.006
+cmnfcwtfz01v2uhv7b29em8ps	cmnfcqle9000buhv78pneu9lv	cmnfcwt8s01uzuhv70bfp8tqb	f	2026-04-01 01:18:03.024
+cmnfcwtv801vcuhv7mmnn3vqc	cmnfcqldy0007uhv7gx0b561v	cmnfcwtq101vbuhv75y2btlkc	f	2026-04-01 01:18:03.573
+cmnfcwwdr01vzuhv7ubpdnhi3	cmnfcqle9000buhv78pneu9lv	cmnfcwwc801vsuhv7yjv5wy0s	f	2026-04-01 01:18:06.831
+cmnfcwwdr01w0uhv7h05bcyfa	cmnfcqldt0005uhv7d4terocy	cmnfcwwc801vsuhv7yjv5wy0s	f	2026-04-01 01:18:06.831
+cmnfcwwjl01wbuhv76ijebzze	cmnfcqleb000cuhv7bxrx8k4b	cmnfcwwek01w2uhv7a8bb5v1a	f	2026-04-01 01:18:07.041
+cmnfcwwjl01wcuhv7zbuqntnc	cmnfcqle40009uhv72zt9hg5l	cmnfcwwek01w2uhv7a8bb5v1a	f	2026-04-01 01:18:07.041
+cmnfcwwjl01wduhv7ho9bi6w1	cmnfcqldo0003uhv77gqzh84t	cmnfcwwek01w2uhv7a8bb5v1a	f	2026-04-01 01:18:07.041
+cmnfcwwgb01w9uhv7w2v33002	cmnfcqldy0007uhv7gx0b561v	cmnfcwwey01w4uhv73ve5ij57	f	2026-04-01 01:18:06.923
+cmnfcwwgb01wauhv79inc7sbv	cmnfcqlck0000uhv732mhsi8o	cmnfcwwey01w4uhv73ve5ij57	f	2026-04-01 01:18:06.923
+cmnfcwwkb01wfuhv7otcx983b	cmnfcqldv0006uhv7rhgmfmtl	cmnfcwwg501w8uhv7nct3st2i	f	2026-04-01 01:18:07.067
+cmnfcwwkb01wguhv73mlpgi0r	cmnfcqldt0005uhv7d4terocy	cmnfcwwg501w8uhv7nct3st2i	f	2026-04-01 01:18:07.067
+cmnfcwwjx01weuhv7h4y7qfyf	cmnfcqle10008uhv7xleeivtf	cmnfcwwfd01w6uhv727qhqnqn	f	2026-04-01 01:18:07.053
+cmnfcwzux01x4uhv79rahnerf	cmnfcqleb000cuhv7bxrx8k4b	cmnfcwzt701wzuhv7cikyzil4	f	2026-04-01 01:18:11.337
+cmnfcwzux01x5uhv7iffv0xs8	cmnfcqldj0001uhv7hfyotibv	cmnfcwzt701wzuhv7cikyzil4	f	2026-04-01 01:18:11.337
+cmnfcwzvq01x6uhv7ftuoqd8z	cmnfcqle9000buhv78pneu9lv	cmnfcwzpu01wruhv7298hesgk	f	2026-04-01 01:18:11.366
+cmnfcwzvq01x7uhv7lit57re8	cmnfcqle40009uhv72zt9hg5l	cmnfcwzpu01wruhv7298hesgk	f	2026-04-01 01:18:11.366
+cmnfcwzw001x8uhv71n67e6ue	cmnfcqldy0007uhv7gx0b561v	cmnfcwzu001x1uhv7upswcgqi	f	2026-04-01 01:18:11.376
+cmnfcwzw001x9uhv7koqn2qfb	cmnfcqlh1000juhv7dxofh1jg	cmnfcwzu001x1uhv7upswcgqi	f	2026-04-01 01:18:11.376
+cmnfcx0ca01xeuhv7o7m1vpg3	cmnfcqldv0006uhv7rhgmfmtl	cmnfcwzwn01xbuhv71yb7dvu0	f	2026-04-01 01:18:11.962
+cmnfcx0ca01xfuhv72jxdjj9p	cmnfcqldt0005uhv7d4terocy	cmnfcwzwn01xbuhv71yb7dvu0	f	2026-04-01 01:18:11.962
+cmnfcx1yr01y2uhv7ncu7yndr	cmnfcqleb000cuhv7bxrx8k4b	cmnfcx1ta01xtuhv7jaiszbvc	f	2026-04-01 01:18:14.067
+cmnfcx1yr01y3uhv7wsgk62a1	cmnfcqle10008uhv7xleeivtf	cmnfcx1ta01xtuhv7jaiszbvc	f	2026-04-01 01:18:14.067
+cmnfcx1zr01y6uhv7mb5f1mae	cmnfcqle10008uhv7xleeivtf	cmnfcx1tf01xvuhv72ha17qft	f	2026-04-01 01:18:14.102
+cmnfcx1zr01y7uhv7g9gnweea	cmnfcqlek000fuhv7ydofzkc9	cmnfcx1tf01xvuhv72ha17qft	f	2026-04-01 01:18:14.102
+cmnfcx1zr01y8uhv70wvfhjnh	cmnfcqleb000cuhv7bxrx8k4b	cmnfcx1tf01xvuhv72ha17qft	f	2026-04-01 01:18:14.102
+cmnfcx25g01ybuhv7j7b2t47f	cmnfcqle9000buhv78pneu9lv	cmnfcx1xm01xzuhv7v8mffm39	f	2026-04-01 01:18:14.308
+cmnfcx25g01ycuhv7an4fwhbw	cmnfcqlek000fuhv7ydofzkc9	cmnfcx1xm01xzuhv7v8mffm39	f	2026-04-01 01:18:14.308
+cmnfcx37w01yhuhv75g27yht7	cmnfcqldy0007uhv7gx0b561v	cmnfcx25m01yeuhv779l40v3h	f	2026-04-01 01:18:15.692
+cmnfcx37w01yiuhv72g9ezy6s	cmnfcqlek000fuhv7ydofzkc9	cmnfcx25m01yeuhv779l40v3h	f	2026-04-01 01:18:15.692
+cmnfcx3cg01yjuhv7b3fcs713	cmnfcqldv0006uhv7rhgmfmtl	cmnfcx2fh01yguhv7vhvq7e0u	f	2026-04-01 01:18:15.856
+cmnfcx3cg01ykuhv7qeq4fsbe	cmnfcqle40009uhv72zt9hg5l	cmnfcx2fh01yguhv7vhvq7e0u	f	2026-04-01 01:18:15.856
+cmnfcx5zf01z1uhv706zseskq	cmnfcqleb000cuhv7bxrx8k4b	cmnfcx4xz01yruhv7jw05ixk9	f	2026-04-01 01:18:19.275
+cmnfcx5zf01z2uhv74cjml5a4	cmnfcqlek000fuhv7ydofzkc9	cmnfcx4xz01yruhv7jw05ixk9	f	2026-04-01 01:18:19.275
+cmnfcx5zf01z3uhv7tt72kffa	cmnfcqle40009uhv72zt9hg5l	cmnfcx4xz01yruhv7jw05ixk9	f	2026-04-01 01:18:19.275
+cmnfcx5zf01z4uhv7bhtkicyn	cmnfcqldo0003uhv77gqzh84t	cmnfcx4xz01yruhv7jw05ixk9	f	2026-04-01 01:18:19.275
+cmnfcx62g01z9uhv7uukfzl1d	cmnfcqle10008uhv7xleeivtf	cmnfcx5yd01z0uhv7y3wsklbq	f	2026-04-01 01:18:19.384
+cmnfcx64y01zcuhv7kd628mz9	cmnfcqldy0007uhv7gx0b561v	cmnfcx63k01zbuhv7kceeiquw	f	2026-04-01 01:18:19.475
+cmnfcx64y01zduhv70r24qeqy	cmnfcqle7000auhv7u5byu7x1	cmnfcx63k01zbuhv7kceeiquw	f	2026-04-01 01:18:19.475
+cmnfcx8v70206uhv7m7fz4fbo	cmnfcqleb000cuhv7bxrx8k4b	cmnfcx8j101zvuhv7d4s3vzna	f	2026-04-01 01:18:23.012
+cmnfcx8v70207uhv7uvw1rmyn	cmnfcqldt0005uhv7d4terocy	cmnfcx8j101zvuhv7d4s3vzna	f	2026-04-01 01:18:23.012
+cmnfcx8v70208uhv74yj0nvio	cmnfcqldo0003uhv77gqzh84t	cmnfcx8j101zvuhv7d4s3vzna	f	2026-04-01 01:18:23.012
+cmnfcx8vn0209uhv7wykizsr1	cmnfcqldy0007uhv7gx0b561v	cmnfcx8tr0203uhv7sm5x8z0y	f	2026-04-01 01:18:23.027
+cmnfcx8vn020auhv7h25enlu1	cmnfcqle40009uhv72zt9hg5l	cmnfcx8tr0203uhv7sm5x8z0y	f	2026-04-01 01:18:23.027
+cmnfcx8vn020buhv7vjcxqgi5	cmnfcqldt0005uhv7d4terocy	cmnfcx8tr0203uhv7sm5x8z0y	f	2026-04-01 01:18:23.027
+cmnfcx8vn020cuhv7li3uz3yv	cmnfcqlh1000juhv7dxofh1jg	cmnfcx8tr0203uhv7sm5x8z0y	f	2026-04-01 01:18:23.027
+cmnfcx8vn020duhv76druvdnb	cmnfcqldo0003uhv77gqzh84t	cmnfcx8tr0203uhv7sm5x8z0y	f	2026-04-01 01:18:23.027
+cmnfcx8xr020iuhv723wvpy6k	cmnfcqle9000buhv78pneu9lv	cmnfcx8t401zzuhv7kvdk6vld	f	2026-04-01 01:18:23.103
+cmnfcx8xr020juhv7ddngzz6a	cmnfcqlh1000juhv7dxofh1jg	cmnfcx8t401zzuhv7kvdk6vld	f	2026-04-01 01:18:23.103
+cmnfcx8zf020kuhv7mrfs08zl	cmnfcqldv0006uhv7rhgmfmtl	cmnfcx8xg020huhv7xwl9ib7h	f	2026-04-01 01:18:23.163
+cmnfcx8zf020luhv7gb2jiz5m	cmnfcqleo000huhv7n0m7asjb	cmnfcx8xg020huhv7xwl9ib7h	f	2026-04-01 01:18:23.163
+cmnfcx915020muhv7n0dhb2ty	cmnfcqle10008uhv7xleeivtf	cmnfcx8t60201uhv7fw1rg2f2	f	2026-04-01 01:18:23.226
+cmnfcx915020nuhv7zo62q50z	cmnfcqldt0005uhv7d4terocy	cmnfcx8t60201uhv7fw1rg2f2	f	2026-04-01 01:18:23.226
+cmnfcx916020ouhv7xbg108dq	cmnfcqlek000fuhv7ydofzkc9	cmnfcx8t60201uhv7fw1rg2f2	f	2026-04-01 01:18:23.226
+cmnfcxbo80218uhv7jilrq2qo	cmnfcqldv0006uhv7rhgmfmtl	cmnfcxbf30215uhv7w2pc702x	f	2026-04-01 01:18:26.649
+cmnfcxbo90219uhv7i3yqt0f9	cmnfcqle10008uhv7xleeivtf	cmnfcxbf30215uhv7w2pc702x	f	2026-04-01 01:18:26.649
+cmnfcxbrf021cuhv7nos8ie1g	cmnfcqleb000cuhv7bxrx8k4b	cmnfcxbe40213uhv72d95kr9e	f	2026-04-01 01:18:26.763
+cmnfcxbrf021duhv7zf7fiwrx	cmnfcqlh1000juhv7dxofh1jg	cmnfcxbe40213uhv72d95kr9e	f	2026-04-01 01:18:26.763
+cmnfcxbrf021euhv7a1phrwjh	cmnfcqle9000buhv78pneu9lv	cmnfcxbe40213uhv72d95kr9e	f	2026-04-01 01:18:26.763
+cmnfcxbsm021huhv72val0rx2	cmnfcqle9000buhv78pneu9lv	cmnfcxbpd021buhv7lljymlpg	f	2026-04-01 01:18:26.805
+cmnfcxbsm021iuhv7v050fufl	cmnfcqldo0003uhv77gqzh84t	cmnfcxbpd021buhv7lljymlpg	f	2026-04-01 01:18:26.805
+cmnfcxdmo021puhv73b2ylysm	cmnfcqldy0007uhv7gx0b561v	cmnfcxcax021muhv7awapm0mp	f	2026-04-01 01:18:29.185
+cmnfcxdmo021quhv79ugw8ij6	cmnfcqle40009uhv72zt9hg5l	cmnfcxcax021muhv7awapm0mp	f	2026-04-01 01:18:29.185
+cmnfcxel20221uhv7zd326efp	cmnfcqldv0006uhv7rhgmfmtl	cmnfcxdqa021yuhv7vb6tytlb	f	2026-04-01 01:18:30.422
+cmnfcxel20222uhv7shyoiwlx	cmnfcqlek000fuhv7ydofzkc9	cmnfcxdqa021yuhv7vb6tytlb	f	2026-04-01 01:18:30.422
+cmnfcxel20223uhv7lba8e7fu	cmnfcqle9000buhv78pneu9lv	cmnfcxdqa021yuhv7vb6tytlb	f	2026-04-01 01:18:30.422
+cmnfcxfef0224uhv79rws6zp2	cmnfcqle10008uhv7xleeivtf	cmnfcxdwz0220uhv7576puel1	f	2026-04-01 01:18:31.479
+cmnfcxfef0225uhv7osjrpdvb	cmnfcqle40009uhv72zt9hg5l	cmnfcxdwz0220uhv7576puel1	f	2026-04-01 01:18:31.479
+cmnfcxfef0226uhv7wz7ct5ph	cmnfcqle9000buhv78pneu9lv	cmnfcxdwz0220uhv7576puel1	f	2026-04-01 01:18:31.479
+cmnfcxhtz022nuhv73bgebvi2	cmnfcqldy0007uhv7gx0b561v	cmnfcxhsd022muhv7g41jnf8g	f	2026-04-01 01:18:34.632
+cmnfcxhu0022ouhv7rbf08e19	cmnfcqldt0005uhv7d4terocy	cmnfcxhsd022muhv7g41jnf8g	f	2026-04-01 01:18:34.632
+cmnfcxhz2022ruhv78spv1uih	cmnfcqle9000buhv78pneu9lv	cmnfcxhs2022kuhv7w4vypjhc	f	2026-04-01 01:18:34.814
+cmnfcxhz2022suhv7njo41jej	cmnfcqldo0003uhv77gqzh84t	cmnfcxhs2022kuhv7w4vypjhc	f	2026-04-01 01:18:34.814
+cmnfcxhz2022tuhv75yrizo0s	cmnfcqldt0005uhv7d4terocy	cmnfcxhs2022kuhv7w4vypjhc	f	2026-04-01 01:18:34.814
+cmnfcxhz2022uuhv770x1xvke	cmnfcqlh1000juhv7dxofh1jg	cmnfcxhs2022kuhv7w4vypjhc	f	2026-04-01 01:18:34.814
+cmnfcxi01022vuhv7d94nekww	cmnfcqleb000cuhv7bxrx8k4b	cmnfcxhuf022quhv79fl41pzi	f	2026-04-01 01:18:34.849
+cmnfcxi01022wuhv77yugyegq	cmnfcqle40009uhv72zt9hg5l	cmnfcxhuf022quhv79fl41pzi	f	2026-04-01 01:18:34.849
+cmnfcxi01022xuhv7mo3fbjpn	cmnfcqlh1000juhv7dxofh1jg	cmnfcxhuf022quhv79fl41pzi	f	2026-04-01 01:18:34.849
+cmnfcxi01022yuhv79d65jutq	cmnfcqle9000buhv78pneu9lv	cmnfcxhuf022quhv79fl41pzi	f	2026-04-01 01:18:34.849
+cmnfcxm95023huhv7p9i241bb	cmnfcqleb000cuhv7bxrx8k4b	cmnfcxm53023cuhv70np4z2wj	f	2026-04-01 01:18:40.361
+cmnfcxm95023iuhv7a595cxa4	cmnfcqlek000fuhv7ydofzkc9	cmnfcxm53023cuhv70np4z2wj	f	2026-04-01 01:18:40.361
+cmnfcxm95023juhv7319620p9	cmnfcqle40009uhv72zt9hg5l	cmnfcxm53023cuhv70np4z2wj	f	2026-04-01 01:18:40.361
+cmnfcxmn5023quhv7g2dzpwn4	cmnfcqle10008uhv7xleeivtf	cmnfcxmdf023puhv7ff1xad3q	f	2026-04-01 01:18:40.865
+cmnfcxmn5023ruhv7jqe5bkix	cmnfcqldt0005uhv7d4terocy	cmnfcxmdf023puhv7ff1xad3q	f	2026-04-01 01:18:40.865
+cmnfcxuti025cuhv7chye65l5	cmnfcqleb000cuhv7bxrx8k4b	cmnfcxut0025buhv72rg5lj8s	f	2026-04-01 01:18:51.462
+cmnfcxuti025duhv7ruu1ci0u	cmnfcqlek000fuhv7ydofzkc9	cmnfcxut0025buhv72rg5lj8s	f	2026-04-01 01:18:51.462
+cmnfcxutv025euhv7011oa9cv	cmnfcqldv0006uhv7rhgmfmtl	cmnfcxusk0257uhv7h865fwf8	f	2026-04-01 01:18:51.475
+cmnfcxutv025fuhv71ntoi1hf	cmnfcqldt0005uhv7d4terocy	cmnfcxusk0257uhv7h865fwf8	f	2026-04-01 01:18:51.475
+cmnfcxutv025guhv7bvro81kn	cmnfcqle10008uhv7xleeivtf	cmnfcxusk0257uhv7h865fwf8	f	2026-04-01 01:18:51.475
+cmnfcxvr0025luhv7j55bv5iu	cmnfcqldy0007uhv7gx0b561v	cmnfcxuvq025kuhv7jepeze1t	f	2026-04-01 01:18:52.669
+cmnfcxvr0025muhv71rtbu9n2	cmnfcqldt0005uhv7d4terocy	cmnfcxuvq025kuhv7jepeze1t	f	2026-04-01 01:18:52.669
+cmnfcxvr0025nuhv7a8uao30s	cmnfcqleb000cuhv7bxrx8k4b	cmnfcxuvq025kuhv7jepeze1t	f	2026-04-01 01:18:52.669
+cmnfcxxtg0277uhv7lx96rgod	cmnfcqldv0006uhv7rhgmfmtl	cmnfcxx7a0274uhv7qla5jn2t	f	2026-04-01 01:18:55.348
+cmnfcxxtg0278uhv7a9gj6pg8	cmnfcqldt0005uhv7d4terocy	cmnfcxx7a0274uhv7qla5jn2t	f	2026-04-01 01:18:55.348
+cmnfcxxtg0279uhv7yrikh7vt	cmnfcqle10008uhv7xleeivtf	cmnfcxx7a0274uhv7qla5jn2t	f	2026-04-01 01:18:55.348
+cmnfcxzsa027ouhv76cm20m6b	cmnfcqle10008uhv7xleeivtf	cmnfcxzoq027guhv796u3dchv	f	2026-04-01 01:18:57.898
+cmnfcxzsa027puhv7vl9xcyqc	cmnfcqlek000fuhv7ydofzkc9	cmnfcxzoq027guhv796u3dchv	f	2026-04-01 01:18:57.898
+cmnfcxzsa027quhv7alv1itzk	cmnfcqleb000cuhv7bxrx8k4b	cmnfcxzoq027guhv796u3dchv	f	2026-04-01 01:18:57.898
+cmnfcxzsa027ruhv7yww61qxc	cmnfcqldv0006uhv7rhgmfmtl	cmnfcxzoq027guhv796u3dchv	f	2026-04-01 01:18:57.898
+cmnfcy0d3027uuhv7ioten2sl	cmnfcqle9000buhv78pneu9lv	cmnfcxzwr027tuhv7jp2kh13g	f	2026-04-01 01:18:58.647
+cmnfcxn43023suhv7qeuxadil	cmnfcqldv0006uhv7rhgmfmtl	cmnfcxmby023nuhv7xm4ookc9	f	2026-04-01 01:18:41.475
+cmnfcxn43023tuhv7wp1m7son	cmnfcqldt0005uhv7d4terocy	cmnfcxmby023nuhv7xm4ookc9	f	2026-04-01 01:18:41.475
+cmnfcxsc7024buhv707tj47q7	cmnfcqle10008uhv7xleeivtf	cmnfcxsay0243uhv7wsmnd21a	f	2026-04-01 01:18:48.247
+cmnfcxsc7024cuhv7x1du9ve7	cmnfcqldv0006uhv7rhgmfmtl	cmnfcxsay0243uhv7wsmnd21a	f	2026-04-01 01:18:48.247
+cmnfcxsh9024luhv7gx322kys	cmnfcqle9000buhv78pneu9lv	cmnfcxsbg024auhv7yzon7un8	f	2026-04-01 01:18:48.429
+cmnfcxsh9024muhv76fdsswqk	cmnfcqldt0005uhv7d4terocy	cmnfcxsbg024auhv7yzon7un8	f	2026-04-01 01:18:48.429
+cmnfcxur2024yuhv7vnwyxxxr	cmnfcqle10008uhv7xleeivtf	cmnfcxum9024xuhv7mqal5aca	f	2026-04-01 01:18:51.375
+cmnfcxur3024zuhv7nbxucvdj	cmnfcqleg000euhv72i6namax	cmnfcxum9024xuhv7mqal5aca	f	2026-04-01 01:18:51.375
+cmnfcxwof026iuhv7o3y5ops2	cmnfcqle10008uhv7xleeivtf	cmnfcxwhe0263uhv75awymd53	f	2026-04-01 01:18:53.872
+cmnfcxwof026juhv7i2e9282j	cmnfcqlh1000juhv7dxofh1jg	cmnfcxwhe0263uhv75awymd53	f	2026-04-01 01:18:53.872
+cmnfcxwof026kuhv7sw4jrtlm	cmnfcqle40009uhv72zt9hg5l	cmnfcxwhe0263uhv75awymd53	f	2026-04-01 01:18:53.872
+cmnfcxwof026luhv76t7qr6q8	cmnfcqlek000fuhv7ydofzkc9	cmnfcxwhe0263uhv75awymd53	f	2026-04-01 01:18:53.872
+cmnfcxwof026muhv7t6o6hb01	cmnfcqldo0003uhv77gqzh84t	cmnfcxwhe0263uhv75awymd53	f	2026-04-01 01:18:53.872
+cmnfcxwof026nuhv78w4smlvm	cmnfcqldt0005uhv7d4terocy	cmnfcxwhe0263uhv75awymd53	f	2026-04-01 01:18:53.872
+cmnfcxwqt026ouhv7w2sliunx	cmnfcqleb000cuhv7bxrx8k4b	cmnfcxwmy026buhv7db3h6m7l	f	2026-04-01 01:18:53.957
+cmnfcxwqt026puhv7dtbpuxyu	cmnfcqldt0005uhv7d4terocy	cmnfcxwmy026buhv7db3h6m7l	f	2026-04-01 01:18:53.957
+cmnfcxwqt026quhv7icg8j0o4	cmnfcqlek000fuhv7ydofzkc9	cmnfcxwmy026buhv7db3h6m7l	f	2026-04-01 01:18:53.957
+cmnfcxwqt026ruhv7fu59fvhl	cmnfcqle10008uhv7xleeivtf	cmnfcxwmy026buhv7db3h6m7l	f	2026-04-01 01:18:53.957
+cmnfcxsig024nuhv760z0gydo	cmnfcqleb000cuhv7bxrx8k4b	cmnfcxsfc024guhv7ftoe3lu3	f	2026-04-01 01:18:48.472
+cmnfcxx2s026yuhv7z35o42cm	cmnfcqldy0007uhv7gx0b561v	cmnfcxww2026vuhv7uvesn3ta	f	2026-04-01 01:18:54.388
+cmnfcxx2s026zuhv7ruvifhzs	cmnfcqle40009uhv72zt9hg5l	cmnfcxww2026vuhv7uvesn3ta	f	2026-04-01 01:18:54.388
+cmnfcxx2s0270uhv76grup4z6	cmnfcqldt0005uhv7d4terocy	cmnfcxww2026vuhv7uvesn3ta	f	2026-04-01 01:18:54.388
+cmnfcxx2s0271uhv7tr0ilwt9	cmnfcqlh1000juhv7dxofh1jg	cmnfcxww2026vuhv7uvesn3ta	f	2026-04-01 01:18:54.388
+cmnfcxx2s0272uhv7xn6id8dw	cmnfcqldo0003uhv77gqzh84t	cmnfcxww2026vuhv7uvesn3ta	f	2026-04-01 01:18:54.388
+cmnfcxwoa026guhv7a02bkbwy	cmnfcqle9000buhv78pneu9lv	cmnfcxwmr0269uhv76w7sejzn	f	2026-04-01 01:18:53.866
+cmnfcxwoa026huhv72qu5io9q	cmnfcqldo0003uhv77gqzh84t	cmnfcxwmr0269uhv76w7sejzn	f	2026-04-01 01:18:53.866
 \.
 
 
@@ -6075,7 +7096,89 @@ cmnf59upj00gcuh3lb6ic8dx9	cmnf572d3001auh3leddsab4m	reply_created	reply:cmnf572d
 cmnf5a0bs00heuh3l74vmf1nr	cmnf572de001iuh3lp8ldh93t	follow_created	\N	user	cmnf572c7000tuh3lo58ockdn	1	2026-03-31 21:44:21.544	2026-03-31 21:44:21.544
 cmnf5a2k700hmuh3lwjx0ytff	cmnf572cn0013uh3la08lbk2z	reply_created	reply:cmnf572cn0013uh3la08lbk2z:cmnf59zpv00h2uh3lhut5k1rj	reply	cmnf59zpv00h2uh3lhut5k1rj	1	2026-03-31 21:44:24.439	2026-03-31 21:44:24.439
 cmnf5a30b00hwuh3lhcjlfn40	cmnf572cz0018uh3lvmz9s9cm	reply_created	reply:cmnf572cz0018uh3lvmz9s9cm:cmnf5a01y00h8uh3lu090a3vg	reply	cmnf5a01y00h8uh3lu090a3vg	1	2026-03-31 21:44:25.019	2026-03-31 21:44:25.019
+cmnfcsr3y00dfuhv7dw0x5dea	cmnfcqldo0003uhv77gqzh84t	reply_created	reply:cmnfcqldo0003uhv77gqzh84t:cmnfcsq3x00d8uhv77ft4grwj	reply	cmnfcsq3x00d8uhv77ft4grwj	1	2026-04-01 01:14:53.374	2026-04-01 01:14:53.374
+cmnfcsrit00dvuhv7gy22ip2h	cmnfcqle40009uhv72zt9hg5l	poll_created	\N	poll	cmnfcsrd300dmuhv7is77lt29	1	2026-04-01 01:14:53.909	2026-04-01 01:14:53.909
+cmnfcstbk00eduhv74p48lcuz	cmnfcqle40009uhv72zt9hg5l	thread_created	\N	thread	cmnfcssp800e5uhv7t7yu3d3v	1	2026-04-01 01:14:56.24	2026-04-01 01:14:56.24
+cmnfcsv6300fcuhv7eyveoxcj	cmnfcqle40009uhv72zt9hg5l	poll_created	\N	poll	cmnfcsux700f5uhv7dsa7uhte	1	2026-04-01 01:14:58.635	2026-04-01 01:14:58.635
+cmnfcszr600gquhv7cmqmjz3i	cmnfcqldo0003uhv77gqzh84t	reply_created	reply:cmnfcqldo0003uhv77gqzh84t:cmnfcszm100ghuhv799fenmbz	reply	cmnfcszm100ghuhv799fenmbz	1	2026-04-01 01:15:04.578	2026-04-01 01:15:04.578
+cmnfct35800hkuhv7bzymyfin	cmnfcqldt0005uhv7d4terocy	poll_created	\N	poll	cmnfct2n700hduhv77pqhhbai	1	2026-04-01 01:15:08.972	2026-04-01 01:15:08.972
+cmnfct4rl00i1uhv7lil62yim	cmnfcqle40009uhv72zt9hg5l	reply_created	reply:cmnfcqle40009uhv72zt9hg5l:cmnfct4kk00htuhv7k69g4pz4	reply	cmnfct4kk00htuhv7k69g4pz4	1	2026-04-01 01:15:11.073	2026-04-01 01:15:11.073
+cmnfct4xn00i9uhv7vqem43z0	cmnfcqldo0003uhv77gqzh84t	poll_voted	poll_vote:cmnfcsrd300dmuhv7is77lt29	poll	cmnfcsrd300dmuhv7is77lt29	1	2026-04-01 01:15:11.291	2026-04-01 01:15:11.291
+cmnfct5u800iquhv7fl7a692c	cmnfcqlek000fuhv7ydofzkc9	reply_created	reply:cmnfcqlek000fuhv7ydofzkc9:cmnfct59o00iluhv7vkji58jl	reply	cmnfct59o00iluhv7vkji58jl	1	2026-04-01 01:15:12.464	2026-04-01 01:15:12.464
+cmnfct6o600iyuhv7ijklsvzp	cmnfcqle40009uhv72zt9hg5l	follow_created	\N	user	cmnfcqldo0003uhv77gqzh84t	1	2026-04-01 01:15:13.542	2026-04-01 01:15:13.542
+cmnfct7qw00jcuhv7o5260e3o	cmnfcqldo0003uhv77gqzh84t	reply_created	reply:cmnfcqldo0003uhv77gqzh84t:cmnfct6p100j0uhv7vai34w5f	reply	cmnfct6p100j0uhv7vai34w5f	1	2026-04-01 01:15:14.936	2026-04-01 01:15:14.936
+cmnfct8pk00juuhv7eea5m14r	cmnfcqle40009uhv72zt9hg5l	follow_created	\N	user	cmnfcqleo000huhv7n0m7asjb	1	2026-04-01 01:15:16.184	2026-04-01 01:15:16.184
+cmnfctaap00k2uhv7hig5tk45	cmnfcqldt0005uhv7d4terocy	follow_created	\N	user	cmnfcqleo000huhv7n0m7asjb	1	2026-04-01 01:15:18.241	2026-04-01 01:15:18.241
+cmnfctdq300l2uhv7r3byrtve	cmnfcqlh1000juhv7dxofh1jg	reply_created	reply:cmnfcqlh1000juhv7dxofh1jg:cmnfctcbb00ktuhv7x9a51lzj	reply	cmnfctcbb00ktuhv7x9a51lzj	1	2026-04-01 01:15:22.683	2026-04-01 01:15:22.683
+cmnfctg7s00lvuhv7vn3wm65n	cmnfcqle40009uhv72zt9hg5l	reply_created	reply:cmnfcqle40009uhv72zt9hg5l:cmnfctf5b00lluhv7p3ujmnle	reply	cmnfctf5b00lluhv7p3ujmnle	1	2026-04-01 01:15:25.912	2026-04-01 01:15:25.912
+cmnfctghp00m6uhv7ekf5z1hy	cmnfcqlek000fuhv7ydofzkc9	reply_created	reply:cmnfcqlek000fuhv7ydofzkc9:cmnfctg7e00ltuhv7ixecry1u	reply	cmnfctg7e00ltuhv7ixecry1u	1	2026-04-01 01:15:26.269	2026-04-01 01:15:26.269
+cmnfctlxk00obuhv7tpdnrgio	cmnfcqle40009uhv72zt9hg5l	thread_created	\N	thread	cmnfctkye00o5uhv7dogypdf0	1	2026-04-01 01:15:33.32	2026-04-01 01:15:33.32
+cmnfctmfx00omuhv7suc1wcuv	cmnfcqldo0003uhv77gqzh84t	follow_created	\N	user	cmnfcqldy0007uhv7gx0b561v	1	2026-04-01 01:15:33.981	2026-04-01 01:15:33.981
+cmnfctmg700oouhv7mk5lb0j0	cmnfcqldt0005uhv7d4terocy	reply_created	reply:cmnfcqldt0005uhv7d4terocy:cmnfctly300oduhv7ei0axa5t	reply	cmnfctly300oduhv7ei0axa5t	1	2026-04-01 01:15:33.991	2026-04-01 01:15:33.991
+cmnfctmn800ozuhv7y6sdko83	cmnfcqlek000fuhv7ydofzkc9	poll_created	\N	poll	cmnfctmh700oquhv7jbajrrfw	1	2026-04-01 01:15:34.244	2026-04-01 01:15:34.244
+cmnfctqcq00rbuhv7zg28yxai	cmnfcqldt0005uhv7d4terocy	poll_created	\N	poll	cmnfctq8x00qvuhv7xk5byjvk	1	2026-04-01 01:15:39.05	2026-04-01 01:15:39.05
+cmnfctsem00ryuhv7w6w0deme	cmnfcqlek000fuhv7ydofzkc9	reply_created	reply:cmnfcqlek000fuhv7ydofzkc9:cmnfctsai00rguhv7nr5softi	reply	cmnfctsai00rguhv7nr5softi	1	2026-04-01 01:15:41.71	2026-04-01 01:15:41.71
+cmnfctsg500s4uhv7jfh3kutn	cmnfcqlh1000juhv7dxofh1jg	reply_created	reply:cmnfcqlh1000juhv7dxofh1jg:cmnfctsbx00rkuhv781j04ar3	reply	cmnfctsbx00rkuhv781j04ar3	1	2026-04-01 01:15:41.765	2026-04-01 01:15:41.765
+cmnfctsgn00s6uhv7n9wpkagd	cmnfcqldt0005uhv7d4terocy	reply_created	reply:cmnfcqldt0005uhv7d4terocy:cmnfctsce00rmuhv7dbrdy51i	reply	cmnfctsce00rmuhv7dbrdy51i	1	2026-04-01 01:15:41.783	2026-04-01 01:15:41.783
+cmnfctwf400tmuhv7ddpwixai	cmnfcqlh1000juhv7dxofh1jg	thread_created	\N	thread	cmnfctvqs00t4uhv7cp30ec0c	1	2026-04-01 01:15:46.912	2026-04-01 01:15:46.912
+cmnfctwus00u6uhv76p5z57x8	cmnfcqle40009uhv72zt9hg5l	thread_created	\N	thread	cmnfctwgk00touhv7im45m6eb	1	2026-04-01 01:15:47.476	2026-04-01 01:15:47.476
+cmnfctzd400uvuhv7jugsig2o	cmnfcqlek000fuhv7ydofzkc9	reply_created	reply:cmnfcqlek000fuhv7ydofzkc9:cmnfctz6y00uluhv78shuejsn	reply	cmnfctz6y00uluhv78shuejsn	1	2026-04-01 01:15:50.728	2026-04-01 01:15:50.728
+cmnfcu1h100vnuhv7x5p1lp4a	cmnfcqlh1000juhv7dxofh1jg	thread_created	\N	thread	cmnfcu0kn00vduhv7efbzqmgp	1	2026-04-01 01:15:53.461	2026-04-01 01:15:53.461
+cmnfcu3m600wcuhv7qin3qf17	cmnfcqldt0005uhv7d4terocy	reply_created	reply:cmnfcqldt0005uhv7d4terocy:cmnfcu2rr00vxuhv7v98tn2dp	reply	cmnfcu2rr00vxuhv7v98tn2dp	1	2026-04-01 01:15:56.238	2026-04-01 01:15:56.238
+cmnfcuili012xuhv7jiuuo81o	cmnfcqldt0005uhv7d4terocy	thread_created	\N	thread	cmnfcui22012euhv7ejkx4c2y	1	2026-04-01 01:16:15.654	2026-04-01 01:16:15.654
+cmnfcujs8013nuhv7z6c0vue9	cmnfcqlh1000juhv7dxofh1jg	reply_created	reply:cmnfcqlh1000juhv7dxofh1jg:cmnfcujh30136uhv77fmlk2fr	reply	cmnfcujh30136uhv77fmlk2fr	1	2026-04-01 01:16:17.192	2026-04-01 01:16:17.192
+cmnfcuk2q013tuhv7rc4mflar	cmnfcqlek000fuhv7ydofzkc9	poll_created	\N	poll	cmnfcujs3013iuhv7ydjypkzx	1	2026-04-01 01:16:17.57	2026-04-01 01:16:17.57
+cmnfcumv8014wuhv7yi6oyduo	cmnfcqldt0005uhv7d4terocy	reply_created	reply:cmnfcqldt0005uhv7d4terocy:cmnfcumsu014nuhv7j4wrtlfo	reply	cmnfcumsu014nuhv7j4wrtlfo	1	2026-04-01 01:16:21.189	2026-04-01 01:16:21.189
+cmnfcutrd016ruhv7lp2q3w11	cmnfcqle40009uhv72zt9hg5l	poll_voted	poll_vote:cmnfcuko4013yuhv7mfy7ms33	poll	cmnfcuko4013yuhv7mfy7ms33	1	2026-04-01 01:16:30.118	2026-04-01 01:16:30.118
+cmnfcuwqy017cuhv7fh34jvd5	cmnfcqle40009uhv72zt9hg5l	reply_created	reply:cmnfcqle40009uhv72zt9hg5l:cmnfcuwom0178uhv7pcmyxn4c	reply	cmnfcuwom0178uhv7pcmyxn4c	1	2026-04-01 01:16:33.994	2026-04-01 01:16:33.994
+cmnfcuzv6018ouhv7erncnftr	cmnfcqlh1000juhv7dxofh1jg	reply_created	reply:cmnfcqlh1000juhv7dxofh1jg:cmnfcuyq9018kuhv7a3dn690x	reply	cmnfcuyq9018kuhv7a3dn690x	1	2026-04-01 01:16:38.034	2026-04-01 01:16:38.034
+cmnfctjzq00nxuhv76nrwiu03	cmnfcqldt0005uhv7d4terocy	poll_voted	poll_vote:cmnfcrdt5003suhv7zwxvr5wk	poll	cmnfcrdt5003suhv7zwxvr5wk	2	2026-04-01 01:17:26.572	2026-04-01 01:17:26.576
+cmnfcuqv9015quhv71vgghy6c	cmnfcqlh1000juhv7dxofh1jg	poll_voted	poll_vote:cmnfcslit00bluhv7226npi0w	poll	cmnfcslit00bluhv7226npi0w	3	2026-04-01 01:17:52.536	2026-04-01 01:17:52.55
 cmnf59uii00g4uh3lw00d6dfz	cmnf572cm0011uh3lv5ilcx95	reply_created	reply:cmnf572cm0011uh3lv5ilcx95:cmnf59tdt00emuh3lnscvywu1	reply	cmnf59tdt00emuh3lnscvywu1	1	2026-03-31 21:44:13.788	2026-03-31 21:44:13.788
+cmnfcsr7v00djuhv7lu1sebk0	cmnfcqldt0005uhv7d4terocy	reply_created	reply:cmnfcqldt0005uhv7d4terocy:cmnfcsqzc00dduhv7v84157vm	reply	cmnfcsqzc00dduhv7v84157vm	1	2026-04-01 01:14:53.515	2026-04-01 01:14:53.515
+cmnfcssny00e3uhv79oi8t4jn	cmnfcqlek000fuhv7ydofzkc9	reply_created	reply:cmnfcqlek000fuhv7ydofzkc9:cmnfcss7a00dzuhv7npg6m29w	reply	cmnfcss7a00dzuhv7npg6m29w	1	2026-04-01 01:14:55.391	2026-04-01 01:14:55.391
+cmnfcsudv00equhv7ztjg8oak	cmnfcqlh1000juhv7dxofh1jg	thread_created	\N	thread	cmnfcstpb00efuhv7x18e6mtd	1	2026-04-01 01:14:57.619	2026-04-01 01:14:57.619
+cmnfcsun500eyuhv7jws7wut7	cmnfcqldo0003uhv77gqzh84t	thread_created	\N	thread	cmnfcstyt00ekuhv78dydcveq	1	2026-04-01 01:14:57.953	2026-04-01 01:14:57.953
+cmnfcsusz00f3uhv7hed8j3al	cmnfcqldt0005uhv7d4terocy	reply_created	reply:cmnfcqldt0005uhv7d4terocy:cmnfcsujz00euuhv7jnf47zoy	reply	cmnfcsujz00euuhv7jnf47zoy	1	2026-04-01 01:14:58.163	2026-04-01 01:14:58.163
+cmnfcswj600fnuhv7ronzmf0f	cmnfcqlek000fuhv7ydofzkc9	reply_created	reply:cmnfcqlek000fuhv7ydofzkc9:cmnfcsvxt00fhuhv76hfivuw1	reply	cmnfcsvxt00fhuhv76hfivuw1	1	2026-04-01 01:15:00.402	2026-04-01 01:15:00.402
+cmnfcsx6v00fruhv7ri3sc8ow	cmnfcqlh1000juhv7dxofh1jg	reply_created	reply:cmnfcqlh1000juhv7dxofh1jg:cmnfcswgw00fluhv7lew2hx87	reply	cmnfcswgw00fluhv7lew2hx87	1	2026-04-01 01:15:01.255	2026-04-01 01:15:01.255
+cmnfcsxhf00g2uhv7d22qu998	cmnfcqldo0003uhv77gqzh84t	follow_created	\N	user	cmnfcqle7000auhv7u5byu7x1	1	2026-04-01 01:15:01.635	2026-04-01 01:15:01.635
+cmnfcszl600gfuhv7spx5xffa	cmnfcqle40009uhv72zt9hg5l	thread_created	\N	thread	cmnfcsyit00g9uhv73p99qpbo	1	2026-04-01 01:15:04.362	2026-04-01 01:15:04.362
+cmnfct00500guuhv7kpgkpxuo	cmnfcqldt0005uhv7d4terocy	thread_created	\N	thread	cmnfcszm700gjuhv71ro4wcv7	1	2026-04-01 01:15:04.901	2026-04-01 01:15:04.901
+cmnfct24800h7uhv7t92dq9dj	cmnfcqle40009uhv72zt9hg5l	follow_created	\N	user	cmnfcqlh1000juhv7dxofh1jg	1	2026-04-01 01:15:07.64	2026-04-01 01:15:07.64
+cmnfct2mp00hbuhv74t6b4cip	cmnfcqlh1000juhv7dxofh1jg	reply_created	reply:cmnfcqlh1000juhv7dxofh1jg:cmnfct1wt00gzuhv74vu1xz03	reply	cmnfct1wt00gzuhv74vu1xz03	1	2026-04-01 01:15:08.305	2026-04-01 01:15:08.305
+cmnfct50c00iguhv7fjthwvac	cmnfcqldt0005uhv7d4terocy	thread_created	\N	thread	cmnfct4np00hvuhv7wo6y0q5i	1	2026-04-01 01:15:11.389	2026-04-01 01:15:11.389
+cmnfctcgb00kvuhv7t03akxbv	cmnfcqldt0005uhv7d4terocy	thread_created	\N	thread	cmnfctayk00keuhv7ao93ydeb	1	2026-04-01 01:15:21.035	2026-04-01 01:15:21.035
+cmnfctdro00l6uhv7h7eo6iib	cmnfcqlek000fuhv7ydofzkc9	follow_created	\N	user	cmnfcqldl0002uhv7conjfxzx	1	2026-04-01 01:15:22.74	2026-04-01 01:15:22.74
+cmnfcte7y00lhuhv7mnlkz6x5	cmnfcqldo0003uhv77gqzh84t	follow_created	\N	user	cmnfcqleg000euhv72i6namax	1	2026-04-01 01:15:23.327	2026-04-01 01:15:23.327
+cmnfctjoc00nguhv7swcsh81e	cmnfcqlh1000juhv7dxofh1jg	reply_created	reply:cmnfcqlh1000juhv7dxofh1jg:cmnfctj2y00n8uhv7mnyj4zw5	reply	cmnfctj2y00n8uhv7mnyj4zw5	1	2026-04-01 01:15:30.396	2026-04-01 01:15:30.396
+cmnfctjx400nouhv7vq6io3su	cmnfcqldo0003uhv77gqzh84t	thread_created	\N	thread	cmnfctj2k00n6uhv7fgsp8nfq	1	2026-04-01 01:15:30.712	2026-04-01 01:15:30.712
+cmnfctpzi00qjuhv79iz48d6j	cmnfcqle40009uhv72zt9hg5l	reply_created	reply:cmnfcqle40009uhv72zt9hg5l:cmnfctpkt00qduhv71ife5fx7	reply	cmnfctpkt00qduhv71ife5fx7	1	2026-04-01 01:15:38.575	2026-04-01 01:15:38.575
+cmnfctq8600qtuhv77tx7r3c9	cmnfcqldo0003uhv77gqzh84t	poll_voted	poll_vote:cmnfct2n700hduhv77pqhhbai	poll	cmnfct2n700hduhv77pqhhbai	2	2026-04-01 01:15:38.949	2026-04-01 01:15:38.955
+cmnfctqab00r2uhv7u4z9fkpt	cmnfcqlek000fuhv7ydofzkc9	follow_created	\N	user	cmnfcqldo0003uhv77gqzh84t	1	2026-04-01 01:15:38.962	2026-04-01 01:15:38.962
+cmnfctz7a00unuhv7iabppl72	cmnfcqlh1000juhv7dxofh1jg	reply_created	reply:cmnfcqlh1000juhv7dxofh1jg:cmnfctyvs00ufuhv7vl67b3v0	reply	cmnfctyvs00ufuhv7vl67b3v0	1	2026-04-01 01:15:50.518	2026-04-01 01:15:50.518
+cmnfcu3nr00wkuhv75i9v5d5k	cmnfcqldo0003uhv77gqzh84t	poll_created	\N	poll	cmnfcu3c100w7uhv75flsczgu	1	2026-04-01 01:15:56.295	2026-04-01 01:15:56.295
+cmnfcu69900x7uhv7k6y3u83a	cmnfcqldt0005uhv7d4terocy	reply_created	reply:cmnfcqldt0005uhv7d4terocy:cmnfcu5ov00wtuhv78c0nq9rq	reply	cmnfcu5ov00wtuhv78c0nq9rq	1	2026-04-01 01:15:59.661	2026-04-01 01:15:59.661
+cmnfcu6am00xduhv7jlfbkr68	cmnfcqldo0003uhv77gqzh84t	reply_created	reply:cmnfcqldo0003uhv77gqzh84t:cmnfcu60s00wxuhv7k3p23jt2	reply	cmnfcu60s00wxuhv7k3p23jt2	1	2026-04-01 01:15:59.709	2026-04-01 01:15:59.709
+cmnfcu6dh00xnuhv7qh8xdej8	cmnfcqle40009uhv72zt9hg5l	follow_created	\N	user	cmnfcqleb000cuhv7bxrx8k4b	1	2026-04-01 01:15:59.813	2026-04-01 01:15:59.813
+cmnfcu8cw00yquhv7ab9zloed	cmnfcqle40009uhv72zt9hg5l	reply_created	reply:cmnfcqle40009uhv72zt9hg5l:cmnfcu88x00yauhv7site56xj	reply	cmnfcu88x00yauhv7site56xj	1	2026-04-01 01:16:02.384	2026-04-01 01:16:02.384
+cmnfcud6q010ruhv7gr11rvvo	cmnfcqle40009uhv72zt9hg5l	reply_created	reply:cmnfcqle40009uhv72zt9hg5l:cmnfcucy7010cuhv7xnd97to4	reply	cmnfcucy7010cuhv7xnd97to4	1	2026-04-01 01:16:08.642	2026-04-01 01:16:08.642
+cmnfcujce0134uhv71piw2su4	cmnfcqle40009uhv72zt9hg5l	reply_created	reply:cmnfcqle40009uhv72zt9hg5l:cmnfcuiuh0130uhv7z8wsjdj1	reply	cmnfcuiuh0130uhv7z8wsjdj1	1	2026-04-01 01:16:16.623	2026-04-01 01:16:16.623
+cmnfcujv7013puhv7afsg24xx	cmnfcqldo0003uhv77gqzh84t	reply_created	reply:cmnfcqldo0003uhv77gqzh84t:cmnfcujhf0138uhv7bwkxjny4	reply	cmnfcujhf0138uhv7bwkxjny4	1	2026-04-01 01:16:17.299	2026-04-01 01:16:17.299
+cmnfcul8t0146uhv798wjynor	cmnfcqldt0005uhv7d4terocy	poll_created	\N	poll	cmnfcuko4013yuhv7mfy7ms33	1	2026-04-01 01:16:19.085	2026-04-01 01:16:19.085
+cmnfcums7014juhv7gyasfxbs	cmnfcqlh1000juhv7dxofh1jg	thread_created	\N	thread	cmnfculps0149uhv7zysc23o3	1	2026-04-01 01:16:21.079	2026-04-01 01:16:21.079
+cmnfcumsh014luhv76tylg7pd	cmnfcqlek000fuhv7ydofzkc9	reply_created	reply:cmnfcqlek000fuhv7ydofzkc9:cmnfcumfa014duhv7xizl67wj	reply	cmnfcumfa014duhv7xizl67wj	1	2026-04-01 01:16:21.089	2026-04-01 01:16:21.089
+cmnfcuqn3015euhv7q1gq2ifd	cmnfcqlek000fuhv7ydofzkc9	reply_created	reply:cmnfcqlek000fuhv7ydofzkc9:cmnfcupze0152uhv7u6hbxpgt	reply	cmnfcupze0152uhv7u6hbxpgt	1	2026-04-01 01:16:26.079	2026-04-01 01:16:26.079
+cmnfcuy8f0185uhv7k6walutl	cmnfcqlek000fuhv7ydofzkc9	reply_created	reply:cmnfcqlek000fuhv7ydofzkc9:cmnfcuy3m017puhv7ssiinuhd	reply	cmnfcuy3m017puhv7ssiinuhd	1	2026-04-01 01:16:35.919	2026-04-01 01:16:35.919
+cmnfcuy8n0187uhv7ms0c9qwk	cmnfcqldo0003uhv77gqzh84t	reply_created	reply:cmnfcqldo0003uhv77gqzh84t:cmnfcuy3p017ruhv774jqceor	reply	cmnfcuy3p017ruhv774jqceor	1	2026-04-01 01:16:35.928	2026-04-01 01:16:35.928
+cmnfcv2bd019vuhv7fxk1o8xf	cmnfcqldo0003uhv77gqzh84t	reply_created	reply:cmnfcqldo0003uhv77gqzh84t:cmnfcv27w0199uhv74y02viaf	reply	cmnfcv27w0199uhv74y02viaf	1	2026-04-01 01:16:41.209	2026-04-01 01:16:41.209
+cmnfcv4sy01ayuhv72yxefmrx	cmnfcqldt0005uhv7d4terocy	thread_created	\N	thread	cmnfcv3zf01abuhv7x6x2e4ft	1	2026-04-01 01:16:44.435	2026-04-01 01:16:44.435
+cmnfcv9ox01d9uhv7n7917v0u	cmnfcqldo0003uhv77gqzh84t	reply_created	reply:cmnfcqldo0003uhv77gqzh84t:cmnfcv9ld01cxuhv7kdauy0u0	reply	cmnfcv9ld01cxuhv7kdauy0u0	1	2026-04-01 01:16:50.769	2026-04-01 01:16:50.769
+cmnfcv9pa01dbuhv7q9mdbe59	cmnfcqlh1000juhv7dxofh1jg	follow_created	\N	user	cmnfcqlh0000iuhv7diftlhgx	1	2026-04-01 01:16:50.782	2026-04-01 01:16:50.782
+cmnfcvb3z01dvuhv7qa95ezqm	cmnfcqldt0005uhv7d4terocy	follow_created	\N	user	cmnfcqldv0006uhv7rhgmfmtl	1	2026-04-01 01:16:52.607	2026-04-01 01:16:52.607
+cmnfcvb4z01dzuhv7h3okiy2g	cmnfcqlek000fuhv7ydofzkc9	reply_created	reply:cmnfcqlek000fuhv7ydofzkc9:cmnfcvaxq01djuhv7o58dhkzy	reply	cmnfcvaxq01djuhv7o58dhkzy	1	2026-04-01 01:16:52.643	2026-04-01 01:16:52.643
+cmnfcvbcw01eauhv7cc5p1w6b	cmnfcqlh1000juhv7dxofh1jg	thread_created	\N	thread	cmnfcvay401dnuhv79tqtx44i	1	2026-04-01 01:16:52.928	2026-04-01 01:16:52.928
+cmnfcvh7l01fquhv74wfjstkv	cmnfcqldt0005uhv7d4terocy	thread_created	\N	thread	cmnfcvfha01fhuhv752mitjiy	1	2026-04-01 01:17:00.511	2026-04-01 01:17:00.511
 cmnf5a2t700hquh3lz4lz7sqy	cmnf572cm0011uh3lv5ilcx95	follow_created	\N	user	cmnf5734g0035uh3ltvw9of2h	1	2026-03-31 21:44:24.763	2026-03-31 21:44:24.763
 cmnf5a5x100i2uh3l2a0o5akf	cmnf572d3001auh3leddsab4m	reply_created	reply:cmnf572d3001auh3leddsab4m:cmnf5a2j700hiuh3lze67urcq	reply	cmnf5a2j700hiuh3lze67urcq	1	2026-03-31 21:44:28.789	2026-03-31 21:44:28.789
 cmnf5aabb00ivuh3lb2p56yqi	cmnf572dg001juh3ltdggx63m	reply_created	reply:cmnf572dg001juh3ltdggx63m:cmnf5a71n00iguh3l8jk552ry	reply	cmnf5a71n00iguh3l8jk552ry	1	2026-03-31 21:44:34.486	2026-03-31 21:44:34.486
@@ -6097,6 +7200,7 @@ cmnf5ah2z00mtuh3l3wpt5q6t	cmnf572de001iuh3lp8ldh93t	follow_created	\N	user	cmnf5
 cmnf5ahjf00mzuh3l6phb50q5	cmnf572cm0011uh3lv5ilcx95	thread_created	\N	thread	cmnf5age600miuh3ldfx1praa	1	2026-03-31 21:44:43.851	2026-03-31 21:44:43.851
 cmnf5ajgf00nwuh3lgorh6g99	cmnf572cz0018uh3lvmz9s9cm	reply_created	reply:cmnf572cz0018uh3lvmz9s9cm:cmnf5aiqe00nauh3ll6snlxe7	reply	cmnf5aiqe00nauh3ll6snlxe7	1	2026-03-31 21:44:46.335	2026-03-31 21:44:46.335
 cmnf5ajij00o6uh3l3efp3iro	cmnf572da001cuh3lnhbhloh5	thread_created	\N	thread	cmnf5ahpo00n1uh3l7tsp5j3b	1	2026-03-31 21:44:46.411	2026-03-31 21:44:46.411
+cmnfct7xh00jeuhv7vtqg4cx9	cmnfcqlh1000juhv7dxofh1jg	reply_created	reply:cmnfcqlh1000juhv7dxofh1jg:cmnfct6z800j4uhv7lcrsoxcc	reply	cmnfct6z800j4uhv7lcrsoxcc	1	2026-04-01 01:15:15.173	2026-04-01 01:15:15.173
 cmnf5ajp200onuh3lb79egbrz	cmnf572de001iuh3lp8ldh93t	thread_created	\N	thread	cmnf5aio900n6uh3ldaxsuwz5	1	2026-03-31 21:44:46.646	2026-03-31 21:44:46.646
 cmnf5amow00pcuh3l4xpnwrty	cmnf572cm0011uh3lv5ilcx95	poll_created	\N	poll	cmnf5alda00p5uh3l7fz2c9v2	1	2026-03-31 21:44:50.528	2026-03-31 21:44:50.528
 cmnf5apos00pnuh3li6s16235	cmnf572cz0018uh3lvmz9s9cm	follow_created	\N	user	cmnf572ew002buh3lz3plaglv	1	2026-03-31 21:44:54.412	2026-03-31 21:44:54.412
@@ -6125,10 +7229,82 @@ cmnf5aztj00uauh3l3ei4xjhy	cmnf572dg001juh3ltdggx63m	thread_created	\N	thread	cmn
 cmnf5azum00ucuh3l5eusj0dp	cmnf572dd001fuh3ljf0lry07	reply_created	reply:cmnf572dd001fuh3ljf0lry07:cmnf5ayf400tiuh3lhpqz6390	reply	cmnf5ayf400tiuh3lhpqz6390	1	2026-03-31 21:45:07.582	2026-03-31 21:45:07.582
 cmnf5b28200uxuh3l0iibzfvt	cmnf572de001guh3l71ks2fz5	reply_created	reply:cmnf572de001guh3l71ks2fz5:cmnf5b0h700uruh3lk1bllxmv	reply	cmnf5b0h700uruh3lk1bllxmv	1	2026-03-31 21:45:10.658	2026-03-31 21:45:10.658
 cmnf5baur00zluh3lxkqeetyt	cmnf572dd001fuh3ljf0lry07	follow_created	\N	user	cmnf572dg001kuh3llzir1a1w	1	2026-03-31 21:45:21.843	2026-03-31 21:45:21.843
+cmnfct82a00jiuhv7wsuyplx2	cmnfcqldt0005uhv7d4terocy	reply_created	reply:cmnfcqldt0005uhv7d4terocy:cmnfct7qo00jauhv7rhhwvlcf	reply	cmnfct7qo00jauhv7rhhwvlcf	1	2026-04-01 01:15:15.347	2026-04-01 01:15:15.347
+cmnfctaz700kiuhv7qh7ei0nn	cmnfcqlek000fuhv7ydofzkc9	follow_created	\N	user	cmnfcqleb000cuhv7bxrx8k4b	1	2026-04-01 01:15:19.123	2026-04-01 01:15:19.123
+cmnfctb2400kmuhv730ej21wo	cmnfcqle40009uhv72zt9hg5l	thread_created	\N	thread	cmnfctab600k4uhv7xlmpcnyw	1	2026-04-01 01:15:19.228	2026-04-01 01:15:19.228
+cmnfctgio00mduhv7sgyvqmwl	cmnfcqldt0005uhv7d4terocy	poll_created	\N	poll	cmnfctgg700lzuhv7kyh418xf	1	2026-04-01 01:15:26.305	2026-04-01 01:15:26.305
+cmnfcto4h00pruhv7w3sw2i3e	cmnfcqle40009uhv72zt9hg5l	follow_created	\N	user	cmnfcqldl0002uhv7conjfxzx	1	2026-04-01 01:15:36.161	2026-04-01 01:15:36.161
+cmnfcto6s00q2uhv7t00hb9sn	cmnfcqldt0005uhv7d4terocy	thread_created	\N	thread	cmnfctnry00p8uhv7h5ob7emt	1	2026-04-01 01:15:36.244	2026-04-01 01:15:36.244
+cmnfcto7900q7uhv7ybbylypk	cmnfcqlek000fuhv7ydofzkc9	reply_created	reply:cmnfcqlek000fuhv7ydofzkc9:cmnfcto3800pnuhv79ohbslg2	reply	cmnfcto3800pnuhv79ohbslg2	1	2026-04-01 01:15:36.261	2026-04-01 01:15:36.261
+cmnfctwha00tvuhv7y4nj6vjl	cmnfcqldo0003uhv77gqzh84t	reply_created	reply:cmnfcqldo0003uhv77gqzh84t:cmnfctw8j00tcuhv7tcryxu02	reply	cmnfctw8j00tcuhv7tcryxu02	1	2026-04-01 01:15:46.99	2026-04-01 01:15:46.99
+cmnfctwhv00tzuhv7c5ju6z18	cmnfcqlek000fuhv7ydofzkc9	thread_created	\N	thread	cmnfctw6r00t8uhv77nhwioyv	1	2026-04-01 01:15:47.012	2026-04-01 01:15:47.012
+cmnfctysc00uduhv76dtl9ycn	cmnfcqldt0005uhv7d4terocy	reply_created	reply:cmnfcqldt0005uhv7d4terocy:cmnfcty8q00u9uhv7v3mugjyy	reply	cmnfcty8q00u9uhv7v3mugjyy	1	2026-04-01 01:15:49.98	2026-04-01 01:15:49.98
+cmnfcu0dc00v6uhv7idnvhp5b	cmnfcqle40009uhv72zt9hg5l	thread_created	\N	thread	cmnfctz7z00upuhv7r5ilgkhu	1	2026-04-01 01:15:52.032	2026-04-01 01:15:52.032
+cmnfcu1bo00vjuhv7vjezu5va	cmnfcqldo0003uhv77gqzh84t	thread_created	\N	thread	cmnfcu0j000v8uhv7zmv9ct6o	1	2026-04-01 01:15:53.268	2026-04-01 01:15:53.268
+cmnfcu30c00w1uhv7zq1q3lzj	cmnfcqle40009uhv72zt9hg5l	follow_created	\N	user	cmnfcqlem000guhv7alb0f7l8	1	2026-04-01 01:15:55.452	2026-04-01 01:15:55.452
+cmnfcu3od00wmuhv7az2rwjui	cmnfcqlek000fuhv7ydofzkc9	follow_created	\N	user	cmnfcqle10008uhv7xleeivtf	1	2026-04-01 01:15:56.317	2026-04-01 01:15:56.317
+cmnfcu69f00x9uhv7uvg7urb4	cmnfcqlek000fuhv7ydofzkc9	reply_created	reply:cmnfcqlek000fuhv7ydofzkc9:cmnfcu5p900wvuhv7m4rb1nrn	reply	cmnfcu5p900wvuhv7m4rb1nrn	1	2026-04-01 01:15:59.667	2026-04-01 01:15:59.667
+cmnfcu6at00xfuhv7se3pqw08	cmnfcqlh1000juhv7dxofh1jg	follow_created	\N	user	cmnfcqlee000duhv7yzusv1k2	1	2026-04-01 01:15:59.717	2026-04-01 01:15:59.717
+cmnfcu8c100ykuhv7slk5gif3	cmnfcqlh1000juhv7dxofh1jg	reply_created	reply:cmnfcqlh1000juhv7dxofh1jg:cmnfcu88800y6uhv7vnr3i56m	reply	cmnfcu88800y6uhv7vnr3i56m	1	2026-04-01 01:16:02.353	2026-04-01 01:16:02.353
+cmnfcu8c900ymuhv7ztzj95k3	cmnfcqldt0005uhv7d4terocy	reply_created	reply:cmnfcqldt0005uhv7d4terocy:cmnfcu88e00y8uhv7dg139brc	reply	cmnfcu88e00y8uhv7dg139brc	1	2026-04-01 01:16:02.361	2026-04-01 01:16:02.361
+cmnfcu8ch00youhv7lsmz1sg5	cmnfcqlek000fuhv7ydofzkc9	reply_created	reply:cmnfcqlek000fuhv7ydofzkc9:cmnfcu88000y4uhv7ssnoslys	reply	cmnfcu88000y4uhv7ssnoslys	1	2026-04-01 01:16:02.369	2026-04-01 01:16:02.369
+cmnfcu8ex00yuuhv7jt5hz25w	cmnfcqldo0003uhv77gqzh84t	thread_created	\N	thread	cmnfcu86p00y0uhv7f32c9yad	1	2026-04-01 01:16:02.457	2026-04-01 01:16:02.457
+cmnfcubd700zxuhv7fzjw7r88	cmnfcqldo0003uhv77gqzh84t	poll_created	\N	poll	cmnfcubbk00zpuhv7dfh7u448	1	2026-04-01 01:16:06.283	2026-04-01 01:16:06.283
+cmnfcvn5601huuhv7gio0m2rz	cmnfcqldt0005uhv7d4terocy	reply_created	reply:cmnfcqldt0005uhv7d4terocy:cmnfcvmyn01hkuhv7jnk6uvz9	reply	cmnfcvmyn01hkuhv7jnk6uvz9	1	2026-04-01 01:17:08.202	2026-04-01 01:17:08.202
+cmnfcvn5m01hwuhv7h4zx6jwe	cmnfcqldo0003uhv77gqzh84t	reply_created	reply:cmnfcqldo0003uhv77gqzh84t:cmnfcvmxg01hiuhv741carpoo	reply	cmnfcvmxg01hiuhv741carpoo	1	2026-04-01 01:17:08.218	2026-04-01 01:17:08.218
+cmnfcvobf01ieuhv7hti2gv0i	cmnfcqlek000fuhv7ydofzkc9	thread_created	\N	thread	cmnfcvnl401i0uhv7e9vcnem2	1	2026-04-01 01:17:09.723	2026-04-01 01:17:09.723
+cmnfcvrmb01k3uhv7xdeeg0u9	cmnfcqle40009uhv72zt9hg5l	poll_created	\N	poll	cmnfcvrk801jsuhv744b0vjmj	1	2026-04-01 01:17:14.003	2026-04-01 01:17:14.003
+cmnfcvrqq01k7uhv71g8wzgbr	cmnfcqldo0003uhv77gqzh84t	thread_created	\N	thread	cmnfcvree01jiuhv7wud9voxw	1	2026-04-01 01:17:14.162	2026-04-01 01:17:14.162
+cmnfcvuhb01lhuhv7wj2e8txr	cmnfcqldo0003uhv77gqzh84t	thread_created	\N	thread	cmnfcvtln01l4uhv74szbnyty	1	2026-04-01 01:17:17.711	2026-04-01 01:17:17.711
+cmnfcvvti01lsuhv7fq9763ov	cmnfcqldt0005uhv7d4terocy	reply_created	reply:cmnfcqldt0005uhv7d4terocy:cmnfcvvdg01lmuhv7csfvp4gg	reply	cmnfcvvdg01lmuhv7csfvp4gg	1	2026-04-01 01:17:19.446	2026-04-01 01:17:19.446
+cmnfcvyxz01nauhv7z0wnuel5	cmnfcqle40009uhv72zt9hg5l	thread_created	\N	thread	cmnfcvyj501mtuhv7ym8os71r	1	2026-04-01 01:17:23.495	2026-04-01 01:17:23.495
+cmnfcw1be01nluhv7rskw6wgv	cmnfcqldt0005uhv7d4terocy	reply_created	reply:cmnfcqldt0005uhv7d4terocy:cmnfcw19401nduhv7wtnrlwrw	reply	cmnfcw19401nduhv7wtnrlwrw	1	2026-04-01 01:17:26.57	2026-04-01 01:17:26.57
+cmnfcw30501o1uhv7jdszvov8	cmnfcqle40009uhv72zt9hg5l	reply_created	reply:cmnfcqle40009uhv72zt9hg5l:cmnfcw2vc01npuhv7i3wjzknt	reply	cmnfcw2vc01npuhv7i3wjzknt	1	2026-04-01 01:17:28.757	2026-04-01 01:17:28.757
+cmnfcw30f01o3uhv74g11s8js	cmnfcqlek000fuhv7ydofzkc9	reply_created	reply:cmnfcqlek000fuhv7ydofzkc9:cmnfcw2xi01nruhv7nud2kpjd	reply	cmnfcw2xi01nruhv7nud2kpjd	1	2026-04-01 01:17:28.767	2026-04-01 01:17:28.767
+cmnfcw5ru01onuhv7l6n3ygx2	cmnfcqle40009uhv72zt9hg5l	reply_created	reply:cmnfcqle40009uhv72zt9hg5l:cmnfcw5p401ofuhv7ft63bozt	reply	cmnfcw5p401ofuhv7ft63bozt	1	2026-04-01 01:17:32.345	2026-04-01 01:17:32.345
 cmnf5ayup00ttuh3lostdm7mj	cmnf572cm0011uh3lv5ilcx95	reply_created	reply:cmnf572cm0011uh3lv5ilcx95:cmnf5axl900tauh3lpff0k5c5	reply	cmnf5axl900tauh3lpff0k5c5	1	2026-03-31 21:45:06.289	2026-03-31 21:45:06.289
 cmnf5b4gr00viuh3llmo536z7	cmnf572cn0013uh3la08lbk2z	reply_created	reply:cmnf572cn0013uh3la08lbk2z:cmnf5b2cy00uzuh3l6kt9gn40	reply	cmnf5b2cy00uzuh3l6kt9gn40	1	2026-03-31 21:45:13.563	2026-03-31 21:45:13.563
 cmnf5b4hs00vouh3lufvybfe1	cmnf572da001cuh3lnhbhloh5	reply_created	reply:cmnf572da001cuh3lnhbhloh5:cmnf5b41z00v1uh3l61246lc3	reply	cmnf5b41z00v1uh3l61246lc3	1	2026-03-31 21:45:13.6	2026-03-31 21:45:13.6
 cmnf5b4s700w2uh3lbzrya53q	cmnf572d3001auh3leddsab4m	reply_created	reply:cmnf572d3001auh3leddsab4m:cmnf5b4cz00vbuh3l4gysybzq	reply	cmnf5b4cz00vbuh3l4gysybzq	1	2026-03-31 21:45:13.975	2026-03-31 21:45:13.975
+cmnfctgme00mhuhv7jig2gmth	cmnfcqldo0003uhv77gqzh84t	thread_created	\N	thread	cmnfctg6500lpuhv7x7txps20	1	2026-04-01 01:15:26.438	2026-04-01 01:15:26.438
+cmnfctih700mzuhv7x8klapjd	cmnfcqle40009uhv72zt9hg5l	thread_created	\N	thread	cmnfcth4t00mouhv79vkbad14	1	2026-04-01 01:15:28.843	2026-04-01 01:15:28.843
+cmnfctihq00n1uhv7f0ba7maw	cmnfcqlek000fuhv7ydofzkc9	follow_created	\N	user	cmnfcqle7000auhv7u5byu7x1	1	2026-04-01 01:15:28.862	2026-04-01 01:15:28.862
+cmnfctk2100o1uhv79qtu6po7	cmnfcqlek000fuhv7ydofzkc9	thread_created	\N	thread	cmnfctjo100neuhv7c9mawaag	1	2026-04-01 01:15:30.889	2026-04-01 01:15:30.889
+cmnfcto2m00phuhv7nx6k50h8	cmnfcqldo0003uhv77gqzh84t	reply_created	reply:cmnfcqldo0003uhv77gqzh84t:cmnfctnna00p4uhv7zbq419kn	reply	cmnfctnna00p4uhv7zbq419kn	1	2026-04-01 01:15:36.094	2026-04-01 01:15:36.094
+cmnfcto2v00pluhv75xoyg25n	cmnfcqlh1000juhv7dxofh1jg	reply_created	reply:cmnfcqlh1000juhv7dxofh1jg:cmnfctnnh00p6uhv70tq8msvb	reply	cmnfctnnh00p6uhv70tq8msvb	1	2026-04-01 01:15:36.103	2026-04-01 01:15:36.103
+cmnfctsf800s2uhv794b8y61u	cmnfcqle40009uhv72zt9hg5l	reply_created	reply:cmnfcqle40009uhv72zt9hg5l:cmnfctsb600riuhv7gf7fs4pt	reply	cmnfctsb600riuhv7gf7fs4pt	1	2026-04-01 01:15:41.732	2026-04-01 01:15:41.732
+cmnfctsh400s8uhv7harg4p1c	cmnfcqldo0003uhv77gqzh84t	reply_created	reply:cmnfcqldo0003uhv77gqzh84t:cmnfctscu00rquhv7qjwlwbck	reply	cmnfctscu00rquhv7qjwlwbck	1	2026-04-01 01:15:41.8	2026-04-01 01:15:41.8
+cmnfctujq00swuhv72k6ntso6	cmnfcqle40009uhv72zt9hg5l	thread_created	\N	thread	cmnfctu1n00smuhv7fxkayvby	1	2026-04-01 01:15:44.486	2026-04-01 01:15:44.486
+cmnfctujv00syuhv7s9sl6l2h	cmnfcqlek000fuhv7ydofzkc9	reply_created	reply:cmnfcqlek000fuhv7ydofzkc9:cmnfctuhn00squhv7o9dck932	reply	cmnfctuhn00squhv7o9dck932	1	2026-04-01 01:15:44.492	2026-04-01 01:15:44.492
+cmnfcub5t00zluhv7x1fuhq5j	cmnfcqldt0005uhv7d4terocy	thread_created	\N	thread	cmnfcuapj00zbuhv7ck4mi4wf	1	2026-04-01 01:16:06.017	2026-04-01 01:16:06.017
+cmnfcub6600znuhv7uzg6nl97	cmnfcqlh1000juhv7dxofh1jg	reply_created	reply:cmnfcqlh1000juhv7dxofh1jg:cmnfcuaz100zfuhv7fbx9j9r2	reply	cmnfcuaz100zfuhv7fbx9j9r2	1	2026-04-01 01:16:06.03	2026-04-01 01:16:06.03
+cmnfcud8t0111uhv7zqzdnunm	cmnfcqldt0005uhv7d4terocy	poll_created	\N	poll	cmnfcud5f010guhv72jr3eoed	1	2026-04-01 01:16:08.717	2026-04-01 01:16:08.717
+cmnfcug4v011yuhv7cx8wqds7	cmnfcqlh1000juhv7dxofh1jg	poll_created	\N	poll	cmnfcufz5011nuhv7902nk1eq	1	2026-04-01 01:16:12.464	2026-04-01 01:16:12.464
+cmnfcui2c012guhv7aqwtebe0	cmnfcqlh1000juhv7dxofh1jg	reply_created	reply:cmnfcqlh1000juhv7dxofh1jg:cmnfcuhtx0126uhv7kis1rkys	reply	cmnfcuhtx0126uhv7kis1rkys	1	2026-04-01 01:16:14.965	2026-04-01 01:16:14.965
+cmnfcui46012muhv73k9x0yw7	cmnfcqldo0003uhv77gqzh84t	reply_created	reply:cmnfcqldo0003uhv77gqzh84t:cmnfcuhv40128uhv7hw5c5x8a	reply	cmnfcuhv40128uhv7hw5c5x8a	1	2026-04-01 01:16:15.03	2026-04-01 01:16:15.03
+cmnfcui4p012ouhv7xnzpft7b	cmnfcqlek000fuhv7ydofzkc9	thread_created	\N	thread	cmnfcuhd10122uhv7bg2ytk7w	1	2026-04-01 01:16:15.049	2026-04-01 01:16:15.049
+cmnfcuqci015cuhv7y70xxq0i	cmnfcqldo0003uhv77gqzh84t	reply_created	reply:cmnfcqldo0003uhv77gqzh84t:cmnfcuprg0150uhv7nzctvkm4	reply	cmnfcuprg0150uhv7nzctvkm4	1	2026-04-01 01:16:25.698	2026-04-01 01:16:25.698
+cmnfcuqn9015guhv704iyvyna	cmnfcqle40009uhv72zt9hg5l	reply_created	reply:cmnfcqle40009uhv72zt9hg5l:cmnfcuq9d0154uhv7ydvf5fuo	reply	cmnfcuq9d0154uhv7ydvf5fuo	1	2026-04-01 01:16:26.085	2026-04-01 01:16:26.085
+cmnfcutn0016auhv79kd5rbzq	cmnfcqlh1000juhv7dxofh1jg	thread_created	\N	thread	cmnfcusx0015uuhv7cyg578r0	1	2026-04-01 01:16:29.964	2026-04-01 01:16:29.964
+cmnfcuwrw017guhv7ypuievpp	cmnfcqlh1000juhv7dxofh1jg	thread_created	\N	thread	cmnfcuwny0174uhv7498p0wk2	1	2026-04-01 01:16:34.028	2026-04-01 01:16:34.028
+cmnfcuy8t0189uhv74euqpp4t	cmnfcqle40009uhv72zt9hg5l	reply_created	reply:cmnfcqle40009uhv72zt9hg5l:cmnfcuy3x017tuhv7z0w1efmw	reply	cmnfcuy3x017tuhv7z0w1efmw	1	2026-04-01 01:16:35.933	2026-04-01 01:16:35.933
+cmnfcv2am019nuhv7cpk3mut5	cmnfcqldt0005uhv7d4terocy	reply_created	reply:cmnfcqldt0005uhv7d4terocy:cmnfcv27c0195uhv72ggicjsc	reply	cmnfcv27c0195uhv72ggicjsc	1	2026-04-01 01:16:41.182	2026-04-01 01:16:41.182
+cmnfcv2b8019tuhv7pdtnb2i6	cmnfcqlek000fuhv7ydofzkc9	reply_created	reply:cmnfcqlek000fuhv7ydofzkc9:cmnfcv27m0197uhv725l9baa4	reply	cmnfcv27m0197uhv725l9baa4	1	2026-04-01 01:16:41.204	2026-04-01 01:16:41.204
+cmnfcv2br019xuhv7x8wkbnz1	cmnfcqle40009uhv72zt9hg5l	thread_created	\N	thread	cmnfcv1uw0191uhv7oup6bju2	1	2026-04-01 01:16:41.223	2026-04-01 01:16:41.223
+cmnfcv4dz01ajuhv7ti1pzq5h	cmnfcqlh1000juhv7dxofh1jg	follow_created	\N	user	cmnfcqle7000auhv7u5byu7x1	1	2026-04-01 01:16:43.895	2026-04-01 01:16:43.895
+cmnfcv4yc01b2uhv7afowylq2	cmnfcqlek000fuhv7ydofzkc9	reply_created	reply:cmnfcqlek000fuhv7ydofzkc9:cmnfcv4hb01anuhv7n84ydpvd	reply	cmnfcv4hb01anuhv7n84ydpvd	1	2026-04-01 01:16:44.629	2026-04-01 01:16:44.629
+cmnfcv4ys01b5uhv75mo8crwf	cmnfcqle40009uhv72zt9hg5l	poll_created	\N	poll	cmnfcv4so01atuhv76xn8mnl3	1	2026-04-01 01:16:44.644	2026-04-01 01:16:44.644
+cmnfcv5mp01bfuhv79v58r28d	cmnfcqlh1000juhv7dxofh1jg	reply_created	reply:cmnfcqlh1000juhv7dxofh1jg:cmnfcv58701bbuhv7bvqdmjy4	reply	cmnfcv58701bbuhv7bvqdmjy4	1	2026-04-01 01:16:45.505	2026-04-01 01:16:45.505
+cmnfcv6l301c5uhv7ajy08v1w	cmnfcqle40009uhv72zt9hg5l	thread_created	\N	thread	cmnfcv5ta01bhuhv7s4r48toh	1	2026-04-01 01:16:46.744	2026-04-01 01:16:46.744
+cmnfcv6lb01c7uhv72u509x2d	cmnfcqldo0003uhv77gqzh84t	thread_created	\N	thread	cmnfcv5zz01bluhv7yri5ij5v	1	2026-04-01 01:16:46.751	2026-04-01 01:16:46.751
+cmnfcv6uf01c9uhv7ry3yciaz	cmnfcqldt0005uhv7d4terocy	follow_created	\N	user	cmnfcqlck0000uhv732mhsi8o	1	2026-04-01 01:16:47.079	2026-04-01 01:16:47.079
+cmnfcv95801cruhv7hg9euu21	cmnfcqldt0005uhv7d4terocy	reply_created	reply:cmnfcqldt0005uhv7d4terocy:cmnfcv8p001cjuhv7wlgnfc5m	reply	cmnfcv8p001cjuhv7wlgnfc5m	1	2026-04-01 01:16:50.061	2026-04-01 01:16:50.061
+cmnfcv9n701d1uhv7nr4ganzl	cmnfcqle40009uhv72zt9hg5l	reply_created	reply:cmnfcqle40009uhv72zt9hg5l:cmnfcv9cf01ctuhv7rmtxxqda	reply	cmnfcv9cf01ctuhv7rmtxxqda	1	2026-04-01 01:16:50.707	2026-04-01 01:16:50.707
+cmnfcvblb01ehuhv70bu401sf	cmnfcqldo0003uhv77gqzh84t	reply_created	reply:cmnfcqldo0003uhv77gqzh84t:cmnfcvbcg01e3uhv74l9qym2r	reply	cmnfcvbcg01e3uhv74l9qym2r	1	2026-04-01 01:16:53.231	2026-04-01 01:16:53.231
+cmnfcvd2x01evuhv7w74sdp9h	cmnfcqldt0005uhv7d4terocy	thread_created	\N	thread	cmnfcvblr01ejuhv73p2wv52s	1	2026-04-01 01:16:55.161	2026-04-01 01:16:55.161
+cmnfcvdw501f2uhv7zp656ucv	cmnfcqlek000fuhv7ydofzkc9	reply_created	reply:cmnfcqlek000fuhv7ydofzkc9:cmnfcvcwu01epuhv7c7bks9fg	reply	cmnfcvcwu01epuhv7c7bks9fg	1	2026-04-01 01:16:56.213	2026-04-01 01:16:56.213
+cmnfcvedt01f8uhv7qzbh5vqk	cmnfcqle40009uhv72zt9hg5l	thread_created	\N	thread	cmnfcvcy101etuhv7n0ew2hwa	1	2026-04-01 01:16:56.849	2026-04-01 01:16:56.849
+cmnfcvf1001ffuhv7c36tfbgw	cmnfcqlh1000juhv7dxofh1jg	reply_created	reply:cmnfcqlh1000juhv7dxofh1jg:cmnfcveoj01fbuhv75wzu7zkf	reply	cmnfcveoj01fbuhv75wzu7zkf	1	2026-04-01 01:16:57.684	2026-04-01 01:16:57.684
 cmnf5b02n00umuh3l3zeb6swb	cmnf572cz0018uh3lvmz9s9cm	follow_created	\N	user	cmnf572dd001euh3lkotv3yzh	1	2026-03-31 21:45:07.871	2026-03-31 21:45:07.871
 cmnf5b4r600vyuh3lx4o9mjx7	cmnf572de001iuh3lp8ldh93t	reply_created	reply:cmnf572de001iuh3lp8ldh93t:cmnf5b45l00v5uh3l54eereg3	reply	cmnf5b45l00v5uh3l54eereg3	1	2026-03-31 21:45:13.938	2026-03-31 21:45:13.938
 cmnf5b4s000w0uh3l2gesglf4	cmnf572d5001buh3lo9yjk2c4	reply_created	reply:cmnf572d5001buh3lo9yjk2c4:cmnf5b46h00v9uh3ll7jujnr8	reply	cmnf5b46h00v9uh3ll7jujnr8	1	2026-03-31 21:45:13.968	2026-03-31 21:45:13.968
@@ -6181,6 +7357,25 @@ cmnf5c9ow01gluh3lavdmm4fn	cmnf572dd001fuh3ljf0lry07	reply_created	reply:cmnf572d
 cmnf5caas01gsuh3lsss7x119	cmnf572d3001auh3leddsab4m	reply_created	reply:cmnf572d3001auh3leddsab4m:cmnf5c8s301g8uh3lc6qwlg87	reply	cmnf5c8s301g8uh3lc6qwlg87	1	2026-03-31 21:46:07.78	2026-03-31 21:46:07.78
 cmnf5cm2r01l2uh3lhphfmu1i	cmnf572dd001fuh3ljf0lry07	reply_created	reply:cmnf572dd001fuh3ljf0lry07:cmnf5cl6301kcuh3lny8golk3	reply	cmnf5cl6301kcuh3lny8golk3	1	2026-03-31 21:46:23.043	2026-03-31 21:46:23.043
 cmnf5cmlg01l6uh3lg73q0whq	cmnf572de001iuh3lp8ldh93t	reply_created	reply:cmnf572de001iuh3lp8ldh93t:cmnf5clgz01kkuh3lovxerbci	reply	cmnf5clgz01kkuh3lovxerbci	1	2026-03-31 21:46:23.717	2026-03-31 21:46:23.717
+cmnfcud6b010nuhv7mw8bgj61	cmnfcqlek000fuhv7ydofzkc9	reply_created	reply:cmnfcqlek000fuhv7ydofzkc9:cmnfcucvh0106uhv76p0epm4b	reply	cmnfcucvh0106uhv76p0epm4b	1	2026-04-01 01:16:08.627	2026-04-01 01:16:08.627
+cmnfcud7i010vuhv7uhdra97b	cmnfcqlh1000juhv7dxofh1jg	thread_created	\N	thread	cmnfcucsg0102uhv7x7oztcvc	1	2026-04-01 01:16:08.67	2026-04-01 01:16:08.67
+cmnfcud81010zuhv7wlv2ywfm	cmnfcqldo0003uhv77gqzh84t	thread_created	\N	thread	cmnfcucuz0104uhv7v1zjjalg	1	2026-04-01 01:16:08.689	2026-04-01 01:16:08.689
+cmnfcug4p011wuhv7tnlmdr4y	cmnfcqldt0005uhv7d4terocy	thread_created	\N	thread	cmnfcufg9011juhv7qw7vd6tk	1	2026-04-01 01:16:12.457	2026-04-01 01:16:12.457
+cmnfcutnn016guhv7umsen8t0	cmnfcqldt0005uhv7d4terocy	reply_created	reply:cmnfcqldt0005uhv7d4terocy:cmnfcutkg015yuhv75i9c86ou	reply	cmnfcutkg015yuhv75i9c86ou	1	2026-04-01 01:16:29.987	2026-04-01 01:16:29.987
+cmnfcutp6016kuhv7hfslcz4q	cmnfcqlek000fuhv7ydofzkc9	reply_created	reply:cmnfcqlek000fuhv7ydofzkc9:cmnfcutl00160uhv7b130qnj0	reply	cmnfcutl00160uhv7b130qnj0	1	2026-04-01 01:16:30.042	2026-04-01 01:16:30.042
+cmnfcutpq016puhv7oyylq2xp	cmnfcqldo0003uhv77gqzh84t	reply_created	reply:cmnfcqldo0003uhv77gqzh84t:cmnfcutld0162uhv7h1lkuuc1	reply	cmnfcutld0162uhv7h1lkuuc1	1	2026-04-01 01:16:30.063	2026-04-01 01:16:30.063
+cmnfcv2a4019luhv7otuvmytu	cmnfcqlh1000juhv7dxofh1jg	follow_created	\N	user	cmnfcqldr0004uhv7haksqth1	1	2026-04-01 01:16:41.164	2026-04-01 01:16:41.164
+cmnfcv6d201bvuhv711m4xddh	cmnfcqlek000fuhv7ydofzkc9	reply_created	reply:cmnfcqlek000fuhv7ydofzkc9:cmnfcv63b01bruhv7fp3w1nr1	reply	cmnfcv63b01bruhv7fp3w1nr1	1	2026-04-01 01:16:46.454	2026-04-01 01:16:46.454
+cmnfcvn7k01hyuhv7crmhvrdz	cmnfcqle40009uhv72zt9hg5l	reply_created	reply:cmnfcqle40009uhv72zt9hg5l:cmnfcvn2g01hmuhv7hqus2abz	reply	cmnfcvn2g01hmuhv7hqus2abz	1	2026-04-01 01:17:08.288	2026-04-01 01:17:08.288
+cmnfcvss801kluhv7zdas7apc	cmnfcqldt0005uhv7d4terocy	reply_created	reply:cmnfcqldt0005uhv7d4terocy:cmnfcvsad01kduhv7n5aibf6s	reply	cmnfcvsad01kduhv7n5aibf6s	1	2026-04-01 01:17:15.512	2026-04-01 01:17:15.512
+cmnfcvyjc01mvuhv72lsd8rbx	cmnfcqlek000fuhv7ydofzkc9	reply_created	reply:cmnfcqlek000fuhv7ydofzkc9:cmnfcvy5601mnuhv7vwxc719l	reply	cmnfcvy5601mnuhv7vwxc719l	1	2026-04-01 01:17:22.968	2026-04-01 01:17:22.968
+cmnfcwb5601pbuhv74omrde43	cmnfcqldt0005uhv7d4terocy	reply_created	reply:cmnfcqldt0005uhv7d4terocy:cmnfcwb1v01p5uhv7n4y1w02m	reply	cmnfcwb1v01p5uhv7n4y1w02m	1	2026-04-01 01:17:39.306	2026-04-01 01:17:39.306
+cmnfcwblw01pfuhv7dwzhnxz7	cmnfcqlh1000juhv7dxofh1jg	reply_created	reply:cmnfcqlh1000juhv7dxofh1jg:cmnfcwb3001p7uhv7tnk8k2wo	reply	cmnfcwb3001p7uhv7tnk8k2wo	1	2026-04-01 01:17:39.908	2026-04-01 01:17:39.908
+cmnfcwg9e01qouhv7c87z1pvf	cmnfcqlh1000juhv7dxofh1jg	poll_created	\N	poll	cmnfcwg6a01qhuhv7xa1k5wwa	1	2026-04-01 01:17:45.938	2026-04-01 01:17:45.938
+cmnfcwhat01qxuhv73yaiopf4	cmnfcqlh1000juhv7dxofh1jg	thread_created	\N	thread	cmnfcwh7h01qruhv78t39a5li	1	2026-04-01 01:17:47.285	2026-04-01 01:17:47.285
+cmnfcwie701r9uhv73to5lkdh	cmnfcqlh1000juhv7dxofh1jg	poll_created	\N	poll	cmnfcwicj01r2uhv718nz2h2c	1	2026-04-01 01:17:48.703	2026-04-01 01:17:48.703
+cmnfcwj1101rguhv77coi8ij8	cmnfcqlh1000juhv7dxofh1jg	follow_created	\N	user	cmnfcqlek000fuhv7ydofzkc9	1	2026-04-01 01:17:49.525	2026-04-01 01:17:49.525
+cmnfcv0nf018xuhv7ivoujm1y	cmnfcqldt0005uhv7d4terocy	poll_voted	poll_vote:cmnfcubbk00zpuhv7dfh7u448	poll	cmnfcubbk00zpuhv7dfh7u448	2	2026-04-01 01:18:48.669	2026-04-01 01:18:48.679
 cmnf5btdz017euh3lbh0nu19s	cmnf572dg001juh3ltdggx63m	reply_created	reply:cmnf572dg001juh3ltdggx63m:cmnf5brm3017auh3lnr4nsuyg	reply	cmnf5brm3017auh3lnr4nsuyg	1	2026-03-31 21:45:45.863	2026-03-31 21:45:45.863
 cmnf5budw018buh3ljex6cgqq	cmnf572da001cuh3lnhbhloh5	follow_created	\N	user	cmnf572fh002nuh3lhe3q2tzb	1	2026-03-31 21:45:47.156	2026-03-31 21:45:47.156
 cmnf5bue5018duh3l7sknnnua	cmnf572cn0013uh3la08lbk2z	reply_created	reply:cmnf572cn0013uh3la08lbk2z:cmnf5btje017guh3l7ieebosb	reply	cmnf5btje017guh3l7ieebosb	1	2026-03-31 21:45:47.165	2026-03-31 21:45:47.165
@@ -6194,19 +7389,44 @@ cmnf5c4mh01eruh3ly9dxwofu	cmnf572d5001buh3lo9yjk2c4	reply_created	reply:cmnf572d
 cmnf5c70001fiuh3lcyh6nthc	cmnf572cn0013uh3la08lbk2z	follow_created	\N	user	cmnf5734n003buh3l9703h19z	1	2026-03-31 21:46:03.504	2026-03-31 21:46:03.504
 cmnf5c84501fsuh3l7ahxa9qn	cmnf572de001iuh3lp8ldh93t	reply_created	reply:cmnf572de001iuh3lp8ldh93t:cmnf5c6gb01f8uh3lp8g5k6n7	reply	cmnf5c6gb01f8uh3lp8g5k6n7	1	2026-03-31 21:46:04.949	2026-03-31 21:46:04.949
 cmnf5clje01kquh3loghtrnor	cmnf572d5001buh3lo9yjk2c4	thread_created	\N	thread	cmnf5cip101jhuh3lll8dthav	1	2026-03-31 21:46:22.345	2026-03-31 21:46:22.345
+cmnfcvht201g5uhv7xvgjde47	cmnfcqldo0003uhv77gqzh84t	reply_created	reply:cmnfcqldo0003uhv77gqzh84t:cmnfcvhen01fyuhv7ltu67guj	reply	cmnfcvhen01fyuhv7ltu67guj	1	2026-04-01 01:17:01.286	2026-04-01 01:17:01.286
+cmnfcvi1a01gbuhv7qugqfuc6	cmnfcqlek000fuhv7ydofzkc9	thread_created	\N	thread	cmnfcvh7s01fsuhv75hy6do6w	1	2026-04-01 01:17:01.582	2026-04-01 01:17:01.582
+cmnfcvi2g01gduhv7xyh73ljf	cmnfcqle40009uhv72zt9hg5l	thread_created	\N	thread	cmnfcvh8801fuuhv7infcc7ec	1	2026-04-01 01:17:01.624	2026-04-01 01:17:01.624
+cmnfcvkwu01h4uhv7z8cyrvkk	cmnfcqle40009uhv72zt9hg5l	poll_created	\N	poll	cmnfcvkuw01gtuhv761yn7ijc	1	2026-04-01 01:17:05.31	2026-04-01 01:17:05.31
+cmnfcvkx901h6uhv7mg55fzht	cmnfcqlh1000juhv7dxofh1jg	reply_created	reply:cmnfcqlh1000juhv7dxofh1jg:cmnfcvkuh01gpuhv7cr5x1t26	reply	cmnfcvkuh01gpuhv7cr5x1t26	1	2026-04-01 01:17:05.325	2026-04-01 01:17:05.325
+cmnfcvpxd01ivuhv76zt66nb8	cmnfcqldo0003uhv77gqzh84t	thread_created	\N	thread	cmnfcvosy01iguhv7s5xvb19g	1	2026-04-01 01:17:11.809	2026-04-01 01:17:11.809
+cmnfcvpz401j5uhv7jl0ajry2	cmnfcqlh1000juhv7dxofh1jg	reply_created	reply:cmnfcqlh1000juhv7dxofh1jg:cmnfcvpsd01ipuhv7y5wyn7sj	reply	cmnfcvpsd01ipuhv7y5wyn7sj	1	2026-04-01 01:17:11.872	2026-04-01 01:17:11.872
+cmnfcvren01jmuhv7kgs8a6sy	cmnfcqldt0005uhv7d4terocy	reply_created	reply:cmnfcqldt0005uhv7d4terocy:cmnfcvqsq01jeuhv74fetwfdl	reply	cmnfcvqsq01jeuhv74fetwfdl	1	2026-04-01 01:17:13.727	2026-04-01 01:17:13.727
+cmnfcvrfl01jquhv75yzf9ap8	cmnfcqlek000fuhv7ydofzkc9	thread_created	\N	thread	cmnfcvqp701jauhv7l7v1i5pi	1	2026-04-01 01:17:13.761	2026-04-01 01:17:13.761
 cmnf5bum8018zuh3l0f4yvdkc	cmnf572dd001fuh3ljf0lry07	reply_created	reply:cmnf572dd001fuh3ljf0lry07:cmnf5bu42017wuh3l9p1uw2r8	reply	cmnf5bu42017wuh3l9p1uw2r8	1	2026-03-31 21:45:47.456	2026-03-31 21:45:47.456
 cmnf5buuh019auh3l6l6evq6a	cmnf572cz0018uh3lvmz9s9cm	reply_created	reply:cmnf572cz0018uh3lvmz9s9cm:cmnf5bug1018luh3l466o56ki	reply	cmnf5bug1018luh3l466o56ki	1	2026-03-31 21:45:47.753	2026-03-31 21:45:47.753
 cmnf5buyj019fuh3l5pvochr4	cmnf572d5001buh3lo9yjk2c4	reply_created	reply:cmnf572d5001buh3lo9yjk2c4:cmnf5buhq018tuh3l27hwuffy	reply	cmnf5buhq018tuh3l27hwuffy	1	2026-03-31 21:45:47.899	2026-03-31 21:45:47.899
 cmnf5by0o01aguh3lhqix1bgs	cmnf572de001guh3l71ks2fz5	follow_created	\N	user	cmnf572eb001wuh3lgy6hz6te	1	2026-03-31 21:45:51.864	2026-03-31 21:45:51.864
 cmnf5byec01ayuh3l9kfmhkjp	cmnf572cn0013uh3la08lbk2z	follow_created	\N	user	cmnf5734h0037uh3lmzxdes2n	1	2026-03-31 21:45:52.357	2026-03-31 21:45:52.357
 cmnf5bym501buuh3l7mwjivnh	cmnf572cm0011uh3lv5ilcx95	reply_created	reply:cmnf572cm0011uh3lv5ilcx95:cmnf5by2f01asuh3ltzkwpytr	reply	cmnf5by2f01asuh3ltzkwpytr	1	2026-03-31 21:45:52.637	2026-03-31 21:45:52.637
+cmnfcvkvk01gyuhv7mg0zgcr7	cmnfcqldt0005uhv7d4terocy	reply_created	reply:cmnfcqldt0005uhv7d4terocy:cmnfcvkh701gjuhv7d7i9xhlu	reply	cmnfcvkh701gjuhv7d7i9xhlu	1	2026-04-01 01:17:05.264	2026-04-01 01:17:05.264
+cmnfcvkz901heuhv74lbvirbi	cmnfcqlek000fuhv7ydofzkc9	thread_created	\N	thread	cmnfcvkkb01gluhv72cpb8yey	1	2026-04-01 01:17:05.397	2026-04-01 01:17:05.397
 cmnf5ccln01hruh3l9cjhs1zq	cmnf572cn0013uh3la08lbk2z	reply_created	reply:cmnf572cn0013uh3la08lbk2z:cmnf5cb9401gyuh3l1rrdimmv	reply	cmnf5cb9401gyuh3l1rrdimmv	1	2026-03-31 21:46:10.763	2026-03-31 21:46:10.763
 cmnf5cgv201iquh3ltjqkagie	cmnf572da001cuh3lnhbhloh5	thread_created	\N	thread	cmnf5ccm801htuh3lhjwpn823	1	2026-03-31 21:46:16.286	2026-03-31 21:46:16.286
 cmnf5chtk01j5uh3lnafdpktw	cmnf572d3001auh3leddsab4m	follow_created	\N	user	cmnf572et0028uh3ltviy1k10	1	2026-03-31 21:46:17.528	2026-03-31 21:46:17.528
+cmnfcvpxu01ixuhv77x65q0id	cmnfcqle40009uhv72zt9hg5l	thread_created	\N	thread	cmnfcvowb01ijuhv71k0hkybe	1	2026-04-01 01:17:11.825	2026-04-01 01:17:11.825
 cmnf5ck0q01k1uh3l3wc894eh	cmnf572cn0013uh3la08lbk2z	reply_created	reply:cmnf572cn0013uh3la08lbk2z:cmnf5ciqn01jnuh3lgv89p14z	reply	cmnf5ciqn01jnuh3lgv89p14z	1	2026-03-31 21:46:20.378	2026-03-31 21:46:20.378
 cmnf5ck1701k3uh3lniw5ruan	cmnf572de001guh3l71ks2fz5	reply_created	reply:cmnf572de001guh3l71ks2fz5:cmnf5cir201jpuh3l3qdgnsax	reply	cmnf5cir201jpuh3l3qdgnsax	1	2026-03-31 21:46:20.395	2026-03-31 21:46:20.395
+cmnfcvtkm01kyuhv7dglgho15	cmnfcqle40009uhv72zt9hg5l	reply_created	reply:cmnfcqle40009uhv72zt9hg5l:cmnfcvt4g01knuhv7y1zmz5r6	reply	cmnfcvt4g01knuhv7y1zmz5r6	1	2026-04-01 01:17:16.534	2026-04-01 01:17:16.534
+cmnfcvtl101l0uhv7xvy0lf5m	cmnfcqlh1000juhv7dxofh1jg	follow_created	\N	user	cmnfcqldj0001uhv7hfyotibv	1	2026-04-01 01:17:16.549	2026-04-01 01:17:16.549
+cmnfcvtmu01l8uhv7id40ufjo	cmnfcqlek000fuhv7ydofzkc9	thread_created	\N	thread	cmnfcvsrf01khuhv7bsb1gb7v	1	2026-04-01 01:17:16.614	2026-04-01 01:17:16.614
+cmnfcvw8h01lwuhv7fwgw5aba	cmnfcqlh1000juhv7dxofh1jg	reply_created	reply:cmnfcqlh1000juhv7dxofh1jg:cmnfcvvn301lquhv7ekurgvpe	reply	cmnfcvvn301lquhv7ekurgvpe	1	2026-04-01 01:17:19.985	2026-04-01 01:17:19.985
+cmnfcvwoy01m8uhv7eviwwmgy	cmnfcqlek000fuhv7ydofzkc9	poll_created	\N	poll	cmnfcvwh401lyuhv7h65t7ttg	1	2026-04-01 01:17:20.578	2026-04-01 01:17:20.578
+cmnfcvxbq01mjuhv7moyz3cdy	cmnfcqle40009uhv72zt9hg5l	reply_created	reply:cmnfcqle40009uhv72zt9hg5l:cmnfcvwt001meuhv76fuaokyq	reply	cmnfcvwt001meuhv76fuaokyq	1	2026-04-01 01:17:21.398	2026-04-01 01:17:21.398
+cmnfcvyn101n1uhv7jb5lymvs	cmnfcqldt0005uhv7d4terocy	reply_created	reply:cmnfcqldt0005uhv7d4terocy:cmnfcvyih01mruhv7ftxl67iu	reply	cmnfcvyih01mruhv7ftxl67iu	1	2026-04-01 01:17:23.101	2026-04-01 01:17:23.101
+cmnfcw31601o5uhv79glmnmog	cmnfcqlh1000juhv7dxofh1jg	reply_created	reply:cmnfcqlh1000juhv7dxofh1jg:cmnfcw2y301ntuhv7322xxtbi	reply	cmnfcw2y301ntuhv7322xxtbi	1	2026-04-01 01:17:28.794	2026-04-01 01:17:28.794
 cmnf5c1h201d2uh3ldxxaz95k	cmnf572de001guh3l71ks2fz5	poll_voted	poll_vote:cmnf5aqdd00pxuh3l7q2civ9t	poll	cmnf5aqdd00pxuh3l7q2civ9t	7	2026-03-31 21:58:09.037	2026-03-31 21:58:09.043
 cmnf5ajne00oeuh3l2ey32ygx	cmnf572d5001buh3lo9yjk2c4	poll_voted	poll_vote:cmnf59hst00acuh3lueu2ef3e	poll	cmnf59hst00acuh3lueu2ef3e	10	2026-03-31 21:58:46.749	2026-03-31 21:58:46.754
+cmnfcw5u001oruhv7j09d8ftm	cmnfcqldt0005uhv7d4terocy	thread_created	\N	thread	cmnfcw5pb01ohuhv7g7qv2w9j	1	2026-04-01 01:17:32.424	2026-04-01 01:17:32.424
+cmnfcw8uz01p2uhv7e2bdejc6	cmnfcqlek000fuhv7ydofzkc9	thread_created	\N	thread	cmnfcw86q01owuhv7gaaksf3t	1	2026-04-01 01:17:36.347	2026-04-01 01:17:36.347
+cmnfcwdw201puuhv7v293p0bm	cmnfcqlek000fuhv7ydofzkc9	poll_created	\N	poll	cmnfcwd1d01pnuhv7ois2cuxh	1	2026-04-01 01:17:42.866	2026-04-01 01:17:42.866
+cmnfcweq601q3uhv7ne1p2dpu	cmnfcqlh1000juhv7dxofh1jg	thread_created	\N	thread	cmnfcwefc01pwuhv7aroktu7j	1	2026-04-01 01:17:43.95	2026-04-01 01:17:43.95
+cmnfcwfmq01qcuhv7tjf9dter	cmnfcqlek000fuhv7ydofzkc9	reply_created	reply:cmnfcqlek000fuhv7ydofzkc9:cmnfcwfba01q8uhv72mytjzgz	reply	cmnfcwfba01q8uhv72mytjzgz	1	2026-04-01 01:17:45.122	2026-04-01 01:17:45.122
 cmnf5by2a01aquh3l5ukpxop5	cmnf572da001cuh3lnhbhloh5	reply_created	reply:cmnf572da001cuh3lnhbhloh5:cmnf5bx6n01a2uh3lu06xktqc	reply	cmnf5bx6n01a2uh3lu06xktqc	1	2026-03-31 21:45:51.922	2026-03-31 21:45:51.922
 cmnf5by2m01auuh3lr2asc86r	cmnf572dg001juh3ltdggx63m	reply_created	reply:cmnf572dg001juh3ltdggx63m:cmnf5bwzs019yuh3l1698im3f	reply	cmnf5bwzs019yuh3l1698im3f	1	2026-03-31 21:45:51.934	2026-03-31 21:45:51.934
 cmnf5bypo01byuh3llj0wle7z	cmnf572dd001fuh3ljf0lry07	reply_created	reply:cmnf572dd001fuh3ljf0lry07:cmnf5byej01b0uh3lcrvplw02	reply	cmnf5byej01b0uh3lcrvplw02	1	2026-03-31 21:45:52.764	2026-03-31 21:45:52.764
@@ -6228,6 +7448,7 @@ cmnf5cn8f01lcuh3lbi2aqv74	cmnf572cm0011uh3lv5ilcx95	reply_created	reply:cmnf572c
 cmnf5coek01lsuh3lkt7l0tsj	cmnf572da001cuh3lnhbhloh5	reply_created	reply:cmnf572da001cuh3lnhbhloh5:cmnf5cn2b01lauh3lrvtn5w44	reply	cmnf5cn2b01lauh3lrvtn5w44	1	2026-03-31 21:46:26.06	2026-03-31 21:46:26.06
 cmnf5comj01m8uh3lnrnz94k1	cmnf572cn0013uh3la08lbk2z	follow_created	\N	user	cmnf572fk002ouh3l8xd7ub3g	1	2026-03-31 21:46:26.347	2026-03-31 21:46:26.347
 cmnf5cov501meuh3lw3j05cha	cmnf572cz0018uh3lvmz9s9cm	reply_created	reply:cmnf572cz0018uh3lvmz9s9cm:cmnf5cny701louh3lzb0krumt	reply	cmnf5cny701louh3lzb0krumt	1	2026-03-31 21:46:26.657	2026-03-31 21:46:26.657
+cmnfcwlah01s4uhv70x7w4yo1	cmnfcqleb000cuhv7bxrx8k4b	reply_created	reply:cmnfcqleb000cuhv7bxrx8k4b:cmnfcwl3201rkuhv7oykvw7r1	reply	cmnfcwl3201rkuhv7oykvw7r1	1	2026-04-01 01:17:52.457	2026-04-01 01:17:52.457
 cmnf5cpce01mruh3lhab8w4ay	cmnf572de001guh3l71ks2fz5	reply_created	reply:cmnf572de001guh3l71ks2fz5:cmnf5coil01m0uh3lvijhag1w	reply	cmnf5coil01m0uh3lvijhag1w	1	2026-03-31 21:46:27.278	2026-03-31 21:46:27.278
 cmnf5cr1901nbuh3lga7woypk	cmnf572d5001buh3lo9yjk2c4	poll_created	\N	poll	cmnf5cqj001n0uh3ltb4yb4b9	1	2026-03-31 21:46:29.47	2026-03-31 21:46:29.47
 cmnf5cr5h01nduh3lf0wcgtz4	cmnf572d3001auh3leddsab4m	follow_created	\N	user	cmnf572cy0016uh3l5csoeb1k	1	2026-03-31 21:46:29.621	2026-03-31 21:46:29.621
@@ -6301,17 +7522,38 @@ cmnf5dqn3026ouh3lm4zoppoq	cmnf572ds001muh3lymk98he9	reply_created	reply:cmnf572d
 cmnf5dqug026wuh3l3von2obw	cmnf5734d0032uh3llttnseos	follow_created	\N	user	cmnf572bn000juh3l8s2e24l0	1	2026-03-31 21:47:15.88	2026-03-31 21:47:15.88
 cmnf5dvic0294uh3lmjerahlj	cmnf572ds001muh3lymk98he9	reply_created	reply:cmnf572ds001muh3lymk98he9:cmnf5duq2028iuh3l0vz5r78z	reply	cmnf5duq2028iuh3l0vz5r78z	1	2026-03-31 21:47:21.924	2026-03-31 21:47:21.924
 cmnf5dvir0296uh3lk1rmax2s	cmnf5734d0032uh3llttnseos	reply_created	reply:cmnf5734d0032uh3llttnseos:cmnf5duqq028muh3lnvuuwoyy	reply	cmnf5duqq028muh3lnvuuwoyy	1	2026-03-31 21:47:21.939	2026-03-31 21:47:21.939
+cmnfcwlau01s6uhv7ec3aozez	cmnfcqldy0007uhv7gx0b561v	reply_created	reply:cmnfcqldy0007uhv7gx0b561v:cmnfcwl3o01rmuhv762rcwom0	reply	cmnfcwl3o01rmuhv762rcwom0	1	2026-04-01 01:17:52.47	2026-04-01 01:17:52.47
+cmnfcwpxr01tyuhv7x4efftbk	cmnfcqleb000cuhv7bxrx8k4b	reply_created	reply:cmnfcqleb000cuhv7bxrx8k4b:cmnfcwpl901tkuhv7s6mk6et0	reply	cmnfcwpl901tkuhv7s6mk6et0	1	2026-04-01 01:17:58.479	2026-04-01 01:17:58.479
+cmnfcwq0201u4uhv7cnxqwra9	cmnfcqle10008uhv7xleeivtf	reply_created	reply:cmnfcqle10008uhv7xleeivtf:cmnfcwpw901tuuhv79o7n4x70	reply	cmnfcwpw901tuuhv79o7n4x70	1	2026-04-01 01:17:58.562	2026-04-01 01:17:58.562
+cmnfcwq5301uauhv7jicyw3hs	cmnfcqldy0007uhv7gx0b561v	thread_created	\N	thread	cmnfcwpvf01tmuhv7kpsy0slf	1	2026-04-01 01:17:58.743	2026-04-01 01:17:58.743
+cmnfcwt7k01uvuhv7xc1vwbgr	cmnfcqldv0006uhv7rhgmfmtl	reply_created	reply:cmnfcqldv0006uhv7rhgmfmtl:cmnfcwsme01umuhv75dyvfs9x	reply	cmnfcwsme01umuhv75dyvfs9x	1	2026-04-01 01:18:02.72	2026-04-01 01:18:02.72
+cmnfcwt8s01uzuhv70bfp8tqb	cmnfcqle9000buhv78pneu9lv	poll_created	\N	poll	cmnfcwt6x01uquhv7safl0ui9	1	2026-04-01 01:18:02.764	2026-04-01 01:18:02.764
+cmnfcwtq101vbuhv75y2btlkc	cmnfcqldy0007uhv7gx0b561v	poll_created	\N	poll	cmnfcwtnp01v4uhv7ljujevib	1	2026-04-01 01:18:03.385	2026-04-01 01:18:03.385
+cmnfcwwfd01w6uhv727qhqnqn	cmnfcqle10008uhv7xleeivtf	reply_created	reply:cmnfcqle10008uhv7xleeivtf:cmnfcwway01viuhv7xww3l1l2	reply	cmnfcwway01viuhv7xww3l1l2	1	2026-04-01 01:18:06.889	2026-04-01 01:18:06.889
 cmnf5dn5a024ouh3lphcssfi0	cmnf5734d0032uh3llttnseos	reply_created	reply:cmnf5734d0032uh3llttnseos:cmnf5dmoo023ouh3lqrnxka55	reply	cmnf5dmoo023ouh3lqrnxka55	1	2026-03-31 21:47:11.086	2026-03-31 21:47:11.086
 cmnf5dpxh0265uh3ll6tfvrr1	cmnf572dz001puh3lzyxc06lw	follow_created	\N	user	cmnf5734d0032uh3llttnseos	1	2026-03-31 21:47:14.694	2026-03-31 21:47:14.694
 cmnf5dvr9029iuh3lx9w4p8iu	cmnf572dg001kuh3llzir1a1w	reply_created	reply:cmnf572dg001kuh3llzir1a1w:cmnf5duw4028suh3l8u8j7u88	reply	cmnf5duw4028suh3l8u8j7u88	1	2026-03-31 21:47:22.245	2026-03-31 21:47:22.245
 cmnf5dwsq029ouh3l9zq7g8jz	cmnf572dz001puh3lzyxc06lw	thread_created	\N	thread	cmnf5dui1028euh3legaa19ib	1	2026-03-31 21:47:23.592	2026-03-31 21:47:23.592
+cmnfcwlbx01s8uhv7qscc1c22	cmnfcqle9000buhv78pneu9lv	reply_created	reply:cmnfcqle9000buhv78pneu9lv:cmnfcwl6201rouhv76d364wpa	reply	cmnfcwl6201rouhv76d364wpa	1	2026-04-01 01:17:52.509	2026-04-01 01:17:52.509
+cmnfcwlcr01sauhv7wh6i33rr	cmnfcqle10008uhv7xleeivtf	poll_voted	poll_vote:cmnfcv4so01atuhv76xn8mnl3	poll	cmnfcv4so01atuhv76xn8mnl3	1	2026-04-01 01:17:52.539	2026-04-01 01:17:52.539
+cmnfcwnqq01t1uhv72bkq8msd	cmnfcqldy0007uhv7gx0b561v	follow_created	\N	user	cmnfcqlee000duhv7yzusv1k2	1	2026-04-01 01:17:55.634	2026-04-01 01:17:55.634
+cmnfcwnrp01t9uhv7w9tfzukx	cmnfcqle10008uhv7xleeivtf	thread_created	\N	thread	cmnfcwni001spuhv7uyouoj6k	1	2026-04-01 01:17:55.669	2026-04-01 01:17:55.669
+cmnfcwwek01w2uhv7a8bb5v1a	cmnfcqleb000cuhv7bxrx8k4b	reply_created	reply:cmnfcqleb000cuhv7bxrx8k4b:cmnfcww8z01veuhv730tfkhvz	reply	cmnfcww8z01veuhv730tfkhvz	1	2026-04-01 01:18:06.861	2026-04-01 01:18:06.861
+cmnfcwwg501w8uhv7nct3st2i	cmnfcqldv0006uhv7rhgmfmtl	poll_voted	poll_vote:cmnfctq8x00qvuhv7xk5byjvk	poll	cmnfctq8x00qvuhv7xk5byjvk	1	2026-04-01 01:18:06.917	2026-04-01 01:18:06.917
 cmnf5dqcq026duh3lz1lwuteb	cmnf572dz001quh3l20nv7abr	reply_created	reply:cmnf572dz001quh3l20nv7abr:cmnf5dpgw025nuh3ljt426rv1	reply	cmnf5dpgw025nuh3ljt426rv1	1	2026-03-31 21:47:15.242	2026-03-31 21:47:15.242
 cmnf5dr8l0276uh3lgoydx8a4	cmnf572cz0019uh3lpbkbeqcq	thread_created	\N	thread	cmnf5dph3025puh3lptgv1j4q	1	2026-03-31 21:47:16.39	2026-03-31 21:47:16.39
 cmnf5dsz7027yuh3lu3ddo6uj	cmnf572ds001nuh3lown562fs	reply_created	reply:cmnf572ds001nuh3lown562fs:cmnf5drsu027huh3lvxj792x0	reply	cmnf5drsu027huh3lvxj792x0	1	2026-03-31 21:47:18.643	2026-03-31 21:47:18.643
 cmnf5dwq2029muh3lhw00okme	cmnf572dd001euh3lkotv3yzh	reply_created	reply:cmnf572dd001euh3lkotv3yzh:cmnf5dv460290uh3l2kp96bn3	reply	cmnf5dv460290uh3l2kp96bn3	1	2026-03-31 21:47:23.498	2026-03-31 21:47:23.498
+cmnfcwnr101t3uhv7asppud62	cmnfcqldv0006uhv7rhgmfmtl	reply_created	reply:cmnfcqldv0006uhv7rhgmfmtl:cmnfcwnoo01stuhv7sf495r0s	reply	cmnfcwnoo01stuhv7sf495r0s	1	2026-04-01 01:17:55.645	2026-04-01 01:17:55.645
+cmnfcwwey01w4uhv73ve5ij57	cmnfcqldy0007uhv7gx0b561v	follow_created	\N	user	cmnfcqlck0000uhv732mhsi8o	1	2026-04-01 01:18:06.874	2026-04-01 01:18:06.874
 cmnf5dr8g0274uh3lpxrsbepu	cmnf572dg001kuh3llzir1a1w	reply_created	reply:cmnf572dg001kuh3llzir1a1w:cmnf5dqcy026fuh3lo3zfvrwz	reply	cmnf5dqcy026fuh3lo3zfvrwz	1	2026-03-31 21:47:16.384	2026-03-31 21:47:16.384
 cmnf5dtcv0284uh3luoi5dho9	cmnf572de001huh3le101cf9s	reply_created	reply:cmnf572de001huh3le101cf9s:cmnf5dsbf027quh3lmvk4ehsj	reply	cmnf5dsbf027quh3lmvk4ehsj	1	2026-03-31 21:47:19.135	2026-03-31 21:47:19.135
+cmnfcwpwi01twuhv71znq80ca	cmnfcqle9000buhv78pneu9lv	thread_created	\N	thread	cmnfcwp8701tguhv7dz3ksjjy	1	2026-04-01 01:17:58.434	2026-04-01 01:17:58.434
+cmnfcwwc801vsuhv7yjv5wy0s	cmnfcqle9000buhv78pneu9lv	follow_created	\N	user	cmnfcqldt0005uhv7d4terocy	1	2026-04-01 01:18:06.776	2026-04-01 01:18:06.776
 cmnf5dur3028ouh3lmk3mkft7	cmnf572di001luh3lrsinyetf	reply_created	reply:cmnf572di001luh3lrsinyetf:cmnf5dtcn0282uh3l7tvp0qp3	reply	cmnf5dtcn0282uh3l7tvp0qp3	1	2026-03-31 21:47:20.943	2026-03-31 21:47:20.943
+cmnfcwzpu01wruhv7298hesgk	cmnfcqle9000buhv78pneu9lv	reply_created	reply:cmnfcqle9000buhv78pneu9lv:cmnfcwyv101wjuhv7g4fiaj6k	reply	cmnfcwyv101wjuhv7g4fiaj6k	1	2026-04-01 01:18:11.154	2026-04-01 01:18:11.154
+cmnfcwzu001x1uhv7upswcgqi	cmnfcqldy0007uhv7gx0b561v	poll_voted	poll_vote:cmnfcwicj01r2uhv718nz2h2c	poll	cmnfcwicj01r2uhv718nz2h2c	1	2026-04-01 01:18:11.304	2026-04-01 01:18:11.304
+cmnfcx1tf01xvuhv72ha17qft	cmnfcqle10008uhv7xleeivtf	thread_created	\N	thread	cmnfcx06j01xduhv7spe80rx8	1	2026-04-01 01:18:13.875	2026-04-01 01:18:13.875
 cmnf5dv3d028yuh3lnhn84uca	cmnf572dz001quh3l20nv7abr	thread_created	\N	thread	cmnf5dsyo027wuh3lz8ls04i8	1	2026-03-31 21:47:21.385	2026-03-31 21:47:21.385
 cmnf5dyg802ahuh3lh7y1d2gy	cmnf572ds001nuh3lown562fs	follow_created	\N	user	cmnf572f8002iuh3ldc5h80ws	1	2026-03-31 21:47:25.736	2026-03-31 21:47:25.736
 cmnf5dzey02anuh3l79imif5r	cmnf572de001huh3le101cf9s	follow_created	\N	user	cmnf572ec001xuh3lno7o8em1	1	2026-03-31 21:47:26.986	2026-03-31 21:47:26.986
@@ -6365,7 +7607,26 @@ cmnf5f1mc02tauh3lhf6cbb2t	cmnf572dd001euh3lkotv3yzh	reply_created	reply:cmnf572d
 cmnf5fabt02wruh3lp7eos1pr	cmnf572ds001nuh3lown562fs	reply_created	reply:cmnf572ds001nuh3lown562fs:cmnf5f8dr02w6uh3lnz4lw2jq	reply	cmnf5f8dr02w6uh3lnz4lw2jq	1	2026-03-31 21:48:27.785	2026-03-31 21:48:27.785
 cmnf5fi2t02zauh3lw8fykj9w	cmnf572ds001nuh3lown562fs	reply_created	reply:cmnf572ds001nuh3lown562fs:cmnf5fgb602yyuh3l6vunk9bt	reply	cmnf5fgb602yyuh3l6vunk9bt	1	2026-03-31 21:48:37.829	2026-03-31 21:48:37.829
 cmnf5fiwm02ztuh3lxz3kuqlq	cmnf572ds001muh3lymk98he9	reply_created	reply:cmnf572ds001muh3lymk98he9:cmnf5fhti02z8uh3l9lk98xaw	reply	cmnf5fhti02z8uh3l9lk98xaw	1	2026-03-31 21:48:38.902	2026-03-31 21:48:38.902
+cmnfcwzt701wzuhv7cikyzil4	cmnfcqleb000cuhv7bxrx8k4b	follow_created	\N	user	cmnfcqldj0001uhv7hfyotibv	1	2026-04-01 01:18:11.275	2026-04-01 01:18:11.275
 cmnf5fpa4032puh3lom445gls	cmnf572dz001puh3lzyxc06lw	poll_voted	poll_vote:cmnf5eww702qbuh3ll34n4gwm	poll	cmnf5eww702qbuh3ll34n4gwm	3	2026-03-31 21:50:54.636	2026-03-31 21:50:54.64
+cmnfcx25m01yeuhv779l40v3h	cmnfcqldy0007uhv7gx0b561v	reply_created	reply:cmnfcqldy0007uhv7gx0b561v:cmnfcx1ud01xxuhv7qlnm029d	reply	cmnfcx1ud01xxuhv7qlnm029d	1	2026-04-01 01:18:14.314	2026-04-01 01:18:14.314
+cmnfcx2fh01yguhv7vhvq7e0u	cmnfcqldv0006uhv7rhgmfmtl	reply_created	reply:cmnfcqldv0006uhv7rhgmfmtl:cmnfcx1yh01y1uhv7f81fqu0l	reply	cmnfcx1yh01y1uhv7f81fqu0l	1	2026-04-01 01:18:14.669	2026-04-01 01:18:14.669
+cmnfcx8j101zvuhv7d4s3vzna	cmnfcqleb000cuhv7bxrx8k4b	reply_created	reply:cmnfcqleb000cuhv7bxrx8k4b:cmnfcx88401zjuhv796ejol02	reply	cmnfcx88401zjuhv796ejol02	1	2026-04-01 01:18:22.573	2026-04-01 01:18:22.573
+cmnfcx8t401zzuhv7kvdk6vld	cmnfcqle9000buhv78pneu9lv	reply_created	reply:cmnfcqle9000buhv78pneu9lv:cmnfcx8cv01znuhv7ukl6scwr	reply	cmnfcx8cv01znuhv7ukl6scwr	1	2026-04-01 01:18:22.935	2026-04-01 01:18:22.935
+cmnfcx8xg020huhv7xwl9ib7h	cmnfcqldv0006uhv7rhgmfmtl	follow_created	\N	user	cmnfcqleo000huhv7n0m7asjb	1	2026-04-01 01:18:23.092	2026-04-01 01:18:23.092
+cmnfcxbf30215uhv7w2pc702x	cmnfcqldv0006uhv7rhgmfmtl	follow_created	\N	user	cmnfcqle10008uhv7xleeivtf	1	2026-04-01 01:18:26.316	2026-04-01 01:18:26.316
+cmnfcxhs2022kuhv7w4vypjhc	cmnfcqle9000buhv78pneu9lv	reply_created	reply:cmnfcqle9000buhv78pneu9lv:cmnfcxg1j0228uhv73tgql0c7	reply	cmnfcxg1j0228uhv73tgql0c7	1	2026-04-01 01:18:34.561	2026-04-01 01:18:34.561
+cmnfcxhsd022muhv7g41jnf8g	cmnfcqldy0007uhv7gx0b561v	follow_created	\N	user	cmnfcqldt0005uhv7d4terocy	1	2026-04-01 01:18:34.573	2026-04-01 01:18:34.573
+cmnfcxmby023nuhv7xm4ookc9	cmnfcqldv0006uhv7rhgmfmtl	reply_created	reply:cmnfcqldv0006uhv7rhgmfmtl:cmnfcxm3u023auhv7wrte8kiw	reply	cmnfcxm3u023auhv7wrte8kiw	1	2026-04-01 01:18:40.462	2026-04-01 01:18:40.462
+cmnfcxmdf023puhv7ff1xad3q	cmnfcqle10008uhv7xleeivtf	follow_created	\N	user	cmnfcqldt0005uhv7d4terocy	1	2026-04-01 01:18:40.515	2026-04-01 01:18:40.515
+cmnfcxsay0243uhv7wsmnd21a	cmnfcqle10008uhv7xleeivtf	follow_created	\N	user	cmnfcqldv0006uhv7rhgmfmtl	1	2026-04-01 01:18:48.202	2026-04-01 01:18:48.202
+cmnfcxsbg024auhv7yzon7un8	cmnfcqle9000buhv78pneu9lv	reply_created	reply:cmnfcqle9000buhv78pneu9lv:cmnfcxr64023vuhv7kaep0nvm	reply	cmnfcxr64023vuhv7kaep0nvm	1	2026-04-01 01:18:48.22	2026-04-01 01:18:48.22
+cmnfcxusk0257uhv7h865fwf8	cmnfcqldv0006uhv7rhgmfmtl	thread_created	\N	thread	cmnfcxtqu024puhv7kblcv6vd	1	2026-04-01 01:18:51.428	2026-04-01 01:18:51.428
+cmnfcxut0025buhv72rg5lj8s	cmnfcqleb000cuhv7bxrx8k4b	follow_created	\N	user	cmnfcqlek000fuhv7ydofzkc9	1	2026-04-01 01:18:51.444	2026-04-01 01:18:51.444
+cmnfcxuvq025kuhv7jepeze1t	cmnfcqldy0007uhv7gx0b561v	reply_created	reply:cmnfcqldy0007uhv7gx0b561v:cmnfcxusv0259uhv7wo207kak	reply	cmnfcxusv0259uhv7wo207kak	1	2026-04-01 01:18:51.542	2026-04-01 01:18:51.542
+cmnfcxww2026vuhv7uvesn3ta	cmnfcqldy0007uhv7gx0b561v	thread_created	\N	thread	cmnfcxwgs025zuhv7gw9czm3i	1	2026-04-01 01:18:54.146	2026-04-01 01:18:54.146
+cmnfcxzoq027guhv796u3dchv	cmnfcqle10008uhv7xleeivtf	thread_created	\N	thread	cmnfcxxtc0276uhv777yj1400	1	2026-04-01 01:18:57.77	2026-04-01 01:18:57.77
+cmnfcxzwr027tuhv7jp2kh13g	cmnfcqle9000buhv78pneu9lv	poll_created	\N	poll	cmnfcxzpa027iuhv77u9bfhvt	1	2026-04-01 01:18:58.059	2026-04-01 01:18:58.059
 cmnf5er8v02nfuh3luzt5efwv	cmnf572cz0019uh3lpbkbeqcq	reply_created	reply:cmnf572cz0019uh3lpbkbeqcq:cmnf5eqhv02mnuh3l7uyjyspj	reply	cmnf5eqhv02mnuh3l7uyjyspj	1	2026-03-31 21:48:03.056	2026-03-31 21:48:03.056
 cmnf5er9d02njuh3ljr3u7hl5	cmnf572dd001euh3lkotv3yzh	thread_created	\N	thread	cmnf5epeq02m6uh3lpoga4rar	1	2026-03-31 21:48:03.073	2026-03-31 21:48:03.073
 cmnf5erck02nnuh3l2x0dozs1	cmnf572de001huh3le101cf9s	thread_created	\N	thread	cmnf5epdh02m2uh3l62i7gfvx	1	2026-03-31 21:48:03.188	2026-03-31 21:48:03.188
@@ -6393,6 +7654,17 @@ cmnf5de2501xzuh3lrymkghco	cmnf572dg001kuh3llzir1a1w	poll_voted	poll_vote:cmnf5d4
 cmnf5g22a0381uh3l1g7lc59g	cmnf572ds001nuh3lown562fs	thread_created	\N	thread	cmnf5fx130371uh3lx0k05y4j	1	2026-03-31 21:49:03.73	2026-03-31 21:49:03.73
 cmnf5g9tt03aeuh3l35lsoeiq	cmnf572de001huh3le101cf9s	follow_created	\N	user	cmnf572ci000yuh3lfjmwi6iq	1	2026-03-31 21:49:13.793	2026-03-31 21:49:13.793
 cmnf5ga0i03asuh3lzbhfgpo3	cmnf572di001luh3lrsinyetf	follow_created	\N	user	cmnf572c3000puh3l4cil81lk	1	2026-03-31 21:49:14.034	2026-03-31 21:49:14.034
+cmnfcwzwn01xbuhv71yb7dvu0	cmnfcqldv0006uhv7rhgmfmtl	poll_voted	poll_vote:cmnfctgg700lzuhv7kyh418xf	poll	cmnfctgg700lzuhv7kyh418xf	1	2026-04-01 01:18:11.399	2026-04-01 01:18:11.399
+cmnfcx1ta01xtuhv7jaiszbvc	cmnfcqleb000cuhv7bxrx8k4b	follow_created	\N	user	cmnfcqle10008uhv7xleeivtf	1	2026-04-01 01:18:13.87	2026-04-01 01:18:13.87
+cmnfcxbpd021buhv7lljymlpg	cmnfcqle9000buhv78pneu9lv	thread_created	\N	thread	cmnfcxak5020quhv7gy48pmya	1	2026-04-01 01:18:26.689	2026-04-01 01:18:26.689
+cmnfcxcax021muhv7awapm0mp	cmnfcqldy0007uhv7gx0b561v	reply_created	reply:cmnfcqldy0007uhv7gx0b561v:cmnfcxbrs021guhv7nijtcgy7	reply	cmnfcxbrs021guhv7nijtcgy7	1	2026-04-01 01:18:27.465	2026-04-01 01:18:27.465
+cmnfcxdqa021yuhv7vb6tytlb	cmnfcqldv0006uhv7rhgmfmtl	reply_created	reply:cmnfcqldv0006uhv7rhgmfmtl:cmnfcxdlt021ouhv7ov7a7a3m	reply	cmnfcxdlt021ouhv7ov7a7a3m	1	2026-04-01 01:18:29.313	2026-04-01 01:18:29.313
+cmnfcxdwz0220uhv7576puel1	cmnfcqle10008uhv7xleeivtf	reply_created	reply:cmnfcqle10008uhv7xleeivtf:cmnfcxdn5021suhv7xcyss724	reply	cmnfcxdn5021suhv7xcyss724	1	2026-04-01 01:18:29.555	2026-04-01 01:18:29.555
+cmnfcxhuf022quhv79fl41pzi	cmnfcqleb000cuhv7bxrx8k4b	reply_created	reply:cmnfcqleb000cuhv7bxrx8k4b:cmnfcxgaw022auhv7hb02b85b	reply	cmnfcxgaw022auhv7hb02b85b	1	2026-04-01 01:18:34.646	2026-04-01 01:18:34.646
+cmnfcsf7y008suhv7y538kwuq	cmnfcqldo0003uhv77gqzh84t	poll_voted	poll_vote:cmnfcrljd0066uhv7y5pjasfn	poll	cmnfcrljd0066uhv7y5pjasfn	4	2026-04-01 01:18:39.176	2026-04-01 01:18:39.23
+cmnfcxsfc024guhv7ftoe3lu3	cmnfcqleb000cuhv7bxrx8k4b	poll_created	\N	poll	cmnfcxsb60245uhv7kthers5y	1	2026-04-01 01:18:48.36	2026-04-01 01:18:48.36
+cmnfcxwhe0263uhv75awymd53	cmnfcqle10008uhv7xleeivtf	reply_created	reply:cmnfcqle10008uhv7xleeivtf:cmnfcxw9p025tuhv7hgzohw17	reply	cmnfcxw9p025tuhv7hgzohw17	1	2026-04-01 01:18:53.618	2026-04-01 01:18:53.618
+cmnfcxx7a0274uhv7qla5jn2t	cmnfcqldv0006uhv7rhgmfmtl	thread_created	\N	thread	cmnfcxwn7026duhv7kw0xfj52	1	2026-04-01 01:18:54.55	2026-04-01 01:18:54.55
 cmnf5esp202oduh3ldjjl8vu6	cmnf572di001luh3lrsinyetf	poll_created	\N	poll	cmnf5es5502nuuh3lnx1c6yx8	1	2026-03-31 21:48:04.934	2026-03-31 21:48:04.934
 cmnf5evxw02p9uh3lga0r9wbb	cmnf572dz001puh3lzyxc06lw	reply_created	reply:cmnf572dz001puh3lzyxc06lw:cmnf5ev1m02oouh3l9vialtk7	reply	cmnf5ev1m02oouh3l9vialtk7	1	2026-03-31 21:48:09.14	2026-03-31 21:48:09.14
 cmnf5ew1f02pbuh3lhjn2jaf9	cmnf5734d0032uh3llttnseos	reply_created	reply:cmnf5734d0032uh3llttnseos:cmnf5ev1702okuh3lxveqyxkk	reply	cmnf5ev1702okuh3lxveqyxkk	1	2026-03-31 21:48:09.267	2026-03-31 21:48:09.267
@@ -6409,6 +7681,9 @@ cmnf5g4it039huh3lhu6zbzbt	cmnf5734d0032uh3llttnseos	reply_created	reply:cmnf5734
 cmnf5gb7403bmuh3lbdb4hfgk	cmnf572ds001nuh3lown562fs	reply_created	reply:cmnf572ds001nuh3lown562fs:cmnf5ga3b03b0uh3lw86bff3c	reply	cmnf5ga3b03b0uh3lw86bff3c	1	2026-03-31 21:49:15.568	2026-03-31 21:49:15.568
 cmnf5gbx003bsuh3l7j8orujp	cmnf5734d0032uh3llttnseos	thread_created	\N	thread	cmnf5g9vb03aguh3l5xp9qu9u	1	2026-03-31 21:49:16.5	2026-03-31 21:49:16.5
 cmnf5gg0n03ctuh3l52jc963w	cmnf572de001huh3le101cf9s	follow_created	\N	user	cmnf572ds001nuh3lown562fs	1	2026-03-31 21:49:21.815	2026-03-31 21:49:21.815
+cmnfcx1xm01xzuhv7v8mffm39	cmnfcqle9000buhv78pneu9lv	reply_created	reply:cmnfcqle9000buhv78pneu9lv:cmnfcx19r01xjuhv7rqyddysh	reply	cmnfcx19r01xjuhv7rqyddysh	1	2026-04-01 01:18:14.026	2026-04-01 01:18:14.026
+cmnfcx4xz01yruhv7jw05ixk9	cmnfcqleb000cuhv7bxrx8k4b	reply_created	reply:cmnfcqleb000cuhv7bxrx8k4b:cmnfcx3x301ynuhv79onrtjjr	reply	cmnfcx3x301ynuhv79onrtjjr	1	2026-04-01 01:18:17.926	2026-04-01 01:18:17.926
+cmnfcx5yd01z0uhv7y3wsklbq	cmnfcqle10008uhv7xleeivtf	poll_created	\N	poll	cmnfcx59101ytuhv7lb7jvdba	1	2026-04-01 01:18:19.237	2026-04-01 01:18:19.237
 cmnf5evh902ovuh3lliikjlyu	cmnf572ds001muh3lymk98he9	reply_created	reply:cmnf572ds001muh3lymk98he9:cmnf5eu3502ofuh3l4i1t1ex6	reply	cmnf5eu3502ofuh3l4i1t1ex6	1	2026-03-31 21:48:08.542	2026-03-31 21:48:08.542
 cmnf5evx102p7uh3l74kf9zpz	cmnf572dg001kuh3llzir1a1w	poll_created	\N	poll	cmnf5evgv02oquh3lrdkvzv2h	1	2026-03-31 21:48:09.109	2026-03-31 21:48:09.109
 cmnf5f3jl02u8uh3lmd3sd72r	cmnf572cz0019uh3lpbkbeqcq	reply_created	reply:cmnf572cz0019uh3lpbkbeqcq:cmnf5f29z02tluh3l6w2yl9ks	reply	cmnf5f29z02tluh3l6w2yl9ks	1	2026-03-31 21:48:18.993	2026-03-31 21:48:18.993
@@ -6420,7 +7695,15 @@ cmnf5gabu03b6uh3lg78norjx	cmnf572dd001euh3lkotv3yzh	follow_created	\N	user	cmnf5
 cmnf5gdjl03cbuh3lfy8mh0kh	cmnf572dg001kuh3llzir1a1w	follow_created	\N	user	cmnf5734e0033uh3lrwdj7e26	1	2026-03-31 21:49:18.609	2026-03-31 21:49:18.609
 cmnf5ghkm03czuh3l5ieq91be	cmnf572dd001euh3lkotv3yzh	follow_created	\N	user	cmnf572ft002uuh3l5iiqlqv5	1	2026-03-31 21:49:23.83	2026-03-31 21:49:23.83
 cmnf5ghly03d1uh3l3mkvzry1	cmnf572di001luh3lrsinyetf	reply_created	reply:cmnf572di001luh3lrsinyetf:cmnf5geil03cjuh3ld6xqjv6h	reply	cmnf5geil03cjuh3ld6xqjv6h	1	2026-03-31 21:49:23.876	2026-03-31 21:49:23.876
+cmnfcx63k01zbuhv7kceeiquw	cmnfcqldy0007uhv7gx0b561v	follow_created	\N	user	cmnfcqle7000auhv7u5byu7x1	1	2026-04-01 01:18:19.416	2026-04-01 01:18:19.416
+cmnfcx8t60201uhv7fw1rg2f2	cmnfcqle10008uhv7xleeivtf	reply_created	reply:cmnfcqle10008uhv7xleeivtf:cmnfcx89p01zluhv7omenamkj	reply	cmnfcx89p01zluhv7omenamkj	1	2026-04-01 01:18:22.938	2026-04-01 01:18:22.938
+cmnfcx8tr0203uhv7sm5x8z0y	cmnfcqldy0007uhv7gx0b561v	thread_created	\N	thread	cmnfcx7le01zfuhv7aoumyc72	1	2026-04-01 01:18:22.959	2026-04-01 01:18:22.959
+cmnfcxbe40213uhv72d95kr9e	cmnfcqleb000cuhv7bxrx8k4b	reply_created	reply:cmnfcqleb000cuhv7bxrx8k4b:cmnfcxb27020uuhv7jpvmqyni	reply	cmnfcxb27020uuhv7jpvmqyni	1	2026-04-01 01:18:26.284	2026-04-01 01:18:26.284
 cmnf5fk5k030uuh3l24rahsz5	cmnf572cz0019uh3lpbkbeqcq	poll_voted	poll_vote:cmnf5cqj001n0uh3ltb4yb4b9	poll	cmnf5cqj001n0uh3ltb4yb4b9	6	2026-03-31 21:58:09.028	2026-03-31 21:58:09.032
+cmnfcxm53023cuhv70np4z2wj	cmnfcqleb000cuhv7bxrx8k4b	thread_created	\N	thread	cmnfcxkgw0230uhv7aa8uy8yu	1	2026-04-01 01:18:40.215	2026-04-01 01:18:40.215
+cmnfcxum9024xuhv7mqal5aca	cmnfcqle10008uhv7xleeivtf	follow_created	\N	user	cmnfcqleg000euhv72i6namax	1	2026-04-01 01:18:51.201	2026-04-01 01:18:51.201
+cmnfcxwmr0269uhv76w7sejzn	cmnfcqle9000buhv78pneu9lv	thread_created	\N	thread	cmnfcxw0d025puhv7df5o1skz	1	2026-04-01 01:18:53.811	2026-04-01 01:18:53.811
+cmnfcxwmy026buhv7db3h6m7l	cmnfcqleb000cuhv7bxrx8k4b	reply_created	reply:cmnfcqleb000cuhv7bxrx8k4b:cmnfcxwf6025vuhv7puarnrs3	reply	cmnfcxwf6025vuhv7puarnrs3	1	2026-04-01 01:18:53.818	2026-04-01 01:18:53.818
 cmnf5f4ha02uiuh3ludtrqf60	cmnf572dz001puh3lzyxc06lw	reply_created	reply:cmnf572dz001puh3lzyxc06lw:cmnf5f3ap02u4uh3laq9ktjp9	reply	cmnf5f3ap02u4uh3laq9ktjp9	1	2026-03-31 21:48:20.207	2026-03-31 21:48:20.207
 cmnf5f4xr02uquh3l74r7lk80	cmnf5734d0032uh3llttnseos	thread_created	\N	thread	cmnf5f2kw02tnuh3la7pttbov	1	2026-03-31 21:48:20.799	2026-03-31 21:48:20.799
 cmnf5f6kf02vduh3l8s2daykz	cmnf572dz001quh3l20nv7abr	follow_created	\N	user	cmnf572bq000luh3lvhao7zyd	1	2026-03-31 21:48:22.911	2026-03-31 21:48:22.911
@@ -7180,6 +8463,65 @@ cmnf5tbdq0953uh3llc5w1xum	cmnf572f5002huh3ll5xlexep	poll_created	\N	poll	cmnf5tb
 cmnf5tbqo095juh3lsxe71vx9	cmnf5734l0039uh3lcphobguq	reply_created	reply:cmnf5734l0039uh3lcphobguq:cmnf5tb90094duh3l5mh1vp9v	reply	cmnf5tb90094duh3l5mh1vp9v	1	2026-03-31 21:59:22.8	2026-03-31 21:59:22.8
 cmnf5tgt7097fuh3lrvjufano	cmnf572er0027uh3l5t2a2ymg	reply_created	reply:cmnf572er0027uh3l5t2a2ymg:cmnf5tfs2096ruh3lskrdj83y	reply	cmnf5tfs2096ruh3lskrdj83y	1	2026-03-31 21:59:29.371	2026-03-31 21:59:29.371
 cmnf5tkx3099fuh3lg7eoo2v8	cmnf572ew002buh3lz3plaglv	follow_created	\N	user	cmnf572f8002juh3lw232lki5	1	2026-03-31 21:59:34.695	2026-03-31 21:59:34.695
+cmnf70fi10aieuh3lubid9qxv	cmnf548r30000uhtd7g7vaybf	reply_created	reply:cmnf548r30000uhtd7g7vaybf:cmnf70fgc0aiauh3l6slbfbqo	reply	cmnf70fgc0aiauh3l6slbfbqo	1	2026-03-31 22:32:53.881	2026-03-31 22:32:53.881
+cmnf7936u0ainuh3lpfi29emf	cmnf548r30000uhtd7g7vaybf	reply_created	reply:cmnf548r30000uhtd7g7vaybf:cmnf793590aijuh3l4zwoe62u	reply	cmnf793590aijuh3l4zwoe62u	1	2026-03-31 22:39:37.83	2026-03-31 22:39:37.83
+cmnf8sfme0005uhpbluv3r76s	cmnf548r30000uhtd7g7vaybf	reply_created	reply:cmnf548r30000uhtd7g7vaybf:cmnf8sfk20001uhpbycpqjwj3	reply	cmnf8sfk20001uhpbycpqjwj3	1	2026-03-31 23:22:40.023	2026-03-31 23:22:40.023
+cmnf8xk8t000iuhpbq8x8x6a1	cmnf548r30000uhtd7g7vaybf	follow_created	\N	user	cmnf572ew002buh3lz3plaglv	1	2026-03-31 23:26:39.293	2026-03-31 23:26:39.293
+cmnf92plo000ruhpbwep221tp	cmnf548r30000uhtd7g7vaybf	reply_created	reply:cmnf548r30000uhtd7g7vaybf:cmnf92pjc000nuhpbpk50541q	reply	cmnf92pjc000nuhpbpk50541q	1	2026-03-31 23:30:39.516	2026-03-31 23:30:39.516
+cmnfbay9a0005uhz6xco7qz87	cmnf548r30000uhtd7g7vaybf	follow_created	\N	user	cmnf54ks4000nuhtduo1zemv4	1	2026-04-01 00:33:03.214	2026-04-01 00:33:03.214
+cmnfbpozz00msuhz65nefb9sx	cmnf548r30000uhtd7g7vaybf	thread_created	\N	thread	cmnfbpow400mhuhz68v9ki53e	1	2026-04-01 00:44:31.056	2026-04-01 00:44:31.056
+cmnfbqq6p00n1uhz6xb05jymo	cmnf548r30000uhtd7g7vaybf	poll_created	\N	poll	cmnfbqq5f00mvuhz6igfklpq7	1	2026-04-01 00:45:19.249	2026-04-01 00:45:19.249
+cmnfbrrqm00n8uhz6ra0q100g	cmnf548r30000uhtd7g7vaybf	poll_voted	poll_vote:cmnfbqq5f00mvuhz6igfklpq7	poll	cmnfbqq5f00mvuhz6igfklpq7	1	2026-04-01 00:46:07.918	2026-04-01 00:46:07.918
+cmnfbuxv400nfuhz6vp5az6og	cmnf548r30000uhtd7g7vaybf	reply_created	reply:cmnf548r30000uhtd7g7vaybf:cmnfbuxtw00nbuhz6zcnzk4v5	reply	cmnfbuxtw00nbuhz6zcnzk4v5	1	2026-04-01 00:48:35.825	2026-04-01 00:48:35.825
+cmnfcqqj5000ruhv70lso82k7	cmnfcqlek000fuhv7ydofzkc9	thread_created	\N	thread	cmnfcqqg5000luhv7l483637o	1	2026-04-01 01:13:19.313	2026-04-01 01:13:19.313
+cmnfcr0kw0012uhv780qq39uz	cmnfcqle40009uhv72zt9hg5l	follow_created	\N	user	cmnfcqldy0007uhv7gx0b561v	1	2026-04-01 01:13:32.336	2026-04-01 01:13:32.336
+cmnfcr0l30018uhv7ei1xcnn3	cmnfcqldt0005uhv7d4terocy	follow_created	\N	user	cmnfcqldy0007uhv7gx0b561v	1	2026-04-01 01:13:32.344	2026-04-01 01:13:32.344
+cmnfcr0ls001iuhv7nwixvxcm	cmnfcqlh1000juhv7dxofh1jg	follow_created	\N	user	cmnfcqldy0007uhv7gx0b561v	1	2026-04-01 01:13:32.368	2026-04-01 01:13:32.368
+cmnfcr0ly001kuhv7o3l97s3n	cmnfcqldo0003uhv77gqzh84t	follow_created	\N	user	cmnfcqlck0000uhv732mhsi8o	1	2026-04-01 01:13:32.374	2026-04-01 01:13:32.374
+cmnfcr1lt0020uhv7mqknmxs1	cmnfcqldt0005uhv7d4terocy	follow_created	\N	user	cmnfcqlh0000iuhv7diftlhgx	1	2026-04-01 01:13:33.665	2026-04-01 01:13:33.665
+cmnfcr1mt0028uhv7j9eywgnu	cmnfcqle40009uhv72zt9hg5l	follow_created	\N	user	cmnfcqldj0001uhv7hfyotibv	1	2026-04-01 01:13:33.701	2026-04-01 01:13:33.701
+cmnfcr1o7002euhv76qc760hk	cmnfcqldo0003uhv77gqzh84t	follow_created	\N	user	cmnfcqlh0000iuhv7diftlhgx	1	2026-04-01 01:13:33.751	2026-04-01 01:13:33.751
+cmnfcr1ri002kuhv7uq5cmdjp	cmnfcqlh1000juhv7dxofh1jg	thread_created	\N	thread	cmnfcr172001quhv7bk9uw804	1	2026-04-01 01:13:33.87	2026-04-01 01:13:33.87
+cmnfcr3j60033uhv7s3lgi27x	cmnfcqldt0005uhv7d4terocy	thread_created	\N	thread	cmnfcr2sw002nuhv7ckh2tw9k	1	2026-04-01 01:13:36.162	2026-04-01 01:13:36.162
+cmnfcr3jp0035uhv7lk3bv8ls	cmnfcqldo0003uhv77gqzh84t	follow_created	\N	user	cmnfcqle9000buhv78pneu9lv	1	2026-04-01 01:13:36.181	2026-04-01 01:13:36.181
+cmnfcr3ku0037uhv7sudfnj0a	cmnfcqle40009uhv72zt9hg5l	thread_created	\N	thread	cmnfcr2ul002puhv7v6p68bld	1	2026-04-01 01:13:36.222	2026-04-01 01:13:36.222
+cmnfcr62i003juhv78iskfhea	cmnfcqldo0003uhv77gqzh84t	thread_created	\N	thread	cmnfcr4d4003duhv7as1a9wwm	1	2026-04-01 01:13:39.45	2026-04-01 01:13:39.45
+cmnfcrduv0045uhv7w9lycfz0	cmnfcqlek000fuhv7ydofzkc9	poll_created	\N	poll	cmnfcrdt2003muhv757kh1g3k	1	2026-04-01 01:13:49.543	2026-04-01 01:13:49.543
+cmnfcrdv30047uhv75dnhd1nz	cmnfcqldt0005uhv7d4terocy	poll_created	\N	poll	cmnfcrdt5003suhv7zwxvr5wk	1	2026-04-01 01:13:49.551	2026-04-01 01:13:49.551
+cmnfcrdvp004buhv7d3moseu3	cmnfcqldo0003uhv77gqzh84t	poll_created	\N	poll	cmnfcrdt6003tuhv7m8herb8w	1	2026-04-01 01:13:49.573	2026-04-01 01:13:49.573
+cmnfcrf21004muhv7y2dn3szz	cmnfcqldo0003uhv77gqzh84t	thread_created	\N	thread	cmnfcredw004guhv79bgkuh32	1	2026-04-01 01:13:51.097	2026-04-01 01:13:51.097
+cmnfcrguy0053uhv7pbtxzj42	cmnfcqlh1000juhv7dxofh1jg	reply_created	reply:cmnfcqlh1000juhv7dxofh1jg:cmnfcrgsr004puhv78ixlf6mk	reply	cmnfcrgsr004puhv78ixlf6mk	1	2026-04-01 01:13:53.434	2026-04-01 01:13:53.434
+cmnfcrgve0057uhv7424niqg5	cmnfcqldt0005uhv7d4terocy	reply_created	reply:cmnfcqldt0005uhv7d4terocy:cmnfcrgt7004ruhv7jkemnzh4	reply	cmnfcrgt7004ruhv7jkemnzh4	1	2026-04-01 01:13:53.45	2026-04-01 01:13:53.45
+cmnfcrgvw0059uhv7rhkumyp6	cmnfcqle40009uhv72zt9hg5l	reply_created	reply:cmnfcqle40009uhv72zt9hg5l:cmnfcrgtd004vuhv79v5napqt	reply	cmnfcrgtd004vuhv79v5napqt	1	2026-04-01 01:13:53.468	2026-04-01 01:13:53.468
+cmnfcrgw9005buhv7h4s4epj5	cmnfcqldo0003uhv77gqzh84t	reply_created	reply:cmnfcqldo0003uhv77gqzh84t:cmnfcrgtc004tuhv7kfpfx0sz	reply	cmnfcrgtc004tuhv7kfpfx0sz	1	2026-04-01 01:13:53.481	2026-04-01 01:13:53.481
+cmnfcri2n005ruhv7r97n1odt	cmnfcqldo0003uhv77gqzh84t	thread_created	\N	thread	cmnfcrhyh005luhv7ylj162nc	1	2026-04-01 01:13:55.007	2026-04-01 01:13:55.007
+cmnfcrkkh0061uhv7klkvwkex	cmnfcqle40009uhv72zt9hg5l	reply_created	reply:cmnfcqle40009uhv72zt9hg5l:cmnfcrk5p005uuhv7gn8vf5vf	reply	cmnfcrk5p005uuhv7gn8vf5vf	1	2026-04-01 01:13:58.241	2026-04-01 01:13:58.241
+cmnfcrlmf006duhv7t008t2lg	cmnfcqldo0003uhv77gqzh84t	poll_created	\N	poll	cmnfcrljd0066uhv7y5pjasfn	1	2026-04-01 01:13:59.607	2026-04-01 01:13:59.607
+cmnfcrmlr006luhv7ojffykr2	cmnfcqldo0003uhv77gqzh84t	reply_created	reply:cmnfcqldo0003uhv77gqzh84t:cmnfcrmji006huhv76iadfolu	reply	cmnfcrmji006huhv76iadfolu	1	2026-04-01 01:14:00.879	2026-04-01 01:14:00.879
+cmnfcrz31007duhv7abtdeabp	cmnfcqlek000fuhv7ydofzkc9	reply_created	reply:cmnfcqlek000fuhv7ydofzkc9:cmnfcrz1j0075uhv7k7l8at3r	reply	cmnfcrz1j0075uhv7k7l8at3r	1	2026-04-01 01:14:17.053	2026-04-01 01:14:17.053
+cmnfcrz3k007fuhv7oijr29vg	cmnfcqldo0003uhv77gqzh84t	reply_created	reply:cmnfcqldo0003uhv77gqzh84t:cmnfcrz220077uhv77llscs9c	reply	cmnfcrz220077uhv77llscs9c	1	2026-04-01 01:14:17.072	2026-04-01 01:14:17.072
+cmnfcrzno007quhv79xzdnadu	cmnfcqldo0003uhv77gqzh84t	thread_created	\N	thread	cmnfcrzkz007kuhv7o22dznts	1	2026-04-01 01:14:17.797	2026-04-01 01:14:17.797
+cmnfcsf61008iuhv77rdlql1t	cmnfcqlek000fuhv7ydofzkc9	follow_created	\N	user	cmnfcqleg000euhv72i6namax	1	2026-04-01 01:14:37.897	2026-04-01 01:14:37.897
+cmnfcsgq20096uhv7ax0x6gq4	cmnfcqldt0005uhv7d4terocy	follow_created	\N	user	cmnfcqlh1000juhv7dxofh1jg	1	2026-04-01 01:14:39.914	2026-04-01 01:14:39.914
+cmnfcs0ik007yuhv79qi0pnkb	cmnfcqldo0003uhv77gqzh84t	reply_created	reply:cmnfcqldo0003uhv77gqzh84t:cmnfcs0hc007uuhv7q6sk16bg	reply	cmnfcs0hc007uuhv7q6sk16bg	1	2026-04-01 01:14:18.908	2026-04-01 01:14:18.908
+cmnfcsi7800aauhv7fi0r8fok	cmnfcqldt0005uhv7d4terocy	reply_created	reply:cmnfcqldt0005uhv7d4terocy:cmnfcshnu00a2uhv7pbtl42wg	reply	cmnfcshnu00a2uhv7pbtl42wg	1	2026-04-01 01:14:41.828	2026-04-01 01:14:41.828
+cmnfcsixy00b6uhv7kz22tnkr	cmnfcqldo0003uhv77gqzh84t	thread_created	\N	thread	cmnfcsi7l00acuhv70gmb60w4	1	2026-04-01 01:14:42.79	2026-04-01 01:14:42.79
+cmnfcsiy900b8uhv7qrnd1drq	cmnfcqlh1000juhv7dxofh1jg	follow_created	\N	user	cmnfcqlem000guhv7alb0f7l8	1	2026-04-01 01:14:42.801	2026-04-01 01:14:42.801
+cmnfcslxy00c6uhv702vlbwa8	cmnfcqldo0003uhv77gqzh84t	thread_created	\N	thread	cmnfcslid00bjuhv7fxz4wn6m	1	2026-04-01 01:14:46.678	2026-04-01 01:14:46.678
+cmnfcrydp006yuhv7gzjg1pbi	cmnfcqlek000fuhv7ydofzkc9	poll_voted	poll_vote:cmnfcrdt2003muhv757kh1g3k	poll	cmnfcrdt2003muhv757kh1g3k	2	2026-04-01 01:14:37.926	2026-04-01 01:14:37.93
+cmnfcsf8e008uuhv753lzwvs2	cmnfcqlh1000juhv7dxofh1jg	thread_created	\N	thread	cmnfcsf1t0082uhv7bsj0v7ec	1	2026-04-01 01:14:37.983	2026-04-01 01:14:37.983
+cmnfcrydw0070uhv7vz74zy2s	cmnfcqldo0003uhv77gqzh84t	poll_voted	poll_vote:cmnfcrdt2003muhv757kh1g3k	poll	cmnfcrdt2003muhv757kh1g3k	2	2026-04-01 01:14:37.985	2026-04-01 01:14:37.991
+cmnfcslj600bquhv7gbfimrpk	cmnfcqlh1000juhv7dxofh1jg	reply_created	reply:cmnfcqlh1000juhv7dxofh1jg:cmnfcsl1f00bfuhv7336xuprb	reply	cmnfcsl1f00bfuhv7336xuprb	1	2026-04-01 01:14:46.146	2026-04-01 01:14:46.146
+cmnfcslq700bwuhv7qwj82abt	cmnfcqle40009uhv72zt9hg5l	poll_created	\N	poll	cmnfcslit00bluhv7226npi0w	1	2026-04-01 01:14:46.398	2026-04-01 01:14:46.398
+cmnfcsgsg009cuhv74ieu5y5p	cmnfcqlek000fuhv7ydofzkc9	reply_created	reply:cmnfcqlek000fuhv7ydofzkc9:cmnfcsgh8008yuhv7nfjzx58c	reply	cmnfcsgh8008yuhv7nfjzx58c	1	2026-04-01 01:14:40	2026-04-01 01:14:40
+cmnfcsh1v009muhv7904adtw5	cmnfcqldo0003uhv77gqzh84t	reply_created	reply:cmnfcqldo0003uhv77gqzh84t:cmnfcsgq80098uhv7ygaw3wo2	reply	cmnfcsgq80098uhv7ygaw3wo2	1	2026-04-01 01:14:40.339	2026-04-01 01:14:40.339
+cmnfcsigb00akuhv7tgz5kol9	cmnfcqlek000fuhv7ydofzkc9	reply_created	reply:cmnfcqlek000fuhv7ydofzkc9:cmnfcsi6u00a8uhv71vvdy2zb	reply	cmnfcsi6u00a8uhv71vvdy2zb	1	2026-04-01 01:14:42.156	2026-04-01 01:14:42.156
+cmnfcsh12009kuhv71n3lms4e	cmnfcqle40009uhv72zt9hg5l	poll_voted	poll_vote:cmnfcrdt6003tuhv7m8herb8w	poll	cmnfcrdt6003tuhv7m8herb8w	3	2026-04-01 01:15:10.257	2026-04-01 01:15:10.26
+cmnfcsit400avuhv7vym9p4xm	cmnfcqle40009uhv72zt9hg5l	thread_created	\N	thread	cmnfcsi6p00a6uhv72pugyahq	1	2026-04-01 01:14:42.616	2026-04-01 01:14:42.616
+cmnfcsmm300ccuhv7b3th48b5	cmnfcqldt0005uhv7d4terocy	thread_created	\N	thread	cmnfcslqo00byuhv79p1tv6xb	1	2026-04-01 01:14:47.547	2026-04-01 01:14:47.547
+cmnfcsne500cpuhv71hu2ym9l	cmnfcqlek000fuhv7ydofzkc9	reply_created	reply:cmnfcqlek000fuhv7ydofzkc9:cmnfcsmxm00cjuhv7lf96prh7	reply	cmnfcsmxm00cjuhv7lf96prh7	1	2026-04-01 01:14:48.557	2026-04-01 01:14:48.557
+cmnfcsnkt00cvuhv7qgalpxxe	cmnfcqle40009uhv72zt9hg5l	thread_created	\N	thread	cmnfcsmmt00ceuhv7lv7706a3	1	2026-04-01 01:14:48.797	2026-04-01 01:14:48.797
+cmnfcsnlb00cxuhv7hg22e5d5	cmnfcqlh1000juhv7dxofh1jg	reply_created	reply:cmnfcqlh1000juhv7dxofh1jg:cmnfcsn3400cnuhv7wtlafc1w	reply	cmnfcsn3400cnuhv7wtlafc1w	1	2026-04-01 01:14:48.815	2026-04-01 01:14:48.815
 \.
 
 
@@ -7502,6 +8844,55 @@ cmnf5th5i097vuh3l6zr5y18z	cmnf5734h0037uh3lmzxdes2n	cmnf572d3001auh3leddsab4m	20
 cmnf5ti79098nuh3ldc47hr5l	cmnf5734l003auh3lznt8814k	cmnf572fk002puh3lnecv76ts	2026-03-31 21:59:31.173
 cmnf5tjt00997uh3llgp9g1w3	cmnf572ew002buh3lz3plaglv	cmnf572f8002juh3lw232lki5	2026-03-31 21:59:33.252
 cmnf5tlav09abuh3l9l57jhuy	cmnf572f5002huh3ll5xlexep	cmnf572bh000fuh3l32zu8oa1	2026-03-31 21:59:35.191
+cmnf8xk7y000euhpb2tnwujnt	cmnf548r30000uhtd7g7vaybf	cmnf572ew002buh3lz3plaglv	2026-03-31 23:26:39.262
+cmnfbay780001uhz6vjt3fnqd	cmnf548r30000uhtd7g7vaybf	cmnf54ks4000nuhtduo1zemv4	2026-04-01 00:33:03.139
+cmnfcr0ju000uuhv7u9hvkdsu	cmnfcqle40009uhv72zt9hg5l	cmnfcqldy0007uhv7gx0b561v	2026-04-01 01:13:32.299
+cmnfcr0k9000wuhv7npx566vv	cmnfcqldt0005uhv7d4terocy	cmnfcqldy0007uhv7gx0b561v	2026-04-01 01:13:32.313
+cmnfcr0kx0015uhv77o3lqeb6	cmnfcqlh1000juhv7dxofh1jg	cmnfcqldy0007uhv7gx0b561v	2026-04-01 01:13:32.337
+cmnfcr0kx0016uhv7an3o7fsi	cmnfcqldo0003uhv77gqzh84t	cmnfcqlck0000uhv732mhsi8o	2026-04-01 01:13:32.337
+cmnfcr1jo001uuhv7odn7j2h8	cmnfcqldt0005uhv7d4terocy	cmnfcqlh0000iuhv7diftlhgx	2026-04-01 01:13:33.588
+cmnfcr1l9001yuhv7642g0sqf	cmnfcqle40009uhv72zt9hg5l	cmnfcqldj0001uhv7hfyotibv	2026-04-01 01:13:33.645
+cmnfcr1m40024uhv78k93hg6a	cmnfcqldo0003uhv77gqzh84t	cmnfcqlh0000iuhv7diftlhgx	2026-04-01 01:13:33.676
+cmnfcr3gx002vuhv7t2ouccf1	cmnfcqldo0003uhv77gqzh84t	cmnfcqle9000buhv78pneu9lv	2026-04-01 01:13:36.081
+cmnfcsf3w0086uhv7ekfv52al	cmnfcqlek000fuhv7ydofzkc9	cmnfcqleg000euhv72i6namax	2026-04-01 01:14:37.82
+cmnfcsgmd0090uhv7k5de5r9u	cmnfcqldt0005uhv7d4terocy	cmnfcqlh1000juhv7dxofh1jg	2026-04-01 01:14:39.781
+cmnfcsisx00atuhv7dp8iwuc5	cmnfcqlh1000juhv7dxofh1jg	cmnfcqlem000guhv7alb0f7l8	2026-04-01 01:14:42.609
+cmnfcsxbk00fyuhv707503hj9	cmnfcqldo0003uhv77gqzh84t	cmnfcqle7000auhv7u5byu7x1	2026-04-01 01:15:01.424
+cmnfct20600h1uhv7os8phnow	cmnfcqle40009uhv72zt9hg5l	cmnfcqlh1000juhv7dxofh1jg	2026-04-01 01:15:07.492
+cmnfct6dx00isuhv7g9s71j9m	cmnfcqle40009uhv72zt9hg5l	cmnfcqldo0003uhv77gqzh84t	2026-04-01 01:15:13.173
+cmnfct8e400jquhv7hfotfr6b	cmnfcqle40009uhv72zt9hg5l	cmnfcqleo000huhv7n0m7asjb	2026-04-01 01:15:15.772
+cmnfcta3900jyuhv79mkqqmc7	cmnfcqldt0005uhv7d4terocy	cmnfcqleo000huhv7n0m7asjb	2026-04-01 01:15:17.973
+cmnfctaue00kauhv7dtb5ds00	cmnfcqlek000fuhv7ydofzkc9	cmnfcqleb000cuhv7bxrx8k4b	2026-04-01 01:15:18.95
+cmnfctdey00l0uhv7ok94wy1j	cmnfcqlek000fuhv7ydofzkc9	cmnfcqldl0002uhv7conjfxzx	2026-04-01 01:15:22.283
+cmnfctdwp00lauhv7o2ufp9ss	cmnfcqldo0003uhv77gqzh84t	cmnfcqleg000euhv72i6namax	2026-04-01 01:15:22.921
+cmnfctie700mtuhv77nnyv8j9	cmnfcqlek000fuhv7ydofzkc9	cmnfcqle7000auhv7u5byu7x1	2026-04-01 01:15:28.736
+cmnfctm5300oguhv7du8hdg02	cmnfcqldo0003uhv77gqzh84t	cmnfcqldy0007uhv7gx0b561v	2026-04-01 01:15:33.591
+cmnfcto2q00pjuhv758omaj3h	cmnfcqle40009uhv72zt9hg5l	cmnfcqldl0002uhv7conjfxzx	2026-04-01 01:15:36.098
+cmnfctq7r00qruhv72ffzd5f3	cmnfcqlek000fuhv7ydofzkc9	cmnfcqldo0003uhv77gqzh84t	2026-04-01 01:15:38.871
+cmnfcu2pd00vvuhv7n52cd5zr	cmnfcqle40009uhv72zt9hg5l	cmnfcqlem000guhv7alb0f7l8	2026-04-01 01:15:55.057
+cmnfcu3mb00weuhv7s815vckr	cmnfcqlek000fuhv7ydofzkc9	cmnfcqle10008uhv7xleeivtf	2026-04-01 01:15:56.243
+cmnfcu68p00x5uhv70ebvnw1d	cmnfcqlh1000juhv7dxofh1jg	cmnfcqlee000duhv7yzusv1k2	2026-04-01 01:15:59.641
+cmnfcu6b100xhuhv75yik1hc8	cmnfcqle40009uhv72zt9hg5l	cmnfcqleb000cuhv7bxrx8k4b	2026-04-01 01:15:59.725
+cmnfcv284019buhv7lybuwiar	cmnfcqlh1000juhv7dxofh1jg	cmnfcqldr0004uhv7haksqth1	2026-04-01 01:16:41.092
+cmnfcv43u01afuhv7r2hdk8th	cmnfcqlh1000juhv7dxofh1jg	cmnfcqle7000auhv7u5byu7x1	2026-04-01 01:16:43.53
+cmnfcv6d801bxuhv7q279nvxh	cmnfcqldt0005uhv7d4terocy	cmnfcqlck0000uhv732mhsi8o	2026-04-01 01:16:46.461
+cmnfcv9no01d5uhv71qhr4xcz	cmnfcqlh1000juhv7dxofh1jg	cmnfcqlh0000iuhv7diftlhgx	2026-04-01 01:16:50.724
+cmnfcvaxt01dluhv7yp6lgxgw	cmnfcqldt0005uhv7d4terocy	cmnfcqldv0006uhv7rhgmfmtl	2026-04-01 01:16:52.385
+cmnfcvt7u01kruhv751o36r55	cmnfcqlh1000juhv7dxofh1jg	cmnfcqldj0001uhv7hfyotibv	2026-04-01 01:17:16.074
+cmnfcwizq01rcuhv7s8aezff4	cmnfcqlh1000juhv7dxofh1jg	cmnfcqlek000fuhv7ydofzkc9	2026-04-01 01:17:49.478
+cmnfcwnpx01svuhv7otp7t11c	cmnfcqldy0007uhv7gx0b561v	cmnfcqlee000duhv7yzusv1k2	2026-04-01 01:17:55.605
+cmnfcww9f01vguhv72p07qm1j	cmnfcqle9000buhv78pneu9lv	cmnfcqldt0005uhv7d4terocy	2026-04-01 01:18:06.675
+cmnfcwwbk01vouhv7pdr9itve	cmnfcqldy0007uhv7gx0b561v	cmnfcqlck0000uhv732mhsi8o	2026-04-01 01:18:06.752
+cmnfcwzox01wpuhv7flo4bxl3	cmnfcqleb000cuhv7bxrx8k4b	cmnfcqldj0001uhv7hfyotibv	2026-04-01 01:18:11.121
+cmnfcx1a801xluhv75yxruo7u	cmnfcqleb000cuhv7bxrx8k4b	cmnfcqle10008uhv7xleeivtf	2026-04-01 01:18:13.184
+cmnfcx60001z6uhv7cnjx07y9	cmnfcqldy0007uhv7gx0b561v	cmnfcqle7000auhv7u5byu7x1	2026-04-01 01:18:19.296
+cmnfcx8uq0205uhv70ih2ixjp	cmnfcqldv0006uhv7rhgmfmtl	cmnfcqleo000huhv7n0m7asjb	2026-04-01 01:18:22.994
+cmnfcxb98020zuhv74vvmzq8b	cmnfcqldv0006uhv7rhgmfmtl	cmnfcqle10008uhv7xleeivtf	2026-04-01 01:18:26.108
+cmnfcxgkh022euhv77tw38m9x	cmnfcqldy0007uhv7gx0b561v	cmnfcqldt0005uhv7d4terocy	2026-04-01 01:18:32.993
+cmnfcxm8q023guhv7ms1u31i9	cmnfcqle10008uhv7xleeivtf	cmnfcqldt0005uhv7d4terocy	2026-04-01 01:18:40.345
+cmnfcxrla023zuhv70ifye0yu	cmnfcqle10008uhv7xleeivtf	cmnfcqldv0006uhv7rhgmfmtl	2026-04-01 01:18:47.277
+cmnfcxu8q024tuhv7ag2qld9a	cmnfcqle10008uhv7xleeivtf	cmnfcqleg000euhv72i6namax	2026-04-01 01:18:50.714
+cmnfcxuri0251uhv76csi1b5m	cmnfcqleb000cuhv7bxrx8k4b	cmnfcqlek000fuhv7ydofzkc9	2026-04-01 01:18:51.39
 \.
 
 
@@ -7510,386 +8901,386 @@ cmnf5tlav09abuh3l9l57jhuy	cmnf572f5002huh3ll5xlexep	cmnf572bh000fuh3l32zu8oa1	20
 --
 
 COPY public."Match" (id, "externalId", "homeTeamId", "awayTeamId", venue, status, "homeScore", "awayScore", "matchDate", "cachedAt", matchday, season, stage) FROM stdin;
-cmnf54m6c000nuhse5jsxaq0p	537786	cmnf548h30005uhse46wx275v	cmnf548hb000cuhsec9ov4bjp		FINISHED	0	0	2025-08-16 11:30:00	2026-03-31 21:40:09.911	1	2025-2026	REGULAR_SEASON
-cmnf54m7n000tuhseb35ljkpq	537794	cmnf548ha0009uhseksu2phrb	cmnf548ha000auhsekg2f0oot		FINISHED	1	0	2025-08-18 19:00:00	2026-03-31 21:40:09.913	1	2025-2026	REGULAR_SEASON
-cmnf54m8g000yuhse8fbf1ys7	537796	cmnf548hr000guhseayb6uzuu	cmnf548hj000euhse945fpqyk		FINISHED	1	1	2025-08-24 13:00:00	2026-03-31 21:40:09.994	2	2025-2026	REGULAR_SEASON
-cmnf54m8z0015uhse7antpjhx	537811	cmnf548h50006uhseuq2stcaz	cmnf548gh0003uhsel9vkpibt		FINISHED	3	2	2025-08-30 14:00:00	2026-03-31 21:40:09.994	3	2025-2026	REGULAR_SEASON
-cmnf54m9v001buhse1i0thevr	537807	cmnf548hw000juhsen71wa95h	cmnf548ho000fuhsei9tdazli		FINISHED	2	1	2025-08-31 13:00:00	2026-03-31 21:40:10.045	3	2025-2026	REGULAR_SEASON
-cmnf54mbg001ruhsezgxgzu11	537829	cmnf548gh0003uhsel9vkpibt	cmnf548hj000euhse945fpqyk		FINISHED	1	1	2025-09-20 14:00:00	2026-03-31 21:40:10.099	5	2025-2026	REGULAR_SEASON
-cmnf54mc8001vuhsermstv4si	537825	cmnf548hb000buhsefuwic6dx	cmnf548hb000cuhsec9ov4bjp		FINISHED	0	0	2025-09-21 13:00:00	2026-03-31 21:40:10.1	5	2025-2026	REGULAR_SEASON
-cmnf54md6001wuhsescj0xuub	537826	cmnf548gf0002uhsewxfgd4nd	cmnf548h30005uhse46wx275v		FINISHED	1	1	2025-09-21 13:00:00	2026-03-31 21:40:10.163	5	2025-2026	REGULAR_SEASON
-cmnf54mdu0025uhseqzvf82pc	537835	cmnf548h30005uhse46wx275v	cmnf548h60007uhse14otrkul		FINISHED	3	1	2025-09-28 13:00:00	2026-03-31 21:40:10.164	6	2025-2026	REGULAR_SEASON
-cmnf54mf1002buhsegkn0x29p	537847	cmnf548em0000uhseg9lphrqa	cmnf548hr000huhse669r2oah		FINISHED	2	0	2025-10-04 14:00:00	2026-03-31 21:40:10.226	7	2025-2026	REGULAR_SEASON
-cmnf54mfv002juhse77fm6j5t	537856	cmnf548hw000juhsen71wa95h	cmnf548hb000cuhsec9ov4bjp		FINISHED	2	1	2025-10-18 14:00:00	2026-03-31 21:40:10.228	8	2025-2026	REGULAR_SEASON
-cmnf54mh1002kuhsego38x7hz	537857	cmnf548hr000guhseayb6uzuu	cmnf548hb000buhsefuwic6dx		FINISHED	3	3	2025-10-18 14:00:00	2026-03-31 21:40:10.301	8	2025-2026	REGULAR_SEASON
-cmnf54mj50034uhse3pbp7mp2	537877	cmnf548hr000guhseayb6uzuu	cmnf548h90008uhseg19mk30r		FINISHED	2	0	2025-11-01 15:00:00	2026-03-31 21:40:10.376	10	2025-2026	REGULAR_SEASON
-cmnf54mkw003cuhsew6slt4dq	537894	cmnf548hr000huhse669r2oah	cmnf548gh0003uhsel9vkpibt		FINISHED	3	2	2025-11-08 15:00:00	2026-03-31 21:40:10.441	11	2025-2026	REGULAR_SEASON
-cmnf54mmr003ruhsexqftlq5g	537903	cmnf548hb000cuhsec9ov4bjp	cmnf548ho000fuhsei9tdazli		FINISHED	2	1	2025-11-22 17:30:00	2026-03-31 21:40:10.507	12	2025-2026	REGULAR_SEASON
-cmnf54mnj003vuhse7rxb3sr6	537897	cmnf548em0000uhseg9lphrqa	cmnf548gu0004uhser9v0aboe		FINISHED	4	1	2025-11-23 16:30:00	2026-03-31 21:40:10.507	12	2025-2026	REGULAR_SEASON
-cmnf54mon003wuhseb1nomfme	537905	cmnf548gf0002uhsewxfgd4nd	cmnf548hb000buhsefuwic6dx		FINISHED	3	2	2025-11-29 15:00:00	2026-03-31 21:40:10.573	13	2025-2026	REGULAR_SEASON
-cmnf54mpm0045uhsetan4h8el	537909	cmnf548hb000duhse2eezx75m	cmnf548em0000uhseg9lphrqa		FINISHED	1	1	2025-11-30 16:30:00	2026-03-31 21:40:10.575	13	2025-2026	REGULAR_SEASON
-cmnf54mqq0049uhsecarlk4uw	537918	cmnf548gh0003uhsel9vkpibt	cmnf548hr000guhseayb6uzuu		FINISHED	0	1	2025-12-03 19:30:00	2026-03-31 21:40:10.651	14	2025-2026	REGULAR_SEASON
-cmnf54mrm004juhsefwj8ku5l	537931	cmnf548ho000fuhsei9tdazli	cmnf548gf0002uhsewxfgd4nd		FINISHED	3	0	2025-12-06 15:00:00	2026-03-31 21:40:10.652	15	2025-2026	REGULAR_SEASON
-cmnf54msr004kuhsefv9mw6wm	537932	cmnf548hb000cuhsec9ov4bjp	cmnf548gh0003uhsel9vkpibt		FINISHED	2	1	2025-12-06 15:00:00	2026-03-31 21:40:10.724	15	2025-2026	REGULAR_SEASON
-cmnf54mus0051uhseqzpumumu	537952	cmnf548hb000cuhsec9ov4bjp	cmnf548hb000duhse2eezx75m		FINISHED	2	2	2025-12-20 12:30:00	2026-03-31 21:40:10.796	17	2025-2026	REGULAR_SEASON
-cmnf54mvk0055uhsecurpkswi	537954	cmnf548g80001uhseq8eicwme	cmnf548h90008uhseg19mk30r		FINISHED	0	2	2025-12-20 15:00:00	2026-03-31 21:40:10.797	17	2025-2026	REGULAR_SEASON
-cmnf54mwt005auhsej3xuvscr	537963	cmnf548hj000euhse945fpqyk	cmnf548ho000fuhsei9tdazli		FINISHED	1	2	2025-12-27 12:30:00	2026-03-31 21:40:10.867	18	2025-2026	REGULAR_SEASON
-cmnf54mys005suhsec9vr938z	537971	cmnf548ht000iuhse8t4eodeu	cmnf548ha0009uhseksu2phrb		FINISHED	0	0	2026-01-01 17:30:00	2026-03-31 21:40:10.936	19	2025-2026	REGULAR_SEASON
-cmnf54n130060uhsev4eddtv5	537978	cmnf548ha000auhsekg2f0oot	cmnf548h90008uhseg19mk30r		FINISHED	2	4	2026-01-04 15:00:00	2026-03-31 21:40:11.019	20	2025-2026	REGULAR_SEASON
-cmnf54n31006guhsezhc5g9hs	537999	cmnf548ht000iuhse8t4eodeu	cmnf548gh0003uhsel9vkpibt		FINISHED	1	1	2026-01-17 15:00:00	2026-03-31 21:40:11.091	22	2025-2026	REGULAR_SEASON
-cmnf54n56006ouhsep7mj2m9c	538014	cmnf548hr000huhse669r2oah	cmnf548gf0002uhsewxfgd4nd		FINISHED	3	1	2026-01-24 12:30:00	2026-03-31 21:40:11.168	23	2025-2026	REGULAR_SEASON
-cmnf54n5y006vuhserjk6jdbl	538008	cmnf548h90008uhseg19mk30r	cmnf548hj000euhse945fpqyk		FINISHED	0	2	2026-01-25 14:00:00	2026-03-31 21:40:11.171	23	2025-2026	REGULAR_SEASON
-cmnf54n72006wuhsecho61cyz	538007	cmnf548em0000uhseg9lphrqa	cmnf548h50006uhseuq2stcaz		FINISHED	2	3	2026-01-25 16:30:00	2026-03-31 21:40:11.238	23	2025-2026	REGULAR_SEASON
-cmnf54n7r0075uhse0a9defy4	538022	cmnf548hj000euhse945fpqyk	cmnf548hr000guhseayb6uzuu		FINISHED	1	1	2026-02-01 14:00:00	2026-03-31 21:40:11.239	24	2025-2026	REGULAR_SEASON
-cmnf54n96007buhsefj3eigz6	538025	cmnf548hb000buhsefuwic6dx	cmnf548h30005uhse46wx275v		FINISHED	1	1	2026-02-07 15:00:00	2026-03-31 21:40:11.313	25	2025-2026	REGULAR_SEASON
-cmnf54nbr007suhsezmrnnmpc	538094	cmnf548g80001uhseq8eicwme	cmnf548em0000uhseg9lphrqa		FINISHED	2	2	2026-02-18 20:00:00	2026-03-31 21:40:11.39	31	2025-2026	REGULAR_SEASON
-cmnf54ndd007zuhsenwakopod	538047	cmnf548hr000guhseayb6uzuu	cmnf548g80001uhseq8eicwme		FINISHED	1	0	2026-02-22 14:00:00	2026-03-31 21:40:11.466	27	2025-2026	REGULAR_SEASON
-cmnf54neb0087uhsejj2zwkwn	538060	cmnf548ht000iuhse8t4eodeu	cmnf548hr000huhse669r2oah		FINISHED	5	2	2026-02-28 15:00:00	2026-03-31 21:40:11.466	28	2025-2026	REGULAR_SEASON
-cmnf54nf90088uhsekx2aj8gx	538061	cmnf548ha0009uhseksu2phrb	cmnf548ho000fuhsei9tdazli		FINISHED	0	1	2026-02-28 17:30:00	2026-03-31 21:40:11.535	28	2025-2026	REGULAR_SEASON
-cmnf54ngb008huhser0apoivl	538067	cmnf548hw000juhsen71wa95h	cmnf548em0000uhseg9lphrqa		FINISHED	0	1	2026-03-04 19:30:00	2026-03-31 21:40:11.536	29	2025-2026	REGULAR_SEASON
-cmnf54nhh008luhseou1vlgdu	538073	cmnf548gu0004uhser9v0aboe	cmnf548hr000guhseayb6uzuu		FINISHED	1	3	2026-03-05 20:00:00	2026-03-31 21:40:11.612	29	2025-2026	REGULAR_SEASON
-cmnf54nib008vuhseithm2woy	538081	cmnf548ht000iuhse8t4eodeu	cmnf548gu0004uhser9v0aboe		FINISHED	1	1	2026-03-15 16:30:00	2026-03-31 21:40:11.613	30	2025-2026	REGULAR_SEASON
-cmnf54njb008wuhseumzqvsnk	538078	cmnf548h90008uhseg19mk30r	cmnf548g80001uhseq8eicwme		FINISHED	2	2	2026-03-16 20:00:00	2026-03-31 21:40:11.68	30	2025-2026	REGULAR_SEASON
-cmnf54nll009guhse7kzcuit2	538101	cmnf548ht000iuhse8t4eodeu	cmnf548h60007uhse14otrkul		TIMED	\N	\N	2026-04-11 16:30:00	2026-03-31 21:40:11.757	32	2025-2026	REGULAR_SEASON
-cmnf54nng009ruhseot0g5fnc	538105	cmnf548h30005uhse46wx275v	cmnf548gf0002uhsewxfgd4nd		TIMED	\N	\N	2026-04-19 13:00:00	2026-03-31 21:40:11.827	33	2025-2026	REGULAR_SEASON
-cmnf54npi00a4uhsen40v14c4	538134	cmnf548g80001uhseq8eicwme	cmnf548gf0002uhsewxfgd4nd		TIMED	\N	\N	2026-05-02 14:00:00	2026-03-31 21:40:11.898	35	2025-2026	REGULAR_SEASON
-cmnf54nri00aeuhse0qc2yfdj	538130	cmnf548ha000auhsekg2f0oot	cmnf548ho000fuhsei9tdazli		TIMED	\N	\N	2026-05-04 19:00:00	2026-03-31 21:40:11.972	35	2025-2026	REGULAR_SEASON
-cmnf54nu400aruhseuw7bz5ri	538154	cmnf548g80001uhseq8eicwme	cmnf548h60007uhse14otrkul		TIMED	\N	\N	2026-05-17 14:00:00	2026-03-31 21:40:12.058	37	2025-2026	REGULAR_SEASON
-cmnf54m6d000puhse6h8djoe0	537791	cmnf548g80001uhseq8eicwme	cmnf548ho000fuhsei9tdazli		FINISHED	0	4	2025-08-16 16:30:00	2026-03-31 21:40:09.912	1	2025-2026	REGULAR_SEASON
-cmnf54m7p000vuhse0wjjy8ry	537802	cmnf548ho000fuhsei9tdazli	cmnf548gu0004uhser9v0aboe		FINISHED	0	2	2025-08-23 11:30:00	2026-03-31 21:40:09.913	2	2025-2026	REGULAR_SEASON
-cmnf54m8g000zuhse2gwfofxz	537799	cmnf548gh0003uhsel9vkpibt	cmnf548gf0002uhsewxfgd4nd		FINISHED	2	0	2025-08-23 14:00:00	2026-03-31 21:40:09.994	2	2025-2026	REGULAR_SEASON
-cmnf54m9y001guhsetvi36pv2	537816	cmnf548hr000guhseayb6uzuu	cmnf548gf0002uhsewxfgd4nd		FINISHED	0	0	2025-09-13 14:00:00	2026-03-31 21:40:10.046	4	2025-2026	REGULAR_SEASON
-cmnf54mbf001nuhseahcztee5	537822	cmnf548ho000fuhsei9tdazli	cmnf548h50006uhseuq2stcaz		FINISHED	3	0	2025-09-14 15:30:00	2026-03-31 21:40:10.099	4	2025-2026	REGULAR_SEASON
-cmnf54md80022uhsegs7d1lxf	537838	cmnf548hb000duhse2eezx75m	cmnf548hw000juhsen71wa95h		FINISHED	1	3	2025-09-27 14:00:00	2026-03-31 21:40:10.163	6	2025-2026	REGULAR_SEASON
-cmnf54mf1002auhseectgnmxr	537851	cmnf548ha0009uhseksu2phrb	cmnf548gu0004uhser9v0aboe		FINISHED	1	2	2025-10-04 11:30:00	2026-03-31 21:40:10.226	7	2025-2026	REGULAR_SEASON
-cmnf54mh3002nuhsej21kug0f	537861	cmnf548ho000fuhsei9tdazli	cmnf548ha000auhsekg2f0oot		FINISHED	2	0	2025-10-18 14:00:00	2026-03-31 21:40:10.302	8	2025-2026	REGULAR_SEASON
-cmnf54mj40032uhsesu9vggho	537878	cmnf548gh0003uhsel9vkpibt	cmnf548em0000uhseg9lphrqa		FINISHED	0	2	2025-11-01 15:00:00	2026-03-31 21:40:10.376	10	2025-2026	REGULAR_SEASON
-cmnf54mjz0037uhseddecblyi	537883	cmnf548gu0004uhser9v0aboe	cmnf548hb000duhse2eezx75m		FINISHED	0	1	2025-11-01 17:30:00	2026-03-31 21:40:10.377	10	2025-2026	REGULAR_SEASON
-cmnf54mku0038uhseb5cp7l3b	537880	cmnf548ht000iuhse8t4eodeu	cmnf548h30005uhse46wx275v		FINISHED	2	0	2025-11-01 20:00:00	2026-03-31 21:40:10.44	10	2025-2026	REGULAR_SEASON
-cmnf54mll003huhsecsx0daic	537886	cmnf548h30005uhse46wx275v	cmnf548hb000buhsefuwic6dx		FINISHED	4	0	2025-11-09 14:00:00	2026-03-31 21:40:10.441	11	2025-2026	REGULAR_SEASON
-cmnf54mmq003nuhse8rl60ril	537891	cmnf548ho000fuhsei9tdazli	cmnf548ht000iuhse8t4eodeu		FINISHED	3	0	2025-11-09 16:30:00	2026-03-31 21:40:10.506	11	2025-2026	REGULAR_SEASON
-cmnf54mnh003tuhsekm31ub8q	537904	cmnf548g80001uhseq8eicwme	cmnf548hr000guhseayb6uzuu		FINISHED	0	2	2025-11-22 15:00:00	2026-03-31 21:40:10.507	12	2025-2026	REGULAR_SEASON
-cmnf54mop003zuhseoa6q8jn0	537911	cmnf548ho000fuhsei9tdazli	cmnf548ha0009uhseksu2phrb		FINISHED	3	2	2025-11-29 15:00:00	2026-03-31 21:40:10.574	13	2025-2026	REGULAR_SEASON
-cmnf54mpp0046uhsee2oxp9xa	537914	cmnf548hr000huhse669r2oah	cmnf548ht000iuhse8t4eodeu		FINISHED	0	2	2025-11-30 14:05:00	2026-03-31 21:40:10.574	13	2025-2026	REGULAR_SEASON
-cmnf54mqq004auhse83ntjmoa	537924	cmnf548g80001uhseq8eicwme	cmnf548hj000euhse945fpqyk		FINISHED	0	1	2025-12-03 19:30:00	2026-03-31 21:40:10.651	14	2025-2026	REGULAR_SEASON
-cmnf54mrj004huhseplnw8308	537925	cmnf548hb000buhsefuwic6dx	cmnf548hb000duhse2eezx75m		FINISHED	0	0	2025-12-06 15:00:00	2026-03-31 21:40:10.652	15	2025-2026	REGULAR_SEASON
-cmnf54mss004muhse3hmskmbe	537929	cmnf548h60007uhse14otrkul	cmnf548hr000guhseayb6uzuu		FINISHED	1	2	2025-12-07 16:30:00	2026-03-31 21:40:10.725	15	2025-2026	REGULAR_SEASON
-cmnf54mus0053uhse3lc193bi	537951	cmnf548ho000fuhsei9tdazli	cmnf548hr000huhse669r2oah		FINISHED	3	0	2025-12-20 15:00:00	2026-03-31 21:40:10.797	17	2025-2026	REGULAR_SEASON
-cmnf54mwx005guhseo1l1v7px	537961	cmnf548ht000iuhse8t4eodeu	cmnf548g80001uhseq8eicwme		FINISHED	2	1	2025-12-27 15:00:00	2026-03-31 21:40:10.868	18	2025-2026	REGULAR_SEASON
-cmnf54myr005quhse5at0zjlq	537966	cmnf548hr000guhseayb6uzuu	cmnf548h60007uhse14otrkul		FINISHED	1	1	2026-01-01 17:30:00	2026-03-31 21:40:10.936	19	2025-2026	REGULAR_SEASON
-cmnf54n12005yuhsecmhjmpj7	537975	cmnf548hb000buhsefuwic6dx	cmnf548em0000uhseg9lphrqa		FINISHED	2	3	2026-01-03 17:30:00	2026-03-31 21:40:11.018	20	2025-2026	REGULAR_SEASON
-cmnf54n1w0066uhserzqn326x	537988	cmnf548h90008uhseg19mk30r	cmnf548gf0002uhsewxfgd4nd		FINISHED	3	0	2026-01-07 19:30:00	2026-03-31 21:40:11.02	21	2025-2026	REGULAR_SEASON
-cmnf54n2x0068uhsesp5du68y	537990	cmnf548ha000auhsekg2f0oot	cmnf548g80001uhseq8eicwme		FINISHED	1	1	2026-01-07 19:30:00	2026-03-31 21:40:11.088	21	2025-2026	REGULAR_SEASON
-cmnf54n3v006huhsejcl5svbd	537998	cmnf548hb000duhse2eezx75m	cmnf548h90008uhseg19mk30r		FINISHED	2	0	2026-01-17 15:00:00	2026-03-31 21:40:11.091	22	2025-2026	REGULAR_SEASON
-cmnf54n56006nuhsejiicq5qw	538009	cmnf548gh0003uhsel9vkpibt	cmnf548gu0004uhser9v0aboe		FINISHED	2	2	2026-01-24 15:00:00	2026-03-31 21:40:11.169	23	2025-2026	REGULAR_SEASON
-cmnf54n740072uhse0840ppo7	538016	cmnf548h30005uhse46wx275v	cmnf548h90008uhseg19mk30r		FINISHED	0	1	2026-02-01 14:00:00	2026-03-31 21:40:11.239	24	2025-2026	REGULAR_SEASON
-cmnf54n960079uhseibhmyoom	538028	cmnf548gh0003uhsel9vkpibt	cmnf548hr000huhse669r2oah		FINISHED	0	2	2026-02-07 15:00:00	2026-03-31 21:40:11.313	25	2025-2026	REGULAR_SEASON
-cmnf54nbj007puhse4w3ror43	538037	cmnf548hr000guhseayb6uzuu	cmnf548gh0003uhsel9vkpibt		FINISHED	2	3	2026-02-11 19:40:00	2026-03-31 21:40:11.389	26	2025-2026	REGULAR_SEASON
-cmnf54ndj0083uhsecv3xxkyp	538064	cmnf548g80001uhseq8eicwme	cmnf548h30005uhse46wx275v		FINISHED	2	0	2026-02-27 20:00:00	2026-03-31 21:40:11.466	28	2025-2026	REGULAR_SEASON
-cmnf54nfc008duhseacgwo0sp	538068	cmnf548ha000auhsekg2f0oot	cmnf548gh0003uhsel9vkpibt		FINISHED	2	0	2026-03-03 19:30:00	2026-03-31 21:40:11.536	29	2025-2026	REGULAR_SEASON
-cmnf54nhi008ruhsezlyyo7rz	538080	cmnf548hb000duhse2eezx75m	cmnf548hb000cuhsec9ov4bjp		FINISHED	0	1	2026-03-14 17:30:00	2026-03-31 21:40:11.612	30	2025-2026	REGULAR_SEASON
-cmnf54ni8008uuhseb7xqkz6v	538082	cmnf548h50006uhseuq2stcaz	cmnf548h30005uhse46wx275v		FINISHED	3	1	2026-03-15 14:00:00	2026-03-31 21:40:11.613	30	2025-2026	REGULAR_SEASON
-cmnf54njd008xuhse8gnz94h8	538085	cmnf548hb000buhsefuwic6dx	cmnf548h50006uhseuq2stcaz		FINISHED	2	2	2026-03-20 20:00:00	2026-03-31 21:40:11.681	31	2025-2026	REGULAR_SEASON
-cmnf54nlk009cuhsekvgaezal	538100	cmnf548hb000duhse2eezx75m	cmnf548ho000fuhsei9tdazli		TIMED	\N	\N	2026-04-12 15:30:00	2026-03-31 21:40:11.759	32	2025-2026	REGULAR_SEASON
-cmnf54nng009puhsesme3fsis	538106	cmnf548hr000guhseayb6uzuu	cmnf548hr000huhse669r2oah		TIMED	\N	\N	2026-04-20 19:00:00	2026-03-31 21:40:11.827	33	2025-2026	REGULAR_SEASON
-cmnf54noa009uuhsepx8e6nhz	538124	cmnf548g80001uhseq8eicwme	cmnf548gu0004uhser9v0aboe		TIMED	\N	\N	2026-04-25 14:00:00	2026-03-31 21:40:11.829	34	2025-2026	REGULAR_SEASON
-cmnf54npe009xuhsexkmbn6a5	538117	cmnf548hw000juhsen71wa95h	cmnf548hb000duhse2eezx75m		TIMED	\N	\N	2026-04-26 15:30:00	2026-03-31 21:40:11.896	34	2025-2026	REGULAR_SEASON
-cmnf54nrk00aguhsea2c2l7mx	538140	cmnf548ht000iuhse8t4eodeu	cmnf548hb000duhse2eezx75m		TIMED	\N	\N	2026-05-09 14:00:00	2026-03-31 21:40:11.973	36	2025-2026	REGULAR_SEASON
-cmnf54nsg00ajuhseeh9xk304	538144	cmnf548hr000huhse669r2oah	cmnf548em0000uhseg9lphrqa		TIMED	\N	\N	2026-05-09 14:00:00	2026-03-31 21:40:11.974	36	2025-2026	REGULAR_SEASON
-cmnf54ntx00akuhse1f7t7sme	538145	cmnf548hb000buhsefuwic6dx	cmnf548ho000fuhsei9tdazli		TIMED	\N	\N	2026-05-17 14:00:00	2026-03-31 21:40:12.055	37	2025-2026	REGULAR_SEASON
-cmnf54nv800auuhsenyokgqm5	538152	cmnf548h50006uhseuq2stcaz	cmnf548hj000euhse945fpqyk		TIMED	\N	\N	2026-05-17 14:00:00	2026-03-31 21:40:12.058	37	2025-2026	REGULAR_SEASON
-cmnf54nwa00awuhserf05zko1	538157	cmnf548hr000guhseayb6uzuu	cmnf548em0000uhseg9lphrqa		TIMED	\N	\N	2026-05-24 15:00:00	2026-03-31 21:40:12.15	38	2025-2026	REGULAR_SEASON
-cmnf54m6c000luhse11ohp3v5	537787	cmnf548hw000juhsen71wa95h	cmnf548h60007uhse14otrkul		FINISHED	1	1	2025-08-16 14:00:00	2026-03-31 21:40:09.911	1	2025-2026	REGULAR_SEASON
-cmnf54m6c000muhsejzierkys	537789	cmnf548gf0002uhsewxfgd4nd	cmnf548hr000huhse669r2oah		FINISHED	3	0	2025-08-16 14:00:00	2026-03-31 21:40:09.911	1	2025-2026	REGULAR_SEASON
-cmnf54m8g0011uhser1wo7exp	537797	cmnf548em0000uhseg9lphrqa	cmnf548ha0009uhseksu2phrb		FINISHED	5	0	2025-08-23 16:30:00	2026-03-31 21:40:09.994	2	2025-2026	REGULAR_SEASON
-cmnf54m8g0010uhsebxmmd4c3	537800	cmnf548ha000auhsekg2f0oot	cmnf548hw000juhsen71wa95h		FINISHED	2	0	2025-08-24 13:00:00	2026-03-31 21:40:09.994	2	2025-2026	REGULAR_SEASON
-cmnf54m9w001duhsevn9kk4ci	537806	cmnf548h30005uhse46wx275v	cmnf548hr000guhseayb6uzuu		FINISHED	0	3	2025-08-31 18:00:00	2026-03-31 21:40:10.045	3	2025-2026	REGULAR_SEASON
-cmnf54m9x001fuhseipvvtqzz	537817	cmnf548em0000uhseg9lphrqa	cmnf548hj000euhse945fpqyk		FINISHED	3	0	2025-09-13 11:30:00	2026-03-31 21:40:10.045	4	2025-2026	REGULAR_SEASON
-cmnf54mak001juhse915ri2fz	537821	cmnf548h60007uhse14otrkul	cmnf548ha0009uhseksu2phrb		FINISHED	1	0	2025-09-13 14:00:00	2026-03-31 21:40:10.046	4	2025-2026	REGULAR_SEASON
-cmnf54mbf001muhsexk7042qv	537827	cmnf548hw000juhsen71wa95h	cmnf548gu0004uhser9v0aboe		FINISHED	2	2	2025-09-20 14:00:00	2026-03-31 21:40:10.099	5	2025-2026	REGULAR_SEASON
-cmnf54mbf001quhsexx2ljc3l	537833	cmnf548hr000huhse669r2oah	cmnf548hr000guhseayb6uzuu		FINISHED	1	2	2025-09-20 14:00:00	2026-03-31 21:40:10.099	5	2025-2026	REGULAR_SEASON
-cmnf54md8001zuhse575hkpw4	537840	cmnf548ha0009uhseksu2phrb	cmnf548hb000buhsefuwic6dx		FINISHED	2	2	2025-09-27 14:00:00	2026-03-31 21:40:10.164	6	2025-2026	REGULAR_SEASON
-cmnf54md80020uhseja6ku3wr	537837	cmnf548h90008uhseg19mk30r	cmnf548h50006uhseuq2stcaz		FINISHED	3	1	2025-09-27 11:30:00	2026-03-31 21:40:10.163	6	2025-2026	REGULAR_SEASON
-cmnf54mdw0027uhsenxl58lmc	537839	cmnf548ha000auhsekg2f0oot	cmnf548hr000huhse669r2oah		FINISHED	1	1	2025-09-29 19:00:00	2026-03-31 21:40:10.164	6	2025-2026	REGULAR_SEASON
-cmnf54mdw0026uhseiifjlgnq	537842	cmnf548hb000cuhsec9ov4bjp	cmnf548em0000uhseg9lphrqa		FINISHED	1	2	2025-09-28 15:30:00	2026-03-31 21:40:10.164	6	2025-2026	REGULAR_SEASON
-cmnf54mez0028uhselagx9hmc	537845	cmnf548hb000buhsefuwic6dx	cmnf548h60007uhse14otrkul		FINISHED	3	1	2025-10-03 19:00:00	2026-03-31 21:40:10.225	7	2025-2026	REGULAR_SEASON
-cmnf54mf10029uhsewnsaz4u8	537849	cmnf548hb000duhse2eezx75m	cmnf548ht000iuhse8t4eodeu		FINISHED	2	1	2025-10-04 16:30:00	2026-03-31 21:40:10.226	7	2025-2026	REGULAR_SEASON
-cmnf54mh5002ruhsetu23as04	537864	cmnf548hr000huhse669r2oah	cmnf548h90008uhseg19mk30r		FINISHED	0	2	2025-10-20 19:00:00	2026-03-31 21:40:10.303	8	2025-2026	REGULAR_SEASON
-cmnf54mh7002suhsekf90iks8	537871	cmnf548ha0009uhseksu2phrb	cmnf548hr000huhse669r2oah		FINISHED	2	1	2025-10-24 19:00:00	2026-03-31 21:40:10.303	9	2025-2026	REGULAR_SEASON
-cmnf54mj3002yuhseki8tbd1y	537876	cmnf548hw000juhsen71wa95h	cmnf548ha0009uhseksu2phrb		FINISHED	3	0	2025-11-01 15:00:00	2026-03-31 21:40:10.376	10	2025-2026	REGULAR_SEASON
-cmnf54mj3002zuhsepw1bztmn	537870	cmnf548ha000auhsekg2f0oot	cmnf548gu0004uhser9v0aboe		FINISHED	0	3	2025-10-26 16:30:00	2026-03-31 21:40:10.376	9	2025-2026	REGULAR_SEASON
-cmnf54mkw003duhsero2gg7m6	537875	cmnf548gf0002uhsewxfgd4nd	cmnf548ha000auhsekg2f0oot		FINISHED	1	1	2025-11-03 20:00:00	2026-03-31 21:40:10.441	10	2025-2026	REGULAR_SEASON
-cmnf54mkz003guhsegrapv49m	537889	cmnf548hb000duhse2eezx75m	cmnf548g80001uhseq8eicwme		FINISHED	3	0	2025-11-08 20:00:00	2026-03-31 21:40:10.441	11	2025-2026	REGULAR_SEASON
-cmnf54mmp003muhselcf24ioa	537900	cmnf548ht000iuhse8t4eodeu	cmnf548hj000euhse945fpqyk		FINISHED	0	3	2025-11-22 15:00:00	2026-03-31 21:40:10.507	12	2025-2026	REGULAR_SEASON
-cmnf54mmr003puhseqanb0gx1	537896	cmnf548hw000juhsen71wa95h	cmnf548h90008uhseg19mk30r		FINISHED	2	1	2025-11-22 15:00:00	2026-03-31 21:40:10.506	12	2025-2026	REGULAR_SEASON
-cmnf54mop0040uhsepp20ir6f	537910	cmnf548ha000auhsekg2f0oot	cmnf548hb000cuhsec9ov4bjp		FINISHED	1	4	2025-11-29 17:30:00	2026-03-31 21:40:10.574	13	2025-2026	REGULAR_SEASON
-cmnf54mow0044uhsevl173etj	537919	cmnf548h60007uhse14otrkul	cmnf548ho000fuhsei9tdazli		FINISHED	4	5	2025-12-02 19:30:00	2026-03-31 21:40:10.575	14	2025-2026	REGULAR_SEASON
-cmnf54mqq004duhseyt4ceuio	537916	cmnf548hw000juhsen71wa95h	cmnf548h30005uhse46wx275v		FINISHED	3	4	2025-12-03 19:30:00	2026-03-31 21:40:10.651	14	2025-2026	REGULAR_SEASON
-cmnf54mqw004guhsesazpw9hv	537926	cmnf548h30005uhse46wx275v	cmnf548em0000uhseg9lphrqa		FINISHED	2	1	2025-12-06 12:30:00	2026-03-31 21:40:10.652	15	2025-2026	REGULAR_SEASON
-cmnf54mst004ouhsetikfgevi	537930	cmnf548ha0009uhseksu2phrb	cmnf548ht000iuhse8t4eodeu		FINISHED	3	3	2025-12-06 17:30:00	2026-03-31 21:40:10.724	15	2025-2026	REGULAR_SEASON
-cmnf54mst004nuhsetknzb7sz	537933	cmnf548gu0004uhser9v0aboe	cmnf548h90008uhseg19mk30r		FINISHED	2	0	2025-12-06 15:00:00	2026-03-31 21:40:10.724	15	2025-2026	REGULAR_SEASON
-cmnf54mto004uuhse4qbww5bv	537936	cmnf548hr000guhseayb6uzuu	cmnf548ho000fuhsei9tdazli		FINISHED	0	3	2025-12-14 14:00:00	2026-03-31 21:40:10.726	16	2025-2026	REGULAR_SEASON
-cmnf54muq004wuhsex5go7jds	537943	cmnf548hj000euhse945fpqyk	cmnf548gu0004uhser9v0aboe		FINISHED	3	0	2025-12-14 14:00:00	2026-03-31 21:40:10.795	16	2025-2026	REGULAR_SEASON
-cmnf54mut0054uhsev7s31n6n	537953	cmnf548gu0004uhser9v0aboe	cmnf548ht000iuhse8t4eodeu		FINISHED	1	2	2025-12-20 17:30:00	2026-03-31 21:40:10.797	17	2025-2026	REGULAR_SEASON
-cmnf54mvn0057uhseui1k4f7p	537950	cmnf548ha0009uhseksu2phrb	cmnf548hr000guhseayb6uzuu		FINISHED	4	1	2025-12-20 20:00:00	2026-03-31 21:40:10.798	17	2025-2026	REGULAR_SEASON
-cmnf54mwq0058uhse012smwi9	537946	cmnf548h30005uhse46wx275v	cmnf548h50006uhseuq2stcaz		FINISHED	2	1	2025-12-21 16:30:00	2026-03-31 21:40:10.867	17	2025-2026	REGULAR_SEASON
-cmnf54mwt005cuhse5ar4eo43	537957	cmnf548em0000uhseg9lphrqa	cmnf548hw000juhsen71wa95h		FINISHED	2	1	2025-12-27 15:00:00	2026-03-31 21:40:10.868	18	2025-2026	REGULAR_SEASON
-cmnf54mxm005juhsefj2txpzu	537956	cmnf548hr000guhseayb6uzuu	cmnf548gu0004uhser9v0aboe		FINISHED	0	1	2025-12-28 16:30:00	2026-03-31 21:40:10.869	18	2025-2026	REGULAR_SEASON
-cmnf54myp005luhsez5em22mr	537970	cmnf548hb000duhse2eezx75m	cmnf548hb000buhsefuwic6dx		FINISHED	2	2	2025-12-30 19:30:00	2026-03-31 21:40:10.935	19	2025-2026	REGULAR_SEASON
-cmnf54myq005puhsegtgtf2k0	537967	cmnf548em0000uhseg9lphrqa	cmnf548h30005uhse46wx275v		FINISHED	4	1	2025-12-30 20:15:00	2026-03-31 21:40:10.935	19	2025-2026	REGULAR_SEASON
-cmnf54n140063uhsekt37w27t	537981	cmnf548ho000fuhsei9tdazli	cmnf548hb000duhse2eezx75m		FINISHED	1	1	2026-01-04 17:30:00	2026-03-31 21:40:11.02	20	2025-2026	REGULAR_SEASON
-cmnf54n130061uhseq9kose84	537982	cmnf548hb000cuhsec9ov4bjp	cmnf548hr000guhseayb6uzuu		FINISHED	2	0	2026-01-04 15:00:00	2026-03-31 21:40:11.019	20	2025-2026	REGULAR_SEASON
-cmnf54n2z006cuhse56rw3pcm	537993	cmnf548hb000cuhsec9ov4bjp	cmnf548ha0009uhseksu2phrb		FINISHED	4	3	2026-01-07 20:15:00	2026-03-31 21:40:11.09	21	2025-2026	REGULAR_SEASON
-cmnf54n31006fuhse4kwpfpe3	537995	cmnf548gf0002uhsewxfgd4nd	cmnf548hr000guhseayb6uzuu		FINISHED	2	1	2026-01-17 15:00:00	2026-03-31 21:40:11.091	22	2025-2026	REGULAR_SEASON
-cmnf54n3z006juhselz8p3n54	538003	cmnf548gu0004uhser9v0aboe	cmnf548hr000huhse669r2oah		FINISHED	1	2	2026-01-17 15:00:00	2026-03-31 21:40:11.091	22	2025-2026	REGULAR_SEASON
-cmnf54n56006puhsez7dovsy6	538004	cmnf548g80001uhseq8eicwme	cmnf548hb000cuhsec9ov4bjp		FINISHED	0	0	2026-01-18 14:00:00	2026-03-31 21:40:11.168	22	2025-2026	REGULAR_SEASON
-cmnf54n56006luhsewxkql6qu	537997	cmnf548hw000juhsen71wa95h	cmnf548hb000buhsefuwic6dx		FINISHED	1	1	2026-01-19 20:00:00	2026-03-31 21:40:11.168	22	2025-2026	REGULAR_SEASON
-cmnf54m6f000suhsezdhopc9w	537793	cmnf548h50006uhseuq2stcaz	cmnf548em0000uhseg9lphrqa		FINISHED	0	1	2025-08-17 15:30:00	2026-03-31 21:40:09.912	1	2025-2026	REGULAR_SEASON
-cmnf54m8g000xuhsej62g40mu	537798	cmnf548h90008uhseg19mk30r	cmnf548h30005uhse46wx275v		FINISHED	1	0	2025-08-23 14:00:00	2026-03-31 21:40:09.993	2	2025-2026	REGULAR_SEASON
-cmnf54m9x001euhsew0z47yfe	537815	cmnf548hb000buhsefuwic6dx	cmnf548hw000juhsen71wa95h		FINISHED	2	1	2025-09-13 14:00:00	2026-03-31 21:40:10.046	4	2025-2026	REGULAR_SEASON
-cmnf54mbf001puhses05khu2b	537831	cmnf548ht000iuhse8t4eodeu	cmnf548ha000auhsekg2f0oot		FINISHED	2	1	2025-09-20 11:30:00	2026-03-31 21:40:10.099	5	2025-2026	REGULAR_SEASON
-cmnf54mc7001uuhsezojd2udx	537830	cmnf548h60007uhse14otrkul	cmnf548h90008uhseg19mk30r		FINISHED	3	1	2025-09-20 19:00:00	2026-03-31 21:40:10.1	5	2025-2026	REGULAR_SEASON
-cmnf54md7001xuhse5mp36txk	537841	cmnf548ho000fuhsei9tdazli	cmnf548gh0003uhsel9vkpibt		FINISHED	5	1	2025-09-27 14:00:00	2026-03-31 21:40:10.164	6	2025-2026	REGULAR_SEASON
-cmnf54mf2002fuhseb2aa53ao	537853	cmnf548hb000cuhsec9ov4bjp	cmnf548hj000euhse945fpqyk		FINISHED	2	0	2025-10-05 13:00:00	2026-03-31 21:40:10.227	7	2025-2026	REGULAR_SEASON
-cmnf54mh3002ouhse164kkguk	537859	cmnf548h60007uhse14otrkul	cmnf548em0000uhseg9lphrqa		FINISHED	0	1	2025-10-18 16:30:00	2026-03-31 21:40:10.302	8	2025-2026	REGULAR_SEASON
-cmnf54mhy002vuhsecbgti99y	537873	cmnf548hb000cuhsec9ov4bjp	cmnf548h60007uhse14otrkul		FINISHED	2	1	2025-10-25 14:00:00	2026-03-31 21:40:10.303	9	2025-2026	REGULAR_SEASON
-cmnf54mj1002wuhseqfetjsnv	537868	cmnf548h90008uhseg19mk30r	cmnf548ht000iuhse8t4eodeu		FINISHED	3	2	2025-10-25 19:00:00	2026-03-31 21:40:10.375	9	2025-2026	REGULAR_SEASON
-cmnf54mjs0035uhse99ve1p92	537879	cmnf548h60007uhse14otrkul	cmnf548g80001uhseq8eicwme		FINISHED	3	0	2025-11-01 15:00:00	2026-03-31 21:40:10.376	10	2025-2026	REGULAR_SEASON
-cmnf54mkw003buhsevpdwdmys	537893	cmnf548gu0004uhser9v0aboe	cmnf548h50006uhseuq2stcaz		FINISHED	2	2	2025-11-08 12:30:00	2026-03-31 21:40:10.441	11	2025-2026	REGULAR_SEASON
-cmnf54mlp003juhse55gv2vxp	537887	cmnf548hr000guhseayb6uzuu	cmnf548hw000juhsen71wa95h		FINISHED	0	0	2025-11-09 14:00:00	2026-03-31 21:40:10.442	11	2025-2026	REGULAR_SEASON
-cmnf54mmp003luhse97itl1g4	537895	cmnf548hb000buhsefuwic6dx	cmnf548hr000huhse669r2oah		FINISHED	2	2	2025-11-22 15:00:00	2026-03-31 21:40:10.506	12	2025-2026	REGULAR_SEASON
-cmnf54mot0042uhsee09sw0bp	537906	cmnf548h30005uhse46wx275v	cmnf548g80001uhseq8eicwme		FINISHED	1	0	2025-11-30 14:05:00	2026-03-31 21:40:10.574	13	2025-2026	REGULAR_SEASON
-cmnf54mqq004buhsechfconqj	537920	cmnf548ht000iuhse8t4eodeu	cmnf548gf0002uhsewxfgd4nd		FINISHED	1	1	2025-12-03 20:15:00	2026-03-31 21:40:10.651	14	2025-2026	REGULAR_SEASON
-cmnf54msu004ruhsetuc6j6y7	537935	cmnf548gf0002uhsewxfgd4nd	cmnf548hb000cuhsec9ov4bjp		FINISHED	1	0	2025-12-14 14:00:00	2026-03-31 21:40:10.726	16	2025-2026	REGULAR_SEASON
-cmnf54mus004zuhsehtmlymw0	537938	cmnf548h90008uhseg19mk30r	cmnf548ha0009uhseksu2phrb		FINISHED	1	1	2025-12-14 16:30:00	2026-03-31 21:40:10.796	16	2025-2026	REGULAR_SEASON
-cmnf54mvm0056uhsez1iqb6qp	537948	cmnf548ha000auhsekg2f0oot	cmnf548em0000uhseg9lphrqa		FINISHED	0	1	2025-12-20 20:00:00	2026-03-31 21:40:10.797	17	2025-2026	REGULAR_SEASON
-cmnf54mwt0059uhseg5upzu83	537959	cmnf548gh0003uhsel9vkpibt	cmnf548ha000auhsekg2f0oot		FINISHED	0	0	2025-12-27 15:00:00	2026-03-31 21:40:10.868	18	2025-2026	REGULAR_SEASON
-cmnf54mxj005huhse54m4o0ez	537960	cmnf548hb000duhse2eezx75m	cmnf548h30005uhse46wx275v		FINISHED	1	2	2025-12-27 17:30:00	2026-03-31 21:40:10.869	18	2025-2026	REGULAR_SEASON
-cmnf54myp005muhseiau4m6nn	537972	cmnf548h50006uhseuq2stcaz	cmnf548g80001uhseq8eicwme		FINISHED	1	1	2025-12-30 20:15:00	2026-03-31 21:40:10.936	19	2025-2026	REGULAR_SEASON
-cmnf54n150064uhseh3b0e286	537994	cmnf548hr000huhse669r2oah	cmnf548hj000euhse945fpqyk		FINISHED	1	2	2026-01-06 20:00:00	2026-03-31 21:40:11.02	21	2025-2026	REGULAR_SEASON
-cmnf54n2z006duhse5o81zyd1	537992	cmnf548ho000fuhsei9tdazli	cmnf548hw000juhsen71wa95h		FINISHED	1	1	2026-01-07 19:30:00	2026-03-31 21:40:11.089	21	2025-2026	REGULAR_SEASON
-cmnf54n56006muhse7pbg3qvi	537996	cmnf548h30005uhse46wx275v	cmnf548ha000auhsekg2f0oot		FINISHED	0	1	2026-01-18 16:30:00	2026-03-31 21:40:11.168	22	2025-2026	REGULAR_SEASON
-cmnf54n74006zuhseurw9cf9m	538017	cmnf548hw000juhsen71wa95h	cmnf548ha000auhsekg2f0oot		FINISHED	1	1	2026-01-31 15:00:00	2026-03-31 21:40:11.238	24	2025-2026	REGULAR_SEASON
-cmnf54n96007euhse62daii13	538034	cmnf548g80001uhseq8eicwme	cmnf548hb000duhse2eezx75m		FINISHED	1	3	2026-02-07 15:00:00	2026-03-31 21:40:11.313	25	2025-2026	REGULAR_SEASON
-cmnf54nbo007ruhse4uk7bz9i	538035	cmnf548gf0002uhsewxfgd4nd	cmnf548ht000iuhse8t4eodeu		FINISHED	0	1	2026-02-11 20:15:00	2026-03-31 21:40:11.389	26	2025-2026	REGULAR_SEASON
-cmnf54ndh0080uhseoc88233p	538052	cmnf548hj000euhse945fpqyk	cmnf548ht000iuhse8t4eodeu		FINISHED	0	1	2026-02-22 14:00:00	2026-03-31 21:40:11.466	27	2025-2026	REGULAR_SEASON
-cmnf54nfb0089uhsegnqinuat	538059	cmnf548h60007uhse14otrkul	cmnf548gu0004uhser9v0aboe		FINISHED	2	1	2026-03-01 14:00:00	2026-03-31 21:40:11.535	28	2025-2026	REGULAR_SEASON
-cmnf54nge008iuhse79nnqyr8	538074	cmnf548g80001uhseq8eicwme	cmnf548ht000iuhse8t4eodeu		FINISHED	2	1	2026-03-03 20:15:00	2026-03-31 21:40:11.536	29	2025-2026	REGULAR_SEASON
-cmnf54nhh008muhse2ofc65uf	538076	cmnf548hr000guhseayb6uzuu	cmnf548ha0009uhseksu2phrb		FINISHED	0	0	2026-03-15 14:00:00	2026-03-31 21:40:11.612	30	2025-2026	REGULAR_SEASON
-cmnf54njd0090uhseqce9cy4l	538091	cmnf548ho000fuhsei9tdazli	cmnf548hr000guhseayb6uzuu		POSTPONED	\N	\N	2026-03-21 00:00:00	2026-03-31 21:40:11.681	31	2025-2026	REGULAR_SEASON
-cmnf54nkc0096uhsencg8xo6i	538104	cmnf548hr000huhse669r2oah	cmnf548g80001uhseq8eicwme		TIMED	\N	\N	2026-04-10 19:00:00	2026-03-31 21:40:11.682	32	2025-2026	REGULAR_SEASON
-cmnf54nlk0099uhsek8wgblef	538102	cmnf548h50006uhseuq2stcaz	cmnf548ha0009uhseksu2phrb		TIMED	\N	\N	2026-04-13 19:00:00	2026-03-31 21:40:11.759	32	2025-2026	REGULAR_SEASON
-cmnf54nm9009huhsejcemum5a	538114	cmnf548gu0004uhser9v0aboe	cmnf548hw000juhsen71wa95h		TIMED	\N	\N	2026-04-18 16:30:00	2026-03-31 21:40:11.76	33	2025-2026	REGULAR_SEASON
-cmnf54nng009nuhsetyyyvx1q	538116	cmnf548gf0002uhsewxfgd4nd	cmnf548hj000euhse945fpqyk		TIMED	\N	\N	2026-04-24 19:00:00	2026-03-31 21:40:11.827	34	2025-2026	REGULAR_SEASON
-cmnf54nob009vuhsewqmqozhk	538121	cmnf548ht000iuhse8t4eodeu	cmnf548hr000guhseayb6uzuu		TIMED	\N	\N	2026-04-25 14:00:00	2026-03-31 21:40:11.828	34	2025-2026	REGULAR_SEASON
-cmnf54npc009wuhsesdre3408	538118	cmnf548em0000uhseg9lphrqa	cmnf548hb000cuhsec9ov4bjp		TIMED	\N	\N	2026-04-25 16:30:00	2026-03-31 21:40:11.896	34	2025-2026	REGULAR_SEASON
-cmnf54nq500a5uhsetq13ss8v	538133	cmnf548hb000cuhsec9ov4bjp	cmnf548hw000juhsen71wa95h		TIMED	\N	\N	2026-05-02 14:00:00	2026-03-31 21:40:11.897	35	2025-2026	REGULAR_SEASON
-cmnf54nrg00a8uhse2o9ibame	538129	cmnf548hb000duhse2eezx75m	cmnf548hj000euhse945fpqyk		TIMED	\N	\N	2026-05-04 14:00:00	2026-03-31 21:40:11.972	35	2025-2026	REGULAR_SEASON
-cmnf54nsb00ahuhsedw6da28n	538143	cmnf548gu0004uhser9v0aboe	cmnf548ha0009uhseksu2phrb		TIMED	\N	\N	2026-05-09 14:00:00	2026-03-31 21:40:11.974	36	2025-2026	REGULAR_SEASON
-cmnf54nu000anuhse1wxdq1ft	538147	cmnf548em0000uhseg9lphrqa	cmnf548gh0003uhsel9vkpibt		TIMED	\N	\N	2026-05-17 14:00:00	2026-03-31 21:40:12.056	37	2025-2026	REGULAR_SEASON
-cmnf54m6f000ruhsekujnf4k2	537788	cmnf548hj000euhse945fpqyk	cmnf548h90008uhseg19mk30r		FINISHED	3	1	2025-08-17 13:00:00	2026-03-31 21:40:09.912	1	2025-2026	REGULAR_SEASON
-cmnf54m8h0012uhse5g4h7s02	537803	cmnf548hb000cuhsec9ov4bjp	cmnf548ht000iuhse8t4eodeu		FINISHED	2	3	2025-08-25 19:00:00	2026-03-31 21:40:09.994	2	2025-2026	REGULAR_SEASON
-cmnf54m9v001auhseovokk5ax	537810	cmnf548ha0009uhseksu2phrb	cmnf548hb000cuhsec9ov4bjp		FINISHED	0	0	2025-08-30 16:30:00	2026-03-31 21:40:10.045	3	2025-2026	REGULAR_SEASON
-cmnf54mak001iuhse9ozomha5	537823	cmnf548hb000cuhsec9ov4bjp	cmnf548g80001uhseq8eicwme		FINISHED	1	0	2025-09-13 14:00:00	2026-03-31 21:40:10.046	4	2025-2026	REGULAR_SEASON
-cmnf54mbd001kuhsejsw2ymwh	537824	cmnf548hr000huhse669r2oah	cmnf548gu0004uhser9v0aboe		FINISHED	0	3	2025-09-13 16:30:00	2026-03-31 21:40:10.099	4	2025-2026	REGULAR_SEASON
-cmnf54mc3001tuhsexdy610fg	537832	cmnf548h50006uhseuq2stcaz	cmnf548hb000duhse2eezx75m		FINISHED	2	1	2025-09-20 16:30:00	2026-03-31 21:40:10.1	5	2025-2026	REGULAR_SEASON
-cmnf54md7001yuhse6dpococn	537836	cmnf548hr000guhseayb6uzuu	cmnf548ht000iuhse8t4eodeu		FINISHED	2	1	2025-09-27 14:00:00	2026-03-31 21:40:10.163	6	2025-2026	REGULAR_SEASON
-cmnf54mf1002duhseam1j5b9k	537846	cmnf548h30005uhse46wx275v	cmnf548gh0003uhsel9vkpibt		FINISHED	2	1	2025-10-05 13:00:00	2026-03-31 21:40:10.227	7	2025-2026	REGULAR_SEASON
-cmnf54mfv002iuhse1sa4yztw	537862	cmnf548hj000euhse945fpqyk	cmnf548hb000duhse2eezx75m		FINISHED	0	3	2025-10-18 11:30:00	2026-03-31 21:40:10.228	8	2025-2026	REGULAR_SEASON
-cmnf54mh2002luhse9n3vze20	537858	cmnf548gh0003uhsel9vkpibt	cmnf548ha0009uhseksu2phrb		FINISHED	2	0	2025-10-18 14:00:00	2026-03-31 21:40:10.301	8	2025-2026	REGULAR_SEASON
-cmnf54mht002tuhseg31syxdu	537869	cmnf548hb000duhse2eezx75m	cmnf548gf0002uhsewxfgd4nd		FINISHED	1	2	2025-10-25 14:00:00	2026-03-31 21:40:10.303	9	2025-2026	REGULAR_SEASON
-cmnf54mj30030uhseirb9o9i8	537865	cmnf548hb000buhsefuwic6dx	cmnf548hj000euhse945fpqyk		FINISHED	2	0	2025-10-26 14:00:00	2026-03-31 21:40:10.375	9	2025-2026	REGULAR_SEASON
-cmnf54mkx003fuhsemxyb3jco	537885	cmnf548gf0002uhsewxfgd4nd	cmnf548em0000uhseg9lphrqa		FINISHED	2	2	2025-11-08 17:30:00	2026-03-31 21:40:10.441	11	2025-2026	REGULAR_SEASON
-cmnf54mlp003iuhsep0m624sc	537888	cmnf548h90008uhseg19mk30r	cmnf548hb000cuhsec9ov4bjp		FINISHED	3	1	2025-11-09 14:00:00	2026-03-31 21:40:10.442	11	2025-2026	REGULAR_SEASON
-cmnf54mmo003kuhsef32y8zk0	537892	cmnf548hj000euhse945fpqyk	cmnf548ha0009uhseksu2phrb		FINISHED	3	1	2025-11-09 14:00:00	2026-03-31 21:40:10.506	11	2025-2026	REGULAR_SEASON
-cmnf54mov0043uhsemq9806ng	537912	cmnf548hj000euhse945fpqyk	cmnf548hw000juhsen71wa95h		FINISHED	0	2	2025-11-30 14:05:00	2026-03-31 21:40:10.574	13	2025-2026	REGULAR_SEASON
-cmnf54mqq004cuhse5fmpskdg	537921	cmnf548ha0009uhseksu2phrb	cmnf548hb000duhse2eezx75m		FINISHED	3	1	2025-12-03 20:15:00	2026-03-31 21:40:10.652	14	2025-2026	REGULAR_SEASON
-cmnf54mst004puhsefxvv9x8l	537927	cmnf548hw000juhsen71wa95h	cmnf548hr000huhse669r2oah		FINISHED	1	1	2025-12-07 14:00:00	2026-03-31 21:40:10.725	15	2025-2026	REGULAR_SEASON
-cmnf54mus0052uhse092dlukr	537945	cmnf548hb000buhsefuwic6dx	cmnf548gh0003uhsel9vkpibt		FINISHED	1	1	2025-12-20 15:00:00	2026-03-31 21:40:10.797	17	2025-2026	REGULAR_SEASON
-cmnf54mww005fuhse2mtqy5jz	537964	cmnf548hr000huhse669r2oah	cmnf548h60007uhse14otrkul		FINISHED	0	1	2025-12-27 15:00:00	2026-03-31 21:40:10.868	18	2025-2026	REGULAR_SEASON
-cmnf54myp005nuhseoit26b2z	537974	cmnf548hr000huhse669r2oah	cmnf548hw000juhsen71wa95h		FINISHED	2	2	2025-12-30 19:30:00	2026-03-31 21:40:10.935	19	2025-2026	REGULAR_SEASON
-cmnf54mzo005tuhsey6tnl0bx	537965	cmnf548gf0002uhsewxfgd4nd	cmnf548ho000fuhsei9tdazli		FINISHED	0	0	2026-01-01 20:00:00	2026-03-31 21:40:10.936	19	2025-2026	REGULAR_SEASON
-cmnf54n13005zuhse0phcbjbm	537983	cmnf548gu0004uhser9v0aboe	cmnf548gf0002uhsewxfgd4nd		FINISHED	1	1	2026-01-04 15:00:00	2026-03-31 21:40:11.019	20	2025-2026	REGULAR_SEASON
-cmnf54n30006euhsem7wnbtmq	537987	cmnf548em0000uhseg9lphrqa	cmnf548ht000iuhse8t4eodeu		FINISHED	0	0	2026-01-08 20:00:00	2026-03-31 21:40:11.09	21	2025-2026	REGULAR_SEASON
-cmnf54n58006ruhse74brfbmv	538005	cmnf548hb000buhsefuwic6dx	cmnf548ht000iuhse8t4eodeu		FINISHED	3	2	2026-01-24 17:30:00	2026-03-31 21:40:11.17	23	2025-2026	REGULAR_SEASON
-cmnf54n780074uhsez16ny8it	538021	cmnf548h50006uhseuq2stcaz	cmnf548h60007uhse14otrkul		FINISHED	3	2	2026-02-01 14:00:00	2026-03-31 21:40:11.239	24	2025-2026	REGULAR_SEASON
-cmnf54n96007auhsev6xfekhp	538027	cmnf548em0000uhseg9lphrqa	cmnf548gf0002uhsewxfgd4nd		FINISHED	3	0	2026-02-07 15:00:00	2026-03-31 21:40:11.313	25	2025-2026	REGULAR_SEASON
-cmnf54na8007juhse5rfvy6eb	538039	cmnf548hb000duhse2eezx75m	cmnf548ha0009uhseksu2phrb		FINISHED	2	2	2026-02-10 19:30:00	2026-03-31 21:40:11.314	26	2025-2026	REGULAR_SEASON
-cmnf54nb9007kuhseii6v07bv	538043	cmnf548gu0004uhser9v0aboe	cmnf548hb000cuhsec9ov4bjp		FINISHED	1	2	2026-02-10 19:30:00	2026-03-31 21:40:11.388	26	2025-2026	REGULAR_SEASON
-cmnf54nc1007tuhsedu8p970a	538048	cmnf548h90008uhseg19mk30r	cmnf548hw000juhsen71wa95h		FINISHED	0	2	2026-02-21 15:00:00	2026-03-31 21:40:11.39	27	2025-2026	REGULAR_SEASON
-cmnf54ndd007xuhser47shlxz	538051	cmnf548ho000fuhsei9tdazli	cmnf548hb000cuhsec9ov4bjp		FINISHED	2	1	2026-02-21 20:00:00	2026-03-31 21:40:11.465	27	2025-2026	REGULAR_SEASON
-cmnf54nfg008guhse19593z9c	538069	cmnf548h60007uhse14otrkul	cmnf548hr000huhse669r2oah		FINISHED	0	1	2026-03-04 19:30:00	2026-03-31 21:40:11.536	29	2025-2026	REGULAR_SEASON
-cmnf54nhi008nuhsevmq5wy1o	538079	cmnf548gh0003uhsel9vkpibt	cmnf548hb000buhsefuwic6dx		FINISHED	0	0	2026-03-14 15:00:00	2026-03-31 21:40:11.612	30	2025-2026	REGULAR_SEASON
-cmnf54ni6008tuhse7cvmxfpi	538072	cmnf548hb000cuhsec9ov4bjp	cmnf548h50006uhseuq2stcaz		FINISHED	2	1	2026-03-04 20:15:00	2026-03-31 21:40:11.612	29	2025-2026	REGULAR_SEASON
-cmnf54njd008yuhseimd9vh1d	538088	cmnf548ha000auhsekg2f0oot	cmnf548hb000duhse2eezx75m		FINISHED	3	0	2026-03-21 17:30:00	2026-03-31 21:40:11.681	31	2025-2026	REGULAR_SEASON
-cmnf54nkc0097uhsewugqw7t6	538097	cmnf548em0000uhseg9lphrqa	cmnf548hb000buhsefuwic6dx		TIMED	\N	\N	2026-04-11 11:30:00	2026-03-31 21:40:11.682	32	2025-2026	REGULAR_SEASON
-cmnf54nlh0098uhse1k09r0he	538098	cmnf548h90008uhseg19mk30r	cmnf548ha000auhsekg2f0oot		TIMED	\N	\N	2026-04-11 14:00:00	2026-03-31 21:40:11.756	32	2025-2026	REGULAR_SEASON
-cmnf54nng009quhse5ebm2x2a	538120	cmnf548h60007uhse14otrkul	cmnf548h30005uhse46wx275v		TIMED	\N	\N	2026-04-25 11:30:00	2026-03-31 21:40:11.827	34	2025-2026	REGULAR_SEASON
-cmnf54npg00a2uhse6b7c8hss	538125	cmnf548hb000buhsefuwic6dx	cmnf548hr000guhseayb6uzuu		TIMED	\N	\N	2026-05-02 14:00:00	2026-03-31 21:40:11.897	35	2025-2026	REGULAR_SEASON
-cmnf54nrh00abuhsevh5bvqwm	538135	cmnf548gf0002uhsewxfgd4nd	cmnf548h50006uhseuq2stcaz		TIMED	\N	\N	2026-05-09 14:00:00	2026-03-31 21:40:11.972	36	2025-2026	REGULAR_SEASON
-cmnf54nu300apuhse6qkp6hva	538155	cmnf548gf0002uhsewxfgd4nd	cmnf548hb000duhse2eezx75m		TIMED	\N	\N	2026-05-24 15:00:00	2026-03-31 21:40:12.058	38	2025-2026	REGULAR_SEASON
-cmnf54nv900avuhse5natr3dm	538153	cmnf548hb000cuhsec9ov4bjp	cmnf548hr000huhse669r2oah		TIMED	\N	\N	2026-05-17 14:00:00	2026-03-31 21:40:12.058	37	2025-2026	REGULAR_SEASON
-cmnf54nwc00axuhse10qestx4	538164	cmnf548hr000huhse669r2oah	cmnf548ha0009uhseksu2phrb		TIMED	\N	\N	2026-05-24 15:00:00	2026-03-31 21:40:12.151	38	2025-2026	REGULAR_SEASON
-cmnf54m6f000quhseeki119s7	537792	cmnf548hb000duhse2eezx75m	cmnf548hr000guhseayb6uzuu		FINISHED	0	0	2025-08-17 13:00:00	2026-03-31 21:40:09.912	1	2025-2026	REGULAR_SEASON
-cmnf54m7p000uuhserk8cz9bc	537804	cmnf548hr000huhse669r2oah	cmnf548hb000duhse2eezx75m		FINISHED	1	5	2025-08-22 19:00:00	2026-03-31 21:40:09.913	2	2025-2026	REGULAR_SEASON
-cmnf54m8f000wuhsevuh27xai	537795	cmnf548hb000buhsefuwic6dx	cmnf548g80001uhseq8eicwme		FINISHED	1	0	2025-08-23 14:00:00	2026-03-31 21:40:09.993	2	2025-2026	REGULAR_SEASON
-cmnf54m920017uhse6s8xbvt8	537813	cmnf548gu0004uhser9v0aboe	cmnf548hb000buhsefuwic6dx		FINISHED	0	1	2025-08-30 14:00:00	2026-03-31 21:40:09.994	3	2025-2026	REGULAR_SEASON
-cmnf54m9v0019uhse7kz1cbds	537809	cmnf548ht000iuhse8t4eodeu	cmnf548em0000uhseg9lphrqa		FINISHED	1	0	2025-08-31 15:30:00	2026-03-31 21:40:10.045	3	2025-2026	REGULAR_SEASON
-cmnf54mbf001ouhseuzl4xgl5	537818	cmnf548h90008uhseg19mk30r	cmnf548hb000duhse2eezx75m		FINISHED	2	2	2025-09-13 19:00:00	2026-03-31 21:40:10.099	4	2025-2026	REGULAR_SEASON
-cmnf54md90024uhsethnxi1ob	537844	cmnf548gu0004uhser9v0aboe	cmnf548g80001uhseq8eicwme		FINISHED	1	1	2025-09-27 19:00:00	2026-03-31 21:40:10.164	6	2025-2026	REGULAR_SEASON
-cmnf54mf1002cuhseajqbqynp	537852	cmnf548h50006uhseuq2stcaz	cmnf548gf0002uhsewxfgd4nd		FINISHED	2	0	2025-10-04 14:00:00	2026-03-31 21:40:10.226	7	2025-2026	REGULAR_SEASON
-cmnf54mfs002huhsevb5esqir	537848	cmnf548h90008uhseg19mk30r	cmnf548ho000fuhsei9tdazli		FINISHED	0	1	2025-10-05 15:30:00	2026-03-31 21:40:10.227	7	2025-2026	REGULAR_SEASON
-cmnf54mh2002muhsecbkqtrke	537855	cmnf548gf0002uhsewxfgd4nd	cmnf548g80001uhseq8eicwme		FINISHED	2	0	2025-10-18 14:00:00	2026-03-31 21:40:10.302	8	2025-2026	REGULAR_SEASON
-cmnf54mhw002uuhsethf09l2l	537872	cmnf548h50006uhseuq2stcaz	cmnf548hw000juhsen71wa95h		FINISHED	4	2	2025-10-25 16:30:00	2026-03-31 21:40:10.303	9	2025-2026	REGULAR_SEASON
-cmnf54mj3002xuhse6cjkvr88	537867	cmnf548em0000uhseg9lphrqa	cmnf548hr000guhseayb6uzuu		FINISHED	1	0	2025-10-26 14:00:00	2026-03-31 21:40:10.376	9	2025-2026	REGULAR_SEASON
-cmnf54mjv0036uhsejjipwicq	537882	cmnf548hj000euhse945fpqyk	cmnf548h50006uhseuq2stcaz		FINISHED	2	2	2025-11-01 15:00:00	2026-03-31 21:40:10.377	10	2025-2026	REGULAR_SEASON
-cmnf54mkw0039uhsesmu0pnsq	537881	cmnf548ho000fuhsei9tdazli	cmnf548hb000buhsefuwic6dx		FINISHED	3	1	2025-11-02 16:30:00	2026-03-31 21:40:10.44	10	2025-2026	REGULAR_SEASON
-cmnf54mmr003quhsea2ihza4w	537901	cmnf548ha0009uhseksu2phrb	cmnf548h30005uhse46wx275v		FINISHED	1	2	2025-11-23 14:00:00	2026-03-31 21:40:10.507	12	2025-2026	REGULAR_SEASON
-cmnf54mos0041uhsefmw5oefc	537907	cmnf548hr000guhseayb6uzuu	cmnf548h50006uhseuq2stcaz		FINISHED	1	2	2025-11-30 12:00:00	2026-03-31 21:40:10.574	13	2025-2026	REGULAR_SEASON
-cmnf54mqu004fuhse23srfvjf	537922	cmnf548h50006uhseuq2stcaz	cmnf548hr000huhse669r2oah		FINISHED	1	1	2025-12-04 20:00:00	2026-03-31 21:40:10.652	14	2025-2026	REGULAR_SEASON
-cmnf54mrl004iuhseboq2hmcf	537928	cmnf548ha000auhsekg2f0oot	cmnf548hj000euhse945fpqyk		FINISHED	3	0	2025-12-06 15:00:00	2026-03-31 21:40:10.652	15	2025-2026	REGULAR_SEASON
-cmnf54mss004luhsesgk54a2u	537934	cmnf548g80001uhseq8eicwme	cmnf548h50006uhseuq2stcaz		FINISHED	1	4	2025-12-08 20:00:00	2026-03-31 21:40:10.725	15	2025-2026	REGULAR_SEASON
-cmnf54mtk004tuhsewsmhen59	537939	cmnf548gh0003uhsel9vkpibt	cmnf548h60007uhse14otrkul		FINISHED	2	3	2025-12-13 17:30:00	2026-03-31 21:40:10.726	16	2025-2026	REGULAR_SEASON
-cmnf54mur004xuhsedwldj8tg	537947	cmnf548hw000juhsen71wa95h	cmnf548gf0002uhsewxfgd4nd		FINISHED	0	0	2025-12-20 15:00:00	2026-03-31 21:40:10.797	17	2025-2026	REGULAR_SEASON
-cmnf54mwt005duhsetmbec2zz	537958	cmnf548h90008uhseg19mk30r	cmnf548hb000buhsefuwic6dx		FINISHED	4	1	2025-12-27 15:00:00	2026-03-31 21:40:10.868	18	2025-2026	REGULAR_SEASON
-cmnf54mys005ruhsexlsn193g	537968	cmnf548h90008uhseg19mk30r	cmnf548gu0004uhser9v0aboe		FINISHED	0	0	2026-01-01 20:00:00	2026-03-31 21:40:10.936	19	2025-2026	REGULAR_SEASON
-cmnf54n130062uhsezz66fsaw	537979	cmnf548h60007uhse14otrkul	cmnf548ht000iuhse8t4eodeu		FINISHED	2	2	2026-01-04 15:15:00	2026-03-31 21:40:11.019	20	2025-2026	REGULAR_SEASON
-cmnf54n1w0067uhseptdrz5rt	537986	cmnf548hr000guhseayb6uzuu	cmnf548h30005uhse46wx275v		FINISHED	0	0	2026-01-07 19:30:00	2026-03-31 21:40:11.02	21	2025-2026	REGULAR_SEASON
-cmnf54n2z0069uhset3h73xom	537989	cmnf548gh0003uhsel9vkpibt	cmnf548h50006uhseuq2stcaz		FINISHED	2	2	2026-01-07 20:15:00	2026-03-31 21:40:11.09	21	2025-2026	REGULAR_SEASON
-cmnf54n56006quhsesvyer3iq	538012	cmnf548ho000fuhsei9tdazli	cmnf548g80001uhseq8eicwme		FINISHED	2	0	2026-01-24 15:00:00	2026-03-31 21:40:11.17	23	2025-2026	REGULAR_SEASON
-cmnf54n740073uhsexxzb6a52	538018	cmnf548hb000duhse2eezx75m	cmnf548hr000huhse669r2oah		FINISHED	3	2	2026-01-31 17:30:00	2026-03-31 21:40:11.238	24	2025-2026	REGULAR_SEASON
-cmnf54n97007guhsef35vu3d7	538026	cmnf548hw000juhsen71wa95h	cmnf548hr000guhseayb6uzuu		FINISHED	0	1	2026-02-08 14:00:00	2026-03-31 21:40:11.314	25	2025-2026	REGULAR_SEASON
-cmnf54nbc007nuhse2t9x4zp7	538044	cmnf548hr000huhse669r2oah	cmnf548h50006uhseuq2stcaz		FINISHED	1	1	2026-02-10 20:15:00	2026-03-31 21:40:11.388	26	2025-2026	REGULAR_SEASON
-cmnf54nc7007uuhse3gngrnf2	538049	cmnf548hb000duhse2eezx75m	cmnf548gh0003uhsel9vkpibt		FINISHED	1	1	2026-02-21 15:00:00	2026-03-31 21:40:11.391	27	2025-2026	REGULAR_SEASON
-cmnf54ndd007yuhsegb4koal7	538045	cmnf548gf0002uhsewxfgd4nd	cmnf548h60007uhse14otrkul		FINISHED	1	3	2026-02-22 14:00:00	2026-03-31 21:40:11.465	27	2025-2026	REGULAR_SEASON
-cmnf54ne60086uhse0m80rt28	538063	cmnf548hb000cuhsec9ov4bjp	cmnf548ha000auhsekg2f0oot		FINISHED	2	3	2026-02-28 15:00:00	2026-03-31 21:40:11.467	28	2025-2026	REGULAR_SEASON
-cmnf54nfb008auhselc2b8750	538057	cmnf548em0000uhseg9lphrqa	cmnf548hb000duhse2eezx75m		FINISHED	2	1	2026-03-01 16:30:00	2026-03-31 21:40:11.536	28	2025-2026	REGULAR_SEASON
-cmnf54ngi008juhseigrtrvii	538066	cmnf548h30005uhse46wx275v	cmnf548hb000duhse2eezx75m		FINISHED	1	4	2026-03-04 19:30:00	2026-03-31 21:40:11.536	29	2025-2026	REGULAR_SEASON
-cmnf54nhf008kuhseflace2jk	538071	cmnf548ho000fuhsei9tdazli	cmnf548hj000euhse945fpqyk		FINISHED	2	2	2026-03-04 19:30:00	2026-03-31 21:40:11.611	29	2025-2026	REGULAR_SEASON
-cmnf54njd0091uhse31zoi9kd	538089	cmnf548h60007uhse14otrkul	cmnf548gh0003uhsel9vkpibt		FINISHED	3	1	2026-03-21 15:00:00	2026-03-31 21:40:11.681	31	2025-2026	REGULAR_SEASON
-cmnf54nk80095uhse6ti17wz0	538093	cmnf548gu0004uhser9v0aboe	cmnf548hj000euhse945fpqyk		FINISHED	0	3	2026-03-22 14:15:00	2026-03-31 21:40:11.682	31	2025-2026	REGULAR_SEASON
-cmnf54nlk009auhse4vkooenx	538107	cmnf548h90008uhseg19mk30r	cmnf548h60007uhse14otrkul		TIMED	\N	\N	2026-04-18 11:30:00	2026-03-31 21:40:11.759	33	2025-2026	REGULAR_SEASON
-cmnf54nmc009iuhsev7s7j1au	538112	cmnf548hb000cuhsec9ov4bjp	cmnf548hb000buhsefuwic6dx		TIMED	\N	\N	2026-04-18 14:00:00	2026-03-31 21:40:11.76	33	2025-2026	REGULAR_SEASON
-cmnf54nne009kuhseic4tgxot	538108	cmnf548hb000duhse2eezx75m	cmnf548h50006uhseuq2stcaz		TIMED	\N	\N	2026-04-18 19:00:00	2026-03-31 21:40:11.826	33	2025-2026	REGULAR_SEASON
-cmnf54no8009tuhsejcc81svn	538123	cmnf548hr000huhse669r2oah	cmnf548ha000auhsekg2f0oot		TIMED	\N	\N	2026-04-25 14:00:00	2026-03-31 21:40:11.828	34	2025-2026	REGULAR_SEASON
-cmnf54npe009zuhse39euzeta	538131	cmnf548ha0009uhseksu2phrb	cmnf548gh0003uhsel9vkpibt		TIMED	\N	\N	2026-05-01 19:00:00	2026-03-31 21:40:11.897	35	2025-2026	REGULAR_SEASON
-cmnf54nri00acuhsez02x7iws	538137	cmnf548hr000guhseayb6uzuu	cmnf548ha000auhsekg2f0oot		TIMED	\N	\N	2026-05-09 14:00:00	2026-03-31 21:40:11.972	36	2025-2026	REGULAR_SEASON
-cmnf54nu400asuhsenk1k0wsm	538146	cmnf548h30005uhse46wx275v	cmnf548ht000iuhse8t4eodeu		TIMED	\N	\N	2026-05-17 14:00:00	2026-03-31 21:40:12.056	37	2025-2026	REGULAR_SEASON
-cmnf54m6d000ouhse6t3ml0p6	537790	cmnf548gu0004uhser9v0aboe	cmnf548gh0003uhsel9vkpibt		FINISHED	3	0	2025-08-16 14:00:00	2026-03-31 21:40:09.911	1	2025-2026	REGULAR_SEASON
-cmnf54m8h0013uhseb921owzq	537801	cmnf548h60007uhse14otrkul	cmnf548h50006uhseuq2stcaz		FINISHED	1	1	2025-08-24 15:30:00	2026-03-31 21:40:09.994	2	2025-2026	REGULAR_SEASON
-cmnf54m920016uhseglyib6f7	537805	cmnf548gf0002uhsewxfgd4nd	cmnf548h90008uhseg19mk30r		FINISHED	2	1	2025-08-30 14:00:00	2026-03-31 21:40:09.994	3	2025-2026	REGULAR_SEASON
-cmnf54m9u0018uhseeov72u3i	537814	cmnf548g80001uhseq8eicwme	cmnf548ha000auhsekg2f0oot		FINISHED	2	3	2025-08-30 14:00:00	2026-03-31 21:40:10.044	3	2025-2026	REGULAR_SEASON
-cmnf54mbg001suhse6exqfngz	537834	cmnf548g80001uhseq8eicwme	cmnf548ha0009uhseksu2phrb		FINISHED	1	3	2025-09-20 14:00:00	2026-03-31 21:40:10.1	5	2025-2026	REGULAR_SEASON
-cmnf54md80021uhsemm75ry30	537828	cmnf548em0000uhseg9lphrqa	cmnf548ho000fuhsei9tdazli		FINISHED	1	1	2025-09-21 15:30:00	2026-03-31 21:40:10.163	5	2025-2026	REGULAR_SEASON
-cmnf54mf2002euhsekke4x7ps	537850	cmnf548ha000auhsekg2f0oot	cmnf548hr000guhseayb6uzuu		FINISHED	2	1	2025-10-05 13:00:00	2026-03-31 21:40:10.227	7	2025-2026	REGULAR_SEASON
-cmnf54mh4002puhsexvfgd6ry	537860	cmnf548ht000iuhse8t4eodeu	cmnf548h50006uhseuq2stcaz		FINISHED	1	2	2025-10-19 15:30:00	2026-03-31 21:40:10.302	8	2025-2026	REGULAR_SEASON
-cmnf54mj40033uhsed1tiqbwf	537874	cmnf548g80001uhseq8eicwme	cmnf548gh0003uhsel9vkpibt		FINISHED	2	3	2025-10-26 14:00:00	2026-03-31 21:40:10.376	9	2025-2026	REGULAR_SEASON
-cmnf54mkw003auhsevoonv9f8	537884	cmnf548hr000huhse669r2oah	cmnf548hb000cuhsec9ov4bjp		FINISHED	3	1	2025-11-02 14:00:00	2026-03-31 21:40:10.44	10	2025-2026	REGULAR_SEASON
-cmnf54mmq003ouhsez8lvtsdq	537898	cmnf548gh0003uhsel9vkpibt	cmnf548hb000duhse2eezx75m		FINISHED	0	2	2025-11-22 12:30:00	2026-03-31 21:40:10.506	12	2025-2026	REGULAR_SEASON
-cmnf54mnj003uuhsehpva713x	537902	cmnf548h50006uhseuq2stcaz	cmnf548ha000auhsekg2f0oot		FINISHED	0	1	2025-11-24 20:00:00	2026-03-31 21:40:10.507	12	2025-2026	REGULAR_SEASON
-cmnf54mop003yuhseo0j82u4q	537908	cmnf548h90008uhseg19mk30r	cmnf548gh0003uhsel9vkpibt		FINISHED	3	1	2025-11-29 15:00:00	2026-03-31 21:40:10.573	13	2025-2026	REGULAR_SEASON
-cmnf54mpp0047uhse1isyouqk	537915	cmnf548hb000buhsefuwic6dx	cmnf548ha000auhsekg2f0oot		FINISHED	0	1	2025-12-02 19:30:00	2026-03-31 21:40:10.575	14	2025-2026	REGULAR_SEASON
-cmnf54mqo0048uhseamjlv6x6	537923	cmnf548hb000cuhsec9ov4bjp	cmnf548gu0004uhser9v0aboe		FINISHED	2	2	2025-12-02 20:15:00	2026-03-31 21:40:10.651	14	2025-2026	REGULAR_SEASON
-cmnf54msu004suhse0v3uz3rv	537941	cmnf548ht000iuhse8t4eodeu	cmnf548hw000juhsen71wa95h		FINISHED	2	0	2025-12-13 15:00:00	2026-03-31 21:40:10.726	16	2025-2026	REGULAR_SEASON
-cmnf54mur004yuhsehuzrfvsr	537942	cmnf548h50006uhseuq2stcaz	cmnf548hb000buhsefuwic6dx		FINISHED	4	4	2025-12-15 20:00:00	2026-03-31 21:40:10.796	16	2025-2026	REGULAR_SEASON
-cmnf54mww005euhseey5xdkj7	537962	cmnf548h50006uhseuq2stcaz	cmnf548hb000cuhsec9ov4bjp		FINISHED	1	0	2025-12-26 20:00:00	2026-03-31 21:40:10.867	18	2025-2026	REGULAR_SEASON
-cmnf54myp005ouhsejbrgb94s	537973	cmnf548hj000euhse945fpqyk	cmnf548ha000auhsekg2f0oot		FINISHED	0	2	2025-12-30 19:30:00	2026-03-31 21:40:10.935	19	2025-2026	REGULAR_SEASON
-cmnf54mzp005uuhsek1q8vall	537977	cmnf548hw000juhsen71wa95h	cmnf548gh0003uhsel9vkpibt		FINISHED	2	0	2026-01-03 15:00:00	2026-03-31 21:40:10.937	20	2025-2026	REGULAR_SEASON
-cmnf54n12005xuhse6824omha	537980	cmnf548ha0009uhseksu2phrb	cmnf548h50006uhseuq2stcaz		FINISHED	1	1	2026-01-04 12:30:00	2026-03-31 21:40:11.019	20	2025-2026	REGULAR_SEASON
-cmnf54n2z006buhsega962eow	537991	cmnf548h60007uhse14otrkul	cmnf548hb000duhse2eezx75m		FINISHED	2	1	2026-01-07 19:30:00	2026-03-31 21:40:11.088	21	2025-2026	REGULAR_SEASON
-cmnf54n58006suhsezip94vng	538011	cmnf548h60007uhse14otrkul	cmnf548hw000juhsen71wa95h		FINISHED	2	1	2026-01-24 15:00:00	2026-03-31 21:40:11.169	23	2025-2026	REGULAR_SEASON
-cmnf54n5y006uuhse9udz3uke	538013	cmnf548hb000cuhsec9ov4bjp	cmnf548h30005uhse46wx275v		FINISHED	0	2	2026-01-25 14:00:00	2026-03-31 21:40:11.171	23	2025-2026	REGULAR_SEASON
-cmnf54n74006yuhseffyk124o	538010	cmnf548ha000auhsekg2f0oot	cmnf548ha0009uhseksu2phrb		FINISHED	1	1	2026-01-26 20:00:00	2026-03-31 21:40:11.238	23	2025-2026	REGULAR_SEASON
-cmnf54n740070uhsebhoej5bx	538019	cmnf548ht000iuhse8t4eodeu	cmnf548hb000cuhsec9ov4bjp		FINISHED	4	1	2026-01-31 20:00:00	2026-03-31 21:40:11.239	24	2025-2026	REGULAR_SEASON
-cmnf54n97007fuhsep04vmw6x	538033	cmnf548hb000cuhsec9ov4bjp	cmnf548h90008uhseg19mk30r		FINISHED	2	3	2026-02-07 17:30:00	2026-03-31 21:40:11.314	25	2025-2026	REGULAR_SEASON
-cmnf54n96007duhseln7d5cbh	538032	cmnf548h50006uhseuq2stcaz	cmnf548gu0004uhser9v0aboe		FINISHED	2	0	2026-02-07 12:30:00	2026-03-31 21:40:11.312	25	2025-2026	REGULAR_SEASON
-cmnf54na3007iuhse1a80dhfa	538040	cmnf548ha000auhsekg2f0oot	cmnf548hb000buhsefuwic6dx		FINISHED	1	2	2026-02-10 19:30:00	2026-03-31 21:40:11.314	26	2025-2026	REGULAR_SEASON
-cmnf54nbb007luhse4h2hgd9z	538041	cmnf548ho000fuhsei9tdazli	cmnf548h60007uhse14otrkul		FINISHED	3	0	2026-02-11 19:30:00	2026-03-31 21:40:11.388	26	2025-2026	REGULAR_SEASON
-cmnf54nbo007quhsevua8nrsa	538038	cmnf548h90008uhseg19mk30r	cmnf548em0000uhseg9lphrqa		FINISHED	1	1	2026-02-12 20:00:00	2026-03-31 21:40:11.39	26	2025-2026	REGULAR_SEASON
-cmnf54nc7007vuhsewsk7pt3z	538046	cmnf548h30005uhse46wx275v	cmnf548ha0009uhseksu2phrb		FINISHED	1	1	2026-02-21 15:00:00	2026-03-31 21:40:11.39	27	2025-2026	REGULAR_SEASON
-cmnf54ndb007wuhseiqq2verz	538054	cmnf548hr000huhse669r2oah	cmnf548hb000buhsefuwic6dx		FINISHED	0	0	2026-02-21 17:30:00	2026-03-31 21:40:11.465	27	2025-2026	REGULAR_SEASON
-cmnf54ndi0081uhse7vzyzejv	538050	cmnf548ha000auhsekg2f0oot	cmnf548h50006uhseuq2stcaz		FINISHED	0	1	2026-02-23 20:00:00	2026-03-31 21:40:11.466	27	2025-2026	REGULAR_SEASON
-cmnf54ne00085uhseogpog2qb	538058	cmnf548gh0003uhsel9vkpibt	cmnf548h90008uhseg19mk30r		FINISHED	3	4	2026-02-28 15:00:00	2026-03-31 21:40:11.466	28	2025-2026	REGULAR_SEASON
-cmnf54nfb008buhsefo39bjcd	538056	cmnf548hw000juhsen71wa95h	cmnf548hj000euhse945fpqyk		FINISHED	2	1	2026-03-01 14:00:00	2026-03-31 21:40:11.535	28	2025-2026	REGULAR_SEASON
-cmnf54nfb008cuhsets8159dd	538062	cmnf548h50006uhseuq2stcaz	cmnf548hr000guhseayb6uzuu		FINISHED	2	1	2026-03-01 14:00:00	2026-03-31 21:40:11.535	28	2025-2026	REGULAR_SEASON
-cmnf54nhi008quhsenpvz4rll	538083	cmnf548hj000euhse945fpqyk	cmnf548h60007uhse14otrkul		FINISHED	0	0	2026-03-15 14:00:00	2026-03-31 21:40:11.613	30	2025-2026	REGULAR_SEASON
-cmnf54nhi008ouhsenxcpbvyh	538075	cmnf548gf0002uhsewxfgd4nd	cmnf548hw000juhsen71wa95h		FINISHED	0	1	2026-03-14 15:00:00	2026-03-31 21:40:11.612	30	2025-2026	REGULAR_SEASON
-cmnf54nje0094uhsev6ia00qk	538086	cmnf548h30005uhse46wx275v	cmnf548hr000huhse669r2oah		FINISHED	2	0	2026-03-22 14:15:00	2026-03-31 21:40:11.682	31	2025-2026	REGULAR_SEASON
-cmnf54njd0092uhse2zr3q4xm	538092	cmnf548hb000cuhsec9ov4bjp	cmnf548gf0002uhsewxfgd4nd		FINISHED	1	2	2026-03-22 12:00:00	2026-03-31 21:40:11.682	31	2025-2026	REGULAR_SEASON
-cmnf54nlk009euhsepyzqqmj0	538096	cmnf548hr000guhseayb6uzuu	cmnf548hb000cuhsec9ov4bjp		TIMED	\N	\N	2026-04-12 13:00:00	2026-03-31 21:40:11.758	32	2025-2026	REGULAR_SEASON
-cmnf54nlk009fuhsekl3ihtr8	538099	cmnf548gh0003uhsel9vkpibt	cmnf548hw000juhsen71wa95h		TIMED	\N	\N	2026-04-11 14:00:00	2026-03-31 21:40:11.756	32	2025-2026	REGULAR_SEASON
-cmnf54nmc009juhsestqagf0y	538110	cmnf548ha0009uhseksu2phrb	cmnf548g80001uhseq8eicwme		TIMED	\N	\N	2026-04-18 14:00:00	2026-03-31 21:40:11.76	33	2025-2026	REGULAR_SEASON
-cmnf54nng009muhseibswaruz	538109	cmnf548ha000auhsekg2f0oot	cmnf548ht000iuhse8t4eodeu		TIMED	\N	\N	2026-04-19 13:00:00	2026-03-31 21:40:11.827	33	2025-2026	REGULAR_SEASON
-cmnf54n740071uhseb1ctx5p9	538024	cmnf548g80001uhseq8eicwme	cmnf548hb000buhsefuwic6dx		FINISHED	0	2	2026-01-31 15:00:00	2026-03-31 21:40:11.238	24	2025-2026	REGULAR_SEASON
-cmnf54n7z0077uhse3e1ifp4v	538015	cmnf548gf0002uhsewxfgd4nd	cmnf548gh0003uhsel9vkpibt		FINISHED	3	0	2026-02-02 20:00:00	2026-03-31 21:40:11.24	24	2025-2026	REGULAR_SEASON
-cmnf54n940078uhseq6lypuuo	538031	cmnf548ha0009uhseksu2phrb	cmnf548hj000euhse945fpqyk		FINISHED	3	1	2026-02-06 20:00:00	2026-03-31 21:40:11.312	25	2025-2026	REGULAR_SEASON
-cmnf54n9z007huhseb1lw9f5x	538030	cmnf548ht000iuhse8t4eodeu	cmnf548ho000fuhsei9tdazli		FINISHED	1	2	2026-02-08 16:30:00	2026-03-31 21:40:11.314	25	2025-2026	REGULAR_SEASON
-cmnf54nbb007muhsermtbyna5	538036	cmnf548h30005uhse46wx275v	cmnf548hw000juhsen71wa95h		FINISHED	1	0	2026-02-11 19:30:00	2026-03-31 21:40:11.388	26	2025-2026	REGULAR_SEASON
-cmnf54ndk0084uhse9cgid385	538055	cmnf548hb000buhsefuwic6dx	cmnf548gf0002uhsewxfgd4nd		FINISHED	1	1	2026-02-28 12:30:00	2026-03-31 21:40:11.466	28	2025-2026	REGULAR_SEASON
-cmnf54nfc008euhseq60hi5w9	538065	cmnf548hb000buhsefuwic6dx	cmnf548h90008uhseg19mk30r		FINISHED	0	0	2026-03-03 19:30:00	2026-03-31 21:40:11.536	29	2025-2026	REGULAR_SEASON
-cmnf54nhk008suhse9r80yxg6	538084	cmnf548hr000huhse669r2oah	cmnf548ho000fuhsei9tdazli		FINISHED	1	1	2026-03-14 20:00:00	2026-03-31 21:40:11.612	30	2025-2026	REGULAR_SEASON
-cmnf54njd008zuhse6f76zdop	538087	cmnf548hw000juhsen71wa95h	cmnf548ht000iuhse8t4eodeu		FINISHED	2	1	2026-03-21 12:45:00	2026-03-31 21:40:11.681	31	2025-2026	REGULAR_SEASON
-cmnf54nlk009duhsen16me029	538103	cmnf548hj000euhse945fpqyk	cmnf548h30005uhse46wx275v		TIMED	\N	\N	2026-04-12 13:00:00	2026-03-31 21:40:11.758	32	2025-2026	REGULAR_SEASON
-cmnf54nni009suhse9bx0gh0c	538115	cmnf548hb000buhsefuwic6dx	cmnf548ha0009uhseksu2phrb		TIMED	\N	\N	2026-04-25 14:00:00	2026-03-31 21:40:11.828	34	2025-2026	REGULAR_SEASON
-cmnf54npe009yuhse5u1t3uvx	538122	cmnf548h50006uhseuq2stcaz	cmnf548h90008uhseg19mk30r		TIMED	\N	\N	2026-04-27 19:00:00	2026-03-31 21:40:11.896	34	2025-2026	REGULAR_SEASON
-cmnf54nq700a6uhsemkvvn29n	538127	cmnf548em0000uhseg9lphrqa	cmnf548h60007uhse14otrkul		TIMED	\N	\N	2026-05-02 16:30:00	2026-03-31 21:40:11.898	35	2025-2026	REGULAR_SEASON
-cmnf54nrh00aauhseczqcxc89	538138	cmnf548gh0003uhsel9vkpibt	cmnf548h30005uhse46wx275v		TIMED	\N	\N	2026-05-09 14:00:00	2026-03-31 21:40:11.973	36	2025-2026	REGULAR_SEASON
-cmnf54nsc00aiuhsevhlou3bq	538142	cmnf548hj000euhse945fpqyk	cmnf548hb000cuhsec9ov4bjp		TIMED	\N	\N	2026-05-09 14:00:00	2026-03-31 21:40:11.974	36	2025-2026	REGULAR_SEASON
-cmnf54nu000aluhsevb5ltgcx	538150	cmnf548ha000auhsekg2f0oot	cmnf548gf0002uhsewxfgd4nd		TIMED	\N	\N	2026-05-17 14:00:00	2026-03-31 21:40:12.057	37	2025-2026	REGULAR_SEASON
-cmnf54nwe00b3uhse1abx19dv	538158	cmnf548gh0003uhsel9vkpibt	cmnf548g80001uhseq8eicwme		TIMED	\N	\N	2026-05-24 15:00:00	2026-03-31 21:40:12.151	38	2025-2026	REGULAR_SEASON
-cmnf54nng009luhse0dejjby7	538113	cmnf548hj000euhse945fpqyk	cmnf548gh0003uhsel9vkpibt		TIMED	\N	\N	2026-04-19 13:00:00	2026-03-31 21:40:11.826	33	2025-2026	REGULAR_SEASON
-cmnf54npg00a3uhsen124b573	538128	cmnf548h90008uhseg19mk30r	cmnf548hr000huhse669r2oah		TIMED	\N	\N	2026-05-02 14:00:00	2026-03-31 21:40:11.897	35	2025-2026	REGULAR_SEASON
-cmnf54nq700a7uhsef121fxrm	538132	cmnf548h50006uhseuq2stcaz	cmnf548ht000iuhse8t4eodeu		TIMED	\N	\N	2026-05-03 14:30:00	2026-03-31 21:40:11.898	35	2025-2026	REGULAR_SEASON
-cmnf54nrh00a9uhse3yk31zc6	538136	cmnf548hw000juhsen71wa95h	cmnf548g80001uhseq8eicwme		TIMED	\N	\N	2026-05-09 14:00:00	2026-03-31 21:40:11.972	36	2025-2026	REGULAR_SEASON
-cmnf54nu100aouhseqmzbwl4y	538149	cmnf548hb000duhse2eezx75m	cmnf548gu0004uhser9v0aboe		TIMED	\N	\N	2026-05-17 14:00:00	2026-03-31 21:40:12.056	37	2025-2026	REGULAR_SEASON
-cmnf54nv300atuhseagcid603	538156	cmnf548hw000juhsen71wa95h	cmnf548h50006uhseuq2stcaz		TIMED	\N	\N	2026-05-24 15:00:00	2026-03-31 21:40:12.058	38	2025-2026	REGULAR_SEASON
-cmnf54nwd00ayuhseovq62nlg	538162	cmnf548hj000euhse945fpqyk	cmnf548hb000buhsefuwic6dx		TIMED	\N	\N	2026-05-24 15:00:00	2026-03-31 21:40:12.151	38	2025-2026	REGULAR_SEASON
-cmnf54npe00a0uhsebytms94z	538119	cmnf548gh0003uhsel9vkpibt	cmnf548ho000fuhsei9tdazli		TIMED	\N	\N	2026-04-26 13:00:00	2026-03-31 21:40:11.896	34	2025-2026	REGULAR_SEASON
-cmnf54nrj00afuhsetkrvayd9	538141	cmnf548ho000fuhsei9tdazli	cmnf548h90008uhseg19mk30r		TIMED	\N	\N	2026-05-09 14:00:00	2026-03-31 21:40:11.974	36	2025-2026	REGULAR_SEASON
-cmnf54nu000amuhsee68kybfw	538148	cmnf548h90008uhseg19mk30r	cmnf548hr000guhseayb6uzuu		TIMED	\N	\N	2026-05-17 14:00:00	2026-03-31 21:40:12.056	37	2025-2026	REGULAR_SEASON
-cmnf54nwd00b0uhsedmsg9qda	538163	cmnf548gu0004uhser9v0aboe	cmnf548ha000auhsekg2f0oot		TIMED	\N	\N	2026-05-24 15:00:00	2026-03-31 21:40:12.151	38	2025-2026	REGULAR_SEASON
-cmnf54nwd00b2uhseogfywjp5	538159	cmnf548h60007uhse14otrkul	cmnf548hb000cuhsec9ov4bjp		TIMED	\N	\N	2026-05-24 15:00:00	2026-03-31 21:40:12.151	38	2025-2026	REGULAR_SEASON
-cmnf54nwd00azuhseiwg4sa5o	538161	cmnf548ho000fuhsei9tdazli	cmnf548h30005uhse46wx275v		TIMED	\N	\N	2026-05-24 15:00:00	2026-03-31 21:40:12.151	38	2025-2026	REGULAR_SEASON
-cmnf54m6c000kuhse9l0l6do5	537785	cmnf548ht000iuhse8t4eodeu	cmnf548hb000buhsefuwic6dx		FINISHED	4	2	2025-08-15 19:00:00	2026-03-31 21:40:09.91	1	2025-2026	REGULAR_SEASON
-cmnf54m8i0014uhsekzeiktq7	537808	cmnf548hb000duhse2eezx75m	cmnf548h60007uhse14otrkul		FINISHED	2	0	2025-08-30 11:30:00	2026-03-31 21:40:09.994	3	2025-2026	REGULAR_SEASON
-cmnf54m9v001cuhseaycsyg3h	537812	cmnf548hj000euhse945fpqyk	cmnf548hr000huhse669r2oah		FINISHED	0	3	2025-08-31 13:00:00	2026-03-31 21:40:10.045	3	2025-2026	REGULAR_SEASON
-cmnf54mai001huhseqo3alfng	537820	cmnf548ha000auhsekg2f0oot	cmnf548h30005uhse46wx275v		FINISHED	0	0	2025-09-13 14:00:00	2026-03-31 21:40:10.046	4	2025-2026	REGULAR_SEASON
-cmnf54mbf001luhsepbdf4nxl	537819	cmnf548gh0003uhsel9vkpibt	cmnf548ht000iuhse8t4eodeu		FINISHED	0	1	2025-09-14 13:00:00	2026-03-31 21:40:10.099	4	2025-2026	REGULAR_SEASON
-cmnf54md80023uhsevj2srim8	537843	cmnf548hj000euhse945fpqyk	cmnf548gf0002uhsewxfgd4nd		FINISHED	0	1	2025-09-27 16:30:00	2026-03-31 21:40:10.164	6	2025-2026	REGULAR_SEASON
-cmnf54mf5002guhsev2t0iayj	537854	cmnf548g80001uhseq8eicwme	cmnf548hw000juhsen71wa95h		FINISHED	1	1	2025-10-05 13:00:00	2026-03-31 21:40:10.227	7	2025-2026	REGULAR_SEASON
-cmnf54mh4002quhse9xz4oaa2	537863	cmnf548gu0004uhser9v0aboe	cmnf548h30005uhse46wx275v		FINISHED	1	2	2025-10-19 13:00:00	2026-03-31 21:40:10.302	8	2025-2026	REGULAR_SEASON
-cmnf54mj30031uhseej24zxqy	537866	cmnf548h30005uhse46wx275v	cmnf548ho000fuhsei9tdazli		FINISHED	1	0	2025-10-26 14:00:00	2026-03-31 21:40:10.376	9	2025-2026	REGULAR_SEASON
-cmnf54mkx003euhsema4kkk39	537890	cmnf548ha000auhsekg2f0oot	cmnf548h60007uhse14otrkul		FINISHED	2	0	2025-11-08 15:00:00	2026-03-31 21:40:10.441	11	2025-2026	REGULAR_SEASON
-cmnf54mms003suhserye4fouq	537899	cmnf548h60007uhse14otrkul	cmnf548gf0002uhsewxfgd4nd		FINISHED	1	0	2025-11-22 15:00:00	2026-03-31 21:40:10.507	12	2025-2026	REGULAR_SEASON
-cmnf54mop003xuhseu5lhwykd	537913	cmnf548gu0004uhser9v0aboe	cmnf548h60007uhse14otrkul		FINISHED	1	2	2025-11-29 20:00:00	2026-03-31 21:40:10.574	13	2025-2026	REGULAR_SEASON
-cmnf54mqr004euhse7li084ov	537917	cmnf548em0000uhseg9lphrqa	cmnf548h90008uhseg19mk30r		FINISHED	2	0	2025-12-03 19:30:00	2026-03-31 21:40:10.651	14	2025-2026	REGULAR_SEASON
-cmnf54mst004quhse279c4m59	537940	cmnf548hb000duhse2eezx75m	cmnf548ha000auhsekg2f0oot		FINISHED	2	0	2025-12-13 15:00:00	2026-03-31 21:40:10.725	16	2025-2026	REGULAR_SEASON
-cmnf54mto004vuhsea4yw7t3l	537937	cmnf548em0000uhseg9lphrqa	cmnf548g80001uhseq8eicwme		FINISHED	2	1	2025-12-13 20:00:00	2026-03-31 21:40:10.726	16	2025-2026	REGULAR_SEASON
-cmnf54mus0050uhsej33xkgsc	537944	cmnf548hr000huhse669r2oah	cmnf548h30005uhse46wx275v		FINISHED	2	3	2025-12-14 14:00:00	2026-03-31 21:40:10.796	16	2025-2026	REGULAR_SEASON
-cmnf54mwt005buhse4scd2x6t	537949	cmnf548h60007uhse14otrkul	cmnf548hj000euhse945fpqyk		FINISHED	1	0	2025-12-22 20:00:00	2026-03-31 21:40:10.867	17	2025-2026	REGULAR_SEASON
-cmnf54mxl005iuhsevipcejdp	537955	cmnf548gf0002uhsewxfgd4nd	cmnf548ha0009uhseksu2phrb		FINISHED	1	1	2025-12-28 14:00:00	2026-03-31 21:40:10.869	18	2025-2026	REGULAR_SEASON
-cmnf54myn005kuhseuq544kc3	537969	cmnf548gh0003uhsel9vkpibt	cmnf548hb000cuhsec9ov4bjp		FINISHED	1	3	2025-12-30 19:30:00	2026-03-31 21:40:10.935	19	2025-2026	REGULAR_SEASON
-cmnf54mzu005vuhsepghk9mf2	537976	cmnf548h30005uhse46wx275v	cmnf548hj000euhse945fpqyk		FINISHED	3	1	2026-01-03 12:30:00	2026-03-31 21:40:10.937	20	2025-2026	REGULAR_SEASON
-cmnf54n10005wuhsevj6lrdxj	537984	cmnf548g80001uhseq8eicwme	cmnf548hr000huhse669r2oah		FINISHED	3	0	2026-01-03 15:00:00	2026-03-31 21:40:11.018	20	2025-2026	REGULAR_SEASON
-cmnf54n1t0065uhsev19y50o8	537985	cmnf548hb000buhsefuwic6dx	cmnf548gu0004uhser9v0aboe		FINISHED	3	2	2026-01-07 19:30:00	2026-03-31 21:40:11.02	21	2025-2026	REGULAR_SEASON
-cmnf54n2z006auhsetq0p3yi5	538001	cmnf548h50006uhseuq2stcaz	cmnf548ho000fuhsei9tdazli		FINISHED	2	0	2026-01-17 12:30:00	2026-03-31 21:40:11.091	22	2025-2026	REGULAR_SEASON
-cmnf54n3y006iuhse8ivn6lkd	538000	cmnf548ha0009uhseksu2phrb	cmnf548h60007uhse14otrkul		FINISHED	1	0	2026-01-17 15:00:00	2026-03-31 21:40:11.091	22	2025-2026	REGULAR_SEASON
-cmnf54n54006kuhsesddzt4gp	538002	cmnf548hj000euhse945fpqyk	cmnf548em0000uhseg9lphrqa		FINISHED	0	0	2026-01-17 17:30:00	2026-03-31 21:40:11.167	22	2025-2026	REGULAR_SEASON
-cmnf54n5w006tuhsezcgh3i7n	538006	cmnf548hr000guhseayb6uzuu	cmnf548hb000duhse2eezx75m		FINISHED	1	3	2026-01-25 14:00:00	2026-03-31 21:40:11.17	23	2025-2026	REGULAR_SEASON
-cmnf54n74006xuhseh8ei7o2h	538020	cmnf548ha0009uhseksu2phrb	cmnf548em0000uhseg9lphrqa		FINISHED	0	4	2026-01-31 15:00:00	2026-03-31 21:40:11.238	24	2025-2026	REGULAR_SEASON
-cmnf54n7w0076uhsembxkhk1h	538023	cmnf548gu0004uhser9v0aboe	cmnf548ho000fuhsei9tdazli		FINISHED	2	2	2026-02-01 16:30:00	2026-03-31 21:40:11.239	24	2025-2026	REGULAR_SEASON
-cmnf54n96007cuhsedjq80cv7	538029	cmnf548h60007uhse14otrkul	cmnf548ha000auhsekg2f0oot		FINISHED	1	2	2026-02-07 15:00:00	2026-03-31 21:40:11.313	25	2025-2026	REGULAR_SEASON
-cmnf54nbh007ouhserapwbx6m	538042	cmnf548hj000euhse945fpqyk	cmnf548g80001uhseq8eicwme		FINISHED	0	0	2026-02-11 19:30:00	2026-03-31 21:40:11.389	26	2025-2026	REGULAR_SEASON
-cmnf54ndj0082uhseaa3k978s	538053	cmnf548gu0004uhser9v0aboe	cmnf548em0000uhseg9lphrqa		FINISHED	1	4	2026-02-22 16:30:00	2026-03-31 21:40:11.466	27	2025-2026	REGULAR_SEASON
-cmnf54nfc008fuhsenfson84v	538070	cmnf548ha0009uhseksu2phrb	cmnf548gf0002uhsewxfgd4nd		FINISHED	0	1	2026-03-03 19:30:00	2026-03-31 21:40:11.536	29	2025-2026	REGULAR_SEASON
-cmnf54nhi008puhseynjpew82	538077	cmnf548em0000uhseg9lphrqa	cmnf548ha000auhsekg2f0oot		FINISHED	2	0	2026-03-14 17:30:00	2026-03-31 21:40:11.612	30	2025-2026	REGULAR_SEASON
-cmnf54nje0093uhseoubjl5j7	538090	cmnf548ha0009uhseksu2phrb	cmnf548h90008uhseg19mk30r		FINISHED	0	0	2026-03-21 20:00:00	2026-03-31 21:40:11.682	31	2025-2026	REGULAR_SEASON
-cmnf54nlk009buhseos2x3dz1	538095	cmnf548gf0002uhsewxfgd4nd	cmnf548gu0004uhser9v0aboe		TIMED	\N	\N	2026-04-12 13:00:00	2026-03-31 21:40:11.757	32	2025-2026	REGULAR_SEASON
-cmnf54nng009ouhseu0lfdnks	538111	cmnf548ho000fuhsei9tdazli	cmnf548em0000uhseg9lphrqa		TIMED	\N	\N	2026-04-19 15:30:00	2026-03-31 21:40:11.827	33	2025-2026	REGULAR_SEASON
-cmnf54npe00a1uhse9npuroox	538126	cmnf548h30005uhse46wx275v	cmnf548gu0004uhser9v0aboe		TIMED	\N	\N	2026-05-02 11:30:00	2026-03-31 21:40:11.897	35	2025-2026	REGULAR_SEASON
-cmnf54nri00aduhsehep3qfga	538139	cmnf548h60007uhse14otrkul	cmnf548hb000buhsefuwic6dx		TIMED	\N	\N	2026-05-09 14:00:00	2026-03-31 21:40:11.973	36	2025-2026	REGULAR_SEASON
-cmnf54nu400aquhsep3im4pg2	538151	cmnf548ha0009uhseksu2phrb	cmnf548hw000juhsen71wa95h		TIMED	\N	\N	2026-05-17 14:00:00	2026-03-31 21:40:12.057	37	2025-2026	REGULAR_SEASON
-cmnf54nwd00b1uhseejhys7na	538160	cmnf548ht000iuhse8t4eodeu	cmnf548h90008uhseg19mk30r		TIMED	\N	\N	2026-05-24 15:00:00	2026-03-31 21:40:12.151	38	2025-2026	REGULAR_SEASON
+cmnf54mdu0025uhseqzvf82pc	537835	cmnf548h30005uhse46wx275v	cmnf548h60007uhse14otrkul		FINISHED	3	1	2025-09-28 13:00:00	2026-04-01 00:41:51.241	6	2025-2026	REGULAR_SEASON
+cmnf54mf1002buhsegkn0x29p	537847	cmnf548em0000uhseg9lphrqa	cmnf548hr000huhse669r2oah		FINISHED	2	0	2025-10-04 14:00:00	2026-04-01 00:41:51.25	7	2025-2026	REGULAR_SEASON
+cmnf54mfv002juhse77fm6j5t	537856	cmnf548hw000juhsen71wa95h	cmnf548hb000cuhsec9ov4bjp		FINISHED	2	1	2025-10-18 14:00:00	2026-04-01 00:41:51.258	8	2025-2026	REGULAR_SEASON
+cmnf54mj50034uhse3pbp7mp2	537877	cmnf548hr000guhseayb6uzuu	cmnf548h90008uhseg19mk30r		FINISHED	2	0	2025-11-01 15:00:00	2026-04-01 00:41:51.279	10	2025-2026	REGULAR_SEASON
+cmnf54m8g000yuhse8fbf1ys7	537796	cmnf548hr000guhseayb6uzuu	cmnf548hj000euhse945fpqyk		FINISHED	1	1	2025-08-24 13:00:00	2026-04-01 00:41:51.198	2	2025-2026	REGULAR_SEASON
+cmnf54mpm0045uhsetan4h8el	537909	cmnf548hb000duhse2eezx75m	cmnf548em0000uhseg9lphrqa		FINISHED	1	1	2025-11-30 16:30:00	2026-04-01 00:41:51.318	13	2025-2026	REGULAR_SEASON
+cmnf54mkw003cuhsew6slt4dq	537894	cmnf548hr000huhse669r2oah	cmnf548gh0003uhsel9vkpibt		FINISHED	3	2	2025-11-08 15:00:00	2026-04-01 00:41:51.297	11	2025-2026	REGULAR_SEASON
+cmnf54mqq0049uhsecarlk4uw	537918	cmnf548gh0003uhsel9vkpibt	cmnf548hr000guhseayb6uzuu		FINISHED	0	1	2025-12-03 19:30:00	2026-04-01 00:41:51.322	14	2025-2026	REGULAR_SEASON
+cmnf54mus0051uhseqzpumumu	537952	cmnf548hb000cuhsec9ov4bjp	cmnf548hb000duhse2eezx75m		FINISHED	2	2	2025-12-20 12:30:00	2026-04-01 00:41:51.374	17	2025-2026	REGULAR_SEASON
+cmnf54mvk0055uhsecurpkswi	537954	cmnf548g80001uhseq8eicwme	cmnf548h90008uhseg19mk30r		FINISHED	0	2	2025-12-20 15:00:00	2026-04-01 00:41:51.378	17	2025-2026	REGULAR_SEASON
+cmnf54mxm005juhsefj2txpzu	537956	cmnf548hr000guhseayb6uzuu	cmnf548gu0004uhser9v0aboe		FINISHED	0	1	2025-12-28 16:30:00	2026-04-01 00:41:51.4	18	2025-2026	REGULAR_SEASON
+cmnf54mys005suhsec9vr938z	537971	cmnf548ht000iuhse8t4eodeu	cmnf548ha0009uhseksu2phrb		FINISHED	0	0	2026-01-01 17:30:00	2026-04-01 00:41:51.411	19	2025-2026	REGULAR_SEASON
+cmnf54n130060uhsev4eddtv5	537978	cmnf548ha000auhsekg2f0oot	cmnf548h90008uhseg19mk30r		FINISHED	2	4	2026-01-04 15:00:00	2026-04-01 00:41:51.42	20	2025-2026	REGULAR_SEASON
+cmnf54n31006guhsezhc5g9hs	537999	cmnf548ht000iuhse8t4eodeu	cmnf548gh0003uhsel9vkpibt		FINISHED	1	1	2026-01-17 15:00:00	2026-04-01 00:41:51.443	22	2025-2026	REGULAR_SEASON
+cmnf54n56006ouhsep7mj2m9c	538014	cmnf548hr000huhse669r2oah	cmnf548gf0002uhsewxfgd4nd		FINISHED	3	1	2026-01-24 12:30:00	2026-04-01 00:41:51.446	23	2025-2026	REGULAR_SEASON
+cmnf54n5y006vuhserjk6jdbl	538008	cmnf548h90008uhseg19mk30r	cmnf548hj000euhse945fpqyk		FINISHED	0	2	2026-01-25 14:00:00	2026-04-01 00:41:51.452	23	2025-2026	REGULAR_SEASON
+cmnf54n7r0075uhse0a9defy4	538022	cmnf548hj000euhse945fpqyk	cmnf548hr000guhseayb6uzuu		FINISHED	1	1	2026-02-01 14:00:00	2026-04-01 00:41:51.466	24	2025-2026	REGULAR_SEASON
+cmnf54nbr007suhsezmrnnmpc	538094	cmnf548g80001uhseq8eicwme	cmnf548em0000uhseg9lphrqa		FINISHED	2	2	2026-02-18 20:00:00	2026-04-01 00:41:51.5	31	2025-2026	REGULAR_SEASON
+cmnf54ndd007zuhsenwakopod	538047	cmnf548hr000guhseayb6uzuu	cmnf548g80001uhseq8eicwme		FINISHED	1	0	2026-02-22 14:00:00	2026-04-01 00:41:51.504	27	2025-2026	REGULAR_SEASON
+cmnf54neb0087uhsejj2zwkwn	538060	cmnf548ht000iuhse8t4eodeu	cmnf548hr000huhse669r2oah		FINISHED	5	2	2026-02-28 15:00:00	2026-04-01 00:41:51.514	28	2025-2026	REGULAR_SEASON
+cmnf54nf90088uhsekx2aj8gx	538061	cmnf548ha0009uhseksu2phrb	cmnf548ho000fuhsei9tdazli		FINISHED	0	1	2026-02-28 17:30:00	2026-04-01 00:41:51.515	28	2025-2026	REGULAR_SEASON
+cmnf54njb008wuhseumzqvsnk	538078	cmnf548h90008uhseg19mk30r	cmnf548g80001uhseq8eicwme		FINISHED	2	2	2026-03-16 20:00:00	2026-04-01 00:41:51.533	30	2025-2026	REGULAR_SEASON
+cmnf54nib008vuhseithm2woy	538081	cmnf548ht000iuhse8t4eodeu	cmnf548gu0004uhser9v0aboe		FINISHED	1	1	2026-03-15 16:30:00	2026-04-01 00:41:51.531	30	2025-2026	REGULAR_SEASON
+cmnf54nll009guhse7kzcuit2	538101	cmnf548ht000iuhse8t4eodeu	cmnf548h60007uhse14otrkul		TIMED	\N	\N	2026-04-11 16:30:00	2026-04-01 00:41:51.54	32	2025-2026	REGULAR_SEASON
+cmnf54nng009ruhseot0g5fnc	538105	cmnf548h30005uhse46wx275v	cmnf548gf0002uhsewxfgd4nd		TIMED	\N	\N	2026-04-19 13:00:00	2026-04-01 00:41:51.551	33	2025-2026	REGULAR_SEASON
+cmnf54nu400aruhseuw7bz5ri	538154	cmnf548g80001uhseq8eicwme	cmnf548h60007uhse14otrkul		TIMED	\N	\N	2026-05-17 14:00:00	2026-04-01 00:41:51.577	37	2025-2026	REGULAR_SEASON
+cmnf54npi00a4uhsen40v14c4	538134	cmnf548g80001uhseq8eicwme	cmnf548gf0002uhsewxfgd4nd		TIMED	\N	\N	2026-05-02 14:00:00	2026-04-01 00:41:51.566	35	2025-2026	REGULAR_SEASON
+cmnf54m8z0015uhse7antpjhx	537811	cmnf548h50006uhseuq2stcaz	cmnf548gh0003uhsel9vkpibt		FINISHED	3	2	2025-08-30 14:00:00	2026-04-01 00:41:51.203	3	2025-2026	REGULAR_SEASON
+cmnf54mbg001ruhsezgxgzu11	537829	cmnf548gh0003uhsel9vkpibt	cmnf548hj000euhse945fpqyk		FINISHED	1	1	2025-09-20 14:00:00	2026-04-01 00:41:51.22	5	2025-2026	REGULAR_SEASON
+cmnf54md6001wuhsescj0xuub	537826	cmnf548gf0002uhsewxfgd4nd	cmnf548h30005uhse46wx275v		FINISHED	1	1	2025-09-21 13:00:00	2026-04-01 00:41:51.234	5	2025-2026	REGULAR_SEASON
+cmnf54mc8001vuhsermstv4si	537825	cmnf548hb000buhsefuwic6dx	cmnf548hb000cuhsec9ov4bjp		FINISHED	0	0	2025-09-21 13:00:00	2026-04-01 00:41:51.232	5	2025-2026	REGULAR_SEASON
+cmnf54mh1002kuhsego38x7hz	537857	cmnf548hr000guhseayb6uzuu	cmnf548hb000buhsefuwic6dx		FINISHED	3	3	2025-10-18 14:00:00	2026-04-01 00:41:51.258	8	2025-2026	REGULAR_SEASON
+cmnf54mmr003ruhsexqftlq5g	537903	cmnf548hb000cuhsec9ov4bjp	cmnf548ho000fuhsei9tdazli		FINISHED	2	1	2025-11-22 17:30:00	2026-04-01 00:41:51.309	12	2025-2026	REGULAR_SEASON
+cmnf54mnj003vuhse7rxb3sr6	537897	cmnf548em0000uhseg9lphrqa	cmnf548gu0004uhser9v0aboe		FINISHED	4	1	2025-11-23 16:30:00	2026-04-01 00:41:51.312	12	2025-2026	REGULAR_SEASON
+cmnf54mrm004juhsefwj8ku5l	537931	cmnf548ho000fuhsei9tdazli	cmnf548gf0002uhsewxfgd4nd		FINISHED	3	0	2025-12-06 15:00:00	2026-04-01 00:41:51.339	15	2025-2026	REGULAR_SEASON
+cmnf54msr004kuhsefv9mw6wm	537932	cmnf548hb000cuhsec9ov4bjp	cmnf548gh0003uhsel9vkpibt		FINISHED	2	1	2025-12-06 15:00:00	2026-04-01 00:41:51.34	15	2025-2026	REGULAR_SEASON
+cmnf54mwt005auhsej3xuvscr	537963	cmnf548hj000euhse945fpqyk	cmnf548ho000fuhsei9tdazli		FINISHED	1	2	2025-12-27 12:30:00	2026-04-01 00:41:51.393	18	2025-2026	REGULAR_SEASON
+cmnf54n96007buhsefj3eigz6	538025	cmnf548hb000buhsefuwic6dx	cmnf548h30005uhse46wx275v		FINISHED	1	1	2026-02-07 15:00:00	2026-04-01 00:41:51.468	25	2025-2026	REGULAR_SEASON
+cmnf54ngb008huhser0apoivl	538067	cmnf548hw000juhsen71wa95h	cmnf548em0000uhseg9lphrqa		FINISHED	0	1	2026-03-04 19:30:00	2026-04-01 00:41:51.521	29	2025-2026	REGULAR_SEASON
+cmnf54nhh008luhseou1vlgdu	538073	cmnf548gu0004uhser9v0aboe	cmnf548hr000guhseayb6uzuu		FINISHED	1	3	2026-03-05 20:00:00	2026-04-01 00:41:51.523	29	2025-2026	REGULAR_SEASON
+cmnf54nri00aeuhse0qc2yfdj	538130	cmnf548ha000auhsekg2f0oot	cmnf548ho000fuhsei9tdazli		TIMED	\N	\N	2026-05-04 19:00:00	2026-04-01 00:41:51.567	35	2025-2026	REGULAR_SEASON
+cmnf54mbf001nuhseahcztee5	537822	cmnf548ho000fuhsei9tdazli	cmnf548h50006uhseuq2stcaz		FINISHED	3	0	2025-09-14 15:30:00	2026-04-01 00:41:51.217	4	2025-2026	REGULAR_SEASON
+cmnf54mf1002auhseectgnmxr	537851	cmnf548ha0009uhseksu2phrb	cmnf548gu0004uhser9v0aboe		FINISHED	1	2	2025-10-04 11:30:00	2026-04-01 00:41:51.249	7	2025-2026	REGULAR_SEASON
+cmnf54mh3002nuhsej21kug0f	537861	cmnf548ho000fuhsei9tdazli	cmnf548ha000auhsekg2f0oot		FINISHED	2	0	2025-10-18 14:00:00	2026-04-01 00:41:51.26	8	2025-2026	REGULAR_SEASON
+cmnf54mj40032uhsesu9vggho	537878	cmnf548gh0003uhsel9vkpibt	cmnf548em0000uhseg9lphrqa		FINISHED	0	2	2025-11-01 15:00:00	2026-04-01 00:41:51.279	10	2025-2026	REGULAR_SEASON
+cmnf54mmq003nuhse8rl60ril	537891	cmnf548ho000fuhsei9tdazli	cmnf548ht000iuhse8t4eodeu		FINISHED	3	0	2025-11-09 16:30:00	2026-04-01 00:41:51.304	11	2025-2026	REGULAR_SEASON
+cmnf54mnh003tuhsekm31ub8q	537904	cmnf548g80001uhseq8eicwme	cmnf548hr000guhseayb6uzuu		FINISHED	0	2	2025-11-22 15:00:00	2026-04-01 00:41:51.307	12	2025-2026	REGULAR_SEASON
+cmnf54mop003zuhseoa6q8jn0	537911	cmnf548ho000fuhsei9tdazli	cmnf548ha0009uhseksu2phrb		FINISHED	3	2	2025-11-29 15:00:00	2026-04-01 00:41:51.315	13	2025-2026	REGULAR_SEASON
+cmnf54mrj004huhseplnw8308	537925	cmnf548hb000buhsefuwic6dx	cmnf548hb000duhse2eezx75m		FINISHED	0	0	2025-12-06 15:00:00	2026-04-01 00:41:51.337	15	2025-2026	REGULAR_SEASON
+cmnf54mus0053uhse3lc193bi	537951	cmnf548ho000fuhsei9tdazli	cmnf548hr000huhse669r2oah		FINISHED	3	0	2025-12-20 15:00:00	2026-04-01 00:41:51.378	17	2025-2026	REGULAR_SEASON
+cmnf54mwx005guhseo1l1v7px	537961	cmnf548ht000iuhse8t4eodeu	cmnf548g80001uhseq8eicwme		FINISHED	2	1	2025-12-27 15:00:00	2026-04-01 00:41:51.397	18	2025-2026	REGULAR_SEASON
+cmnf54myr005quhse5at0zjlq	537966	cmnf548hr000guhseayb6uzuu	cmnf548h60007uhse14otrkul		FINISHED	1	1	2026-01-01 17:30:00	2026-04-01 00:41:51.407	19	2025-2026	REGULAR_SEASON
+cmnf54n12005yuhsecmhjmpj7	537975	cmnf548hb000buhsefuwic6dx	cmnf548em0000uhseg9lphrqa		FINISHED	2	3	2026-01-03 17:30:00	2026-04-01 00:41:51.418	20	2025-2026	REGULAR_SEASON
+cmnf54n1w0066uhserzqn326x	537988	cmnf548h90008uhseg19mk30r	cmnf548gf0002uhsewxfgd4nd		FINISHED	3	0	2026-01-07 19:30:00	2026-04-01 00:41:51.437	21	2025-2026	REGULAR_SEASON
+cmnf54n56006nuhsejiicq5qw	538009	cmnf548gh0003uhsel9vkpibt	cmnf548gu0004uhser9v0aboe		FINISHED	2	2	2026-01-24 15:00:00	2026-04-01 00:41:51.446	23	2025-2026	REGULAR_SEASON
+cmnf54n72006wuhsecho61cyz	538007	cmnf548em0000uhseg9lphrqa	cmnf548h50006uhseuq2stcaz		FINISHED	2	3	2026-01-25 16:30:00	2026-04-01 00:41:51.461	23	2025-2026	REGULAR_SEASON
+cmnf54n960079uhseibhmyoom	538028	cmnf548gh0003uhsel9vkpibt	cmnf548hr000huhse669r2oah		FINISHED	0	2	2026-02-07 15:00:00	2026-04-01 00:41:51.469	25	2025-2026	REGULAR_SEASON
+cmnf54nbj007puhse4w3ror43	538037	cmnf548hr000guhseayb6uzuu	cmnf548gh0003uhsel9vkpibt		FINISHED	2	3	2026-02-11 19:40:00	2026-04-01 00:41:51.499	26	2025-2026	REGULAR_SEASON
+cmnf54ndj0083uhsecv3xxkyp	538064	cmnf548g80001uhseq8eicwme	cmnf548h30005uhse46wx275v		FINISHED	2	0	2026-02-27 20:00:00	2026-04-01 00:41:51.511	28	2025-2026	REGULAR_SEASON
+cmnf54nfc008duhseacgwo0sp	538068	cmnf548ha000auhsekg2f0oot	cmnf548gh0003uhsel9vkpibt		FINISHED	2	0	2026-03-03 19:30:00	2026-04-01 00:41:51.519	29	2025-2026	REGULAR_SEASON
+cmnf54ni8008uuhseb7xqkz6v	538082	cmnf548h50006uhseuq2stcaz	cmnf548h30005uhse46wx275v		FINISHED	3	1	2026-03-15 14:00:00	2026-04-01 00:41:51.53	30	2025-2026	REGULAR_SEASON
+cmnf54nlk009cuhsekvgaezal	538100	cmnf548hb000duhse2eezx75m	cmnf548ho000fuhsei9tdazli		TIMED	\N	\N	2026-04-12 15:30:00	2026-04-01 00:41:51.543	32	2025-2026	REGULAR_SEASON
+cmnf54njd008xuhse8gnz94h8	538085	cmnf548hb000buhsefuwic6dx	cmnf548h50006uhseuq2stcaz		FINISHED	2	2	2026-03-20 20:00:00	2026-04-01 00:41:51.534	31	2025-2026	REGULAR_SEASON
+cmnf54nng009puhsesme3fsis	538106	cmnf548hr000guhseayb6uzuu	cmnf548hr000huhse669r2oah		TIMED	\N	\N	2026-04-20 19:00:00	2026-04-01 00:41:51.558	33	2025-2026	REGULAR_SEASON
+cmnf54noa009uuhsepx8e6nhz	538124	cmnf548g80001uhseq8eicwme	cmnf548gu0004uhser9v0aboe		TIMED	\N	\N	2026-04-25 14:00:00	2026-04-01 00:41:51.561	34	2025-2026	REGULAR_SEASON
+cmnf54nrk00aguhsea2c2l7mx	538140	cmnf548ht000iuhse8t4eodeu	cmnf548hb000duhse2eezx75m		TIMED	\N	\N	2026-05-09 14:00:00	2026-04-01 00:41:51.57	36	2025-2026	REGULAR_SEASON
+cmnf54nv800auuhsenyokgqm5	538152	cmnf548h50006uhseuq2stcaz	cmnf548hj000euhse945fpqyk		TIMED	\N	\N	2026-05-17 14:00:00	2026-04-01 00:41:51.575	37	2025-2026	REGULAR_SEASON
+cmnf54m6d000puhse6h8djoe0	537791	cmnf548g80001uhseq8eicwme	cmnf548ho000fuhsei9tdazli		FINISHED	0	4	2025-08-16 16:30:00	2026-04-01 00:41:51.188	1	2025-2026	REGULAR_SEASON
+cmnf54m7p000vuhse0wjjy8ry	537802	cmnf548ho000fuhsei9tdazli	cmnf548gu0004uhser9v0aboe		FINISHED	0	2	2025-08-23 11:30:00	2026-04-01 00:41:51.195	2	2025-2026	REGULAR_SEASON
+cmnf54m9y001guhsetvi36pv2	537816	cmnf548hr000guhseayb6uzuu	cmnf548gf0002uhsewxfgd4nd		FINISHED	0	0	2025-09-13 14:00:00	2026-04-01 00:41:51.212	4	2025-2026	REGULAR_SEASON
+cmnf54md80022uhsegs7d1lxf	537838	cmnf548hb000duhse2eezx75m	cmnf548hw000juhsen71wa95h		FINISHED	1	3	2025-09-27 14:00:00	2026-04-01 00:41:51.236	6	2025-2026	REGULAR_SEASON
+cmnf54mjz0037uhseddecblyi	537883	cmnf548gu0004uhser9v0aboe	cmnf548hb000duhse2eezx75m		FINISHED	0	1	2025-11-01 17:30:00	2026-04-01 00:41:51.29	10	2025-2026	REGULAR_SEASON
+cmnf54mku0038uhseb5cp7l3b	537880	cmnf548ht000iuhse8t4eodeu	cmnf548h30005uhse46wx275v		FINISHED	2	0	2025-11-01 20:00:00	2026-04-01 00:41:51.291	10	2025-2026	REGULAR_SEASON
+cmnf54mpp0046uhsee2oxp9xa	537914	cmnf548hr000huhse669r2oah	cmnf548ht000iuhse8t4eodeu		FINISHED	0	2	2025-11-30 14:05:00	2026-04-01 00:41:51.318	13	2025-2026	REGULAR_SEASON
+cmnf54mqq004auhse83ntjmoa	537924	cmnf548g80001uhseq8eicwme	cmnf548hj000euhse945fpqyk		FINISHED	0	1	2025-12-03 19:30:00	2026-04-01 00:41:51.323	14	2025-2026	REGULAR_SEASON
+cmnf54mss004muhse3hmskmbe	537929	cmnf548h60007uhse14otrkul	cmnf548hr000guhseayb6uzuu		FINISHED	1	2	2025-12-07 16:30:00	2026-04-01 00:41:51.355	15	2025-2026	REGULAR_SEASON
+cmnf54n740072uhse0840ppo7	538016	cmnf548h30005uhse46wx275v	cmnf548h90008uhseg19mk30r		FINISHED	0	1	2026-02-01 14:00:00	2026-04-01 00:41:51.464	24	2025-2026	REGULAR_SEASON
+cmnf54npe009xuhsexkmbn6a5	538117	cmnf548hw000juhsen71wa95h	cmnf548hb000duhse2eezx75m		TIMED	\N	\N	2026-04-26 15:30:00	2026-04-01 00:41:51.562	34	2025-2026	REGULAR_SEASON
+cmnf54nwa00awuhserf05zko1	538157	cmnf548hr000guhseayb6uzuu	cmnf548em0000uhseg9lphrqa		TIMED	\N	\N	2026-05-24 15:00:00	2026-04-01 00:41:51.578	38	2025-2026	REGULAR_SEASON
+cmnf54nhi008ruhsezlyyo7rz	538080	cmnf548hb000duhse2eezx75m	cmnf548hb000cuhsec9ov4bjp		FINISHED	0	1	2026-03-14 17:30:00	2026-04-01 00:41:51.526	30	2025-2026	REGULAR_SEASON
+cmnf54nsg00ajuhseeh9xk304	538144	cmnf548hr000huhse669r2oah	cmnf548em0000uhseg9lphrqa		TIMED	\N	\N	2026-05-09 14:00:00	2026-04-01 00:41:51.572	36	2025-2026	REGULAR_SEASON
+cmnf54ntx00akuhse1f7t7sme	538145	cmnf548hb000buhsefuwic6dx	cmnf548ho000fuhsei9tdazli		TIMED	\N	\N	2026-05-17 14:00:00	2026-04-01 00:41:51.572	37	2025-2026	REGULAR_SEASON
+cmnf54mbf001muhsexk7042qv	537827	cmnf548hw000juhsen71wa95h	cmnf548gu0004uhser9v0aboe		FINISHED	2	2	2025-09-20 14:00:00	2026-04-01 00:41:51.219	5	2025-2026	REGULAR_SEASON
+cmnf54md8001zuhse575hkpw4	537840	cmnf548ha0009uhseksu2phrb	cmnf548hb000buhsefuwic6dx		FINISHED	2	2	2025-09-27 14:00:00	2026-04-01 00:41:51.236	6	2025-2026	REGULAR_SEASON
+cmnf54mf10029uhsewnsaz4u8	537849	cmnf548hb000duhse2eezx75m	cmnf548ht000iuhse8t4eodeu		FINISHED	2	1	2025-10-04 16:30:00	2026-04-01 00:41:51.252	7	2025-2026	REGULAR_SEASON
+cmnf54mh5002ruhsetu23as04	537864	cmnf548hr000huhse669r2oah	cmnf548h90008uhseg19mk30r		FINISHED	0	2	2025-10-20 19:00:00	2026-04-01 00:41:51.264	8	2025-2026	REGULAR_SEASON
+cmnf54mh7002suhsekf90iks8	537871	cmnf548ha0009uhseksu2phrb	cmnf548hr000huhse669r2oah		FINISHED	2	1	2025-10-24 19:00:00	2026-04-01 00:41:51.267	9	2025-2026	REGULAR_SEASON
+cmnf54m8g0011uhser1wo7exp	537797	cmnf548em0000uhseg9lphrqa	cmnf548ha0009uhseksu2phrb		FINISHED	5	0	2025-08-23 16:30:00	2026-04-01 00:41:51.197	2	2025-2026	REGULAR_SEASON
+cmnf54mkw003duhsero2gg7m6	537875	cmnf548gf0002uhsewxfgd4nd	cmnf548ha000auhsekg2f0oot		FINISHED	1	1	2025-11-03 20:00:00	2026-04-01 00:41:51.294	10	2025-2026	REGULAR_SEASON
+cmnf54mmr003puhseqanb0gx1	537896	cmnf548hw000juhsen71wa95h	cmnf548h90008uhseg19mk30r		FINISHED	2	1	2025-11-22 15:00:00	2026-04-01 00:41:51.306	12	2025-2026	REGULAR_SEASON
+cmnf54mop0040uhsepp20ir6f	537910	cmnf548ha000auhsekg2f0oot	cmnf548hb000cuhsec9ov4bjp		FINISHED	1	4	2025-11-29 17:30:00	2026-04-01 00:41:51.316	13	2025-2026	REGULAR_SEASON
+cmnf54mqq004duhseyt4ceuio	537916	cmnf548hw000juhsen71wa95h	cmnf548h30005uhse46wx275v		FINISHED	3	4	2025-12-03 19:30:00	2026-04-01 00:41:51.32	14	2025-2026	REGULAR_SEASON
+cmnf54mqw004guhsesazpw9hv	537926	cmnf548h30005uhse46wx275v	cmnf548em0000uhseg9lphrqa		FINISHED	2	1	2025-12-06 12:30:00	2026-04-01 00:41:51.336	15	2025-2026	REGULAR_SEASON
+cmnf54mst004nuhsetknzb7sz	537933	cmnf548gu0004uhser9v0aboe	cmnf548h90008uhseg19mk30r		FINISHED	2	0	2025-12-06 15:00:00	2026-04-01 00:41:51.341	15	2025-2026	REGULAR_SEASON
+cmnf54mto004uuhse4qbww5bv	537936	cmnf548hr000guhseayb6uzuu	cmnf548ho000fuhsei9tdazli		FINISHED	0	3	2025-12-14 14:00:00	2026-04-01 00:41:51.361	16	2025-2026	REGULAR_SEASON
+cmnf54mut0054uhsev7s31n6n	537953	cmnf548gu0004uhser9v0aboe	cmnf548ht000iuhse8t4eodeu		FINISHED	1	2	2025-12-20 17:30:00	2026-04-01 00:41:51.379	17	2025-2026	REGULAR_SEASON
+cmnf54mwq0058uhse012smwi9	537946	cmnf548h30005uhse46wx275v	cmnf548h50006uhseuq2stcaz		FINISHED	2	1	2025-12-21 16:30:00	2026-04-01 00:41:51.381	17	2025-2026	REGULAR_SEASON
+cmnf54myp005luhsez5em22mr	537970	cmnf548hb000duhse2eezx75m	cmnf548hb000buhsefuwic6dx		FINISHED	2	2	2025-12-30 19:30:00	2026-04-01 00:41:51.403	19	2025-2026	REGULAR_SEASON
+cmnf54myq005puhsegtgtf2k0	537967	cmnf548em0000uhseg9lphrqa	cmnf548h30005uhse46wx275v		FINISHED	4	1	2025-12-30 20:15:00	2026-04-01 00:41:51.406	19	2025-2026	REGULAR_SEASON
+cmnf54n130061uhseq9kose84	537982	cmnf548hb000cuhsec9ov4bjp	cmnf548hr000guhseayb6uzuu		FINISHED	2	0	2026-01-04 15:00:00	2026-04-01 00:41:51.421	20	2025-2026	REGULAR_SEASON
+cmnf54n140063uhsekt37w27t	537981	cmnf548ho000fuhsei9tdazli	cmnf548hb000duhse2eezx75m		FINISHED	1	1	2026-01-04 17:30:00	2026-04-01 00:41:51.424	20	2025-2026	REGULAR_SEASON
+cmnf54n2z006cuhse56rw3pcm	537993	cmnf548hb000cuhsec9ov4bjp	cmnf548ha0009uhseksu2phrb		FINISHED	4	3	2026-01-07 20:15:00	2026-04-01 00:41:51.44	21	2025-2026	REGULAR_SEASON
+cmnf54n31006fuhse4kwpfpe3	537995	cmnf548gf0002uhsewxfgd4nd	cmnf548hr000guhseayb6uzuu		FINISHED	2	1	2026-01-17 15:00:00	2026-04-01 00:41:51.442	22	2025-2026	REGULAR_SEASON
+cmnf54n3z006juhselz8p3n54	538003	cmnf548gu0004uhser9v0aboe	cmnf548hr000huhse669r2oah		FINISHED	1	2	2026-01-17 15:00:00	2026-04-01 00:41:51.444	22	2025-2026	REGULAR_SEASON
+cmnf54n56006puhsez7dovsy6	538004	cmnf548g80001uhseq8eicwme	cmnf548hb000cuhsec9ov4bjp		FINISHED	0	0	2026-01-18 14:00:00	2026-04-01 00:41:51.445	22	2025-2026	REGULAR_SEASON
+cmnf54n56006luhsewxkql6qu	537997	cmnf548hw000juhsen71wa95h	cmnf548hb000buhsefuwic6dx		FINISHED	1	1	2026-01-19 20:00:00	2026-04-01 00:41:51.446	22	2025-2026	REGULAR_SEASON
+cmnf54m8g0010uhsebxmmd4c3	537800	cmnf548ha000auhsekg2f0oot	cmnf548hw000juhsen71wa95h		FINISHED	2	0	2025-08-24 13:00:00	2026-04-01 00:41:51.199	2	2025-2026	REGULAR_SEASON
+cmnf54m9w001duhsevn9kk4ci	537806	cmnf548h30005uhse46wx275v	cmnf548hr000guhseayb6uzuu		FINISHED	0	3	2025-08-31 18:00:00	2026-04-01 00:41:51.209	3	2025-2026	REGULAR_SEASON
+cmnf54m9x001fuhseipvvtqzz	537817	cmnf548em0000uhseg9lphrqa	cmnf548hj000euhse945fpqyk		FINISHED	3	0	2025-09-13 11:30:00	2026-04-01 00:41:51.211	4	2025-2026	REGULAR_SEASON
+cmnf54mak001juhse915ri2fz	537821	cmnf548h60007uhse14otrkul	cmnf548ha0009uhseksu2phrb		FINISHED	1	0	2025-09-13 14:00:00	2026-04-01 00:41:51.213	4	2025-2026	REGULAR_SEASON
+cmnf54md80020uhseja6ku3wr	537837	cmnf548h90008uhseg19mk30r	cmnf548h50006uhseuq2stcaz		FINISHED	3	1	2025-09-27 11:30:00	2026-04-01 00:41:51.235	6	2025-2026	REGULAR_SEASON
+cmnf54mdw0026uhseiifjlgnq	537842	cmnf548hb000cuhsec9ov4bjp	cmnf548em0000uhseg9lphrqa		FINISHED	1	2	2025-09-28 15:30:00	2026-04-01 00:41:51.243	6	2025-2026	REGULAR_SEASON
+cmnf54mez0028uhselagx9hmc	537845	cmnf548hb000buhsefuwic6dx	cmnf548h60007uhse14otrkul		FINISHED	3	1	2025-10-03 19:00:00	2026-04-01 00:41:51.245	7	2025-2026	REGULAR_SEASON
+cmnf54mj3002zuhsepw1bztmn	537870	cmnf548ha000auhsekg2f0oot	cmnf548gu0004uhser9v0aboe		FINISHED	0	3	2025-10-26 16:30:00	2026-04-01 00:41:51.277	9	2025-2026	REGULAR_SEASON
+cmnf54mj3002yuhseki8tbd1y	537876	cmnf548hw000juhsen71wa95h	cmnf548ha0009uhseksu2phrb		FINISHED	3	0	2025-11-01 15:00:00	2026-04-01 00:41:51.278	10	2025-2026	REGULAR_SEASON
+cmnf54mkz003guhsegrapv49m	537889	cmnf548hb000duhse2eezx75m	cmnf548g80001uhseq8eicwme		FINISHED	3	0	2025-11-08 20:00:00	2026-04-01 00:41:51.299	11	2025-2026	REGULAR_SEASON
+cmnf54mow0044uhsevl173etj	537919	cmnf548h60007uhse14otrkul	cmnf548ho000fuhsei9tdazli		FINISHED	4	5	2025-12-02 19:30:00	2026-04-01 00:41:51.318	14	2025-2026	REGULAR_SEASON
+cmnf54mst004ouhsetikfgevi	537930	cmnf548ha0009uhseksu2phrb	cmnf548ht000iuhse8t4eodeu		FINISHED	3	3	2025-12-06 17:30:00	2026-04-01 00:41:51.352	15	2025-2026	REGULAR_SEASON
+cmnf54muq004wuhsex5go7jds	537943	cmnf548hj000euhse945fpqyk	cmnf548gu0004uhser9v0aboe		FINISHED	3	0	2025-12-14 14:00:00	2026-04-01 00:41:51.362	16	2025-2026	REGULAR_SEASON
+cmnf54mvn0057uhseui1k4f7p	537950	cmnf548ha0009uhseksu2phrb	cmnf548hr000guhseayb6uzuu		FINISHED	4	1	2025-12-20 20:00:00	2026-04-01 00:41:51.38	17	2025-2026	REGULAR_SEASON
+cmnf54mwt005cuhse5ar4eo43	537957	cmnf548em0000uhseg9lphrqa	cmnf548hw000juhsen71wa95h		FINISHED	2	1	2025-12-27 15:00:00	2026-04-01 00:41:51.394	18	2025-2026	REGULAR_SEASON
+cmnf54mbf001puhses05khu2b	537831	cmnf548ht000iuhse8t4eodeu	cmnf548ha000auhsekg2f0oot		FINISHED	2	1	2025-09-20 11:30:00	2026-04-01 00:41:51.218	5	2025-2026	REGULAR_SEASON
+cmnf54mf2002fuhseb2aa53ao	537853	cmnf548hb000cuhsec9ov4bjp	cmnf548hj000euhse945fpqyk		FINISHED	2	0	2025-10-05 13:00:00	2026-04-01 00:41:51.255	7	2025-2026	REGULAR_SEASON
+cmnf54mhy002vuhsecbgti99y	537873	cmnf548hb000cuhsec9ov4bjp	cmnf548h60007uhse14otrkul		FINISHED	2	1	2025-10-25 14:00:00	2026-04-01 00:41:51.272	9	2025-2026	REGULAR_SEASON
+cmnf54mjs0035uhse99ve1p92	537879	cmnf548h60007uhse14otrkul	cmnf548g80001uhseq8eicwme		FINISHED	3	0	2025-11-01 15:00:00	2026-04-01 00:41:51.28	10	2025-2026	REGULAR_SEASON
+cmnf54mlp003juhse55gv2vxp	537887	cmnf548hr000guhseayb6uzuu	cmnf548hw000juhsen71wa95h		FINISHED	0	0	2025-11-09 14:00:00	2026-04-01 00:41:51.301	11	2025-2026	REGULAR_SEASON
+cmnf54mqq004buhsechfconqj	537920	cmnf548ht000iuhse8t4eodeu	cmnf548gf0002uhsewxfgd4nd		FINISHED	1	1	2025-12-03 20:15:00	2026-04-01 00:41:51.324	14	2025-2026	REGULAR_SEASON
+cmnf54msu004ruhsetuc6j6y7	537935	cmnf548gf0002uhsewxfgd4nd	cmnf548hb000cuhsec9ov4bjp		FINISHED	1	0	2025-12-14 14:00:00	2026-04-01 00:41:51.36	16	2025-2026	REGULAR_SEASON
+cmnf54mvm0056uhsez1iqb6qp	537948	cmnf548ha000auhsekg2f0oot	cmnf548em0000uhseg9lphrqa		FINISHED	0	1	2025-12-20 20:00:00	2026-04-01 00:41:51.379	17	2025-2026	REGULAR_SEASON
+cmnf54mxj005huhse54m4o0ez	537960	cmnf548hb000duhse2eezx75m	cmnf548h30005uhse46wx275v		FINISHED	1	2	2025-12-27 17:30:00	2026-04-01 00:41:51.399	18	2025-2026	REGULAR_SEASON
+cmnf54n150064uhseh3b0e286	537994	cmnf548hr000huhse669r2oah	cmnf548hj000euhse945fpqyk		FINISHED	1	2	2026-01-06 20:00:00	2026-04-01 00:41:51.425	21	2025-2026	REGULAR_SEASON
+cmnf54n2z006duhse5o81zyd1	537992	cmnf548ho000fuhsei9tdazli	cmnf548hw000juhsen71wa95h		FINISHED	1	1	2026-01-07 19:30:00	2026-04-01 00:41:51.439	21	2025-2026	REGULAR_SEASON
+cmnf54n56006muhse7pbg3qvi	537996	cmnf548h30005uhse46wx275v	cmnf548ha000auhsekg2f0oot		FINISHED	0	1	2026-01-18 16:30:00	2026-04-01 00:41:51.445	22	2025-2026	REGULAR_SEASON
+cmnf54n74006zuhseurw9cf9m	538017	cmnf548hw000juhsen71wa95h	cmnf548ha000auhsekg2f0oot		FINISHED	1	1	2026-01-31 15:00:00	2026-04-01 00:41:51.462	24	2025-2026	REGULAR_SEASON
+cmnf54n96007euhse62daii13	538034	cmnf548g80001uhseq8eicwme	cmnf548hb000duhse2eezx75m		FINISHED	1	3	2026-02-07 15:00:00	2026-04-01 00:41:51.48	25	2025-2026	REGULAR_SEASON
+cmnf54nbo007ruhse4uk7bz9i	538035	cmnf548gf0002uhsewxfgd4nd	cmnf548ht000iuhse8t4eodeu		FINISHED	0	1	2026-02-11 20:15:00	2026-04-01 00:41:51.499	26	2025-2026	REGULAR_SEASON
+cmnf54ndh0080uhseoc88233p	538052	cmnf548hj000euhse945fpqyk	cmnf548ht000iuhse8t4eodeu		FINISHED	0	1	2026-02-22 14:00:00	2026-04-01 00:41:51.505	27	2025-2026	REGULAR_SEASON
+cmnf54nfb0089uhsegnqinuat	538059	cmnf548h60007uhse14otrkul	cmnf548gu0004uhser9v0aboe		FINISHED	2	1	2026-03-01 14:00:00	2026-04-01 00:41:51.516	28	2025-2026	REGULAR_SEASON
+cmnf54nge008iuhse79nnqyr8	538074	cmnf548g80001uhseq8eicwme	cmnf548ht000iuhse8t4eodeu		FINISHED	2	1	2026-03-03 20:15:00	2026-04-01 00:41:51.52	29	2025-2026	REGULAR_SEASON
+cmnf54nhh008muhse2ofc65uf	538076	cmnf548hr000guhseayb6uzuu	cmnf548ha0009uhseksu2phrb		FINISHED	0	0	2026-03-15 14:00:00	2026-04-01 00:41:51.528	30	2025-2026	REGULAR_SEASON
+cmnf54nkc0096uhsencg8xo6i	538104	cmnf548hr000huhse669r2oah	cmnf548g80001uhseq8eicwme		TIMED	\N	\N	2026-04-10 19:00:00	2026-04-01 00:41:51.538	32	2025-2026	REGULAR_SEASON
+cmnf54nlk0099uhsek8wgblef	538102	cmnf548h50006uhseuq2stcaz	cmnf548ha0009uhseksu2phrb		TIMED	\N	\N	2026-04-13 19:00:00	2026-04-01 00:41:51.543	32	2025-2026	REGULAR_SEASON
+cmnf54nm9009huhsejcemum5a	538114	cmnf548gu0004uhser9v0aboe	cmnf548hw000juhsen71wa95h		TIMED	\N	\N	2026-04-18 16:30:00	2026-04-01 00:41:51.546	33	2025-2026	REGULAR_SEASON
+cmnf54nng009nuhsetyyyvx1q	538116	cmnf548gf0002uhsewxfgd4nd	cmnf548hj000euhse945fpqyk		TIMED	\N	\N	2026-04-24 19:00:00	2026-04-01 00:41:51.558	34	2025-2026	REGULAR_SEASON
+cmnf54npc009wuhsesdre3408	538118	cmnf548em0000uhseg9lphrqa	cmnf548hb000cuhsec9ov4bjp		TIMED	\N	\N	2026-04-25 16:30:00	2026-04-01 00:41:51.561	34	2025-2026	REGULAR_SEASON
+cmnf54nq500a5uhsetq13ss8v	538133	cmnf548hb000cuhsec9ov4bjp	cmnf548hw000juhsen71wa95h		TIMED	\N	\N	2026-05-02 14:00:00	2026-04-01 00:41:51.565	35	2025-2026	REGULAR_SEASON
+cmnf54nrg00a8uhse2o9ibame	538129	cmnf548hb000duhse2eezx75m	cmnf548hj000euhse945fpqyk		TIMED	\N	\N	2026-05-04 14:00:00	2026-04-01 00:41:51.567	35	2025-2026	REGULAR_SEASON
+cmnf54nsb00ahuhsedw6da28n	538143	cmnf548gu0004uhser9v0aboe	cmnf548ha0009uhseksu2phrb		TIMED	\N	\N	2026-05-09 14:00:00	2026-04-01 00:41:51.571	36	2025-2026	REGULAR_SEASON
+cmnf54m6f000suhsezdhopc9w	537793	cmnf548h50006uhseuq2stcaz	cmnf548em0000uhseg9lphrqa		FINISHED	0	1	2025-08-17 15:30:00	2026-04-01 00:41:51.192	1	2025-2026	REGULAR_SEASON
+cmnf54m8g000xuhsej62g40mu	537798	cmnf548h90008uhseg19mk30r	cmnf548h30005uhse46wx275v		FINISHED	1	0	2025-08-23 14:00:00	2026-04-01 00:41:51.196	2	2025-2026	REGULAR_SEASON
+cmnf54m9x001euhsew0z47yfe	537815	cmnf548hb000buhsefuwic6dx	cmnf548hw000juhsen71wa95h		FINISHED	2	1	2025-09-13 14:00:00	2026-04-01 00:41:51.211	4	2025-2026	REGULAR_SEASON
+cmnf54mc7001uuhsezojd2udx	537830	cmnf548h60007uhse14otrkul	cmnf548h90008uhseg19mk30r		FINISHED	3	1	2025-09-20 19:00:00	2026-04-01 00:41:51.231	5	2025-2026	REGULAR_SEASON
+cmnf54md7001xuhse5mp36txk	537841	cmnf548ho000fuhsei9tdazli	cmnf548gh0003uhsel9vkpibt		FINISHED	5	1	2025-09-27 14:00:00	2026-04-01 00:41:51.237	6	2025-2026	REGULAR_SEASON
+cmnf54mh3002ouhse164kkguk	537859	cmnf548h60007uhse14otrkul	cmnf548em0000uhseg9lphrqa		FINISHED	0	1	2025-10-18 16:30:00	2026-04-01 00:41:51.261	8	2025-2026	REGULAR_SEASON
+cmnf54mj1002wuhseqfetjsnv	537868	cmnf548h90008uhseg19mk30r	cmnf548ht000iuhse8t4eodeu		FINISHED	3	2	2025-10-25 19:00:00	2026-04-01 00:41:51.274	9	2025-2026	REGULAR_SEASON
+cmnf54mkw003buhsevpdwdmys	537893	cmnf548gu0004uhser9v0aboe	cmnf548h50006uhseuq2stcaz		FINISHED	2	2	2025-11-08 12:30:00	2026-04-01 00:41:51.295	11	2025-2026	REGULAR_SEASON
+cmnf54mmp003luhse97itl1g4	537895	cmnf548hb000buhsefuwic6dx	cmnf548hr000huhse669r2oah		FINISHED	2	2	2025-11-22 15:00:00	2026-04-01 00:41:51.305	12	2025-2026	REGULAR_SEASON
+cmnf54mot0042uhsee09sw0bp	537906	cmnf548h30005uhse46wx275v	cmnf548g80001uhseq8eicwme		FINISHED	1	0	2025-11-30 14:05:00	2026-04-01 00:41:51.316	13	2025-2026	REGULAR_SEASON
+cmnf54mus004zuhsehtmlymw0	537938	cmnf548h90008uhseg19mk30r	cmnf548ha0009uhseksu2phrb		FINISHED	1	1	2025-12-14 16:30:00	2026-04-01 00:41:51.368	16	2025-2026	REGULAR_SEASON
+cmnf54mwt0059uhseg5upzu83	537959	cmnf548gh0003uhsel9vkpibt	cmnf548ha000auhsekg2f0oot		FINISHED	0	0	2025-12-27 15:00:00	2026-04-01 00:41:51.396	18	2025-2026	REGULAR_SEASON
+cmnf54nob009vuhsewqmqozhk	538121	cmnf548ht000iuhse8t4eodeu	cmnf548hr000guhseayb6uzuu		TIMED	\N	\N	2026-04-25 14:00:00	2026-04-01 00:41:51.56	34	2025-2026	REGULAR_SEASON
+cmnf54nu000anuhse1wxdq1ft	538147	cmnf548em0000uhseg9lphrqa	cmnf548gh0003uhsel9vkpibt		TIMED	\N	\N	2026-05-17 14:00:00	2026-04-01 00:41:51.573	37	2025-2026	REGULAR_SEASON
+cmnf54mak001iuhse9ozomha5	537823	cmnf548hb000cuhsec9ov4bjp	cmnf548g80001uhseq8eicwme		FINISHED	1	0	2025-09-13 14:00:00	2026-04-01 00:41:51.213	4	2025-2026	REGULAR_SEASON
+cmnf54mf1002duhseam1j5b9k	537846	cmnf548h30005uhse46wx275v	cmnf548gh0003uhsel9vkpibt		FINISHED	2	1	2025-10-05 13:00:00	2026-04-01 00:41:51.253	7	2025-2026	REGULAR_SEASON
+cmnf54mht002tuhseg31syxdu	537869	cmnf548hb000duhse2eezx75m	cmnf548gf0002uhsewxfgd4nd		FINISHED	1	2	2025-10-25 14:00:00	2026-04-01 00:41:51.27	9	2025-2026	REGULAR_SEASON
+cmnf54mj30030uhseirb9o9i8	537865	cmnf548hb000buhsefuwic6dx	cmnf548hj000euhse945fpqyk		FINISHED	2	0	2025-10-26 14:00:00	2026-04-01 00:41:51.275	9	2025-2026	REGULAR_SEASON
+cmnf54mov0043uhsemq9806ng	537912	cmnf548hj000euhse945fpqyk	cmnf548hw000juhsen71wa95h		FINISHED	0	2	2025-11-30 14:05:00	2026-04-01 00:41:51.317	13	2025-2026	REGULAR_SEASON
+cmnf54mqq004cuhse5fmpskdg	537921	cmnf548ha0009uhseksu2phrb	cmnf548hb000duhse2eezx75m		FINISHED	3	1	2025-12-03 20:15:00	2026-04-01 00:41:51.329	14	2025-2026	REGULAR_SEASON
+cmnf54mst004puhsefxvv9x8l	537927	cmnf548hw000juhsen71wa95h	cmnf548hr000huhse669r2oah		FINISHED	1	1	2025-12-07 14:00:00	2026-04-01 00:41:51.354	15	2025-2026	REGULAR_SEASON
+cmnf54mus0052uhse092dlukr	537945	cmnf548hb000buhsefuwic6dx	cmnf548gh0003uhsel9vkpibt		FINISHED	1	1	2025-12-20 15:00:00	2026-04-01 00:41:51.375	17	2025-2026	REGULAR_SEASON
+cmnf54mww005fuhse2mtqy5jz	537964	cmnf548hr000huhse669r2oah	cmnf548h60007uhse14otrkul		FINISHED	0	1	2025-12-27 15:00:00	2026-04-01 00:41:51.398	18	2025-2026	REGULAR_SEASON
+cmnf54myp005nuhseoit26b2z	537974	cmnf548hr000huhse669r2oah	cmnf548hw000juhsen71wa95h		FINISHED	2	2	2025-12-30 19:30:00	2026-04-01 00:41:51.405	19	2025-2026	REGULAR_SEASON
+cmnf54n13005zuhse0phcbjbm	537983	cmnf548gu0004uhser9v0aboe	cmnf548gf0002uhsewxfgd4nd		FINISHED	1	1	2026-01-04 15:00:00	2026-04-01 00:41:51.422	20	2025-2026	REGULAR_SEASON
+cmnf54n30006euhsem7wnbtmq	537987	cmnf548em0000uhseg9lphrqa	cmnf548ht000iuhse8t4eodeu		FINISHED	0	0	2026-01-08 20:00:00	2026-04-01 00:41:51.441	21	2025-2026	REGULAR_SEASON
+cmnf54n780074uhsez16ny8it	538021	cmnf548h50006uhseuq2stcaz	cmnf548h60007uhse14otrkul		FINISHED	3	2	2026-02-01 14:00:00	2026-04-01 00:41:51.465	24	2025-2026	REGULAR_SEASON
+cmnf54n96007auhsev6xfekhp	538027	cmnf548em0000uhseg9lphrqa	cmnf548gf0002uhsewxfgd4nd		FINISHED	3	0	2026-02-07 15:00:00	2026-04-01 00:41:51.468	25	2025-2026	REGULAR_SEASON
+cmnf54nb9007kuhseii6v07bv	538043	cmnf548gu0004uhser9v0aboe	cmnf548hb000cuhsec9ov4bjp		FINISHED	1	2	2026-02-10 19:30:00	2026-04-01 00:41:51.492	26	2025-2026	REGULAR_SEASON
+cmnf54nc1007tuhsedu8p970a	538048	cmnf548h90008uhseg19mk30r	cmnf548hw000juhsen71wa95h		FINISHED	0	2	2026-02-21 15:00:00	2026-04-01 00:41:51.501	27	2025-2026	REGULAR_SEASON
+cmnf54nfg008guhse19593z9c	538069	cmnf548h60007uhse14otrkul	cmnf548hr000huhse669r2oah		FINISHED	0	1	2026-03-04 19:30:00	2026-04-01 00:41:51.522	29	2025-2026	REGULAR_SEASON
+cmnf54ni6008tuhse7cvmxfpi	538072	cmnf548hb000cuhsec9ov4bjp	cmnf548h50006uhseuq2stcaz		FINISHED	2	1	2026-03-04 20:15:00	2026-04-01 00:41:51.522	29	2025-2026	REGULAR_SEASON
+cmnf54njd008yuhseimd9vh1d	538088	cmnf548ha000auhsekg2f0oot	cmnf548hb000duhse2eezx75m		FINISHED	3	0	2026-03-21 17:30:00	2026-04-01 00:41:51.536	31	2025-2026	REGULAR_SEASON
+cmnf54nkc0097uhsewugqw7t6	538097	cmnf548em0000uhseg9lphrqa	cmnf548hb000buhsefuwic6dx		TIMED	\N	\N	2026-04-11 11:30:00	2026-04-01 00:41:51.539	32	2025-2026	REGULAR_SEASON
+cmnf54nlh0098uhse1k09r0he	538098	cmnf548h90008uhseg19mk30r	cmnf548ha000auhsekg2f0oot		TIMED	\N	\N	2026-04-11 14:00:00	2026-04-01 00:41:51.539	32	2025-2026	REGULAR_SEASON
+cmnf54nng009quhse5ebm2x2a	538120	cmnf548h60007uhse14otrkul	cmnf548h30005uhse46wx275v		TIMED	\N	\N	2026-04-25 11:30:00	2026-04-01 00:41:51.559	34	2025-2026	REGULAR_SEASON
+cmnf54npg00a2uhse6b7c8hss	538125	cmnf548hb000buhsefuwic6dx	cmnf548hr000guhseayb6uzuu		TIMED	\N	\N	2026-05-02 14:00:00	2026-04-01 00:41:51.564	35	2025-2026	REGULAR_SEASON
+cmnf54nrh00abuhsevh5bvqwm	538135	cmnf548gf0002uhsewxfgd4nd	cmnf548h50006uhseuq2stcaz		TIMED	\N	\N	2026-05-09 14:00:00	2026-04-01 00:41:51.567	36	2025-2026	REGULAR_SEASON
+cmnf54nv900avuhse5natr3dm	538153	cmnf548hb000cuhsec9ov4bjp	cmnf548hr000huhse669r2oah		TIMED	\N	\N	2026-05-17 14:00:00	2026-04-01 00:41:51.576	37	2025-2026	REGULAR_SEASON
+cmnf54nu300apuhse6qkp6hva	538155	cmnf548gf0002uhsewxfgd4nd	cmnf548hb000duhse2eezx75m		TIMED	\N	\N	2026-05-24 15:00:00	2026-04-01 00:41:51.577	38	2025-2026	REGULAR_SEASON
+cmnf54nwc00axuhse10qestx4	538164	cmnf548hr000huhse669r2oah	cmnf548ha0009uhseksu2phrb		TIMED	\N	\N	2026-05-24 15:00:00	2026-04-01 00:41:51.58	38	2025-2026	REGULAR_SEASON
+cmnf54m6f000ruhsekujnf4k2	537788	cmnf548hj000euhse945fpqyk	cmnf548h90008uhseg19mk30r		FINISHED	3	1	2025-08-17 13:00:00	2026-04-01 00:41:51.191	1	2025-2026	REGULAR_SEASON
+cmnf54m8h0012uhse5g4h7s02	537803	cmnf548hb000cuhsec9ov4bjp	cmnf548ht000iuhse8t4eodeu		FINISHED	2	3	2025-08-25 19:00:00	2026-04-01 00:41:51.2	2	2025-2026	REGULAR_SEASON
+cmnf54m9v001auhseovokk5ax	537810	cmnf548ha0009uhseksu2phrb	cmnf548hb000cuhsec9ov4bjp		FINISHED	0	0	2025-08-30 16:30:00	2026-04-01 00:41:51.206	3	2025-2026	REGULAR_SEASON
+cmnf54mbd001kuhsejsw2ymwh	537824	cmnf548hr000huhse669r2oah	cmnf548gu0004uhser9v0aboe		FINISHED	0	3	2025-09-13 16:30:00	2026-04-01 00:41:51.214	4	2025-2026	REGULAR_SEASON
+cmnf54mh2002luhse9n3vze20	537858	cmnf548gh0003uhsel9vkpibt	cmnf548ha0009uhseksu2phrb		FINISHED	2	0	2025-10-18 14:00:00	2026-04-01 00:41:51.259	8	2025-2026	REGULAR_SEASON
+cmnf54mfv002iuhse1sa4yztw	537862	cmnf548hj000euhse945fpqyk	cmnf548hb000duhse2eezx75m		FINISHED	0	3	2025-10-18 11:30:00	2026-04-01 00:41:51.257	8	2025-2026	REGULAR_SEASON
+cmnf54mkx003fuhsemxyb3jco	537885	cmnf548gf0002uhsewxfgd4nd	cmnf548em0000uhseg9lphrqa		FINISHED	2	2	2025-11-08 17:30:00	2026-04-01 00:41:51.298	11	2025-2026	REGULAR_SEASON
+cmnf54mlp003iuhsep0m624sc	537888	cmnf548h90008uhseg19mk30r	cmnf548hb000cuhsec9ov4bjp		FINISHED	3	1	2025-11-09 14:00:00	2026-04-01 00:41:51.302	11	2025-2026	REGULAR_SEASON
+cmnf54mmo003kuhsef32y8zk0	537892	cmnf548hj000euhse945fpqyk	cmnf548ha0009uhseksu2phrb		FINISHED	3	1	2025-11-09 14:00:00	2026-04-01 00:41:51.303	11	2025-2026	REGULAR_SEASON
+cmnf54mzo005tuhsey6tnl0bx	537965	cmnf548gf0002uhsewxfgd4nd	cmnf548ho000fuhsei9tdazli		FINISHED	0	0	2026-01-01 20:00:00	2026-04-01 00:41:51.411	19	2025-2026	REGULAR_SEASON
+cmnf54n58006ruhse74brfbmv	538005	cmnf548hb000buhsefuwic6dx	cmnf548ht000iuhse8t4eodeu		FINISHED	3	2	2026-01-24 17:30:00	2026-04-01 00:41:51.448	23	2025-2026	REGULAR_SEASON
+cmnf54ndd007xuhser47shlxz	538051	cmnf548ho000fuhsei9tdazli	cmnf548hb000cuhsec9ov4bjp		FINISHED	2	1	2026-02-21 20:00:00	2026-04-01 00:41:51.502	27	2025-2026	REGULAR_SEASON
+cmnf54nhi008nuhsevmq5wy1o	538079	cmnf548gh0003uhsel9vkpibt	cmnf548hb000buhsefuwic6dx		FINISHED	0	0	2026-03-14 15:00:00	2026-04-01 00:41:51.524	30	2025-2026	REGULAR_SEASON
+cmnf54mc3001tuhsexdy610fg	537832	cmnf548h50006uhseuq2stcaz	cmnf548hb000duhse2eezx75m		FINISHED	2	1	2025-09-20 16:30:00	2026-04-01 00:41:51.23	5	2025-2026	REGULAR_SEASON
+cmnf54md90024uhsethnxi1ob	537844	cmnf548gu0004uhser9v0aboe	cmnf548g80001uhseq8eicwme		FINISHED	1	1	2025-09-27 19:00:00	2026-04-01 00:41:51.24	6	2025-2026	REGULAR_SEASON
+cmnf54mfs002huhsevb5esqir	537848	cmnf548h90008uhseg19mk30r	cmnf548ho000fuhsei9tdazli		FINISHED	0	1	2025-10-05 15:30:00	2026-04-01 00:41:51.256	7	2025-2026	REGULAR_SEASON
+cmnf54mhw002uuhsethf09l2l	537872	cmnf548h50006uhseuq2stcaz	cmnf548hw000juhsen71wa95h		FINISHED	4	2	2025-10-25 16:30:00	2026-04-01 00:41:51.273	9	2025-2026	REGULAR_SEASON
+cmnf54mj3002xuhse6cjkvr88	537867	cmnf548em0000uhseg9lphrqa	cmnf548hr000guhseayb6uzuu		FINISHED	1	0	2025-10-26 14:00:00	2026-04-01 00:41:51.276	9	2025-2026	REGULAR_SEASON
+cmnf54mjv0036uhsejjipwicq	537882	cmnf548hj000euhse945fpqyk	cmnf548h50006uhseuq2stcaz		FINISHED	2	2	2025-11-01 15:00:00	2026-04-01 00:41:51.281	10	2025-2026	REGULAR_SEASON
+cmnf54mkw0039uhsesmu0pnsq	537881	cmnf548ho000fuhsei9tdazli	cmnf548hb000buhsefuwic6dx		FINISHED	3	1	2025-11-02 16:30:00	2026-04-01 00:41:51.293	10	2025-2026	REGULAR_SEASON
+cmnf54mos0041uhsefmw5oefc	537907	cmnf548hr000guhseayb6uzuu	cmnf548h50006uhseuq2stcaz		FINISHED	1	2	2025-11-30 12:00:00	2026-04-01 00:41:51.316	13	2025-2026	REGULAR_SEASON
+cmnf54mrl004iuhseboq2hmcf	537928	cmnf548ha000auhsekg2f0oot	cmnf548hj000euhse945fpqyk		FINISHED	3	0	2025-12-06 15:00:00	2026-04-01 00:41:51.338	15	2025-2026	REGULAR_SEASON
+cmnf54mss004luhsesgk54a2u	537934	cmnf548g80001uhseq8eicwme	cmnf548h50006uhseuq2stcaz		FINISHED	1	4	2025-12-08 20:00:00	2026-04-01 00:41:51.356	15	2025-2026	REGULAR_SEASON
+cmnf54mwt005duhsetmbec2zz	537958	cmnf548h90008uhseg19mk30r	cmnf548hb000buhsefuwic6dx		FINISHED	4	1	2025-12-27 15:00:00	2026-04-01 00:41:51.395	18	2025-2026	REGULAR_SEASON
+cmnf54mys005ruhsexlsn193g	537968	cmnf548h90008uhseg19mk30r	cmnf548gu0004uhser9v0aboe		FINISHED	0	0	2026-01-01 20:00:00	2026-04-01 00:41:51.412	19	2025-2026	REGULAR_SEASON
+cmnf54n130062uhsezz66fsaw	537979	cmnf548h60007uhse14otrkul	cmnf548ht000iuhse8t4eodeu		FINISHED	2	2	2026-01-04 15:15:00	2026-04-01 00:41:51.422	20	2025-2026	REGULAR_SEASON
+cmnf54n56006quhsesvyer3iq	538012	cmnf548ho000fuhsei9tdazli	cmnf548g80001uhseq8eicwme		FINISHED	2	0	2026-01-24 15:00:00	2026-04-01 00:41:51.447	23	2025-2026	REGULAR_SEASON
+cmnf54n740073uhsexxzb6a52	538018	cmnf548hb000duhse2eezx75m	cmnf548hr000huhse669r2oah		FINISHED	3	2	2026-01-31 17:30:00	2026-04-01 00:41:51.463	24	2025-2026	REGULAR_SEASON
+cmnf54n97007guhsef35vu3d7	538026	cmnf548hw000juhsen71wa95h	cmnf548hr000guhseayb6uzuu		FINISHED	0	1	2026-02-08 14:00:00	2026-04-01 00:41:51.482	25	2025-2026	REGULAR_SEASON
+cmnf54ndd007yuhsegb4koal7	538045	cmnf548gf0002uhsewxfgd4nd	cmnf548h60007uhse14otrkul		FINISHED	1	3	2026-02-22 14:00:00	2026-04-01 00:41:51.503	27	2025-2026	REGULAR_SEASON
+cmnf54ne60086uhse0m80rt28	538063	cmnf548hb000cuhsec9ov4bjp	cmnf548ha000auhsekg2f0oot		FINISHED	2	3	2026-02-28 15:00:00	2026-04-01 00:41:51.515	28	2025-2026	REGULAR_SEASON
+cmnf54nfb008auhselc2b8750	538057	cmnf548em0000uhseg9lphrqa	cmnf548hb000duhse2eezx75m		FINISHED	2	1	2026-03-01 16:30:00	2026-04-01 00:41:51.518	28	2025-2026	REGULAR_SEASON
+cmnf54ngi008juhseigrtrvii	538066	cmnf548h30005uhse46wx275v	cmnf548hb000duhse2eezx75m		FINISHED	1	4	2026-03-04 19:30:00	2026-04-01 00:41:51.52	29	2025-2026	REGULAR_SEASON
+cmnf54njd0091uhse31zoi9kd	538089	cmnf548h60007uhse14otrkul	cmnf548gh0003uhsel9vkpibt		FINISHED	3	1	2026-03-21 15:00:00	2026-04-01 00:41:51.535	31	2025-2026	REGULAR_SEASON
+cmnf54nk80095uhse6ti17wz0	538093	cmnf548gu0004uhser9v0aboe	cmnf548hj000euhse945fpqyk		FINISHED	0	3	2026-03-22 14:15:00	2026-04-01 00:41:51.538	31	2025-2026	REGULAR_SEASON
+cmnf54nmc009iuhsev7s7j1au	538112	cmnf548hb000cuhsec9ov4bjp	cmnf548hb000buhsefuwic6dx		TIMED	\N	\N	2026-04-18 14:00:00	2026-04-01 00:41:51.545	33	2025-2026	REGULAR_SEASON
+cmnf54nne009kuhseic4tgxot	538108	cmnf548hb000duhse2eezx75m	cmnf548h50006uhseuq2stcaz		TIMED	\N	\N	2026-04-18 19:00:00	2026-04-01 00:41:51.548	33	2025-2026	REGULAR_SEASON
+cmnf54no8009tuhsejcc81svn	538123	cmnf548hr000huhse669r2oah	cmnf548ha000auhsekg2f0oot		TIMED	\N	\N	2026-04-25 14:00:00	2026-04-01 00:41:51.56	34	2025-2026	REGULAR_SEASON
+cmnf54npe009zuhse39euzeta	538131	cmnf548ha0009uhseksu2phrb	cmnf548gh0003uhsel9vkpibt		TIMED	\N	\N	2026-05-01 19:00:00	2026-04-01 00:41:51.563	35	2025-2026	REGULAR_SEASON
+cmnf54nri00acuhsez02x7iws	538137	cmnf548hr000guhseayb6uzuu	cmnf548ha000auhsekg2f0oot		TIMED	\N	\N	2026-05-09 14:00:00	2026-04-01 00:41:51.568	36	2025-2026	REGULAR_SEASON
+cmnf54nu400asuhsenk1k0wsm	538146	cmnf548h30005uhse46wx275v	cmnf548ht000iuhse8t4eodeu		TIMED	\N	\N	2026-05-17 14:00:00	2026-04-01 00:41:51.573	37	2025-2026	REGULAR_SEASON
+cmnf54m7p000uuhserk8cz9bc	537804	cmnf548hr000huhse669r2oah	cmnf548hb000duhse2eezx75m		FINISHED	1	5	2025-08-22 19:00:00	2026-04-01 00:41:51.194	2	2025-2026	REGULAR_SEASON
+cmnf54m920017uhse6s8xbvt8	537813	cmnf548gu0004uhser9v0aboe	cmnf548hb000buhsefuwic6dx		FINISHED	0	1	2025-08-30 14:00:00	2026-04-01 00:41:51.204	3	2025-2026	REGULAR_SEASON
+cmnf54m9v0019uhse7kz1cbds	537809	cmnf548ht000iuhse8t4eodeu	cmnf548em0000uhseg9lphrqa		FINISHED	1	0	2025-08-31 15:30:00	2026-04-01 00:41:51.208	3	2025-2026	REGULAR_SEASON
+cmnf54mbf001ouhseuzl4xgl5	537818	cmnf548h90008uhseg19mk30r	cmnf548hb000duhse2eezx75m		FINISHED	2	2	2025-09-13 19:00:00	2026-04-01 00:41:51.215	4	2025-2026	REGULAR_SEASON
+cmnf54mf1002cuhseajqbqynp	537852	cmnf548h50006uhseuq2stcaz	cmnf548gf0002uhsewxfgd4nd		FINISHED	2	0	2025-10-04 14:00:00	2026-04-01 00:41:51.251	7	2025-2026	REGULAR_SEASON
+cmnf54mh2002muhsecbkqtrke	537855	cmnf548gf0002uhsewxfgd4nd	cmnf548g80001uhseq8eicwme		FINISHED	2	0	2025-10-18 14:00:00	2026-04-01 00:41:51.261	8	2025-2026	REGULAR_SEASON
+cmnf54mmr003quhsea2ihza4w	537901	cmnf548ha0009uhseksu2phrb	cmnf548h30005uhse46wx275v		FINISHED	1	2	2025-11-23 14:00:00	2026-04-01 00:41:51.311	12	2025-2026	REGULAR_SEASON
+cmnf54mqu004fuhse23srfvjf	537922	cmnf548h50006uhseuq2stcaz	cmnf548hr000huhse669r2oah		FINISHED	1	1	2025-12-04 20:00:00	2026-04-01 00:41:51.335	14	2025-2026	REGULAR_SEASON
+cmnf54mtk004tuhsewsmhen59	537939	cmnf548gh0003uhsel9vkpibt	cmnf548h60007uhse14otrkul		FINISHED	2	3	2025-12-13 17:30:00	2026-04-01 00:41:51.358	16	2025-2026	REGULAR_SEASON
+cmnf54n1w0067uhseptdrz5rt	537986	cmnf548hr000guhseayb6uzuu	cmnf548h30005uhse46wx275v		FINISHED	0	0	2026-01-07 19:30:00	2026-04-01 00:41:51.432	21	2025-2026	REGULAR_SEASON
+cmnf54nbc007nuhse2t9x4zp7	538044	cmnf548hr000huhse669r2oah	cmnf548h50006uhseuq2stcaz		FINISHED	1	1	2026-02-10 20:15:00	2026-04-01 00:41:51.496	26	2025-2026	REGULAR_SEASON
+cmnf54nc7007uuhse3gngrnf2	538049	cmnf548hb000duhse2eezx75m	cmnf548gh0003uhsel9vkpibt		FINISHED	1	1	2026-02-21 15:00:00	2026-04-01 00:41:51.501	27	2025-2026	REGULAR_SEASON
+cmnf54nhf008kuhseflace2jk	538071	cmnf548ho000fuhsei9tdazli	cmnf548hj000euhse945fpqyk		FINISHED	2	2	2026-03-04 19:30:00	2026-04-01 00:41:51.522	29	2025-2026	REGULAR_SEASON
+cmnf54nlk009auhse4vkooenx	538107	cmnf548h90008uhseg19mk30r	cmnf548h60007uhse14otrkul		TIMED	\N	\N	2026-04-18 11:30:00	2026-04-01 00:41:51.544	33	2025-2026	REGULAR_SEASON
+cmnf54mh4002puhsexvfgd6ry	537860	cmnf548ht000iuhse8t4eodeu	cmnf548h50006uhseuq2stcaz		FINISHED	1	2	2025-10-19 15:30:00	2026-04-01 00:41:51.263	8	2025-2026	REGULAR_SEASON
+cmnf54mj40033uhsed1tiqbwf	537874	cmnf548g80001uhseq8eicwme	cmnf548gh0003uhsel9vkpibt		FINISHED	2	3	2025-10-26 14:00:00	2026-04-01 00:41:51.277	9	2025-2026	REGULAR_SEASON
+cmnf54mmq003ouhsez8lvtsdq	537898	cmnf548gh0003uhsel9vkpibt	cmnf548hb000duhse2eezx75m		FINISHED	0	2	2025-11-22 12:30:00	2026-04-01 00:41:51.304	12	2025-2026	REGULAR_SEASON
+cmnf54mnj003uuhsehpva713x	537902	cmnf548h50006uhseuq2stcaz	cmnf548ha000auhsekg2f0oot		FINISHED	0	1	2025-11-24 20:00:00	2026-04-01 00:41:51.313	12	2025-2026	REGULAR_SEASON
+cmnf54mqo0048uhseamjlv6x6	537923	cmnf548hb000cuhsec9ov4bjp	cmnf548gu0004uhser9v0aboe		FINISHED	2	2	2025-12-02 20:15:00	2026-04-01 00:41:51.319	14	2025-2026	REGULAR_SEASON
+cmnf54mpp0047uhse1isyouqk	537915	cmnf548hb000buhsefuwic6dx	cmnf548ha000auhsekg2f0oot		FINISHED	0	1	2025-12-02 19:30:00	2026-04-01 00:41:51.318	14	2025-2026	REGULAR_SEASON
+cmnf54mur004yuhsehuzrfvsr	537942	cmnf548h50006uhseuq2stcaz	cmnf548hb000buhsefuwic6dx		FINISHED	4	4	2025-12-15 20:00:00	2026-04-01 00:41:51.373	16	2025-2026	REGULAR_SEASON
+cmnf54mww005euhseey5xdkj7	537962	cmnf548h50006uhseuq2stcaz	cmnf548hb000cuhsec9ov4bjp		FINISHED	1	0	2025-12-26 20:00:00	2026-04-01 00:41:51.392	18	2025-2026	REGULAR_SEASON
+cmnf54myp005ouhsejbrgb94s	537973	cmnf548hj000euhse945fpqyk	cmnf548ha000auhsekg2f0oot		FINISHED	0	2	2025-12-30 19:30:00	2026-04-01 00:41:51.404	19	2025-2026	REGULAR_SEASON
+cmnf54n2z006buhsega962eow	537991	cmnf548h60007uhse14otrkul	cmnf548hb000duhse2eezx75m		FINISHED	2	1	2026-01-07 19:30:00	2026-04-01 00:41:51.438	21	2025-2026	REGULAR_SEASON
+cmnf54n58006suhsezip94vng	538011	cmnf548h60007uhse14otrkul	cmnf548hw000juhsen71wa95h		FINISHED	2	1	2026-01-24 15:00:00	2026-04-01 00:41:51.447	23	2025-2026	REGULAR_SEASON
+cmnf54n5y006uuhse9udz3uke	538013	cmnf548hb000cuhsec9ov4bjp	cmnf548h30005uhse46wx275v		FINISHED	0	2	2026-01-25 14:00:00	2026-04-01 00:41:51.46	23	2025-2026	REGULAR_SEASON
+cmnf54n74006yuhseffyk124o	538010	cmnf548ha000auhsekg2f0oot	cmnf548ha0009uhseksu2phrb		FINISHED	1	1	2026-01-26 20:00:00	2026-04-01 00:41:51.462	23	2025-2026	REGULAR_SEASON
+cmnf54n740070uhsebhoej5bx	538019	cmnf548ht000iuhse8t4eodeu	cmnf548hb000cuhsec9ov4bjp		FINISHED	4	1	2026-01-31 20:00:00	2026-04-01 00:41:51.464	24	2025-2026	REGULAR_SEASON
+cmnf54n96007duhseln7d5cbh	538032	cmnf548h50006uhseuq2stcaz	cmnf548gu0004uhser9v0aboe		FINISHED	2	0	2026-02-07 12:30:00	2026-04-01 00:41:51.468	25	2025-2026	REGULAR_SEASON
+cmnf54n97007fuhsep04vmw6x	538033	cmnf548hb000cuhsec9ov4bjp	cmnf548h90008uhseg19mk30r		FINISHED	2	3	2026-02-07 17:30:00	2026-04-01 00:41:51.481	25	2025-2026	REGULAR_SEASON
+cmnf54nbb007luhse4h2hgd9z	538041	cmnf548ho000fuhsei9tdazli	cmnf548h60007uhse14otrkul		FINISHED	3	0	2026-02-11 19:30:00	2026-04-01 00:41:51.498	26	2025-2026	REGULAR_SEASON
+cmnf54ndi0081uhse7vzyzejv	538050	cmnf548ha000auhsekg2f0oot	cmnf548h50006uhseuq2stcaz		FINISHED	0	1	2026-02-23 20:00:00	2026-04-01 00:41:51.509	27	2025-2026	REGULAR_SEASON
+cmnf54ne00085uhseogpog2qb	538058	cmnf548gh0003uhsel9vkpibt	cmnf548h90008uhseg19mk30r		FINISHED	3	4	2026-02-28 15:00:00	2026-04-01 00:41:51.513	28	2025-2026	REGULAR_SEASON
+cmnf54nfb008buhsefo39bjcd	538056	cmnf548hw000juhsen71wa95h	cmnf548hj000euhse945fpqyk		FINISHED	2	1	2026-03-01 14:00:00	2026-04-01 00:41:51.516	28	2025-2026	REGULAR_SEASON
+cmnf54njd0092uhse2zr3q4xm	538092	cmnf548hb000cuhsec9ov4bjp	cmnf548gf0002uhsewxfgd4nd		FINISHED	1	2	2026-03-22 12:00:00	2026-04-01 00:41:51.537	31	2025-2026	REGULAR_SEASON
+cmnf54nhi008ouhsenxcpbvyh	538075	cmnf548gf0002uhsewxfgd4nd	cmnf548hw000juhsen71wa95h		FINISHED	0	1	2026-03-14 15:00:00	2026-04-01 00:41:51.523	30	2025-2026	REGULAR_SEASON
+cmnf54nhi008quhsenpvz4rll	538083	cmnf548hj000euhse945fpqyk	cmnf548h60007uhse14otrkul		FINISHED	0	0	2026-03-15 14:00:00	2026-04-01 00:41:51.531	30	2025-2026	REGULAR_SEASON
+cmnf54nje0094uhsev6ia00qk	538086	cmnf548h30005uhse46wx275v	cmnf548hr000huhse669r2oah		FINISHED	2	0	2026-03-22 14:15:00	2026-04-01 00:41:51.537	31	2025-2026	REGULAR_SEASON
+cmnf54nlk009fuhsekl3ihtr8	538099	cmnf548gh0003uhsel9vkpibt	cmnf548hw000juhsen71wa95h		TIMED	\N	\N	2026-04-11 14:00:00	2026-04-01 00:41:51.539	32	2025-2026	REGULAR_SEASON
+cmnf54nmc009juhsestqagf0y	538110	cmnf548ha0009uhseksu2phrb	cmnf548g80001uhseq8eicwme		TIMED	\N	\N	2026-04-18 14:00:00	2026-04-01 00:41:51.545	33	2025-2026	REGULAR_SEASON
+cmnf54nng009muhseibswaruz	538109	cmnf548ha000auhsekg2f0oot	cmnf548ht000iuhse8t4eodeu		TIMED	\N	\N	2026-04-19 13:00:00	2026-04-01 00:41:51.553	33	2025-2026	REGULAR_SEASON
+cmnf54m8h0013uhseb921owzq	537801	cmnf548h60007uhse14otrkul	cmnf548h50006uhseuq2stcaz		FINISHED	1	1	2025-08-24 15:30:00	2026-04-01 00:41:51.2	2	2025-2026	REGULAR_SEASON
+cmnf54mbg001suhse6exqfngz	537834	cmnf548g80001uhseq8eicwme	cmnf548ha0009uhseksu2phrb		FINISHED	1	3	2025-09-20 14:00:00	2026-04-01 00:41:51.221	5	2025-2026	REGULAR_SEASON
+cmnf54md80021uhsemm75ry30	537828	cmnf548em0000uhseg9lphrqa	cmnf548ho000fuhsei9tdazli		FINISHED	1	1	2025-09-21 15:30:00	2026-04-01 00:41:51.234	5	2025-2026	REGULAR_SEASON
+cmnf54mf2002euhsekke4x7ps	537850	cmnf548ha000auhsekg2f0oot	cmnf548hr000guhseayb6uzuu		FINISHED	2	1	2025-10-05 13:00:00	2026-04-01 00:41:51.254	7	2025-2026	REGULAR_SEASON
+cmnf54mkw003auhsevoonv9f8	537884	cmnf548hr000huhse669r2oah	cmnf548hb000cuhsec9ov4bjp		FINISHED	3	1	2025-11-02 14:00:00	2026-04-01 00:41:51.292	10	2025-2026	REGULAR_SEASON
+cmnf54mop003yuhseo0j82u4q	537908	cmnf548h90008uhseg19mk30r	cmnf548gh0003uhsel9vkpibt		FINISHED	3	1	2025-11-29 15:00:00	2026-04-01 00:41:51.314	13	2025-2026	REGULAR_SEASON
+cmnf54msu004suhse0v3uz3rv	537941	cmnf548ht000iuhse8t4eodeu	cmnf548hw000juhsen71wa95h		FINISHED	2	0	2025-12-13 15:00:00	2026-04-01 00:41:51.357	16	2025-2026	REGULAR_SEASON
+cmnf54mzp005uuhsek1q8vall	537977	cmnf548hw000juhsen71wa95h	cmnf548gh0003uhsel9vkpibt		FINISHED	2	0	2026-01-03 15:00:00	2026-04-01 00:41:51.416	20	2025-2026	REGULAR_SEASON
+cmnf54nbo007quhsevua8nrsa	538038	cmnf548h90008uhseg19mk30r	cmnf548em0000uhseg9lphrqa		FINISHED	1	1	2026-02-12 20:00:00	2026-04-01 00:41:51.5	26	2025-2026	REGULAR_SEASON
+cmnf54nfb008cuhsets8159dd	538062	cmnf548h50006uhseuq2stcaz	cmnf548hr000guhseayb6uzuu		FINISHED	2	1	2026-03-01 14:00:00	2026-04-01 00:41:51.517	28	2025-2026	REGULAR_SEASON
+cmnf54nlk009euhsepyzqqmj0	538096	cmnf548hr000guhseayb6uzuu	cmnf548hb000cuhsec9ov4bjp		TIMED	\N	\N	2026-04-12 13:00:00	2026-04-01 00:41:51.541	32	2025-2026	REGULAR_SEASON
+cmnf54na3007iuhse1a80dhfa	538040	cmnf548ha000auhsekg2f0oot	cmnf548hb000buhsefuwic6dx		FINISHED	1	2	2026-02-10 19:30:00	2026-04-01 00:41:51.486	26	2025-2026	REGULAR_SEASON
+cmnf54nc7007vuhsewsk7pt3z	538046	cmnf548h30005uhse46wx275v	cmnf548ha0009uhseksu2phrb		FINISHED	1	1	2026-02-21 15:00:00	2026-04-01 00:41:51.5	27	2025-2026	REGULAR_SEASON
+cmnf54n740071uhseb1ctx5p9	538024	cmnf548g80001uhseq8eicwme	cmnf548hb000buhsefuwic6dx		FINISHED	0	2	2026-01-31 15:00:00	2026-04-01 00:41:51.463	24	2025-2026	REGULAR_SEASON
+cmnf54n940078uhseq6lypuuo	538031	cmnf548ha0009uhseksu2phrb	cmnf548hj000euhse945fpqyk		FINISHED	3	1	2026-02-06 20:00:00	2026-04-01 00:41:51.467	25	2025-2026	REGULAR_SEASON
+cmnf54n7z0077uhse3e1ifp4v	538015	cmnf548gf0002uhsewxfgd4nd	cmnf548gh0003uhsel9vkpibt		FINISHED	3	0	2026-02-02 20:00:00	2026-04-01 00:41:51.467	24	2025-2026	REGULAR_SEASON
+cmnf54n9z007huhseb1lw9f5x	538030	cmnf548ht000iuhse8t4eodeu	cmnf548ho000fuhsei9tdazli		FINISHED	1	2	2026-02-08 16:30:00	2026-04-01 00:41:51.483	25	2025-2026	REGULAR_SEASON
+cmnf54nbb007muhsermtbyna5	538036	cmnf548h30005uhse46wx275v	cmnf548hw000juhsen71wa95h		FINISHED	1	0	2026-02-11 19:30:00	2026-04-01 00:41:51.497	26	2025-2026	REGULAR_SEASON
+cmnf54ndk0084uhse9cgid385	538055	cmnf548hb000buhsefuwic6dx	cmnf548gf0002uhsewxfgd4nd		FINISHED	1	1	2026-02-28 12:30:00	2026-04-01 00:41:51.512	28	2025-2026	REGULAR_SEASON
+cmnf54nfc008euhseq60hi5w9	538065	cmnf548hb000buhsefuwic6dx	cmnf548h90008uhseg19mk30r		FINISHED	0	0	2026-03-03 19:30:00	2026-04-01 00:41:51.518	29	2025-2026	REGULAR_SEASON
+cmnf54nhk008suhse9r80yxg6	538084	cmnf548hr000huhse669r2oah	cmnf548ho000fuhsei9tdazli		FINISHED	1	1	2026-03-14 20:00:00	2026-04-01 00:41:51.527	30	2025-2026	REGULAR_SEASON
+cmnf54njd008zuhse6f76zdop	538087	cmnf548hw000juhsen71wa95h	cmnf548ht000iuhse8t4eodeu		FINISHED	2	1	2026-03-21 12:45:00	2026-04-01 00:41:51.535	31	2025-2026	REGULAR_SEASON
+cmnf54nlk009duhsen16me029	538103	cmnf548hj000euhse945fpqyk	cmnf548h30005uhse46wx275v		TIMED	\N	\N	2026-04-12 13:00:00	2026-04-01 00:41:51.542	32	2025-2026	REGULAR_SEASON
+cmnf54nni009suhse9bx0gh0c	538115	cmnf548hb000buhsefuwic6dx	cmnf548ha0009uhseksu2phrb		TIMED	\N	\N	2026-04-25 14:00:00	2026-04-01 00:41:51.559	34	2025-2026	REGULAR_SEASON
+cmnf54npe009yuhse5u1t3uvx	538122	cmnf548h50006uhseuq2stcaz	cmnf548h90008uhseg19mk30r		TIMED	\N	\N	2026-04-27 19:00:00	2026-04-01 00:41:51.563	34	2025-2026	REGULAR_SEASON
+cmnf54nq700a6uhsemkvvn29n	538127	cmnf548em0000uhseg9lphrqa	cmnf548h60007uhse14otrkul		TIMED	\N	\N	2026-05-02 16:30:00	2026-04-01 00:41:51.566	35	2025-2026	REGULAR_SEASON
+cmnf54nrh00aauhseczqcxc89	538138	cmnf548gh0003uhsel9vkpibt	cmnf548h30005uhse46wx275v		TIMED	\N	\N	2026-05-09 14:00:00	2026-04-01 00:41:51.569	36	2025-2026	REGULAR_SEASON
+cmnf54nsc00aiuhsevhlou3bq	538142	cmnf548hj000euhse945fpqyk	cmnf548hb000cuhsec9ov4bjp		TIMED	\N	\N	2026-05-09 14:00:00	2026-04-01 00:41:51.571	36	2025-2026	REGULAR_SEASON
+cmnf54nu000aluhsevb5ltgcx	538150	cmnf548ha000auhsekg2f0oot	cmnf548gf0002uhsewxfgd4nd		TIMED	\N	\N	2026-05-17 14:00:00	2026-04-01 00:41:51.575	37	2025-2026	REGULAR_SEASON
+cmnf54nwe00b3uhse1abx19dv	538158	cmnf548gh0003uhsel9vkpibt	cmnf548g80001uhseq8eicwme		TIMED	\N	\N	2026-05-24 15:00:00	2026-04-01 00:41:51.578	38	2025-2026	REGULAR_SEASON
+cmnf54nng009luhse0dejjby7	538113	cmnf548hj000euhse945fpqyk	cmnf548gh0003uhsel9vkpibt		TIMED	\N	\N	2026-04-19 13:00:00	2026-04-01 00:41:51.55	33	2025-2026	REGULAR_SEASON
+cmnf54npg00a3uhsen124b573	538128	cmnf548h90008uhseg19mk30r	cmnf548hr000huhse669r2oah		TIMED	\N	\N	2026-05-02 14:00:00	2026-04-01 00:41:51.564	35	2025-2026	REGULAR_SEASON
+cmnf54nrh00a9uhse3yk31zc6	538136	cmnf548hw000juhsen71wa95h	cmnf548g80001uhseq8eicwme		TIMED	\N	\N	2026-05-09 14:00:00	2026-04-01 00:41:51.568	36	2025-2026	REGULAR_SEASON
+cmnf54nq700a7uhsef121fxrm	538132	cmnf548h50006uhseuq2stcaz	cmnf548ht000iuhse8t4eodeu		TIMED	\N	\N	2026-05-03 14:30:00	2026-04-01 00:41:51.567	35	2025-2026	REGULAR_SEASON
+cmnf54nu100aouhseqmzbwl4y	538149	cmnf548hb000duhse2eezx75m	cmnf548gu0004uhser9v0aboe		TIMED	\N	\N	2026-05-17 14:00:00	2026-04-01 00:41:51.574	37	2025-2026	REGULAR_SEASON
+cmnf54nv300atuhseagcid603	538156	cmnf548hw000juhsen71wa95h	cmnf548h50006uhseuq2stcaz		TIMED	\N	\N	2026-05-24 15:00:00	2026-04-01 00:41:51.577	38	2025-2026	REGULAR_SEASON
+cmnf54nwd00ayuhseovq62nlg	538162	cmnf548hj000euhse945fpqyk	cmnf548hb000buhsefuwic6dx		TIMED	\N	\N	2026-05-24 15:00:00	2026-04-01 00:41:51.58	38	2025-2026	REGULAR_SEASON
+cmnf54npe00a0uhsebytms94z	538119	cmnf548gh0003uhsel9vkpibt	cmnf548ho000fuhsei9tdazli		TIMED	\N	\N	2026-04-26 13:00:00	2026-04-01 00:41:51.562	34	2025-2026	REGULAR_SEASON
+cmnf54nrj00afuhsetkrvayd9	538141	cmnf548ho000fuhsei9tdazli	cmnf548h90008uhseg19mk30r		TIMED	\N	\N	2026-05-09 14:00:00	2026-04-01 00:41:51.57	36	2025-2026	REGULAR_SEASON
+cmnf54nu000amuhsee68kybfw	538148	cmnf548h90008uhseg19mk30r	cmnf548hr000guhseayb6uzuu		TIMED	\N	\N	2026-05-17 14:00:00	2026-04-01 00:41:51.573	37	2025-2026	REGULAR_SEASON
+cmnf54nwd00b0uhsedmsg9qda	538163	cmnf548gu0004uhser9v0aboe	cmnf548ha000auhsekg2f0oot		TIMED	\N	\N	2026-05-24 15:00:00	2026-04-01 00:41:51.58	38	2025-2026	REGULAR_SEASON
+cmnf54nwd00b2uhseogfywjp5	538159	cmnf548h60007uhse14otrkul	cmnf548hb000cuhsec9ov4bjp		TIMED	\N	\N	2026-05-24 15:00:00	2026-04-01 00:41:51.579	38	2025-2026	REGULAR_SEASON
+cmnf54nwd00azuhseiwg4sa5o	538161	cmnf548ho000fuhsei9tdazli	cmnf548h30005uhse46wx275v		TIMED	\N	\N	2026-05-24 15:00:00	2026-04-01 00:41:51.579	38	2025-2026	REGULAR_SEASON
+cmnf54m6c000luhse11ohp3v5	537787	cmnf548hw000juhsen71wa95h	cmnf548h60007uhse14otrkul		FINISHED	1	1	2025-08-16 14:00:00	2026-04-01 00:41:51.176	1	2025-2026	REGULAR_SEASON
+cmnf54m9u0018uhseeov72u3i	537814	cmnf548g80001uhseq8eicwme	cmnf548ha000auhsekg2f0oot		FINISHED	2	3	2025-08-30 14:00:00	2026-04-01 00:41:51.205	3	2025-2026	REGULAR_SEASON
+cmnf54m6c000nuhse5jsxaq0p	537786	cmnf548h30005uhse46wx275v	cmnf548hb000cuhsec9ov4bjp		FINISHED	0	0	2025-08-16 11:30:00	2026-04-01 00:41:51.175	1	2025-2026	REGULAR_SEASON
+cmnf54n2z0069uhset3h73xom	537989	cmnf548gh0003uhsel9vkpibt	cmnf548h50006uhseuq2stcaz		FINISHED	2	2	2026-01-07 20:15:00	2026-04-01 00:41:51.44	21	2025-2026	REGULAR_SEASON
+cmnf54m6c000muhsejzierkys	537789	cmnf548gf0002uhsewxfgd4nd	cmnf548hr000huhse669r2oah		FINISHED	3	0	2025-08-16 14:00:00	2026-04-01 00:41:51.178	1	2025-2026	REGULAR_SEASON
+cmnf54m920016uhseglyib6f7	537805	cmnf548gf0002uhsewxfgd4nd	cmnf548h90008uhseg19mk30r		FINISHED	2	1	2025-08-30 14:00:00	2026-04-01 00:41:51.202	3	2025-2026	REGULAR_SEASON
+cmnf54mmp003muhselcf24ioa	537900	cmnf548ht000iuhse8t4eodeu	cmnf548hj000euhse945fpqyk		FINISHED	0	3	2025-11-22 15:00:00	2026-04-01 00:41:51.306	12	2025-2026	REGULAR_SEASON
+cmnf54n12005xuhse6824omha	537980	cmnf548ha0009uhseksu2phrb	cmnf548h50006uhseuq2stcaz		FINISHED	1	1	2026-01-04 12:30:00	2026-04-01 00:41:51.419	20	2025-2026	REGULAR_SEASON
+cmnf54m6f000quhseeki119s7	537792	cmnf548hb000duhse2eezx75m	cmnf548hr000guhseayb6uzuu		FINISHED	0	0	2025-08-17 13:00:00	2026-04-01 00:41:51.192	1	2025-2026	REGULAR_SEASON
+cmnf54njd0090uhseqce9cy4l	538091	cmnf548ho000fuhsei9tdazli	cmnf548hr000guhseayb6uzuu		POSTPONED	\N	\N	2026-03-21 00:00:00	2026-04-01 00:41:51.535	31	2025-2026	REGULAR_SEASON
+cmnf54m6d000ouhse6t3ml0p6	537790	cmnf548gu0004uhser9v0aboe	cmnf548gh0003uhsel9vkpibt		FINISHED	3	0	2025-08-16 14:00:00	2026-04-01 00:41:51.179	1	2025-2026	REGULAR_SEASON
+cmnf54n2x0068uhsesp5du68y	537990	cmnf548ha000auhsekg2f0oot	cmnf548g80001uhseq8eicwme		FINISHED	1	1	2026-01-07 19:30:00	2026-04-01 00:41:51.438	21	2025-2026	REGULAR_SEASON
+cmnf54m7n000tuhseb35ljkpq	537794	cmnf548ha0009uhseksu2phrb	cmnf548ha000auhsekg2f0oot		FINISHED	1	0	2025-08-18 19:00:00	2026-04-01 00:41:51.193	1	2025-2026	REGULAR_SEASON
+cmnf54myp005muhseiau4m6nn	537972	cmnf548h50006uhseuq2stcaz	cmnf548g80001uhseq8eicwme		FINISHED	1	1	2025-12-30 20:15:00	2026-04-01 00:41:51.407	19	2025-2026	REGULAR_SEASON
+cmnf54n3v006huhsejcl5svbd	537998	cmnf548hb000duhse2eezx75m	cmnf548h90008uhseg19mk30r		FINISHED	2	0	2026-01-17 15:00:00	2026-04-01 00:41:51.442	22	2025-2026	REGULAR_SEASON
+cmnf54na8007juhse5rfvy6eb	538039	cmnf548hb000duhse2eezx75m	cmnf548ha0009uhseksu2phrb		FINISHED	2	2	2026-02-10 19:30:00	2026-04-01 00:41:51.484	26	2025-2026	REGULAR_SEASON
+cmnf54ndb007wuhseiqq2verz	538054	cmnf548hr000huhse669r2oah	cmnf548hb000buhsefuwic6dx		FINISHED	0	0	2026-02-21 17:30:00	2026-04-01 00:41:51.502	27	2025-2026	REGULAR_SEASON
+cmnf54m8g000zuhse2gwfofxz	537799	cmnf548gh0003uhsel9vkpibt	cmnf548gf0002uhsewxfgd4nd		FINISHED	2	0	2025-08-23 14:00:00	2026-04-01 00:41:51.197	2	2025-2026	REGULAR_SEASON
+cmnf54m9v001buhse1i0thevr	537807	cmnf548hw000juhsen71wa95h	cmnf548ho000fuhsei9tdazli		FINISHED	2	1	2025-08-31 13:00:00	2026-04-01 00:41:51.207	3	2025-2026	REGULAR_SEASON
+cmnf54mbf001quhsexx2ljc3l	537833	cmnf548hr000huhse669r2oah	cmnf548hr000guhseayb6uzuu		FINISHED	1	2	2025-09-20 14:00:00	2026-04-01 00:41:51.22	5	2025-2026	REGULAR_SEASON
+cmnf54mdw0027uhsenxl58lmc	537839	cmnf548ha000auhsekg2f0oot	cmnf548hr000huhse669r2oah		FINISHED	1	1	2025-09-29 19:00:00	2026-04-01 00:41:51.244	6	2025-2026	REGULAR_SEASON
+cmnf54mur004xuhsedwldj8tg	537947	cmnf548hw000juhsen71wa95h	cmnf548gf0002uhsewxfgd4nd		FINISHED	0	0	2025-12-20 15:00:00	2026-04-01 00:41:51.376	17	2025-2026	REGULAR_SEASON
+cmnf54m8f000wuhsevuh27xai	537795	cmnf548hb000buhsefuwic6dx	cmnf548g80001uhseq8eicwme		FINISHED	1	0	2025-08-23 14:00:00	2026-04-01 00:41:51.195	2	2025-2026	REGULAR_SEASON
+cmnf54mll003huhsecsx0daic	537886	cmnf548h30005uhse46wx275v	cmnf548hb000buhsefuwic6dx		FINISHED	4	0	2025-11-09 14:00:00	2026-04-01 00:41:51.3	11	2025-2026	REGULAR_SEASON
+cmnf54md7001yuhse6dpococn	537836	cmnf548hr000guhseayb6uzuu	cmnf548ht000iuhse8t4eodeu		FINISHED	2	1	2025-09-27 14:00:00	2026-04-01 00:41:51.235	6	2025-2026	REGULAR_SEASON
+cmnf54mon003wuhseb1nomfme	537905	cmnf548gf0002uhsewxfgd4nd	cmnf548hb000buhsefuwic6dx		FINISHED	3	2	2025-11-29 15:00:00	2026-04-01 00:41:51.314	13	2025-2026	REGULAR_SEASON
+cmnf54mj30031uhseej24zxqy	537866	cmnf548h30005uhse46wx275v	cmnf548ho000fuhsei9tdazli		FINISHED	1	0	2025-10-26 14:00:00	2026-04-01 00:41:51.276	9	2025-2026	REGULAR_SEASON
+cmnf54mkx003euhsema4kkk39	537890	cmnf548ha000auhsekg2f0oot	cmnf548h60007uhse14otrkul		FINISHED	2	0	2025-11-08 15:00:00	2026-04-01 00:41:51.296	11	2025-2026	REGULAR_SEASON
+cmnf54mop003xuhseu5lhwykd	537913	cmnf548gu0004uhser9v0aboe	cmnf548h60007uhse14otrkul		FINISHED	1	2	2025-11-29 20:00:00	2026-04-01 00:41:51.316	13	2025-2026	REGULAR_SEASON
+cmnf54mqr004euhse7li084ov	537917	cmnf548em0000uhseg9lphrqa	cmnf548h90008uhseg19mk30r		FINISHED	2	0	2025-12-03 19:30:00	2026-04-01 00:41:51.321	14	2025-2026	REGULAR_SEASON
+cmnf54mwt005buhse4scd2x6t	537949	cmnf548h60007uhse14otrkul	cmnf548hj000euhse945fpqyk		FINISHED	1	0	2025-12-22 20:00:00	2026-04-01 00:41:51.391	17	2025-2026	REGULAR_SEASON
+cmnf54mxl005iuhsevipcejdp	537955	cmnf548gf0002uhsewxfgd4nd	cmnf548ha0009uhseksu2phrb		FINISHED	1	1	2025-12-28 14:00:00	2026-04-01 00:41:51.4	18	2025-2026	REGULAR_SEASON
+cmnf54mzu005vuhsepghk9mf2	537976	cmnf548h30005uhse46wx275v	cmnf548hj000euhse945fpqyk		FINISHED	3	1	2026-01-03 12:30:00	2026-04-01 00:41:51.414	20	2025-2026	REGULAR_SEASON
+cmnf54n10005wuhsevj6lrdxj	537984	cmnf548g80001uhseq8eicwme	cmnf548hr000huhse669r2oah		FINISHED	3	0	2026-01-03 15:00:00	2026-04-01 00:41:51.417	20	2025-2026	REGULAR_SEASON
+cmnf54n1t0065uhsev19y50o8	537985	cmnf548hb000buhsefuwic6dx	cmnf548gu0004uhser9v0aboe		FINISHED	3	2	2026-01-07 19:30:00	2026-04-01 00:41:51.427	21	2025-2026	REGULAR_SEASON
+cmnf54n3y006iuhse8ivn6lkd	538000	cmnf548ha0009uhseksu2phrb	cmnf548h60007uhse14otrkul		FINISHED	1	0	2026-01-17 15:00:00	2026-04-01 00:41:51.443	22	2025-2026	REGULAR_SEASON
+cmnf54n5w006tuhsezcgh3i7n	538006	cmnf548hr000guhseayb6uzuu	cmnf548hb000duhse2eezx75m		FINISHED	1	3	2026-01-25 14:00:00	2026-04-01 00:41:51.448	23	2025-2026	REGULAR_SEASON
+cmnf54n74006xuhseh8ei7o2h	538020	cmnf548ha0009uhseksu2phrb	cmnf548em0000uhseg9lphrqa		FINISHED	0	4	2026-01-31 15:00:00	2026-04-01 00:41:51.462	24	2025-2026	REGULAR_SEASON
+cmnf54n7w0076uhsembxkhk1h	538023	cmnf548gu0004uhser9v0aboe	cmnf548ho000fuhsei9tdazli		FINISHED	2	2	2026-02-01 16:30:00	2026-04-01 00:41:51.467	24	2025-2026	REGULAR_SEASON
+cmnf54n96007cuhsedjq80cv7	538029	cmnf548h60007uhse14otrkul	cmnf548ha000auhsekg2f0oot		FINISHED	1	2	2026-02-07 15:00:00	2026-04-01 00:41:51.475	25	2025-2026	REGULAR_SEASON
+cmnf54nbh007ouhserapwbx6m	538042	cmnf548hj000euhse945fpqyk	cmnf548g80001uhseq8eicwme		FINISHED	0	0	2026-02-11 19:30:00	2026-04-01 00:41:51.498	26	2025-2026	REGULAR_SEASON
+cmnf54ndj0082uhseaa3k978s	538053	cmnf548gu0004uhser9v0aboe	cmnf548em0000uhseg9lphrqa		FINISHED	1	4	2026-02-22 16:30:00	2026-04-01 00:41:51.507	27	2025-2026	REGULAR_SEASON
+cmnf54nfc008fuhsenfson84v	538070	cmnf548ha0009uhseksu2phrb	cmnf548gf0002uhsewxfgd4nd		FINISHED	0	1	2026-03-03 19:30:00	2026-04-01 00:41:51.52	29	2025-2026	REGULAR_SEASON
+cmnf54nhi008puhseynjpew82	538077	cmnf548em0000uhseg9lphrqa	cmnf548ha000auhsekg2f0oot		FINISHED	2	0	2026-03-14 17:30:00	2026-04-01 00:41:51.525	30	2025-2026	REGULAR_SEASON
+cmnf54nje0093uhseoubjl5j7	538090	cmnf548ha0009uhseksu2phrb	cmnf548h90008uhseg19mk30r		FINISHED	0	0	2026-03-21 20:00:00	2026-04-01 00:41:51.536	31	2025-2026	REGULAR_SEASON
+cmnf54nlk009buhseos2x3dz1	538095	cmnf548gf0002uhsewxfgd4nd	cmnf548gu0004uhser9v0aboe		TIMED	\N	\N	2026-04-12 13:00:00	2026-04-01 00:41:51.54	32	2025-2026	REGULAR_SEASON
+cmnf54nng009ouhseu0lfdnks	538111	cmnf548ho000fuhsei9tdazli	cmnf548em0000uhseg9lphrqa		TIMED	\N	\N	2026-04-19 15:30:00	2026-04-01 00:41:51.557	33	2025-2026	REGULAR_SEASON
+cmnf54npe00a1uhse9npuroox	538126	cmnf548h30005uhse46wx275v	cmnf548gu0004uhser9v0aboe		TIMED	\N	\N	2026-05-02 11:30:00	2026-04-01 00:41:51.563	35	2025-2026	REGULAR_SEASON
+cmnf54nri00aduhsehep3qfga	538139	cmnf548h60007uhse14otrkul	cmnf548hb000buhsefuwic6dx		TIMED	\N	\N	2026-05-09 14:00:00	2026-04-01 00:41:51.569	36	2025-2026	REGULAR_SEASON
+cmnf54nu400aquhsep3im4pg2	538151	cmnf548ha0009uhseksu2phrb	cmnf548hw000juhsen71wa95h		TIMED	\N	\N	2026-05-17 14:00:00	2026-04-01 00:41:51.575	37	2025-2026	REGULAR_SEASON
+cmnf54m6c000kuhse9l0l6do5	537785	cmnf548ht000iuhse8t4eodeu	cmnf548hb000buhsefuwic6dx		FINISHED	4	2	2025-08-15 19:00:00	2026-04-01 00:41:51.174	1	2025-2026	REGULAR_SEASON
+cmnf54m8i0014uhsekzeiktq7	537808	cmnf548hb000duhse2eezx75m	cmnf548h60007uhse14otrkul		FINISHED	2	0	2025-08-30 11:30:00	2026-04-01 00:41:51.201	3	2025-2026	REGULAR_SEASON
+cmnf54m9v001cuhseaycsyg3h	537812	cmnf548hj000euhse945fpqyk	cmnf548hr000huhse669r2oah		FINISHED	0	3	2025-08-31 13:00:00	2026-04-01 00:41:51.207	3	2025-2026	REGULAR_SEASON
+cmnf54mai001huhseqo3alfng	537820	cmnf548ha000auhsekg2f0oot	cmnf548h30005uhse46wx275v		FINISHED	0	0	2025-09-13 14:00:00	2026-04-01 00:41:51.212	4	2025-2026	REGULAR_SEASON
+cmnf54mbf001luhsepbdf4nxl	537819	cmnf548gh0003uhsel9vkpibt	cmnf548ht000iuhse8t4eodeu		FINISHED	0	1	2025-09-14 13:00:00	2026-04-01 00:41:51.216	4	2025-2026	REGULAR_SEASON
+cmnf54md80023uhsevj2srim8	537843	cmnf548hj000euhse945fpqyk	cmnf548gf0002uhsewxfgd4nd		FINISHED	0	1	2025-09-27 16:30:00	2026-04-01 00:41:51.239	6	2025-2026	REGULAR_SEASON
+cmnf54mf5002guhsev2t0iayj	537854	cmnf548g80001uhseq8eicwme	cmnf548hw000juhsen71wa95h		FINISHED	1	1	2025-10-05 13:00:00	2026-04-01 00:41:51.255	7	2025-2026	REGULAR_SEASON
+cmnf54mh4002quhse9xz4oaa2	537863	cmnf548gu0004uhser9v0aboe	cmnf548h30005uhse46wx275v		FINISHED	1	2	2025-10-19 13:00:00	2026-04-01 00:41:51.262	8	2025-2026	REGULAR_SEASON
+cmnf54mms003suhserye4fouq	537899	cmnf548h60007uhse14otrkul	cmnf548gf0002uhsewxfgd4nd		FINISHED	1	0	2025-11-22 15:00:00	2026-04-01 00:41:51.306	12	2025-2026	REGULAR_SEASON
+cmnf54mst004quhse279c4m59	537940	cmnf548hb000duhse2eezx75m	cmnf548ha000auhsekg2f0oot		FINISHED	2	0	2025-12-13 15:00:00	2026-04-01 00:41:51.356	16	2025-2026	REGULAR_SEASON
+cmnf54mto004vuhsea4yw7t3l	537937	cmnf548em0000uhseg9lphrqa	cmnf548g80001uhseq8eicwme		FINISHED	2	1	2025-12-13 20:00:00	2026-04-01 00:41:51.359	16	2025-2026	REGULAR_SEASON
+cmnf54myn005kuhseuq544kc3	537969	cmnf548gh0003uhsel9vkpibt	cmnf548hb000cuhsec9ov4bjp		FINISHED	1	3	2025-12-30 19:30:00	2026-04-01 00:41:51.402	19	2025-2026	REGULAR_SEASON
+cmnf54n2z006auhsetq0p3yi5	538001	cmnf548h50006uhseuq2stcaz	cmnf548ho000fuhsei9tdazli		FINISHED	2	0	2026-01-17 12:30:00	2026-04-01 00:41:51.441	22	2025-2026	REGULAR_SEASON
+cmnf54nwd00b1uhseejhys7na	538160	cmnf548ht000iuhse8t4eodeu	cmnf548h90008uhseg19mk30r		TIMED	\N	\N	2026-05-24 15:00:00	2026-04-01 00:41:51.579	38	2025-2026	REGULAR_SEASON
+cmnf54mus0050uhsej33xkgsc	537944	cmnf548hr000huhse669r2oah	cmnf548h30005uhse46wx275v		FINISHED	2	3	2025-12-14 14:00:00	2026-04-01 00:41:51.362	16	2025-2026	REGULAR_SEASON
+cmnf54n54006kuhsesddzt4gp	538002	cmnf548hj000euhse945fpqyk	cmnf548em0000uhseg9lphrqa		FINISHED	0	0	2026-01-17 17:30:00	2026-04-01 00:41:51.444	22	2025-2026	REGULAR_SEASON
 \.
 
 
@@ -7899,6 +9290,35 @@ cmnf54nwd00b1uhseejhys7na	538160	cmnf548ht000iuhse8t4eodeu	cmnf548h90008uhseg19m
 
 COPY public."ModerationCache" (id, "normalizedTextHash", "pipelineKey", "originalTextLength", "translatedText", flagged, "toxicityScore", "labelSummary", "labelsJson", explanation, model, "cachedAt", "createdAt", "updatedAt") FROM stdin;
 cmnf59tgr00equh3ldhbjya2h	98f573610b576bab65659ce51396fddb0a2a67e19eaddb69d2bcca45c61e1c44	version:v1|translateMode:auto|translateModel:Helsinki-NLP/opus-mt-mul-en|moderateModel:unitary/toxic-bert|threshold:0.7	16	\N	f	0.000732464250177145	none	[{"label": "toxic", "score": 0.000732464250177145}, {"label": "obscene", "score": 0.0002028803428402171}, {"label": "insult", "score": 0.0001787712390068918}, {"label": "identity_hate", "score": 0.0001333919062744826}, {"label": "severe_toxic", "score": 0.0001150907555711456}]	No significant toxicity detected	moderate:unitary/toxic-bert	2026-03-31 21:44:12.84	2026-03-31 21:44:12.651	2026-03-31 21:44:12.887
+cmnf70imp0aihuh3lh0h891ap	3a942bd3d66210bd5b97ca2e2ad1baa59a435c90578f231652e23345e6d2e333	version:v1|translateMode:auto|translateModel:Helsinki-NLP/opus-mt-mul-en|moderateModel:unitary/toxic-bert|threshold:0.7	22	\N	f	0.002361642895266414	none	[{"label": "toxic", "score": 0.002361642895266414}, {"label": "obscene", "score": 0.000440737756434828}, {"label": "insult", "score": 0.00020787121320609}, {"label": "identity_hate", "score": 0.0001210814953083172}, {"label": "severe_toxic", "score": 0.0001084474861272611}]	No significant toxicity detected	moderate:unitary/toxic-bert	2026-03-31 22:32:57.931	2026-03-31 22:32:57.937	2026-03-31 22:32:57.937
+cmnf796820aiquh3lu0h0w5wm	3db266022d3b0924f33784721d5abd471875862588910402215f8e086afd52a0	version:v1|translateMode:auto|translateModel:Helsinki-NLP/opus-mt-mul-en|moderateModel:unitary/toxic-bert|threshold:0.7	92	\N	f	0.1353058665990829	none	[{"label": "toxic", "score": 0.1353058665990829}, {"label": "obscene", "score": 0.01219291519373655}, {"label": "insult", "score": 0.008222248405218124}, {"label": "identity_hate", "score": 0.0005967649049125612}, {"label": "threat", "score": 0.0003234849136788398}]	No significant toxicity detected	moderate:unitary/toxic-bert	2026-03-31 22:39:41.758	2026-03-31 22:39:41.762	2026-03-31 22:39:41.762
+cmnf8siec0008uhpbc6iui669	32c120e67f4e2406b0650a773bdde379583a6e82850afc65ee71e47eb6d5b6a3	version:v1|translateMode:auto|translateModel:Helsinki-NLP/opus-mt-mul-en|moderateModel:unitary/toxic-bert|threshold:0.7	45	\N	t	0.8332971334457397	toxic, obscene	[{"label": "toxic", "score": 0.8332971334457397}, {"label": "obscene", "score": 0.6343271136283875}, {"label": "insult", "score": 0.1403561234474182}, {"label": "severe_toxic", "score": 0.007572588976472616}, {"label": "identity_hate", "score": 0.003705349517986178}]	toxic: 83.3%, obscene: 63.4%	moderate:unitary/toxic-bert	2026-03-31 23:22:43.613	2026-03-31 23:22:43.62	2026-03-31 23:22:43.62
+cmnf8uczb000cuhpb8ev5tkfq	feae7a6845140e549a7d31f5e1fd8c2b43485b059c68e47974ddf47fa70b288f	version:v1|translateMode:auto|translateModel:Helsinki-NLP/opus-mt-mul-en|moderateModel:unitary/toxic-bert|threshold:0.7	76	\N	t	0.7187356948852539	toxic, obscene	[{"label": "toxic", "score": 0.7187356948852539}, {"label": "obscene", "score": 0.6060603857040405}, {"label": "insult", "score": 0.1097920835018158}, {"label": "severe_toxic", "score": 0.006017760373651981}, {"label": "identity_hate", "score": 0.002714658854529262}]	toxic: 71.9%, obscene: 60.6%	moderate:unitary/toxic-bert	2026-03-31 23:24:09.906	2026-03-31 23:24:09.91	2026-03-31 23:24:09.91
+cmnf92sgj000uuhpbbcocfju0	a43a4923b818f0ab906edbffc054baa4dff7a7a6f282dc06e62181bbb4f65d0e	version:v1|translateMode:auto|translateModel:Helsinki-NLP/opus-mt-mul-en|moderateModel:unitary/toxic-bert|threshold:0.7	26	\N	f	0.0008771028951741755	none	[{"label": "toxic", "score": 0.0008771028951741755}, {"label": "obscene", "score": 0.0001809055684134364}, {"label": "insult", "score": 0.0001772696996340528}, {"label": "identity_hate", "score": 0.0001393815909978002}, {"label": "threat", "score": 0.0001088106582756154}]	No significant toxicity detected	moderate:unitary/toxic-bert	2026-03-31 23:30:43.212	2026-03-31 23:30:43.219	2026-03-31 23:30:43.219
+cmnfbuy4v00nhuhz6p0wjwl5s	a74e0c96e57a091cc7b7a98f273fd02702c1bec74849262993d90c0efd494675	version:v1|translateMode:auto|translateModel:Helsinki-NLP/opus-mt-mul-en|moderateModel:unitary/toxic-bert|threshold:0.7	9	\N	f	0.001782400882802904	none	[{"label": "toxic", "score": 0.001782400882802904}, {"label": "obscene", "score": 0.0002156025439035147}, {"label": "insult", "score": 0.0002030390169238672}, {"label": "identity_hate", "score": 0.0001419344189343974}, {"label": "threat", "score": 0.00009855294047156349}]	No significant toxicity detected	moderate:unitary/toxic-bert	2026-04-01 00:48:36.171	2026-04-01 00:48:36.175	2026-04-01 00:48:36.175
+cmnfcrkgo005vuhv7gv5re4ur	b153e58264c6f2be474ee2423e54e5f86c1b69e8acf337e48b3102eda3f89c81	version:v1|translateMode:auto|translateModel:Helsinki-NLP/opus-mt-mul-en|moderateModel:unitary/toxic-bert|threshold:0.7	16	\N	f	0.0007125848205760121	none	[{"label": "toxic", "score": 0.0007125848205760121}, {"label": "obscene", "score": 0.000184034273843281}, {"label": "insult", "score": 0.0001697961415629834}, {"label": "identity_hate", "score": 0.0001360246678814292}, {"label": "threat", "score": 0.0001176674704765901}]	No significant toxicity detected	moderate:unitary/toxic-bert	2026-04-01 01:13:58.063	2026-04-01 01:13:58.104	2026-04-01 01:13:58.104
+cmnfcrkgv005wuhv75g93gzvc	dd045a51dd62abce0a843bafa03b7083a45536f78d9c3c8ac184f5165cb7473f	version:v1|translateMode:auto|translateModel:Helsinki-NLP/opus-mt-mul-en|moderateModel:unitary/toxic-bert|threshold:0.7	40	\N	f	0.000676411553286016	none	[{"label": "toxic", "score": 0.000676411553286016}, {"label": "insult", "score": 0.0001744296896504238}, {"label": "obscene", "score": 0.0001740580482874066}, {"label": "identity_hate", "score": 0.0001445028756279498}, {"label": "threat", "score": 0.0001226696622325107}]	No significant toxicity detected	moderate:unitary/toxic-bert	2026-04-01 01:13:58.099	2026-04-01 01:13:58.111	2026-04-01 01:13:58.111
+cmnfcrkh8005zuhv72r6jg5f8	40a3eae6bcb5942cbdb8d95639e47b1da2538a6b6fe9d16963ca754a0a1c3f62	version:v1|translateMode:auto|translateModel:Helsinki-NLP/opus-mt-mul-en|moderateModel:unitary/toxic-bert|threshold:0.7	13	\N	f	0.0006968280649743974	none	[{"label": "toxic", "score": 0.0006968280649743974}, {"label": "obscene", "score": 0.0001837745949160308}, {"label": "insult", "score": 0.0001786766515579075}, {"label": "identity_hate", "score": 0.0001462424988858402}, {"label": "severe_toxic", "score": 0.0001168775488622487}]	No significant toxicity detected	moderate:unitary/toxic-bert	2026-04-01 01:13:58.081	2026-04-01 01:13:58.113	2026-04-01 01:13:58.113
+cmnfcrkz50062uhv7spcn3uhf	181260113ecb78656e2caf693aa57607025aee5ac13d003779c523095eb26604	version:v1|translateMode:auto|translateModel:Helsinki-NLP/opus-mt-mul-en|moderateModel:unitary/toxic-bert|threshold:0.7	31	States don't support this at all	f	0.0008457009680569172	none	[{"label": "toxic", "score": 0.0008457009680569172}, {"label": "insult", "score": 0.0001741066807880998}, {"label": "obscene", "score": 0.0001695938844932243}, {"label": "identity_hate", "score": 0.000154580338858068}, {"label": "threat", "score": 0.0001188232126878574}]	No significant toxicity detected	translate:Helsinki-NLP/opus-mt-mul-en|moderate:unitary/toxic-bert	2026-04-01 01:13:58.763	2026-04-01 01:13:58.769	2026-04-01 01:13:58.769
+cmnfcrlru006euhv7vnr7j8ym	1fa8e31e8ab5e192bb5c2e318ae812771caca528a42fdb997952e253473af315	version:v1|translateMode:auto|translateModel:Helsinki-NLP/opus-mt-mul-en|moderateModel:unitary/toxic-bert|threshold:0.7	21	\N	f	0.0006815107190050185	none	[{"label": "toxic", "score": 0.0006815107190050185}, {"label": "obscene", "score": 0.0001981367822736502}, {"label": "insult", "score": 0.0001775252749212086}, {"label": "identity_hate", "score": 0.0001382293121423572}, {"label": "severe_toxic", "score": 0.0001181172629003413}]	No significant toxicity detected	moderate:unitary/toxic-bert	2026-04-01 01:13:59.793	2026-04-01 01:13:59.802	2026-04-01 01:13:59.802
+cmnfcrnkb006ouhv7jza6in9e	0054436a20c34017f260bec75a401ca13dd5fba2be2247b231d88281f2ec745e	version:v1|translateMode:auto|translateModel:Helsinki-NLP/opus-mt-mul-en|moderateModel:unitary/toxic-bert|threshold:0.7	24	There's more noise here	f	0.005384920630604029	none	[{"label": "toxic", "score": 0.005384920630604029}, {"label": "obscene", "score": 0.0002853570913430303}, {"label": "insult", "score": 0.0002658166049513966}, {"label": "identity_hate", "score": 0.0002319885970791802}, {"label": "threat", "score": 0.0001306738122366369}]	No significant toxicity detected	translate:Helsinki-NLP/opus-mt-mul-en|moderate:unitary/toxic-bert	2026-04-01 01:14:02.111	2026-04-01 01:14:02.121	2026-04-01 01:14:02.121
+cmnfcto0o00pduhv7xahay5rg	bf0e33f19bf249590e9d74182f09ec23b49a2fbb5f9afa8850dcc7975d051c20	version:v1|translateMode:auto|translateModel:Helsinki-NLP/opus-mt-mul-en|moderateModel:unitary/toxic-bert|threshold:0.7	40	\N	f	0.0007487322436645627	none	[{"label": "toxic", "score": 0.0007487322436645627}, {"label": "obscene", "score": 0.0001829718530643731}, {"label": "insult", "score": 0.0001742606254993007}, {"label": "identity_hate", "score": 0.0001398515451001003}, {"label": "severe_toxic", "score": 0.000112170644570142}]	No significant toxicity detected	moderate:unitary/toxic-bert	2026-04-01 01:15:36.021	2026-04-01 01:15:36.025	2026-04-01 01:15:36.025
+cmnfcs094007suhv7ifb9tm5l	3edab7027eb657adcf85f56bb0c986d2f8af07455caa6f979e51d6906d59496b	version:v1|translateMode:auto|translateModel:Helsinki-NLP/opus-mt-mul-en|moderateModel:unitary/toxic-bert|threshold:0.7	43	That's not how the game actually played out	f	0.0009366075973957777	none	[{"label": "toxic", "score": 0.0009366075973957777}, {"label": "obscene", "score": 0.0002023671986535192}, {"label": "insult", "score": 0.0001858557225205004}, {"label": "identity_hate", "score": 0.0001382728078169748}, {"label": "severe_toxic", "score": 0.0001095764819183387}]	No significant toxicity detected	translate:Helsinki-NLP/opus-mt-mul-en|moderate:unitary/toxic-bert	2026-04-01 01:14:18.563	2026-04-01 01:14:18.568	2026-04-01 01:14:18.568
+cmnfcs0x80080uhv7h8gdf3ec	d9e1f894511db16af87cb3cbc8238a6ef8b30796b4bee9e30ae272e30fd150de	version:v1|translateMode:auto|translateModel:Helsinki-NLP/opus-mt-mul-en|moderateModel:unitary/toxic-bert|threshold:0.7	26	You're missing key context	f	0.001429635100066662	none	[{"label": "toxic", "score": 0.001429635100066662}, {"label": "insult", "score": 0.0002119035343639553}, {"label": "obscene", "score": 0.0001783896586857736}, {"label": "identity_hate", "score": 0.0001468913687858731}, {"label": "threat", "score": 0.0001096552878152579}]	No significant toxicity detected	translate:Helsinki-NLP/opus-mt-mul-en|moderate:unitary/toxic-bert	2026-04-01 01:14:19.433	2026-04-01 01:14:19.436	2026-04-01 01:14:19.436
+cmnfcsky800bduhv7joh2bdou	9acacd46f7a30931e15a1a586e6e4f92aa94e3ec120826d217620ab26f5a3a44	version:v1|translateMode:auto|translateModel:Helsinki-NLP/opus-mt-mul-en|moderateModel:unitary/toxic-bert|threshold:0.7	19	Could not close temporary folder: %s	f	0.0007143779075704515	none	[{"label": "toxic", "score": 0.0007143779075704515}, {"label": "obscene", "score": 0.000180800212547183}, {"label": "insult", "score": 0.0001788607478374615}, {"label": "identity_hate", "score": 0.0001350680977338925}, {"label": "threat", "score": 0.000119244541565422}]	No significant toxicity detected	translate:Helsinki-NLP/opus-mt-mul-en|moderate:unitary/toxic-bert	2026-04-01 01:14:45.387	2026-04-01 01:14:45.392	2026-04-01 01:14:45.392
+cmnfcsmli00cauhv7g375y1ux	3ff5b9eddf6d7141d4efbd5b21caffb255b2c394f7389c92c1f2f8ddedaad32d	version:v1|translateMode:auto|translateModel:Helsinki-NLP/opus-mt-mul-en|moderateModel:unitary/toxic-bert|threshold:0.7	27	That’s interesting now	f	0.0006250740843825042	none	[{"label": "toxic", "score": 0.0006250740843825042}, {"label": "obscene", "score": 0.0001984636910492554}, {"label": "insult", "score": 0.0001742689346428961}, {"label": "identity_hate", "score": 0.0001392739795846865}, {"label": "severe_toxic", "score": 0.0001257452531717718}]	No significant toxicity detected	translate:Helsinki-NLP/opus-mt-mul-en|moderate:unitary/toxic-bert	2026-04-01 01:14:47.518	2026-04-01 01:14:47.526	2026-04-01 01:14:47.526
+cmnfcsqcu00d9uhv7aqy2q8vd	f4dc0ae5621a9c170d40abbf60d3ef5f67be4f87ceb6552ee5b40cd6d1cfbe73	version:v1|translateMode:auto|translateModel:Helsinki-NLP/opus-mt-mul-en|moderateModel:unitary/toxic-bert|threshold:0.7	33	I didn't think about it like that	f	0.0007135436753742397	none	[{"label": "toxic", "score": 0.0007135436753742397}, {"label": "obscene", "score": 0.0001966317213373259}, {"label": "insult", "score": 0.0001789443340385333}, {"label": "identity_hate", "score": 0.000140614400152117}, {"label": "severe_toxic", "score": 0.0001179377431981266}]	No significant toxicity detected	translate:Helsinki-NLP/opus-mt-mul-en|moderate:unitary/toxic-bert	2026-04-01 01:14:52.393	2026-04-01 01:14:52.398	2026-04-01 01:14:52.398
+cmnfcsrls00dwuhv7fz4ezn7v	6039e50246ccc4f3fc04ec7eb11d48106b0ab25ca3de0d5f4f07bbed8073ec55	version:v1|translateMode:auto|translateModel:Helsinki-NLP/opus-mt-mul-en|moderateModel:unitary/toxic-bert|threshold:0.7	45	\N	f	0.001867374870926142	none	[{"label": "toxic", "score": 0.001867374870926142}, {"label": "insult", "score": 0.0002150275104213506}, {"label": "obscene", "score": 0.0001871979766292498}, {"label": "identity_hate", "score": 0.0001542615646030754}, {"label": "threat", "score": 0.0001118143918574788}]	No significant toxicity detected	moderate:unitary/toxic-bert	2026-04-01 01:14:54.013	2026-04-01 01:14:54.016	2026-04-01 01:14:54.016
+cmnfct5r800iouhv704r34lei	1ba4a0237d58df282e5dd4cd21f3609d1fdcbf674217a75676ffabe46eaa71d1	version:v1|translateMode:auto|translateModel:Helsinki-NLP/opus-mt-mul-en|moderateModel:unitary/toxic-bert|threshold:0.7	18	\N	f	0.00093284179456532	none	[{"label": "toxic", "score": 0.00093284179456532}, {"label": "obscene", "score": 0.0002008665906032547}, {"label": "insult", "score": 0.0001791606628103182}, {"label": "identity_hate", "score": 0.0001311099185841158}, {"label": "severe_toxic", "score": 0.0001054589301929809}]	No significant toxicity detected	moderate:unitary/toxic-bert	2026-04-01 01:15:12.353	2026-04-01 01:15:12.356	2026-04-01 01:15:12.356
+cmnfcthap00mpuhv7xo4lae0v	1c61cfc4d6ab0222a3e6d856289422b4ec4e51b1984abdda215128cda664c4b7	version:v1|translateMode:auto|translateModel:Helsinki-NLP/opus-mt-mul-en|moderateModel:unitary/toxic-bert|threshold:0.7	20	\N	f	0.004217800218611956	none	[{"label": "toxic", "score": 0.004217800218611956}, {"label": "obscene", "score": 0.0003843265294563025}, {"label": "insult", "score": 0.0002804533869493753}, {"label": "identity_hate", "score": 0.0001787490909919143}, {"label": "threat", "score": 0.0001159025414381176}]	No significant toxicity detected	moderate:unitary/toxic-bert	2026-04-01 01:15:27.304	2026-04-01 01:15:27.313	2026-04-01 01:15:27.313
+cmnfcu51y00wruhv7149mhe1w	6d785fad232f68b8e89b5faf1df28e744b5abc26ca8c32ad7dab5feedab3399b	version:v1|translateMode:auto|translateModel:Helsinki-NLP/opus-mt-mul-en|moderateModel:unitary/toxic-bert|threshold:0.7	36	\N	f	0.001145653077401221	none	[{"label": "toxic", "score": 0.001145653077401221}, {"label": "insult", "score": 0.0001957967615453526}, {"label": "obscene", "score": 0.0001748863433022052}, {"label": "identity_hate", "score": 0.0001427937095286325}, {"label": "threat", "score": 0.0001138704174081795}]	No significant toxicity detected	moderate:unitary/toxic-bert	2026-04-01 01:15:58.087	2026-04-01 01:15:58.09	2026-04-01 01:15:58.09
+cmnfcwp3w01teuhv7pbc6784x	1611936ba76f6a2c244367fabd0351b27d3959e56475b0df1126bb88867fa928	version:v1|translateMode:auto|translateModel:Helsinki-NLP/opus-mt-mul-en|moderateModel:unitary/toxic-bert|threshold:0.7	24	\N	f	0.002000882755964994	none	[{"label": "toxic", "score": 0.002000882755964994}, {"label": "insult", "score": 0.0002105728053720668}, {"label": "obscene", "score": 0.0001999829546548426}, {"label": "identity_hate", "score": 0.0001529371220385656}, {"label": "threat", "score": 0.0001041856085066684}]	No significant toxicity detected	moderate:unitary/toxic-bert	2026-04-01 01:17:57.4	2026-04-01 01:17:57.404	2026-04-01 01:17:57.404
+cmnfcwr9k01ujuhv7umx3gaaw	85337b5b4ddc5efad7b797cd1f8ec3af9f0400c75573dc7650d49acfafb28c49	version:v1|translateMode:auto|translateModel:Helsinki-NLP/opus-mt-mul-en|moderateModel:unitary/toxic-bert|threshold:0.7	14	Delete this . . . .	f	0.006378461606800556	none	[{"label": "toxic", "score": 0.006378461606800556}, {"label": "obscene", "score": 0.0003504509513732046}, {"label": "insult", "score": 0.0003121021436527371}, {"label": "identity_hate", "score": 0.0001908131816890091}, {"label": "threat", "score": 0.0001521708181826398}]	No significant toxicity detected	translate:Helsinki-NLP/opus-mt-mul-en|moderate:unitary/toxic-bert	2026-04-01 01:18:00.196	2026-04-01 01:18:00.2	2026-04-01 01:18:00.2
+cmnfcws2f01ukuhv7dblf78is	41d0afeea8591a6d7570e86a61ecbae4aed4f2f0449f3857ec347d71bfc29c34	version:v1|translateMode:auto|translateModel:Helsinki-NLP/opus-mt-mul-en|moderateModel:unitary/toxic-bert|threshold:0.7	26	This is a terrible task.	f	0.02103974856436253	none	[{"label": "toxic", "score": 0.02103974856436253}, {"label": "insult", "score": 0.0006106604705564678}, {"label": "obscene", "score": 0.0006010755314491689}, {"label": "identity_hate", "score": 0.0003271744935773313}, {"label": "threat", "score": 0.0002420333767076954}]	No significant toxicity detected	translate:Helsinki-NLP/opus-mt-mul-en|moderate:unitary/toxic-bert	2026-04-01 01:18:01.227	2026-04-01 01:18:01.239	2026-04-01 01:18:01.239
+cmnfcwysw01whuhv7gij6f1xo	34cf1d2efcbdde3ad31fba1757aa07130132328a9df4253e937fb5feae6cafd6	version:v1|translateMode:auto|translateModel:Helsinki-NLP/opus-mt-mul-en|moderateModel:unitary/toxic-bert|threshold:0.7	19	\N	f	0.01201769057661295	none	[{"label": "toxic", "score": 0.01201769057661295}, {"label": "obscene", "score": 0.0007327466737478971}, {"label": "insult", "score": 0.0005441709654405713}, {"label": "identity_hate", "score": 0.0001882922806544229}, {"label": "threat", "score": 0.0001323398319073021}]	No significant toxicity detected	moderate:unitary/toxic-bert	2026-04-01 01:18:09.908	2026-04-01 01:18:09.913	2026-04-01 01:18:09.913
+cmnfcx3wg01yluhv71vibfq4s	ea979b689cdb6605a3ecf93d60ed34d6b05e44f3678bbe733d23c388a683a0a4	version:v1|translateMode:auto|translateModel:Helsinki-NLP/opus-mt-mul-en|moderateModel:unitary/toxic-bert|threshold:0.7	23	\N	f	0.005830701906234026	none	[{"label": "toxic", "score": 0.005830701906234026}, {"label": "obscene", "score": 0.0006784761790186167}, {"label": "insult", "score": 0.0002903493295889348}, {"label": "identity_hate", "score": 0.0001405528746545315}, {"label": "severe_toxic", "score": 0.0001130507589550689}]	No significant toxicity detected	moderate:unitary/toxic-bert	2026-04-01 01:18:16.569	2026-04-01 01:18:16.575	2026-04-01 01:18:16.575
+cmnfcxb2f020vuhv7m0j5erf7	ebb2b166b948afade5fb7b1a6cd25536b729bb736d5e8109ab8e55d9f4add487	version:v1|translateMode:auto|translateModel:Helsinki-NLP/opus-mt-mul-en|moderateModel:unitary/toxic-bert|threshold:0.7	20	\N	f	0.007707107346504927	none	[{"label": "toxic", "score": 0.007707107346504927}, {"label": "obscene", "score": 0.0003603520744945854}, {"label": "insult", "score": 0.0003316259244456887}, {"label": "identity_hate", "score": 0.0002021566178882495}, {"label": "threat", "score": 0.0001300226576859131}]	No significant toxicity detected	moderate:unitary/toxic-bert	2026-04-01 01:18:25.859	2026-04-01 01:18:25.863	2026-04-01 01:18:25.863
+cmnfcxyss027cuhv7y1vvn2ap	95e394d5b7357f0122479b73764f35a63f403382346fe4593b85dd54e741aa0a	version:v1|translateMode:auto|translateModel:Helsinki-NLP/opus-mt-mul-en|moderateModel:unitary/toxic-bert|threshold:0.7	29	Worst Opinion I’ve yours today	f	0.2915533185005188	none	[{"label": "toxic", "score": 0.2915533185005188}, {"label": "insult", "score": 0.01343684736639261}, {"label": "obscene", "score": 0.00443329568952322}, {"label": "identity_hate", "score": 0.000803986273240298}, {"label": "threat", "score": 0.0005466470611281693}]	No significant toxicity detected	translate:Helsinki-NLP/opus-mt-mul-en|moderate:unitary/toxic-bert	2026-04-01 01:18:56.615	2026-04-01 01:18:56.619	2026-04-01 01:18:56.619
 \.
 
 
@@ -7951,6 +9371,36 @@ cmnf5rr4f08k2uh3lozjcxhgz	cmnf5rhj808gfuh3lpizk9sat	Who wins?	2026-03-31 22:58:0
 cmnf5s97b08ssuh3lt9uj2cjc	cmnf5s0gj08o7uh3l2sl9ztck	Who wins?	2026-03-31 22:58:28.703	f	f	2026-03-31 21:58:32.855	\N
 cmnf5t5vi092cuh3ll3rfq7by	cmnf5sw9o08y5uh3lozc1ub6v	Who wins?	2026-03-31 22:59:12.859	f	f	2026-03-31 21:59:15.198	\N
 cmnf5tb6f0948uh3lqwdzpsyh	cmnf5t3oy090quh3lhlsh2inz	Who wins?	2026-03-31 22:59:19.676	f	f	2026-03-31 21:59:22.071	\N
+cmnfcud5f010guhv72jr3eoed	cmnfcuapj00zbuhv7ck4mi4wf	Arsenal vs Real Madrid – who wins?	2026-04-01 02:16:07.436	f	f	2026-04-01 01:16:08.595	\N
+cmnfbqq5f00mvuhz6igfklpq7	cmnfbpow400mhuhz68v9ki53e	What do you guys think? Was that fair play??	2026-03-31 08:45:00	f	f	2026-04-01 00:45:19.203	\N
+cmnfcrdt2003muhv757kh1g3k	cmnfcqqg5000luhv7l483637o	Bayern Munich vs Manchester City – who wins?	2026-04-01 02:13:33.69	f	f	2026-04-01 01:13:49.479	\N
+cmnfcrdt6003tuhv7m8herb8w	cmnfcr4d4003duhv7as1a9wwm	Liverpool vs Real Madrid – who wins?	2026-04-01 02:13:40.137	f	f	2026-04-01 01:13:49.48	\N
+cmnfcrdt5003suhv7zwxvr5wk	cmnfcr2sw002nuhv7ckh2tw9k	Arsenal vs Manchester City – who wins?	2026-04-01 02:13:39.008	f	f	2026-04-01 01:13:49.48	\N
+cmnfcrljd0066uhv7y5pjasfn	cmnfcrhyh005luhv7ylj162nc	Bayern Munich vs Barcelona – who wins?	2026-04-01 02:13:57.726	f	f	2026-04-01 01:13:59.497	\N
+cmnfcslit00bluhv7226npi0w	cmnfcsi6p00a6uhv72pugyahq	Manchester City vs Arsenal – who wins?	2026-04-01 02:14:45.162	f	f	2026-04-01 01:14:46.133	\N
+cmnfcsrd300dmuhv7is77lt29	cmnfcsmmt00ceuhv7lv7706a3	Arsenal vs Liverpool – who wins?	2026-04-01 02:14:52.624	f	f	2026-04-01 01:14:53.704	\N
+cmnfcsux700f5uhv7dsa7uhte	cmnfcssp800e5uhv7t7yu3d3v	Barcelona vs Bayern Munich – who wins?	2026-04-01 02:14:57.827	f	f	2026-04-01 01:14:58.315	\N
+cmnfct2n700hduhv77pqhhbai	cmnfcszm700gjuhv71ro4wcv7	Real Madrid vs Liverpool – who wins?	2026-04-01 02:15:07.324	f	f	2026-04-01 01:15:08.323	\N
+cmnfctgg700lzuhv7kyh418xf	cmnfctayk00keuhv7ao93ydeb	Barcelona vs Manchester City – who wins?	2026-04-01 02:15:24.14	f	f	2026-04-01 01:15:26.215	\N
+cmnfctmh700oquhv7jbajrrfw	cmnfctjo100neuhv7c9mawaag	Real Madrid vs Barcelona – who wins?	2026-04-01 02:15:32.983	f	f	2026-04-01 01:15:34.027	\N
+cmnfctq8x00qvuhv7xk5byjvk	cmnfctnry00p8uhv7h5ob7emt	Arsenal vs Real Madrid – who wins?	2026-04-01 02:15:38.063	f	f	2026-04-01 01:15:38.913	\N
+cmnfcu3c100w7uhv75flsczgu	cmnfcu0j000v8uhv7zmv9ct6o	Bayern Munich vs Barcelona – who wins?	2026-04-01 02:15:54.688	f	f	2026-04-01 01:15:55.873	\N
+cmnfcubbk00zpuhv7dfh7u448	cmnfcu86p00y0uhv7f32c9yad	Manchester City vs Liverpool – who wins?	2026-04-01 02:16:05.759	f	f	2026-04-01 01:16:06.224	\N
+cmnfcufz5011nuhv7902nk1eq	cmnfcucsg0102uhv7x7oztcvc	Liverpool vs Bayern Munich – who wins?	2026-04-01 02:16:11.563	f	f	2026-04-01 01:16:12.257	\N
+cmnfcujs3013iuhv7ydjypkzx	cmnfcuhd10122uhv7bg2ytk7w	Barcelona vs Liverpool – who wins?	2026-04-01 02:16:16.565	f	f	2026-04-01 01:16:17.187	\N
+cmnfcuko4013yuhv7mfy7ms33	cmnfcui22012euhv7ejkx4c2y	Real Madrid vs Arsenal – who wins?	2026-04-01 02:16:16.874	f	f	2026-04-01 01:16:18.34	\N
+cmnfcv4so01atuhv76xn8mnl3	cmnfcv1uw0191uhv7oup6bju2	Arsenal vs Barcelona – who wins?	2026-04-01 02:16:43.5	f	f	2026-04-01 01:16:44.424	\N
+cmnfcvkuw01gtuhv761yn7ijc	cmnfcvh8801fuuhv7infcc7ec	Barcelona vs Arsenal – who wins?	2026-04-01 02:17:03.879	f	f	2026-04-01 01:17:05.24	\N
+cmnfcvrk801jsuhv744b0vjmj	cmnfcvowb01ijuhv71k0hkybe	Arsenal vs Bayern Munich – who wins?	2026-04-01 02:17:12.848	f	f	2026-04-01 01:17:13.928	\N
+cmnfcwd1d01pnuhv7ois2cuxh	cmnfcw86q01owuhv7gaaksf3t	Bayern Munich vs Liverpool – who wins?	2026-04-01 02:17:39.248	f	f	2026-04-01 01:17:41.761	\N
+cmnfcvwh401lyuhv7h65t7ttg	cmnfcvsrf01khuhv7bsb1gb7v	Barcelona vs Arsenal – who wins?	2026-04-01 02:17:19.186	f	f	2026-04-01 01:17:20.293	\N
+cmnfcwt6x01uquhv7safl0ui9	cmnfcwp8701tguhv7dz3ksjjy	Barcelona vs Bayern Munich – who wins?	2026-04-01 02:17:59.522	f	f	2026-04-01 01:18:02.697	\N
+cmnfcwtnp01v4uhv7ljujevib	cmnfcwpvf01tmuhv7kpsy0slf	Arsenal vs Real Madrid – who wins?	2026-04-01 02:18:02.704	f	f	2026-04-01 01:18:03.301	\N
+cmnfcwg6a01qhuhv7xa1k5wwa	cmnfcwefc01pwuhv7aroktu7j	Manchester City vs Barcelona – who wins?	2026-04-01 02:17:45.162	f	f	2026-04-01 01:17:45.826	\N
+cmnfcwicj01r2uhv718nz2h2c	cmnfcwh7h01qruhv78t39a5li	Arsenal vs Liverpool – who wins?	2026-04-01 02:17:48.069	f	f	2026-04-01 01:17:48.643	\N
+cmnfcx59101ytuhv7lb7jvdba	cmnfcx06j01xduhv7spe80rx8	Arsenal vs Barcelona – who wins?	2026-04-01 02:18:15.56	f	f	2026-04-01 01:18:18.325	\N
+cmnfcxsb60245uhv7kthers5y	cmnfcxkgw0230uhv7aa8uy8yu	Liverpool vs Manchester City – who wins?	2026-04-01 02:18:44.364	f	f	2026-04-01 01:18:48.204	\N
+cmnfcxzpa027iuhv77u9bfhvt	cmnfcxw0d025puhv7df5o1skz	Bayern Munich vs Arsenal – who wins?	2026-04-01 02:18:55.444	f	f	2026-04-01 01:18:57.79	\N
 \.
 
 
@@ -8091,6 +9541,95 @@ cmnf5t5vj092fuh3lsy3pe3cb	cmnf5t5vi092cuh3ll3rfq7by	maybe
 cmnf5tb6f0949uh3lafd4dtmn	cmnf5tb6f0948uh3lqwdzpsyh	yes
 cmnf5tb6f094auh3l3otptosx	cmnf5tb6f0948uh3lqwdzpsyh	no
 cmnf5tb6f094buh3l8d2z7ufh	cmnf5tb6f0948uh3lqwdzpsyh	maybe
+cmnfbqq5f00mwuhz6c862ghs8	cmnfbqq5f00mvuhz6igfklpq7	Yesss
+cmnfbqq5f00mxuhz67abmhpr0	cmnfbqq5f00mvuhz6igfklpq7	Nooo
+cmnfcrdt2003nuhv7vx1havqa	cmnfcrdt2003muhv757kh1g3k	Bayern Munich
+cmnfcrdt2003ouhv7xfvjoay7	cmnfcrdt2003muhv757kh1g3k	Manchester City
+cmnfcrdt2003puhv7h1gz1b7r	cmnfcrdt2003muhv757kh1g3k	Draw
+cmnfcrdt6003uuhv7uz08f725	cmnfcrdt5003suhv7zwxvr5wk	Arsenal
+cmnfcrdt6003vuhv7vh1cvgrb	cmnfcrdt5003suhv7zwxvr5wk	Manchester City
+cmnfcrdt6003wuhv7zbmxc26i	cmnfcrdt5003suhv7zwxvr5wk	Draw
+cmnfcrdt6003xuhv7t94yj9x0	cmnfcrdt6003tuhv7m8herb8w	Liverpool
+cmnfcrdt6003yuhv7g8uscu0v	cmnfcrdt6003tuhv7m8herb8w	Real Madrid
+cmnfcrdt6003zuhv7nzsxkank	cmnfcrdt6003tuhv7m8herb8w	Draw
+cmnfcrljd0067uhv778l1hp74	cmnfcrljd0066uhv7y5pjasfn	Bayern Munich
+cmnfcrljd0068uhv77s1rf33p	cmnfcrljd0066uhv7y5pjasfn	Barcelona
+cmnfcrljd0069uhv72lch786u	cmnfcrljd0066uhv7y5pjasfn	Draw
+cmnfcslit00bmuhv79bl3n7ai	cmnfcslit00bluhv7226npi0w	Manchester City
+cmnfcslit00bnuhv7hdunuexh	cmnfcslit00bluhv7226npi0w	Arsenal
+cmnfcslit00bouhv79cizjtn9	cmnfcslit00bluhv7226npi0w	Draw
+cmnfcsrd400dnuhv73c94h6m9	cmnfcsrd300dmuhv7is77lt29	Arsenal
+cmnfcsrd400douhv7lzyltq8q	cmnfcsrd300dmuhv7is77lt29	Liverpool
+cmnfcsrd400dpuhv73lk71lfe	cmnfcsrd300dmuhv7is77lt29	Draw
+cmnfcsux700f6uhv7rdhegats	cmnfcsux700f5uhv7dsa7uhte	Barcelona
+cmnfcsux700f7uhv7htab8v3s	cmnfcsux700f5uhv7dsa7uhte	Bayern Munich
+cmnfcsux700f8uhv79natkxbl	cmnfcsux700f5uhv7dsa7uhte	Draw
+cmnfct2n700heuhv78i4geurt	cmnfct2n700hduhv77pqhhbai	Real Madrid
+cmnfct2n700hfuhv7yf3zbrws	cmnfct2n700hduhv77pqhhbai	Liverpool
+cmnfct2n700hguhv73nt0ziny	cmnfct2n700hduhv77pqhhbai	Draw
+cmnfctgg700m0uhv77d5g7hrf	cmnfctgg700lzuhv7kyh418xf	Barcelona
+cmnfctgg700m1uhv7m1oaa7sx	cmnfctgg700lzuhv7kyh418xf	Manchester City
+cmnfctgg700m2uhv7y2x4gla1	cmnfctgg700lzuhv7kyh418xf	Draw
+cmnfctmh700oruhv7obt2d1rl	cmnfctmh700oquhv7jbajrrfw	Real Madrid
+cmnfctmh700osuhv7ouktx2lc	cmnfctmh700oquhv7jbajrrfw	Barcelona
+cmnfctmh700otuhv7yeoucgn8	cmnfctmh700oquhv7jbajrrfw	Draw
+cmnfctq8x00qwuhv76ai6aih6	cmnfctq8x00qvuhv7xk5byjvk	Arsenal
+cmnfctq8x00qxuhv7jzez048w	cmnfctq8x00qvuhv7xk5byjvk	Real Madrid
+cmnfctq8x00qyuhv7iocfy1q2	cmnfctq8x00qvuhv7xk5byjvk	Draw
+cmnfcu3c100w8uhv7uum1agmo	cmnfcu3c100w7uhv75flsczgu	Bayern Munich
+cmnfcu3c100w9uhv7ttwm5hvo	cmnfcu3c100w7uhv75flsczgu	Barcelona
+cmnfcu3c100wauhv7y3nivvjz	cmnfcu3c100w7uhv75flsczgu	Draw
+cmnfcubbk00zquhv72j9mvgb6	cmnfcubbk00zpuhv7dfh7u448	Manchester City
+cmnfcubbk00zruhv7ruyoxwny	cmnfcubbk00zpuhv7dfh7u448	Liverpool
+cmnfcubbk00zsuhv71q1iswto	cmnfcubbk00zpuhv7dfh7u448	Draw
+cmnfcud5f010huhv7szj4a5l0	cmnfcud5f010guhv72jr3eoed	Arsenal
+cmnfcud5f010iuhv711q9k02g	cmnfcud5f010guhv72jr3eoed	Real Madrid
+cmnfcud5f010juhv7tchao98s	cmnfcud5f010guhv72jr3eoed	Draw
+cmnfcufz5011ouhv73raigb92	cmnfcufz5011nuhv7902nk1eq	Liverpool
+cmnfcufz5011puhv79clpafyc	cmnfcufz5011nuhv7902nk1eq	Bayern Munich
+cmnfcufz5011quhv7c3asr2yr	cmnfcufz5011nuhv7902nk1eq	Draw
+cmnfcujs3013juhv7nzlyld6e	cmnfcujs3013iuhv7ydjypkzx	Barcelona
+cmnfcujs3013kuhv70ik86rel	cmnfcujs3013iuhv7ydjypkzx	Liverpool
+cmnfcujs3013luhv7l6pxycds	cmnfcujs3013iuhv7ydjypkzx	Draw
+cmnfcuko4013zuhv7fond4uv2	cmnfcuko4013yuhv7mfy7ms33	Real Madrid
+cmnfcuko40140uhv7a1djzemr	cmnfcuko4013yuhv7mfy7ms33	Arsenal
+cmnfcuko40141uhv7kwwy338g	cmnfcuko4013yuhv7mfy7ms33	Draw
+cmnfcv4so01auuhv7859pcgjy	cmnfcv4so01atuhv76xn8mnl3	Arsenal
+cmnfcv4so01avuhv7xnhwhh0l	cmnfcv4so01atuhv76xn8mnl3	Barcelona
+cmnfcv4so01awuhv7dxr8abhm	cmnfcv4so01atuhv76xn8mnl3	Draw
+cmnfcvkux01guuhv71icdvrem	cmnfcvkuw01gtuhv761yn7ijc	Barcelona
+cmnfcvkux01gvuhv7pfb1rye1	cmnfcvkuw01gtuhv761yn7ijc	Arsenal
+cmnfcvkux01gwuhv7vho5enp9	cmnfcvkuw01gtuhv761yn7ijc	Draw
+cmnfcvrk801jtuhv711v2xtsu	cmnfcvrk801jsuhv744b0vjmj	Arsenal
+cmnfcvrk801juuhv7z55wvaei	cmnfcvrk801jsuhv744b0vjmj	Bayern Munich
+cmnfcvrk801jvuhv7508dxpsq	cmnfcvrk801jsuhv744b0vjmj	Draw
+cmnfcvwh401lzuhv7z3kjgwsb	cmnfcvwh401lyuhv7h65t7ttg	Barcelona
+cmnfcvwh401m0uhv7kvnnmvdq	cmnfcvwh401lyuhv7h65t7ttg	Arsenal
+cmnfcvwh401m1uhv7uc1tbvbc	cmnfcvwh401lyuhv7h65t7ttg	Draw
+cmnfcwt6x01uruhv782h4d5yz	cmnfcwt6x01uquhv7safl0ui9	Barcelona
+cmnfcwt6x01usuhv78a8zh6ic	cmnfcwt6x01uquhv7safl0ui9	Bayern Munich
+cmnfcwt6x01utuhv7zkj5sf7n	cmnfcwt6x01uquhv7safl0ui9	Draw
+cmnfcwtnp01v5uhv78hqjfyq7	cmnfcwtnp01v4uhv7ljujevib	Arsenal
+cmnfcwtnp01v6uhv76xgz6l3m	cmnfcwtnp01v4uhv7ljujevib	Real Madrid
+cmnfcwtnp01v7uhv7k3lpkx8c	cmnfcwtnp01v4uhv7ljujevib	Draw
+cmnfcwd1d01pouhv78gguozq4	cmnfcwd1d01pnuhv7ois2cuxh	Bayern Munich
+cmnfcwd1d01ppuhv7ul4cyzgx	cmnfcwd1d01pnuhv7ois2cuxh	Liverpool
+cmnfcwd1d01pquhv7hq7yhahx	cmnfcwd1d01pnuhv7ois2cuxh	Draw
+cmnfcwg6b01qiuhv7r1a13nu5	cmnfcwg6a01qhuhv7xa1k5wwa	Manchester City
+cmnfcwg6b01qjuhv74ur8azcp	cmnfcwg6a01qhuhv7xa1k5wwa	Barcelona
+cmnfcwg6b01qkuhv7ej8ff9kv	cmnfcwg6a01qhuhv7xa1k5wwa	Draw
+cmnfcwicj01r3uhv7gkvd05d8	cmnfcwicj01r2uhv718nz2h2c	Arsenal
+cmnfcwicj01r4uhv73mkbxscd	cmnfcwicj01r2uhv718nz2h2c	Liverpool
+cmnfcwicj01r5uhv796fbyc9l	cmnfcwicj01r2uhv718nz2h2c	Draw
+cmnfcx59101yuuhv78tn3nokf	cmnfcx59101ytuhv7lb7jvdba	Arsenal
+cmnfcx59201yvuhv75cm2moz6	cmnfcx59101ytuhv7lb7jvdba	Barcelona
+cmnfcx59201ywuhv7gwrknfzg	cmnfcx59101ytuhv7lb7jvdba	Draw
+cmnfcxsb60246uhv7xb39oxbp	cmnfcxsb60245uhv7kthers5y	Liverpool
+cmnfcxsb60247uhv7bki7k45h	cmnfcxsb60245uhv7kthers5y	Manchester City
+cmnfcxsb70248uhv7ax919z99	cmnfcxsb60245uhv7kthers5y	Draw
+cmnfcxzpa027juhv780cple4j	cmnfcxzpa027iuhv77u9bfhvt	Bayern Munich
+cmnfcxzpa027kuhv7r1kxjs4j	cmnfcxzpa027iuhv77u9bfhvt	Arsenal
+cmnfcxzpa027luhv7h1tch1sr	cmnfcxzpa027iuhv77u9bfhvt	Draw
 \.
 
 
@@ -8259,6 +9798,87 @@ cmnf5tben0957uh3lxq1l6ccm	cmnf5tbbh094luh3lu0lv1b7i	cmnf572ew002buh3lz3plaglv	Th
 cmnf5tfyc096xuh3lhij142tp	cmnf5tfrg096nuh3lfp68aigv	cmnf5734l0039uh3lcphobguq	Thoughts?	f	f	2026-03-31 21:59:28.261	2026-03-31 21:59:28.261
 cmnf5tipl098zuh3lx30w4v9m	cmnf5tims098ruh3lnpiygwif	cmnf572fy002xuh3l1ppocwsc	Thoughts?	f	f	2026-03-31 21:59:31.833	2026-03-31 21:59:31.833
 cmnf5tj3q0993uh3lzaox3n4p	cmnf5tipe098xuh3lb90wh298	cmnf572ee001yuh3lp0tzqqpg	Thoughts?	f	f	2026-03-31 21:59:32.342	2026-03-31 21:59:32.342
+cmnfbpowk00mjuhz6zr2dujty	cmnfbpow400mhuhz68v9ki53e	cmnf548r30000uhtd7g7vaybf	Did you guys see that? Insane. Why can't PL get better refs..smh. crazy..	t	f	2026-04-01 00:44:30.932	2026-04-01 00:49:22.57
+cmnfcqqgn000nuhv75wsrtvxe	cmnfcqqg5000luhv7l483637o	cmnfcqlek000fuhv7ydofzkc9	How much will injuries affect their season?	f	f	2026-04-01 01:13:19.223	2026-04-01 01:13:19.223
+cmnfcr1en001suhv7xree1xdb	cmnfcr172001quhv7bk9uw804	cmnfcqlh1000juhv7dxofh1jg	Who starts and who gets benched?	f	f	2026-04-01 01:13:33.408	2026-04-01 01:13:33.408
+cmnfcr2v0002ruhv78hav8q6g	cmnfcr2sw002nuhv7ckh2tw9k	cmnfcqldt0005uhv7d4terocy	They keep conceding from transitions. What's going wrong?	f	f	2026-04-01 01:13:35.292	2026-04-01 01:13:35.292
+cmnfcr2v7002tuhv7m01bvtmg	cmnfcr2ul002puhv7v6p68bld	cmnfcqle40009uhv72zt9hg5l	Manchester City dominated the fullbacks. What adjustments should Real Madrid have made?	f	f	2026-04-01 01:13:35.299	2026-04-01 01:13:35.299
+cmnfcr5ny003fuhv7of77a0un	cmnfcr4d4003duhv7as1a9wwm	cmnfcqldo0003uhv77gqzh84t	Compare their impact this season.	f	f	2026-04-01 01:13:38.926	2026-04-01 01:13:38.926
+cmnfcree7004iuhv7k3jzbt9a	cmnfcredw004guhv79bgkuh32	cmnfcqldo0003uhv77gqzh84t	Compare their impact this season.	f	f	2026-04-01 01:13:50.239	2026-04-01 01:13:50.239
+cmnfcrhz2005nuhv7na118cad	cmnfcrhyh005luhv7ylj162nc	cmnfcqldo0003uhv77gqzh84t	How much will injuries affect their season?	f	f	2026-04-01 01:13:54.878	2026-04-01 01:13:54.878
+cmnfcrzla007muhv7bmcswvvq	cmnfcrzkz007kuhv7o22dznts	cmnfcqldo0003uhv77gqzh84t	Barcelona dominated the midfield. What adjustments should Bayern Munich have made?	f	f	2026-04-01 01:14:17.711	2026-04-01 01:14:17.711
+cmnfcsf2e0084uhv7ewnbf6dw	cmnfcsf1t0082uhv7bsj0v7ec	cmnfcqlh1000juhv7dxofh1jg	Compare their impact this season.	f	f	2026-04-01 01:14:37.766	2026-04-01 01:14:37.766
+cmnfcsi7v00aeuhv7ezsb6tjb	cmnfcsi6p00a6uhv72pugyahq	cmnfcqle40009uhv72zt9hg5l	How much will injuries affect their season?	f	f	2026-04-01 01:14:41.852	2026-04-01 01:14:41.852
+cmnfcsib900aguhv7o6e8c56i	cmnfcsi7l00acuhv70gmb60w4	cmnfcqldo0003uhv77gqzh84t	Can they realistically win the league?	f	f	2026-04-01 01:14:41.973	2026-04-01 01:14:41.973
+cmnfcsljf00bsuhv7ka1kqgc0	cmnfcslid00bjuhv7fxz4wn6m	cmnfcqldo0003uhv77gqzh84t	Bayern Munich dominated the fullbacks. What adjustments should Arsenal have made?	f	f	2026-04-01 01:14:46.156	2026-04-01 01:14:46.156
+cmnfcslrh00c0uhv7dads3y70	cmnfcslqo00byuhv79p1tv6xb	cmnfcqldt0005uhv7d4terocy	Compare their impact this season.	f	f	2026-04-01 01:14:46.445	2026-04-01 01:14:46.445
+cmnfcsu0w00emuhv7z4z4odx2	cmnfcstyt00ekuhv78dydcveq	cmnfcqldo0003uhv77gqzh84t	Who makes your all-time XI?	f	f	2026-04-01 01:14:57.153	2026-04-01 01:14:57.153
+cmnfcsmoc00cguhv72hp26elm	cmnfcsmmt00ceuhv7lv7706a3	cmnfcqle40009uhv72zt9hg5l	Can they realistically win the league?	f	f	2026-04-01 01:14:47.628	2026-04-01 01:14:47.628
+cmnfcsspk00e7uhv7tnbdql60	cmnfcssp800e5uhv7t7yu3d3v	cmnfcqle40009uhv72zt9hg5l	Who starts and who gets benched?	f	f	2026-04-01 01:14:55.449	2026-04-01 01:14:55.449
+cmnfcstrg00ehuhv7yokup1gi	cmnfcstpb00efuhv7x18e6mtd	cmnfcqlh1000juhv7dxofh1jg	Pedri is performing at an insane level lately. Is this peak form?	f	f	2026-04-01 01:14:56.813	2026-04-01 01:14:56.813
+cmnfcsylk00gbuhv7i3dxjbjl	cmnfcsyit00g9uhv73p99qpbo	cmnfcqle40009uhv72zt9hg5l	Who starts and who gets benched?	f	f	2026-04-01 01:15:03.08	2026-04-01 01:15:03.08
+cmnfcszmo00gmuhv7tc8pftam	cmnfcszm700gjuhv71ro4wcv7	cmnfcqldt0005uhv7d4terocy	Who makes your all-time XI?	f	f	2026-04-01 01:15:04.416	2026-04-01 01:15:04.416
+cmnfct4ok00hxuhv70oejxc0x	cmnfct4np00hvuhv7wo6y0q5i	cmnfcqldt0005uhv7d4terocy	They keep conceding from transitions. What's going wrong?	f	f	2026-04-01 01:15:10.963	2026-04-01 01:15:10.963
+cmnfctg7900lruhv7u89eeg3r	cmnfctg6500lpuhv7x7txps20	cmnfcqldo0003uhv77gqzh84t	Who starts and who gets benched?	f	f	2026-04-01 01:15:25.893	2026-04-01 01:15:25.893
+cmnfcto0h00pcuhv7wqj9u47t	cmnfctnry00p8uhv7h5ob7emt	cmnfcqldt0005uhv7d4terocy	Real Madrid dominated the defense. What adjustments should Barcelona have made?	f	f	2026-04-01 01:15:36.017	2026-04-01 01:15:36.017
+cmnfctw7h00tauhv7o6z4amga	cmnfctw6r00t8uhv77nhwioyv	cmnfcqlek000fuhv7ydofzkc9	Their pressing structure has improved a lot recently.	f	f	2026-04-01 01:15:46.637	2026-04-01 01:15:46.637
+cmnfctaf000k8uhv7b42j7r0g	cmnfctab600k4uhv7xlmpcnyw	cmnfcqle40009uhv72zt9hg5l	Can they realistically win the league?	f	f	2026-04-01 01:15:18.396	2026-04-01 01:15:18.396
+cmnfctj3i00nauhv75isivk6t	cmnfctj2k00n6uhv7fgsp8nfq	cmnfcqldo0003uhv77gqzh84t	They keep conceding from transitions. What's going wrong?	f	f	2026-04-01 01:15:29.646	2026-04-01 01:15:29.646
+cmnfctz8q00uruhv7mdrtrq68	cmnfctz7z00upuhv7r5ilgkhu	cmnfcqle40009uhv72zt9hg5l	Compare their impact this season.	f	f	2026-04-01 01:15:50.57	2026-04-01 01:15:50.57
+cmnfctazk00kkuhv75sx3uw4r	cmnfctayk00keuhv7ao93ydeb	cmnfcqldt0005uhv7d4terocy	What positions should Manchester City prioritize this window?	f	f	2026-04-01 01:15:19.136	2026-04-01 01:15:19.136
+cmnfctudq00souhv7bhya48e8	cmnfctu1n00smuhv7fxkayvby	cmnfcqle40009uhv72zt9hg5l	Who starts and who gets benched?	f	f	2026-04-01 01:15:44.27	2026-04-01 01:15:44.27
+cmnfctwhh00txuhv725fn6gjm	cmnfctwgk00touhv7im45m6eb	cmnfcqle40009uhv72zt9hg5l	Their pressing structure has improved a lot recently.	f	f	2026-04-01 01:15:46.998	2026-04-01 01:15:46.998
+cmnfcthbg00mruhv7plgejnc4	cmnfcth4t00mouhv79vkbad14	cmnfcqle40009uhv72zt9hg5l	What positions should Liverpool prioritize this window?	f	f	2026-04-01 01:15:27.34	2026-04-01 01:15:27.34
+cmnfctjv400niuhv7vv3kiemv	cmnfctjo100neuhv7c9mawaag	cmnfcqlek000fuhv7ydofzkc9	Real Madrid dominated the midfield. What adjustments should Liverpool have made?	f	f	2026-04-01 01:15:30.64	2026-04-01 01:15:30.64
+cmnfctkz600o7uhv7ow7rg7yu	cmnfctkye00o5uhv7dogypdf0	cmnfcqle40009uhv72zt9hg5l	How much will injuries affect their season?	f	f	2026-04-01 01:15:32.082	2026-04-01 01:15:32.082
+cmnfctw6b00t6uhv7mbrm70bs	cmnfctvqs00t4uhv7cp30ec0c	cmnfcqlh1000juhv7dxofh1jg	Who starts and who gets benched?	f	f	2026-04-01 01:15:46.596	2026-04-01 01:15:46.596
+cmnfcu0k500vauhv7cfn0ekl8	cmnfcu0j000v8uhv7zmv9ct6o	cmnfcqldo0003uhv77gqzh84t	They keep conceding from transitions. What's going wrong?	f	f	2026-04-01 01:15:52.277	2026-04-01 01:15:52.277
+cmnfcu0ph00vfuhv7pl90w66g	cmnfcu0kn00vduhv7efbzqmgp	cmnfcqlh1000juhv7dxofh1jg	Can they realistically win the league?	f	f	2026-04-01 01:15:52.469	2026-04-01 01:15:52.469
+cmnfcu87m00y2uhv70is4ipjk	cmnfcu86p00y0uhv7f32c9yad	cmnfcqldo0003uhv77gqzh84t	Can they realistically win the league?	f	f	2026-04-01 01:16:02.195	2026-04-01 01:16:02.195
+cmnfcuavw00zduhv7flpn0bk7	cmnfcuapj00zbuhv7ck4mi4wf	cmnfcqldt0005uhv7d4terocy	What positions should Manchester City prioritize this window?	f	f	2026-04-01 01:16:05.66	2026-04-01 01:16:05.66
+cmnfcucvp010auhv7pdjgu057	cmnfcucuz0104uhv7v1zjjalg	cmnfcqldo0003uhv77gqzh84t	Haaland is performing at an insane level lately. Is this peak form?	f	f	2026-04-01 01:16:08.245	2026-04-01 01:16:08.245
+cmnfcucvp0109uhv7dlls6npa	cmnfcucsg0102uhv7x7oztcvc	cmnfcqlh1000juhv7dxofh1jg	What positions should Real Madrid prioritize this window?	f	f	2026-04-01 01:16:08.245	2026-04-01 01:16:08.245
+cmnfcufhq011luhv7i0d7im1s	cmnfcufg9011juhv7qw7vd6tk	cmnfcqldt0005uhv7d4terocy	Can they realistically win the league?	f	f	2026-04-01 01:16:11.631	2026-04-01 01:16:11.631
+cmnfcuhsb0124uhv7nk8hrclm	cmnfcuhd10122uhv7bg2ytk7w	cmnfcqlek000fuhv7ydofzkc9	Who makes your all-time XI?	f	f	2026-04-01 01:16:14.604	2026-04-01 01:16:14.604
+cmnfcui2u012iuhv7t8aklk7j	cmnfcui22012euhv7ejkx4c2y	cmnfcqldt0005uhv7d4terocy	De Bruyne is performing at an insane level lately. Is this peak form?	f	f	2026-04-01 01:16:14.982	2026-04-01 01:16:14.982
+cmnfcum2w014buhv7yhgqumgd	cmnfculps0149uhv7zysc23o3	cmnfcqlh1000juhv7dxofh1jg	Their pressing structure has improved a lot recently.	f	f	2026-04-01 01:16:20.168	2026-04-01 01:16:20.168
+cmnfcut3i015wuhv7ovy46hhl	cmnfcusx0015uuhv7cyg578r0	cmnfcqlh1000juhv7dxofh1jg	Who makes your all-time XI?	f	f	2026-04-01 01:16:29.262	2026-04-01 01:16:29.262
+cmnfcuwob0176uhv7i3vbpidd	cmnfcuwny0174uhv7498p0wk2	cmnfcqlh1000juhv7dxofh1jg	How much will injuries affect their season?	f	f	2026-04-01 01:16:33.899	2026-04-01 01:16:33.899
+cmnfcv26a0193uhv7mez75f2v	cmnfcv1uw0191uhv7oup6bju2	cmnfcqle40009uhv72zt9hg5l	Compare their impact this season.	f	f	2026-04-01 01:16:41.026	2026-04-01 01:16:41.026
+cmnfcv42m01aduhv71rebwpix	cmnfcv3zf01abuhv7x6x2e4ft	cmnfcqldt0005uhv7d4terocy	Can they realistically win the league?	f	f	2026-04-01 01:16:43.487	2026-04-01 01:16:43.487
+cmnfcv5xx01bjuhv76t90668t	cmnfcv5ta01bhuhv7s4r48toh	cmnfcqle40009uhv72zt9hg5l	Bellingham is performing at an insane level lately. Is this peak form?	f	f	2026-04-01 01:16:45.909	2026-04-01 01:16:45.909
+cmnfcv60u01bnuhv7bp43ws54	cmnfcv5zz01bluhv7yri5ij5v	cmnfcqldo0003uhv77gqzh84t	What positions should Manchester City prioritize this window?	f	f	2026-04-01 01:16:46.014	2026-04-01 01:16:46.014
+cmnfcvb0e01dpuhv73ewnwhhz	cmnfcvay401dnuhv79tqtx44i	cmnfcqlh1000juhv7dxofh1jg	How much will injuries affect their season?	f	f	2026-04-01 01:16:52.478	2026-04-01 01:16:52.478
+cmnfcvbs901eluhv7c08tnomy	cmnfcvblr01ejuhv73p2wv52s	cmnfcqldt0005uhv7d4terocy	Compare their impact this season.	f	f	2026-04-01 01:16:53.481	2026-04-01 01:16:53.481
+cmnfcvd3801exuhv7auvju5bt	cmnfcvcy101etuhv7n0ew2hwa	cmnfcqle40009uhv72zt9hg5l	What positions should Manchester City prioritize this window?	f	f	2026-04-01 01:16:55.172	2026-04-01 01:16:55.172
+cmnfcvfmj01fjuhv7xcfum3tu	cmnfcvfha01fhuhv752mitjiy	cmnfcqldt0005uhv7d4terocy	Barcelona dominated the goalkeeping. What adjustments should Liverpool have made?	f	f	2026-04-01 01:16:58.459	2026-04-01 01:16:58.459
+cmnfcvhd201fwuhv7hv5iw59e	cmnfcvh7s01fsuhv75hy6do6w	cmnfcqlek000fuhv7ydofzkc9	They keep conceding from transitions. What's going wrong?	f	f	2026-04-01 01:17:00.71	2026-04-01 01:17:00.71
+cmnfcvhfo01g1uhv70lpw0pbv	cmnfcvh8801fuuhv7infcc7ec	cmnfcqle40009uhv72zt9hg5l	Arsenal dominated the defense. What adjustments should Liverpool have made?	f	f	2026-04-01 01:17:00.804	2026-04-01 01:17:00.804
+cmnfcvkup01gruhv7ho4f2yc9	cmnfcvkkb01gluhv72cpb8yey	cmnfcqlek000fuhv7ydofzkc9	Barcelona dominated the goalkeeping. What adjustments should Bayern Munich have made?	f	f	2026-04-01 01:17:05.233	2026-04-01 01:17:05.233
+cmnfcvnma01i7uhv76fk280z6	cmnfcvnl401i0uhv7e9vcnem2	cmnfcqlek000fuhv7ydofzkc9	Can they realistically win the league?	f	f	2026-04-01 01:17:08.818	2026-04-01 01:17:08.818
+cmnfcvowm01iluhv7hv2z0r9a	cmnfcvosy01iguhv7s5xvb19g	cmnfcqldo0003uhv77gqzh84t	Liverpool dominated the midfield. What adjustments should Real Madrid have made?	f	f	2026-04-01 01:17:10.486	2026-04-01 01:17:10.486
+cmnfcvoxi01inuhv7rzkfbwf9	cmnfcvowb01ijuhv71k0hkybe	cmnfcqle40009uhv72zt9hg5l	Bayern Munich dominated the defense. What adjustments should Arsenal have made?	f	f	2026-04-01 01:17:10.518	2026-04-01 01:17:10.518
+cmnfcvqpz01jcuhv7r56pkyx0	cmnfcvqp701jauhv7l7v1i5pi	cmnfcqlek000fuhv7ydofzkc9	Bayern Munich dominated the defense. What adjustments should Liverpool have made?	f	f	2026-04-01 01:17:12.839	2026-04-01 01:17:12.839
+cmnfcvrfg01jouhv7w4pjjfj5	cmnfcvree01jiuhv7wud9voxw	cmnfcqldo0003uhv77gqzh84t	What positions should Manchester City prioritize this window?	f	f	2026-04-01 01:17:13.756	2026-04-01 01:17:13.756
+cmnfcvss401kjuhv7ggtny4m4	cmnfcvsrf01khuhv7bsb1gb7v	cmnfcqlek000fuhv7ydofzkc9	Arsenal dominated the goalkeeping. What adjustments should Manchester City have made?	f	f	2026-04-01 01:17:15.509	2026-04-01 01:17:15.509
+cmnfcvtn901lauhv7y207haw7	cmnfcvtln01l4uhv74szbnyty	cmnfcqldo0003uhv77gqzh84t	They keep conceding from transitions. What's going wrong?	f	f	2026-04-01 01:17:16.629	2026-04-01 01:17:16.629
+cmnfcvyjz01mxuhv7gwzwd0ww	cmnfcvyj501mtuhv7ym8os71r	cmnfcqle40009uhv72zt9hg5l	Can they realistically win the league?	f	f	2026-04-01 01:17:22.991	2026-04-01 01:17:22.991
+cmnfcw5pq01ojuhv77sd23adv	cmnfcw5pb01ohuhv7g7qv2w9j	cmnfcqldt0005uhv7d4terocy	What positions should Manchester City prioritize this window?	f	f	2026-04-01 01:17:32.271	2026-04-01 01:17:32.271
+cmnfcw8qi01oyuhv78vlbvjgu	cmnfcw86q01owuhv7gaaksf3t	cmnfcqlek000fuhv7ydofzkc9	They keep conceding from transitions. What's going wrong?	f	f	2026-04-01 01:17:36.186	2026-04-01 01:17:36.186
+cmnfcwefy01pzuhv7zf266r7y	cmnfcwefc01pwuhv7aroktu7j	cmnfcqlh1000juhv7dxofh1jg	Their pressing structure has improved a lot recently.	f	f	2026-04-01 01:17:43.583	2026-04-01 01:17:43.583
+cmnfcwh7s01qtuhv75u8ib47g	cmnfcwh7h01qruhv78t39a5li	cmnfcqlh1000juhv7dxofh1jg	They keep conceding from transitions. What's going wrong?	f	f	2026-04-01 01:17:47.177	2026-04-01 01:17:47.177
+cmnfcwnnw01sruhv7lr3cxpfk	cmnfcwni001spuhv7uyouoj6k	cmnfcqle10008uhv7xleeivtf	Who starts and who gets benched?	f	f	2026-04-01 01:17:55.532	2026-04-01 01:17:55.532
+cmnfcwp9401tiuhv73jaeudth	cmnfcwp8701tguhv7dz3ksjjy	cmnfcqle9000buhv78pneu9lv	Compare their impact this season.	f	f	2026-04-01 01:17:57.592	2026-04-01 01:17:57.592
+cmnfcwpw201tsuhv79f0fx5ct	cmnfcwpvf01tmuhv7kpsy0slf	cmnfcqldy0007uhv7gx0b561v	Musiala is performing at an insane level lately. Is this peak form?	f	f	2026-04-01 01:17:58.419	2026-04-01 01:17:58.419
+cmnfcx0dm01xhuhv7hi292ksj	cmnfcx06j01xduhv7spe80rx8	cmnfcqle10008uhv7xleeivtf	What positions should Manchester City prioritize this window?	f	f	2026-04-01 01:18:12.01	2026-04-01 01:18:12.01
+cmnfcx87l01zhuhv73wemnn44	cmnfcx7le01zfuhv7aoumyc72	cmnfcqldy0007uhv7gx0b561v	Barcelona dominated the goalkeeping. What adjustments should Bayern Munich have made?	f	f	2026-04-01 01:18:22.161	2026-04-01 01:18:22.161
+cmnfcxalu020suhv7ekq2nzys	cmnfcxak5020quhv7gy48pmya	cmnfcqle9000buhv78pneu9lv	Arsenal dominated the fullbacks. What adjustments should Bayern Munich have made?	f	f	2026-04-01 01:18:25.265	2026-04-01 01:18:25.265
+cmnfcxkj50232uhv7gww45zox	cmnfcxkgw0230uhv7aa8uy8yu	cmnfcqleb000cuhv7bxrx8k4b	Arsenal dominated the midfield. What adjustments should Barcelona have made?	f	f	2026-04-01 01:18:38.129	2026-04-01 01:18:38.129
+cmnfcxu5e024ruhv7pwj1y3mx	cmnfcxtqu024puhv7kblcv6vd	cmnfcqldv0006uhv7rhgmfmtl	Can they realistically win the league?	f	f	2026-04-01 01:18:50.594	2026-04-01 01:18:50.594
+cmnfcxwlo0265uhv7rnagxx74	cmnfcxwgs025zuhv7gw9czm3i	cmnfcqldy0007uhv7gx0b561v	Who makes your all-time XI?	f	f	2026-04-01 01:18:53.773	2026-04-01 01:18:53.773
+cmnfcxwo5026fuhv70ecrnu29	cmnfcxwn7026duhv7kw0xfj52	cmnfcqldv0006uhv7rhgmfmtl	Who starts and who gets benched?	f	f	2026-04-01 01:18:53.861	2026-04-01 01:18:53.861
+cmnfcxxx4027buhv77gfhw5s7	cmnfcxxtc0276uhv777yj1400	cmnfcqle10008uhv7xleeivtf	De Bruyne is performing at an insane level lately. Is this peak form?	f	f	2026-04-01 01:18:55.481	2026-04-01 01:18:55.481
+cmnfcxw84025ruhv7ppefk0ym	cmnfcxw0d025puhv7df5o1skz	cmnfcqle9000buhv78pneu9lv	Who makes your all-time XI?	f	f	2026-04-01 01:18:53.284	2026-04-01 01:18:53.284
 \.
 
 
@@ -8267,6 +9887,7 @@ cmnf5tj3q0993uh3lzaox3n4p	cmnf5tipe098xuh3lb90wh298	cmnf572ee001yuh3lp0tzqqpg	Th
 --
 
 COPY public."PostVersion" (id, "postId", "oldContent", "editedAt") FROM stdin;
+cmnfbvxxd00njuhz6e7caok8w	cmnfbpowk00mjuhz6zr2dujty	Did you guys see that? Insane. Why can't PL get better refs..smh	2026-04-01 00:49:22.561
 \.
 
 
@@ -8879,6 +10500,152 @@ cmnf5tetf096buh3lvt1y7yld	cmnf58m7r0064uh3lg7sex0tu	cmnf5734l0038uh3lns0u56wa	In
 cmnf5tfzc0971uh3lv2e8ryh3	cmnf5lqmk05s9uh3l6be674b2	cmnf572f5002huh3ll5xlexep	Interesting take	f	f	2026-03-31 21:59:28.296	2026-03-31 21:59:28.296	\N
 cmnf5tla909a9uh3l2lzh089x	cmnf5isd604c9uh3lgln542e5	cmnf572er0027uh3l5t2a2ymg	Interesting take	f	f	2026-03-31 21:59:35.169	2026-03-31 21:59:35.169	\N
 cmnf5tlix09apuh3l35cn4y0w	cmnf59tdf00ekuh3l5xl9ecvr	cmnf5734l003auh3lznt8814k	Interesting take	f	f	2026-03-31 21:59:35.481	2026-03-31 21:59:35.481	\N
+cmnf70fgc0aiauh3l6slbfbqo	cmnf5tj3q0993uh3lzaox3n4p	cmnf548r30000uhtd7g7vaybf	Thoughts on what bro??	f	f	2026-03-31 22:32:53.82	2026-03-31 22:32:53.82	\N
+cmnf793590aijuh3l4zwoe62u	cmnf5tben0957uh3lxq1l6ccm	cmnf548r30000uhtd7g7vaybf	testing my reply man, what is this gargbage nonsene spammy response. I'm rooting for arsenal	f	f	2026-03-31 22:39:37.773	2026-03-31 22:39:37.773	\N
+cmnf8sfk20001uhpbycpqjwj3	cmnf5tben0957uh3lxq1l6ccm	cmnf548r30000uhtd7g7vaybf	Yeeooo I can reply to a reply, that's sickkkk.\n\nEDIT: Testing my app editiing	t	f	2026-03-31 23:22:39.937	2026-03-31 23:24:06.575	cmnf793590aijuh3l4zwoe62u
+cmnf92pjc000nuhpbpk50541q	cmnf5tj3q0993uh3lzaox3n4p	cmnf548r30000uhtd7g7vaybf	Replying to myself I guess	f	f	2026-03-31 23:30:39.432	2026-03-31 23:30:39.432	cmnf70fgc0aiauh3l6slbfbqo
+cmnfbuxtw00nbuhz6zcnzk4v5	cmnfbpowk00mjuhz6zr2dujty	cmnf548r30000uhtd7g7vaybf	anyone???	f	f	2026-04-01 00:48:35.78	2026-04-01 00:48:35.78	\N
+cmnfcrgsr004puhv78ixlf6mk	cmnfcr1en001suhv7xree1xdb	cmnfcqlh1000juhv7dxofh1jg	I see your point	f	f	2026-04-01 01:13:53.355	2026-04-01 01:13:53.355	\N
+cmnfcrgt7004ruhv7jkemnzh4	cmnfcr2v7002tuhv7m01bvtmg	cmnfcqldt0005uhv7d4terocy	Stats don’t support this at all	f	f	2026-04-01 01:13:53.371	2026-04-01 01:13:53.371	\N
+cmnfcrgtd004vuhv79v5napqt	cmnfcr1en001suhv7xree1xdb	cmnfcqle40009uhv72zt9hg5l	Fair argument	f	f	2026-04-01 01:13:53.377	2026-04-01 01:13:53.377	\N
+cmnfcrgtc004tuhv7kfpfx0sz	cmnfcr2v0002ruhv78hav8q6g	cmnfcqldo0003uhv77gqzh84t	That argument falls apart under pressure	f	f	2026-04-01 01:13:53.376	2026-04-01 01:13:53.376	\N
+cmnfcrk5p005uuhv7gn8vf5vf	cmnfcqqgn000nuhv75wsrtvxe	cmnfcqle40009uhv72zt9hg5l	Yeah that makes sense	f	f	2026-04-01 01:13:57.709	2026-04-01 01:13:57.709	\N
+cmnfcrmji006huhv76iadfolu	cmnfcr2v0002ruhv78hav8q6g	cmnfcqldo0003uhv77gqzh84t	There’s more nuance here	f	f	2026-04-01 01:14:00.798	2026-04-01 01:14:00.798	\N
+cmnfcrz1j0075uhv7k7l8at3r	cmnfcr5ny003fuhv7of77a0un	cmnfcqlek000fuhv7ydofzkc9	Fair argument	f	f	2026-04-01 01:14:17	2026-04-01 01:14:17	\N
+cmnfcrz220077uhv77llscs9c	cmnfcree7004iuhv7k3jzbt9a	cmnfcqldo0003uhv77gqzh84t	That’s not how the game actually played out	f	f	2026-04-01 01:14:17.019	2026-04-01 01:14:17.019	\N
+cmnfcs0hc007uuhv7q6sk16bg	cmnfcree7004iuhv7k3jzbt9a	cmnfcqldo0003uhv77gqzh84t	You’re missing key context	f	f	2026-04-01 01:14:18.864	2026-04-01 01:14:18.864	\N
+cmnfcsgh8008yuhv7nfjzx58c	cmnfcr1en001suhv7xree1xdb	cmnfcqlek000fuhv7ydofzkc9	Fair argument	f	f	2026-04-01 01:14:39.597	2026-04-01 01:14:39.597	\N
+cmnfcsgq80098uhv7ygaw3wo2	cmnfcr1en001suhv7xree1xdb	cmnfcqldo0003uhv77gqzh84t	Stats don’t support this at all	f	f	2026-04-01 01:14:39.921	2026-04-01 01:14:39.921	\N
+cmnfcshnu00a2uhv7pbtl42wg	cmnfcr1en001suhv7xree1xdb	cmnfcqldt0005uhv7d4terocy	That argument falls apart under pressure	f	f	2026-04-01 01:14:41.13	2026-04-01 01:14:41.13	\N
+cmnfcsi6u00a8uhv71vvdy2zb	cmnfcr1en001suhv7xree1xdb	cmnfcqlek000fuhv7ydofzkc9	Could go either way	f	f	2026-04-01 01:14:41.814	2026-04-01 01:14:41.814	\N
+cmnfcsl1f00bfuhv7336xuprb	cmnfcsf2e0084uhv7ewnbf6dw	cmnfcqlh1000juhv7dxofh1jg	That’s interesting actually	f	f	2026-04-01 01:14:45.507	2026-04-01 01:14:45.507	\N
+cmnfcsmxm00cjuhv7lf96prh7	cmnfcr2v0002ruhv78hav8q6g	cmnfcqlek000fuhv7ydofzkc9	Could go either way	f	f	2026-04-01 01:14:47.962	2026-04-01 01:14:47.962	\N
+cmnfcsn3400cnuhv7wtlafc1w	cmnfcr2v0002ruhv78hav8q6g	cmnfcqlh1000juhv7dxofh1jg	I didn’t think about it like that	f	f	2026-04-01 01:14:48.161	2026-04-01 01:14:48.161	\N
+cmnfcsq3x00d8uhv77ft4grwj	cmnfcsljf00bsuhv7ka1kqgc0	cmnfcqldo0003uhv77gqzh84t	You're ignoring the tactical setup completely	f	f	2026-04-01 01:14:52.077	2026-04-01 01:14:52.077	\N
+cmnfcsqzc00dduhv7v84157vm	cmnfcrhz2005nuhv7na118cad	cmnfcqldt0005uhv7d4terocy	You’re missing key context	f	f	2026-04-01 01:14:53.208	2026-04-01 01:14:53.208	\N
+cmnfcss7a00dzuhv7npg6m29w	cmnfcslrh00c0uhv7dads3y70	cmnfcqlek000fuhv7ydofzkc9	I see your point	f	f	2026-04-01 01:14:54.79	2026-04-01 01:14:54.79	\N
+cmnfcsujz00euuhv7jnf47zoy	cmnfcsib900aguhv7o6e8c56i	cmnfcqldt0005uhv7d4terocy	You're ignoring the tactical setup completely	f	f	2026-04-01 01:14:57.839	2026-04-01 01:14:57.839	\N
+cmnfcsvxt00fhuhv76hfivuw1	cmnfcr1en001suhv7xree1xdb	cmnfcqlek000fuhv7ydofzkc9	I see your point	f	f	2026-04-01 01:14:59.633	2026-04-01 01:14:59.633	\N
+cmnfcswgw00fluhv7lew2hx87	cmnfcslrh00c0uhv7dads3y70	cmnfcqlh1000juhv7dxofh1jg	Yeah that makes sense	f	f	2026-04-01 01:15:00.32	2026-04-01 01:15:00.32	\N
+cmnfcszm100ghuhv799fenmbz	cmnfcr5ny003fuhv7of77a0un	cmnfcqldo0003uhv77gqzh84t	You're ignoring the tactical setup completely	f	f	2026-04-01 01:15:04.393	2026-04-01 01:15:04.393	\N
+cmnfct1wt00gzuhv74vu1xz03	cmnfcsljf00bsuhv7ka1kqgc0	cmnfcqlh1000juhv7dxofh1jg	Could go either way	f	f	2026-04-01 01:15:07.374	2026-04-01 01:15:07.374	\N
+cmnfct4kk00htuhv7k69g4pz4	cmnfcr2v0002ruhv78hav8q6g	cmnfcqle40009uhv72zt9hg5l	Good take honestly	f	f	2026-04-01 01:15:10.82	2026-04-01 01:15:10.82	\N
+cmnfct59o00iluhv7vkji58jl	cmnfcsmoc00cguhv72hp26elm	cmnfcqlek000fuhv7ydofzkc9	I didn’t think about it like that	f	f	2026-04-01 01:15:11.724	2026-04-01 01:15:11.724	\N
+cmnfct6p100j0uhv7vai34w5f	cmnfcree7004iuhv7k3jzbt9a	cmnfcqldo0003uhv77gqzh84t	Stats don’t support this at all	f	f	2026-04-01 01:15:13.573	2026-04-01 01:15:13.573	\N
+cmnfct6z800j4uhv7lcrsoxcc	cmnfcsu0w00emuhv7z4z4odx2	cmnfcqlh1000juhv7dxofh1jg	Fair argument	f	f	2026-04-01 01:15:13.941	2026-04-01 01:15:13.941	\N
+cmnfct7qo00jauhv7rhhwvlcf	cmnfcsljf00bsuhv7ka1kqgc0	cmnfcqldt0005uhv7d4terocy	Stats don’t support this at all	f	f	2026-04-01 01:15:14.929	2026-04-01 01:15:14.929	\N
+cmnfctcbb00ktuhv7x9a51lzj	cmnfcr5ny003fuhv7of77a0un	cmnfcqlh1000juhv7dxofh1jg	That’s interesting actually	f	f	2026-04-01 01:15:20.856	2026-04-01 01:15:20.856	\N
+cmnfctf5b00lluhv7p3ujmnle	cmnfcr1en001suhv7xree1xdb	cmnfcqle40009uhv72zt9hg5l	Not sure I agree tbh	f	f	2026-04-01 01:15:24.527	2026-04-01 01:15:24.527	\N
+cmnfctg7e00ltuhv7ixecry1u	cmnfcsi7v00aeuhv7ezsb6tjb	cmnfcqlek000fuhv7ydofzkc9	Yeah that makes sense	f	f	2026-04-01 01:15:25.899	2026-04-01 01:15:25.899	\N
+cmnfctj2y00n8uhv7mnyj4zw5	cmnfcsib900aguhv7o6e8c56i	cmnfcqlh1000juhv7dxofh1jg	I see your point	f	f	2026-04-01 01:15:29.626	2026-04-01 01:15:29.626	\N
+cmnfctly300oduhv7ei0axa5t	cmnfctg7900lruhv7u89eeg3r	cmnfcqldt0005uhv7d4terocy	The midfield imbalance is the real issue	f	f	2026-04-01 01:15:33.339	2026-04-01 01:15:33.339	\N
+cmnfctnna00p4uhv7zbq419kn	cmnfcqqgn000nuhv75wsrtvxe	cmnfcqldo0003uhv77gqzh84t	That argument falls apart under pressure	f	f	2026-04-01 01:15:35.542	2026-04-01 01:15:35.542	\N
+cmnfctnnh00p6uhv70tq8msvb	cmnfcsmoc00cguhv72hp26elm	cmnfcqlh1000juhv7dxofh1jg	I see your point	f	f	2026-04-01 01:15:35.549	2026-04-01 01:15:35.549	\N
+cmnfcto3800pnuhv79ohbslg2	cmnfcr2v7002tuhv7m01bvtmg	cmnfcqlek000fuhv7ydofzkc9	Could go either way	f	f	2026-04-01 01:15:36.116	2026-04-01 01:15:36.116	\N
+cmnfctpkt00qduhv71ife5fx7	cmnfcr2v7002tuhv7m01bvtmg	cmnfcqle40009uhv72zt9hg5l	Fair argument	f	f	2026-04-01 01:15:38.046	2026-04-01 01:15:38.046	\N
+cmnfctsai00rguhv7nr5softi	cmnfct4ok00hxuhv70oejxc0x	cmnfcqlek000fuhv7ydofzkc9	Could go either way	f	f	2026-04-01 01:15:41.562	2026-04-01 01:15:41.562	\N
+cmnfctsb600riuhv7gf7fs4pt	cmnfcr2v7002tuhv7m01bvtmg	cmnfcqle40009uhv72zt9hg5l	Fair argument	f	f	2026-04-01 01:15:41.586	2026-04-01 01:15:41.586	\N
+cmnfctsbx00rkuhv781j04ar3	cmnfcrhz2005nuhv7na118cad	cmnfcqlh1000juhv7dxofh1jg	Fair argument	f	f	2026-04-01 01:15:41.613	2026-04-01 01:15:41.613	\N
+cmnfcty8q00u9uhv7v3mugjyy	cmnfctg7900lruhv7u89eeg3r	cmnfcqldt0005uhv7d4terocy	That’s not how the game actually played out	f	f	2026-04-01 01:15:49.274	2026-04-01 01:15:49.274	\N
+cmnfctyvs00ufuhv7vl67b3v0	cmnfctjv400niuhv7vv3kiemv	cmnfcqlh1000juhv7dxofh1jg	Yeah that makes sense	f	f	2026-04-01 01:15:50.105	2026-04-01 01:15:50.105	\N
+cmnfctsce00rmuhv7dbrdy51i	cmnfcsu0w00emuhv7z4z4odx2	cmnfcqldt0005uhv7d4terocy	You’re missing key context	f	f	2026-04-01 01:15:41.63	2026-04-01 01:15:41.63	\N
+cmnfctuhn00squhv7o9dck932	cmnfcqqgn000nuhv75wsrtvxe	cmnfcqlek000fuhv7ydofzkc9	Could go either way	f	f	2026-04-01 01:15:44.412	2026-04-01 01:15:44.412	\N
+cmnfctscu00rquhv7qjwlwbck	cmnfcrzla007muhv7bmcswvvq	cmnfcqldo0003uhv77gqzh84t	The midfield imbalance is the real issue	f	f	2026-04-01 01:15:41.646	2026-04-01 01:15:41.646	\N
+cmnfctw8j00tcuhv7tcryxu02	cmnfcsf2e0084uhv7ewnbf6dw	cmnfcqldo0003uhv77gqzh84t	That argument falls apart under pressure	f	f	2026-04-01 01:15:46.676	2026-04-01 01:15:46.676	\N
+cmnfctz6y00uluhv78shuejsn	cmnfcr2v0002ruhv78hav8q6g	cmnfcqlek000fuhv7ydofzkc9	Not sure I agree tbh	f	f	2026-04-01 01:15:50.506	2026-04-01 01:15:50.506	\N
+cmnfcu2rr00vxuhv7v98tn2dp	cmnfcto0h00pcuhv7wqj9u47t	cmnfcqldt0005uhv7d4terocy	You're oversimplifying the situation	f	f	2026-04-01 01:15:55.143	2026-04-01 01:15:55.143	\N
+cmnfcu5ov00wtuhv78c0nq9rq	cmnfcr2v0002ruhv78hav8q6g	cmnfcqldt0005uhv7d4terocy	Stats don’t support this at all	f	f	2026-04-01 01:15:58.926	2026-04-01 01:15:58.926	\N
+cmnfcu5p900wvuhv7m4rb1nrn	cmnfcsspk00e7uhv7tnbdql60	cmnfcqlek000fuhv7ydofzkc9	Not sure I agree tbh	f	f	2026-04-01 01:15:58.941	2026-04-01 01:15:58.941	\N
+cmnfcu60s00wxuhv7k3p23jt2	cmnfctazk00kkuhv75sx3uw4r	cmnfcqldo0003uhv77gqzh84t	You're oversimplifying the situation	f	f	2026-04-01 01:15:59.356	2026-04-01 01:15:59.356	\N
+cmnfcu88000y4uhv7ssnoslys	cmnfctg7900lruhv7u89eeg3r	cmnfcqlek000fuhv7ydofzkc9	I didn’t think about it like that	f	f	2026-04-01 01:16:02.208	2026-04-01 01:16:02.208	\N
+cmnfcu88800y6uhv7vnr3i56m	cmnfcr2v7002tuhv7m01bvtmg	cmnfcqlh1000juhv7dxofh1jg	Yeah that makes sense	f	f	2026-04-01 01:16:02.216	2026-04-01 01:16:02.216	\N
+cmnfcu88e00y8uhv7dg139brc	cmnfcu0k500vauhv7cfn0ekl8	cmnfcqldt0005uhv7d4terocy	That argument falls apart under pressure	f	f	2026-04-01 01:16:02.222	2026-04-01 01:16:02.222	\N
+cmnfcu88x00yauhv7site56xj	cmnfct4ok00hxuhv70oejxc0x	cmnfcqle40009uhv72zt9hg5l	I didn’t think about it like that	f	f	2026-04-01 01:16:02.241	2026-04-01 01:16:02.241	\N
+cmnfcuaz100zfuhv7fbx9j9r2	cmnfctkz600o7uhv7ow7rg7yu	cmnfcqlh1000juhv7dxofh1jg	I didn’t think about it like that	f	f	2026-04-01 01:16:05.773	2026-04-01 01:16:05.773	\N
+cmnfcucvh0106uhv76p0epm4b	cmnfcr1en001suhv7xree1xdb	cmnfcqlek000fuhv7ydofzkc9	I see your point	f	f	2026-04-01 01:16:08.237	2026-04-01 01:16:08.237	\N
+cmnfcucy7010cuhv7xnd97to4	cmnfctg7900lruhv7u89eeg3r	cmnfcqle40009uhv72zt9hg5l	Could go either way	f	f	2026-04-01 01:16:08.335	2026-04-01 01:16:08.335	\N
+cmnfcuhtx0126uhv7kis1rkys	cmnfctaf000k8uhv7b42j7r0g	cmnfcqlh1000juhv7dxofh1jg	Could go either way	f	f	2026-04-01 01:16:14.661	2026-04-01 01:16:14.661	\N
+cmnfcuhv40128uhv7hw5c5x8a	cmnfcthbg00mruhv7plgejnc4	cmnfcqldo0003uhv77gqzh84t	That argument falls apart under pressure	f	f	2026-04-01 01:16:14.704	2026-04-01 01:16:14.704	\N
+cmnfcuiuh0130uhv7z8wsjdj1	cmnfcslrh00c0uhv7dads3y70	cmnfcqle40009uhv72zt9hg5l	I see your point	f	f	2026-04-01 01:16:15.977	2026-04-01 01:16:15.977	\N
+cmnfcujh30136uhv77fmlk2fr	cmnfcu0ph00vfuhv7pl90w66g	cmnfcqlh1000juhv7dxofh1jg	That’s interesting actually	f	f	2026-04-01 01:16:16.792	2026-04-01 01:16:16.792	\N
+cmnfcujhf0138uhv7bwkxjny4	cmnfcthbg00mruhv7plgejnc4	cmnfcqldo0003uhv77gqzh84t	You're oversimplifying the situation	f	f	2026-04-01 01:16:16.803	2026-04-01 01:16:16.803	\N
+cmnfcumfa014duhv7xizl67wj	cmnfctj3i00nauhv75isivk6t	cmnfcqlek000fuhv7ydofzkc9	Yeah that makes sense	f	f	2026-04-01 01:16:20.614	2026-04-01 01:16:20.614	\N
+cmnfcumsu014nuhv7j4wrtlfo	cmnfctudq00souhv7bhya48e8	cmnfcqldt0005uhv7d4terocy	You're oversimplifying the situation	f	f	2026-04-01 01:16:21.103	2026-04-01 01:16:21.103	\N
+cmnfcuprg0150uhv7nzctvkm4	cmnfcu87m00y2uhv70is4ipjk	cmnfcqldo0003uhv77gqzh84t	Stats don’t support this at all	f	f	2026-04-01 01:16:24.941	2026-04-01 01:16:24.941	\N
+cmnfcupze0152uhv7u6hbxpgt	cmnfctw7h00tauhv7o6z4amga	cmnfcqlek000fuhv7ydofzkc9	Yeah that makes sense	f	f	2026-04-01 01:16:25.226	2026-04-01 01:16:25.226	\N
+cmnfcuq9d0154uhv7ydvf5fuo	cmnfcree7004iuhv7k3jzbt9a	cmnfcqle40009uhv72zt9hg5l	Fair argument	f	f	2026-04-01 01:16:25.585	2026-04-01 01:16:25.585	\N
+cmnfcutkg015yuhv75i9c86ou	cmnfcr5ny003fuhv7of77a0un	cmnfcqldt0005uhv7d4terocy	That argument falls apart under pressure	f	f	2026-04-01 01:16:29.872	2026-04-01 01:16:29.872	\N
+cmnfcutl00160uhv7b130qnj0	cmnfcu0ph00vfuhv7pl90w66g	cmnfcqlek000fuhv7ydofzkc9	Could go either way	f	f	2026-04-01 01:16:29.892	2026-04-01 01:16:29.892	\N
+cmnfcutld0162uhv7h1lkuuc1	cmnfcqqgn000nuhv75wsrtvxe	cmnfcqldo0003uhv77gqzh84t	You’re missing key context	f	f	2026-04-01 01:16:29.906	2026-04-01 01:16:29.906	\N
+cmnfcuwom0178uhv7pcmyxn4c	cmnfctg7900lruhv7u89eeg3r	cmnfcqle40009uhv72zt9hg5l	Good take honestly	f	f	2026-04-01 01:16:33.91	2026-04-01 01:16:33.91	\N
+cmnfcuy3m017puhv7ssiinuhd	cmnfcucvp0109uhv7dlls6npa	cmnfcqlek000fuhv7ydofzkc9	Yeah that makes sense	f	f	2026-04-01 01:16:35.746	2026-04-01 01:16:35.746	\N
+cmnfcuy3p017ruhv774jqceor	cmnfctudq00souhv7bhya48e8	cmnfcqldo0003uhv77gqzh84t	You're oversimplifying the situation	f	f	2026-04-01 01:16:35.749	2026-04-01 01:16:35.749	\N
+cmnfcuy3x017tuhv7z0w1efmw	cmnfctg7900lruhv7u89eeg3r	cmnfcqle40009uhv72zt9hg5l	I see your point	f	f	2026-04-01 01:16:35.757	2026-04-01 01:16:35.757	\N
+cmnfcuyq9018kuhv7a3dn690x	cmnfctazk00kkuhv75sx3uw4r	cmnfcqlh1000juhv7dxofh1jg	That’s interesting actually	f	f	2026-04-01 01:16:36.561	2026-04-01 01:16:36.561	\N
+cmnfcv27c0195uhv72ggicjsc	cmnfcufhq011luhv7i0d7im1s	cmnfcqldt0005uhv7d4terocy	You’re missing key context	f	f	2026-04-01 01:16:41.064	2026-04-01 01:16:41.064	\N
+cmnfcv27m0197uhv725l9baa4	cmnfcr1en001suhv7xree1xdb	cmnfcqlek000fuhv7ydofzkc9	Fair argument	f	f	2026-04-01 01:16:41.074	2026-04-01 01:16:41.074	\N
+cmnfcv27w0199uhv74y02viaf	cmnfcr2v0002ruhv78hav8q6g	cmnfcqldo0003uhv77gqzh84t	You’re missing key context	f	f	2026-04-01 01:16:41.084	2026-04-01 01:16:41.084	\N
+cmnfcv4hb01anuhv7n84ydpvd	cmnfct4ok00hxuhv70oejxc0x	cmnfcqlek000fuhv7ydofzkc9	I see your point	f	f	2026-04-01 01:16:44.016	2026-04-01 01:16:44.016	\N
+cmnfcv58701bbuhv7bvqdmjy4	cmnfcsylk00gbuhv7i3dxjbjl	cmnfcqlh1000juhv7dxofh1jg	I didn’t think about it like that	f	f	2026-04-01 01:16:44.983	2026-04-01 01:16:44.983	\N
+cmnfcv63b01bruhv7fp3w1nr1	cmnfctj3i00nauhv75isivk6t	cmnfcqlek000fuhv7ydofzkc9	Fair argument	f	f	2026-04-01 01:16:46.103	2026-04-01 01:16:46.103	\N
+cmnfcv8p001cjuhv7wlgnfc5m	cmnfcto0h00pcuhv7wqj9u47t	cmnfcqldt0005uhv7d4terocy	You're ignoring the tactical setup completely	f	f	2026-04-01 01:16:49.477	2026-04-01 01:16:49.477	\N
+cmnfcv9cf01ctuhv7rmtxxqda	cmnfcto0h00pcuhv7wqj9u47t	cmnfcqle40009uhv72zt9hg5l	Could go either way	f	f	2026-04-01 01:16:50.319	2026-04-01 01:16:50.319	\N
+cmnfcv9ld01cxuhv7kdauy0u0	cmnfcuhsb0124uhv7nk8hrclm	cmnfcqldo0003uhv77gqzh84t	That’s not how the game actually played out	f	f	2026-04-01 01:16:50.641	2026-04-01 01:16:50.641	\N
+cmnfcvaxq01djuhv7o58dhkzy	cmnfcr1en001suhv7xree1xdb	cmnfcqlek000fuhv7ydofzkc9	I see your point	f	f	2026-04-01 01:16:52.382	2026-04-01 01:16:52.382	\N
+cmnfcvbcg01e3uhv74l9qym2r	cmnfcv42m01aduhv71rebwpix	cmnfcqldo0003uhv77gqzh84t	There’s more nuance here	f	f	2026-04-01 01:16:52.912	2026-04-01 01:16:52.912	\N
+cmnfcvcwu01epuhv7c7bks9fg	cmnfcuavw00zduhv7flpn0bk7	cmnfcqlek000fuhv7ydofzkc9	Yeah that makes sense	f	f	2026-04-01 01:16:54.942	2026-04-01 01:16:54.942	\N
+cmnfcveoj01fbuhv75wzu7zkf	cmnfcsljf00bsuhv7ka1kqgc0	cmnfcqlh1000juhv7dxofh1jg	Good take honestly	f	f	2026-04-01 01:16:57.235	2026-04-01 01:16:57.235	\N
+cmnfcvhen01fyuhv7ltu67guj	cmnfctw6b00t6uhv7mbrm70bs	cmnfcqldo0003uhv77gqzh84t	You're ignoring the tactical setup completely	f	f	2026-04-01 01:17:00.767	2026-04-01 01:17:00.767	\N
+cmnfcvkh701gjuhv7d7i9xhlu	cmnfcsi7v00aeuhv7ezsb6tjb	cmnfcqldt0005uhv7d4terocy	You're oversimplifying the situation	f	f	2026-04-01 01:17:04.747	2026-04-01 01:17:04.747	\N
+cmnfcvkuh01gpuhv7cr5x1t26	cmnfcuwob0176uhv7i3vbpidd	cmnfcqlh1000juhv7dxofh1jg	I didn’t think about it like that	f	f	2026-04-01 01:17:05.225	2026-04-01 01:17:05.225	\N
+cmnfcvmxg01hiuhv741carpoo	cmnfcstrg00ehuhv7yokup1gi	cmnfcqldo0003uhv77gqzh84t	The midfield imbalance is the real issue	f	f	2026-04-01 01:17:07.924	2026-04-01 01:17:07.924	\N
+cmnfcvmyn01hkuhv7jnk6uvz9	cmnfcsspk00e7uhv7tnbdql60	cmnfcqldt0005uhv7d4terocy	You're ignoring the tactical setup completely	f	f	2026-04-01 01:17:07.968	2026-04-01 01:17:07.968	\N
+cmnfcvt4g01knuhv7y1zmz5r6	cmnfcu87m00y2uhv70is4ipjk	cmnfcqle40009uhv72zt9hg5l	I see your point	f	f	2026-04-01 01:17:15.951	2026-04-01 01:17:15.951	\N
+cmnfcvwt001meuhv76fuaokyq	cmnfcum2w014buhv7yhgqumgd	cmnfcqle40009uhv72zt9hg5l	That’s interesting actually	f	f	2026-04-01 01:17:20.724	2026-04-01 01:17:20.724	\N
+cmnfcvy5601mnuhv7vwxc719l	cmnfcvd3801exuhv7auvju5bt	cmnfcqlek000fuhv7ydofzkc9	Could go either way	f	f	2026-04-01 01:17:22.458	2026-04-01 01:17:22.458	\N
+cmnfcvyih01mruhv7ftxl67iu	cmnfcuhsb0124uhv7nk8hrclm	cmnfcqldt0005uhv7d4terocy	That’s not how the game actually played out	f	f	2026-04-01 01:17:22.937	2026-04-01 01:17:22.937	\N
+cmnfcw2y301ntuhv7322xxtbi	cmnfcsi7v00aeuhv7ezsb6tjb	cmnfcqlh1000juhv7dxofh1jg	Could go either way	f	f	2026-04-01 01:17:28.683	2026-04-01 01:17:28.683	\N
+cmnfcwb1v01p5uhv7n4y1w02m	cmnfcrzla007muhv7bmcswvvq	cmnfcqldt0005uhv7d4terocy	You’re missing key context	f	f	2026-04-01 01:17:39.187	2026-04-01 01:17:39.187	\N
+cmnfcwfba01q8uhv72mytjzgz	cmnfcucvp0109uhv7dlls6npa	cmnfcqlek000fuhv7ydofzkc9	I didn’t think about it like that	f	f	2026-04-01 01:17:44.71	2026-04-01 01:17:44.71	\N
+cmnfcwl3201rkuhv7oykvw7r1	cmnfcv60u01bnuhv7bp43ws54	cmnfcqleb000cuhv7bxrx8k4b	Do you even watch games?	f	f	2026-04-01 01:17:52.19	2026-04-01 01:17:52.19	\N
+cmnfcvn2g01hmuhv7hqus2abz	cmnfctj3i00nauhv75isivk6t	cmnfcqle40009uhv72zt9hg5l	That’s interesting actually	f	f	2026-04-01 01:17:08.104	2026-04-01 01:17:08.104	\N
+cmnfcvqsq01jeuhv74fetwfdl	cmnfcrhz2005nuhv7na118cad	cmnfcqldt0005uhv7d4terocy	That argument falls apart under pressure	f	f	2026-04-01 01:17:12.938	2026-04-01 01:17:12.938	\N
+cmnfcvsad01kduhv7n5aibf6s	cmnfcucvp0109uhv7dlls6npa	cmnfcqldt0005uhv7d4terocy	Stats don’t support this at all	f	f	2026-04-01 01:17:14.869	2026-04-01 01:17:14.869	\N
+cmnfcvvdg01lmuhv7csfvp4gg	cmnfcsylk00gbuhv7i3dxjbjl	cmnfcqldt0005uhv7d4terocy	Stats don’t support this at all	f	f	2026-04-01 01:17:18.869	2026-04-01 01:17:18.869	\N
+cmnfcvvn301lquhv7ekurgvpe	cmnfcr2v7002tuhv7m01bvtmg	cmnfcqlh1000juhv7dxofh1jg	Fair argument	f	f	2026-04-01 01:17:19.215	2026-04-01 01:17:19.215	\N
+cmnfcw19401nduhv7wtnrlwrw	cmnfcv60u01bnuhv7bp43ws54	cmnfcqldt0005uhv7d4terocy	There’s more nuance here	f	f	2026-04-01 01:17:26.488	2026-04-01 01:17:26.488	\N
+cmnfcw2vc01npuhv7i3wjzknt	cmnfcstrg00ehuhv7yokup1gi	cmnfcqle40009uhv72zt9hg5l	I see your point	f	f	2026-04-01 01:17:28.584	2026-04-01 01:17:28.584	\N
+cmnfcw5p401ofuhv7ft63bozt	cmnfcvnma01i7uhv76fk280z6	cmnfcqle40009uhv72zt9hg5l	Could go either way	f	f	2026-04-01 01:17:32.248	2026-04-01 01:17:32.248	\N
+cmnfcwl6201rouhv76d364wpa	cmnfctaf000k8uhv7b42j7r0g	cmnfcqle9000buhv78pneu9lv	This is a terrible take 😂	f	f	2026-04-01 01:17:52.298	2026-04-01 01:17:52.298	\N
+cmnfcwpw901tuuhv79o7n4x70	cmnfcu0ph00vfuhv7pl90w66g	cmnfcqle10008uhv7xleeivtf	You're ignoring the tactical setup completely	f	f	2026-04-01 01:17:58.425	2026-04-01 01:17:58.425	\N
+cmnfcwsme01umuhv75dyvfs9x	cmnfcvowm01iluhv7hv2z0r9a	cmnfcqldv0006uhv7rhgmfmtl	That’s not how the game actually played out	f	f	2026-04-01 01:18:01.959	2026-04-01 01:18:01.959	\N
+cmnfcww8z01veuhv730tfkhvz	cmnfcthbg00mruhv7plgejnc4	cmnfcqleb000cuhv7bxrx8k4b	Absolutely clueless	f	f	2026-04-01 01:18:06.659	2026-04-01 01:18:06.659	\N
+cmnfcvpsd01ipuhv7y5wyn7sj	cmnfcsu0w00emuhv7z4z4odx2	cmnfcqlh1000juhv7dxofh1jg	I didn’t think about it like that	f	f	2026-04-01 01:17:11.629	2026-04-01 01:17:11.629	\N
+cmnfcwway01viuhv7xww3l1l2	cmnfcwnnw01sruhv7lr3cxpfk	cmnfcqle10008uhv7xleeivtf	There’s more nuance here	f	f	2026-04-01 01:18:06.73	2026-04-01 01:18:06.73	\N
+cmnfcw2xi01nruhv7nud2kpjd	cmnfcvnma01i7uhv76fk280z6	cmnfcqlek000fuhv7ydofzkc9	Good take honestly	f	f	2026-04-01 01:17:28.662	2026-04-01 01:17:28.662	\N
+cmnfcwb3001p7uhv7tnk8k2wo	cmnfcslrh00c0uhv7dads3y70	cmnfcqlh1000juhv7dxofh1jg	I didn’t think about it like that	f	f	2026-04-01 01:17:39.228	2026-04-01 01:17:39.228	\N
+cmnfcwl3o01rmuhv762rcwom0	cmnfctg7900lruhv7u89eeg3r	cmnfcqldy0007uhv7gx0b561v	You’re missing key context	f	f	2026-04-01 01:17:52.211	2026-04-01 01:17:52.211	\N
+cmnfcwnoo01stuhv7sf495r0s	cmnfcvowm01iluhv7hv2z0r9a	cmnfcqldv0006uhv7rhgmfmtl	That’s not how the game actually played out	f	f	2026-04-01 01:17:55.56	2026-04-01 01:17:55.56	\N
+cmnfcwpl901tkuhv7s6mk6et0	cmnfcvbs901eluhv7c08tnomy	cmnfcqleb000cuhv7bxrx8k4b	Delete this 😭	f	f	2026-04-01 01:17:58.029	2026-04-01 01:17:58.029	\N
+cmnfcwyv101wjuhv7g4fiaj6k	cmnfcvoxi01inuhv7rzkfbwf9	cmnfcqle9000buhv78pneu9lv	Do you even watch games?	f	f	2026-04-01 01:18:10.045	2026-04-01 01:18:10.045	\N
+cmnfcx19r01xjuhv7rqyddysh	cmnfcvss401kjuhv7ggtny4m4	cmnfcqle9000buhv78pneu9lv	Bro what are you saying	f	f	2026-04-01 01:18:13.167	2026-04-01 01:18:13.167	\N
+cmnfcx1ud01xxuhv7qlnm029d	cmnfctw7h00tauhv7o6z4amga	cmnfcqldy0007uhv7gx0b561v	Stats don’t support this at all	f	f	2026-04-01 01:18:13.909	2026-04-01 01:18:13.909	\N
+cmnfcx1yh01y1uhv7f81fqu0l	cmnfcvyjz01mxuhv7gwzwd0ww	cmnfcqldv0006uhv7rhgmfmtl	That argument falls apart under pressure	f	f	2026-04-01 01:18:14.057	2026-04-01 01:18:14.057	\N
+cmnfcx3x301ynuhv79onrtjjr	cmnfcqqgn000nuhv75wsrtvxe	cmnfcqleb000cuhv7bxrx8k4b	Delete this 😭	f	f	2026-04-01 01:18:16.599	2026-04-01 01:18:16.599	\N
+cmnfcx88401zjuhv796ejol02	cmnfcv42m01aduhv71rebwpix	cmnfcqleb000cuhv7bxrx8k4b	Do you even watch games?	f	f	2026-04-01 01:18:22.18	2026-04-01 01:18:22.18	\N
+cmnfcx89p01zluhv7omenamkj	cmnfcuavw00zduhv7flpn0bk7	cmnfcqle10008uhv7xleeivtf	There’s more nuance here	f	f	2026-04-01 01:18:22.237	2026-04-01 01:18:22.237	\N
+cmnfcx8cv01znuhv7ukl6scwr	cmnfcwh7s01qtuhv75u8ib47g	cmnfcqle9000buhv78pneu9lv	You can't be serious	f	f	2026-04-01 01:18:22.351	2026-04-01 01:18:22.351	\N
+cmnfcxb27020uuhv7jpvmqyni	cmnfcwh7s01qtuhv75u8ib47g	cmnfcqleb000cuhv7bxrx8k4b	Absolutely clueless	f	f	2026-04-01 01:18:25.855	2026-04-01 01:18:25.855	\N
+cmnfcxbrs021guhv7nijtcgy7	cmnfcvhfo01g1uhv70lpw0pbv	cmnfcqldy0007uhv7gx0b561v	That argument falls apart under pressure	f	f	2026-04-01 01:18:26.776	2026-04-01 01:18:26.776	\N
+cmnfcxdlt021ouhv7ov7a7a3m	cmnfcvss401kjuhv7ggtny4m4	cmnfcqldv0006uhv7rhgmfmtl	There’s more nuance here	f	f	2026-04-01 01:18:29.153	2026-04-01 01:18:29.153	\N
+cmnfcxdn5021suhv7xcyss724	cmnfcvoxi01inuhv7rzkfbwf9	cmnfcqle10008uhv7xleeivtf	You're ignoring the tactical setup completely	f	f	2026-04-01 01:18:29.201	2026-04-01 01:18:29.201	\N
+cmnfcxg1j0228uhv73tgql0c7	cmnfcsib900aguhv7o6e8c56i	cmnfcqle9000buhv78pneu9lv	Do you even watch games?	f	f	2026-04-01 01:18:32.311	2026-04-01 01:18:32.311	\N
+cmnfcxgaw022auhv7hb02b85b	cmnfctaf000k8uhv7b42j7r0g	cmnfcqleb000cuhv7bxrx8k4b	Absolutely clueless	f	f	2026-04-01 01:18:32.649	2026-04-01 01:18:32.649	\N
+cmnfcxm3u023auhv7wrte8kiw	cmnfcw5pq01ojuhv77sd23adv	cmnfcqldv0006uhv7rhgmfmtl	That argument falls apart under pressure	f	f	2026-04-01 01:18:40.17	2026-04-01 01:18:40.17	\N
+cmnfcxr64023vuhv7kaep0nvm	cmnfcufhq011luhv7i0d7im1s	cmnfcqle9000buhv78pneu9lv	Absolutely clueless	f	f	2026-04-01 01:18:46.732	2026-04-01 01:18:46.732	\N
+cmnfcxusv0259uhv7wo207kak	cmnfcvbs901eluhv7c08tnomy	cmnfcqldy0007uhv7gx0b561v	You're ignoring the tactical setup completely	f	f	2026-04-01 01:18:51.439	2026-04-01 01:18:51.439	\N
+cmnfcxw9p025tuhv7hgzohw17	cmnfcr1en001suhv7xree1xdb	cmnfcqle10008uhv7xleeivtf	That’s not how the game actually played out	f	f	2026-04-01 01:18:53.341	2026-04-01 01:18:53.341	\N
+cmnfcxwf6025vuhv7puarnrs3	cmnfcuavw00zduhv7flpn0bk7	cmnfcqleb000cuhv7bxrx8k4b	Worst opinion I’ve seen today	f	f	2026-04-01 01:18:53.538	2026-04-01 01:18:53.538	\N
 \.
 
 
@@ -8887,6 +10654,7 @@ cmnf5tlix09apuh3l35cn4y0w	cmnf59tdf00ekuh3l5xl9ecvr	cmnf5734l003auh3lznt8814k	In
 --
 
 COPY public."ReplyVersion" (id, "replyId", "oldContent", "editedAt") FROM stdin;
+cmnf8uae8000buhpbvghyyf92	cmnf8sfk20001uhpbycpqjwj3	Yeeooo I can reply to a reply, that's sickkkk	2026-03-31 23:24:06.56
 \.
 
 
@@ -8903,6 +10671,7 @@ COPY public."Report" (id, "reporterId", "reportedItemId", reason, status, "creat
 --
 
 COPY public."ReportedItem" (id, "contentType", "contentId", "reportCount", status, "aiScore", "aiLabel", "aiExplanation", "aiModel", "aiUpdatedAt", "createdAt", "updatedAt", "lastReportedAt") FROM stdin;
+cmnf8sifh0009uhpbzqhuyquj	REPLY	cmnf8sfk20001uhpbycpqjwj3	1	pending	0.7187356948852539	toxic, obscene	toxic: 71.9%, obscene: 60.6%	moderate:unitary/toxic-bert	2026-03-31 23:24:09.935	2026-03-31 23:22:43.661	2026-03-31 23:24:09.942	\N
 \.
 
 
@@ -8911,6 +10680,26 @@ COPY public."ReportedItem" (id, "contentType", "contentId", "reportCount", statu
 --
 
 COPY public."Standing" (id, "teamId", "externalTeamId", season, "position", played, won, drawn, lost, "goalsFor", "goalsAgainst", points, "cachedAt", type) FROM stdin;
+cmnf6iie609bwuh3lzs8mti3w	cmnf548ha0009uhseksu2phrb	341	2025	15	31	7	12	12	37	48	33	2026-04-01 00:41:49.629	TOTAL
+cmnf6iica09btuh3lbil5pun3	cmnf548hr000huhse669r2oah	563	2025	18	31	7	8	16	36	57	29	2026-04-01 00:41:49.63	TOTAL
+cmnf6ii1c09bhuh3l1cr4fk0q	cmnf548em0000uhseg9lphrqa	57	2025	1	31	21	7	3	61	22	70	2026-04-01 00:41:49.61	TOTAL
+cmnf6ii1g09biuh3lalkkvwe8	cmnf548ho000fuhsei9tdazli	65	2025	2	30	18	7	5	60	28	61	2026-04-01 00:41:49.611	TOTAL
+cmnf6ii9m09bnuh3le0ozvon9	cmnf548h90008uhseg19mk30r	402	2025	7	31	13	7	11	46	42	46	2026-04-01 00:41:49.614	TOTAL
+cmnf6ii9p09bouh3ltzbj4kza	cmnf548ha000auhsekg2f0oot	62	2025	8	31	13	7	11	37	35	46	2026-04-01 00:41:49.625	TOTAL
+cmnf6iic609bsuh3lwrl6ow1u	cmnf548hj000euhse945fpqyk	351	2025	16	31	8	8	15	31	43	32	2026-04-01 00:41:49.629	TOTAL
+cmnf6iib809bruh3lzpj57b8v	cmnf548gh0003uhsel9vkpibt	328	2025	19	31	4	8	19	33	61	20	2026-04-01 00:41:49.631	TOTAL
+cmnf6ii1h09bkuh3lgbfws3bu	cmnf548h30005uhse46wx275v	58	2025	4	31	16	6	9	42	37	54	2026-04-01 00:41:49.612	TOTAL
+cmnf6ii9h09bmuh3lsjb0k1p7	cmnf548hb000duhse2eezx75m	61	2025	6	31	13	9	9	53	38	48	2026-04-01 00:41:49.613	TOTAL
+cmnf6iidt09buuh3lsm1o6e3l	cmnf548gu0004uhser9v0aboe	73	2025	17	31	7	9	15	40	50	30	2026-04-01 00:41:49.63	TOTAL
+cmnf6ii9q09bpuh3lhrxgfpk4	cmnf548h60007uhse14otrkul	63	2025	9	31	13	5	13	43	44	44	2026-04-01 00:41:49.626	TOTAL
+cmnf6iie509bvuh3lojlaffio	cmnf548hr000guhseayb6uzuu	354	2025	14	30	10	9	11	33	35	39	2026-04-01 00:41:49.628	TOTAL
+cmnf6iieh09byuh3l8v0ug5wv	cmnf548hb000buhsefuwic6dx	1044	2025	13	31	9	15	7	46	48	42	2026-04-01 00:41:49.628	TOTAL
+cmnf6iien09bzuh3lp42mrnsr	cmnf548hw000juhsen71wa95h	397	2025	10	31	11	10	10	41	37	43	2026-04-01 00:41:49.626	TOTAL
+cmnf6iiev09c0uh3lo230w9op	cmnf548gf0002uhsewxfgd4nd	71	2025	11	31	11	10	10	32	36	43	2026-04-01 00:41:49.627	TOTAL
+cmnf6iiec09bxuh3lxyhyryys	cmnf548g80001uhseq8eicwme	76	2025	20	31	3	8	20	24	54	17	2026-04-01 00:41:49.631	TOTAL
+cmnf6ii1g09bjuh3lghq6mm1k	cmnf548h50006uhseuq2stcaz	66	2025	3	31	15	10	6	56	43	55	2026-04-01 00:41:49.612	TOTAL
+cmnf6ii9f09bluh3lupfumpch	cmnf548ht000iuhse8t4eodeu	64	2025	5	31	14	7	10	50	42	49	2026-04-01 00:41:49.613	TOTAL
+cmnf6iib609bquh3lude6pxqx	cmnf548hb000cuhsec9ov4bjp	67	2025	12	31	12	6	13	44	45	42	2026-04-01 00:41:49.627	TOTAL
 \.
 
 
@@ -8935,6 +10724,11 @@ cmnf54o2500bguhsezf67dft5	match-thread	2026-03-31 21:40:12.335
 cmnf54o2800bhuhse6d2bts2j	live	2026-03-31 21:40:12.335
 cmnf57op0003ouh3l6gddjqm8	hot take	2026-03-31 21:42:33.157
 cmnf57osr003ruh3lt7khrfpk	debate	2026-03-31 21:42:33.291
+cmnfbpox000mkuhz6igkvhjgk	ref	2026-04-01 00:44:30.948
+cmnfbpoxm00mluhz6vg2kff21	ozil	2026-04-01 00:44:30.97
+cmnfbpoy300mmuhz6c4vfw2nu	foul	2026-04-01 00:44:30.988
+cmnfbpoyj00mnuhz6wp3pn75a	crazy	2026-04-01 00:44:31.003
+cmnfbpoz300mouhz6nuewrn64	red card	2026-04-01 00:44:31.023
 \.
 
 
@@ -9579,6 +11373,87 @@ cmnf5rmpc08j0uh3lk4s8dodv	Hot take discussion	cmnf572er0027uh3l5t2a2ymg	\N	\N	f	
 cmnf5rxi508mxuh3ll62ro5v8	Hot take discussion	cmnf572ee001yuh3lp0tzqqpg	\N	\N	f	f	f	\N	\N	2026-03-31 21:58:17.693
 cmnf5s4de08qhuh3l4qukxrdh	Hot take discussion	cmnf5734h0037uh3lmzxdes2n	\N	\N	f	f	f	\N	\N	2026-03-31 21:58:26.594
 cmnf5tfrg096nuh3lfp68aigv	Hot take discussion	cmnf5734l0039uh3lcphobguq	\N	\N	f	f	f	\N	\N	2026-03-31 21:59:28.012
+cmnfbpow400mhuhz68v9ki53e	Why did the ref give Ozil a red card????	cmnf548r30000uhtd7g7vaybf	\N	\N	f	f	f	\N	\N	2026-04-01 00:44:30.916
+cmnfcqqg5000luhv7l483637o	Liverpool injury concerns	cmnfcqlek000fuhv7ydofzkc9	\N	\N	f	f	f	\N	\N	2026-04-01 01:13:19.205
+cmnfcr172001quhv7bk9uw804	Arsenal lineup predictions for next match	cmnfcqlh1000juhv7dxofh1jg	\N	\N	f	f	f	\N	\N	2026-04-01 01:13:33.135
+cmnfcr2sw002nuhv7ckh2tw9k	Manchester City defensive issues	cmnfcqldt0005uhv7d4terocy	\N	\N	f	f	f	\N	\N	2026-04-01 01:13:35.216
+cmnfcr2ul002puhv7v6p68bld	Manchester City vs Real Madrid – Tactical Breakdown	cmnfcqle40009uhv72zt9hg5l	\N	\N	f	f	f	\N	\N	2026-04-01 01:13:35.277
+cmnfcr4d4003duhv7as1a9wwm	Saka vs Bellingham – who are you taking?	cmnfcqldo0003uhv77gqzh84t	\N	\N	f	f	f	\N	\N	2026-04-01 01:13:37.241
+cmnfcredw004guhv79bgkuh32	De Bruyne vs Vinicius Jr – who are you taking?	cmnfcqldo0003uhv77gqzh84t	\N	\N	f	f	f	\N	\N	2026-04-01 01:13:50.228
+cmnfcrhyh005luhv7ylj162nc	Liverpool injury concerns	cmnfcqldo0003uhv77gqzh84t	\N	\N	f	f	f	\N	\N	2026-04-01 01:13:54.857
+cmnfcrzkz007kuhv7o22dznts	Barcelona vs Bayern Munich – Tactical Breakdown	cmnfcqldo0003uhv77gqzh84t	\N	\N	f	f	f	\N	\N	2026-04-01 01:14:17.699
+cmnfcsf1t0082uhv7bsj0v7ec	Mbappé vs Kane – who are you taking?	cmnfcqlh1000juhv7dxofh1jg	\N	\N	f	f	f	\N	\N	2026-04-01 01:14:37.746
+cmnfcsi6p00a6uhv72pugyahq	Bayern Munich injury concerns	cmnfcqle40009uhv72zt9hg5l	\N	\N	f	f	f	\N	\N	2026-04-01 01:14:41.809
+cmnfcsi7l00acuhv70gmb60w4	Bayern Munich title chances this season	cmnfcqldo0003uhv77gqzh84t	\N	\N	f	f	f	\N	\N	2026-04-01 01:14:41.841
+cmnfcslid00bjuhv7fxz4wn6m	Bayern Munich vs Arsenal – Tactical Breakdown	cmnfcqldo0003uhv77gqzh84t	\N	\N	f	f	f	\N	\N	2026-04-01 01:14:46.117
+cmnfcslqo00byuhv79p1tv6xb	Vinicius Jr vs De Bruyne – who are you taking?	cmnfcqldt0005uhv7d4terocy	\N	\N	f	f	f	\N	\N	2026-04-01 01:14:46.416
+cmnfcsmmt00ceuhv7lv7706a3	Liverpool title chances this season	cmnfcqle40009uhv72zt9hg5l	\N	\N	f	f	f	\N	\N	2026-04-01 01:14:47.573
+cmnfcssp800e5uhv7t7yu3d3v	Barcelona lineup predictions for next match	cmnfcqle40009uhv72zt9hg5l	\N	\N	f	f	f	\N	\N	2026-04-01 01:14:55.436
+cmnfcstpb00efuhv7x18e6mtd	Is Pedri the best in the world right now?	cmnfcqlh1000juhv7dxofh1jg	\N	\N	f	f	f	\N	\N	2026-04-01 01:14:56.735
+cmnfcstyt00ekuhv78dydcveq	Best Manchester City XI of the last decade	cmnfcqldo0003uhv77gqzh84t	\N	\N	f	f	f	\N	\N	2026-04-01 01:14:57.077
+cmnfcsyit00g9uhv73p99qpbo	Liverpool lineup predictions for next match	cmnfcqle40009uhv72zt9hg5l	\N	\N	f	f	f	\N	\N	2026-04-01 01:15:02.981
+cmnfcszm700gjuhv71ro4wcv7	Best Bayern Munich XI of the last decade	cmnfcqldt0005uhv7d4terocy	\N	\N	f	f	f	\N	\N	2026-04-01 01:15:04.399
+cmnfct4np00hvuhv7wo6y0q5i	Barcelona defensive issues	cmnfcqldt0005uhv7d4terocy	\N	\N	f	f	f	\N	\N	2026-04-01 01:15:10.933
+cmnfctab600k4uhv7xlmpcnyw	Barcelona title chances this season	cmnfcqle40009uhv72zt9hg5l	\N	\N	f	f	f	\N	\N	2026-04-01 01:15:18.258
+cmnfctayk00keuhv7ao93ydeb	Manchester City transfer window discussion	cmnfcqldt0005uhv7d4terocy	\N	\N	f	f	f	\N	\N	2026-04-01 01:15:19.1
+cmnfctg6500lpuhv7x7txps20	Real Madrid lineup predictions for next match	cmnfcqldo0003uhv77gqzh84t	\N	\N	f	f	f	\N	\N	2026-04-01 01:15:25.853
+cmnfcth4t00mouhv79vkbad14	Liverpool transfer window discussion	cmnfcqle40009uhv72zt9hg5l	\N	\N	f	f	f	\N	\N	2026-04-01 01:15:27.101
+cmnfctj2k00n6uhv7fgsp8nfq	Real Madrid defensive issues	cmnfcqldo0003uhv77gqzh84t	\N	\N	f	f	f	\N	\N	2026-04-01 01:15:29.611
+cmnfctjo100neuhv7c9mawaag	Real Madrid vs Liverpool – Tactical Breakdown	cmnfcqlek000fuhv7ydofzkc9	\N	\N	f	f	f	\N	\N	2026-04-01 01:15:30.385
+cmnfctkye00o5uhv7dogypdf0	Barcelona injury concerns	cmnfcqle40009uhv72zt9hg5l	\N	\N	f	f	f	\N	\N	2026-04-01 01:15:32.054
+cmnfctnry00p8uhv7h5ob7emt	Real Madrid vs Barcelona – Tactical Breakdown	cmnfcqldt0005uhv7d4terocy	\N	\N	f	f	f	\N	\N	2026-04-01 01:15:35.71
+cmnfctu1n00smuhv7fxkayvby	Liverpool lineup predictions for next match	cmnfcqle40009uhv72zt9hg5l	\N	\N	f	f	f	\N	\N	2026-04-01 01:15:43.835
+cmnfctvqs00t4uhv7cp30ec0c	Manchester City lineup predictions for next match	cmnfcqlh1000juhv7dxofh1jg	\N	\N	f	f	f	\N	\N	2026-04-01 01:15:46.036
+cmnfctw6r00t8uhv77nhwioyv	Real Madrid pressing system analysis	cmnfcqlek000fuhv7ydofzkc9	\N	\N	f	f	f	\N	\N	2026-04-01 01:15:46.611
+cmnfctwgk00touhv7im45m6eb	Liverpool pressing system analysis	cmnfcqle40009uhv72zt9hg5l	\N	\N	f	f	f	\N	\N	2026-04-01 01:15:46.965
+cmnfctz7z00upuhv7r5ilgkhu	Mbappé vs Vinicius Jr – who are you taking?	cmnfcqle40009uhv72zt9hg5l	\N	\N	f	f	f	\N	\N	2026-04-01 01:15:50.543
+cmnfcu0j000v8uhv7zmv9ct6o	Real Madrid defensive issues	cmnfcqldo0003uhv77gqzh84t	\N	\N	f	f	f	\N	\N	2026-04-01 01:15:52.236
+cmnfcu0kn00vduhv7efbzqmgp	Arsenal title chances this season	cmnfcqlh1000juhv7dxofh1jg	\N	\N	f	f	f	\N	\N	2026-04-01 01:15:52.295
+cmnfcu86p00y0uhv7f32c9yad	Liverpool title chances this season	cmnfcqldo0003uhv77gqzh84t	\N	\N	f	f	f	\N	\N	2026-04-01 01:16:02.161
+cmnfcuapj00zbuhv7ck4mi4wf	Manchester City transfer window discussion	cmnfcqldt0005uhv7d4terocy	\N	\N	f	f	f	\N	\N	2026-04-01 01:16:05.432
+cmnfcucsg0102uhv7x7oztcvc	Real Madrid transfer window discussion	cmnfcqlh1000juhv7dxofh1jg	\N	\N	f	f	f	\N	\N	2026-04-01 01:16:08.129
+cmnfcucuz0104uhv7v1zjjalg	Is Haaland the best in the world right now?	cmnfcqldo0003uhv77gqzh84t	\N	\N	f	f	f	\N	\N	2026-04-01 01:16:08.219
+cmnfcufg9011juhv7qw7vd6tk	Liverpool title chances this season	cmnfcqldt0005uhv7d4terocy	\N	\N	f	f	f	\N	\N	2026-04-01 01:16:11.577
+cmnfcuhd10122uhv7bg2ytk7w	Best Manchester City XI of the last decade	cmnfcqlek000fuhv7ydofzkc9	\N	\N	f	f	f	\N	\N	2026-04-01 01:16:14.053
+cmnfcui22012euhv7ejkx4c2y	Is De Bruyne the best in the world right now?	cmnfcqldt0005uhv7d4terocy	\N	\N	f	f	f	\N	\N	2026-04-01 01:16:14.954
+cmnfculps0149uhv7zysc23o3	Manchester City pressing system analysis	cmnfcqlh1000juhv7dxofh1jg	\N	\N	f	f	f	\N	\N	2026-04-01 01:16:19.696
+cmnfcusx0015uuhv7cyg578r0	Best Arsenal XI of the last decade	cmnfcqlh1000juhv7dxofh1jg	\N	\N	f	f	f	\N	\N	2026-04-01 01:16:29.028
+cmnfcuwny0174uhv7498p0wk2	Manchester City injury concerns	cmnfcqlh1000juhv7dxofh1jg	\N	\N	f	f	f	\N	\N	2026-04-01 01:16:33.886
+cmnfcv1uw0191uhv7oup6bju2	Haaland vs Pedri – who are you taking?	cmnfcqle40009uhv72zt9hg5l	\N	\N	f	f	f	\N	\N	2026-04-01 01:16:40.616
+cmnfcv3zf01abuhv7x6x2e4ft	Arsenal title chances this season	cmnfcqldt0005uhv7d4terocy	\N	\N	f	f	f	\N	\N	2026-04-01 01:16:43.371
+cmnfcv5ta01bhuhv7s4r48toh	Is Bellingham the best in the world right now?	cmnfcqle40009uhv72zt9hg5l	\N	\N	f	f	f	\N	\N	2026-04-01 01:16:45.743
+cmnfcv5zz01bluhv7yri5ij5v	Manchester City transfer window discussion	cmnfcqldo0003uhv77gqzh84t	\N	\N	f	f	f	\N	\N	2026-04-01 01:16:45.983
+cmnfcvay401dnuhv79tqtx44i	Real Madrid injury concerns	cmnfcqlh1000juhv7dxofh1jg	\N	\N	f	f	f	\N	\N	2026-04-01 01:16:52.397
+cmnfcvblr01ejuhv73p2wv52s	Vinicius Jr vs Pedri – who are you taking?	cmnfcqldt0005uhv7d4terocy	\N	\N	f	f	f	\N	\N	2026-04-01 01:16:53.247
+cmnfcvcy101etuhv7n0ew2hwa	Manchester City transfer window discussion	cmnfcqle40009uhv72zt9hg5l	\N	\N	f	f	f	\N	\N	2026-04-01 01:16:54.985
+cmnfcvh8801fuuhv7infcc7ec	Arsenal vs Liverpool – Tactical Breakdown	cmnfcqle40009uhv72zt9hg5l	\N	\N	f	f	f	\N	\N	2026-04-01 01:17:00.536
+cmnfcvkkb01gluhv72cpb8yey	Barcelona vs Bayern Munich – Tactical Breakdown	cmnfcqlek000fuhv7ydofzkc9	\N	\N	f	f	f	\N	\N	2026-04-01 01:17:04.859
+cmnfcwh7h01qruhv78t39a5li	Liverpool defensive issues	cmnfcqlh1000juhv7dxofh1jg	\N	\N	f	f	f	\N	\N	2026-04-01 01:17:47.165
+cmnfcwpvf01tmuhv7kpsy0slf	Is Musiala the best in the world right now?	cmnfcqldy0007uhv7gx0b561v	\N	\N	f	f	f	\N	\N	2026-04-01 01:17:58.395
+cmnfcvfha01fhuhv752mitjiy	Barcelona vs Liverpool – Tactical Breakdown	cmnfcqldt0005uhv7d4terocy	\N	\N	f	f	f	\N	\N	2026-04-01 01:16:58.27
+cmnfcvh7s01fsuhv75hy6do6w	Bayern Munich defensive issues	cmnfcqlek000fuhv7ydofzkc9	\N	\N	f	f	f	\N	\N	2026-04-01 01:17:00.521
+cmnfcvnl401i0uhv7e9vcnem2	Barcelona title chances this season	cmnfcqlek000fuhv7ydofzkc9	\N	\N	f	f	f	\N	\N	2026-04-01 01:17:08.777
+cmnfcvosy01iguhv7s5xvb19g	Liverpool vs Real Madrid – Tactical Breakdown	cmnfcqldo0003uhv77gqzh84t	\N	\N	f	f	f	\N	\N	2026-04-01 01:17:10.355
+cmnfcvowb01ijuhv71k0hkybe	Bayern Munich vs Arsenal – Tactical Breakdown	cmnfcqle40009uhv72zt9hg5l	\N	\N	f	f	f	\N	\N	2026-04-01 01:17:10.475
+cmnfcvqp701jauhv7l7v1i5pi	Bayern Munich vs Liverpool – Tactical Breakdown	cmnfcqlek000fuhv7ydofzkc9	\N	\N	f	f	f	\N	\N	2026-04-01 01:17:12.811
+cmnfcvree01jiuhv7wud9voxw	Manchester City transfer window discussion	cmnfcqldo0003uhv77gqzh84t	\N	\N	f	f	f	\N	\N	2026-04-01 01:17:13.718
+cmnfcvsrf01khuhv7bsb1gb7v	Arsenal vs Manchester City – Tactical Breakdown	cmnfcqlek000fuhv7ydofzkc9	\N	\N	f	f	f	\N	\N	2026-04-01 01:17:15.483
+cmnfcvtln01l4uhv74szbnyty	Liverpool defensive issues	cmnfcqldo0003uhv77gqzh84t	\N	\N	f	f	f	\N	\N	2026-04-01 01:17:16.571
+cmnfcvyj501mtuhv7ym8os71r	Manchester City title chances this season	cmnfcqle40009uhv72zt9hg5l	\N	\N	f	f	f	\N	\N	2026-04-01 01:17:22.961
+cmnfcw5pb01ohuhv7g7qv2w9j	Manchester City transfer window discussion	cmnfcqldt0005uhv7d4terocy	\N	\N	f	f	f	\N	\N	2026-04-01 01:17:32.255
+cmnfcw86q01owuhv7gaaksf3t	Arsenal defensive issues	cmnfcqlek000fuhv7ydofzkc9	\N	\N	f	f	f	\N	\N	2026-04-01 01:17:35.474
+cmnfcwefc01pwuhv7aroktu7j	Manchester City pressing system analysis	cmnfcqlh1000juhv7dxofh1jg	\N	\N	f	f	f	\N	\N	2026-04-01 01:17:43.56
+cmnfcwni001spuhv7uyouoj6k	Barcelona lineup predictions for next match	cmnfcqle10008uhv7xleeivtf	\N	\N	f	f	f	\N	\N	2026-04-01 01:17:55.32
+cmnfcwp8701tguhv7dz3ksjjy	Saka vs De Bruyne – who are you taking?	cmnfcqle9000buhv78pneu9lv	\N	\N	f	f	f	\N	\N	2026-04-01 01:17:57.559
+cmnfcx06j01xduhv7spe80rx8	Manchester City transfer window discussion	cmnfcqle10008uhv7xleeivtf	\N	\N	f	f	f	\N	\N	2026-04-01 01:18:11.755
+cmnfcx7le01zfuhv7aoumyc72	Barcelona vs Bayern Munich – Tactical Breakdown	cmnfcqldy0007uhv7gx0b561v	\N	\N	f	f	f	\N	\N	2026-04-01 01:18:21.362
+cmnfcxak5020quhv7gy48pmya	Arsenal vs Bayern Munich – Tactical Breakdown	cmnfcqle9000buhv78pneu9lv	\N	\N	f	f	f	\N	\N	2026-04-01 01:18:25.205
+cmnfcxkgw0230uhv7aa8uy8yu	Arsenal vs Barcelona – Tactical Breakdown	cmnfcqleb000cuhv7bxrx8k4b	\N	\N	f	f	f	\N	\N	2026-04-01 01:18:38.048
+cmnfcxtqu024puhv7kblcv6vd	Liverpool title chances this season	cmnfcqldv0006uhv7rhgmfmtl	\N	\N	f	f	f	\N	\N	2026-04-01 01:18:50.07
+cmnfcxw0d025puhv7df5o1skz	Best Barcelona XI of the last decade	cmnfcqle9000buhv78pneu9lv	\N	\N	f	f	f	\N	\N	2026-04-01 01:18:53.005
+cmnfcxwgs025zuhv7gw9czm3i	Best Barcelona XI of the last decade	cmnfcqldy0007uhv7gx0b561v	\N	\N	f	f	f	\N	\N	2026-04-01 01:18:53.596
+cmnfcxwn7026duhv7kw0xfj52	Manchester City lineup predictions for next match	cmnfcqldv0006uhv7rhgmfmtl	\N	\N	f	f	f	\N	\N	2026-04-01 01:18:53.827
+cmnfcxxtc0276uhv777yj1400	Is De Bruyne the best in the world right now?	cmnfcqle10008uhv7xleeivtf	\N	\N	f	f	f	\N	\N	2026-04-01 01:18:55.344
 \.
 
 
@@ -10324,6 +12199,44 @@ cmnf5pul907tquh3lt1h35cb2	cmnf57op0003ouh3l6gddjqm8
 cmnf5pul907tquh3lt1h35cb2	cmnf57osr003ruh3lt7khrfpk
 cmnf5q2f807y5uh3lrftn1lut	cmnf57op0003ouh3l6gddjqm8
 cmnf5q2f807y5uh3lrftn1lut	cmnf57osr003ruh3lt7khrfpk
+cmnfcrzkz007kuhv7o22dznts	cmnf54o0x00b6uhsegkiqfiqh
+cmnfcrzkz007kuhv7o22dznts	cmnf54o0x00b5uhsezh191xhu
+cmnfcslid00bjuhv7fxz4wn6m	cmnf54o0x00b6uhsegkiqfiqh
+cmnfcslid00bjuhv7fxz4wn6m	cmnf54o0x00b5uhsezh191xhu
+cmnfcsmmt00ceuhv7lv7706a3	cmnf54o1800bbuhsewjpis97y
+cmnfcsmmt00ceuhv7lv7706a3	cmnf54o0v00b4uhseg94wplz6
+cmnfcssp800e5uhv7t7yu3d3v	cmnf54o1v00bduhsekso1ezyc
+cmnfcssp800e5uhv7t7yu3d3v	cmnf54o0v00b4uhseg94wplz6
+cmnfcstpb00efuhv7x18e6mtd	cmnf54o1600b9uhse96fmb1mm
+cmnfcstpb00efuhv7x18e6mtd	cmnf54o0v00b4uhseg94wplz6
+cmnfcsyit00g9uhv73p99qpbo	cmnf54o1v00bduhsekso1ezyc
+cmnfcsyit00g9uhv73p99qpbo	cmnf54o0v00b4uhseg94wplz6
+cmnfcszm700gjuhv71ro4wcv7	cmnf54o1z00beuhsexo1hxblb
+cmnfcszm700gjuhv71ro4wcv7	cmnf54o0v00b4uhseg94wplz6
+cmnfct4np00hvuhv7wo6y0q5i	cmnf54o0x00b6uhsegkiqfiqh
+cmnfct4np00hvuhv7wo6y0q5i	cmnf54o0x00b5uhsezh191xhu
+cmnfctg6500lpuhv7x7txps20	cmnf54o1v00bduhsekso1ezyc
+cmnfctg6500lpuhv7x7txps20	cmnf54o0v00b4uhseg94wplz6
+cmnfctnry00p8uhv7h5ob7emt	cmnf54o0x00b6uhsegkiqfiqh
+cmnfctnry00p8uhv7h5ob7emt	cmnf54o0x00b5uhsezh191xhu
+cmnfctw6r00t8uhv77nhwioyv	cmnf54o0x00b6uhsegkiqfiqh
+cmnfctw6r00t8uhv77nhwioyv	cmnf54o0x00b5uhsezh191xhu
+cmnfcu86p00y0uhv7f32c9yad	cmnf54o1800bbuhsewjpis97y
+cmnfcu86p00y0uhv7f32c9yad	cmnf54o0v00b4uhseg94wplz6
+cmnfcucuz0104uhv7v1zjjalg	cmnf54o1600b9uhse96fmb1mm
+cmnfcucuz0104uhv7v1zjjalg	cmnf54o0v00b4uhseg94wplz6
+cmnfculps0149uhv7zysc23o3	cmnf54o0x00b6uhsegkiqfiqh
+cmnfculps0149uhv7zysc23o3	cmnf54o0x00b5uhsezh191xhu
+cmnfcv3zf01abuhv7x6x2e4ft	cmnf54o1800bbuhsewjpis97y
+cmnfcv3zf01abuhv7x6x2e4ft	cmnf54o0v00b4uhseg94wplz6
+cmnfcvowb01ijuhv71k0hkybe	cmnf54o0x00b6uhsegkiqfiqh
+cmnfcvowb01ijuhv71k0hkybe	cmnf54o0x00b5uhsezh191xhu
+cmnfcvqp701jauhv7l7v1i5pi	cmnf54o0x00b6uhsegkiqfiqh
+cmnfcvqp701jauhv7l7v1i5pi	cmnf54o0x00b5uhsezh191xhu
+cmnfcw5pb01ohuhv7g7qv2w9j	cmnf54o1400b8uhsekxlyd3q1
+cmnfcw5pb01ohuhv7g7qv2w9j	cmnf54o0y00b7uhse6ehjr19e
+cmnfcw86q01owuhv7gaaksf3t	cmnf54o0x00b6uhsegkiqfiqh
+cmnfcw86q01owuhv7gaaksf3t	cmnf54o0x00b5uhsezh191xhu
 cmnf54p0j00vhuhsexrq1sevm	cmnf54o1v00bduhsekso1ezyc
 cmnf54p0b00v9uhseeqcmelbe	cmnf54o2500bguhsezf67dft5
 cmnf54r6800wvuhsekr14h5bd	cmnf54o1400b8uhsekxlyd3q1
@@ -10393,6 +12306,32 @@ cmnf5q6h9080wuh3lto6wjqwi	cmnf57op0003ouh3l6gddjqm8
 cmnf5q6h9080wuh3lto6wjqwi	cmnf57osr003ruh3lt7khrfpk
 cmnf5qafw082ouh3ljghc6g9d	cmnf57op0003ouh3l6gddjqm8
 cmnf5qafw082ouh3ljghc6g9d	cmnf57osr003ruh3lt7khrfpk
+cmnfcsf1t0082uhv7bsj0v7ec	cmnf57osr003ruh3lt7khrfpk
+cmnfcsf1t0082uhv7bsj0v7ec	cmnf54o1600b9uhse96fmb1mm
+cmnfcsi6p00a6uhv72pugyahq	cmnf54o1700bauhser2jnjxon
+cmnfcsi6p00a6uhv72pugyahq	cmnf54o0v00b4uhseg94wplz6
+cmnfcth4t00mouhv79vkbad14	cmnf54o1400b8uhsekxlyd3q1
+cmnfcth4t00mouhv79vkbad14	cmnf54o0y00b7uhse6ehjr19e
+cmnfctjo100neuhv7c9mawaag	cmnf54o0x00b6uhsegkiqfiqh
+cmnfctjo100neuhv7c9mawaag	cmnf54o0x00b5uhsezh191xhu
+cmnfctkye00o5uhv7dogypdf0	cmnf54o1700bauhser2jnjxon
+cmnfctkye00o5uhv7dogypdf0	cmnf54o0v00b4uhseg94wplz6
+cmnfctvqs00t4uhv7cp30ec0c	cmnf54o1v00bduhsekso1ezyc
+cmnfctvqs00t4uhv7cp30ec0c	cmnf54o0v00b4uhseg94wplz6
+cmnfcuapj00zbuhv7ck4mi4wf	cmnf54o1400b8uhsekxlyd3q1
+cmnfcuapj00zbuhv7ck4mi4wf	cmnf54o0y00b7uhse6ehjr19e
+cmnfcucsg0102uhv7x7oztcvc	cmnf54o1400b8uhsekxlyd3q1
+cmnfcucsg0102uhv7x7oztcvc	cmnf54o0y00b7uhse6ehjr19e
+cmnfcuhd10122uhv7bg2ytk7w	cmnf54o1z00beuhsexo1hxblb
+cmnfcuhd10122uhv7bg2ytk7w	cmnf54o0v00b4uhseg94wplz6
+cmnfcv5ta01bhuhv7s4r48toh	cmnf54o1600b9uhse96fmb1mm
+cmnfcv5ta01bhuhv7s4r48toh	cmnf54o0v00b4uhseg94wplz6
+cmnfcvay401dnuhv79tqtx44i	cmnf54o1700bauhser2jnjxon
+cmnfcvay401dnuhv79tqtx44i	cmnf54o0v00b4uhseg94wplz6
+cmnfcvfha01fhuhv752mitjiy	cmnf54o0x00b6uhsegkiqfiqh
+cmnfcvfha01fhuhv752mitjiy	cmnf54o0x00b5uhsezh191xhu
+cmnfcvh7s01fsuhv75hy6do6w	cmnf54o0x00b6uhsegkiqfiqh
+cmnfcvh7s01fsuhv75hy6do6w	cmnf54o0x00b5uhsezh191xhu
 cmnf54ozz00uvuhse406ch558	cmnf54o1v00bduhsekso1ezyc
 cmnf54p0j00vhuhsexrq1sevm	cmnf54o2800bhuhse6d2bts2j
 cmnf54r6800wvuhsekr14h5bd	cmnf54o1800bbuhsewjpis97y
@@ -10457,6 +12396,26 @@ cmnf5s4de08qhuh3l4qukxrdh	cmnf57op0003ouh3l6gddjqm8
 cmnf5s4de08qhuh3l4qukxrdh	cmnf57osr003ruh3lt7khrfpk
 cmnf5tfrg096nuh3lfp68aigv	cmnf57op0003ouh3l6gddjqm8
 cmnf5tfrg096nuh3lfp68aigv	cmnf57osr003ruh3lt7khrfpk
+cmnfcsi7l00acuhv70gmb60w4	cmnf54o1800bbuhsewjpis97y
+cmnfcsi7l00acuhv70gmb60w4	cmnf54o0v00b4uhseg94wplz6
+cmnfcslqo00byuhv79p1tv6xb	cmnf57osr003ruh3lt7khrfpk
+cmnfcslqo00byuhv79p1tv6xb	cmnf54o1600b9uhse96fmb1mm
+cmnfcstyt00ekuhv78dydcveq	cmnf54o1z00beuhsexo1hxblb
+cmnfcstyt00ekuhv78dydcveq	cmnf54o0v00b4uhseg94wplz6
+cmnfctayk00keuhv7ao93ydeb	cmnf54o1400b8uhsekxlyd3q1
+cmnfctayk00keuhv7ao93ydeb	cmnf54o0y00b7uhse6ehjr19e
+cmnfctu1n00smuhv7fxkayvby	cmnf54o1v00bduhsekso1ezyc
+cmnfctu1n00smuhv7fxkayvby	cmnf54o0v00b4uhseg94wplz6
+cmnfctwgk00touhv7im45m6eb	cmnf54o0x00b6uhsegkiqfiqh
+cmnfctwgk00touhv7im45m6eb	cmnf54o0x00b5uhsezh191xhu
+cmnfcu0j000v8uhv7zmv9ct6o	cmnf54o0x00b6uhsegkiqfiqh
+cmnfcu0j000v8uhv7zmv9ct6o	cmnf54o0x00b5uhsezh191xhu
+cmnfcui22012euhv7ejkx4c2y	cmnf54o1600b9uhse96fmb1mm
+cmnfcui22012euhv7ejkx4c2y	cmnf54o0v00b4uhseg94wplz6
+cmnfcusx0015uuhv7cyg578r0	cmnf54o1z00beuhsexo1hxblb
+cmnfcusx0015uuhv7cyg578r0	cmnf54o0v00b4uhseg94wplz6
+cmnfcuwny0174uhv7498p0wk2	cmnf54o1700bauhser2jnjxon
+cmnfcuwny0174uhv7498p0wk2	cmnf54o0v00b4uhseg94wplz6
 cmnf54p0j00vhuhsexrq1sevm	cmnf54o0x00b5uhsezh191xhu
 cmnf54r6800wuuhseplgnq1vc	cmnf54o0v00b4uhseg94wplz6
 cmnf54r6900x1uhsekhlyz31f	cmnf54o1900bcuhseojfw1wfi
@@ -10497,6 +12456,24 @@ cmnf5ny6206vguh3luxqlhgor	cmnf57op0003ouh3l6gddjqm8
 cmnf5ny6206vguh3luxqlhgor	cmnf57osr003ruh3lt7khrfpk
 cmnf5qgx10869uh3loy55q9fz	cmnf57op0003ouh3l6gddjqm8
 cmnf5qgx10869uh3loy55q9fz	cmnf57osr003ruh3lt7khrfpk
+cmnfcufg9011juhv7qw7vd6tk	cmnf54o1800bbuhsewjpis97y
+cmnfcufg9011juhv7qw7vd6tk	cmnf54o0v00b4uhseg94wplz6
+cmnfcv1uw0191uhv7oup6bju2	cmnf57osr003ruh3lt7khrfpk
+cmnfcv1uw0191uhv7oup6bju2	cmnf54o1600b9uhse96fmb1mm
+cmnfcv5zz01bluhv7yri5ij5v	cmnf54o1400b8uhsekxlyd3q1
+cmnfcv5zz01bluhv7yri5ij5v	cmnf54o0y00b7uhse6ehjr19e
+cmnfcvblr01ejuhv73p2wv52s	cmnf57osr003ruh3lt7khrfpk
+cmnfcvblr01ejuhv73p2wv52s	cmnf54o1600b9uhse96fmb1mm
+cmnfcvcy101etuhv7n0ew2hwa	cmnf54o1400b8uhsekxlyd3q1
+cmnfcvcy101etuhv7n0ew2hwa	cmnf54o0y00b7uhse6ehjr19e
+cmnfcvh8801fuuhv7infcc7ec	cmnf54o0x00b6uhsegkiqfiqh
+cmnfcvh8801fuuhv7infcc7ec	cmnf54o0x00b5uhsezh191xhu
+cmnfcvkkb01gluhv72cpb8yey	cmnf54o0x00b6uhsegkiqfiqh
+cmnfcvkkb01gluhv72cpb8yey	cmnf54o0x00b5uhsezh191xhu
+cmnfcwh7h01qruhv78t39a5li	cmnf54o0x00b6uhsegkiqfiqh
+cmnfcwh7h01qruhv78t39a5li	cmnf54o0x00b5uhsezh191xhu
+cmnfcwpvf01tmuhv7kpsy0slf	cmnf54o1600b9uhse96fmb1mm
+cmnfcwpvf01tmuhv7kpsy0slf	cmnf54o0v00b4uhseg94wplz6
 cmnf54o7o00bsuhseujmjwl37	cmnf54o2800bhuhse6d2bts2j
 cmnf54ojp00cfuhsemp9z2iw5	cmnf54o2500bguhsezf67dft5
 cmnf54o7q00bzuhsemm7eekkx	cmnf54o0x00b6uhsegkiqfiqh
@@ -10629,6 +12606,8 @@ cmnf5tbbh094luh3lu0lv1b7i	cmnf57op0003ouh3l6gddjqm8
 cmnf5tbbh094luh3lu0lv1b7i	cmnf57osr003ruh3lt7khrfpk
 cmnf5tims098ruh3lnpiygwif	cmnf57op0003ouh3l6gddjqm8
 cmnf5tims098ruh3lnpiygwif	cmnf57osr003ruh3lt7khrfpk
+cmnfcwefc01pwuhv7aroktu7j	cmnf54o0x00b6uhsegkiqfiqh
+cmnfcwefc01pwuhv7aroktu7j	cmnf54o0x00b5uhsezh191xhu
 cmnf54r6q00xduhse5zq1pt10	cmnf54o0v00b4uhseg94wplz6
 cmnf54r6u00xiuhseh2k9gc2b	cmnf54o1700bauhser2jnjxon
 cmnf54r6y00xnuhsenu6fa7em	cmnf54o1800bbuhsewjpis97y
@@ -10660,6 +12639,10 @@ cmnf5s0gj08o7uh3l2sl9ztck	cmnf57op0003ouh3l6gddjqm8
 cmnf5s0gj08o7uh3l2sl9ztck	cmnf57osr003ruh3lt7khrfpk
 cmnf5t2de090euh3l8covp7ay	cmnf57op0003ouh3l6gddjqm8
 cmnf5t2de090euh3l8covp7ay	cmnf57osr003ruh3lt7khrfpk
+cmnfcwni001spuhv7uyouoj6k	cmnf54o1v00bduhsekso1ezyc
+cmnfcwni001spuhv7uyouoj6k	cmnf54o0v00b4uhseg94wplz6
+cmnfcwp8701tguhv7dz3ksjjy	cmnf57osr003ruh3lt7khrfpk
+cmnfcwp8701tguhv7dz3ksjjy	cmnf54o1600b9uhse96fmb1mm
 cmnf57ofv003duh3lxgekr9jy	cmnf57op0003ouh3l6gddjqm8
 cmnf57ofv003duh3lxgekr9jy	cmnf57osr003ruh3lt7khrfpk
 cmnf5rikb08gjuh3lc6p4n7wb	cmnf57op0003ouh3l6gddjqm8
@@ -10680,6 +12663,12 @@ cmnf5t3oy090quh3lhlsh2inz	cmnf57op0003ouh3l6gddjqm8
 cmnf5t3oy090quh3lhlsh2inz	cmnf57osr003ruh3lt7khrfpk
 cmnf5tipe098xuh3lb90wh298	cmnf57op0003ouh3l6gddjqm8
 cmnf5tipe098xuh3lb90wh298	cmnf57osr003ruh3lt7khrfpk
+cmnfcx06j01xduhv7spe80rx8	cmnf54o1400b8uhsekxlyd3q1
+cmnfcx06j01xduhv7spe80rx8	cmnf54o0y00b7uhse6ehjr19e
+cmnfcx7le01zfuhv7aoumyc72	cmnf54o0x00b6uhsegkiqfiqh
+cmnfcx7le01zfuhv7aoumyc72	cmnf54o0x00b5uhsezh191xhu
+cmnfcxw0d025puhv7df5o1skz	cmnf54o1z00beuhsexo1hxblb
+cmnfcxw0d025puhv7df5o1skz	cmnf54o0v00b4uhseg94wplz6
 cmnf58lap005yuh3l9i5h2j8f	cmnf57op0003ouh3l6gddjqm8
 cmnf58lap005yuh3l9i5h2j8f	cmnf57osr003ruh3lt7khrfpk
 cmnf5rj6t08gruh3lk14ologu	cmnf57op0003ouh3l6gddjqm8
@@ -10702,6 +12691,12 @@ cmnf5sj4j08ueuh3ldb18r2va	cmnf57op0003ouh3l6gddjqm8
 cmnf5sj4j08ueuh3ldb18r2va	cmnf57osr003ruh3lt7khrfpk
 cmnf5sw9o08y5uh3lozc1ub6v	cmnf57op0003ouh3l6gddjqm8
 cmnf5sw9o08y5uh3lozc1ub6v	cmnf57osr003ruh3lt7khrfpk
+cmnfcxak5020quhv7gy48pmya	cmnf54o0x00b6uhsegkiqfiqh
+cmnfcxak5020quhv7gy48pmya	cmnf54o0x00b5uhsezh191xhu
+cmnfcxkgw0230uhv7aa8uy8yu	cmnf54o0x00b6uhsegkiqfiqh
+cmnfcxkgw0230uhv7aa8uy8yu	cmnf54o0x00b5uhsezh191xhu
+cmnfcxwgs025zuhv7gw9czm3i	cmnf54o1z00beuhsexo1hxblb
+cmnfcxwgs025zuhv7gw9czm3i	cmnf54o0v00b4uhseg94wplz6
 cmnf58lb70060uh3lnytid6d5	cmnf57op0003ouh3l6gddjqm8
 cmnf58lb70060uh3lnytid6d5	cmnf57osr003ruh3lt7khrfpk
 cmnf59tay00eeuh3luedi1zj7	cmnf57op0003ouh3l6gddjqm8
@@ -10714,6 +12709,12 @@ cmnf5jh2g04nluh3ldyogoyii	cmnf57op0003ouh3l6gddjqm8
 cmnf5jh2g04nluh3ldyogoyii	cmnf57osr003ruh3lt7khrfpk
 cmnf5jl8j04pwuh3l5edgl8z7	cmnf57op0003ouh3l6gddjqm8
 cmnf5jl8j04pwuh3l5edgl8z7	cmnf57osr003ruh3lt7khrfpk
+cmnfcxtqu024puhv7kblcv6vd	cmnf54o1800bbuhsewjpis97y
+cmnfcxtqu024puhv7kblcv6vd	cmnf54o0v00b4uhseg94wplz6
+cmnfcxwn7026duhv7kw0xfj52	cmnf54o1v00bduhsekso1ezyc
+cmnfcxwn7026duhv7kw0xfj52	cmnf54o0v00b4uhseg94wplz6
+cmnfcxxtc0276uhv777yj1400	cmnf54o1600b9uhse96fmb1mm
+cmnfcxxtc0276uhv777yj1400	cmnf54o0v00b4uhseg94wplz6
 cmnf58m8x0066uh3lyszoxrp4	cmnf57op0003ouh3l6gddjqm8
 cmnf58m8x0066uh3lyszoxrp4	cmnf57osr003ruh3lt7khrfpk
 cmnf5b83t00xbuh3loilsal1b	cmnf57op0003ouh3l6gddjqm8
@@ -10726,12 +12727,25 @@ cmnf5j5sw04i8uh3ldcunblzy	cmnf57op0003ouh3l6gddjqm8
 cmnf5j5sw04i8uh3ldcunblzy	cmnf57osr003ruh3lt7khrfpk
 cmnf5j8iz04keuh3lyvphalw8	cmnf57op0003ouh3l6gddjqm8
 cmnf5j8iz04keuh3lyvphalw8	cmnf57osr003ruh3lt7khrfpk
+cmnfbpow400mhuhz68v9ki53e	cmnfbpox000mkuhz6igkvhjgk
+cmnfbpow400mhuhz68v9ki53e	cmnfbpoxm00mluhz6vg2kff21
+cmnfbpow400mhuhz68v9ki53e	cmnfbpoy300mmuhz6c4vfw2nu
+cmnfbpow400mhuhz68v9ki53e	cmnfbpoyj00mnuhz6wp3pn75a
+cmnfbpow400mhuhz68v9ki53e	cmnfbpoz300mouhz6nuewrn64
 cmnf5aciv00kfuh3l6tc3awf7	cmnf57op0003ouh3l6gddjqm8
 cmnf5aciv00kfuh3l6tc3awf7	cmnf57osr003ruh3lt7khrfpk
 cmnf5an6b00peuh3lgl0ake5t	cmnf57op0003ouh3l6gddjqm8
 cmnf5an6b00peuh3lgl0ake5t	cmnf57osr003ruh3lt7khrfpk
 cmnf5jajq04kkuh3ltugtooq0	cmnf57op0003ouh3l6gddjqm8
 cmnf5jajq04kkuh3ltugtooq0	cmnf57osr003ruh3lt7khrfpk
+cmnfcqqg5000luhv7l483637o	cmnf54o1700bauhser2jnjxon
+cmnfcqqg5000luhv7l483637o	cmnf54o0v00b4uhseg94wplz6
+cmnfcr172001quhv7bk9uw804	cmnf54o1v00bduhsekso1ezyc
+cmnfcr172001quhv7bk9uw804	cmnf54o0v00b4uhseg94wplz6
+cmnfcr2sw002nuhv7ckh2tw9k	cmnf54o0x00b6uhsegkiqfiqh
+cmnfcr2sw002nuhv7ckh2tw9k	cmnf54o0x00b5uhsezh191xhu
+cmnfcr4d4003duhv7as1a9wwm	cmnf57osr003ruh3lt7khrfpk
+cmnfcr4d4003duhv7as1a9wwm	cmnf54o1600b9uhse96fmb1mm
 cmnf5adhh00l6uh3lqcddneux	cmnf57op0003ouh3l6gddjqm8
 cmnf5adhh00l6uh3lqcddneux	cmnf57osr003ruh3lt7khrfpk
 cmnf5age600miuh3ldfx1praa	cmnf57op0003ouh3l6gddjqm8
@@ -10760,6 +12774,10 @@ cmnf5lpz205rruh3lary3i8kg	cmnf57op0003ouh3l6gddjqm8
 cmnf5lpz205rruh3lary3i8kg	cmnf57osr003ruh3lt7khrfpk
 cmnf5lv3q05upuh3lwi0mlwa7	cmnf57op0003ouh3l6gddjqm8
 cmnf5lv3q05upuh3lwi0mlwa7	cmnf57osr003ruh3lt7khrfpk
+cmnfcr2ul002puhv7v6p68bld	cmnf54o0x00b6uhsegkiqfiqh
+cmnfcr2ul002puhv7v6p68bld	cmnf54o0x00b5uhsezh191xhu
+cmnfcredw004guhv79bgkuh32	cmnf57osr003ruh3lt7khrfpk
+cmnfcredw004guhv79bgkuh32	cmnf54o1600b9uhse96fmb1mm
 cmnf5c2bw01dkuh3lvbdcyrua	cmnf57op0003ouh3l6gddjqm8
 cmnf5c2bw01dkuh3lvbdcyrua	cmnf57osr003ruh3lt7khrfpk
 cmnf5ccm801htuh3lhjwpn823	cmnf57op0003ouh3l6gddjqm8
@@ -10780,6 +12798,28 @@ cmnf5o5ss06yuuh3lt6k044sp	cmnf57op0003ouh3l6gddjqm8
 cmnf5o5ss06yuuh3lt6k044sp	cmnf57osr003ruh3lt7khrfpk
 cmnf5pfmh07nruh3lucqdf6xk	cmnf57op0003ouh3l6gddjqm8
 cmnf5pfmh07nruh3lucqdf6xk	cmnf57osr003ruh3lt7khrfpk
+cmnfcrhyh005luhv7ylj162nc	cmnf54o1700bauhser2jnjxon
+cmnfcrhyh005luhv7ylj162nc	cmnf54o0v00b4uhseg94wplz6
+cmnfctab600k4uhv7xlmpcnyw	cmnf54o1800bbuhsewjpis97y
+cmnfctab600k4uhv7xlmpcnyw	cmnf54o0v00b4uhseg94wplz6
+cmnfctj2k00n6uhv7fgsp8nfq	cmnf54o0x00b6uhsegkiqfiqh
+cmnfctj2k00n6uhv7fgsp8nfq	cmnf54o0x00b5uhsezh191xhu
+cmnfctz7z00upuhv7r5ilgkhu	cmnf57osr003ruh3lt7khrfpk
+cmnfctz7z00upuhv7r5ilgkhu	cmnf54o1600b9uhse96fmb1mm
+cmnfcu0kn00vduhv7efbzqmgp	cmnf54o1800bbuhsewjpis97y
+cmnfcu0kn00vduhv7efbzqmgp	cmnf54o0v00b4uhseg94wplz6
+cmnfcvnl401i0uhv7e9vcnem2	cmnf54o1800bbuhsewjpis97y
+cmnfcvnl401i0uhv7e9vcnem2	cmnf54o0v00b4uhseg94wplz6
+cmnfcvosy01iguhv7s5xvb19g	cmnf54o0x00b6uhsegkiqfiqh
+cmnfcvosy01iguhv7s5xvb19g	cmnf54o0x00b5uhsezh191xhu
+cmnfcvree01jiuhv7wud9voxw	cmnf54o1400b8uhsekxlyd3q1
+cmnfcvree01jiuhv7wud9voxw	cmnf54o0y00b7uhse6ehjr19e
+cmnfcvsrf01khuhv7bsb1gb7v	cmnf54o0x00b6uhsegkiqfiqh
+cmnfcvsrf01khuhv7bsb1gb7v	cmnf54o0x00b5uhsezh191xhu
+cmnfcvtln01l4uhv74szbnyty	cmnf54o0x00b6uhsegkiqfiqh
+cmnfcvtln01l4uhv74szbnyty	cmnf54o0x00b5uhsezh191xhu
+cmnfcvyj501mtuhv7ym8os71r	cmnf54o1800bbuhsewjpis97y
+cmnfcvyj501mtuhv7ym8os71r	cmnf54o0v00b4uhseg94wplz6
 cmnf54o7m00bjuhsezrdd71zv	cmnf54o1v00bduhsekso1ezyc
 cmnf54ojm00c3uhsew4xepo5o	cmnf54o0x00b6uhsegkiqfiqh
 cmnf54o8c00c1uhsemjeh840e	cmnf54o0x00b6uhsegkiqfiqh
@@ -10885,7 +12925,6 @@ cmnf54p0c00vbuhseyuytrgx7	cmnf54o0x00b6uhsegkiqfiqh
 --
 
 COPY public."User" (id, email, username, "passwordHash", role, "avatarUrl", "favoriteTeamId", "isBanned", "authProvider", "providerUserId", "createdAt", refresh_token) FROM stdin;
-cmnf548r30000uhtd7g7vaybf	abu@sportsdeck.com	abu	$2b$10$j8drJk6ih851hQHSmR8jM.YToeiJEg6lfm8vwFlD9wbpkrYPgs0MG	ADMIN	\N	\N	f	\N	\N	2026-03-31 21:39:52.527	\N
 cmnf548s50001uhtdf5ejyqqb	amaan@sportsdeck.com	Amaan	$2b$10$j8drJk6ih851hQHSmR8jM.YToeiJEg6lfm8vwFlD9wbpkrYPgs0MG	ADMIN	\N	\N	f	\N	\N	2026-03-31 21:39:52.529	\N
 cmnf548sc0002uhtds0eh4wtm	eshan@sportsdeck.com	Eshan	$2b$10$j8drJk6ih851hQHSmR8jM.YToeiJEg6lfm8vwFlD9wbpkrYPgs0MG	ADMIN	\N	\N	f	\N	\N	2026-03-31 21:39:52.529	\N
 system	system@sportsdeck.com	system	\N	ADMIN	\N	\N	f	\N	\N	2026-03-31 21:39:52.529	\N
@@ -11100,6 +13139,27 @@ cmnf572cc000vuh3l9ni31rcr	sim_1774993266256_103@test.com	chelseahub__103	$2b$10$
 cmnf572ah0007uh3lsofgyioc	sim_1774993266256_80@test.com	wingeriq_80	$2b$10$io6jllZkoq0wbI6ANQuVTe6n/aFRDpRXeGGB.a2XaC8EojB4CSWGG	user	\N	\N	f	\N	\N	2026-03-31 21:42:04.109	$2b$10$F31DbeJ2ReXfJqTl/AGe.ub46gyDSa5TEeGq1kpqiFWysQRFt9gM6
 cmnf572bn000iuh3l46wz2up6	sim_1774993266256_67@test.com	coldwinger_67	$2b$10$GFpbjHZI5xKEUI2YtZTO5.GIsUESizLvz0hRBPOeetvg7Leb0cz7O	user	\N	\N	f	\N	\N	2026-03-31 21:42:04.129	$2b$10$HhWw1x32vYKHovQw4VBgZ.Pq7DXwE2Oi8d1VYobLrvnRi77FIqWe.
 cmnf572ak0009uh3lr4xcadlb	sim_1774993266256_70@test.com	cityzone_70	$2b$10$TCTXGttFm/WVU0vNTgEufOA/CRWqRCbq.JOiePP.QxGVzTjkHxVma	user	\N	\N	f	\N	\N	2026-03-31 21:42:04.108	$2b$10$3y9C2VkUqV5yyA4AftDFbOEO7jnTt8pncxxTpqhU5SRgmS1ofZG/y
+cmnf548r30000uhtd7g7vaybf	abu@sportsdeck.com	abu	$2b$10$j8drJk6ih851hQHSmR8jM.YToeiJEg6lfm8vwFlD9wbpkrYPgs0MG	ADMIN	data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAM3RFWHRDb21tZW50AHhyOmQ6REFGUkxtTzg0WkU6MyxqOjQwMTQxMTcxMjAyLHQ6MjIxMTA2MTQF9r0yAAAFAmlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLwA8eDp4bXBtZXRhIHhtbG5zOng9J2Fkb2JlOm5zOm1ldGEvJz4KICAgICAgICA8cmRmOlJERiB4bWxuczpyZGY9J2h0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMnPgoKICAgICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0nJwogICAgICAgIHhtbG5zOmRjPSdodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyc+CiAgICAgICAgPGRjOnRpdGxlPgogICAgICAgIDxyZGY6QWx0PgogICAgICAgIDxyZGY6bGkgeG1sOmxhbmc9J3gtZGVmYXVsdCc+QWJ1emFyJmFwb3M7cyBMb2dvIC0gMTwvcmRmOmxpPgogICAgICAgIDwvcmRmOkFsdD4KICAgICAgICA8L2RjOnRpdGxlPgogICAgICAgIDwvcmRmOkRlc2NyaXB0aW9uPgoKICAgICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0nJwogICAgICAgIHhtbG5zOkF0dHJpYj0naHR0cDovL25zLmF0dHJpYnV0aW9uLmNvbS9hZHMvMS4wLyc+CiAgICAgICAgPEF0dHJpYjpBZHM+CiAgICAgICAgPHJkZjpTZXE+CiAgICAgICAgPHJkZjpsaSByZGY6cGFyc2VUeXBlPSdSZXNvdXJjZSc+CiAgICAgICAgPEF0dHJpYjpDcmVhdGVkPjIwMjItMTEtMDY8L0F0dHJpYjpDcmVhdGVkPgogICAgICAgIDxBdHRyaWI6RXh0SWQ+OTJlNDYyYzYtNDY2Ni00MTA2LTkzYWUtYjZjODlhZTRmNDMxPC9BdHRyaWI6RXh0SWQ+CiAgICAgICAgPEF0dHJpYjpGYklkPjUyNTI2NTkxNDE3OTU4MDwvQXR0cmliOkZiSWQ+CiAgICAgICAgPEF0dHJpYjpUb3VjaFR5cGU+MjwvQXR0cmliOlRvdWNoVHlwZT4KICAgICAgICA8L3JkZjpsaT4KICAgICAgICA8L3JkZjpTZXE+CiAgICAgICAgPC9BdHRyaWI6QWRzPgogICAgICAgIDwvcmRmOkRlc2NyaXB0aW9uPgoKICAgICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0nJwogICAgICAgIHhtbG5zOnBkZj0naHR0cDovL25zLmFkb2JlLmNvbS9wZGYvMS4zLyc+CiAgICAgICAgPHBkZjpBdXRob3I+QmF0b29sIEFuc2FyaTwvcGRmOkF1dGhvcj4KICAgICAgICA8L3JkZjpEZXNjcmlwdGlvbj4KCiAgICAgICAgPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9JycKICAgICAgICB4bWxuczp4bXA9J2h0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8nPgogICAgICAgIDx4bXA6Q3JlYXRvclRvb2w+Q2FudmE8L3htcDpDcmVhdG9yVG9vbD4KICAgICAgICA8L3JkZjpEZXNjcmlwdGlvbj4KICAgICAgICA8L3JkZjpSREY+CiAgICAgICAgPC94OnhtcG1ldGE+7inSlwAAgXBJREFUeJzs3XlwnOWdJ/Bvq2+1TkuyJOs+OCRsLCscBlvIoDB2CBhnzXQFWNYmdLMzVCZApmpSU5UBMpOpyWSqBrITUrUrZWVIcFhlHWCAhJB07KYhgXDZHOayJYMN8i1Zlix165o/umW1ut8+3+N5u/v7qaKw+3jfX1ut9/s+x/u8BhAREVHGM4gugIiIiORjoBMREWUBBjoREVEWYKATERFlAQY6ERFRFmCgExERZQEGOhERURZgoBMREWUBBjoREVEWYKATERFlAQY6ERFRFmCgExERZQEGOhERURZgoBMREWUBBjoREVEWYKATERFlAQY6ERFRFmCgExERZQEGOhERURZgoBMREWUBBjoREVEWYKATERFlAQY6ERFRFmCgExERZQEGOhERURZgoBMREWUBBjoREVEWYKATERFlAQY6ERFRFmCgExERZQEGOhERURbIE10AEVEkp9u12ul23SO6DqJMwkAnIj2aAfCo0+3636ILIcoUDHQi0iNH6P93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	cmnf548em0000uhseg9lphrqa	f	\N	\N	2026-03-31 21:39:52.527	$2b$10$hM4LrKLzp1UB22p4/NpBnOIhBB5bkkL1qzlAIhRUPHf51NEjMBi8i
+cmnfcqldj0001uhv7hfyotibv	fan_12@test.com	dynamic_analysis_12	$2b$10$ERuXlJtAUNoeikklRJox7.cz.8ZckOevSypCJs8SuqCFG8mPrSl72	user	\N	\N	f	\N	\N	2026-04-01 01:13:12.631	$2b$10$jjLnlJ1ZqvbVPBv42KCIO.g9Kh/ZoKGx1OpN.bZ8BWcAptkNsr4Z.
+cmnfcqlck0000uhv732mhsi8o	fan_19@test.com	tactical_tactics_19	$2b$10$96QLhulu37u7Wmz2opjO7.qLrVHw1wRte6U2MrY76dE31/d3mGK0G	user	\N	\N	f	\N	\N	2026-04-01 01:13:12.596	$2b$10$Gw/OkP7z1nxIaywZOSvApu.fUWtFQls97IVnyiH9yZ7UsWFCWfDE6
+cmnfcqldo0003uhv77gqzh84t	fan_4@test.com	mbappe_legend_4	$2b$10$NWdSCO1UprHEZ.Ys3i0lKOuUptwIfAIksjmq2JASLb9ZMRkDpuFny	user	\N	\N	f	\N	\N	2026-04-01 01:13:12.637	$2b$10$YlSj9ViZNVui9Tlb.5G1neiivhc1oFifDNDiGXzcjreAiE5sNHKfO
+cmnfcqldy0007uhv7gx0b561v	fan_7@test.com	juve365_7	$2b$10$8PyjdHlEt6EONuqTJIWU2OKMhk8gSIk7qAuKUYZIDfRydVzcBAz2q	user	\N	\N	f	\N	\N	2026-04-01 01:13:12.646	$2b$10$6c39x9SWSHM.tjdrjBRb9ODG5ZDjwW0FXrqB.U7D0MAJZbDTqlvUG
+cmnfcqle7000auhv7u5byu7x1	fan_15@test.com	ruthless_tactics_15	$2b$10$ThGkg67VYb10ILO2H.4I0uNL/.MPUYA07U6S0Vg2svFpykra7Xmxa	user	\N	\N	f	\N	\N	2026-04-01 01:13:12.655	$2b$10$BfZji15my24NQjZg53uEXuLy4WGK7Uw5zT8dLBHx1w9YKrbC1i8gm
+cmnfcqlee000duhv7yzusv1k2	fan_14@test.com	elitepsg_14	$2b$10$s2KCMr34zJ84LTdV/V1TqOjfWiqXFlnGE8VpbZp20bzEE2fJGhY1y	user	\N	\N	f	\N	\N	2026-04-01 01:13:12.662	$2b$10$MV08jH2k7On0sHbgyL2oseDPIO3C6DsQICeS5RopDRLDp7tvKOz3m
+cmnfcqlem000guhv7alb0f7l8	fan_10@test.com	vini_159_10	$2b$10$q5wySyO00HObObVBlKbrsuPN/jZ2qVA2t56dWSA5bUGNYpsnmeGhi	user	\N	\N	f	\N	\N	2026-04-01 01:13:12.67	$2b$10$Qn7vzDpIUZdUlJFII8t9jeiGl0sOe6GFlsfG2fXi1j3aKyHnKdW5W
+cmnfcqlh1000juhv7dxofh1jg	fan_1@test.com	ruthlessstriker441_1	$2b$10$pWJYpayKIbLvZqRhYf83vOkoak95rVmpDVjNVhmucNGpcC8iozOXK	user	\N	\N	f	\N	\N	2026-04-01 01:13:12.758	$2b$10$qA6u1S8uhKkWiowpD6pS0uQ0FH7G2/fO8k0QKFMIEp5L8fQkMICaG
+cmnfcqldl0002uhv7conjfxzx	fan_11@test.com	arsenalutd_11	$2b$10$Ft2zKDirT61fH5WT9xTa6uonIw0C6ddIOKIJspzlbsXkp6Tu74XKK	user	\N	\N	f	\N	\N	2026-04-01 01:13:12.633	$2b$10$b7iS.t4Tf/NcqyvniONJK.zjfsCbr4LhGzvffY8WY2ur4.gEOlgam
+cmnfcqldv0006uhv7rhgmfmtl	fan_5@test.com	gamedebate_5	$2b$10$ZRTvzAG6xIlC8oOdCX9YLeoU5O2lRjg1GzjPlwTE4mDaOZ3KcX81e	user	\N	\N	f	\N	\N	2026-04-01 01:13:12.644	$2b$10$ErNCByOq8ia1yQ4P9YfGDuqhJxnYRpIR2Q3dGQJH.Ezdlw53DQjH2
+cmnfcqldr0004uhv7haksqth1	fan_16@test.com	sakaszn_16	$2b$10$LHiMUBKlz6gidREKwk4nwOq01uzEK/SQE2XvIq2vFLEYFzPPfy5Ma	user	\N	\N	f	\N	\N	2026-04-01 01:13:12.639	$2b$10$MKEUYv94HjTi6WVOVumf5eWV6kCvf9dEgoWDMlPMBknIKPct8Voea
+cmnfcqle10008uhv7xleeivtf	fan_8@test.com	silent_city_8	$2b$10$Hp6gAjXeCpifHHzqWQLXKeJiOJYTMqBrqrVsb3CBqMFg29/38ju7m	user	\N	\N	f	\N	\N	2026-04-01 01:13:12.649	$2b$10$hUrHHtH6qVyeInBa88kH6O034ClMSEMUvTgFtgvrjKQc9lQubfhgi
+cmnfcqle9000buhv78pneu9lv	fan_9@test.com	tacticalcaptain896_9	$2b$10$TIBEyMWXAwN86xBqVvlUo..7ZkxyLk5gr6jtBNUZ7HyW.9cARKS6C	user	\N	\N	f	\N	\N	2026-04-01 01:13:12.657	$2b$10$6Rumn1ZvTd93Nj2u1Xt6xOKowtyXG5UHYRHQ4PRp.bpciYGDFB//S
+cmnfcqleg000euhv72i6namax	fan_18@test.com	madriddaily_18	$2b$10$uZ35o4LKxORSanryK7M2fOiIujPgtaWz.IE/BJY.kLr5Yg7QxF6na	user	\N	\N	f	\N	\N	2026-04-01 01:13:12.665	$2b$10$47Ys9fvgEERPgvgmfCFFDeSHKlVBhsQeV6ozIVQrg.QKEZBsiW7x2
+cmnfcqleo000huhv7n0m7asjb	fan_13@test.com	arsenal_report_13	$2b$10$//PPHwr.pmRlYdHiO/TVyO9bWpigFDvQRyWd6VRnX56AdZAfZfCbK	user	\N	\N	f	\N	\N	2026-04-01 01:13:12.672	$2b$10$BBg38l18T.67eDGvRcv3eOwl6VL68Jce1XdACJ/HT4GV1qIDj7k8u
+cmnfcqlh0000iuhv7diftlhgx	fan_17@test.com	barcaafc_17	$2b$10$s8DlPjTiZGpUpEla1CLUPOe5R.m8G4tCFZeguL7h5IFwIwQh0ggEy	user	\N	\N	f	\N	\N	2026-04-01 01:13:12.756	$2b$10$iAR4NiiAq9aoksq6j6amiepn1lWdsNiLdoVFCeKRI4YYC.TnZKsS6
+cmnfcqldt0005uhv7d4terocy	fan_0@test.com	elitebarca_0	$2b$10$/76TvTk06OPKLeqnY.3EmehS4XeFI605HCR7E0FbtXyyxv387vIv6	user	\N	\N	f	\N	\N	2026-04-01 01:13:12.641	$2b$10$ypl7wNwm6dkDGCABeTrsZuWl4KLthtV.sGgX4jac.5OlvJhuJZfWu
+cmnfcqle40009uhv72zt9hg5l	fan_3@test.com	musiala_legend_3	$2b$10$5EwcDkHsju5JmB9inukG4.JVQDLGn8KHd2aCWPrvNjVvgBhT9Y0/2	user	\N	\N	f	\N	\N	2026-04-01 01:13:12.653	$2b$10$28HD09K5APjhepIKK693T.h9Fcn2bIGkvXb00U6oC7klSukvO0mDu
+cmnfcqleb000cuhv7bxrx8k4b	fan_6@test.com	psg_insider_6	$2b$10$pwCeBTyvY7fUMu/BXQxsH.yepoHVWUx4gOONaqj3/.CVMT6AXgc3C	user	\N	\N	f	\N	\N	2026-04-01 01:13:12.66	$2b$10$ZQyjHj/EJJE9KTiLp3Mbp.XZIDkla.pH8GajuM6nkWuJrum9zTp5W
+cmnfcqlek000fuhv7ydofzkc9	fan_2@test.com	clutch_analysis_2	$2b$10$krDCnNgtR3wFtclWxyU4eeni0mvhZz2c/fqXThjgU.i3jBvRP8KTO	user	\N	\N	f	\N	\N	2026-04-01 01:13:12.668	$2b$10$pwpzSJXaPZwYDivpbSLubOhq.UqHrNL.W/WWxLYZ7fIcY4uTjKluK
 cmnf572ci000yuh3lfjmwi6iq	sim_1774993266256_83@test.com	coldfinisher_83	$2b$10$EkJE31Sv36DlRoSx2Bnzauu1LZ18WzxoyhZMZQPjlPn91WGHAalgq	user	\N	\N	f	\N	\N	2026-03-31 21:42:04.142	$2b$10$PxCwm5cQPvt9bLgMneOsLetIT84cFeuGIgP6iZ1PPGEGluecPTWue
 cmnf572e4001tuh3l0gz4as16	sim_1774993266256_27@test.com	dynamicstriker_27	$2b$10$TnyYnGDDRE3SZpF9IAj2H.Ch9aYqz3YdK7pK39Z7VzGWJfur6xKHW	user	\N	\N	f	\N	\N	2026-03-31 21:42:04.175	$2b$10$v85pGzK9.PKjpGjVc8OJnOBwIXSJUmsOP5mTAfmTjP8xzG5GPtHzy
 cmnf572eh001zuh3lyr7ctd1o	sim_1774993266256_44@test.com	silentwinger_44	$2b$10$RH0ytHjHkgwNfdoU5XFmz.RQZwODgdvK2/CWn/ROrLxAnwQfvDHSy	user	\N	\N	f	\N	\N	2026-03-31 21:42:04.185	$2b$10$cT8nIEAW9ZTjdlKLnWoK2Oimuey2ZceHrmP6cO5fPhZdWZaBqXpDa
@@ -11213,6 +13273,31 @@ cmnf5szr008yuuh3lbnj0kbf8	cmnf5qtr008bhuh3ltxkfkgzh	cmnf5qtqz08bfuh3lbxz8cy3b	cm
 cmnf5t0aa08zpuh3lp2xudh54	cmnf5rkpq08hquh3l18dp93zo	cmnf5rkpq08hnuh3lqsqrxqds	cmnf572er0027uh3l5t2a2ymg	2026-03-31 21:59:07.954
 cmnf5tbcj094zuh3ly2be8770	cmnf5f7m202vzuh3ll7wrzuu3	cmnf5f7m202vxuh3lkn1w61pw	cmnf572fy002xuh3l1ppocwsc	2026-03-31 21:59:22.292
 cmnf5tfxz096tuh3lu29iy3kz	cmnf5f7m202vyuh3ld9x1eu5x	cmnf5f7m202vxuh3lkn1w61pw	cmnf572ee001yuh3lp0tzqqpg	2026-03-31 21:59:28.247
+cmnfbrrp900n4uhz6qgbtoqpn	cmnfbqq5f00mwuhz6c862ghs8	cmnfbqq5f00mvuhz6igfklpq7	cmnf548r30000uhtd7g7vaybf	2026-04-01 00:46:07.869
+cmnfcryck006suhv7wlcmtg3z	cmnfcrdt2003ouhv7xfvjoay7	cmnfcrdt2003muhv757kh1g3k	cmnfcqldo0003uhv77gqzh84t	2026-04-01 01:14:16.1
+cmnfcsf4l0088uhv7z3dfbf6g	cmnfcrdt2003nuhv7vx1havqa	cmnfcrdt2003muhv757kh1g3k	cmnfcqldt0005uhv7d4terocy	2026-04-01 01:14:37.846
+cmnfcsf5i008euhv7lfmhr1nq	cmnfcrljd0069uhv72lch786u	cmnfcrljd0066uhv7y5pjasfn	cmnfcqldo0003uhv77gqzh84t	2026-04-01 01:14:37.878
+cmnfcsf5v008guhv7gx5m23h5	cmnfcrdt2003puhv7h1gz1b7r	cmnfcrdt2003muhv757kh1g3k	cmnfcqle40009uhv72zt9hg5l	2026-04-01 01:14:37.891
+cmnfcsgqf009auhv7824lqe4b	cmnfcrdt6003zuhv7nzsxkank	cmnfcrdt6003tuhv7m8herb8w	cmnfcqle40009uhv72zt9hg5l	2026-04-01 01:14:39.927
+cmnfcshag009uuhv7hg2wxfap	cmnfcrdt6003yuhv7g8uscu0v	cmnfcrdt6003tuhv7m8herb8w	cmnfcqlh1000juhv7dxofh1jg	2026-04-01 01:14:40.648
+cmnfct3ep00hpuhv7zbe5jgwb	cmnfcrdt6003zuhv7nzsxkank	cmnfcrdt6003tuhv7m8herb8w	cmnfcqlek000fuhv7ydofzkc9	2026-04-01 01:15:09.313
+cmnfct4s300i3uhv7oj9hgx2e	cmnfcsrd400dnuhv73c94h6m9	cmnfcsrd300dmuhv7is77lt29	cmnfcqldo0003uhv77gqzh84t	2026-04-01 01:15:11.091
+cmnfctjwp00nmuhv7rz1c3gzg	cmnfcrdt6003wuhv7zbmxc26i	cmnfcrdt5003suhv7zwxvr5wk	cmnfcqldt0005uhv7d4terocy	2026-04-01 01:15:30.697
+cmnfctw9800teuhv7mzavrer7	cmnfcrljd0067uhv778l1hp74	cmnfcrljd0066uhv7y5pjasfn	cmnfcqldt0005uhv7d4terocy	2026-04-01 01:15:46.7
+cmnfctpzz00qnuhv7k1lx97tt	cmnfct2n700hfuhv7yf3zbrws	cmnfct2n700hduhv77pqhhbai	cmnfcqlh1000juhv7dxofh1jg	2026-04-01 01:15:38.591
+cmnfctpvt00qhuhv7yx07j2u5	cmnfct2n700hfuhv7yf3zbrws	cmnfct2n700hduhv77pqhhbai	cmnfcqldo0003uhv77gqzh84t	2026-04-01 01:15:38.441
+cmnfcuqq5015juhv7hirf98vl	cmnfcslit00bouhv79cizjtn9	cmnfcslit00bluhv7226npi0w	cmnfcqlh1000juhv7dxofh1jg	2026-04-01 01:16:26.189
+cmnfcutni016euhv7uqfdtpli	cmnfcuko40141uhv7kwwy338g	cmnfcuko4013yuhv7mfy7ms33	cmnfcqle40009uhv72zt9hg5l	2026-04-01 01:16:29.982
+cmnfcv0kv018quhv7x8mvbzu0	cmnfcubbk00zquhv72j9mvgb6	cmnfcubbk00zpuhv7dfh7u448	cmnfcqldt0005uhv7d4terocy	2026-04-01 01:16:38.959
+cmnfcv91z01cnuhv7ay707hvg	cmnfcrljd0067uhv778l1hp74	cmnfcrljd0066uhv7y5pjasfn	cmnfcqlek000fuhv7ydofzkc9	2026-04-01 01:16:49.943
+cmnfcw19o01nfuhv75xderts1	cmnfcrdt6003uuhv7uz08f725	cmnfcrdt5003suhv7zwxvr5wk	cmnfcqlh1000juhv7dxofh1jg	2026-04-01 01:17:26.508
+cmnfcwl8c01rwuhv7nx5z38x3	cmnfcslit00bmuhv79bl3n7ai	cmnfcslit00bluhv7226npi0w	cmnfcqldv0006uhv7rhgmfmtl	2026-04-01 01:17:52.38
+cmnfcwwbf01vmuhv7v0iobibe	cmnfctq8x00qyuhv7iocfy1q2	cmnfctq8x00qvuhv7xk5byjvk	cmnfcqldv0006uhv7rhgmfmtl	2026-04-01 01:18:06.745
+cmnfcwzoa01wnuhv7ziu882ub	cmnfcwicj01r3uhv7gkvd05d8	cmnfcwicj01r2uhv718nz2h2c	cmnfcqldy0007uhv7gx0b561v	2026-04-01 01:18:11.098
+cmnfcwzsi01wxuhv7cdlxqp7q	cmnfctgg700m0uhv77d5g7hrf	cmnfctgg700lzuhv7kyh418xf	cmnfcqldv0006uhv7rhgmfmtl	2026-04-01 01:18:11.25
+cmnfcwl7q01rsuhv7c7uchjcp	cmnfcv4so01awuhv7dxr8abhm	cmnfcv4so01atuhv76xn8mnl3	cmnfcqle10008uhv7xleeivtf	2026-04-01 01:17:52.358
+cmnfcxkjl0234uhv7gacjbzdt	cmnfcrljd0069uhv72lch786u	cmnfcrljd0066uhv7y5pjasfn	cmnfcqldy0007uhv7gx0b561v	2026-04-01 01:18:38.145
+cmnfcxsfn024iuhv7npootjo1	cmnfcubbk00zsuhv71q1iswto	cmnfcubbk00zpuhv7dfh7u448	cmnfcqldy0007uhv7gx0b561v	2026-04-01 01:18:48.371
 \.
 
 
@@ -11896,5 +13981,5 @@ REVOKE USAGE ON SCHEMA public FROM PUBLIC;
 -- PostgreSQL database dump complete
 --
 
-\unrestrict 2AWOkhcqrB0ZawbVbRoEYDXhvSgBgMeqL6K4Ze5wxh5BgivdPgmwwRg3zn2WWVh
+\unrestrict djAhts7xUzf3GjnClmITYo1r3AiC457zoxOkxA24BWYMqfz3IRFmw5U3iPvOeLX
 
