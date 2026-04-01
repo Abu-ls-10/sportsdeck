@@ -1,6 +1,8 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useAuth } from "@/contexts/AuthContext";
 import { showNotice } from "@/lib/clientNotice";
 import { getApiErrorMessage, isBannedActionError } from "@/lib/apiError";
 
@@ -17,6 +19,11 @@ type Team = {
 };
 
 export default function StartDiscussionCard({ onSuccess, isBanned = false }: Props) {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const { user, isLoading } = useAuth();
+
   const [open, setOpen] = useState(false);
 
   const [title, setTitle] = useState("");
@@ -99,6 +106,17 @@ export default function StartDiscussionCard({ onSuccess, isBanned = false }: Pro
     el.style.height = "auto";
     el.style.height = el.scrollHeight + "px";
   };
+
+  const handleStartClick = useCallback(() => {
+    if (isLoading) return;
+    if (!user) {
+      const q = searchParams.toString();
+      const here = q ? `${pathname}?${q}` : pathname;
+      router.push(`/login?redirect=${encodeURIComponent(here)}`);
+      return;
+    }
+    setOpen(true);
+  }, [isLoading, user, searchParams, pathname, router]);
 
   // =========================
   // TAG HANDLING
@@ -202,8 +220,10 @@ export default function StartDiscussionCard({ onSuccess, isBanned = false }: Pro
           </div>
         ) : (
           <button
-            onClick={() => setOpen(true)}
-            className="mt-5 rounded-xl bg-gradient-primary px-5 py-2.5 text-sm font-semibold text-primary hover:brightness-110"
+            type="button"
+            disabled={isLoading}
+            onClick={handleStartClick}
+            className="mt-5 rounded-xl bg-gradient-primary px-5 py-2.5 text-sm font-semibold text-primary hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60"
           >
             Start a Discussion
           </button>
