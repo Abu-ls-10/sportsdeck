@@ -12,6 +12,8 @@ type Props = {
 type Team = {
   id: string;
   name: string;
+  shortName?: string;
+  logoUrl?: string;
 };
 
 export default function StartDiscussionCard({ onSuccess, isBanned = false }: Props) {
@@ -21,6 +23,9 @@ export default function StartDiscussionCard({ onSuccess, isBanned = false }: Pro
   const [content, setContent] = useState("");
 
   const [teamId, setTeamId] = useState<string>("all");
+  const [teamDropdownOpen, setTeamDropdownOpen] = useState(false);
+  const [teamSearch, setTeamSearch] = useState("");
+  const teamDropdownRef = useRef<HTMLDivElement>(null);
 
   const [tagInput, setTagInput] = useState("");
   const [tags, setTags] = useState<string[]>([]);
@@ -32,6 +37,22 @@ export default function StartDiscussionCard({ onSuccess, isBanned = false }: Pro
 
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
+  const selectedTeam = teams.find((t) => t.id === teamId) ?? null;
+  const filteredTeams = teams.filter((t) =>
+    t.name.toLowerCase().includes(teamSearch.toLowerCase())
+  );
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (teamDropdownRef.current && !teamDropdownRef.current.contains(e.target as Node)) {
+        setTeamDropdownOpen(false);
+        setTeamSearch("");
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   // =========================
   // FETCH TEAMS
   // =========================
@@ -39,8 +60,9 @@ export default function StartDiscussionCard({ onSuccess, isBanned = false }: Pro
     const loadTeams = async () => {
       try {
         const res = await fetch("/api/teams");
-        const data = await res.json().catch(() => []);
-        setTeams(Array.isArray(data) ? data : []);
+        const data = await res.json().catch(() => ({}));
+        const list = Array.isArray(data) ? data : Array.isArray(data?.teams) ? data.teams : [];
+        setTeams(list);
       } catch (err) {
         console.error("Failed to load teams");
       }
@@ -207,18 +229,112 @@ export default function StartDiscussionCard({ onSuccess, isBanned = false }: Pro
             />
 
             {/* TEAM */}
-            <select
-              value={teamId}
-              onChange={(e) => setTeamId(e.target.value)}
-              className="w-full rounded-xl border border-white/10 bg-bg-main px-3 py-2 text-sm"
-            >
-              <option value="all">No team</option>
-              {teams.map((t) => (
-                <option key={t.id} value={t.id}>
-                  {t.name}
-                </option>
-              ))}
-            </select>
+            <div ref={teamDropdownRef} className="relative">
+              <label className="mb-1.5 block text-xs font-medium text-text-muted uppercase tracking-wide">
+                Team
+              </label>
+
+              {/* Trigger */}
+              <button
+                type="button"
+                onClick={() => {
+                  setTeamDropdownOpen((v) => !v);
+                  setTeamSearch("");
+                }}
+                className="flex w-full items-center justify-between gap-2 rounded-xl border border-white/10 bg-bg-main px-4 py-2.5 text-sm transition hover:border-primary-500/40 focus:outline-none focus:border-primary-500/60"
+              >
+                <div className="flex items-center gap-2 min-w-0">
+                  {selectedTeam ? (
+                    <>
+                      {selectedTeam.logoUrl && (
+                        <img
+                          src={selectedTeam.logoUrl}
+                          alt=""
+                          className="h-5 w-5 rounded-full object-contain shrink-0"
+                        />
+                      )}
+                      <span className="truncate text-primary">{selectedTeam.name}</span>
+                    </>
+                  ) : (
+                    <span className="text-text-muted">No team</span>
+                  )}
+                </div>
+                <svg
+                  className={`h-4 w-4 shrink-0 text-text-muted transition-transform ${teamDropdownOpen ? "rotate-180" : ""}`}
+                  fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+
+              {/* Dropdown panel */}
+              {teamDropdownOpen && (
+                <div className="absolute z-50 mt-1.5 w-full rounded-xl border border-white/10 bg-bg-surface shadow-xl overflow-hidden">
+                  {/* Search */}
+                  <div className="p-2 border-b border-white/8">
+                    <div className="flex items-center gap-2 rounded-lg bg-bg-main px-3 py-1.5">
+                      <svg className="h-3.5 w-3.5 text-text-muted shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" />
+                      </svg>
+                      <input
+                        autoFocus
+                        value={teamSearch}
+                        onChange={(e) => setTeamSearch(e.target.value)}
+                        placeholder="Search teams..."
+                        className="flex-1 bg-transparent text-xs text-primary placeholder:text-text-muted outline-none"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Options list */}
+                  <div className="max-h-52 overflow-y-auto py-1">
+                    {/* No team option */}
+                    {!teamSearch && (
+                      <button
+                        type="button"
+                        onClick={() => { setTeamId("all"); setTeamDropdownOpen(false); setTeamSearch(""); }}
+                        className={`flex w-full items-center gap-3 px-4 py-2 text-sm transition hover:bg-white/5 ${teamId === "all" ? "text-primary-400" : "text-text-muted"}`}
+                      >
+                        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white/8 text-xs shrink-0">—</span>
+                        No team
+                        {teamId === "all" && (
+                          <svg className="ml-auto h-3.5 w-3.5 text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                          </svg>
+                        )}
+                      </button>
+                    )}
+
+                    {filteredTeams.map((t) => (
+                      <button
+                        key={t.id}
+                        type="button"
+                        onClick={() => { setTeamId(t.id); setTeamDropdownOpen(false); setTeamSearch(""); }}
+                        className={`flex w-full items-center gap-3 px-4 py-2 text-sm transition hover:bg-white/5 ${teamId === t.id ? "text-primary-400 bg-primary-500/8" : "text-text-secondary"}`}
+                      >
+                        {t.logoUrl ? (
+                          <img src={t.logoUrl} alt="" className="h-6 w-6 rounded-full object-contain shrink-0" />
+                        ) : (
+                          <span className="flex h-6 w-6 items-center justify-center rounded-full bg-primary-500/20 text-xs font-bold text-primary-400 shrink-0">
+                            {t.shortName?.[0] ?? t.name[0]}
+                          </span>
+                        )}
+                        <span className="truncate">{t.name}</span>
+                        {teamId === t.id && (
+                          <svg className="ml-auto h-3.5 w-3.5 text-primary-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                          </svg>
+                        )}
+                      </button>
+                    ))}
+
+                    {filteredTeams.length === 0 && (
+                      <p className="px-4 py-3 text-xs text-text-muted text-center">No teams found</p>
+                    )}
+                  </div>
+                </div>
+              )}
+            </div>
 
             {/* TAG INPUT */}
             <div>
