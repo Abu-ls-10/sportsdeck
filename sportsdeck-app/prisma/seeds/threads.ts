@@ -121,12 +121,20 @@ export async function create_different_match_threads(prisma: PrismaClient, match
       const homeTeamName = threadData.match.homeTeam?.name || "Team A";
       const awayTeamName = threadData.match.awayTeam?.name || "Team B";
 
-      const thread = await prisma.thread.create({
-        data: {
-          title: `${homeTeamName} vs ${awayTeamName} - ${titlePool[Math.floor(Math.random() * titlePool.length)]}`,
+      const title = `${homeTeamName} vs ${awayTeamName} - ${titlePool[Math.floor(Math.random() * titlePool.length)]}`;
+      const thread = await prisma.thread.upsert({
+        where: { matchId: threadData.match.id },
+        create: {
+          title,
           authorId: randomAuthor.id,
           matchId: threadData.match.id,
           isMatchThread: true,
+          isLocked: threadData.isLocked,
+          opensAt: threadData.opensAt,
+          lockedAt: threadData.lockedAt,
+        },
+        update: {
+          title,
           isLocked: threadData.isLocked,
           opensAt: threadData.opensAt,
           lockedAt: threadData.lockedAt,

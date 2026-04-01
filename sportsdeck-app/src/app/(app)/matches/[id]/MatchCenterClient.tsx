@@ -79,6 +79,53 @@ type ThreadData = {
   polls: Poll[];
 };
 
+/** GET /api/threads/:id/full returns `post` (singular), not `posts`. */
+function normalizeMatchCenterThread(full: unknown): ThreadData | null {
+  if (!full || typeof full !== "object" || !("id" in full)) return null;
+  const o = full as {
+    id: string;
+    title?: string;
+    opensAt?: string;
+    lockedAt?: string;
+    isLocked?: boolean;
+    post?: {
+      id: string;
+      content: string;
+      createdAt: string;
+      author: Author;
+      replyCount: number;
+      replies: unknown[];
+    } | null;
+  };
+  if (!o.id) return null;
+  const main = o.post;
+  const posts: Post[] =
+    main != null
+      ? [
+          {
+            id: main.id,
+            content: main.content,
+            createdAt:
+              typeof main.createdAt === "string"
+                ? main.createdAt
+                : new Date(main.createdAt).toISOString(),
+            author: main.author,
+            replies: [],
+            _count: { replies: main.replyCount ?? 0 },
+          },
+        ]
+      : [];
+  return {
+    id: o.id,
+    title: o.title ?? "",
+    opensAt: o.opensAt,
+    lockedAt: o.lockedAt,
+    isLocked: !!o.isLocked,
+    posts,
+    polls: [],
+  };
+}
+
 type Sentiment = {
   overall: {
     sentiment: string;
@@ -144,7 +191,8 @@ export default function MatchCenterClient({ matchId }: { matchId: string }) {
 
     const fullRes = await fetch(`/api/threads/${threadJson.id}/full`);
     const full = await fullRes.json();
-    setThread(full);
+    const normalized = normalizeMatchCenterThread(full);
+    setThread(normalized);
 
     setSentimentLoading(true);
     setSentimentError(null);
@@ -249,7 +297,7 @@ export default function MatchCenterClient({ matchId }: { matchId: string }) {
 
             {/* POSTS */}
             <div className="mt-6 space-y-4">
-              {thread?.posts.map((post) => (
+              {(thread?.posts ?? []).map((post) => (
                 <div
                   key={post.id}
                   className="bg-bg-card border border-border-subtle rounded-2xl p-4 shadow-soft"
@@ -263,7 +311,7 @@ export default function MatchCenterClient({ matchId }: { matchId: string }) {
 
                   <div className="mt-3 flex gap-4 text-sm text-text-muted">
                     <span>❤️ {pseudoLikes(post.id)}</span>
-                    <span>💬 {post.replies.length}</span>
+                    <span>💬 {post._count?.replies ?? post.replies.length}</span>
                   </div>
                 </div>
               ))}

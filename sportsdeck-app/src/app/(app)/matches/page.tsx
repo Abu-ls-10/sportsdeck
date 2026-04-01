@@ -135,12 +135,22 @@ function isSameLocalDay(a: Date, b: Date): boolean {
   );
 }
 
-function formatMatchTime(d: Date): string {
+/** Single line under teams/score: date + kickoff time */
+function formatMatchCardWhen(iso: string): string {
+  const d = new Date(iso);
   return new Intl.DateTimeFormat("en-US", {
+    weekday: "short",
+    month: "short",
+    day: "numeric",
+    year: "numeric",
     hour: "2-digit",
     minute: "2-digit",
     hour12: false,
   }).format(d);
+}
+
+function formatStageLabel(stage: string): string {
+  return stage.replace(/_/g, " ");
 }
 
 async function fetchMatchesForMatchday(matchday: number): Promise<Match[]> {
@@ -363,44 +373,51 @@ export default async function MatchesPage({
 
               <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
                 {upcomingMatches.map((match) => {
-                  const d = new Date(match.matchDate);
-
                   return (
                     <div
                       key={match.id}
                       className="group rounded-2xl border border-border-subtle bg-bg-card p-4 shadow-soft transition hover:-translate-y-1 hover:border-primary-500/30"
                     >
                       <div className="flex justify-between text-xs text-text-muted">
-                        <span>{match.stage}</span>
-                        <span>{formatMatchTime(d)}</span>
+                        <span className="truncate pr-2">
+                          {formatStageLabel(match.stage)}
+                        </span>
+                        <span className="shrink-0">Scheduled</span>
                       </div>
 
-                      <div className="mt-4 flex items-center justify-between">
-
-                        {/* HOME */}
-                        <div className="flex items-center gap-2">
+                      <div className="mt-4 grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-x-2 sm:gap-x-3">
+                        <div className="flex min-w-0 items-center gap-2">
                           <img
                             src={match.homeTeam.logoUrl || ""}
-                            className="h-10 w-10 rounded-xl bg-bg-surface"
+                            alt=""
+                            className="h-9 w-9 shrink-0 rounded-xl bg-bg-surface sm:h-10 sm:w-10"
                           />
-                          <span className="text-sm font-semibold">
+                          <span className="break-words text-left text-sm font-semibold leading-snug text-text-primary">
                             {match.homeTeam.name}
                           </span>
                         </div>
 
-                        <span className="text-xs text-text-muted">VS</span>
-
-                        {/* AWAY */}
-                        <div className="flex items-center gap-2">
-                          <span className="text-sm font-semibold">
-                            {match.awayTeam.name}
+                        <div className="flex shrink-0 flex-col items-center justify-center px-1">
+                          <span className="text-xs font-bold uppercase tracking-[0.12em] text-text-muted sm:text-sm">
+                            vs
                           </span>
+                        </div>
+
+                        <div className="flex min-w-0 flex-row-reverse items-center gap-2">
                           <img
                             src={match.awayTeam.logoUrl || ""}
-                            className="h-10 w-10 rounded-xl bg-bg-surface"
+                            alt=""
+                            className="h-9 w-9 shrink-0 rounded-xl bg-bg-surface sm:h-10 sm:w-10"
                           />
+                          <span className="break-words text-right text-sm font-semibold leading-snug text-text-primary">
+                            {match.awayTeam.name}
+                          </span>
                         </div>
                       </div>
+
+                      <p className="mt-4 border-t border-border-subtle pt-3 text-center text-xs text-text-muted">
+                        {formatMatchCardWhen(match.matchDate)}
+                      </p>
 
                       <div className="mt-4 flex gap-2">
                         <Link
@@ -440,30 +457,49 @@ export default async function MatchesPage({
                       className="rounded-2xl border border-border-subtle bg-bg-card p-4 shadow-soft"
                     >
                       <div className="flex justify-between text-xs text-text-muted">
-                        <span>{match.stage}</span>
-                        <span>Final</span>
+                        <span className="truncate pr-2">
+                          {formatStageLabel(match.stage)}
+                        </span>
+                        <span className="shrink-0">Final</span>
                       </div>
 
-                      <div className="mt-4 flex items-center justify-between">
-
-                        <div className="flex items-center gap-2">
-                          <img src={match.homeTeam.logoUrl || ""} className="h-10 w-10 rounded-xl" />
-                          <span>{match.homeTeam.name}</span>
+                      <div className="mt-4 grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-x-2 sm:gap-x-3">
+                        <div className="flex min-w-0 items-center gap-2">
+                          <img
+                            src={match.homeTeam.logoUrl || ""}
+                            alt=""
+                            className="h-9 w-9 shrink-0 rounded-xl bg-bg-surface sm:h-10 sm:w-10"
+                          />
+                          <span className="break-words text-left text-sm font-semibold leading-snug text-text-primary">
+                            {match.homeTeam.name}
+                          </span>
                         </div>
 
-                        <div className="text-lg font-bold text-primary">
-                          {score}
+                        <div className="flex shrink-0 flex-col items-center justify-center px-1">
+                          <span className="text-lg font-bold tabular-nums text-primary sm:text-2xl">
+                            {score}
+                          </span>
                         </div>
 
-                        <div className="flex items-center gap-2">
-                          <span>{match.awayTeam.name}</span>
-                          <img src={match.awayTeam.logoUrl || ""} className="h-10 w-10 rounded-xl" />
+                        <div className="flex min-w-0 flex-row-reverse items-center gap-2">
+                          <img
+                            src={match.awayTeam.logoUrl || ""}
+                            alt=""
+                            className="h-9 w-9 shrink-0 rounded-xl bg-bg-surface sm:h-10 sm:w-10"
+                          />
+                          <span className="break-words text-right text-sm font-semibold leading-snug text-text-primary">
+                            {match.awayTeam.name}
+                          </span>
                         </div>
                       </div>
+
+                      <p className="mt-4 border-t border-border-subtle pt-3 text-center text-xs text-text-muted">
+                        {formatMatchCardWhen(match.matchDate)}
+                      </p>
 
                       <div className="mt-4 flex gap-2">
                         <Link
-                          href={`/matches/${match.id}`}
+                          href={`/matches/${match.id}/thread`}
                           className="flex-1 rounded-xl bg-white/[0.05] text-center py-2 text-sm hover:bg-white/[0.08]"
                         >
                           Thread
