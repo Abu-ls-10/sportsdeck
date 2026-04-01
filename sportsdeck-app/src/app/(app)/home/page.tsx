@@ -24,7 +24,6 @@ import {
 } from "lucide-react";
 
 import { useAuth } from "@/contexts/AuthContext";
-import { on } from "events";
 
 /* =========================
    Types
@@ -38,7 +37,7 @@ type FeedThread = {
     username?: string | null;
     avatarUrl?: string | null;
   };
-  tags: { id: string; name: string }[];
+  tags: ThreadTag[] | Tag[];
   replies: number;
 };
 
@@ -197,12 +196,12 @@ type LandingTab =
    Helpers
 ========================= */
 
-function normalizeThread(thread: any) {
+function normalizeThread(thread: FeedThread) {
   return {
     ...thread,
-    tags: (thread.tags as ThreadTag[])
+    tags: (thread.tags as unknown as ThreadTag[])
       ?.map((t) => t.tag)
-      .filter(Boolean),
+      .filter(Boolean) as Tag[],
   };
 }
 
