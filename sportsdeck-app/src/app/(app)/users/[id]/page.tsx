@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useParams } from "next/navigation";
 import {
   ArrowRight,
@@ -671,7 +671,7 @@ function ThreadShowcaseCard({
 
               <div className="mt-4 flex items-start justify-between gap-4">
                 <div className="min-w-0 flex-1">
-                  <Link href={`/threads/${thread.id}`} className="inline-block">
+                  <Link href={`community/threads/${thread.id}`} className="inline-block">
                     <h3 className="text-lg font-semibold leading-snug text-text-primary transition group-hover:text-primary-300">
                       {thread.title}
                     </h3>
@@ -930,6 +930,25 @@ function ProfileSettingsCard({
   const [favoriteTeamId, setFavoriteTeamId] = useState(
     profile.favoriteTeam?.id ?? ""
   );
+  const [teamDropdownOpen, setTeamDropdownOpen] = useState(false);
+  const [teamSearch, setTeamSearch] = useState("");
+  const teamDropdownRef = useRef<HTMLDivElement>(null);
+  const filteredTeams = teams.filter((team) =>
+    team.name.toLowerCase().includes(teamSearch.toLowerCase())
+  );
+  const selectedTeam = teams.find(t => t.id === favoriteTeamId);
+
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (teamDropdownRef.current && !teamDropdownRef.current.contains(e.target as Node)) {
+        setTeamDropdownOpen(false);
+        setTeamSearch("");
+      }
+    };
+
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
 
   return (
     <GlassPanel className="p-5">
@@ -969,18 +988,82 @@ function ProfileSettingsCard({
         </Field>
 
         <Field label="Favorite team">
-          <select
-            value={favoriteTeamId}
-            onChange={(e) => setFavoriteTeamId(e.target.value)}
-            className="w-full rounded-xl border border-border-subtle bg-white/[0.03] px-3 py-3 text-sm text-text-primary outline-none transition focus:border-primary-500/40 focus:bg-white/[0.05]"
-          >
-            <option value="">No favorite team</option>
-            {teams.map((team) => (
-              <option key={team.id} value={team.id}>
-                {team.name}
-              </option>
-            ))}
-          </select>
+          <div ref={teamDropdownRef} className="relative">
+            <button
+              type="button"
+              onClick={() => setTeamDropdownOpen((v) => !v)}
+              className="flex w-full items-center justify-between gap-2 rounded-xl border border-border-subtle bg-white/[0.03] px-3 py-3 text-sm"
+            >
+              <span className="flex items-center gap-2">
+                {selectedTeam?.logoUrl && (
+                  <img
+                    src={selectedTeam.logoUrl}
+                    className="h-5 w-5 rounded-full object-contain"
+                  />
+                )}
+
+                <span>
+                  {selectedTeam?.name || "No favorite team"}
+                </span>
+              </span>
+
+              <ChevronRight
+                className={`h-4 w-4 transition ${teamDropdownOpen ? "rotate-90" : ""}`}
+              />
+            </button>
+
+            {teamDropdownOpen && (
+              <div className="absolute z-50 mt-2 w-full rounded-xl border border-border-subtle bg-bg-surface shadow-xl">
+                
+                {/* SEARCH */}
+                <div className="p-2 border-b border-border-subtle">
+                  <input
+                    value={teamSearch}
+                    onChange={(e) => setTeamSearch(e.target.value)}
+                    placeholder="Search teams..."
+                    className="w-full bg-transparent text-xs outline-none"
+                  />
+                </div>
+
+                {/* OPTIONS */}
+                <div className="max-h-56 overflow-y-auto">
+                  <button
+                    onClick={() => {
+                      setFavoriteTeamId("");
+                      setTeamDropdownOpen(false);
+                    }}
+                    className="w-full px-3 py-2 text-left text-sm hover:bg-bg-elevated"
+                  >
+                    No favorite team
+                  </button>
+
+                  {filteredTeams.map((team) => (
+                    <button
+                      key={team.id}
+                      onClick={() => {
+                        setFavoriteTeamId(team.id);
+                        setTeamDropdownOpen(false);
+                      }}
+                      className="flex w-full items-center gap-2 px-3 py-2 text-sm hover:bg-bg-elevated"
+                    >
+                      {team.logoUrl ? (
+                        <img
+                          src={team.logoUrl}
+                          className="h-5 w-5 rounded-full object-contain"
+                        />
+                      ) : (
+                        <div className="h-5 w-5 rounded-full bg-primary-500/20 flex items-center justify-center text-xs">
+                          {team.shortName?.[0] ?? team.name[0]}
+                        </div>
+                      )}
+
+                      {team.name}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
         </Field>
 
         <div className="rounded-2xl border border-border-subtle bg-white/[0.03] p-3 text-xs leading-6 text-text-muted">
