@@ -15,7 +15,7 @@ export default function Button({
     <button
       type={type}
       disabled={loading}
-      className="w-full py-2.5 rounded-xl bg-gradient-primary text-white font-medium shadow-glow hover:opacity-90 transition disabled:opacity-50 flex items-center justify-center"
+      className="w-full py-2.5 rounded-xl bg-gradient-primary text-primary font-medium shadow-glow hover:opacity-90 transition disabled:opacity-50 flex items-center justify-center"
     >
       {loading ? (
         <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />

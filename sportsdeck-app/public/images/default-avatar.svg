@@ -1,0 +1,23 @@
+<svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="glassBg" x1="0" y1="0" x2="120" y2="120">
+      <stop offset="0%" stop-color="#0f172a"></stop>
+      <stop offset="100%" stop-color="#020617"></stop>
+    </linearGradient>
+
+    <linearGradient id="accentGlow" x1="0" y1="0" x2="120" y2="120">
+      <stop offset="0%" stop-color="#38BDF8"></stop>
+      <stop offset="100%" stop-color="#22D3EE"></stop>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="120" height="120" rx="60" fill="url(#glassBg)"></rect>
+
+  <!-- Glow ring -->
+  <circle cx="60" cy="60" r="55" stroke="url(#accentGlow)" stroke-opacity="0.25" stroke-width="2"></circle>
+
+  <!-- Avatar -->
+  <circle cx="60" cy="42" r="16" fill="#E2E8F0"></circle>
+  <path d="M32 92c0-14 12-24 28-24s28 10 28 24" fill="#E2E8F0"></path>
+</svg>

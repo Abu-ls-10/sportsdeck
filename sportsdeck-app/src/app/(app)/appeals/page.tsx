@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { MessageSquareWarning, Send, ShieldAlert, ShieldCheck, Clock } from "lucide-react";
-import Navbar from "@/components/layout/Navbar";
 import { useAuth } from "@/contexts/AuthContext";
 import { StatusBadge } from "@/components/admin/ModerationBadge";
 import { showNotice } from "@/lib/clientNotice";
@@ -56,13 +55,12 @@ export default function AppealsPage() {
   const [appeals, setAppeals] = useState<AppealItem[]>([]);
   const [isCurrentlyBanned, setIsCurrentlyBanned] = useState<boolean | null>(null);
 
-  const loadAppeals = useCallback(async () => {
-    if (!accessToken) return;
+  const loadAppeals = useCallback(async (token: string) => {
     setLoading(true);
     try {
       const res = await fetch("/api/appeals?limit=20", {
         method: "GET",
-        headers: authHeaders(accessToken),
+        headers: authHeaders(token),
         cache: "no-store",
       });
       const payload = (await res.json().catch(() => ({}))) as AppealsResponse & { message?: string };
@@ -72,6 +70,8 @@ export default function AppealsPage() {
         typeof payload.isCurrentlyBanned === "boolean" ? payload.isCurrentlyBanned : null
       );
     } catch (error) {
+      // Silently ignore errors that happen after the user has logged out
+      if (!accessToken) return;
       showNotice({
         tone: "error",
         title: "Load failed",
@@ -86,7 +86,7 @@ export default function AppealsPage() {
 
   useEffect(() => {
     if (isLoading || !accessToken) return;
-    void loadAppeals();
+    void loadAppeals(accessToken);
   }, [accessToken, isLoading, loadAppeals]);
 
   const submitAppeal = useCallback(async () => {
@@ -102,7 +102,7 @@ export default function AppealsPage() {
       if (!res.ok) throw new Error(payload.message ?? "Could not submit appeal");
       setMessage("");
       showNotice({ tone: "success", title: "Appeal submitted", message: "Your appeal has been sent for review." });
-      await loadAppeals();
+      await loadAppeals(accessToken);
     } catch (error) {
       showNotice({
         tone: "error",
@@ -128,7 +128,6 @@ export default function AppealsPage() {
   if (!user) {
     return (
       <div className="min-h-screen bg-bg-main">
-        <Navbar />
         <div className="flex min-h-[calc(100vh-4rem)] items-center justify-center px-4 pt-16">
           <div className="rounded-2xl border border-border bg-bg-surface p-8 text-center max-w-sm w-full shadow-card">
             <ShieldAlert className="mx-auto mb-4 w-10 h-10 text-text-muted" />
@@ -136,7 +135,7 @@ export default function AppealsPage() {
             <p className="text-sm text-text-secondary mb-5">You must be logged in to view or submit appeals.</p>
             <Link
               href="/login"
-              className="inline-block rounded-xl bg-gradient-primary px-5 py-2.5 text-sm font-semibold text-white shadow-glow hover:opacity-90 transition"
+              className="inline-block rounded-xl bg-gradient-primary px-5 py-2.5 text-sm font-semibold text-primary shadow-glow hover:opacity-90 transition"
             >
               Go to login
             </Link>
@@ -150,8 +149,6 @@ export default function AppealsPage() {
 
   return (
     <div className="min-h-screen bg-bg-main text-text-primary">
-      <Navbar />
-
       {/* Top glow accent */}
       <div className="pointer-events-none fixed inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary-500/50 to-transparent" />
 
@@ -160,7 +157,7 @@ export default function AppealsPage() {
         <header className="rounded-2xl border border-border bg-bg-surface p-6 shadow-card">
           <div className="flex items-start gap-4">
             <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-primary shadow-glow">
-              <MessageSquareWarning className="w-5 h-5 text-white" />
+              <MessageSquareWarning className="w-5 h-5 text-primary" />
             </div>
             <div>
               <h1 className="text-2xl font-bold text-text-primary">Ban Appeal Center</h1>
@@ -205,7 +202,7 @@ export default function AppealsPage() {
               type="button"
               onClick={() => void submitAppeal()}
               disabled={submitting || message.trim().length === 0}
-              className="flex items-center gap-2 rounded-xl bg-gradient-primary px-5 py-2.5 text-sm font-semibold text-white shadow-glow hover:opacity-90 transition disabled:opacity-50"
+              className="flex items-center gap-2 rounded-xl bg-gradient-primary px-5 py-2.5 text-sm font-semibold text-primary shadow-glow hover:opacity-90 transition disabled:opacity-50"
             >
               <Send className="w-4 h-4" />
               {submitting ? "Submitting..." : "Submit Appeal"}

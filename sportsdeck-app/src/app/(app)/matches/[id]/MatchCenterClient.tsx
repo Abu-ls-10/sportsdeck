@@ -2,14 +2,6 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import {
-  IconChartBar,
-  IconHeart,
-  IconMessage,
-  IconPhoto,
-  IconFlag,
-  IconSparkles,
-} from "@tabler/icons-react";
 import { useAuth } from "@/contexts/AuthContext";
 
 /* ---------------- TYPES (unchanged) ---------------- */
@@ -136,6 +128,9 @@ export default function MatchCenterClient({ matchId }: { matchId: string }) {
   const [thread, setThread] = useState<ThreadData | null>(null);
 
   const [newPost, setNewPost] = useState("");
+  const [sentiment, setSentiment] = useState<Sentiment | null>(null);
+  const [sentimentLoading, setSentimentLoading] = useState(false);
+  const [sentimentError, setSentimentError] = useState<string | null>(null);
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -150,6 +145,22 @@ export default function MatchCenterClient({ matchId }: { matchId: string }) {
     const fullRes = await fetch(`/api/threads/${threadJson.id}/full`);
     const full = await fullRes.json();
     setThread(full);
+
+    setSentimentLoading(true);
+    setSentimentError(null);
+    try {
+      const sentimentRes = await fetch(`/api/threads/${threadJson.id}/sentiment`);
+      const sentimentJson = await sentimentRes.json();
+      if (!sentimentRes.ok) {
+        throw new Error(sentimentJson?.error ?? "Failed to load sentiment");
+      }
+      setSentiment(sentimentJson as Sentiment);
+    } catch (err) {
+      setSentiment(null);
+      setSentimentError(err instanceof Error ? err.message : "Failed to load sentiment");
+    } finally {
+      setSentimentLoading(false);
+    }
 
     setLoading(false);
   }, [matchId]);
@@ -203,11 +214,21 @@ export default function MatchCenterClient({ matchId }: { matchId: string }) {
           {/* LEFT */}
           <div className="lg:col-span-2">
 
-            <div className="mb-4 border-b border-border-subtle flex gap-6 text-sm">
-              <span className="border-b-2 border-primary-500 pb-3 text-primary-400 font-semibold">
-                Discussion
-              </span>
-              <span className="pb-3 text-text-muted">Stats</span>
+            <div className="mb-4 border-b border-border-subtle flex items-center justify-between gap-4 text-sm">
+              <div className="flex gap-6">
+                <span className="border-b-2 border-primary-500 pb-3 text-primary-400 font-semibold">
+                  Discussion
+                </span>
+                <span className="pb-3 text-text-muted">Stats</span>
+              </div>
+              {thread?.id ? (
+                <Link
+                  href={`/community/threads/${thread.id}`}
+                  className="pb-3 text-xs font-medium text-primary-300 hover:text-primary-200"
+                >
+                  Open full thread →
+                </Link>
+              ) : null}
             </div>
 
             {/* CREATE POST */}
@@ -220,7 +241,7 @@ export default function MatchCenterClient({ matchId }: { matchId: string }) {
               />
 
               <div className="mt-3 flex justify-end">
-                <button className="bg-gradient-primary px-5 py-2 rounded-xl text-white">
+                <button className="bg-gradient-primary px-5 py-2 rounded-xl text-primary">
                   Post
                 </button>
               </div>
@@ -254,7 +275,34 @@ export default function MatchCenterClient({ matchId }: { matchId: string }) {
 
             <div className="bg-bg-card border border-border-subtle rounded-2xl p-4">
               <h3 className="font-semibold mb-2">AI Sentiment</h3>
-              <p className="text-sm text-text-secondary">Coming soon...</p>
+              {sentimentLoading ? (
+                <p className="text-sm text-text-secondary">Loading sentiment...</p>
+              ) : sentimentError ? (
+                <p className="text-sm text-red-400">{sentimentError}</p>
+              ) : !sentiment ? (
+                <p className="text-sm text-text-secondary">Sentiment is unavailable right now.</p>
+              ) : (
+                <div className="space-y-2 text-sm">
+                  <p className="text-text-primary">
+                    Overall:{" "}
+                    <span className="font-semibold capitalize">{sentiment.overall.sentiment}</span>
+                    {" · "}
+                    {sentiment.overall.totalAnalyzed} comments analyzed
+                  </p>
+                  {sentiment.teams && (
+                    <>
+                      <p className="text-text-secondary">
+                        Home fans:{" "}
+                        <span className="font-medium capitalize">{sentiment.teams.home.sentiment}</span>
+                      </p>
+                      <p className="text-text-secondary">
+                        Away fans:{" "}
+                        <span className="font-medium capitalize">{sentiment.teams.away.sentiment}</span>
+                      </p>
+                    </>
+                  )}
+                </div>
+              )}
             </div>
 
             <div className="bg-bg-card border border-border-subtle rounded-2xl p-4">

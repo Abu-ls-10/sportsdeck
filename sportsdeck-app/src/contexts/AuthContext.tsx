@@ -1,6 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useState, useEffect, useCallback } from "react";
+import { useRouter } from "next/navigation";
 
 interface AuthUser {
   id: string;
@@ -17,6 +18,8 @@ interface AuthContextValue {
   signup: (email: string, password: string) => Promise<{ error?: string }>;
   logout: () => void;
   refreshAccessToken: () => Promise<string | null>;
+  /** Apply tokens from login / change-password responses (refresh in localStorage, access in memory). */
+  applySessionFromAuthResponse: (tokens: { access_token: string; refresh_token: string }) => void;
 }
 
 const AuthContext = createContext<AuthContextValue | null>(null);
@@ -31,10 +34,11 @@ function parseJwt(token: string): AuthUser | null {
         .join("")
     );
     const payload = JSON.parse(json);
+    const normalizedRole = String(payload.role ?? "USER").trim().toUpperCase();
     return {
       id: payload.id,
       username: payload.username ?? null,
-      role: payload.role ?? "USER",
+      role: normalizedRole || "USER",
       isBanned: payload.isBanned ?? false,
     };
   } catch {
@@ -43,6 +47,7 @@ function parseJwt(token: string): AuthUser | null {
 }
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
+  const router = useRouter();
   const [accessToken, setAccessToken] = useState<string | null>(null);
   const [user, setUser] = useState<AuthUser | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -51,6 +56,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setAccessToken(token);
     setUser(parseJwt(token));
   }, []);
+
+  const applySessionFromAuthResponse = useCallback(
+    (tokens: { access_token: string; refresh_token: string }) => {
+      localStorage.setItem("refresh_token", tokens.refresh_token);
+      applyToken(tokens.access_token);
+    },
+    [applyToken]
+  );
 
   const refreshAccessToken = useCallback(async (): Promise<string | null> => {
     const refreshToken = localStorage.getItem("refresh_token");
@@ -93,6 +106,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const login = useCallback(
     async (email: string, password: string): Promise<{ error?: string }> => {
+      // Always wipe any previous session before applying new credentials.
+      localStorage.removeItem("refresh_token");
+      setAccessToken(null);
+      setUser(null);
+      // Best-effort clear of server-side cookies from the old session.
+      fetch("/api/auth/logout", { method: "POST", credentials: "include" }).catch(() => {});
+
       try {
         const res = await fetch("/api/auth/login", {
           method: "POST",
@@ -102,14 +122,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         });
         const data = await res.json();
         if (!res.ok) return { error: data.message ?? "Login failed" };
-        localStorage.setItem("refresh_token", data.refresh_token);
-        applyToken(data.access_token);
+        applySessionFromAuthResponse({
+          access_token: data.access_token,
+          refresh_token: data.refresh_token,
+        });
         return {};
       } catch {
         return { error: "Network error. Please try again." };
       }
     },
-    [applyToken]
+    [applySessionFromAuthResponse]
   );
 
   const signup = useCallback(
@@ -123,25 +145,43 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         });
         const data = await res.json();
         if (!res.ok) return { error: data.message ?? "Signup failed" };
-        localStorage.setItem("refresh_token", data.refresh_token);
-        applyToken(data.access_token);
+        applySessionFromAuthResponse({
+          access_token: data.access_token,
+          refresh_token: data.refresh_token,
+        });
         return {};
       } catch {
         return { error: "Network error. Please try again." };
       }
     },
-    [applyToken]
+    [applySessionFromAuthResponse]
   );
 
   const logout = useCallback(() => {
     localStorage.removeItem("refresh_token");
+    fetch("/api/auth/logout", {
+      method: "POST",
+      credentials: "include",
+    }).catch(() => {
+      // Best effort: clear server cookies even if request fails.
+    });
     setAccessToken(null);
     setUser(null);
-  }, []);
+    router.replace("/");
+  }, [router]);
 
   return (
     <AuthContext.Provider
-      value={{ user, accessToken, isLoading, login, signup, logout, refreshAccessToken }}
+      value={{
+        user,
+        accessToken,
+        isLoading,
+        login,
+        signup,
+        logout,
+        refreshAccessToken,
+        applySessionFromAuthResponse,
+      }}
     >
       {children}
     </AuthContext.Provider>

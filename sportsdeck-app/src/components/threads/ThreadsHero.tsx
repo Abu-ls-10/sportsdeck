@@ -55,7 +55,7 @@ export default function ThreadsHero({
           </div>
 
           <div>
-            <h1 className="text-xl font-semibold text-white md:text-2xl">
+            <h1 className="text-xl font-semibold text-primary md:text-2xl">
               {title}
             </h1>
 
@@ -71,7 +71,7 @@ export default function ThreadsHero({
         <div className="flex items-center gap-3">
           
           {/* Notifications */}
-          <button className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/8 bg-white/[0.03] text-text-secondary transition hover:bg-white/[0.06] hover:text-white">
+          <button className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/8 bg-white/[0.03] text-text-secondary transition hover:bg-white/[0.06] hover:text-primary">
             <Bell className="h-4 w-4" />
           </button>
 
@@ -82,8 +82,8 @@ export default function ThreadsHero({
               disabled={loading}
               className={`rounded-xl px-4 py-2.5 text-sm font-semibold transition ${
                 following
-                  ? "border border-white/10 bg-white/[0.05] text-white hover:bg-white/[0.08]"
-                  : "bg-gradient-primary text-white shadow-glow hover:brightness-110"
+                  ? "border border-white/10 bg-white/[0.05] text-primary hover:bg-white/[0.08]"
+                  : "bg-gradient-primary text-primary shadow-glow hover:brightness-110"
               } disabled:opacity-50`}
             >
               {loading

@@ -2,6 +2,7 @@ import {prisma} from '@/lib/prisma';
 import {Prisma} from '@/generated/prisma';
 import { hashPassword, generateAccessToken, generateRefreshToken} from '@/lib/auth';
 import { NextResponse } from 'next/server';
+import { generateUniqueUsername } from "@/lib/username";
 
 /**
  * @openapi
@@ -38,12 +39,12 @@ export async function POST(req: Request){
     // Get usernames, emails, password. 
     const body = await req.json();
 
-    const extraFields = Object.keys(body).filter(key => !['email', 'password'].includes(key));
+    const extraFields = Object.keys(body).filter(key => !['email', 'password', 'username'].includes(key));
     if (extraFields.length > 0) {
         return NextResponse.json({ message: "Invalid request" }, { status: 400 });
     }
 
-    const {email, password} = body;
+    const {email, password, username} = body;
 
     if (!email){
         return NextResponse.json({message: "Please provide an email"}, {status: 400});
@@ -61,10 +62,11 @@ export async function POST(req: Request){
         }
 
         const user = await prisma.user.create({
-            data: {
-                passwordHash: await hashPassword(password),
-                email: email
-            }
+          data: {
+            passwordHash: await hashPassword(password),
+            email,
+            username: username ?? await generateUniqueUsername(),
+          }
         });  
 
         // Return a JWT token. They are logged in
@@ -78,7 +80,31 @@ export async function POST(req: Request){
             data: {refresh_token: await hashPassword(refresh_token)}
         })
     
-        return NextResponse.json({access_token: access_token, refresh_token: refresh_token}, {status: 201});
+        const res = NextResponse.json(
+            {
+              access_token,
+              refresh_token,
+              user: {
+                id: user.id,
+                username: user.username,
+                email: user.email,
+              }
+            },
+            {status: 201}
+        );
+        res.cookies.set("access_token", access_token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            sameSite: "lax",
+            path: "/",
+        });
+        res.cookies.set("refresh_token", refresh_token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            sameSite: "lax",
+            path: "/",
+        });
+        return res;
 
     }
 

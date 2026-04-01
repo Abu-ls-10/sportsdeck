@@ -92,41 +92,58 @@ import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
  * - options
  * - deadline
  * - isClosed
- *
- * Accessible by visitors.
+ * - thread (for navigation)
  */
 export async function GET(
   request: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
-
   try {
-
     const { id: pollId } = await params
 
-    if (!pollId)
+    if (!pollId) {
       return NextResponse.json(
         { error: "Poll id is required" },
         { status: 400 }
       )
+    }
 
     const poll = await prisma.poll.findUnique({
       where: { id: pollId },
       include: {
-        options: true
-      }
+        options: {
+          include: {
+            _count: {
+              select: { votes: true }, // important for UI %
+            },
+          },
+        },
+        thread: {
+          select: {
+            id: true,
+            title: true,
+          },
+        },
+      },
     })
 
-    if (!poll)
+    if (!poll) {
       return NextResponse.json(
         { error: "Poll not found" },
         { status: 404 }
       )
+    }
+
+    if (poll.isHidden) {
+      return NextResponse.json(
+        { error: "Poll not found" },
+        { status: 404 }
+      )
+    }
 
     return NextResponse.json(poll, { status: 200 })
 
   } catch (err) {
-
     console.error("GET /api/polls/:id error:", err)
 
     return NextResponse.json(
@@ -134,7 +151,6 @@ export async function GET(
       { status: 500 }
     )
   }
-
 }
 
 
@@ -173,6 +189,12 @@ async function patchHandler(
       return NextResponse.json(
         { error: "Poll not found" },
         { status: 404 }
+      )
+
+    if (poll.isHidden)
+      return NextResponse.json(
+        { error: "This poll has been hidden by a moderator and cannot be modified" },
+        { status: 403 }
       )
 
     if (poll.thread.authorId !== user.id && user.role !== "ADMIN")
@@ -257,6 +279,12 @@ async function deleteHandler(
       return NextResponse.json(
         { error: "Poll not found" },
         { status: 404 }
+      )
+
+    if (poll.isHidden)
+      return NextResponse.json(
+        { error: "This poll has been hidden by a moderator and cannot be deleted" },
+        { status: 403 }
       )
 
     if (poll.thread.authorId !== user.id && user.role !== "ADMIN")

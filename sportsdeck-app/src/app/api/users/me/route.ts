@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
 import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
+import { DEFAULT_AVATAR_URL } from "@/lib/avatar"
 
 /**
  * @openapi
@@ -38,6 +39,7 @@ async function getHandler(req: AuthenticatedRequest) {
         id: true,
         username: true,
         avatarUrl: true,
+        authProvider: true,
         createdAt: true,
         favoriteTeam: {
           select: {
@@ -92,6 +94,7 @@ async function getHandler(req: AuthenticatedRequest) {
  * - username
  * - avatarUrl
  * - favoriteTeamId
+ * - removeAvatar (boolean) — sets avatar to the default silhouette URL
  */
 
 async function patchHandler(req: AuthenticatedRequest) {
@@ -99,12 +102,13 @@ async function patchHandler(req: AuthenticatedRequest) {
     const currentUser = req.user
     const body = await req.json()
 
-    const { username, avatarUrl, favoriteTeamId } = body
+    const { username, avatarUrl, favoriteTeamId, removeAvatar } = body
+    const doRemoveAvatar = removeAvatar === true
 
     // Ensure at least one field is provided
-    if (!username && !avatarUrl && !favoriteTeamId) {
+    if (!username && !avatarUrl && !favoriteTeamId && !doRemoveAvatar) {
       return NextResponse.json(
-        { error: "At least one field (username, avatarUrl, or favoriteTeamId) must be provided." },
+        { error: "At least one field (username, avatarUrl, favoriteTeamId, or removeAvatar) must be provided." },
         { status: 400 }
       )
     }
@@ -137,7 +141,11 @@ async function patchHandler(req: AuthenticatedRequest) {
       },
       data: {
         ...(username && { username: username.trim() }),
-        ...(avatarUrl && { avatarUrl }),
+        ...(doRemoveAvatar
+          ? { avatarUrl: DEFAULT_AVATAR_URL }
+          : avatarUrl
+            ? { avatarUrl }
+            : {}),
         ...(favoriteTeamId && { favoriteTeamId })
       },
       select: {

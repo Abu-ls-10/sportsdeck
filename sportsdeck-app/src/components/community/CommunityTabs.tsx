@@ -14,7 +14,7 @@ export default function CommunityTabs() {
           className={`pb-3 text-sm transition ${
             i === 0
               ? "text-primary-400 border-b-2 border-primary-500"
-              : "text-text-secondary hover:text-white"
+              : "text-text-secondary hover:text-primary"
           }`}
         >
           {tab}

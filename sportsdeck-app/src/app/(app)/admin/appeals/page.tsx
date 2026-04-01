@@ -189,7 +189,7 @@ export default function AdminAppealsPage() {
               >
                 <div className="flex items-start gap-3">
                   {/* Avatar */}
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-primary text-sm font-bold text-white shadow-glow">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-primary text-sm font-bold text-primary shadow-glow">
                     {getInitials(appeal.appealer.username)}
                   </div>
                   <div className="flex-1 min-w-0">

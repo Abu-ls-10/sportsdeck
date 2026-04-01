@@ -33,11 +33,11 @@ export default function ThreadCard({
 
   // Prefetch for instant navigation
   useEffect(() => {
-    router.prefetch(`/threads/${id}`);
+    router.prefetch(`community/threads/${id}`);
   }, [id, router]);
 
   const handleClick = () => {
-    router.push(`/threads/${id}`);
+    router.push(`/community/threads/${id}`);
   };
 
   // Generate excerpt fallback
@@ -79,7 +79,7 @@ export default function ThreadCard({
           )}
 
           {/* Title */}
-          <h3 className="max-w-[620px] text-lg font-semibold leading-snug text-white group-hover:text-primary-400 transition">
+          <h3 className="max-w-[620px] text-lg font-semibold leading-snug text-primary group-hover:text-primary-400 transition">
             {title}
           </h3>
 

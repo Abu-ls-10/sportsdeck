@@ -1,4 +1,3 @@
 #!/bin/bash
-# Seed the database with pre-populated data
-# Migrations are run automatically when the app container starts
-docker-compose exec app npx prisma db seed
+cd sportsdeck-app
+docker compose exec -T app sh -c "node_modules/.bin/prisma migrate deploy && node_modules/.bin/prisma db seed"

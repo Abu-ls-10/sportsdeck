@@ -42,13 +42,46 @@ type FeedPoll = {
   options?: PollOption[];
 };
 
+type FeedPost = {
+  id: string;
+  content: string;
+  author: {
+    id: string;
+    username: string;
+    avatarUrl?: string | null;
+  };
+  thread: {
+    id: string;
+    title: string;
+  };
+};
+
+type FeedReply = {
+  id: string;
+  content: string;
+  author: {
+    id: string;
+    username: string;
+    avatarUrl?: string | null;
+  };
+  thread: {
+    id: string;
+    title: string;
+  };
+};
+
 type FeedItem = {
   id: string;
   isRead: boolean;
   createdAt: string;
-  type: "thread" | "poll" | "activity";
+
+  type: "thread" | "poll" | "post" | "reply" | "activity";
+
   thread?: FeedThread | null;
   poll?: FeedPoll | null;
+  post?: FeedPost | null;
+  reply?: FeedReply | null;
+
   meta?: {
     eventType?: string;
     groupKey?: string;
@@ -66,7 +99,7 @@ type Tag = {
   };
 };
 
-type FeedTab = "all" | "unread" | "threads" | "polls";
+type FeedTab = "all" | "unread" | "threads" | "polls" | "posts" | "replies";
 
 function timeAgo(input: string) {
   const date = new Date(input).getTime();
@@ -92,23 +125,51 @@ function timeAgo(input: string) {
 function formatActivity(meta?: FeedItem["meta"]) {
   if (!meta) return "New activity";
 
+  const count = meta.count ?? 1;
+
   if (meta.eventType === "post_reply") {
-    return `${
-      meta.count && meta.count > 1 ? `${meta.count} new replies` : "New reply"
-    } on a thread you follow`;
+    if (count > 1) {
+      return `${count} new replies in a thread you're following`;
+    }
+    return "Someone replied to a thread you're following";
   }
 
   if (meta.eventType === "thread_created") {
-    return `${
-      meta.count && meta.count > 1 ? `${meta.count} new threads` : "New thread"
-    } in discussions you may care about`;
+    if (count > 1) {
+      return `${count} new threads in your communities`;
+    }
+    return "A new thread was created";
   }
 
   if (meta.eventType === "poll_created") {
-    return "A new poll was posted";
+    return "A new poll is live";
   }
 
-  return "Feed activity update";
+  if (meta.eventType === "post_created") {
+    return count > 1
+      ? `${count} new posts in discussions`
+      : "A new post was added to a thread";
+  }
+
+  return "New activity in your feed";
+}
+
+function formatGroupKey(groupKey: string) {
+  if (!groupKey) return "";
+
+  if (groupKey.startsWith("thread:")) {
+    return "Thread activity";
+  }
+
+  if (groupKey.startsWith("post:")) {
+    return "Post activity";
+  }
+
+  if (groupKey.startsWith("poll:")) {
+    return "Poll activity";
+  }
+
+  return "Related activity";
 }
 
 function FeedTabs({
@@ -123,6 +184,8 @@ function FeedTabs({
     { key: "unread", label: "Unread" },
     { key: "threads", label: "Threads" },
     { key: "polls", label: "Polls" },
+    { key: "posts", label: "Posts" },
+    { key: "replies", label: "Replies" },
   ];
 
   return (
@@ -137,8 +200,8 @@ function FeedTabs({
               className={[
                 "rounded-xl px-4 py-2 text-sm font-medium transition",
                 activeTab
-                  ? "bg-gradient-primary text-white shadow-glow"
-                  : "bg-white/[0.03] text-text-secondary hover:bg-white/[0.06] hover:text-white",
+                  ? "bg-gradient-primary text-primary shadow-glow"
+                  : "bg-white/[0.03] text-text-secondary hover:bg-white/[0.06] hover:text-primary",
               ].join(" ")}
             >
               {tab.label}
@@ -168,7 +231,7 @@ function FeedHero({
             Personalized Feed
           </div>
 
-          <h1 className="text-2xl font-semibold text-white md:text-3xl">
+          <h1 className="text-2xl font-semibold text-primary md:text-3xl">
             Your SportsDeck feed
           </h1>
 
@@ -182,14 +245,14 @@ function FeedHero({
               <p className="text-xs uppercase tracking-[0.12em] text-text-muted">
                 Feed items
               </p>
-              <p className="mt-1 text-lg font-semibold text-white">{total}</p>
+              <p className="mt-1 text-lg font-semibold text-primary">{total}</p>
             </div>
 
             <div className="rounded-2xl border border-border-subtle bg-white/[0.03] px-4 py-3">
               <p className="text-xs uppercase tracking-[0.12em] text-text-muted">
                 Unread
               </p>
-              <p className="mt-1 text-lg font-semibold text-white">{unread}</p>
+              <p className="mt-1 text-lg font-semibold text-primary">{unread}</p>
             </div>
           </div>
         </div>
@@ -197,7 +260,7 @@ function FeedHero({
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:w-[360px]">
           <div className="rounded-2xl border border-border-subtle bg-white/[0.04] p-4">
             <Bell className="h-4 w-4 text-accent-300" />
-            <p className="mt-3 text-sm font-medium text-white">Notifications</p>
+            <p className="mt-3 text-sm font-medium text-primary">Notifications</p>
             <p className="mt-1 text-xs leading-5 text-text-secondary">
               Grouped updates keep your feed easier to scan.
             </p>
@@ -205,7 +268,7 @@ function FeedHero({
 
           <div className="rounded-2xl border border-border-subtle bg-white/[0.04] p-4">
             <MessageSquare className="h-4 w-4 text-primary-300" />
-            <p className="mt-3 text-sm font-medium text-white">Threads</p>
+            <p className="mt-3 text-sm font-medium text-primary">Threads</p>
             <p className="mt-1 text-xs leading-5 text-text-secondary">
               Open the latest discussions instantly.
             </p>
@@ -213,7 +276,7 @@ function FeedHero({
 
           <div className="col-span-2 rounded-2xl border border-border-subtle bg-white/[0.04] p-4 sm:col-span-1">
             <Vote className="h-4 w-4 text-brand-300" />
-            <p className="mt-3 text-sm font-medium text-white">Polls</p>
+            <p className="mt-3 text-sm font-medium text-primary">Polls</p>
             <p className="mt-1 text-xs leading-5 text-text-secondary">
               See what fans are voting on right now.
             </p>
@@ -293,7 +356,7 @@ function ThreadFeedCard({
             }}
             className="inline-block"
           >
-            <h2 className="text-lg font-semibold leading-snug text-white transition group-hover:text-primary-300">
+            <h2 className="text-lg font-semibold leading-snug text-primary transition group-hover:text-primary-300">
               {thread.title}
             </h2>
           </Link>
@@ -307,7 +370,7 @@ function ThreadFeedCard({
           <p className="text-xs uppercase tracking-[0.12em] text-text-muted">
             Replies
           </p>
-          <p className="mt-1 text-base font-semibold text-white">
+          <p className="mt-1 text-base font-semibold text-primary">
             {thread.replies}
           </p>
         </div>
@@ -389,7 +452,7 @@ function PollFeedCard({
       </div>
 
       <div className="mt-4">
-        <h2 className="text-lg font-semibold leading-snug text-white">
+        <h2 className="text-lg font-semibold leading-snug text-primary">
           {poll.question}
         </h2>
         <p className="mt-2 text-sm text-text-secondary">
@@ -440,6 +503,76 @@ function PollFeedCard({
   );
 }
 
+function PostFeedCard({
+  item,
+  onMarkRead,
+}: {
+  item: FeedItem;
+  onMarkRead: (id: string) => void;
+}) {
+  const post = item.post;
+  if (!post) return null;
+
+  return (
+    <article className="rounded-2xl border border-border-subtle bg-bg-surface p-5 shadow-soft">
+      <p className="text-xs text-text-muted">
+        {timeAgo(item.createdAt)}
+      </p>
+
+      <h3 className="mt-2 text-sm text-text-secondary">
+        {post.author.username} posted in
+      </h3>
+
+      <Link
+        href={`/community/threads/${post.thread.id}`}
+        onClick={() => !item.isRead && onMarkRead(item.id)}
+        className="text-primary font-medium hover:text-primary-300"
+      >
+        {post.thread.title}
+      </Link>
+
+      <p className="mt-3 text-text-primary line-clamp-3">
+        {post.content}
+      </p>
+    </article>
+  );
+}
+
+function ReplyFeedCard({
+  item,
+  onMarkRead,
+}: {
+  item: FeedItem;
+  onMarkRead: (id: string) => void;
+}) {
+  const reply = item.reply;
+  if (!reply) return null;
+
+  return (
+    <article className="rounded-2xl border border-border-subtle bg-bg-surface p-5 shadow-soft">
+      <p className="text-xs text-text-muted">
+        {timeAgo(item.createdAt)}
+      </p>
+
+      <h3 className="mt-2 text-sm text-text-secondary">
+        {reply.author.username} replied in
+      </h3>
+
+      <Link
+        href={`/community/threads/${reply.thread.id}`}
+        onClick={() => !item.isRead && onMarkRead(item.id)}
+        className="text-primary font-medium hover:text-primary-300"
+      >
+        {reply.thread.title}
+      </Link>
+
+      <p className="mt-3 text-text-primary line-clamp-3">
+        {reply.content}
+      </p>
+    </article>
+  );
+}
+
 function ActivityCard({
   item,
   onMarkRead,
@@ -447,45 +580,63 @@ function ActivityCard({
   item: FeedItem;
   onMarkRead: (id: string) => void;
 }) {
+  const count = item.meta?.count ?? 1;
+
   return (
     <article
       className={[
-        "rounded-2xl border p-5 shadow-soft transition",
+        "relative rounded-2xl border p-5 shadow-soft transition",
         item.isRead
           ? "border-border-subtle bg-bg-card/70"
-          : "border-accent-400/25 bg-bg-surface",
+          : "border-accent-400/30 bg-bg-surface",
       ].join(" ")}
     >
+      {/* 🔥 Left unread accent bar */}
+      {!item.isRead && (
+        <div className="absolute left-0 top-0 h-full w-1 rounded-l-2xl bg-accent-400" />
+      )}
+
       <div className="flex items-start justify-between gap-4">
-        <div>
+        <div className="min-w-0">
+          {/* Badge */}
           <div className="inline-flex items-center gap-2 rounded-full bg-accent-400/10 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-accent-300">
             <Bell className="h-3.5 w-3.5" />
             Activity
           </div>
 
-          <h3 className="mt-3 text-base font-semibold text-white">
+          {/* 🔥 Main message */}
+          <h3 className="mt-3 text-base font-semibold text-primary leading-snug">
             {formatActivity(item.meta)}
           </h3>
 
-          <p className="mt-2 text-sm text-text-secondary">
-            Grouped updates help keep your feed focused and easy to scan.
-          </p>
+          {/* 🔥 Context (instead of raw groupKey) */}
+          {item.meta?.groupKey && (
+            <p className="mt-2 text-sm text-text-secondary">
+              <span className="text-text-muted">Context:</span>{" "}
+              <span className="text-accent-300 truncate">
+                {formatGroupKey(item.meta.groupKey)}
+              </span>
+            </p>
+          )}
 
+          {/* 🔥 Better grouping info */}
+          {count > 1 && (
+            <div className="mt-2 inline-flex items-center gap-2 rounded-lg bg-white/[0.04] px-3 py-1 text-xs text-text-muted">
+              <span>{count} grouped events</span>
+            </div>
+          )}
+
+          {/* Timestamp */}
           <div className="mt-4 flex items-center gap-3 text-xs text-text-muted">
             <span>{timeAgo(item.createdAt)}</span>
-            {item.meta?.count && item.meta.count > 1 && (
-              <>
-                <span className="h-1 w-1 rounded-full bg-text-muted" />
-                <span>{item.meta.count} events</span>
-              </>
-            )}
           </div>
         </div>
 
+        {/* Action */}
         {!item.isRead && (
           <button
             onClick={() => onMarkRead(item.id)}
-            className="rounded-xl border border-border-subtle bg-white/[0.03] px-3 py-2 text-sm text-text-secondary transition hover:bg-white/[0.06] hover:text-white"
+            className="shrink-0 rounded-xl border border-border-subtle bg-white/[0.03] px-3 py-2 text-sm text-text-secondary transition hover:bg-white/[0.06] hover:text-primary"
           >
             Mark read
           </button>
@@ -510,7 +661,7 @@ function SidebarCard({
         <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/[0.04] text-text-primary">
           {icon}
         </div>
-        <h3 className="text-sm font-semibold text-white">{title}</h3>
+        <h3 className="text-sm font-semibold text-primary">{title}</h3>
       </div>
       {children}
     </section>
@@ -588,6 +739,8 @@ export default function FeedPage() {
     if (tab === "unread") return feed.filter((item) => !item.isRead);
     if (tab === "threads") return feed.filter((item) => item.type === "thread");
     if (tab === "polls") return feed.filter((item) => item.type === "poll");
+    if (tab === "posts") return feed.filter((item) => item.type === "post");
+    if (tab === "replies") return feed.filter((item) => item.type === "reply");
     return feed;
   }, [feed, tab]);
 
@@ -646,7 +799,7 @@ export default function FeedPage() {
               <FeedSkeleton />
             ) : filteredFeed.length === 0 ? (
               <div className="rounded-2xl border border-border-subtle bg-bg-surface p-8 text-center shadow-soft">
-                <p className="text-base font-medium text-white">
+                <p className="text-base font-medium text-primary">
                   Nothing to show right now
                 </p>
                 <p className="mt-2 text-sm text-text-secondary">
@@ -669,6 +822,26 @@ export default function FeedPage() {
                   if (item.type === "poll" && item.poll) {
                     return (
                       <PollFeedCard
+                        key={item.id}
+                        item={item}
+                        onMarkRead={markAsRead}
+                      />
+                    );
+                  }
+
+                  if (item.type === "post" && item.post) {
+                    return (
+                      <PostFeedCard
+                        key={item.id}
+                        item={item}
+                        onMarkRead={markAsRead}
+                      />
+                    );
+                  }
+
+                  if (item.type === "reply" && item.reply) {
+                    return (
+                      <ReplyFeedCard
                         key={item.id}
                         item={item}
                         onMarkRead={markAsRead}
@@ -715,7 +888,7 @@ export default function FeedPage() {
                       className="flex items-center justify-between rounded-xl border border-border-subtle bg-white/[0.03] px-3 py-3 transition hover:bg-white/[0.06]"
                     >
                       <div>
-                        <p className="text-sm font-medium text-white">
+                        <p className="text-sm font-medium text-primary">
                           #{tag.name}
                         </p>
                         <p className="mt-0.5 text-xs text-text-muted">
@@ -740,7 +913,7 @@ export default function FeedPage() {
               ) : (
                 <div className="space-y-3">
                   <div>
-                    <p className="text-sm font-medium leading-6 text-white">
+                    <p className="text-sm font-medium leading-6 text-primary">
                       {sidebarPoll.question}
                     </p>
                     <p className="mt-1 text-xs text-text-muted">
@@ -777,7 +950,7 @@ export default function FeedPage() {
                       key={item.id}
                       className="rounded-xl border border-border-subtle bg-white/[0.03] p-3"
                     >
-                      <p className="text-sm font-medium text-white">
+                      <p className="text-sm font-medium text-primary">
                         {formatActivity(item.meta)}
                       </p>
                       <p className="mt-1 text-xs text-text-muted">

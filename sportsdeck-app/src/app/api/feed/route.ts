@@ -64,10 +64,24 @@ async function getHandler(req: AuthenticatedRequest) {
 
     const entries = await prisma.feedEntry.findMany({
       where: { userId: currentUser.id },
-      orderBy: { createdAt: "desc" },
+      orderBy: {
+        feedEvent: {
+          createdAt: "desc"
+        }
+      },
       take: limit,
       include: {
-        feedEvent: true
+        feedEvent: {
+          include: {
+            actor: {
+              select: {
+                id: true,
+                username: true,
+                avatarUrl: true
+              }
+            }
+          }
+        }
       }
     })
 

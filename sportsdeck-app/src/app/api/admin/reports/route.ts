@@ -201,6 +201,13 @@ async function getQueueContentPreviewText(
       })
       return reply?.content ? truncatePreview(reply.content) : null
     }
+    case "POLL": {
+      const poll = await prisma.poll.findUnique({
+        where: { id: contentId },
+        select: { question: true },
+      })
+      return poll?.question ? truncatePreview(poll.question) : null
+    }
     default:
       return null
   }

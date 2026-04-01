@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
 import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
+import { logActivity } from "@/lib/activity"
 
 /**
  * @openapi
@@ -124,6 +125,13 @@ async function postHandler(
         followingId: targetUserId
       }
     })
+
+    await logActivity({
+      actorId: currentUser.id,
+      type: "follow_created",
+      entityType: "user",
+      entityId: targetUserId,
+    });
 
     return NextResponse.json({ success: true }, { status: 201 })
 

@@ -125,6 +125,9 @@ export async function GET(
         },
 
         polls: {
+          where: {
+            isHidden: false,
+          },
           include: {
             options: true
           }

@@ -183,6 +183,13 @@ model Reply {
   post     Post           @relation(fields: [postId],   references: [id])
   author   User           @relation(fields: [authorId], references: [id])
   versions ReplyVersion[]
+
+  parentReplyId String?
+
+  parent   Reply?  @relation("ReplyThread", fields: [parentReplyId], references: [id])
+  children Reply[] @relation("ReplyThread")
+
+  poll Poll?
 }
 
 model PostVersion {
@@ -227,12 +234,16 @@ model ThreadTag {
 
 model Poll {
   id        String   @id @default(cuid())
-  threadId  String
+  threadId  String   @unique
   question  String
   deadline  DateTime
   isClosed  Boolean  @default(false)
+  isHidden  Boolean  @default(false)
   createdAt DateTime @default(now())
 
+  replyId String? @unique
+
+  reply Reply? @relation(fields: [replyId], references: [id])
   thread  Thread       @relation(fields: [threadId], references: [id])
   options PollOption[]
 }
@@ -249,6 +260,7 @@ model PollOption {
 model Vote {
   id           String   @id @default(cuid())
   pollOptionId String
+  pollId       String 
   userId       String
   createdAt    DateTime @default(now())
 
@@ -400,7 +412,7 @@ model FeedEvent {
   id             String   @id @default(cuid())
   actorId        String
   eventType      String
-  groupKey       String
+  groupKey       String?
   entityType     String
   entityId       String
   aggregateCount Int      @default(1)
@@ -420,4 +432,6 @@ model FeedEntry {
 
   user      User      @relation(fields: [userId],      references: [id])
   feedEvent FeedEvent @relation(fields: [feedEventId], references: [id])
+
+  @@unique([userId, feedEventId])
 }

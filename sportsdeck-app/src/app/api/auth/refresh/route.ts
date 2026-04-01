@@ -46,7 +46,6 @@ export async function POST(req: Request){
 
     // Extract payload information
     const {username, id, role} = payload;
-    const access_payload = {username: username, id: id, role: role};
 
 
     // Find the user corresponding to the refresh token. If not found, return an unauthorized error
@@ -67,7 +66,13 @@ export async function POST(req: Request){
             return NextResponse.json({message: "Unauthorized", redirect: "/api/auth/login"}, {status: 401});
         }
 
-        // Generate new access token
+        // Generate new access token using live DB ban status.
+        const access_payload = {
+            username: user.username,
+            id: user.id,
+            role: user.role,
+            isBanned: user.isBanned,
+        };
         const access_token = generateAccessToken(access_payload);
         const new_refresh_token = generateRefreshToken(access_payload);
 

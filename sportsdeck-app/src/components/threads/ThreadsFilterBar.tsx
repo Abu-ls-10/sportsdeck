@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import { Search, X, User } from "lucide-react";
 
 export type ThreadFilters = {
   search: string;
@@ -24,6 +25,12 @@ type Tag = {
   name: string;
 };
 
+type SearchUser = {
+  id: string;
+  username: string;
+  avatarUrl?: string | null;
+};
+
 export default function ThreadsFilterBar({ onChange }: Props) {
   const [filters, setFilters] = useState<ThreadFilters>({
     search: "",
@@ -35,15 +42,21 @@ export default function ThreadsFilterBar({ onChange }: Props) {
 
   const [searchInput, setSearchInput] = useState("");
 
-  // Dynamic data
+  // USER SEARCH
+  const [userResults, setUserResults] = useState<SearchUser[]>([]);
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [loadingUsers, setLoadingUsers] = useState(false);
+  const [highlightIndex, setHighlightIndex] = useState(-1);
+
+  const searchRef = useRef<HTMLDivElement>(null);
+
+  // =========================
+  // FILTER DATA
+  // =========================
   const [teams, setTeams] = useState<Team[]>([]);
   const [tags, setTags] = useState<Tag[]>([]);
-
   const [loadingMeta, setLoadingMeta] = useState(true);
 
-  // =========================
-  // FETCH FILTER DATA
-  // =========================
   useEffect(() => {
     const fetchMeta = async () => {
       try {
@@ -59,7 +72,6 @@ export default function ThreadsFilterBar({ onChange }: Props) {
 
         setTeams(Array.isArray(teamsData) ? teamsData : []);
         setTags(Array.isArray(tagsData) ? tagsData : []);
-
       } catch (err) {
         console.error("Failed to load filter metadata", err);
       } finally {
@@ -71,7 +83,7 @@ export default function ThreadsFilterBar({ onChange }: Props) {
   }, []);
 
   // =========================
-  // DEBOUNCED SEARCH
+  // THREAD SEARCH (debounced)
   // =========================
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -80,6 +92,68 @@ export default function ThreadsFilterBar({ onChange }: Props) {
 
     return () => clearTimeout(timeout);
   }, [searchInput]);
+
+  // =========================
+  // USER SEARCH (live)
+  // =========================
+  useEffect(() => {
+    if (searchInput.trim().length < 2) {
+      setUserResults([]);
+      setShowDropdown(false);
+      return;
+    }
+
+    const controller = new AbortController();
+
+    const timeout = setTimeout(async () => {
+      try {
+        setLoadingUsers(true);
+
+        const res = await fetch(
+          `/api/search/users?q=${encodeURIComponent(searchInput)}`,
+          { signal: controller.signal }
+        );
+
+        const data = await res.json().catch(() => null);
+
+        if (!res.ok) {
+          setUserResults([]);
+          return;
+        }
+
+        const results = Array.isArray(data?.data) ? data.data : [];
+
+        setUserResults(results);
+        setShowDropdown(true);
+        setHighlightIndex(results.length ? 0 : -1);
+      } catch (err: any) {
+        if (err.name !== "AbortError") {
+          setUserResults([]);
+        }
+      } finally {
+        setLoadingUsers(false);
+      }
+    }, 250);
+
+    return () => {
+      controller.abort();
+      clearTimeout(timeout);
+    };
+  }, [searchInput]);
+
+  // =========================
+  // CLICK OUTSIDE
+  // =========================
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (searchRef.current && !searchRef.current.contains(e.target as Node)) {
+        setShowDropdown(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
 
   function updateFilters(newValues: Partial<ThreadFilters>) {
     const updated = { ...filters, ...newValues };
@@ -100,21 +174,95 @@ export default function ThreadsFilterBar({ onChange }: Props) {
     onChange(reset);
   }
 
+  function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setHighlightIndex((prev) =>
+        prev < userResults.length - 1 ? prev + 1 : 0
+      );
+    }
+
+    if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setHighlightIndex((prev) =>
+        prev > 0 ? prev - 1 : userResults.length - 1
+      );
+    }
+
+    if (e.key === "Enter") {
+      if (highlightIndex >= 0 && userResults[highlightIndex]) {
+        window.location.href = `/users/${userResults[highlightIndex].id}`;
+      }
+    }
+
+    if (e.key === "Escape") {
+      setShowDropdown(false);
+    }
+  }
+
   return (
-    <div className="bg-bg-surface border border-border-subtle rounded-2xl p-4 shadow-soft">
+    <div className="bg-bg-surface border border-border-subtle rounded-2xl p-4 shadow-card">
       
-      {/* Row 1 */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-3">
-        
-        {/* SEARCH */}
+      {/* SEARCH */}
+      <div ref={searchRef} className="relative">
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-text-muted h-4 w-4" />
+
         <input
-          placeholder="Search threads..."
+          placeholder="Search threads or users..."
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
-          className="md:col-span-2 bg-bg-card border border-border-subtle px-4 py-2 rounded-xl text-sm outline-none focus:border-primary-500"
+          onKeyDown={handleKeyDown}
+          className="w-full pl-10 pr-10 py-2 rounded-xl bg-bg-card border border-border-subtle text-sm outline-none focus:border-primary-500"
         />
 
-        {/* TEAM */}
+        {searchInput && (
+          <button
+            onClick={() => setSearchInput("")}
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-text-muted hover:text-primary"
+          >
+            <X className="h-4 w-4" />
+          </button>
+        )}
+
+        {/* DROPDOWN */}
+        {showDropdown && (
+          <div className="absolute top-full mt-2 w-full bg-bg-card border border-border-subtle rounded-xl shadow-xl z-50">
+            
+            <div className="px-3 py-2 text-xs text-text-muted border-b border-border-subtle">
+              Users
+            </div>
+
+            {loadingUsers ? (
+              <div className="p-3 text-sm text-text-secondary">Searching...</div>
+            ) : userResults.length === 0 ? (
+              <div className="p-3 text-sm text-text-secondary">
+                No users found
+              </div>
+            ) : (
+              userResults.map((u, i) => (
+                <button
+                  key={u.id}
+                  onClick={() => (window.location.href = `/users/${u.id}`)}
+                  className={`w-full flex items-center gap-3 px-3 py-2 text-sm transition ${
+                    i === highlightIndex
+                      ? "bg-accent-500/10 text-primary"
+                      : "hover:bg-bg-elevated"
+                  }`}
+                >
+                  <div className="w-8 h-8 rounded-full bg-accent-500/20 flex items-center justify-center text-xs">
+                    {u.username.slice(0, 2).toUpperCase()}
+                  </div>
+                  {u.username}
+                </button>
+              ))
+            )}
+          </div>
+        )}
+      </div>
+
+      {/* FILTER ROW */}
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-3 mt-4">
+
         <select
           value={filters.team}
           onChange={(e) => updateFilters({ team: e.target.value })}
@@ -129,17 +277,14 @@ export default function ThreadsFilterBar({ onChange }: Props) {
           ))}
         </select>
 
-        {/* MATCH (Optional / Future) */}
         <select
           value={filters.match}
-          onChange={(e) => updateFilters({ match: e.target.value })}
-          className="bg-bg-card border border-border-subtle px-3 py-2 rounded-xl text-sm"
           disabled
+          className="bg-bg-card border border-border-subtle px-3 py-2 rounded-xl text-sm"
         >
           <option value="all">All Matches</option>
         </select>
 
-        {/* SORT */}
         <select
           value={filters.sort}
           onChange={(e) => updateFilters({ sort: e.target.value })}
@@ -148,50 +293,45 @@ export default function ThreadsFilterBar({ onChange }: Props) {
           <option value="recent">Most Recent</option>
           <option value="top">Most Replies</option>
         </select>
-      </div>
 
-      {/* Row 2 */}
-      <div className="flex flex-wrap items-center justify-between gap-3 mt-4">
-        
-        {/* TAGS */}
-        <div className="flex flex-wrap gap-2">
-          <button
-            onClick={() => updateFilters({ tag: "all" })}
-            className={`px-3 py-1.5 rounded-full text-xs ${
-              filters.tag === "all"
-                ? "bg-primary-500/20 text-primary-400 border border-primary-500/30"
-                : "bg-bg-card text-text-secondary hover:bg-bg-elevated"
-            }`}
-          >
-            ALL
-          </button>
-
-          {tags.map((tag) => {
-            const isActive = filters.tag === tag.name;
-
-            return (
-              <button
-                key={tag.id}
-                onClick={() => updateFilters({ tag: tag.name })}
-                className={`px-3 py-1.5 rounded-full text-xs transition ${
-                  isActive
-                    ? "bg-primary-500/20 text-primary-400 border border-primary-500/30"
-                    : "bg-bg-card text-text-secondary hover:bg-bg-elevated"
-                }`}
-              >
-                {tag.name.toUpperCase()}
-              </button>
-            );
-          })}
-        </div>
-
-        {/* RESET */}
         <button
           onClick={resetFilters}
-          className="text-xs text-text-muted hover:text-white transition"
+          className="text-xs text-text-muted hover:text-primary"
         >
-          Reset filters
+          Reset
         </button>
+      </div>
+
+      {/* TAGS */}
+      <div className="mt-4 overflow-x-auto flex gap-2 pb-1">
+        <button
+          onClick={() => updateFilters({ tag: "all" })}
+          className={`px-3 py-1.5 rounded-full text-xs whitespace-nowrap ${
+            filters.tag === "all"
+              ? "bg-primary-500/20 text-primary-400 border border-primary-500/30"
+              : "bg-bg-card text-text-secondary hover:bg-bg-elevated"
+          }`}
+        >
+          ALL
+        </button>
+
+        {tags.map((tag) => {
+          const isActive = filters.tag === tag.name;
+
+          return (
+            <button
+              key={tag.id}
+              onClick={() => updateFilters({ tag: tag.name })}
+              className={`px-3 py-1.5 rounded-full text-xs whitespace-nowrap ${
+                isActive
+                  ? "bg-primary-500/20 text-primary-400 border border-primary-500/30"
+                  : "bg-bg-card text-text-secondary hover:bg-bg-elevated"
+              }`}
+            >
+              {tag.name.toUpperCase()}
+            </button>
+          );
+        })}
       </div>
     </div>
   );

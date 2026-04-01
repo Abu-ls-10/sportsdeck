@@ -1,10 +1,13 @@
 "use client";
 
 import { useState, useRef } from "react";
+import { showNotice } from "@/lib/clientNotice";
+import { getApiErrorMessage, isBannedActionError } from "@/lib/apiError";
 
 type Props = {
   threadId: string;
   onPostCreated: (post: any) => void;
+  isBanned?: boolean;
 };
 
 const MAX_LENGTH = 2000;
@@ -12,6 +15,7 @@ const MAX_LENGTH = 2000;
 export default function PostComposer({
   threadId,
   onPostCreated,
+  isBanned = false,
 }: Props) {
   const [content, setContent] = useState("");
   const [focused, setFocused] = useState(false);
@@ -38,6 +42,10 @@ export default function PostComposer({
   const handleSubmit = async () => {
     const trimmed = content.trim();
     if (!trimmed || loading) return;
+    if (isBanned) {
+      setError("Your account is banned. Posting is disabled.");
+      return;
+    }
 
     try {
       setLoading(true);
@@ -52,7 +60,12 @@ export default function PostComposer({
       const data = await res.json().catch(() => ({}));
 
       if (!res.ok) {
-        throw new Error(data.error || "Failed to create post");
+        if (isBannedActionError(res.status, data)) {
+          throw new Error(
+            "Your account is currently banned, so posting is disabled. If you think this is a mistake, submit an appeal from My Appeals."
+          );
+        }
+        throw new Error(getApiErrorMessage(data, "Failed to create post"));
       }
 
       // optimistic update
@@ -66,9 +79,15 @@ export default function PostComposer({
         textareaRef.current.style.height = "auto";
       }
 
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error(err);
-      setError(err.message || "Something went wrong");
+      const message = err instanceof Error ? err.message : "Something went wrong";
+      setError(message);
+      showNotice({
+        tone: "warning",
+        title: "Unable to create post",
+        message,
+      });
     } finally {
       setLoading(false);
     }
@@ -85,6 +104,15 @@ export default function PostComposer({
   };
 
   return (
+    <div className="space-y-2">
+
+      {/* BANNED NOTICE */}
+      {isBanned && (
+        <div className="rounded-lg border border-rose-500/30 bg-rose-500/10 px-3 py-2 text-sm text-rose-300">
+          Your account is banned. Posting is disabled.
+        </div>
+      )}
+
     <div
       className={`rounded-2xl border p-4 transition ${
         focused
@@ -113,7 +141,7 @@ export default function PostComposer({
             onKeyDown={handleKeyDown}
             placeholder="Share your thoughts..."
             rows={1}
-            className="w-full resize-none bg-transparent text-sm text-white placeholder:text-text-muted outline-none"
+            className="w-full resize-none bg-transparent text-sm text-primary placeholder:text-text-muted outline-none"
           />
 
           {/* ACTION BAR */}
@@ -138,7 +166,7 @@ export default function PostComposer({
                     setContent("");
                     setFocused(false);
                   }}
-                  className="text-xs text-text-muted hover:text-white transition"
+                  className="text-xs text-text-muted hover:text-primary transition"
                   disabled={loading}
                 >
                   Cancel
@@ -147,8 +175,8 @@ export default function PostComposer({
                 {/* Submit */}
                 <button
                   onClick={handleSubmit}
-                  disabled={loading || !content.trim()}
-                  className="rounded-lg bg-gradient-primary px-4 py-2 text-sm font-medium text-white transition hover:brightness-110 disabled:opacity-50"
+                  disabled={loading || !content.trim() || isBanned}
+                  className="rounded-lg bg-gradient-primary px-4 py-2 text-sm font-medium text-primary transition hover:brightness-110 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {loading ? "Posting..." : "Post"}
                 </button>
@@ -157,6 +185,7 @@ export default function PostComposer({
           )}
         </div>
       </div>
+    </div>
     </div>
   );
 }

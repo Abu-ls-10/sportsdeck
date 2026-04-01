@@ -5,24 +5,84 @@ import {
   LayoutDashboard,
   Users,
   Trophy,
-  Shield,
   MessageSquare,
   ChevronLeft,
   ChevronRight,
+  Ban,
+  Flag,
+  BarChart3,
+  FlagTriangleRight,
+  Inbox,
+  Settings,
+  Newspaper,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import Logo from "../ui/Logo";
+import { UserAvatar } from "../ui/UserAvatar";
 import { useAuth } from "@/contexts/AuthContext";
-import { Dispatch, SetStateAction } from "react";
+
+function useMyAvatarUrl(
+  userId: string | undefined,
+  accessToken: string | null
+) {
+  const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!userId || !accessToken) {
+      setAvatarUrl(null);
+      return;
+    }
+
+    const controller = new AbortController();
+
+    const fetchAvatar = async () => {
+      try {
+        const res = await fetch("/api/users/me", {
+          headers: { Authorization: `Bearer ${accessToken}` },
+          signal: controller.signal,
+          cache: "no-store",
+        });
+
+        if (!res.ok) return;
+
+        const json = await res.json();
+        setAvatarUrl(json?.data?.avatarUrl ?? null);
+      } catch (err: any) {
+        if (err.name !== "AbortError") {
+          setAvatarUrl(null);
+        }
+      }
+    };
+
+    fetchAvatar();
+
+    return () => controller.abort();
+  }, [userId, accessToken]);
+
+  return avatarUrl;
+}
 
 const navItems = [
-  {label: "Home", href: "/home", icon: Home },
+  { label: "Home", href: "/home", icon: Home },
   { label: "Feed", href: "/feed", icon: LayoutDashboard },
-  { label: "Community", href: "/community", icon: MessageSquare },
+  { label: "Community", href: "/community", icon: Users },
+  { label: "Daily Digest", href: "/daily-digest", icon: Newspaper },
   { label: "Matches", href: "/matches", icon: Trophy },
-  { label: "Teams", href: "/teams", icon: Users },
-  { label: "Standings", href: "/standings", icon: Shield },
+  { label: "Teams", href: "/teams", icon: Flag },
+  { label: "Standings", href: "/standings", icon: BarChart3 },
+];
+
+const adminItems = [
+  { label: "Bans", href: "/admin/bans", icon: Ban },
+  { label: "Reports", href: "/admin/reports", icon: FlagTriangleRight },
+  { label: "Appeals", href: "/admin/appeals", icon: MessageSquare },
+];
+
+const accountItems = [
+  { label: "My Appeals", href: "/appeals", icon: Inbox },
+  { label: "Settings", href: "/settings", icon: Settings },
 ];
 
 export default function AppSidebar({
@@ -37,8 +97,8 @@ export default function AppSidebar({
   setMobileOpen: Dispatch<SetStateAction<boolean>>;
 }) {
   const pathname = usePathname();
-  const { user, logout } = useAuth();
-
+  const { user, logout, accessToken } = useAuth();
+  const meAvatarUrl = useMyAvatarUrl(user?.id, accessToken);
   const isExpanded = !collapsed;
 
   return (
@@ -70,6 +130,7 @@ export default function AppSidebar({
           expanded={true}
           pathname={pathname}
           user={user}
+          meAvatarUrl={meAvatarUrl}
           logout={logout}
           onNavigate={() => setMobileOpen(false)}
         />
@@ -91,6 +152,7 @@ export default function AppSidebar({
           expanded={isExpanded}
           pathname={pathname}
           user={user}
+          meAvatarUrl={meAvatarUrl}
           logout={logout}
         />
       </aside>
@@ -128,15 +190,21 @@ function SidebarContent({
   expanded,
   pathname,
   user,
+  meAvatarUrl,
   logout,
   onNavigate,
 }: {
   expanded: boolean;
   pathname: string;
-  user: any;
+  user: { id: string; username: string | null; role: string } | null;
+  meAvatarUrl: string | null;
   logout: () => void;
   onNavigate?: () => void;
 }) {
+  const roleLower = user?.role?.toLowerCase() ?? "";
+  const isAdmin = roleLower === "admin";
+  const showAdminNav = isAdmin || roleLower === "moderator";
+
   return (
     <div className="flex h-full flex-col">
 
@@ -152,13 +220,20 @@ function SidebarContent({
       </div>
 
       {/* ===== NAV ===== */}
-      <nav className="flex-1 px-3 space-y-1">
+      <nav
+        className="
+          flex-1 px-3 space-y-1
+          overflow-y-auto
+          scrollbar-hide
+          pb-4
+        "
+      >
+
+        {/* ===== MAIN NAV ===== */}
         {navItems.map((item) => {
           const Icon = item.icon;
           const isActive =
-            item.href === "/"
-              ? pathname === "/"
-              : pathname === item.href || pathname.startsWith(item.href + "/");
+            pathname === item.href || pathname.startsWith(item.href + "/");
 
           return (
             <Link
@@ -167,23 +242,88 @@ function SidebarContent({
               title={!expanded ? item.label : ""}
               onClick={onNavigate}
               className={`
-                flex items-center gap-3
-                px-3 py-2.5 rounded-xl text-sm
+                flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm
                 transition-all duration-200
-
                 ${
                   isActive
-                    ? "bg-primary-500/15 text-primary-400 shadow-inner"
-                    : "text-text-secondary hover:bg-bg-elevated hover:text-white"
+                    ? "bg-primary-500/15 text-primary-400 shadow-inner border border-primary-500/20"
+                    : "text-text-secondary hover:bg-bg-elevated hover:scale-[1.02] hover:text-primary"
                 }
               `}
             >
-              <Icon
-                className={`h-4 w-4 ${
-                  isActive ? "text-primary-400" : ""
-                }`}
-              />
+              <Icon className={`h-4 w-4 ${isActive ? "text-primary-400" : ""}`} />
+              {expanded && <span>{item.label}</span>}
+            </Link>
+          );
+        })}
 
+        {/* ===== ADMIN SECTION ===== */}
+        {showAdminNav ? (
+          <>
+            <div className="mt-4 px-3">
+              {expanded && (
+                <p className="text-xs text-text-muted mb-2">MODERATION</p>
+              )}
+            </div>
+
+            {adminItems.map((item) => {
+              const Icon = item.icon;
+              const isActive =
+                pathname === item.href || pathname.startsWith(item.href + "/");
+
+              return (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  title={!expanded ? item.label : ""}
+                  onClick={onNavigate}
+                  className={`
+                    flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm
+                    transition-all duration-200
+                    ${
+                      isActive
+                        ? "bg-brand-500/15 text-brand-400 shadow-inner border border-brand-500/20"
+                        : "text-text-secondary hover:bg-brand-500/10 hover:text-brand-300 hover:scale-[1.02]"
+                    }
+                  `}
+                >
+                  <Icon className={`h-4 w-4 ${isActive ? "text-brand-400" : ""}`} />
+                  {expanded && <span>{item.label}</span>}
+                </Link>
+              );
+            })}
+          </>
+        ) : null}
+
+        {/* ===== ACCOUNT SECTION ===== */}
+        <div className="mt-4 px-3">
+          {expanded && (
+            <p className="text-xs text-text-muted mb-2">ACCOUNT</p>
+          )}
+        </div>
+
+        {accountItems.map((item) => {
+          const Icon = item.icon;
+          const isActive =
+            pathname === item.href || pathname.startsWith(item.href + "/");
+
+          return (
+            <Link
+              key={item.label}
+              href={item.href}
+              title={!expanded ? item.label : ""}
+              onClick={onNavigate}
+              className={`
+                flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm
+                transition-all duration-200
+                ${
+                  isActive
+                    ? "bg-accent-500/15 text-accent-400 shadow-inner border border-accent-500/20"
+                    : "text-text-secondary hover:bg-accent-500/10 hover:text-accent-300 hover:scale-[1.02]"
+                }
+              `}
+            >
+              <Icon className={`h-4 w-4 ${isActive ? "text-accent-400" : ""}`} />
               {expanded && <span>{item.label}</span>}
             </Link>
           );
@@ -192,30 +332,35 @@ function SidebarContent({
 
       {/* ===== PROFILE ===== */}
       <div className="p-3 border-t border-border-subtle">
-        <div className="flex items-center gap-3">
-
-          <div className="w-9 h-9 rounded-full bg-gradient-primary flex items-center justify-center text-white text-sm font-semibold">
-            {user?.username?.[0]?.toUpperCase() ?? "U"}
-          </div>
+        <div className="flex items-start gap-3">
+          <UserAvatar
+            username={user?.username ?? null}
+            avatarUrl={meAvatarUrl}
+            href={user?.id ? `/users/${user.id}` : undefined}
+          />
 
           {expanded && (
-            <>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm text-text-primary truncate">
-                  @{user?.username ?? "user"}
-                </p>
-                <p className="text-xs text-text-muted">
-                  {user?.role ?? "Guest"}
-                </p>
-              </div>
-
+            <div className="flex min-w-0 flex-1 flex-col gap-1">
+              <p className="truncate text-sm text-text-primary">
+                @{user?.username ?? "user"}
+              </p>
+              <p
+                className={
+                  isAdmin
+                    ? "text-xs font-semibold text-emerald-400"
+                    : "text-xs text-text-muted"
+                }
+              >
+                {isAdmin ? "Admin" : "User"}
+              </p>
               <button
+                type="button"
                 onClick={logout}
-                className="text-xs text-red-400 hover:text-red-300 transition"
+                className="self-start text-xs text-red-400 transition hover:text-red-300"
               >
                 Logout
               </button>
-            </>
+            </div>
           )}
         </div>
       </div>

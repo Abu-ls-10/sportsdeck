@@ -54,12 +54,25 @@ export default async function seedPolls(prisma: PrismaClient, threads: any[]) {
 
 
   // thread or to be made polls
+  const now = new Date();
   const query = selected.map((thread) => {
-    if (thread.isMatchThread){
-      return {threadId: thread.id, question: pollQuestions[Math.floor(Math.random() * pollQuestions.length)], deadline: randomDateBetween(thread.opensAt, addWeek(thread.opensAt)), isClosed: thread.isLocked};
+    if (thread.isMatchThread && thread.opensAt) {
+      const opensAt = new Date(thread.opensAt);
+      return {
+        threadId: thread.id,
+        question: pollQuestions[Math.floor(Math.random() * pollQuestions.length)],
+        deadline: randomDateBetween(opensAt, addWeek(opensAt)),
+        isClosed: thread.isLocked || (thread.lockedAt ? now > new Date(thread.lockedAt) : false),
+      };
     }
-    return {threadId: thread.id, question: pollQuestions[Math.floor(Math.random() * pollQuestions.length)], deadline: randomDateBetween(thread.createdAt, addWeek(thread.createdAt)), isClosed: thread.isLocked};
-
+    // Team/general thread (or match thread missing opensAt): fallback to createdAt window.
+    const start = new Date(thread.createdAt);
+    return {
+      threadId: thread.id,
+      question: pollQuestions[Math.floor(Math.random() * pollQuestions.length)],
+      deadline: randomDateBetween(start, addWeek(start)),
+      isClosed: !!thread.isLocked,
+    };
   })
 
   const batch = await prisma.poll.createMany({

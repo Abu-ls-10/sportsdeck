@@ -50,7 +50,7 @@ export default function TeamsPageClient({ teams, featured, seasonLabel }: TeamsP
 
           <div className="relative flex flex-col md:flex-row md:items-center md:justify-between gap-6">
             <div>
-              <h1 className="text-3xl md:text-4xl font-semibold text-white">
+              <h1 className="text-3xl md:text-4xl font-semibold text-primary">
                 Teams Hub
               </h1>
               <p className="mt-2 text-sm text-text-secondary">
@@ -80,7 +80,7 @@ export default function TeamsPageClient({ teams, featured, seasonLabel }: TeamsP
         {/* ================= FEATURED ================= */}
         <section className="mt-8">
           <div className="flex justify-between items-center mb-4">
-            <h2 className="text-xl font-semibold text-white">
+            <h2 className="text-xl font-semibold text-primary">
               Featured Teams
             </h2>
             <Link href="/standings" className="text-sm text-primary-400 hover:text-primary-300">
@@ -138,7 +138,7 @@ export default function TeamsPageClient({ teams, featured, seasonLabel }: TeamsP
               <button
                 onClick={() => setView("grid")}
                 className={`p-2 rounded-lg ${
-                  view === "grid" ? "bg-bg-elevated text-white" : "text-text-muted"
+                  view === "grid" ? "bg-bg-elevated text-primary" : "text-text-muted"
                 }`}
               >
                 <IconLayoutGrid className="h-5 w-5" />
@@ -147,13 +147,13 @@ export default function TeamsPageClient({ teams, featured, seasonLabel }: TeamsP
               <button
                 onClick={() => setView("list")}
                 className={`p-2 rounded-lg ${
-                  view === "list" ? "bg-bg-elevated text-white" : "text-text-muted"
+                  view === "list" ? "bg-bg-elevated text-primary" : "text-text-muted"
                 }`}
               >
                 <IconList className="h-5 w-5" />
               </button>
 
-              <button className="p-2 text-text-muted hover:text-white">
+              <button className="p-2 text-text-muted hover:text-primary">
                 <IconFilter className="h-5 w-5" />
               </button>
             </div>
@@ -188,7 +188,7 @@ export default function TeamsPageClient({ teams, featured, seasonLabel }: TeamsP
                   </div>
 
                   <div className="flex-1">
-                    <h3 className="font-semibold text-white">{team.name}</h3>
+                    <h3 className="font-semibold text-primary">{team.name}</h3>
                     <p className="text-sm text-text-muted">{team.venue}</p>
                   </div>
 
@@ -203,7 +203,7 @@ export default function TeamsPageClient({ teams, featured, seasonLabel }: TeamsP
 
                     <Link
                       href={`/threads?teamId=${team.id}`}
-                      className="px-3 py-2 text-xs rounded-lg bg-gradient-primary text-white"
+                      className="px-3 py-2 text-xs rounded-lg bg-gradient-primary text-primary"
                     >
                       <IconMessage2 className="inline w-4 h-4 mr-1" />
                       Forum

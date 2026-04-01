@@ -8,7 +8,7 @@ export default function ActivePollCard() {
   return (
     <div className="rounded-2xl border border-white/6 bg-bg-surface p-4 shadow-soft">
       <div className="mb-3 flex items-center justify-between">
-        <h3 className="text-sm font-semibold text-white">Active Poll</h3>
+        <h3 className="text-sm font-semibold text-primary">Active Poll</h3>
         <span className="rounded-md bg-brand-500/10 px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-brand-400">
           24h left
         </span>

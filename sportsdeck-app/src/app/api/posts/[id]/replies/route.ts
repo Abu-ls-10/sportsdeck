@@ -2,6 +2,7 @@ import { NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
 import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
 import { moderateContent } from "@/lib/moderation"
+import { logActivity } from "@/lib/activity"
 
 /**
  * @openapi
@@ -60,9 +61,13 @@ import { moderateContent } from "@/lib/moderation"
  *       500:
  *         description: Internal server error
  */
-// POST /api/posts/:id/replies
-// Creates a comment (reply) under a post.
-// Auto-flags the reply content through AI moderation on creation.
+
+/**
+ * POST /api/posts/:id/replies
+ * Supports:
+ * - replying to post
+ * - replying to another reply (nested)
+ */
 async function postHandler(
   req: AuthenticatedRequest,
   { params }: { params: Promise<{ id: string }> }
@@ -71,6 +76,9 @@ async function postHandler(
     const { id: postId } = await params
     const user = req.user
 
+    // =========================
+    // VALIDATE POST + THREAD
+    // =========================
     const post = await prisma.post.findUnique({
       where: { id: postId },
       include: { thread: true },
@@ -88,110 +96,122 @@ async function postHandler(
       return NextResponse.json({ error: "Thread is locked" }, { status: 403 })
 
     const now = new Date()
+
     if (thread.opensAt && now < thread.opensAt)
-      return NextResponse.json({ error: "Thread has not opened yet" }, { status: 403 })
+      return NextResponse.json(
+        { error: "Thread has not opened yet" },
+        { status: 403 }
+      )
 
     if (thread.lockedAt && now > thread.lockedAt)
-      return NextResponse.json({ error: "Thread is closed" }, { status: 403 })
+      return NextResponse.json(
+        { error: "Thread is closed" },
+        { status: 403 }
+      )
 
+    // =========================
+    // BODY
+    // =========================
     const body = await req.json()
-    const { content } = body
+    const { content, parentReplyId } = body
 
-    if (!content || content.trim() === "")
-      return NextResponse.json({ error: "Content is required" }, { status: 400 })
+    if (!content || content.trim() === "") {
+      return NextResponse.json(
+        { error: "Content is required" },
+        { status: 400 }
+      )
+    }
 
-    const result = await prisma.$transaction(async (tx) => {
+    // =========================
+    // VALIDATE PARENT REPLY
+    // =========================
+    if (parentReplyId) {
+      const parent = await prisma.reply.findUnique({
+        where: { id: parentReplyId },
+      })
 
-      const reply = await tx.reply.create({
+      if (!parent || parent.isHidden) {
+        return NextResponse.json(
+          { error: "Parent reply not found" },
+          { status: 404 }
+        )
+      }
+
+      // must belong to same post
+      if (parent.postId !== postId) {
+        return NextResponse.json(
+          { error: "Invalid parent reply" },
+          { status: 400 }
+        )
+      }
+    }
+
+    // =========================
+    // CREATE REPLY
+    // =========================
+    const reply = await prisma.$transaction(async (tx) => {
+      const created = await tx.reply.create({
         data: {
           postId: post.id,
           authorId: user.id,
           content: content.trim(),
+          parentReplyId: parentReplyId ?? null, 
+        },
+        include: {
+          author: {
+            select: {
+              id: true,
+              username: true,
+              avatarUrl: true,
+            },
+          },
         },
       })
 
-      const feedEvent = await tx.feedEvent.create({
-        data: {
-          actorId: user.id,
-          eventType: "reply_created",
-          entityType: "reply",
-          entityId: reply.id,
-          groupKey: `thread-${thread.id}-replies`
-        }
-      })
-
-      const followers = await tx.follow.findMany({
-        where: { followingId: user.id },
-        select: { followerId: true }
-      })
-
-      const participants = await tx.post.findMany({
-        where: { threadId: thread.id },
-        select: { authorId: true },
-        distinct: ["authorId"]
-      })
-
-      const repliers = await tx.reply.findMany({
-        where: {
-          post: {
-            threadId: thread.id
-          }
-        },
-        select: { authorId: true },
-        distinct: ["authorId"]
-      })
-
-      const recipientSet = new Set<string>()
-
-      recipientSet.add(user.id)
-      recipientSet.add(post.authorId)
-
-      for (const f of followers) {
-        recipientSet.add(f.followerId)
-      }
-
-      for (const p of participants) {
-        recipientSet.add(p.authorId)
-      }
-
-      for (const r of repliers) {
-        recipientSet.add(r.authorId)
-      }
-
-      const recipientIds = Array.from(recipientSet)
-
-      await tx.feedEntry.createMany({
-        data: recipientIds.map((uid) => ({
-          userId: uid,
-          feedEventId: feedEvent.id,
-          isRead: uid === user.id
-        }))
-      })
-
-      return reply
+      return created
     })
 
-    moderateContent("REPLY", result.id, result.content).catch((err) =>
+    // =========================
+    // ACTIVITY + MODERATION
+    // =========================
+    await logActivity({
+      actorId: user.id,
+      type: "reply_created",
+      entityType: "reply",
+      entityId: reply.id,
+    })
+
+    moderateContent("REPLY", reply.id, reply.content).catch((err) =>
       console.error("[replies] moderateContent failed:", err)
     )
 
-    return NextResponse.json(result, { status: 201 })
-
+    return NextResponse.json(reply, { status: 201 })
   } catch (err) {
     console.error(err)
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 })
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 }
+    )
   }
 }
 
 export const POST = withAuth(postHandler)
 
+// =========================
 // GET /api/posts/:id/replies
-// Returns all visible replies under a post.
-export async function GET(request: Request, { params }: { params: Promise<{ id: string }> }) {
+// (flat — tree is built in threads/full)
+// =========================
+export async function GET(
+  request: Request,
+  { params }: { params: Promise<{ id: string }> }
+) {
   try {
     const { id: postId } = await params
 
-    const post = await prisma.post.findUnique({ where: { id: postId } })
+    const post = await prisma.post.findUnique({
+      where: { id: postId },
+    })
+
     if (!post || post.isHidden)
       return NextResponse.json({ error: "Post not found" }, { status: 404 })
 
@@ -200,7 +220,11 @@ export async function GET(request: Request, { params }: { params: Promise<{ id: 
       orderBy: { createdAt: "asc" },
       include: {
         author: {
-          select: { id: true, username: true, avatarUrl: true },
+          select: {
+            id: true,
+            username: true,
+            avatarUrl: true,
+          },
         },
       },
     })
@@ -208,6 +232,9 @@ export async function GET(request: Request, { params }: { params: Promise<{ id: 
     return NextResponse.json(replies)
   } catch (err) {
     console.error(err)
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 })
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 }
+    )
   }
 }

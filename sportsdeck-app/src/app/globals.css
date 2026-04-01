@@ -1,19 +1,130 @@
 @import "tailwindcss";
 @config "../../tailwind.config.ts";
 
+/* =========================
+   LIGHT MODE (DEFAULT)
+   ========================= */
+:root {
+  color-scheme: light;
+
+  /* BACKGROUND */
+  --bg-main: #f4f7fb;
+  --bg-surface: #ffffff;
+  --bg-card: #ffffff;
+  --bg-elevated: #eef4fb;
+  --bg-glass: rgba(255, 255, 255, 0.7);
+
+  /* TEXT */
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --text-dim: #94a3b8;
+
+  /* BORDER */
+  --border-default: #dbe3ee;
+  --border-subtle: rgba(15, 23, 42, 0.08);
+  --border-strong: #c3d1e3;
+
+  /* GRADIENTS */
+  --gradient-card-from: rgba(15, 23, 42, 0.04);
+  --gradient-card-to: rgba(255, 255, 255, 0);
+  --gradient-glow: rgba(34, 211, 238, 0.1);
+  --gradient-border-start: rgba(14, 165, 233, 0.22);
+  --gradient-border-mid: rgba(6, 182, 212, 0.12);
+
+  /* SHADOWS */
+  --shadow-card: 0 10px 30px rgba(15, 23, 42, 0.08);
+  --shadow-glow: 0 0 30px rgba(14, 165, 233, 0.12);
+  --shadow-soft: 0 6px 18px rgba(15, 23, 42, 0.08);
+  --shadow-inner: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+/* =========================
+   DARK MODE (CURRENT DESIGN)
+   ========================= */
+.dark {
+  color-scheme: dark;
+
+  --bg-main: #0a0f1c;
+  --bg-surface: #0f172a;
+  --bg-card: #111827;
+  --bg-elevated: #162033;
+  --bg-glass: rgba(255, 255, 255, 0.03);
+
+  --text-primary: #e6edf5;
+  --text-secondary: #9fb0c3;
+  --text-muted: #6e8095;
+  --text-dim: #4b5c70;
+
+  --border-default: #1f2937;
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-strong: #2a3a4f;
+
+  --gradient-card-from: rgba(255, 255, 255, 0.05);
+  --gradient-card-to: rgba(255, 255, 255, 0);
+  --gradient-glow: rgba(34, 211, 238, 0.18);
+  --gradient-border-start: rgba(14, 165, 233, 0.4);
+  --gradient-border-mid: rgba(6, 182, 212, 0.2);
+
+  --shadow-card: 0 10px 35px rgba(0, 0, 0, 0.35);
+  --shadow-glow: 0 0 30px rgba(14, 165, 233, 0.18);
+  --shadow-soft: 0 6px 20px rgba(0, 0, 0, 0.25);
+  --shadow-inner: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* TEMP-FIX: remove after migration */
+html.light .text-white {
+  color: var(--text-primary) !important;
+}
+
+/* keep this permanently */
+.bg-gradient-primary.text-white {
+  color: white;
+}
+
+/* =========================
+   BASE
+   ========================= */
 body {
   @apply bg-bg-main text-text-primary;
 }
 
-/* subtle background glow */
+/* =========================
+   BACKGROUND GLOW (ADAPTIVE)
+   ========================= */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background: radial-gradient(circle at top, rgba(34,211,238,0.08), transparent 60%);
+  background: radial-gradient(
+    circle at top,
+    var(--gradient-glow),
+    transparent 60%
+  );
   z-index: -1;
 }
 
+/* =========================
+   CARD SYSTEM (UPGRADED)
+   ========================= */
 .card {
-  @apply bg-bg-card border rounded-2xl;
+  @apply bg-bg-card border border-border-subtle rounded-2xl shadow-card;
+}
+
+/* optional hover polish */
+.card-hover {
+  @apply transition-all duration-300 ease-smooth;
+}
+
+.card-hover:hover {
+  @apply bg-bg-elevated shadow-soft;
+}
+
+/* Hide scrollbar but allow scroll */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

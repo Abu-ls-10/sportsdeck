@@ -67,7 +67,8 @@ async function patchHandler(
       where: { id: feedId },
       select: {
         id: true,
-        userId: true
+        userId: true,
+        isRead: true
       }
     })
 
@@ -85,11 +86,14 @@ async function patchHandler(
       )
     }
 
+    // is idempotent
+    if (entry.isRead) {
+      return NextResponse.json({ success: true }, { status: 200 })
+    }
+
     await prisma.feedEntry.update({
       where: { id: feedId },
-      data: {
-        isRead: true
-      }
+      data: { isRead: true }
     })
 
     return NextResponse.json({ success: true }, { status: 200 })

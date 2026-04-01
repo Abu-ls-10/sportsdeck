@@ -1,6 +1,3 @@
--- CreateSchema
-CREATE SCHEMA IF NOT EXISTS "public";
-
 -- CreateTable
 CREATE TABLE "Team" (
     "id" TEXT NOT NULL,
@@ -122,6 +119,7 @@ CREATE TABLE "Reply" (
     "isHidden" BOOLEAN NOT NULL DEFAULT false,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
+    "parentReplyId" TEXT,
 
     CONSTRAINT "Reply_pkey" PRIMARY KEY ("id")
 );
@@ -170,7 +168,9 @@ CREATE TABLE "Poll" (
     "question" TEXT NOT NULL,
     "deadline" TIMESTAMP(3) NOT NULL,
     "isClosed" BOOLEAN NOT NULL DEFAULT false,
+    "isHidden" BOOLEAN NOT NULL DEFAULT false,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "replyId" TEXT,
 
     CONSTRAINT "Poll_pkey" PRIMARY KEY ("id")
 );
@@ -188,6 +188,7 @@ CREATE TABLE "PollOption" (
 CREATE TABLE "Vote" (
     "id" TEXT NOT NULL,
     "pollOptionId" TEXT NOT NULL,
+    "pollId" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
@@ -211,6 +212,26 @@ CREATE TABLE "ReportedItem" (
     "lastReportedAt" TIMESTAMP(3),
 
     CONSTRAINT "ReportedItem_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "ModerationCache" (
+    "id" TEXT NOT NULL,
+    "normalizedTextHash" TEXT NOT NULL,
+    "pipelineKey" TEXT NOT NULL,
+    "originalTextLength" INTEGER NOT NULL,
+    "translatedText" TEXT,
+    "flagged" BOOLEAN NOT NULL,
+    "toxicityScore" DOUBLE PRECISION NOT NULL,
+    "labelSummary" TEXT NOT NULL,
+    "labelsJson" JSONB NOT NULL,
+    "explanation" TEXT NOT NULL,
+    "model" TEXT NOT NULL,
+    "cachedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "ModerationCache_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -297,7 +318,7 @@ CREATE TABLE "FeedEvent" (
     "id" TEXT NOT NULL,
     "actorId" TEXT NOT NULL,
     "eventType" TEXT NOT NULL,
-    "groupKey" TEXT NOT NULL,
+    "groupKey" TEXT,
     "entityType" TEXT NOT NULL,
     "entityId" TEXT NOT NULL,
     "aggregateCount" INTEGER NOT NULL DEFAULT 1,
@@ -352,13 +373,31 @@ CREATE UNIQUE INDEX "Thread_matchId_key" ON "Thread"("matchId");
 CREATE UNIQUE INDEX "Tag_name_key" ON "Tag"("name");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "Poll_threadId_key" ON "Poll"("threadId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Poll_replyId_key" ON "Poll"("replyId");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "Vote_pollOptionId_userId_key" ON "Vote"("pollOptionId", "userId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "ReportedItem_contentType_contentId_key" ON "ReportedItem"("contentType", "contentId");
 
 -- CreateIndex
+CREATE INDEX "ModerationCache_normalizedTextHash_idx" ON "ModerationCache"("normalizedTextHash");
+
+-- CreateIndex
+CREATE INDEX "ModerationCache_cachedAt_idx" ON "ModerationCache"("cachedAt");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "ModerationCache_normalizedTextHash_pipelineKey_key" ON "ModerationCache"("normalizedTextHash", "pipelineKey");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "DailyDigest_date_key" ON "DailyDigest"("date");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "FeedEntry_userId_feedEventId_key" ON "FeedEntry"("userId", "feedEventId");
 
 -- AddForeignKey
 ALTER TABLE "Match" ADD CONSTRAINT "Match_homeTeamId_fkey" FOREIGN KEY ("homeTeamId") REFERENCES "Team"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -400,6 +439,9 @@ ALTER TABLE "Reply" ADD CONSTRAINT "Reply_postId_fkey" FOREIGN KEY ("postId") RE
 ALTER TABLE "Reply" ADD CONSTRAINT "Reply_authorId_fkey" FOREIGN KEY ("authorId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "Reply" ADD CONSTRAINT "Reply_parentReplyId_fkey" FOREIGN KEY ("parentReplyId") REFERENCES "Reply"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "PostVersion" ADD CONSTRAINT "PostVersion_postId_fkey" FOREIGN KEY ("postId") REFERENCES "Post"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
@@ -410,6 +452,9 @@ ALTER TABLE "ThreadTag" ADD CONSTRAINT "ThreadTag_threadId_fkey" FOREIGN KEY ("t
 
 -- AddForeignKey
 ALTER TABLE "ThreadTag" ADD CONSTRAINT "ThreadTag_tagId_fkey" FOREIGN KEY ("tagId") REFERENCES "Tag"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Poll" ADD CONSTRAINT "Poll_replyId_fkey" FOREIGN KEY ("replyId") REFERENCES "Reply"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Poll" ADD CONSTRAINT "Poll_threadId_fkey" FOREIGN KEY ("threadId") REFERENCES "Thread"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
