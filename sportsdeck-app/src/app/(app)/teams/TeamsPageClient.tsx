@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import {
   IconBell,
@@ -39,6 +39,33 @@ export default function TeamsPageClient({ teams, featured, seasonLabel }: TeamsP
         t.venue.toLowerCase().includes(s)
     );
   }, [teams, q]);
+
+  useEffect(() => {
+    const first = teams[0];
+    if (!first) return;
+    const forumHref = `/community?team=${encodeURIComponent(first.id)}`;
+    // #region agent log
+    fetch("http://127.0.0.1:7877/ingest/85a6ad7f-6143-4b09-b7de-17f9236ebb4d", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Debug-Session-Id": "651fac",
+      },
+      body: JSON.stringify({
+        sessionId: "651fac",
+        location: "TeamsPageClient.tsx",
+        message: "teams hub sample card hrefs",
+        data: {
+          detailsHref: `/teams/${first.id}`,
+          forumHref,
+        },
+        timestamp: Date.now(),
+        hypothesisId: "H1",
+        runId: "verify",
+      }),
+    }).catch(() => {});
+    // #endregion
+  }, [teams]);
 
   return (
     <div className="min-h-screen bg-bg-main text-text-primary">
@@ -202,7 +229,7 @@ export default function TeamsPageClient({ teams, featured, seasonLabel }: TeamsP
                     </Link>
 
                     <Link
-                      href={`/threads?teamId=${team.id}`}
+                      href={`/community?team=${encodeURIComponent(team.id)}`}
                       className="px-3 py-2 text-xs rounded-lg bg-gradient-primary text-primary"
                     >
                       <IconMessage2 className="inline w-4 h-4 mr-1" />

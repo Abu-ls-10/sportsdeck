@@ -8,7 +8,28 @@ import { setJson, tryAcquireLock } from "@/lib/redis";
 
 const globalForWarmer = globalThis as unknown as {
   sportsdeckCacheWarmerStarted?: boolean;
+  /** P2021: DB not migrated — stop retrying every interval */
+  sportsdeckMatchesWarmDisabled?: boolean;
+  sportsdeckStandingsWarmDisabled?: boolean;
+  sportsdeckMissingSchemaLogged?: boolean;
 };
+
+function isPrismaMissingRelationError(e: unknown): boolean {
+  return (
+    typeof e === "object" &&
+    e !== null &&
+    "code" in e &&
+    (e as { code: string }).code === "P2021"
+  );
+}
+
+function logMissingSchemaOnce(): void {
+  if (globalForWarmer.sportsdeckMissingSchemaLogged) return;
+  globalForWarmer.sportsdeckMissingSchemaLogged = true;
+  console.warn(
+    "[cache-warmer] Skipping warm ticks: database tables are missing (e.g. Match). Run: npx prisma migrate deploy && seed if needed."
+  );
+}
 
 /** Align with GET /api/matches Redis keys once wired. */
 export function matchesCacheKeyLimit(limit: number): string {
@@ -105,21 +126,33 @@ export function startCacheWarmer(): void {
   globalForWarmer.sportsdeckCacheWarmerStarted = true;
 
   const tickMatches = async () => {
+    if (globalForWarmer.sportsdeckMatchesWarmDisabled) return;
     try {
       const got = await tryAcquireLock(LOCK_MATCHES, MATCHES_LOCK_TTL_SECONDS);
       if (!got) return;
       await warmMatchesKeys(apiKey);
     } catch (e) {
+      if (isPrismaMissingRelationError(e)) {
+        globalForWarmer.sportsdeckMatchesWarmDisabled = true;
+        logMissingSchemaOnce();
+        return;
+      }
       console.error("[cache-warmer] matches tick failed:", e);
     }
   };
 
   const tickStandings = async () => {
+    if (globalForWarmer.sportsdeckStandingsWarmDisabled) return;
     try {
       const got = await tryAcquireLock(LOCK_STANDINGS, STANDINGS_LOCK_TTL_SECONDS);
       if (!got) return;
       await warmStandingsKeys(apiKey);
     } catch (e) {
+      if (isPrismaMissingRelationError(e)) {
+        globalForWarmer.sportsdeckStandingsWarmDisabled = true;
+        logMissingSchemaOnce();
+        return;
+      }
       console.error("[cache-warmer] standings tick failed:", e);
     }
   };

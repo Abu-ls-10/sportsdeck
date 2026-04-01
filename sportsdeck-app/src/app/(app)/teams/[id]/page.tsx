@@ -26,7 +26,46 @@ export default async function TeamDetailPage({
     include: { _count: { select: { threads: true } } },
   });
 
-  if (!team) notFound();
+  if (!team) {
+    // #region agent log
+    fetch("http://127.0.0.1:7877/ingest/85a6ad7f-6143-4b09-b7de-17f9236ebb4d", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Debug-Session-Id": "651fac",
+      },
+      body: JSON.stringify({
+        sessionId: "651fac",
+        location: "teams/[id]/page.tsx",
+        message: "team detail not resolved",
+        data: { paramId: id },
+        timestamp: Date.now(),
+        hypothesisId: "H3",
+        runId: "verify",
+      }),
+    }).catch(() => {});
+    // #endregion
+    notFound();
+  }
+
+  // #region agent log
+  fetch("http://127.0.0.1:7877/ingest/85a6ad7f-6143-4b09-b7de-17f9236ebb4d", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-Debug-Session-Id": "651fac",
+    },
+    body: JSON.stringify({
+      sessionId: "651fac",
+      location: "teams/[id]/page.tsx",
+      message: "team detail resolved",
+      data: { paramId: id, resolvedTeamId: team.id },
+      timestamp: Date.now(),
+      hypothesisId: "H2",
+      runId: "verify",
+    }),
+  }).catch(() => {});
+  // #endregion
 
   const hue = hashHue(team.name);
 
@@ -97,7 +136,7 @@ export default async function TeamDetailPage({
               <div className="mt-6 flex flex-wrap justify-center gap-3 sm:justify-start">
 
                 <Link
-                  href={`/threads?teamId=${team.id}`}
+                  href={`/community?team=${encodeURIComponent(team.id)}`}
                   className="rounded-xl bg-gradient-primary px-5 py-2 text-sm font-semibold text-primary shadow-glow"
                 >
                   Open Forum
