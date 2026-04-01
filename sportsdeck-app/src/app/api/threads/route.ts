@@ -131,7 +131,7 @@ async function postHandler(req: AuthenticatedRequest) {
     }
 
     let { title, content } = body;
-    const { teamId, tags } = body;
+    const { teamId: teamIdRaw, tags } = body;
 
     if (!title || !content) {
       return NextResponse.json(
@@ -150,10 +150,20 @@ async function postHandler(req: AuthenticatedRequest) {
       );
     }
 
-    // Validate team if provided
-    if (teamId) {
-      const team = await prisma.team.findUnique({
-        where: { id: teamId }
+    let resolvedTeamId: string | null = null;
+    const teamIdStr =
+      teamIdRaw !== undefined && teamIdRaw !== null
+        ? String(teamIdRaw).trim()
+        : "";
+    if (
+      teamIdStr !== "" &&
+      teamIdStr.toLowerCase() !== "all"
+    ) {
+      const team = await prisma.team.findFirst({
+        where: {
+          OR: [{ id: teamIdStr }, { externalId: teamIdStr }],
+        },
+        select: { id: true },
       });
 
       if (!team) {
@@ -162,6 +172,7 @@ async function postHandler(req: AuthenticatedRequest) {
           { status: 404 }
         );
       }
+      resolvedTeamId = team.id;
     }
 
     const result = await prisma.$transaction(async (tx) => {
@@ -173,7 +184,7 @@ async function postHandler(req: AuthenticatedRequest) {
         data: {
           title,
           authorId: user.id,
-          teamId: teamId ?? null,
+          teamId: resolvedTeamId,
           isMatchThread: false,
           isLocked: false,
           isHidden: false

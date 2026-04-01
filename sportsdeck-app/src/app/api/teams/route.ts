@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getCachedTeamsPayload } from "@/lib/teamsData";
+import { fetchTeamsPayload, getCachedTeamsPayload } from "@/lib/teamsData";
 
 /**
  * @openapi
@@ -12,15 +12,21 @@ import { getCachedTeamsPayload } from "@/lib/teamsData";
  *         description: Teams for current data set, cached at the edge
  */
 
-/** Revalidate this route every hour (matches unstable_cache in teamsData). */
-export const revalidate = 3600;
+/** Reading search params requires a dynamic route; team list is still cached via unstable_cache. */
+export const dynamic = "force-dynamic";
 
-export async function GET() {
+export async function GET(req: Request) {
   try {
-    const payload = await getCachedTeamsPayload();
+    const nocacheParam = new URL(req.url).searchParams.get("nocache");
+    const bypassCache = nocacheParam === "1" || nocacheParam === "true";
+    const payload = bypassCache
+      ? await fetchTeamsPayload()
+      : await getCachedTeamsPayload();
     return NextResponse.json(payload, {
       headers: {
-        "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400",
+        "Cache-Control": bypassCache
+          ? "private, no-store, max-age=0"
+          : "public, s-maxage=3600, stale-while-revalidate=86400",
       },
     });
   } catch (error) {

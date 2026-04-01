@@ -28,6 +28,7 @@ function formatSeasonLabel(s?: string | null): string {
  * Loads all PL teams from DB plus top-3 featured (from standings when available).
  * Cached across the app and reused by GET /api/teams.
  */
+/** Direct DB read (no unstable_cache). Use for admin or when clients must see fresh ids. */
 export async function fetchTeamsPayload(): Promise<TeamsPagePayload> {
   const teams = await prisma.team.findMany({
     orderBy: { name: "asc" },

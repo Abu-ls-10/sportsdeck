@@ -54,12 +54,12 @@ export default function StartDiscussionCard({ onSuccess, isBanned = false }: Pro
   }, []);
 
   // =========================
-  // FETCH TEAMS
+  // FETCH TEAMS — refresh when modal opens (no-store) so cuid ids match DB after reseed
   // =========================
   useEffect(() => {
-    const loadTeams = async () => {
+    const loadTeams = async (noStore: boolean) => {
       try {
-        const res = await fetch("/api/teams");
+        const res = await fetch("/api/teams", noStore ? { cache: "no-store" } : {});
         const data = await res.json().catch(() => ({}));
         const list = Array.isArray(data) ? data : Array.isArray(data?.teams) ? data.teams : [];
         setTeams(list);
@@ -68,8 +68,27 @@ export default function StartDiscussionCard({ onSuccess, isBanned = false }: Pro
       }
     };
 
-    loadTeams();
+    void loadTeams(false);
   }, []);
+
+  useEffect(() => {
+    if (!open) return;
+    const loadTeams = async () => {
+      try {
+        const res = await fetch("/api/teams?nocache=1", { cache: "no-store" });
+        const data = await res.json().catch(() => ({}));
+        const list = Array.isArray(data) ? data : Array.isArray(data?.teams) ? data.teams : [];
+        setTeams(list);
+        setTeamId((prev) => {
+          if (prev === "all") return prev;
+          return list.some((t: Team) => t.id === prev) ? prev : "all";
+        });
+      } catch (err) {
+        console.error("Failed to load teams");
+      }
+    };
+    void loadTeams();
+  }, [open]);
 
   // =========================
   // AUTO RESIZE
@@ -164,7 +183,7 @@ export default function StartDiscussionCard({ onSuccess, isBanned = false }: Pro
   return (
     <>
       {/* CARD */}
-      <div className="rounded-2xl border border-dashed border-primary-500/30 bg-[linear-gradient(180deg,rgba(14,165,233,0.07),rgba(14,165,233,0.02))] px-6 py-8 text-center shadow-soft">
+      <div className="rounded-2xl border border-dashed border-primary-500/30 bg-gradient-discussion-cta px-6 py-8 text-center shadow-soft">
         <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-gradient-primary text-xl font-semibold text-primary shadow-glow">
           +
         </div>

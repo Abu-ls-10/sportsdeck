@@ -2,7 +2,7 @@ import { prisma } from "@/lib/prisma"
 
 export type UserProfilePayload = {
   id: string
-  username: string
+  username: string | null
   avatarUrl: string | null
   createdAt: Date
   favoriteTeam: {
