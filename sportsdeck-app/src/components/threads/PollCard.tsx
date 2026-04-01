@@ -51,26 +51,37 @@ export default function PollCard({
       return;
     }
 
-    // optimistic update
-    const optimisticOptions = poll.options.map((opt) => ({
-      ...opt,
-      votes: opt.id === optionId ? opt.votes + 1 : opt.votes,
-    }));
+    const previousPoll = poll;
+    const previousUserVote = poll.userVote;
+    const isUnvote = previousUserVote === optionId;
+    const nextUserVote = isUnvote ? null : optionId;
 
-    const totalVotes =
-      poll.totalVotes + (poll.userVote ? 0 : 1);
+    // Optimistic update that supports vote, switch, and unvote without drifting totals.
+    const optimisticOptions = poll.options.map((opt) => {
+      let nextVotes = opt.votes;
+      if (!previousUserVote && opt.id === optionId) nextVotes += 1;
+      if (previousUserVote && previousUserVote !== optionId) {
+        if (opt.id === previousUserVote) nextVotes -= 1;
+        if (opt.id === optionId) nextVotes += 1;
+      }
+      if (previousUserVote === optionId && opt.id === optionId) nextVotes -= 1;
+      return { ...opt, votes: Math.max(0, nextVotes) };
+    });
 
-    const updatedOptions = optimisticOptions.map((opt) => ({
+    const optimisticTotalVotes = optimisticOptions.reduce((sum, opt) => sum + opt.votes, 0);
+    const optimisticWithPercentages = optimisticOptions.map((opt) => ({
       ...opt,
       percentage:
-        totalVotes > 0 ? Math.round((opt.votes / totalVotes) * 100) : 0,
+        optimisticTotalVotes > 0
+          ? Math.round((opt.votes / optimisticTotalVotes) * 100)
+          : 0,
     }));
 
     onVote({
       ...poll,
-      options: updatedOptions,
-      userVote: optionId,
-      totalVotes,
+      options: optimisticWithPercentages,
+      userVote: nextUserVote,
+      totalVotes: optimisticTotalVotes,
     });
 
     try {
@@ -85,10 +96,37 @@ export default function PollCard({
         body: JSON.stringify({ optionId }),
       });
 
-      if (!res.ok) throw new Error("Vote failed");
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        throw new Error(data?.error || "Vote failed");
+      }
+
+      if (Array.isArray(data?.options)) {
+        const serverTotalVotes = data.options.reduce(
+          (sum: number, opt: { votes?: number }) => sum + Number(opt.votes ?? 0),
+          0
+        );
+        onVote({
+          ...poll,
+          options: data.options.map(
+            (opt: { id: string; text: string; votes: number }) => ({
+              id: String(opt.id),
+              text: String(opt.text),
+              votes: Number(opt.votes ?? 0),
+              percentage:
+                serverTotalVotes > 0
+                  ? Math.round((Number(opt.votes ?? 0) / serverTotalVotes) * 100)
+                  : 0,
+            })
+          ),
+          userVote: data.userVote ?? null,
+          totalVotes: serverTotalVotes,
+        });
+      }
     } catch (err) {
       console.error(err);
-      setError("Vote failed");
+      setError(err instanceof Error ? err.message : "Vote failed");
+      onVote(previousPoll);
     } finally {
       setLoading(false);
     }

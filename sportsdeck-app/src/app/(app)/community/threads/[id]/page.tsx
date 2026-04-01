@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
+import { showNotice as showClientNotice } from "@/lib/clientNotice";
 
 import ReplyBox from "@/components/threads/ReplyBox";
 import PollCard from "@/components/threads/PollCard";
@@ -500,9 +501,20 @@ export default function ThreadPage() {
       if (!res.ok) throw new Error(data.message || "Failed to submit report");
 
       showNotice("Report submitted", "success");
+      showClientNotice({
+        tone: "success",
+        title: "Report submitted",
+        message: "Thank you. Our moderators will review it.",
+      });
       setReportModal(null);
     } catch (err: any) {
-      showNotice(err.message || "Failed to submit report", "error");
+      const message = err.message || "Failed to submit report";
+      showNotice(message, "error");
+      showClientNotice({
+        tone: "error",
+        title: "Could not submit report",
+        message,
+      });
     } finally {
       setReportingKey(null);
     }
