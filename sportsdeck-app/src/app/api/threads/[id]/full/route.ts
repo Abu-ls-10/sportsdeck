@@ -91,6 +91,13 @@ function buildReplyTree(replies: any[]): NestedReply[] {
   return roots
 }
 
+// Helper: Count total replies (including nested)
+function countReplies(replies: NestedReply[]): number {
+  return replies.reduce((acc, reply) => {
+    return acc + 1 + countReplies(reply.children)
+  }, 0)
+}
+
 // -------------------------
 // Route
 // -------------------------
@@ -306,7 +313,7 @@ export async function GET(
               content: mainPost.content,
               createdAt: mainPost.createdAt,
               author: mainPost.author,
-              replyCount: nestedReplies.length,
+              replyCount: countReplies(nestedReplies),
               replies: nestedReplies,
             }
           : null,

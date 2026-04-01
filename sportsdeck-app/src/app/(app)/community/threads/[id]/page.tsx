@@ -1132,7 +1132,7 @@ export default function ThreadPage() {
         )}
 
         <button
-          onClick={() => router.push("/home")}
+          onClick={() => router.push("/community")}
           className="flex items-center gap-2 text-sm text-text-muted hover:text-primary transition"
         >
           <ArrowLeft className="w-4 h-4" />
