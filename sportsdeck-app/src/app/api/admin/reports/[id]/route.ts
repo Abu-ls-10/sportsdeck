@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server"
+import { invalidateCachesAfterContentHidden } from "@/lib/cache/invalidateApiCache"
 import { prisma } from "@/lib/prisma"
 import { getUserFromToken } from "@/lib/auth"
 
@@ -285,6 +286,11 @@ export async function PATCH(
       },
     })
   })
+
+  await invalidateCachesAfterContentHidden(
+    reportedItem.contentType,
+    reportedItem.contentId
+  )
 
   return NextResponse.json({
     message: "Report approved — content has been hidden",

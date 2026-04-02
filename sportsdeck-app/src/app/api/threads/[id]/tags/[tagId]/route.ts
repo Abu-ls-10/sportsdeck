@@ -1,4 +1,8 @@
 import { NextResponse } from "next/server"
+import {
+  invalidateTagsListCache,
+  invalidateThreadFullCache,
+} from "@/lib/cache/invalidateApiCache"
 import { prisma } from "@/lib/prisma"
 import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
 
@@ -80,6 +84,9 @@ async function deleteHandler(
         }
       }
     })
+
+    await invalidateThreadFullCache(threadId)
+    await invalidateTagsListCache()
 
     return NextResponse.json(
       {

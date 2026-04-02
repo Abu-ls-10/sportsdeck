@@ -108,45 +108,75 @@ function generateAvatarUrl(): string {
   return `${source}${seed}?s=200`;
 }
 
-export async function create_admins(){
+export async function create_admins() {
+  const adminPasswordHash =
+    "$2b$10$j8drJk6ih851hQHSmR8jM.YToeiJEg6lfm8vwFlD9wbpkrYPgs0MG"
+
   return await Promise.all([
-    prisma.user.create({
-      data: {
+    prisma.user.upsert({
+      where: { email: "abu@sportsdeck.com" },
+      create: {
         email: "abu@sportsdeck.com",
         username: "abu",
         role: "ADMIN",
-        passwordHash: "$2b$10$j8drJk6ih851hQHSmR8jM.YToeiJEg6lfm8vwFlD9wbpkrYPgs0MG",
-        isBanned: false
-      }
+        passwordHash: adminPasswordHash,
+        isBanned: false,
+      },
+      update: {
+        username: "abu",
+        role: "ADMIN",
+        passwordHash: adminPasswordHash,
+        isBanned: false,
+      },
     }),
-    prisma.user.create({
-      data: {
+    prisma.user.upsert({
+      where: { email: "eshan@sportsdeck.com" },
+      create: {
         email: "eshan@sportsdeck.com",
         username: "Eshan",
         role: "ADMIN",
-        passwordHash: "$2b$10$j8drJk6ih851hQHSmR8jM.YToeiJEg6lfm8vwFlD9wbpkrYPgs0MG",
-        isBanned: false
-      }
+        passwordHash: adminPasswordHash,
+        isBanned: false,
+      },
+      update: {
+        username: "Eshan",
+        role: "ADMIN",
+        passwordHash: adminPasswordHash,
+        isBanned: false,
+      },
     }),
-    prisma.user.create({
-      data: {
+    prisma.user.upsert({
+      where: { email: "amaan@sportsdeck.com" },
+      create: {
         email: "amaan@sportsdeck.com",
         username: "Amaan",
         role: "ADMIN",
-        passwordHash: "$2b$10$j8drJk6ih851hQHSmR8jM.YToeiJEg6lfm8vwFlD9wbpkrYPgs0MG",
-        isBanned: false
-      }
+        passwordHash: adminPasswordHash,
+        isBanned: false,
+      },
+      update: {
+        username: "Amaan",
+        role: "ADMIN",
+        passwordHash: adminPasswordHash,
+        isBanned: false,
+      },
     }),
-    prisma.user.create({
-      data: {
+    prisma.user.upsert({
+      where: { email: "system@sportsdeck.com" },
+      create: {
         id: "system",
         email: "system@sportsdeck.com",
         username: "system",
         role: "ADMIN",
-        isBanned: false
-      }
-    })
-  ]);
+        isBanned: false,
+      },
+      update: {
+        username: "system",
+        role: "ADMIN",
+        isBanned: false,
+      },
+    }),
+  ])
 }
 
 export async function create_users(){
@@ -158,9 +188,13 @@ export async function create_users(){
   const teamIds = teams.map(t => t.id);
   const roles = ["user", "user", "user", "user", "user", "user", "user", "user", "user"];
   
-  // Track used usernames and emails to ensure uniqueness
-  const usedUsernames = new Set<string>();
-  const usedEmails = new Set<string>();
+  const existing = await prisma.user.findMany({
+    select: { username: true, email: true },
+  });
+  const usedUsernames = new Set<string>(
+    existing.map((u) => u.username).filter((n): n is string => n != null && n !== "")
+  );
+  const usedEmails = new Set<string>(existing.map((u) => u.email));
   
   // Generate user data first without hashing
   const userData = [];

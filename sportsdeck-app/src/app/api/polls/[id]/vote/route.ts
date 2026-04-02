@@ -1,4 +1,8 @@
 import { NextResponse } from "next/server"
+import {
+  invalidatePollResultsCache,
+  invalidateThreadFullCache,
+} from "@/lib/cache/invalidateApiCache"
 import { prisma } from "@/lib/prisma"
 import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
 import { logActivity } from "@/lib/activity"
@@ -130,25 +134,39 @@ async function postHandler(
     // SINGLE-SELECT TOGGLE
     // =========================
 
-    // Find existing vote in this poll
-    const existingVote = await prisma.vote.findFirst({
+    // Find all existing votes in this poll for this user.
+    // Schema currently enforces uniqueness by (pollOptionId, userId), so without
+    // poll-level uniqueness a user could still have multiple votes across options.
+    const existingVotes = await prisma.vote.findMany({
       where: {
         userId: user.id,
         pollId: poll.id,
       },
+      orderBy: { createdAt: "asc" },
     })
+    const existingVote = existingVotes[0] ?? null
 
     if (existingVote) {
       if (existingVote.pollOptionId === optionId) {
         // SAME OPTION → UNVOTE
-        await prisma.vote.delete({
-          where: { id: existingVote.id },
+        await prisma.vote.deleteMany({
+          where: {
+            userId: user.id,
+            pollId: poll.id,
+          },
         })
       } else {
         // DIFFERENT OPTION → SWITCH
-        await prisma.vote.update({
-          where: { id: existingVote.id },
+        await prisma.vote.deleteMany({
+          where: {
+            userId: user.id,
+            pollId: poll.id,
+          },
+        })
+        await prisma.vote.create({
           data: {
+            userId: user.id,
+            pollId: poll.id,
             pollOptionId: optionId,
           },
         })
@@ -192,6 +210,9 @@ async function postHandler(
         pollOptionId: true,
       },
     })
+
+    await invalidatePollResultsCache(pollId)
+    await invalidateThreadFullCache(poll.threadId)
 
     return NextResponse.json({
       options: options.map((o) => ({

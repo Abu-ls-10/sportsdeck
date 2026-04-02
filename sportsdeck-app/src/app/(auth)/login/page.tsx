@@ -17,6 +17,17 @@ import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import Logo from "@/components/ui/Logo";
 
+function safePostLoginPath(raw: string | null): string {
+  if (!raw) return "/home";
+  try {
+    const decoded = decodeURIComponent(raw);
+    if (!decoded.startsWith("/") || decoded.startsWith("//")) return "/home";
+    return decoded;
+  } catch {
+    return "/home";
+  }
+}
+
 function LoginInner() {
   const { login } = useAuth();
   const router = useRouter();
@@ -63,7 +74,8 @@ function LoginInner() {
       return;
     }
 
-    router.push("/home");
+    const next = safePostLoginPath(searchParams.get("redirect"));
+    router.push(next);
   };
 
   return (

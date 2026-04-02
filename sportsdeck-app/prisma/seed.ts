@@ -1,10 +1,8 @@
-import { PrismaClient } from "../src/generated/prisma"
+import { prisma } from "../src/lib/prisma"
 import { main as seedTeams } from "./seeds/teams"
 import seedUsers from "./seeds/users"
 import seedMatches from "./seeds/matches"
 import seedThreads from "./seeds/threads"
-
-const prisma = new PrismaClient()
 
 async function main() {
   console.log("Seeding...")
@@ -21,9 +19,9 @@ async function main() {
 main()
   .catch((e) => {
     console.error(e)
-    process.exit(1)
+    process.exitCode = 1
   })
   .finally(async () => {
-    await prisma.$disconnect()
-    process.exit(0)
+    await prisma.$disconnect().catch(() => {})
+    process.exit(process.exitCode ?? 0)
   })

@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState, useCallback, useMemo } from "react";
+import { Suspense, useEffect, useState, useCallback, useMemo } from "react";
+import { useSearchParams } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
 import {
   Sparkles,
@@ -128,16 +129,23 @@ function ThreadsSkeleton() {
   );
 }
 
-export default function CommunityPage() {
+function CommunityPageContent() {
   const { user } = useAuth();
+  const searchParams = useSearchParams();
+  const teamQs = searchParams.get("team");
 
-  const [filters, setFilters] = useState<ThreadFilters>({
+  const [filters, setFilters] = useState<ThreadFilters>(() => ({
     search: "",
-    team: "all",
+    team: teamQs ?? "all",
     match: "all",
     sort: "recent",
     tag: "all",
-  });
+  }));
+
+  useEffect(() => {
+    const t = teamQs ?? "all";
+    setFilters((prev) => (prev.team === t ? prev : { ...prev, team: t }));
+  }, [teamQs]);
 
   const [threads, setThreads] = useState<Thread[]>([]);
   const [loading, setLoading] = useState(true);
@@ -214,7 +222,10 @@ export default function CommunityPage() {
           {/* LEFT */}
           <section className="space-y-4">
 
-            <ThreadsFilterBar onChange={setFilters} />
+            <ThreadsFilterBar
+              onChange={setFilters}
+              selectedTeamId={filters.team}
+            />
 
             <StartDiscussionCard
               onSuccess={fetchThreads}
@@ -335,5 +346,21 @@ export default function CommunityPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function CommunityPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="px-4 py-5 md:px-6 lg:px-8">
+          <div className="mx-auto max-w-[1280px]">
+            <ThreadsSkeleton />
+          </div>
+        </div>
+      }
+    >
+      <CommunityPageContent />
+    </Suspense>
   );
 }

@@ -1,6 +1,8 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useAuth } from "@/contexts/AuthContext";
 import { showNotice } from "@/lib/clientNotice";
 import { getApiErrorMessage, isBannedActionError } from "@/lib/apiError";
 
@@ -17,6 +19,11 @@ type Team = {
 };
 
 export default function StartDiscussionCard({ onSuccess, isBanned = false }: Props) {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const { user, isLoading } = useAuth();
+
   const [open, setOpen] = useState(false);
 
   const [title, setTitle] = useState("");
@@ -54,12 +61,12 @@ export default function StartDiscussionCard({ onSuccess, isBanned = false }: Pro
   }, []);
 
   // =========================
-  // FETCH TEAMS
+  // FETCH TEAMS — refresh when modal opens (no-store) so cuid ids match DB after reseed
   // =========================
   useEffect(() => {
-    const loadTeams = async () => {
+    const loadTeams = async (noStore: boolean) => {
       try {
-        const res = await fetch("/api/teams");
+        const res = await fetch("/api/teams", noStore ? { cache: "no-store" } : {});
         const data = await res.json().catch(() => ({}));
         const list = Array.isArray(data) ? data : Array.isArray(data?.teams) ? data.teams : [];
         setTeams(list);
@@ -68,8 +75,27 @@ export default function StartDiscussionCard({ onSuccess, isBanned = false }: Pro
       }
     };
 
-    loadTeams();
+    void loadTeams(false);
   }, []);
+
+  useEffect(() => {
+    if (!open) return;
+    const loadTeams = async () => {
+      try {
+        const res = await fetch("/api/teams?nocache=1", { cache: "no-store" });
+        const data = await res.json().catch(() => ({}));
+        const list = Array.isArray(data) ? data : Array.isArray(data?.teams) ? data.teams : [];
+        setTeams(list);
+        setTeamId((prev) => {
+          if (prev === "all") return prev;
+          return list.some((t: Team) => t.id === prev) ? prev : "all";
+        });
+      } catch (err) {
+        console.error("Failed to load teams");
+      }
+    };
+    void loadTeams();
+  }, [open]);
 
   // =========================
   // AUTO RESIZE
@@ -80,6 +106,17 @@ export default function StartDiscussionCard({ onSuccess, isBanned = false }: Pro
     el.style.height = "auto";
     el.style.height = el.scrollHeight + "px";
   };
+
+  const handleStartClick = useCallback(() => {
+    if (isLoading) return;
+    if (!user) {
+      const q = searchParams.toString();
+      const here = q ? `${pathname}?${q}` : pathname;
+      router.push(`/login?redirect=${encodeURIComponent(here)}`);
+      return;
+    }
+    setOpen(true);
+  }, [isLoading, user, searchParams, pathname, router]);
 
   // =========================
   // TAG HANDLING
@@ -164,7 +201,7 @@ export default function StartDiscussionCard({ onSuccess, isBanned = false }: Pro
   return (
     <>
       {/* CARD */}
-      <div className="rounded-2xl border border-dashed border-primary-500/30 bg-[linear-gradient(180deg,rgba(14,165,233,0.07),rgba(14,165,233,0.02))] px-6 py-8 text-center shadow-soft">
+      <div className="rounded-2xl border border-dashed border-primary-500/30 bg-gradient-discussion-cta px-6 py-8 text-center shadow-soft">
         <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-gradient-primary text-xl font-semibold text-primary shadow-glow">
           +
         </div>
@@ -183,8 +220,10 @@ export default function StartDiscussionCard({ onSuccess, isBanned = false }: Pro
           </div>
         ) : (
           <button
-            onClick={() => setOpen(true)}
-            className="mt-5 rounded-xl bg-gradient-primary px-5 py-2.5 text-sm font-semibold text-primary hover:brightness-110"
+            type="button"
+            disabled={isLoading}
+            onClick={handleStartClick}
+            className="mt-5 rounded-xl bg-gradient-primary px-5 py-2.5 text-sm font-semibold text-primary hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60"
           >
             Start a Discussion
           </button>

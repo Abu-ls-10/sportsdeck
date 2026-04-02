@@ -1,6 +1,11 @@
 import { comparePassword, generateAccessToken, generateRefreshToken, hashPassword, verifyRefreshToken} from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
+import {
+  rateLimitByIp,
+  RL_REFRESH_MAX,
+  RL_REFRESH_WINDOW_SEC,
+} from "@/lib/rateLimitHttp";
 export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
 
@@ -30,6 +35,15 @@ export const runtime = 'nodejs';
  *         description: Invalid or expired refresh token
  */
 export async function POST(req: Request){
+    const limited = await rateLimitByIp(
+      req,
+      "refresh",
+      RL_REFRESH_MAX,
+      RL_REFRESH_WINDOW_SEC,
+      { message: "Too many token refresh attempts. Try again later." }
+    );
+    if (limited) return limited;
+
     const {refresh_token} = await req.json();
 
     if (!refresh_token) {

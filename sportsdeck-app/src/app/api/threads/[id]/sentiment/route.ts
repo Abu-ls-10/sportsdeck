@@ -1,6 +1,11 @@
 import { NextRequest, NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
 import { analyzeSentimentBatch } from "@/lib/ai"
+import {
+  rateLimitByIp,
+  RL_SENTIMENT_MAX,
+  RL_SENTIMENT_WINDOW_SEC,
+} from "@/lib/rateLimitHttp"
 
 /**
  * @openapi
@@ -51,6 +56,15 @@ export async function GET(
 ) {
   try {
     const { id: threadId } = await params
+
+    const limited = await rateLimitByIp(
+      req,
+      `sentiment:${threadId}`,
+      RL_SENTIMENT_MAX,
+      RL_SENTIMENT_WINDOW_SEC,
+      { error: "Too many sentiment requests for this thread. Try again later." }
+    )
+    if (limited) return limited
 
     // Fetch the thread with match + team info
     const thread = await prisma.thread.findUnique({

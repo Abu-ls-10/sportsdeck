@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server"
+import { invalidateThreadFullCache } from "@/lib/cache/invalidateApiCache"
 import { prisma } from "@/lib/prisma"
 import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
 import { moderateContent } from "@/lib/moderation"
@@ -89,7 +90,10 @@ async function patchHandler(
       )
 
     const reply = await prisma.reply.findUnique({
-      where: { id: replyId }
+      where: { id: replyId },
+      include: {
+        post: { select: { threadId: true } },
+      },
     })
 
     if (!reply)
@@ -156,6 +160,8 @@ async function patchHandler(
       console.error("[replies/edit] moderateContent failed:", err)
     )
 
+    await invalidateThreadFullCache(reply.post.threadId)
+
     return NextResponse.json(updated, { status: 200 })
 
   } catch (err) {
@@ -195,7 +201,10 @@ async function deleteHandler(
       )
 
     const reply = await prisma.reply.findUnique({
-      where: { id: replyId }
+      where: { id: replyId },
+      include: {
+        post: { select: { threadId: true } },
+      },
     })
 
     if (!reply)
@@ -220,6 +229,8 @@ async function deleteHandler(
       where: { id: reply.id },
       data: { isHidden: true }
     })
+
+    await invalidateThreadFullCache(reply.post.threadId)
 
     return NextResponse.json(
       { success: true },

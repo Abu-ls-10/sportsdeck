@@ -1,4 +1,8 @@
 import { NextResponse } from "next/server"
+import {
+  invalidatePollResultsCache,
+  invalidateThreadFullCache,
+} from "@/lib/cache/invalidateApiCache"
 import { prisma } from "@/lib/prisma"
 import { withAuth, AuthenticatedRequest } from "@/lib/middleware"
 
@@ -157,6 +161,9 @@ async function postHandler(
     const createdOptions = await prisma.pollOption.findMany({
       where: { pollId: poll.id }
     })
+
+    await invalidatePollResultsCache(poll.id)
+    await invalidateThreadFullCache(poll.threadId)
 
     return NextResponse.json(createdOptions, { status: 201 })
 

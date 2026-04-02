@@ -13,6 +13,8 @@ export type ThreadFilters = {
 
 type Props = {
   onChange: (filters: ThreadFilters) => void;
+  /** Keep local team filter aligned with parent (URL-driven `filters.team` on Community) */
+  selectedTeamId?: string;
 };
 
 type Team = {
@@ -33,10 +35,13 @@ type SearchUser = {
   avatarUrl?: string | null;
 };
 
-export default function ThreadsFilterBar({ onChange }: Props) {
+export default function ThreadsFilterBar({
+  onChange,
+  selectedTeamId = "all",
+}: Props) {
   const [filters, setFilters] = useState<ThreadFilters>({
     search: "",
-    team: "all",
+    team: selectedTeamId,
     match: "all",
     sort: "recent",
     tag: "all",
@@ -96,6 +101,13 @@ export default function ThreadsFilterBar({ onChange }: Props) {
 
     fetchMeta();
   }, []);
+
+  useEffect(() => {
+    setFilters((prev) => {
+      if (prev.team === selectedTeamId) return prev;
+      return { ...prev, team: selectedTeamId };
+    });
+  }, [selectedTeamId]);
 
   // =========================
   // THREAD SEARCH (debounced)

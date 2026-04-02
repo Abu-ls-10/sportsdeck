@@ -97,7 +97,7 @@ export default async function TeamDetailPage({
               <div className="mt-6 flex flex-wrap justify-center gap-3 sm:justify-start">
 
                 <Link
-                  href={`/threads?teamId=${team.id}`}
+                  href={`/community?team=${encodeURIComponent(team.id)}`}
                   className="rounded-xl bg-gradient-primary px-5 py-2 text-sm font-semibold text-primary shadow-glow"
                 >
                   Open Forum

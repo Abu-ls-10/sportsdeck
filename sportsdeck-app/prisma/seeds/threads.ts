@@ -113,104 +113,33 @@ export async function create_different_match_threads(prisma: PrismaClient, match
       };
     });
 
-  // #region agent log
-  fetch("http://127.0.0.1:7566/ingest/e4f4ce26-3bb7-4649-9c07-27dc446e55e9", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "X-Debug-Session-Id": "d1b01d",
-    },
-    body: JSON.stringify({
-      sessionId: "d1b01d",
-      runId: "pre",
-      hypothesisId: "T1",
-      location: "prisma/seeds/threads.ts:create_different_match_threads:start",
-      message: "match threads batch prepared",
-      data: { totalMatches: matches.length, toCreate: matchThreadsToCreate.length, users: users.length },
-      timestamp: Date.now(),
-    }),
-  }).catch(() => {});
-  // #endregion
-  let started = 0;
-  let finished = 0;
-  let maxInFlight = 0;
   // Create threads
   const createdThreads = await Promise.all(
-    matchThreadsToCreate.map(async (threadData, idx) => {
-      started += 1;
-      const inFlight = started - finished;
-      if (inFlight > maxInFlight) {
-        maxInFlight = inFlight;
-      }
-      if (idx % 50 === 0) {
-        // #region agent log
-        fetch("http://127.0.0.1:7566/ingest/e4f4ce26-3bb7-4649-9c07-27dc446e55e9", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "X-Debug-Session-Id": "d1b01d",
-          },
-          body: JSON.stringify({
-            sessionId: "d1b01d",
-            runId: "pre",
-            hypothesisId: "T1",
-            location: "prisma/seeds/threads.ts:create_different_match_threads:progress",
-            message: "thread create progress",
-            data: { idx, started, finished, inFlight, maxInFlight },
-            timestamp: Date.now(),
-          }),
-        }).catch(() => {});
-        // #endregion
-      }
+    matchThreadsToCreate.map(async (threadData) => {
       const titlePool = threadData.isPast ? postMatchTitles : preMatchTitles;
       const randomAuthor = users[Math.floor(Math.random() * users.length)];
       const homeTeamName = threadData.match.homeTeam?.name || "Team A";
       const awayTeamName = threadData.match.awayTeam?.name || "Team B";
-      
-      let thread;
-      try {
-        thread = await prisma.thread.create({
-        data: {
-          title: `${homeTeamName} vs ${awayTeamName} - ${titlePool[Math.floor(Math.random() * titlePool.length)]}`,
+
+      const title = `${homeTeamName} vs ${awayTeamName} - ${titlePool[Math.floor(Math.random() * titlePool.length)]}`;
+      const thread = await prisma.thread.upsert({
+        where: { matchId: threadData.match.id },
+        create: {
+          title,
           authorId: randomAuthor.id,
           matchId: threadData.match.id,
           isMatchThread: true,
           isLocked: threadData.isLocked,
           opensAt: threadData.opensAt,
           lockedAt: threadData.lockedAt,
-        }
+        },
+        update: {
+          title,
+          isLocked: threadData.isLocked,
+          opensAt: threadData.opensAt,
+          lockedAt: threadData.lockedAt,
+        },
       });
-      } catch (e) {
-        // #region agent log
-        fetch("http://127.0.0.1:7566/ingest/e4f4ce26-3bb7-4649-9c07-27dc446e55e9", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "X-Debug-Session-Id": "d1b01d",
-          },
-          body: JSON.stringify({
-            sessionId: "d1b01d",
-            runId: "pre",
-            hypothesisId: "T2",
-            location: "prisma/seeds/threads.ts:create_different_match_threads:create_error",
-            message: "thread create failed",
-            data: {
-              idx,
-              inFlight: started - finished,
-              maxInFlight,
-              matchId: threadData.match.id,
-              homeTeamId: threadData.match.homeTeamId,
-              awayTeamId: threadData.match.awayTeamId,
-              matchDate: String(threadData.match.matchDate),
-              errName: e instanceof Error ? e.name : "unknown",
-              errMsg: e instanceof Error ? e.message : String(e),
-            },
-            timestamp: Date.now(),
-          }),
-        }).catch(() => {});
-        // #endregion
-        throw e;
-      }
 
       // Add random tags to the thread
       const numTags = Math.min(Math.floor(Math.random() * 3) + 1, matchTags.length);
@@ -232,7 +161,6 @@ export async function create_different_match_threads(prisma: PrismaClient, match
         )
       );
 
-      finished += 1;
       return thread;
     })
   );

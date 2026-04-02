@@ -70,6 +70,10 @@ const config: Config = {
 
         "gradient-border":
           "linear-gradient(120deg, var(--gradient-border-start), var(--gradient-border-mid), transparent)",
+
+        /** Start discussion card on community (avoid arbitrary bg-[linear-gradient(...)] — breaks LightningCSS) */
+        "gradient-discussion-cta":
+          "linear-gradient(180deg, rgba(14, 165, 233, 0.07), rgba(14, 165, 233, 0.02))",
       },
 
       /* ===== SHADOWS ===== */

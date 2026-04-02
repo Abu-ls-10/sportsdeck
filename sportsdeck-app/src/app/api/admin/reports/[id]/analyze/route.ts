@@ -2,6 +2,11 @@ import { NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
 import { getUserFromToken } from "@/lib/auth"
 import { analyzeContent } from "@/lib/moderation"
+import {
+  rateLimitById,
+  RL_ADMIN_ANALYZE_MAX,
+  RL_ADMIN_ANALYZE_WINDOW_SEC,
+} from "@/lib/rateLimitHttp"
 
 /**
  * @openapi
@@ -54,6 +59,15 @@ export async function POST(
   if (user.role !== "ADMIN") {
     return NextResponse.json({ message: "Forbidden" }, { status: 403 })
   }
+
+  const limited = await rateLimitById(
+    user.id,
+    "admin:analyze",
+    RL_ADMIN_ANALYZE_MAX,
+    RL_ADMIN_ANALYZE_WINDOW_SEC,
+    { message: "Too many analyze requests. Try again later." }
+  )
+  if (limited) return limited
 
   try {
   const { id } = await params

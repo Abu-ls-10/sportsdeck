@@ -202,7 +202,7 @@ export default function TeamsPageClient({ teams, featured, seasonLabel }: TeamsP
                     </Link>
 
                     <Link
-                      href={`/threads?teamId=${team.id}`}
+                      href={`/community?team=${encodeURIComponent(team.id)}`}
                       className="px-3 py-2 text-xs rounded-lg bg-gradient-primary text-primary"
                     >
                       <IconMessage2 className="inline w-4 h-4 mr-1" />

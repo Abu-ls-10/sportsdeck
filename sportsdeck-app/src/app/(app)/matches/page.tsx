@@ -34,24 +34,6 @@ async function getCurrentMatchdayFromDatabase(): Promise<number> {
   const agg = await prisma.match.aggregate({ _max: { matchday: true } });
   const md = agg._max.matchday;
   if (md != null && !Number.isNaN(md) && md >= 1) {
-    // #region agent log
-    fetch("http://127.0.0.1:7566/ingest/e4f4ce26-3bb7-4649-9c07-27dc446e55e9", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X-Debug-Session-Id": "d1b01d",
-      },
-      body: JSON.stringify({
-        sessionId: "d1b01d",
-        location: "matches/page.tsx:getCurrentMatchdayFromDatabase",
-        message: "db aggregate matchday",
-        data: { matchday: md },
-        timestamp: Date.now(),
-        hypothesisId: "FIX",
-        runId: "post-fix",
-      }),
-    }).catch(() => {});
-    // #endregion
     return md;
   }
   throw new Error(
@@ -61,58 +43,10 @@ async function getCurrentMatchdayFromDatabase(): Promise<number> {
 
 async function get_Matchday(): Promise<number> {
   const apiKey = process.env.X_AUTH_TOKEN;
-  // #region agent log
-  fetch("http://127.0.0.1:7566/ingest/e4f4ce26-3bb7-4649-9c07-27dc446e55e9", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "X-Debug-Session-Id": "d1b01d",
-    },
-    body: JSON.stringify({
-      sessionId: "d1b01d",
-      location: "matches/page.tsx:get_Matchday:entry",
-      message: "get_Matchday start",
-      data: { hasApiKey: Boolean(apiKey) },
-      timestamp: Date.now(),
-      hypothesisId: "H5",
-      runId: "pre",
-    }),
-  }).catch(() => {});
-  // #endregion
   if (!apiKey) {
     throw new Error("Missing X_AUTH_TOKEN environment variable");
   }
 
-  // #region agent log
-  let dnsData: Record<string, unknown> = {};
-  try {
-    const dns = await import("dns/promises");
-    const r = await dns.lookup("api.football-data.org");
-    dnsData = { address: r.address, family: r.family };
-  } catch (dnsErr) {
-    dnsData = {
-      dnsError: dnsErr instanceof Error ? dnsErr.message : String(dnsErr),
-    };
-  }
-  fetch("http://127.0.0.1:7566/ingest/e4f4ce26-3bb7-4649-9c07-27dc446e55e9", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "X-Debug-Session-Id": "d1b01d",
-    },
-    body: JSON.stringify({
-      sessionId: "d1b01d",
-      location: "matches/page.tsx:get_Matchday:dns",
-      message: "dns lookup api.football-data.org",
-      data: dnsData,
-      timestamp: Date.now(),
-      hypothesisId: "H2",
-      runId: "pre",
-    }),
-  }).catch(() => {});
-  // #endregion
-
-  const t0 = Date.now();
   let response: Response;
   try {
     response = await fetch("https://api.football-data.org/v4/competitions/PL", {
@@ -120,90 +54,11 @@ async function get_Matchday(): Promise<number> {
         "X-Auth-Token": apiKey,
       },
     });
-  } catch (err) {
-    // #region agent log
-    const e = err as Error & { cause?: { code?: string; name?: string } };
-    fetch("http://127.0.0.1:7566/ingest/e4f4ce26-3bb7-4649-9c07-27dc446e55e9", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X-Debug-Session-Id": "d1b01d",
-      },
-      body: JSON.stringify({
-        sessionId: "d1b01d",
-        location: "matches/page.tsx:get_Matchday:fetchErr",
-        message: "football-data fetch threw",
-        data: {
-          name: e?.name,
-          msg: e?.message,
-          causeCode: e?.cause?.code,
-          causeName: e?.cause?.name,
-          elapsedMs: Date.now() - t0,
-        },
-        timestamp: Date.now(),
-        hypothesisId: "H1",
-        runId: "pre",
-      }),
-    }).catch(() => {});
-    // #endregion
-    // #region agent log
-    fetch("http://127.0.0.1:7566/ingest/e4f4ce26-3bb7-4649-9c07-27dc446e55e9", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X-Debug-Session-Id": "d1b01d",
-      },
-      body: JSON.stringify({
-        sessionId: "d1b01d",
-        location: "matches/page.tsx:get_Matchday:fallback",
-        message: "using DB matchday after fetch error",
-        data: { reason: "fetch_throw" },
-        timestamp: Date.now(),
-        hypothesisId: "FIX",
-        runId: "post-fix",
-      }),
-    }).catch(() => {});
-    // #endregion
+  } catch {
     return getCurrentMatchdayFromDatabase();
   }
-  // #region agent log
-  fetch("http://127.0.0.1:7566/ingest/e4f4ce26-3bb7-4649-9c07-27dc446e55e9", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "X-Debug-Session-Id": "d1b01d",
-    },
-    body: JSON.stringify({
-      sessionId: "d1b01d",
-      location: "matches/page.tsx:get_Matchday:fetchOk",
-      message: "football-data fetch got response",
-      data: { ok: response.ok, status: response.status, elapsedMs: Date.now() - t0 },
-      timestamp: Date.now(),
-      hypothesisId: "H3",
-      runId: "pre",
-    }),
-  }).catch(() => {});
-  // #endregion
 
   if (!response.ok) {
-    // #region agent log
-    fetch("http://127.0.0.1:7566/ingest/e4f4ce26-3bb7-4649-9c07-27dc446e55e9", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X-Debug-Session-Id": "d1b01d",
-      },
-      body: JSON.stringify({
-        sessionId: "d1b01d",
-        location: "matches/page.tsx:get_Matchday:fallback",
-        message: "using DB matchday after non-OK response",
-        data: { reason: "http_status", status: response.status },
-        timestamp: Date.now(),
-        hypothesisId: "FIX",
-        runId: "post-fix",
-      }),
-    }).catch(() => {});
-    // #endregion
     return getCurrentMatchdayFromDatabase();
   }
 
@@ -213,24 +68,6 @@ async function get_Matchday(): Promise<number> {
 
   const currentMatchday = competition.currentSeason?.currentMatchday;
   if (!currentMatchday || Number.isNaN(currentMatchday)) {
-    // #region agent log
-    fetch("http://127.0.0.1:7566/ingest/e4f4ce26-3bb7-4649-9c07-27dc446e55e9", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X-Debug-Session-Id": "d1b01d",
-      },
-      body: JSON.stringify({
-        sessionId: "d1b01d",
-        location: "matches/page.tsx:get_Matchday:fallback",
-        message: "using DB matchday after missing currentMatchday in payload",
-        data: { reason: "parse" },
-        timestamp: Date.now(),
-        hypothesisId: "FIX",
-        runId: "post-fix",
-      }),
-    }).catch(() => {});
-    // #endregion
     return getCurrentMatchdayFromDatabase();
   }
 
@@ -298,12 +135,22 @@ function isSameLocalDay(a: Date, b: Date): boolean {
   );
 }
 
-function formatMatchTime(d: Date): string {
+/** Single line under teams/score: date + kickoff time */
+function formatMatchCardWhen(iso: string): string {
+  const d = new Date(iso);
   return new Intl.DateTimeFormat("en-US", {
+    weekday: "short",
+    month: "short",
+    day: "numeric",
+    year: "numeric",
     hour: "2-digit",
     minute: "2-digit",
     hour12: false,
   }).format(d);
+}
+
+function formatStageLabel(stage: string): string {
+  return stage.replace(/_/g, " ");
 }
 
 async function fetchMatchesForMatchday(matchday: number): Promise<Match[]> {
@@ -526,44 +373,51 @@ export default async function MatchesPage({
 
               <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
                 {upcomingMatches.map((match) => {
-                  const d = new Date(match.matchDate);
-
                   return (
                     <div
                       key={match.id}
                       className="group rounded-2xl border border-border-subtle bg-bg-card p-4 shadow-soft transition hover:-translate-y-1 hover:border-primary-500/30"
                     >
                       <div className="flex justify-between text-xs text-text-muted">
-                        <span>{match.stage}</span>
-                        <span>{formatMatchTime(d)}</span>
+                        <span className="truncate pr-2">
+                          {formatStageLabel(match.stage)}
+                        </span>
+                        <span className="shrink-0">Scheduled</span>
                       </div>
 
-                      <div className="mt-4 flex items-center justify-between">
-
-                        {/* HOME */}
-                        <div className="flex items-center gap-2">
+                      <div className="mt-4 grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-x-2 sm:gap-x-3">
+                        <div className="flex min-w-0 items-center gap-2">
                           <img
                             src={match.homeTeam.logoUrl || ""}
-                            className="h-10 w-10 rounded-xl bg-bg-surface"
+                            alt=""
+                            className="h-9 w-9 shrink-0 rounded-xl bg-bg-surface sm:h-10 sm:w-10"
                           />
-                          <span className="text-sm font-semibold">
+                          <span className="break-words text-left text-sm font-semibold leading-snug text-text-primary">
                             {match.homeTeam.name}
                           </span>
                         </div>
 
-                        <span className="text-xs text-text-muted">VS</span>
-
-                        {/* AWAY */}
-                        <div className="flex items-center gap-2">
-                          <span className="text-sm font-semibold">
-                            {match.awayTeam.name}
+                        <div className="flex shrink-0 flex-col items-center justify-center px-1">
+                          <span className="text-xs font-bold uppercase tracking-[0.12em] text-text-muted sm:text-sm">
+                            vs
                           </span>
+                        </div>
+
+                        <div className="flex min-w-0 flex-row-reverse items-center gap-2">
                           <img
                             src={match.awayTeam.logoUrl || ""}
-                            className="h-10 w-10 rounded-xl bg-bg-surface"
+                            alt=""
+                            className="h-9 w-9 shrink-0 rounded-xl bg-bg-surface sm:h-10 sm:w-10"
                           />
+                          <span className="break-words text-right text-sm font-semibold leading-snug text-text-primary">
+                            {match.awayTeam.name}
+                          </span>
                         </div>
                       </div>
+
+                      <p className="mt-4 border-t border-border-subtle pt-3 text-center text-xs text-text-muted">
+                        {formatMatchCardWhen(match.matchDate)}
+                      </p>
 
                       <div className="mt-4 flex gap-2">
                         <Link
@@ -603,30 +457,49 @@ export default async function MatchesPage({
                       className="rounded-2xl border border-border-subtle bg-bg-card p-4 shadow-soft"
                     >
                       <div className="flex justify-between text-xs text-text-muted">
-                        <span>{match.stage}</span>
-                        <span>Final</span>
+                        <span className="truncate pr-2">
+                          {formatStageLabel(match.stage)}
+                        </span>
+                        <span className="shrink-0">Final</span>
                       </div>
 
-                      <div className="mt-4 flex items-center justify-between">
-
-                        <div className="flex items-center gap-2">
-                          <img src={match.homeTeam.logoUrl || ""} className="h-10 w-10 rounded-xl" />
-                          <span>{match.homeTeam.name}</span>
+                      <div className="mt-4 grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-x-2 sm:gap-x-3">
+                        <div className="flex min-w-0 items-center gap-2">
+                          <img
+                            src={match.homeTeam.logoUrl || ""}
+                            alt=""
+                            className="h-9 w-9 shrink-0 rounded-xl bg-bg-surface sm:h-10 sm:w-10"
+                          />
+                          <span className="break-words text-left text-sm font-semibold leading-snug text-text-primary">
+                            {match.homeTeam.name}
+                          </span>
                         </div>
 
-                        <div className="text-lg font-bold text-primary">
-                          {score}
+                        <div className="flex shrink-0 flex-col items-center justify-center px-1">
+                          <span className="text-lg font-bold tabular-nums text-primary sm:text-2xl">
+                            {score}
+                          </span>
                         </div>
 
-                        <div className="flex items-center gap-2">
-                          <span>{match.awayTeam.name}</span>
-                          <img src={match.awayTeam.logoUrl || ""} className="h-10 w-10 rounded-xl" />
+                        <div className="flex min-w-0 flex-row-reverse items-center gap-2">
+                          <img
+                            src={match.awayTeam.logoUrl || ""}
+                            alt=""
+                            className="h-9 w-9 shrink-0 rounded-xl bg-bg-surface sm:h-10 sm:w-10"
+                          />
+                          <span className="break-words text-right text-sm font-semibold leading-snug text-text-primary">
+                            {match.awayTeam.name}
+                          </span>
                         </div>
                       </div>
+
+                      <p className="mt-4 border-t border-border-subtle pt-3 text-center text-xs text-text-muted">
+                        {formatMatchCardWhen(match.matchDate)}
+                      </p>
 
                       <div className="mt-4 flex gap-2">
                         <Link
-                          href={`/matches/${match.id}`}
+                          href={`/matches/${match.id}/thread`}
                           className="flex-1 rounded-xl bg-white/[0.05] text-center py-2 text-sm hover:bg-white/[0.08]"
                         >
                           Thread

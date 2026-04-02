@@ -1,5 +1,7 @@
 import { comparePassword, generateAccessToken, generateRefreshToken, hashPassword } from '@/lib/auth';
+import { getClientIp } from '@/lib/clientIp';
 import {prisma} from '@/lib/prisma';
+import { isWithinRateLimit } from '@/lib/redis';
 import { NextResponse } from 'next/server';
 
 /**
@@ -48,6 +50,18 @@ export async function POST(req: Request){
     const {email, password} = body;
     if (!email || !password) {
         return NextResponse.json({ message: "Please provide an email and password" }, { status: 400 });
+    }
+
+    const loginAllowed = await isWithinRateLimit(
+        `rl:login:${getClientIp(req)}`,
+        30,
+        900
+    );
+    if (!loginAllowed) {
+        return NextResponse.json(
+            { message: "Too many login attempts. Try again later." },
+            { status: 429 }
+        );
     }
 
     try{
