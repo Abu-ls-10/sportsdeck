@@ -6,7 +6,7 @@ export async function GET() {
     return NextResponse.json({ message: "Google OAuth not configured" }, { status: 503 });
   }
 
-  const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost";
 
   const params = new URLSearchParams({
     client_id: clientId,
