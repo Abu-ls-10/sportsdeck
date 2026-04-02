@@ -45,7 +45,10 @@ export default function RootLayout({
       <body className="bg-bg-main text-text-primary" suppressHydrationWarning>
 
         <AuthProvider>{children}</AuthProvider>
-        <ThemeToggle />
+        
+        <div className="fixed bottom-6 right-6 z-50">
+          <ThemeToggle />
+        </div>
       </body>
     </html>
   );
