@@ -1,3 +1,4 @@
+import { once } from "events"
 import Redis from "ioredis"
 
 const globalForRedis = globalThis as unknown as {
@@ -19,6 +20,11 @@ function getRedis(): Redis | null {
       maxRetriesPerRequest: 1,
       enableOfflineQueue: false,
     })
+
+    client.on("error", () => {
+      // silence errors (important for Vercel + dev)
+    })
+
     globalForRedis.sportsdeckRedis = client
     return client
   } catch {
