@@ -57,6 +57,7 @@ services:
       HUGGINGFACE_API_KEY: ${HUGGINGFACE_API_KEY}
       X_AUTH_TOKEN: ${X_AUTH_TOKEN}
       NODE_ENV: production
+      INTERNAL_API_URL: http://localhost:3000
     expose:
       - "3000"
 

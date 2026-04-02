@@ -30,11 +30,14 @@ function getSearchParam(value: string | string[] | undefined): string | undefine
 }
 
 async function getOriginFromHeaders(): Promise<string> {
+  if (process.env.INTERNAL_API_URL) {
+    return process.env.INTERNAL_API_URL;
+  }
   const h = await headers();
   const host = h.get("host");
   const proto =
     h.get("x-forwarded-proto") ?? h.get("x-forwarded-protocol") ?? "http";
-  return host ? `${proto}://${host}` : "http://localhost";
+  return host ? `${proto}://${host}` : "http://localhost:3000";
 }
 
 async function fetchStandings(type: StandingType, season: string): Promise<Standing[]> {
