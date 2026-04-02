@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { AuthProvider } from "@/contexts/AuthContext";
 import "./globals.css";
+import ThemeToggle from "@/components/ui/ThemeToggle";
 
 export const metadata = {
   title: "SportsDeck",
@@ -44,6 +45,7 @@ export default function RootLayout({
       <body className="bg-bg-main text-text-primary" suppressHydrationWarning>
 
         <AuthProvider>{children}</AuthProvider>
+        <ThemeToggle />
       </body>
     </html>
   );
