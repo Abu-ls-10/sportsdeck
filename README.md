@@ -1,93 +1,181 @@
-# PP2
+# SportsDeck
 
+> A full-stack Premier League fan platform that brings fixtures, standings, discussion threads, polls, personalized feeds, and community moderation into one experience.
 
+SportsDeck turns following football into a social, contextual experience. Fans can explore Premier League teams, matches, and standings; follow other users; create or join match-specific conversations; vote in polls; and receive a feed shaped by the activity and teams they care about. Administrators have a dedicated moderation workflow for reviewing reports, AI-assisted toxicity signals, bans, and appeals.
 
-## Getting started
+Originally developed as a CSC309 web-programming project.
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+## Highlights
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+- **Match context and community in one place.** Premier League fixtures, results, teams, and standings are combined with discussions and match threads instead of being split across separate apps.
+- **Rich social features.** Users can build profiles, choose a favourite team, follow other fans, create tagged threads, post nested replies, edit content with version history, and participate in polls.
+- **Personalized discovery.** The home feed surfaces community activity, discussions, polls, trending tags, recent activity, and follow suggestions. A daily digest summarizes notable discussion and match activity.
+- **Trust and safety tooling.** Reporting, moderation queues, content hiding, bans, and appeals are supported by a role-aware admin interface. New content can be evaluated by a Hugging Face toxicity model, with optional translation before classification.
+- **Production-minded backend design.** The application uses a PostgreSQL data model, JWT-based sessions, OAuth sign-in, Redis caching and rate limiting, cache invalidation after writes, and a containerized Nginx deployment path.
 
-## Add your files
+## What I Built
 
-* [Create](https://docs.gitlab.com/user/project/repository/web_editor/#create-a-file) or [upload](https://docs.gitlab.com/user/project/repository/web_editor/#upload-a-file) files
-* [Add files using the command line](https://docs.gitlab.com/topics/git/add_files/#add-files-to-a-git-repository) or push an existing Git repository with the following command:
+### Fan experience
 
+- Premier League team directory, match centre, schedules, match details, and league table
+- Automatically created or joined match discussions alongside normal community threads
+- Thread tagging, search, post and reply editing, nested replies, and edit history
+- Poll creation, option management, voting, result aggregation, closing, and visibility controls
+- Profile pages, avatars, favourite-team preferences, follows/followers, and user activity
+- A filterable, mark-as-read personalized feed, plus a generated daily digest
+- Responsive application shell with dark-mode styling, desktop navigation, and mobile top bar
+
+### Authentication and access control
+
+- Email/password sign-up and sign-in with `bcrypt` password hashing
+- Short-lived access tokens and refresh-token rotation using signed JWTs
+- Google and GitHub OAuth entry points
+- Authenticated user settings and role-aware administrator routes
+
+### Moderation and AI features
+
+- User reports collected into an administrator review queue
+- Approve, dismiss, hide-content, ban, lift-ban, and appeal flows with auditable admin actions
+- Hugging Face-powered sentiment analysis, translation to English, daily-digest summarization, and toxicity classification
+- Cached moderation verdicts keyed by a normalized text hash and model pipeline configuration to reduce duplicate inference calls
+- Graceful degradation when AI credentials are not configured
+
+### Data, performance, and resilience
+
+- Football data is persisted locally and refreshed from [football-data.org](https://www.football-data.org/), reducing dependence on an upstream request for every page visit
+- Redis-backed cache-aside responses for fixtures, standings, thread payloads, poll results, profiles, and tags
+- Targeted cache invalidation whenever threads, posts, replies, polls, follows, profiles, or moderated content changes
+- Optional cache warmer with distributed Redis locks to avoid duplicate upstream refreshes across replicas
+- Configurable fixed-window rate limits for registration, token refresh, translation, sentiment, and administrator AI analysis
+
+## Technology
+
+| Area | Tools |
+| --- | --- |
+| Frontend | Next.js 16, React 19, TypeScript, Tailwind CSS, Mantine, Lucide/Tabler icons |
+| Backend | Next.js App Router and Route Handlers |
+| Data | PostgreSQL 15, Prisma ORM |
+| Caching | Redis 7, ioredis, Next.js data cache |
+| Authentication | JWT, bcrypt, Google OAuth, GitHub OAuth |
+| External services | football-data.org and Hugging Face Inference API |
+| Operations | Docker Compose, multi-stage Docker build, Nginx reverse proxy |
+| API tooling | OpenAPI 3 specification and Postman collection |
+
+## Architecture
+
+The browser communicates with the Next.js application through Nginx in the containerized setup. Next.js renders the interface and exposes typed route handlers for authentication, sports data, social features, feeds, and administration. PostgreSQL is the system of record through Prisma; Redis supports response caching, cache warming, invalidation, and rate limiting. Football-data.org enriches the local sports dataset, while Hugging Face provides optional language and moderation capabilities.
+
+```text
+Browser
+  │
+  ├── Nginx reverse proxy ──> Next.js application
+  │                              ├── PostgreSQL / Prisma
+  │                              ├── Redis cache + rate limits
+  │                              ├── football-data.org
+  │                              └── Hugging Face Inference API
 ```
-cd existing_repo
-git remote add origin https://mcsscm.utm.utoronto.ca/csc309_20261/group_199/PP2.git
-git branch -M main
-git push -uf origin main
+
+The full relational model—including users, follows, teams, matches, threads, posts, replies, polls, votes, activity, feeds, reports, bans, appeals, and moderation-cache records—is defined in [`sportsdeck-app/prisma/schema.prisma`](sportsdeck-app/prisma/schema.prisma). See the [entity-relationship diagram](erd.png) for a visual reference.
+
+## Repository Layout
+
+```text
+.
+├── sportsdeck-app/          # Next.js application
+│   ├── src/app/             # Pages and API route handlers
+│   ├── src/components/      # UI, auth, community, match, and admin components
+│   ├── src/lib/             # Auth, caching, data, moderation, and shared helpers
+│   ├── prisma/              # Prisma schema, seeds, and database snapshot
+│   ├── tests/               # HTTP request collections for API checks
+│   ├── Dockerfile           # Multi-stage production image
+│   └── docker-compose.yaml  # App, PostgreSQL, Redis, Nginx, and optional Adminer
+├── openapi.yaml             # API contract
+├── postman_collection.json  # Postman requests for exercising the API
+└── erd.png                  # Database ERD
 ```
 
-## Integrate with your tools
+## Run Locally
 
-* [Set up project integrations](https://mcsscm.utm.utoronto.ca/csc309_20261/group_199/PP2/-/settings/integrations)
+### Prerequisites
 
-## Collaborate with your team
+- Node.js 20+
+- Docker Desktop (recommended for PostgreSQL and Redis)
+- A [football-data.org](https://www.football-data.org/) API token to seed and refresh Premier League data
+- A Hugging Face token only if AI translation, sentiment, summaries, or moderation should be enabled
 
-* [Invite team members and collaborators](https://docs.gitlab.com/user/project/members/)
-* [Create a new merge request](https://docs.gitlab.com/user/project/merge_requests/creating_merge_requests/)
-* [Automatically close issues from merge requests](https://docs.gitlab.com/user/project/issues/managing_issues/#closing-issues-automatically)
-* [Enable merge request approvals](https://docs.gitlab.com/user/project/merge_requests/approvals/)
-* [Set auto-merge](https://docs.gitlab.com/user/project/merge_requests/auto_merge/)
+### 1. Configure the application
 
-## Test and Deploy
+```bash
+cd sportsdeck-app
+cp .env.example .env
+```
 
-Use the built-in continuous integration in GitLab.
+On PowerShell, use `Copy-Item .env.example .env` instead of `cp`.
 
-* [Get started with GitLab CI/CD](https://docs.gitlab.com/ci/quick_start/)
-* [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/user/application_security/sast/)
-* [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/topics/autodevops/requirements/)
-* [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/user/clusters/agent/)
-* [Set up protected environments](https://docs.gitlab.com/ci/environments/protected_environments/)
+Set at least the following values in `.env`:
 
-***
+```dotenv
+DATABASE_URL=postgresql://sportsdeck:sportsdeck@localhost:5432/sportsdeck
+JWT_ACCESS_SECRET=replace-with-a-long-random-secret
+JWT_REFRESH_SECRET=replace-with-a-different-long-random-secret
+X_AUTH_TOKEN=your-football-data-org-token
+```
 
-# Editing this README
+`HUGGINGFACE_API_KEY`, Google OAuth credentials, GitHub OAuth credentials, `REDIS_URL`, and the rate-limit settings are optional; their purpose and defaults are documented in [`.env.example`](sportsdeck-app/.env.example).
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+### 2. Start the local services
 
-## Suggestions for a good README
+```bash
+docker compose up -d db redis
+```
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+### 3. Install, initialize, and seed
 
-## Name
-Choose a self-explaining name for your project.
+```bash
+npm ci
+npx prisma generate
+npx prisma db push
+npm run db:seed
+```
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+Seeding loads the configured 2025 Premier League teams and fixtures from football-data.org, then creates the starter community data. A database snapshot is also included at [`sportsdeck-app/prisma/seedData/dump.sql`](sportsdeck-app/prisma/seedData/dump.sql) for development and restoration workflows.
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+### 4. Launch the development server
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+```bash
+npm run dev
+```
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+Open [http://localhost:3000](http://localhost:3000).
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+## Useful Commands
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+Run these inside `sportsdeck-app/`.
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+| Command | Purpose |
+| --- | --- |
+| `npm run dev` | Start the development server |
+| `npm run build` | Generate Prisma Client and build the production application |
+| `npm run start` | Run a production Next.js build |
+| `npm run lint` | Run ESLint |
+| `npm run db:seed` | Seed teams, users, fixtures, and starter threads |
+| `npm run studio` | Open Prisma Studio |
+| `docker compose --profile dev-tools up -d adminer` | Start Adminer at `http://localhost:8080` |
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+## API and Database Documentation
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+- [`openapi.yaml`](openapi.yaml) documents the REST API contract.
+- [`postman_collection.json`](postman_collection.json) contains ready-to-import API requests.
+- [`sportsdeck-app/tests`](sportsdeck-app/tests) contains HTTP files for authentication, user, social, feed, follow, and sports-data flows.
+- [`erd.png`](erd.png) diagrams the relational data model.
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+## Deployment Notes
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+`sportsdeck-app/docker-compose.yaml` describes a production-style stack with the Next.js application, PostgreSQL, Redis, and Nginx. The Dockerfile uses a multi-stage Node 20 Alpine build and produces Next.js standalone output; Nginx exposes the application on port 80. The Compose configuration also includes an opt-in Adminer profile for database inspection.
 
-## License
-For open source projects, say how it is licensed.
+Before deploying, supply strong JWT secrets, production database and Redis endpoints, OAuth callback configuration where used, and the external-service tokens needed for sports-data refreshes and AI features. Never commit `.env` files or API credentials.
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+## Portfolio Summary
+
+SportsDeck demonstrates end-to-end product engineering: a polished responsive interface, a non-trivial relational domain, authentication and authorization, REST API design, third-party data integration, caching, rate limiting, AI-assisted moderation, operational tooling, and containerized deployment. The project is designed around a practical product question: how can a sports application provide timely match context while making fan conversation discoverable, personal, and manageable at scale?
